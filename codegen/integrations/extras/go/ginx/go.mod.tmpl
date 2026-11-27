@@ -1,0 +1,12 @@
+module github.com/crossly-dev/crossly-go/seller/webhooks/ginx
+
+go 1.25.0
+
+require (
+	github.com/crossly-dev/crossly-go/seller v__VERSION__
+	github.com/gin-gonic/gin v1.12.0
+)
+
+// Builds inside this repository against the seller module next to it. Ignored by
+// consumers (replace only applies in the main module), who get seller v__VERSION__.
+replace github.com/crossly-dev/crossly-go/seller => ../..
