@@ -4,16 +4,78 @@ All URIs are relative to *https://crossly.net/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateGeoLocationCheck**](PolicyPresetsApi.md#CreateGeoLocationCheck) | **Post** /v1/geo/location-check | Check whether a shipping policy ships to an address.
 [**CreatePolicyPreset**](PolicyPresetsApi.md#CreatePolicyPreset) | **Post** /v1/policy-presets | Create a return / shipping / payment policy preset.
-[**DeletePolicyPreset**](PolicyPresetsApi.md#DeletePolicyPreset) | **Delete** /v1/policy-presets/{id} | Delete a policy preset.
-[**ListPolicyPresets**](PolicyPresetsApi.md#ListPolicyPresets) | **Get** /v1/policy-presets | List the seller&#39;s return / shipping / payment policy presets.
+[**DeletePolicyPreset**](PolicyPresetsApi.md#DeletePolicyPreset) | **Delete** /v1/policy-presets/{id} | Delete a policy preset. Listings that used it switch to the default preset of its kind.
+[**GetPolicy**](PolicyPresetsApi.md#GetPolicy) | **Get** /v1/policies | The seller&#39;s shipping / return / payment policy presets by kind, with each kind&#39;s default.
+[**ListPolicyPresets**](PolicyPresetsApi.md#ListPolicyPresets) | **Get** /v1/policy-presets | List the seller&#39;s return / shipping / payment policy presets. meta.migrationNotices lists defaults the policy migration demoted (kind still has no default).
 [**UpdatePolicyPreset**](PolicyPresetsApi.md#UpdatePolicyPreset) | **Patch** /v1/policy-presets/{id} | Update a policy preset.
 
 
 
+## CreateGeoLocationCheck
+
+> CreateGeoLocationCheckResponse CreateGeoLocationCheck(ctx).Execute()
+
+Check whether a shipping policy ships to an address.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PolicyPresetsApi.CreateGeoLocationCheck(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PolicyPresetsApi.CreateGeoLocationCheck``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateGeoLocationCheck`: CreateGeoLocationCheckResponse
+    fmt.Fprintf(os.Stdout, "Response from `PolicyPresetsApi.CreateGeoLocationCheck`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGeoLocationCheckRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateGeoLocationCheckResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreatePolicyPreset
 
-> ListPolicyPresetsItem CreatePolicyPreset(ctx).Execute()
+> CreatePolicyPresetResponse CreatePolicyPreset(ctx).Execute()
 
 Create a return / shipping / payment policy preset.
 
@@ -38,7 +100,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PolicyPresetsApi.CreatePolicyPreset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreatePolicyPreset`: ListPolicyPresetsItem
+    // response from `CreatePolicyPreset`: CreatePolicyPresetResponse
     fmt.Fprintf(os.Stdout, "Response from `PolicyPresetsApi.CreatePolicyPreset`: %v\n", resp)
 }
 ```
@@ -54,7 +116,7 @@ Other parameters are passed through a pointer to a apiCreatePolicyPresetRequest 
 
 ### Return type
 
-**ListPolicyPresetsItem**
+**CreatePolicyPresetResponse**
 
 ### Authorization
 
@@ -71,9 +133,9 @@ Other parameters are passed through a pointer to a apiCreatePolicyPresetRequest 
 
 ## DeletePolicyPreset
 
-> OkResponse DeletePolicyPreset(ctx, id).Execute()
+> DeletePolicyPresetResponse DeletePolicyPreset(ctx, id).Execute()
 
-Delete a policy preset.
+Delete a policy preset. Listings that used it switch to the default preset of its kind.
 
 ### Example
 
@@ -97,7 +159,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PolicyPresetsApi.DeletePolicyPreset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeletePolicyPreset`: OkResponse
+    // response from `DeletePolicyPreset`: DeletePolicyPresetResponse
     fmt.Fprintf(os.Stdout, "Response from `PolicyPresetsApi.DeletePolicyPreset`: %v\n", resp)
 }
 ```
@@ -121,7 +183,67 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**OkResponse**
+**DeletePolicyPresetResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetPolicy
+
+> GetPolicyResponse GetPolicy(ctx).Execute()
+
+The seller's shipping / return / payment policy presets by kind, with each kind's default.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PolicyPresetsApi.GetPolicy(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PolicyPresetsApi.GetPolicy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPolicy`: GetPolicyResponse
+    fmt.Fprintf(os.Stdout, "Response from `PolicyPresetsApi.GetPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPolicyRequest struct via the builder pattern
+
+
+### Return type
+
+**GetPolicyResponse**
 
 ### Authorization
 
@@ -140,7 +262,7 @@ Name | Type | Description  | Notes
 
 > ListPolicyPresetsResponse ListPolicyPresets(ctx).Kind(kind).Execute()
 
-List the seller's return / shipping / payment policy presets.
+List the seller's return / shipping / payment policy presets. meta.migrationNotices lists defaults the policy migration demoted (kind still has no default).
 
 ### Example
 
@@ -201,7 +323,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePolicyPreset
 
-> ListPolicyPresetsItem UpdatePolicyPreset(ctx, id).Execute()
+> CreatePolicyPresetResponse UpdatePolicyPreset(ctx, id).Execute()
 
 Update a policy preset.
 
@@ -227,7 +349,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PolicyPresetsApi.UpdatePolicyPreset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdatePolicyPreset`: ListPolicyPresetsItem
+    // response from `UpdatePolicyPreset`: CreatePolicyPresetResponse
     fmt.Fprintf(os.Stdout, "Response from `PolicyPresetsApi.UpdatePolicyPreset`: %v\n", resp)
 }
 ```
@@ -251,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListPolicyPresetsItem**
+**CreatePolicyPresetResponse**
 
 ### Authorization
 

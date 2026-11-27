@@ -12813,18 +12813,18 @@ type GetCbxMeResponseDataScopesItem string
 
 // List of GetCbxMeResponseDataScopesItem
 const (
+	GETCBXMERESPONSEDATASCOPESITEM_READ GetCbxMeResponseDataScopesItem = "read"
 	GETCBXMERESPONSEDATASCOPESITEM_SPEND GetCbxMeResponseDataScopesItem = "spend"
 	GETCBXMERESPONSEDATASCOPESITEM_CAMPAIGN GetCbxMeResponseDataScopesItem = "campaign"
-	GETCBXMERESPONSEDATASCOPESITEM_READ GetCbxMeResponseDataScopesItem = "read"
 	GETCBXMERESPONSEDATASCOPESITEM_ACCRUE GetCbxMeResponseDataScopesItem = "accrue"
 	GETCBXMERESPONSEDATASCOPESITEM_TREASURY GetCbxMeResponseDataScopesItem = "treasury"
 )
 
 // All allowed values of GetCbxMeResponseDataScopesItem enum
 var AllowedGetCbxMeResponseDataScopesItemEnumValues = []GetCbxMeResponseDataScopesItem{
+	"read",
 	"spend",
 	"campaign",
-	"read",
 	"accrue",
 	"treasury",
 }

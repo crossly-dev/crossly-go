@@ -14,246 +14,6 @@ import (
 	"encoding/json"
 )
 
-// CreateBuyerPurchaseDownloadResponse struct for CreateBuyerPurchaseDownloadResponse
-type CreateBuyerPurchaseDownloadResponse struct {
-	Data CreateBuyerPurchaseDownloadResponseData `json:"data"`
-}
-
-// NewCreateBuyerPurchaseDownloadResponse instantiates a new CreateBuyerPurchaseDownloadResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateBuyerPurchaseDownloadResponse(data CreateBuyerPurchaseDownloadResponseData) *CreateBuyerPurchaseDownloadResponse {
-	this := CreateBuyerPurchaseDownloadResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewCreateBuyerPurchaseDownloadResponseWithDefaults instantiates a new CreateBuyerPurchaseDownloadResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateBuyerPurchaseDownloadResponseWithDefaults() *CreateBuyerPurchaseDownloadResponse {
-	this := CreateBuyerPurchaseDownloadResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *CreateBuyerPurchaseDownloadResponse) GetData() CreateBuyerPurchaseDownloadResponseData {
-	if o == nil {
-		var ret CreateBuyerPurchaseDownloadResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerPurchaseDownloadResponse) GetDataOk() (*CreateBuyerPurchaseDownloadResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *CreateBuyerPurchaseDownloadResponse) SetData(v CreateBuyerPurchaseDownloadResponseData) {
-	o.Data = v
-}
-
-func (o CreateBuyerPurchaseDownloadResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateBuyerPurchaseDownloadResponse struct {
-	value *CreateBuyerPurchaseDownloadResponse
-	isSet bool
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponse) Get() *CreateBuyerPurchaseDownloadResponse {
-	return v.value
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponse) Set(val *CreateBuyerPurchaseDownloadResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateBuyerPurchaseDownloadResponse(val *CreateBuyerPurchaseDownloadResponse) *NullableCreateBuyerPurchaseDownloadResponse {
-	return &NullableCreateBuyerPurchaseDownloadResponse{value: val, isSet: true}
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// CreateBuyerPurchaseDownloadResponseData struct for CreateBuyerPurchaseDownloadResponseData
-type CreateBuyerPurchaseDownloadResponseData struct {
-	Name string `json:"name"`
-	Url string `json:"url"`
-	Remaining float32 `json:"remaining"`
-}
-
-// NewCreateBuyerPurchaseDownloadResponseData instantiates a new CreateBuyerPurchaseDownloadResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateBuyerPurchaseDownloadResponseData(name string, url string, remaining float32) *CreateBuyerPurchaseDownloadResponseData {
-	this := CreateBuyerPurchaseDownloadResponseData{}
-	this.Name = name
-	this.Url = url
-	this.Remaining = remaining
-	return &this
-}
-
-// NewCreateBuyerPurchaseDownloadResponseDataWithDefaults instantiates a new CreateBuyerPurchaseDownloadResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateBuyerPurchaseDownloadResponseDataWithDefaults() *CreateBuyerPurchaseDownloadResponseData {
-	this := CreateBuyerPurchaseDownloadResponseData{}
-	return &this
-}
-
-// GetName returns the Name field value
-func (o *CreateBuyerPurchaseDownloadResponseData) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerPurchaseDownloadResponseData) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CreateBuyerPurchaseDownloadResponseData) SetName(v string) {
-	o.Name = v
-}
-
-// GetUrl returns the Url field value
-func (o *CreateBuyerPurchaseDownloadResponseData) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerPurchaseDownloadResponseData) GetUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *CreateBuyerPurchaseDownloadResponseData) SetUrl(v string) {
-	o.Url = v
-}
-
-// GetRemaining returns the Remaining field value
-func (o *CreateBuyerPurchaseDownloadResponseData) GetRemaining() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Remaining
-}
-
-// GetRemainingOk returns a tuple with the Remaining field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerPurchaseDownloadResponseData) GetRemainingOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Remaining, true
-}
-
-// SetRemaining sets field value
-func (o *CreateBuyerPurchaseDownloadResponseData) SetRemaining(v float32) {
-	o.Remaining = v
-}
-
-func (o CreateBuyerPurchaseDownloadResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
-	if true {
-		toSerialize["remaining"] = o.Remaining
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateBuyerPurchaseDownloadResponseData struct {
-	value *CreateBuyerPurchaseDownloadResponseData
-	isSet bool
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponseData) Get() *CreateBuyerPurchaseDownloadResponseData {
-	return v.value
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponseData) Set(val *CreateBuyerPurchaseDownloadResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateBuyerPurchaseDownloadResponseData(val *CreateBuyerPurchaseDownloadResponseData) *NullableCreateBuyerPurchaseDownloadResponseData {
-	return &NullableCreateBuyerPurchaseDownloadResponseData{value: val, isSet: true}
-}
-
-func (v NullableCreateBuyerPurchaseDownloadResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateBuyerPurchaseDownloadResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // GetBuyerPurchaseDeliveryResponse struct for GetBuyerPurchaseDeliveryResponse
 type GetBuyerPurchaseDeliveryResponse struct {
 	Data GetBuyerPurchaseDeliveryResponseData `json:"data"`
@@ -348,8 +108,8 @@ func (v *NullableGetBuyerPurchaseDeliveryResponse) UnmarshalJSON(src []byte) err
 // GetBuyerPurchaseDeliveryResponseData struct for GetBuyerPurchaseDeliveryResponseData
 type GetBuyerPurchaseDeliveryResponseData struct {
 	PickupPoint map[string]interface{} `json:"pickupPoint,omitempty"`
-	Carrier NullableString `json:"carrier,omitempty"`
 	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+	Carrier NullableString `json:"carrier,omitempty"`
 	Consolidation map[string]interface{} `json:"consolidation,omitempty"`
 }
 
@@ -403,48 +163,6 @@ func (o *GetBuyerPurchaseDeliveryResponseData) SetPickupPoint(v map[string]inter
 	o.PickupPoint = v
 }
 
-// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerPurchaseDeliveryResponseData) GetCarrier() string {
-	if o == nil || o.Carrier.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Carrier.Get()
-}
-
-// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerPurchaseDeliveryResponseData) GetCarrierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Carrier.Get(), o.Carrier.IsSet()
-}
-
-// HasCarrier returns a boolean if a field has been set.
-func (o *GetBuyerPurchaseDeliveryResponseData) HasCarrier() bool {
-	if o != nil && o.Carrier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
-func (o *GetBuyerPurchaseDeliveryResponseData) SetCarrier(v string) {
-	o.Carrier.Set(&v)
-}
-// SetCarrierNil sets the value for Carrier to be an explicit nil
-func (o *GetBuyerPurchaseDeliveryResponseData) SetCarrierNil() {
-	o.Carrier.Set(nil)
-}
-
-// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
-func (o *GetBuyerPurchaseDeliveryResponseData) UnsetCarrier() {
-	o.Carrier.Unset()
-}
-
 // GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerPurchaseDeliveryResponseData) GetTrackingNumber() string {
 	if o == nil || o.TrackingNumber.Get() == nil {
@@ -487,6 +205,48 @@ func (o *GetBuyerPurchaseDeliveryResponseData) UnsetTrackingNumber() {
 	o.TrackingNumber.Unset()
 }
 
+// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerPurchaseDeliveryResponseData) GetCarrier() string {
+	if o == nil || o.Carrier.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Carrier.Get()
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerPurchaseDeliveryResponseData) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Carrier.Get(), o.Carrier.IsSet()
+}
+
+// HasCarrier returns a boolean if a field has been set.
+func (o *GetBuyerPurchaseDeliveryResponseData) HasCarrier() bool {
+	if o != nil && o.Carrier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
+func (o *GetBuyerPurchaseDeliveryResponseData) SetCarrier(v string) {
+	o.Carrier.Set(&v)
+}
+// SetCarrierNil sets the value for Carrier to be an explicit nil
+func (o *GetBuyerPurchaseDeliveryResponseData) SetCarrierNil() {
+	o.Carrier.Set(nil)
+}
+
+// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+func (o *GetBuyerPurchaseDeliveryResponseData) UnsetCarrier() {
+	o.Carrier.Unset()
+}
+
 // GetConsolidation returns the Consolidation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerPurchaseDeliveryResponseData) GetConsolidation() map[string]interface{} {
 	if o == nil  {
@@ -525,11 +285,11 @@ func (o GetBuyerPurchaseDeliveryResponseData) MarshalJSON() ([]byte, error) {
 	if o.PickupPoint != nil {
 		toSerialize["pickupPoint"] = o.PickupPoint
 	}
-	if o.Carrier.IsSet() {
-		toSerialize["carrier"] = o.Carrier.Get()
-	}
 	if o.TrackingNumber.IsSet() {
 		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	if o.Carrier.IsSet() {
+		toSerialize["carrier"] = o.Carrier.Get()
 	}
 	if o.Consolidation != nil {
 		toSerialize["consolidation"] = o.Consolidation
@@ -683,27 +443,27 @@ func (v *NullableGetBuyerPurchaseLiveMomentResponse) UnmarshalJSON(src []byte) e
 
 // GetBuyerPurchaseLiveMomentResponseData struct for GetBuyerPurchaseLiveMomentResponseData
 type GetBuyerPurchaseLiveMomentResponseData struct {
-	Status string `json:"status"`
-	Title string `json:"title"`
-	SoldAt string `json:"soldAt"`
-	SellerUserId string `json:"sellerUserId"`
-	ReplayUrl NullableString `json:"replayUrl,omitempty"`
 	StreamId string `json:"streamId"`
+	Title string `json:"title"`
+	SellerUserId string `json:"sellerUserId"`
+	Status string `json:"status"`
+	ReplayUrl NullableString `json:"replayUrl,omitempty"`
 	OffsetSeconds float32 `json:"offsetSeconds"`
+	SoldAt string `json:"soldAt"`
 }
 
 // NewGetBuyerPurchaseLiveMomentResponseData instantiates a new GetBuyerPurchaseLiveMomentResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerPurchaseLiveMomentResponseData(status string, title string, soldAt string, sellerUserId string, streamId string, offsetSeconds float32) *GetBuyerPurchaseLiveMomentResponseData {
+func NewGetBuyerPurchaseLiveMomentResponseData(streamId string, title string, sellerUserId string, status string, offsetSeconds float32, soldAt string) *GetBuyerPurchaseLiveMomentResponseData {
 	this := GetBuyerPurchaseLiveMomentResponseData{}
-	this.Status = status
-	this.Title = title
-	this.SoldAt = soldAt
-	this.SellerUserId = sellerUserId
 	this.StreamId = streamId
+	this.Title = title
+	this.SellerUserId = sellerUserId
+	this.Status = status
 	this.OffsetSeconds = offsetSeconds
+	this.SoldAt = soldAt
 	return &this
 }
 
@@ -715,28 +475,28 @@ func NewGetBuyerPurchaseLiveMomentResponseDataWithDefaults() *GetBuyerPurchaseLi
 	return &this
 }
 
-// GetStatus returns the Status field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetStatus() string {
+// GetStreamId returns the StreamId field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetStreamId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.StreamId
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStreamIdOk returns a tuple with the StreamId field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetStatusOk() (*string, bool) {
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetStreamIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.StreamId, true
 }
 
-// SetStatus sets field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) SetStatus(v string) {
-	o.Status = v
+// SetStreamId sets field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) SetStreamId(v string) {
+	o.StreamId = v
 }
 
 // GetTitle returns the Title field value
@@ -763,30 +523,6 @@ func (o *GetBuyerPurchaseLiveMomentResponseData) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetSoldAt returns the SoldAt field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetSoldAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SoldAt
-}
-
-// GetSoldAtOk returns a tuple with the SoldAt field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetSoldAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SoldAt, true
-}
-
-// SetSoldAt sets field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) SetSoldAt(v string) {
-	o.SoldAt = v
-}
-
 // GetSellerUserId returns the SellerUserId field value
 func (o *GetBuyerPurchaseLiveMomentResponseData) GetSellerUserId() string {
 	if o == nil {
@@ -809,6 +545,30 @@ func (o *GetBuyerPurchaseLiveMomentResponseData) GetSellerUserIdOk() (*string, b
 // SetSellerUserId sets field value
 func (o *GetBuyerPurchaseLiveMomentResponseData) SetSellerUserId(v string) {
 	o.SellerUserId = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetReplayUrl returns the ReplayUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -853,30 +613,6 @@ func (o *GetBuyerPurchaseLiveMomentResponseData) UnsetReplayUrl() {
 	o.ReplayUrl.Unset()
 }
 
-// GetStreamId returns the StreamId field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetStreamId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.StreamId
-}
-
-// GetStreamIdOk returns a tuple with the StreamId field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPurchaseLiveMomentResponseData) GetStreamIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.StreamId, true
-}
-
-// SetStreamId sets field value
-func (o *GetBuyerPurchaseLiveMomentResponseData) SetStreamId(v string) {
-	o.StreamId = v
-}
-
 // GetOffsetSeconds returns the OffsetSeconds field value
 func (o *GetBuyerPurchaseLiveMomentResponseData) GetOffsetSeconds() float32 {
 	if o == nil {
@@ -901,28 +637,52 @@ func (o *GetBuyerPurchaseLiveMomentResponseData) SetOffsetSeconds(v float32) {
 	o.OffsetSeconds = v
 }
 
+// GetSoldAt returns the SoldAt field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetSoldAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SoldAt
+}
+
+// GetSoldAtOk returns a tuple with the SoldAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPurchaseLiveMomentResponseData) GetSoldAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SoldAt, true
+}
+
+// SetSoldAt sets field value
+func (o *GetBuyerPurchaseLiveMomentResponseData) SetSoldAt(v string) {
+	o.SoldAt = v
+}
+
 func (o GetBuyerPurchaseLiveMomentResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["streamId"] = o.StreamId
 	}
 	if true {
 		toSerialize["title"] = o.Title
 	}
 	if true {
-		toSerialize["soldAt"] = o.SoldAt
+		toSerialize["sellerUserId"] = o.SellerUserId
 	}
 	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
+		toSerialize["status"] = o.Status
 	}
 	if o.ReplayUrl.IsSet() {
 		toSerialize["replayUrl"] = o.ReplayUrl.Get()
 	}
 	if true {
-		toSerialize["streamId"] = o.StreamId
+		toSerialize["offsetSeconds"] = o.OffsetSeconds
 	}
 	if true {
-		toSerialize["offsetSeconds"] = o.OffsetSeconds
+		toSerialize["soldAt"] = o.SoldAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1056,8 +816,8 @@ func (v *NullableGetBuyerPurchaseReturnResponse) UnmarshalJSON(src []byte) error
 
 // GetBuyerPurchaseReturnResponseData struct for GetBuyerPurchaseReturnResponseData
 type GetBuyerPurchaseReturnResponseData struct {
-	Reasons []GetBuyerPurchaseReturnResponseDataReasons `json:"reasons"`
 	Terms map[string]interface{} `json:"terms"`
+	Reasons []GetBuyerPurchaseReturnResponseDataReasons `json:"reasons"`
 	Existing map[string]interface{} `json:"existing,omitempty"`
 }
 
@@ -1065,10 +825,10 @@ type GetBuyerPurchaseReturnResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerPurchaseReturnResponseData(reasons []GetBuyerPurchaseReturnResponseDataReasons, terms map[string]interface{}) *GetBuyerPurchaseReturnResponseData {
+func NewGetBuyerPurchaseReturnResponseData(terms map[string]interface{}, reasons []GetBuyerPurchaseReturnResponseDataReasons) *GetBuyerPurchaseReturnResponseData {
 	this := GetBuyerPurchaseReturnResponseData{}
-	this.Reasons = reasons
 	this.Terms = terms
+	this.Reasons = reasons
 	return &this
 }
 
@@ -1078,30 +838,6 @@ func NewGetBuyerPurchaseReturnResponseData(reasons []GetBuyerPurchaseReturnRespo
 func NewGetBuyerPurchaseReturnResponseDataWithDefaults() *GetBuyerPurchaseReturnResponseData {
 	this := GetBuyerPurchaseReturnResponseData{}
 	return &this
-}
-
-// GetReasons returns the Reasons field value
-func (o *GetBuyerPurchaseReturnResponseData) GetReasons() []GetBuyerPurchaseReturnResponseDataReasons {
-	if o == nil {
-		var ret []GetBuyerPurchaseReturnResponseDataReasons
-		return ret
-	}
-
-	return o.Reasons
-}
-
-// GetReasonsOk returns a tuple with the Reasons field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPurchaseReturnResponseData) GetReasonsOk() ([]GetBuyerPurchaseReturnResponseDataReasons, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Reasons, true
-}
-
-// SetReasons sets field value
-func (o *GetBuyerPurchaseReturnResponseData) SetReasons(v []GetBuyerPurchaseReturnResponseDataReasons) {
-	o.Reasons = v
 }
 
 // GetTerms returns the Terms field value
@@ -1126,6 +862,30 @@ func (o *GetBuyerPurchaseReturnResponseData) GetTermsOk() (map[string]interface{
 // SetTerms sets field value
 func (o *GetBuyerPurchaseReturnResponseData) SetTerms(v map[string]interface{}) {
 	o.Terms = v
+}
+
+// GetReasons returns the Reasons field value
+func (o *GetBuyerPurchaseReturnResponseData) GetReasons() []GetBuyerPurchaseReturnResponseDataReasons {
+	if o == nil {
+		var ret []GetBuyerPurchaseReturnResponseDataReasons
+		return ret
+	}
+
+	return o.Reasons
+}
+
+// GetReasonsOk returns a tuple with the Reasons field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPurchaseReturnResponseData) GetReasonsOk() ([]GetBuyerPurchaseReturnResponseDataReasons, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reasons, true
+}
+
+// SetReasons sets field value
+func (o *GetBuyerPurchaseReturnResponseData) SetReasons(v []GetBuyerPurchaseReturnResponseDataReasons) {
+	o.Reasons = v
 }
 
 // GetExisting returns the Existing field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1164,10 +924,10 @@ func (o *GetBuyerPurchaseReturnResponseData) SetExisting(v map[string]interface{
 func (o GetBuyerPurchaseReturnResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["reasons"] = o.Reasons
+		toSerialize["terms"] = o.Terms
 	}
 	if true {
-		toSerialize["terms"] = o.Terms
+		toSerialize["reasons"] = o.Reasons
 	}
 	if o.Existing != nil {
 		toSerialize["existing"] = o.Existing

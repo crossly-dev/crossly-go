@@ -16,137 +16,33 @@ import (
 	"time"
 )
 
-// ListWorldGamesItemPlacesItem the model 'ListWorldGamesItemPlacesItem'
-type ListWorldGamesItemPlacesItem string
-
-// List of ListWorldGamesItemPlacesItem
-const (
-	LISTWORLDGAMESITEMPLACESITEM_HOME ListWorldGamesItemPlacesItem = "home"
-	LISTWORLDGAMESITEMPLACESITEM_BOUTIQUE ListWorldGamesItemPlacesItem = "boutique"
-	LISTWORLDGAMESITEMPLACESITEM_SPACE ListWorldGamesItemPlacesItem = "space"
-	LISTWORLDGAMESITEMPLACESITEM_OWN ListWorldGamesItemPlacesItem = "own"
-	LISTWORLDGAMESITEMPLACESITEM_COMMONS ListWorldGamesItemPlacesItem = "commons"
-)
-
-// All allowed values of ListWorldGamesItemPlacesItem enum
-var AllowedListWorldGamesItemPlacesItemEnumValues = []ListWorldGamesItemPlacesItem{
-	"home",
-	"boutique",
-	"space",
-	"own",
-	"commons",
+// GetWorldChestResponse struct for GetWorldChestResponse
+type GetWorldChestResponse struct {
+	Data GetWorldChestResponseData `json:"data"`
 }
 
-func (v *ListWorldGamesItemPlacesItem) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := ListWorldGamesItemPlacesItem(value)
-	for _, existing := range AllowedListWorldGamesItemPlacesItemEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ListWorldGamesItemPlacesItem", value)
-}
-
-// NewListWorldGamesItemPlacesItemFromValue returns a pointer to a valid ListWorldGamesItemPlacesItem
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewListWorldGamesItemPlacesItemFromValue(v string) (*ListWorldGamesItemPlacesItem, error) {
-	ev := ListWorldGamesItemPlacesItem(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ListWorldGamesItemPlacesItem: valid values are %v", v, AllowedListWorldGamesItemPlacesItemEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v ListWorldGamesItemPlacesItem) IsValid() bool {
-	for _, existing := range AllowedListWorldGamesItemPlacesItemEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to ListWorldGamesItemPlacesItem value
-func (v ListWorldGamesItemPlacesItem) Ptr() *ListWorldGamesItemPlacesItem {
-	return &v
-}
-
-type NullableListWorldGamesItemPlacesItem struct {
-	value *ListWorldGamesItemPlacesItem
-	isSet bool
-}
-
-func (v NullableListWorldGamesItemPlacesItem) Get() *ListWorldGamesItemPlacesItem {
-	return v.value
-}
-
-func (v *NullableListWorldGamesItemPlacesItem) Set(val *ListWorldGamesItemPlacesItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldGamesItemPlacesItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldGamesItemPlacesItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldGamesItemPlacesItem(val *ListWorldGamesItemPlacesItem) *NullableListWorldGamesItemPlacesItem {
-	return &NullableListWorldGamesItemPlacesItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldGamesItemPlacesItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldGamesItemPlacesItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldGamesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldGamesResponse struct {
-	// The rows.
-	Data []ListWorldGamesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldGamesResponse instantiates a new ListWorldGamesResponse object
+// NewGetWorldChestResponse instantiates a new GetWorldChestResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldGamesResponse(data []ListWorldGamesItem) *ListWorldGamesResponse {
-	this := ListWorldGamesResponse{}
+func NewGetWorldChestResponse(data GetWorldChestResponseData) *GetWorldChestResponse {
+	this := GetWorldChestResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewListWorldGamesResponseWithDefaults instantiates a new ListWorldGamesResponse object
+// NewGetWorldChestResponseWithDefaults instantiates a new GetWorldChestResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldGamesResponseWithDefaults() *ListWorldGamesResponse {
-	this := ListWorldGamesResponse{}
+func NewGetWorldChestResponseWithDefaults() *GetWorldChestResponse {
+	this := GetWorldChestResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *ListWorldGamesResponse) GetData() []ListWorldGamesItem {
+func (o *GetWorldChestResponse) GetData() GetWorldChestResponseData {
 	if o == nil {
-		var ret []ListWorldGamesItem
+		var ret GetWorldChestResponseData
 		return ret
 	}
 
@@ -155,825 +51,404 @@ func (o *ListWorldGamesResponse) GetData() []ListWorldGamesItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldGamesResponse) GetDataOk() ([]ListWorldGamesItem, bool) {
+func (o *GetWorldChestResponse) GetDataOk() (*GetWorldChestResponseData, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // SetData sets field value
-func (o *ListWorldGamesResponse) SetData(v []ListWorldGamesItem) {
+func (o *GetWorldChestResponse) SetData(v GetWorldChestResponseData) {
 	o.Data = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldGamesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldGamesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldGamesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldGamesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldGamesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldGamesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldGamesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldGamesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldGamesResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldChestResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
 	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldGamesResponse struct {
-	value *ListWorldGamesResponse
+type NullableGetWorldChestResponse struct {
+	value *GetWorldChestResponse
 	isSet bool
 }
 
-func (v NullableListWorldGamesResponse) Get() *ListWorldGamesResponse {
+func (v NullableGetWorldChestResponse) Get() *GetWorldChestResponse {
 	return v.value
 }
 
-func (v *NullableListWorldGamesResponse) Set(val *ListWorldGamesResponse) {
+func (v *NullableGetWorldChestResponse) Set(val *GetWorldChestResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldGamesResponse) IsSet() bool {
+func (v NullableGetWorldChestResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldGamesResponse) Unset() {
+func (v *NullableGetWorldChestResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldGamesResponse(val *ListWorldGamesResponse) *NullableListWorldGamesResponse {
-	return &NullableListWorldGamesResponse{value: val, isSet: true}
+func NewNullableGetWorldChestResponse(val *GetWorldChestResponse) *NullableGetWorldChestResponse {
+	return &NullableGetWorldChestResponse{value: val, isSet: true}
 }
 
-func (v NullableListWorldGamesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldChestResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldGamesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldChestResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldHomeBuildingItem struct for ListWorldHomeBuildingItem
-type ListWorldHomeBuildingItem struct {
-	Slug string `json:"slug"`
-	OwnerName string `json:"ownerName"`
+// GetWorldChestResponseData struct for GetWorldChestResponseData
+type GetWorldChestResponseData struct {
+	Window float32 `json:"window"`
+	Spot []float32 `json:"spot"`
+	EndsAt string `json:"endsAt"`
+	Mine NullableGetWorldChestResponseDataMine `json:"mine,omitempty"`
 }
 
-// NewListWorldHomeBuildingItem instantiates a new ListWorldHomeBuildingItem object
+// NewGetWorldChestResponseData instantiates a new GetWorldChestResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldHomeBuildingItem(slug string, ownerName string) *ListWorldHomeBuildingItem {
-	this := ListWorldHomeBuildingItem{}
-	this.Slug = slug
-	this.OwnerName = ownerName
+func NewGetWorldChestResponseData(window float32, spot []float32, endsAt string) *GetWorldChestResponseData {
+	this := GetWorldChestResponseData{}
+	this.Window = window
+	this.Spot = spot
+	this.EndsAt = endsAt
 	return &this
 }
 
-// NewListWorldHomeBuildingItemWithDefaults instantiates a new ListWorldHomeBuildingItem object
+// NewGetWorldChestResponseDataWithDefaults instantiates a new GetWorldChestResponseData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldHomeBuildingItemWithDefaults() *ListWorldHomeBuildingItem {
-	this := ListWorldHomeBuildingItem{}
+func NewGetWorldChestResponseDataWithDefaults() *GetWorldChestResponseData {
+	this := GetWorldChestResponseData{}
 	return &this
 }
 
-// GetSlug returns the Slug field value
-func (o *ListWorldHomeBuildingItem) GetSlug() string {
+// GetWindow returns the Window field value
+func (o *GetWorldChestResponseData) GetWindow() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.Slug
+	return o.Window
 }
 
-// GetSlugOk returns a tuple with the Slug field value
+// GetWindowOk returns a tuple with the Window field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldHomeBuildingItem) GetSlugOk() (*string, bool) {
+func (o *GetWorldChestResponseData) GetWindowOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Slug, true
+	return &o.Window, true
 }
 
-// SetSlug sets field value
-func (o *ListWorldHomeBuildingItem) SetSlug(v string) {
-	o.Slug = v
+// SetWindow sets field value
+func (o *GetWorldChestResponseData) SetWindow(v float32) {
+	o.Window = v
 }
 
-// GetOwnerName returns the OwnerName field value
-func (o *ListWorldHomeBuildingItem) GetOwnerName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OwnerName
-}
-
-// GetOwnerNameOk returns a tuple with the OwnerName field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldHomeBuildingItem) GetOwnerNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OwnerName, true
-}
-
-// SetOwnerName sets field value
-func (o *ListWorldHomeBuildingItem) SetOwnerName(v string) {
-	o.OwnerName = v
-}
-
-func (o ListWorldHomeBuildingItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["ownerName"] = o.OwnerName
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldHomeBuildingItem struct {
-	value *ListWorldHomeBuildingItem
-	isSet bool
-}
-
-func (v NullableListWorldHomeBuildingItem) Get() *ListWorldHomeBuildingItem {
-	return v.value
-}
-
-func (v *NullableListWorldHomeBuildingItem) Set(val *ListWorldHomeBuildingItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldHomeBuildingItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldHomeBuildingItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldHomeBuildingItem(val *ListWorldHomeBuildingItem) *NullableListWorldHomeBuildingItem {
-	return &NullableListWorldHomeBuildingItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldHomeBuildingItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldHomeBuildingItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldHomeBuildingResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldHomeBuildingResponse struct {
-	// The rows.
-	Data []ListWorldHomeBuildingItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldHomeBuildingResponse instantiates a new ListWorldHomeBuildingResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldHomeBuildingResponse(data []ListWorldHomeBuildingItem) *ListWorldHomeBuildingResponse {
-	this := ListWorldHomeBuildingResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldHomeBuildingResponseWithDefaults instantiates a new ListWorldHomeBuildingResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldHomeBuildingResponseWithDefaults() *ListWorldHomeBuildingResponse {
-	this := ListWorldHomeBuildingResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldHomeBuildingResponse) GetData() []ListWorldHomeBuildingItem {
-	if o == nil {
-		var ret []ListWorldHomeBuildingItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldHomeBuildingResponse) GetDataOk() ([]ListWorldHomeBuildingItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldHomeBuildingResponse) SetData(v []ListWorldHomeBuildingItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldHomeBuildingResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldHomeBuildingResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldHomeBuildingResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldHomeBuildingResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldHomeBuildingResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldHomeBuildingResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldHomeBuildingResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldHomeBuildingResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldHomeBuildingResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldHomeBuildingResponse struct {
-	value *ListWorldHomeBuildingResponse
-	isSet bool
-}
-
-func (v NullableListWorldHomeBuildingResponse) Get() *ListWorldHomeBuildingResponse {
-	return v.value
-}
-
-func (v *NullableListWorldHomeBuildingResponse) Set(val *ListWorldHomeBuildingResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldHomeBuildingResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldHomeBuildingResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldHomeBuildingResponse(val *ListWorldHomeBuildingResponse) *NullableListWorldHomeBuildingResponse {
-	return &NullableListWorldHomeBuildingResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldHomeBuildingResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldHomeBuildingResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldInteractiveCatalogueItem struct for ListWorldInteractiveCatalogueItem
-type ListWorldInteractiveCatalogueItem struct {
-	// The piece model a layout stores.
-	Model string `json:"model"`
-	DecorValue string `json:"decorValue"`
-	Source string `json:"source"`
-	Name string `json:"name"`
-	Blurb NullableString `json:"blurb,omitempty"`
-	Size []float32 `json:"size"`
-	FallbackMesh string `json:"fallbackMesh"`
-	// The SKU that sells it, when it is on sale (COSM for creator designs).
-	CosmeticId NullableString `json:"cosmeticId,omitempty"`
-	// Creator designs: the approved version every copy runs.
-	Version NullableFloat32 `json:"version,omitempty"`
-}
-
-// NewListWorldInteractiveCatalogueItem instantiates a new ListWorldInteractiveCatalogueItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldInteractiveCatalogueItem(model string, decorValue string, source string, name string, size []float32, fallbackMesh string) *ListWorldInteractiveCatalogueItem {
-	this := ListWorldInteractiveCatalogueItem{}
-	this.Model = model
-	this.DecorValue = decorValue
-	this.Source = source
-	this.Name = name
-	this.Size = size
-	this.FallbackMesh = fallbackMesh
-	return &this
-}
-
-// NewListWorldInteractiveCatalogueItemWithDefaults instantiates a new ListWorldInteractiveCatalogueItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldInteractiveCatalogueItemWithDefaults() *ListWorldInteractiveCatalogueItem {
-	this := ListWorldInteractiveCatalogueItem{}
-	return &this
-}
-
-// GetModel returns the Model field value
-func (o *ListWorldInteractiveCatalogueItem) GetModel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Model
-}
-
-// GetModelOk returns a tuple with the Model field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetModelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Model, true
-}
-
-// SetModel sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetModel(v string) {
-	o.Model = v
-}
-
-// GetDecorValue returns the DecorValue field value
-func (o *ListWorldInteractiveCatalogueItem) GetDecorValue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DecorValue
-}
-
-// GetDecorValueOk returns a tuple with the DecorValue field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetDecorValueOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DecorValue, true
-}
-
-// SetDecorValue sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetDecorValue(v string) {
-	o.DecorValue = v
-}
-
-// GetSource returns the Source field value
-func (o *ListWorldInteractiveCatalogueItem) GetSource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetSourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Source, true
-}
-
-// SetSource sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetSource(v string) {
-	o.Source = v
-}
-
-// GetName returns the Name field value
-func (o *ListWorldInteractiveCatalogueItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetBlurb returns the Blurb field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveCatalogueItem) GetBlurb() string {
-	if o == nil || o.Blurb.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Blurb.Get()
-}
-
-// GetBlurbOk returns a tuple with the Blurb field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveCatalogueItem) GetBlurbOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Blurb.Get(), o.Blurb.IsSet()
-}
-
-// HasBlurb returns a boolean if a field has been set.
-func (o *ListWorldInteractiveCatalogueItem) HasBlurb() bool {
-	if o != nil && o.Blurb.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBlurb gets a reference to the given NullableString and assigns it to the Blurb field.
-func (o *ListWorldInteractiveCatalogueItem) SetBlurb(v string) {
-	o.Blurb.Set(&v)
-}
-// SetBlurbNil sets the value for Blurb to be an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) SetBlurbNil() {
-	o.Blurb.Set(nil)
-}
-
-// UnsetBlurb ensures that no value is present for Blurb, not even an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) UnsetBlurb() {
-	o.Blurb.Unset()
-}
-
-// GetSize returns the Size field value
-func (o *ListWorldInteractiveCatalogueItem) GetSize() []float32 {
+// GetSpot returns the Spot field value
+func (o *GetWorldChestResponseData) GetSpot() []float32 {
 	if o == nil {
 		var ret []float32
 		return ret
 	}
 
-	return o.Size
+	return o.Spot
 }
 
-// GetSizeOk returns a tuple with the Size field value
+// GetSpotOk returns a tuple with the Spot field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetSizeOk() ([]float32, bool) {
+func (o *GetWorldChestResponseData) GetSpotOk() ([]float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Size, true
+	return o.Spot, true
 }
 
-// SetSize sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetSize(v []float32) {
-	o.Size = v
+// SetSpot sets field value
+func (o *GetWorldChestResponseData) SetSpot(v []float32) {
+	o.Spot = v
 }
 
-// GetFallbackMesh returns the FallbackMesh field value
-func (o *ListWorldInteractiveCatalogueItem) GetFallbackMesh() string {
+// GetEndsAt returns the EndsAt field value
+func (o *GetWorldChestResponseData) GetEndsAt() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.FallbackMesh
+	return o.EndsAt
 }
 
-// GetFallbackMeshOk returns a tuple with the FallbackMesh field value
+// GetEndsAtOk returns a tuple with the EndsAt field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueItem) GetFallbackMeshOk() (*string, bool) {
+func (o *GetWorldChestResponseData) GetEndsAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.FallbackMesh, true
+	return &o.EndsAt, true
 }
 
-// SetFallbackMesh sets field value
-func (o *ListWorldInteractiveCatalogueItem) SetFallbackMesh(v string) {
-	o.FallbackMesh = v
+// SetEndsAt sets field value
+func (o *GetWorldChestResponseData) SetEndsAt(v string) {
+	o.EndsAt = v
 }
 
-// GetCosmeticId returns the CosmeticId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveCatalogueItem) GetCosmeticId() string {
-	if o == nil || o.CosmeticId.Get() == nil {
-		var ret string
+// GetMine returns the Mine field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldChestResponseData) GetMine() GetWorldChestResponseDataMine {
+	if o == nil || o.Mine.Get() == nil {
+		var ret GetWorldChestResponseDataMine
 		return ret
 	}
-	return *o.CosmeticId.Get()
+	return *o.Mine.Get()
 }
 
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value if set, nil otherwise
+// GetMineOk returns a tuple with the Mine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveCatalogueItem) GetCosmeticIdOk() (*string, bool) {
+func (o *GetWorldChestResponseData) GetMineOk() (*GetWorldChestResponseDataMine, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.CosmeticId.Get(), o.CosmeticId.IsSet()
+	return o.Mine.Get(), o.Mine.IsSet()
 }
 
-// HasCosmeticId returns a boolean if a field has been set.
-func (o *ListWorldInteractiveCatalogueItem) HasCosmeticId() bool {
-	if o != nil && o.CosmeticId.IsSet() {
+// HasMine returns a boolean if a field has been set.
+func (o *GetWorldChestResponseData) HasMine() bool {
+	if o != nil && o.Mine.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCosmeticId gets a reference to the given NullableString and assigns it to the CosmeticId field.
-func (o *ListWorldInteractiveCatalogueItem) SetCosmeticId(v string) {
-	o.CosmeticId.Set(&v)
+// SetMine gets a reference to the given NullableGetWorldChestResponseDataMine and assigns it to the Mine field.
+func (o *GetWorldChestResponseData) SetMine(v GetWorldChestResponseDataMine) {
+	o.Mine.Set(&v)
 }
-// SetCosmeticIdNil sets the value for CosmeticId to be an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) SetCosmeticIdNil() {
-	o.CosmeticId.Set(nil)
-}
-
-// UnsetCosmeticId ensures that no value is present for CosmeticId, not even an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) UnsetCosmeticId() {
-	o.CosmeticId.Unset()
+// SetMineNil sets the value for Mine to be an explicit nil
+func (o *GetWorldChestResponseData) SetMineNil() {
+	o.Mine.Set(nil)
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveCatalogueItem) GetVersion() float32 {
-	if o == nil || o.Version.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Version.Get()
+// UnsetMine ensures that no value is present for Mine, not even an explicit nil
+func (o *GetWorldChestResponseData) UnsetMine() {
+	o.Mine.Unset()
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveCatalogueItem) GetVersionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Version.Get(), o.Version.IsSet()
-}
-
-// HasVersion returns a boolean if a field has been set.
-func (o *ListWorldInteractiveCatalogueItem) HasVersion() bool {
-	if o != nil && o.Version.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersion gets a reference to the given NullableFloat32 and assigns it to the Version field.
-func (o *ListWorldInteractiveCatalogueItem) SetVersion(v float32) {
-	o.Version.Set(&v)
-}
-// SetVersionNil sets the value for Version to be an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) SetVersionNil() {
-	o.Version.Set(nil)
-}
-
-// UnsetVersion ensures that no value is present for Version, not even an explicit nil
-func (o *ListWorldInteractiveCatalogueItem) UnsetVersion() {
-	o.Version.Unset()
-}
-
-func (o ListWorldInteractiveCatalogueItem) MarshalJSON() ([]byte, error) {
+func (o GetWorldChestResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["model"] = o.Model
+		toSerialize["window"] = o.Window
 	}
 	if true {
-		toSerialize["decorValue"] = o.DecorValue
+		toSerialize["spot"] = o.Spot
 	}
 	if true {
-		toSerialize["source"] = o.Source
+		toSerialize["endsAt"] = o.EndsAt
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.Blurb.IsSet() {
-		toSerialize["blurb"] = o.Blurb.Get()
-	}
-	if true {
-		toSerialize["size"] = o.Size
-	}
-	if true {
-		toSerialize["fallbackMesh"] = o.FallbackMesh
-	}
-	if o.CosmeticId.IsSet() {
-		toSerialize["cosmeticId"] = o.CosmeticId.Get()
-	}
-	if o.Version.IsSet() {
-		toSerialize["version"] = o.Version.Get()
+	if o.Mine.IsSet() {
+		toSerialize["mine"] = o.Mine.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldInteractiveCatalogueItem struct {
-	value *ListWorldInteractiveCatalogueItem
+type NullableGetWorldChestResponseData struct {
+	value *GetWorldChestResponseData
 	isSet bool
 }
 
-func (v NullableListWorldInteractiveCatalogueItem) Get() *ListWorldInteractiveCatalogueItem {
+func (v NullableGetWorldChestResponseData) Get() *GetWorldChestResponseData {
 	return v.value
 }
 
-func (v *NullableListWorldInteractiveCatalogueItem) Set(val *ListWorldInteractiveCatalogueItem) {
+func (v *NullableGetWorldChestResponseData) Set(val *GetWorldChestResponseData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldInteractiveCatalogueItem) IsSet() bool {
+func (v NullableGetWorldChestResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldInteractiveCatalogueItem) Unset() {
+func (v *NullableGetWorldChestResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldInteractiveCatalogueItem(val *ListWorldInteractiveCatalogueItem) *NullableListWorldInteractiveCatalogueItem {
-	return &NullableListWorldInteractiveCatalogueItem{value: val, isSet: true}
+func NewNullableGetWorldChestResponseData(val *GetWorldChestResponseData) *NullableGetWorldChestResponseData {
+	return &NullableGetWorldChestResponseData{value: val, isSet: true}
 }
 
-func (v NullableListWorldInteractiveCatalogueItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldChestResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldInteractiveCatalogueItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldChestResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldInteractiveCatalogueResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldInteractiveCatalogueResponse struct {
-	// The rows.
-	Data []ListWorldInteractiveCatalogueItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetWorldChestResponseDataMine Signed in only.
+type GetWorldChestResponseDataMine struct {
+	OpenedThis bool `json:"openedThis"`
+	Opened float32 `json:"opened"`
 }
 
-// NewListWorldInteractiveCatalogueResponse instantiates a new ListWorldInteractiveCatalogueResponse object
+// NewGetWorldChestResponseDataMine instantiates a new GetWorldChestResponseDataMine object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldInteractiveCatalogueResponse(data []ListWorldInteractiveCatalogueItem) *ListWorldInteractiveCatalogueResponse {
-	this := ListWorldInteractiveCatalogueResponse{}
+func NewGetWorldChestResponseDataMine(openedThis bool, opened float32) *GetWorldChestResponseDataMine {
+	this := GetWorldChestResponseDataMine{}
+	this.OpenedThis = openedThis
+	this.Opened = opened
+	return &this
+}
+
+// NewGetWorldChestResponseDataMineWithDefaults instantiates a new GetWorldChestResponseDataMine object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldChestResponseDataMineWithDefaults() *GetWorldChestResponseDataMine {
+	this := GetWorldChestResponseDataMine{}
+	return &this
+}
+
+// GetOpenedThis returns the OpenedThis field value
+func (o *GetWorldChestResponseDataMine) GetOpenedThis() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.OpenedThis
+}
+
+// GetOpenedThisOk returns a tuple with the OpenedThis field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldChestResponseDataMine) GetOpenedThisOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OpenedThis, true
+}
+
+// SetOpenedThis sets field value
+func (o *GetWorldChestResponseDataMine) SetOpenedThis(v bool) {
+	o.OpenedThis = v
+}
+
+// GetOpened returns the Opened field value
+func (o *GetWorldChestResponseDataMine) GetOpened() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Opened
+}
+
+// GetOpenedOk returns a tuple with the Opened field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldChestResponseDataMine) GetOpenedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Opened, true
+}
+
+// SetOpened sets field value
+func (o *GetWorldChestResponseDataMine) SetOpened(v float32) {
+	o.Opened = v
+}
+
+func (o GetWorldChestResponseDataMine) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["openedThis"] = o.OpenedThis
+	}
+	if true {
+		toSerialize["opened"] = o.Opened
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldChestResponseDataMine struct {
+	value *GetWorldChestResponseDataMine
+	isSet bool
+}
+
+func (v NullableGetWorldChestResponseDataMine) Get() *GetWorldChestResponseDataMine {
+	return v.value
+}
+
+func (v *NullableGetWorldChestResponseDataMine) Set(val *GetWorldChestResponseDataMine) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldChestResponseDataMine) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldChestResponseDataMine) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldChestResponseDataMine(val *GetWorldChestResponseDataMine) *NullableGetWorldChestResponseDataMine {
+	return &NullableGetWorldChestResponseDataMine{value: val, isSet: true}
+}
+
+func (v NullableGetWorldChestResponseDataMine) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldChestResponseDataMine) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCollectionCapabilityResponse struct for GetWorldCollectionCapabilityResponse
+type GetWorldCollectionCapabilityResponse struct {
+	Data ListWorldCapabilityDeclarationsItem `json:"data"`
+}
+
+// NewGetWorldCollectionCapabilityResponse instantiates a new GetWorldCollectionCapabilityResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCollectionCapabilityResponse(data ListWorldCapabilityDeclarationsItem) *GetWorldCollectionCapabilityResponse {
+	this := GetWorldCollectionCapabilityResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewListWorldInteractiveCatalogueResponseWithDefaults instantiates a new ListWorldInteractiveCatalogueResponse object
+// NewGetWorldCollectionCapabilityResponseWithDefaults instantiates a new GetWorldCollectionCapabilityResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldInteractiveCatalogueResponseWithDefaults() *ListWorldInteractiveCatalogueResponse {
-	this := ListWorldInteractiveCatalogueResponse{}
+func NewGetWorldCollectionCapabilityResponseWithDefaults() *GetWorldCollectionCapabilityResponse {
+	this := GetWorldCollectionCapabilityResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *ListWorldInteractiveCatalogueResponse) GetData() []ListWorldInteractiveCatalogueItem {
+func (o *GetWorldCollectionCapabilityResponse) GetData() ListWorldCapabilityDeclarationsItem {
 	if o == nil {
-		var ret []ListWorldInteractiveCatalogueItem
+		var ret ListWorldCapabilityDeclarationsItem
 		return ret
 	}
 
@@ -982,250 +457,311 @@ func (o *ListWorldInteractiveCatalogueResponse) GetData() []ListWorldInteractive
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueResponse) GetDataOk() ([]ListWorldInteractiveCatalogueItem, bool) {
+func (o *GetWorldCollectionCapabilityResponse) GetDataOk() (*ListWorldCapabilityDeclarationsItem, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // SetData sets field value
-func (o *ListWorldInteractiveCatalogueResponse) SetData(v []ListWorldInteractiveCatalogueItem) {
+func (o *GetWorldCollectionCapabilityResponse) SetData(v ListWorldCapabilityDeclarationsItem) {
 	o.Data = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldInteractiveCatalogueResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldInteractiveCatalogueResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldInteractiveCatalogueResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldInteractiveCatalogueResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveCatalogueResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldInteractiveCatalogueResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldInteractiveCatalogueResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldInteractiveCatalogueResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldCollectionCapabilityResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
 	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldInteractiveCatalogueResponse struct {
-	value *ListWorldInteractiveCatalogueResponse
+type NullableGetWorldCollectionCapabilityResponse struct {
+	value *GetWorldCollectionCapabilityResponse
 	isSet bool
 }
 
-func (v NullableListWorldInteractiveCatalogueResponse) Get() *ListWorldInteractiveCatalogueResponse {
+func (v NullableGetWorldCollectionCapabilityResponse) Get() *GetWorldCollectionCapabilityResponse {
 	return v.value
 }
 
-func (v *NullableListWorldInteractiveCatalogueResponse) Set(val *ListWorldInteractiveCatalogueResponse) {
+func (v *NullableGetWorldCollectionCapabilityResponse) Set(val *GetWorldCollectionCapabilityResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldInteractiveCatalogueResponse) IsSet() bool {
+func (v NullableGetWorldCollectionCapabilityResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldInteractiveCatalogueResponse) Unset() {
+func (v *NullableGetWorldCollectionCapabilityResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldInteractiveCatalogueResponse(val *ListWorldInteractiveCatalogueResponse) *NullableListWorldInteractiveCatalogueResponse {
-	return &NullableListWorldInteractiveCatalogueResponse{value: val, isSet: true}
+func NewNullableGetWorldCollectionCapabilityResponse(val *GetWorldCollectionCapabilityResponse) *NullableGetWorldCollectionCapabilityResponse {
+	return &NullableGetWorldCollectionCapabilityResponse{value: val, isSet: true}
 }
 
-func (v NullableListWorldInteractiveCatalogueResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldCollectionCapabilityResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldInteractiveCatalogueResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldCollectionCapabilityResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldInteractiveDesignsItem struct for ListWorldInteractiveDesignsItem
-type ListWorldInteractiveDesignsItem struct {
-	LatestVersion NullableListWorldInteractiveDesignsItemLatestVersion `json:"latestVersion,omitempty"`
-	InReview bool `json:"inReview"`
-	Id string `json:"id"`
-	Handle string `json:"handle"`
-	Name string `json:"name"`
-	Description NullableString `json:"description,omitempty"`
-	Footprint string `json:"footprint"`
-	Tint string `json:"tint"`
-	PriceBaseUnits string `json:"priceBaseUnits"`
-	MaxSupply NullableFloat32 `json:"maxSupply,omitempty"`
-	Model string `json:"model"`
-	DecorValue string `json:"decorValue"`
-	CosmeticId NullableString `json:"cosmeticId,omitempty"`
-	LiveVersion NullableFloat32 `json:"liveVersion,omitempty"`
-	WithdrawnReason NullableString `json:"withdrawnReason,omitempty"`
-	ArchivedAt NullableTime `json:"archivedAt,omitempty"`
-	DraftUpdatedAt time.Time `json:"draftUpdatedAt"`
-	CreatedAt time.Time `json:"createdAt"`
+// GetWorldContestMineResponse struct for GetWorldContestMineResponse
+type GetWorldContestMineResponse struct {
+	Data GetWorldContestMineResponseData `json:"data"`
 }
 
-// NewListWorldInteractiveDesignsItem instantiates a new ListWorldInteractiveDesignsItem object
+// NewGetWorldContestMineResponse instantiates a new GetWorldContestMineResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldInteractiveDesignsItem(inReview bool, id string, handle string, name string, footprint string, tint string, priceBaseUnits string, model string, decorValue string, draftUpdatedAt time.Time, createdAt time.Time) *ListWorldInteractiveDesignsItem {
-	this := ListWorldInteractiveDesignsItem{}
-	this.InReview = inReview
-	this.Id = id
-	this.Handle = handle
-	this.Name = name
-	this.Footprint = footprint
-	this.Tint = tint
-	this.PriceBaseUnits = priceBaseUnits
-	this.Model = model
-	this.DecorValue = decorValue
-	this.DraftUpdatedAt = draftUpdatedAt
-	this.CreatedAt = createdAt
+func NewGetWorldContestMineResponse(data GetWorldContestMineResponseData) *GetWorldContestMineResponse {
+	this := GetWorldContestMineResponse{}
+	this.Data = data
 	return &this
 }
 
-// NewListWorldInteractiveDesignsItemWithDefaults instantiates a new ListWorldInteractiveDesignsItem object
+// NewGetWorldContestMineResponseWithDefaults instantiates a new GetWorldContestMineResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldInteractiveDesignsItemWithDefaults() *ListWorldInteractiveDesignsItem {
-	this := ListWorldInteractiveDesignsItem{}
+func NewGetWorldContestMineResponseWithDefaults() *GetWorldContestMineResponse {
+	this := GetWorldContestMineResponse{}
 	return &this
 }
 
-// GetLatestVersion returns the LatestVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetLatestVersion() ListWorldInteractiveDesignsItemLatestVersion {
-	if o == nil || o.LatestVersion.Get() == nil {
-		var ret ListWorldInteractiveDesignsItemLatestVersion
-		return ret
-	}
-	return *o.LatestVersion.Get()
-}
-
-// GetLatestVersionOk returns a tuple with the LatestVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetLatestVersionOk() (*ListWorldInteractiveDesignsItemLatestVersion, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LatestVersion.Get(), o.LatestVersion.IsSet()
-}
-
-// HasLatestVersion returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasLatestVersion() bool {
-	if o != nil && o.LatestVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLatestVersion gets a reference to the given NullableListWorldInteractiveDesignsItemLatestVersion and assigns it to the LatestVersion field.
-func (o *ListWorldInteractiveDesignsItem) SetLatestVersion(v ListWorldInteractiveDesignsItemLatestVersion) {
-	o.LatestVersion.Set(&v)
-}
-// SetLatestVersionNil sets the value for LatestVersion to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetLatestVersionNil() {
-	o.LatestVersion.Set(nil)
-}
-
-// UnsetLatestVersion ensures that no value is present for LatestVersion, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetLatestVersion() {
-	o.LatestVersion.Unset()
-}
-
-// GetInReview returns the InReview field value
-func (o *ListWorldInteractiveDesignsItem) GetInReview() bool {
+// GetData returns the Data field value
+func (o *GetWorldContestMineResponse) GetData() GetWorldContestMineResponseData {
 	if o == nil {
-		var ret bool
+		var ret GetWorldContestMineResponseData
 		return ret
 	}
 
-	return o.InReview
+	return o.Data
 }
 
-// GetInReviewOk returns a tuple with the InReview field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetInReviewOk() (*bool, bool) {
+func (o *GetWorldContestMineResponse) GetDataOk() (*GetWorldContestMineResponseData, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.InReview, true
+	return &o.Data, true
 }
 
-// SetInReview sets field value
-func (o *ListWorldInteractiveDesignsItem) SetInReview(v bool) {
-	o.InReview = v
+// SetData sets field value
+func (o *GetWorldContestMineResponse) SetData(v GetWorldContestMineResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldContestMineResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldContestMineResponse struct {
+	value *GetWorldContestMineResponse
+	isSet bool
+}
+
+func (v NullableGetWorldContestMineResponse) Get() *GetWorldContestMineResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldContestMineResponse) Set(val *GetWorldContestMineResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldContestMineResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldContestMineResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldContestMineResponse(val *GetWorldContestMineResponse) *NullableGetWorldContestMineResponse {
+	return &NullableGetWorldContestMineResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldContestMineResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldContestMineResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldContestMineResponseData struct for GetWorldContestMineResponseData
+type GetWorldContestMineResponseData struct {
+	Entries []GetWorldContestMineResponseDataEntries `json:"entries"`
+	Prizes []GetWorldContestMineResponseDataPrizes `json:"prizes"`
+}
+
+// NewGetWorldContestMineResponseData instantiates a new GetWorldContestMineResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldContestMineResponseData(entries []GetWorldContestMineResponseDataEntries, prizes []GetWorldContestMineResponseDataPrizes) *GetWorldContestMineResponseData {
+	this := GetWorldContestMineResponseData{}
+	this.Entries = entries
+	this.Prizes = prizes
+	return &this
+}
+
+// NewGetWorldContestMineResponseDataWithDefaults instantiates a new GetWorldContestMineResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldContestMineResponseDataWithDefaults() *GetWorldContestMineResponseData {
+	this := GetWorldContestMineResponseData{}
+	return &this
+}
+
+// GetEntries returns the Entries field value
+func (o *GetWorldContestMineResponseData) GetEntries() []GetWorldContestMineResponseDataEntries {
+	if o == nil {
+		var ret []GetWorldContestMineResponseDataEntries
+		return ret
+	}
+
+	return o.Entries
+}
+
+// GetEntriesOk returns a tuple with the Entries field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseData) GetEntriesOk() ([]GetWorldContestMineResponseDataEntries, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Entries, true
+}
+
+// SetEntries sets field value
+func (o *GetWorldContestMineResponseData) SetEntries(v []GetWorldContestMineResponseDataEntries) {
+	o.Entries = v
+}
+
+// GetPrizes returns the Prizes field value
+func (o *GetWorldContestMineResponseData) GetPrizes() []GetWorldContestMineResponseDataPrizes {
+	if o == nil {
+		var ret []GetWorldContestMineResponseDataPrizes
+		return ret
+	}
+
+	return o.Prizes
+}
+
+// GetPrizesOk returns a tuple with the Prizes field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseData) GetPrizesOk() ([]GetWorldContestMineResponseDataPrizes, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Prizes, true
+}
+
+// SetPrizes sets field value
+func (o *GetWorldContestMineResponseData) SetPrizes(v []GetWorldContestMineResponseDataPrizes) {
+	o.Prizes = v
+}
+
+func (o GetWorldContestMineResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["entries"] = o.Entries
+	}
+	if true {
+		toSerialize["prizes"] = o.Prizes
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldContestMineResponseData struct {
+	value *GetWorldContestMineResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldContestMineResponseData) Get() *GetWorldContestMineResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldContestMineResponseData) Set(val *GetWorldContestMineResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldContestMineResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldContestMineResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldContestMineResponseData(val *GetWorldContestMineResponseData) *NullableGetWorldContestMineResponseData {
+	return &NullableGetWorldContestMineResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldContestMineResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldContestMineResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldContestMineResponseDataEntries struct for GetWorldContestMineResponseDataEntries
+type GetWorldContestMineResponseDataEntries struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	StripePaymentIntentId NullableString `json:"stripePaymentIntentId,omitempty"`
+	Attempts float32 `json:"attempts"`
+	ContestId string `json:"contestId"`
+	BestScore NullableFloat32 `json:"bestScore,omitempty"`
+	BestAt NullableTime `json:"bestAt,omitempty"`
+	PaymentState string `json:"paymentState"`
+}
+
+// NewGetWorldContestMineResponseDataEntries instantiates a new GetWorldContestMineResponseDataEntries object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldContestMineResponseDataEntries(id string, createdAt time.Time, userId string, attempts float32, contestId string, paymentState string) *GetWorldContestMineResponseDataEntries {
+	this := GetWorldContestMineResponseDataEntries{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Attempts = attempts
+	this.ContestId = contestId
+	this.PaymentState = paymentState
+	return &this
+}
+
+// NewGetWorldContestMineResponseDataEntriesWithDefaults instantiates a new GetWorldContestMineResponseDataEntries object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldContestMineResponseDataEntriesWithDefaults() *GetWorldContestMineResponseDataEntries {
+	this := GetWorldContestMineResponseDataEntries{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *ListWorldInteractiveDesignsItem) GetId() string {
+func (o *GetWorldContestMineResponseDataEntries) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -1236,7 +772,7 @@ func (o *ListWorldInteractiveDesignsItem) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetIdOk() (*string, bool) {
+func (o *GetWorldContestMineResponseDataEntries) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1244,60 +780,1565 @@ func (o *ListWorldInteractiveDesignsItem) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ListWorldInteractiveDesignsItem) SetId(v string) {
+func (o *GetWorldContestMineResponseDataEntries) SetId(v string) {
 	o.Id = v
 }
 
-// GetHandle returns the Handle field value
-func (o *ListWorldInteractiveDesignsItem) GetHandle() string {
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetWorldContestMineResponseDataEntries) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataEntries) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetWorldContestMineResponseDataEntries) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *GetWorldContestMineResponseDataEntries) GetUserId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Handle
+	return o.UserId
 }
 
-// GetHandleOk returns a tuple with the Handle field value
+// GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetHandleOk() (*string, bool) {
+func (o *GetWorldContestMineResponseDataEntries) GetUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Handle, true
+	return &o.UserId, true
 }
 
-// SetHandle sets field value
-func (o *ListWorldInteractiveDesignsItem) SetHandle(v string) {
-	o.Handle = v
+// SetUserId sets field value
+func (o *GetWorldContestMineResponseDataEntries) SetUserId(v string) {
+	o.UserId = v
 }
 
-// GetName returns the Name field value
-func (o *ListWorldInteractiveDesignsItem) GetName() string {
+// GetStripePaymentIntentId returns the StripePaymentIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldContestMineResponseDataEntries) GetStripePaymentIntentId() string {
+	if o == nil || o.StripePaymentIntentId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StripePaymentIntentId.Get()
+}
+
+// GetStripePaymentIntentIdOk returns a tuple with the StripePaymentIntentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldContestMineResponseDataEntries) GetStripePaymentIntentIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StripePaymentIntentId.Get(), o.StripePaymentIntentId.IsSet()
+}
+
+// HasStripePaymentIntentId returns a boolean if a field has been set.
+func (o *GetWorldContestMineResponseDataEntries) HasStripePaymentIntentId() bool {
+	if o != nil && o.StripePaymentIntentId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStripePaymentIntentId gets a reference to the given NullableString and assigns it to the StripePaymentIntentId field.
+func (o *GetWorldContestMineResponseDataEntries) SetStripePaymentIntentId(v string) {
+	o.StripePaymentIntentId.Set(&v)
+}
+// SetStripePaymentIntentIdNil sets the value for StripePaymentIntentId to be an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) SetStripePaymentIntentIdNil() {
+	o.StripePaymentIntentId.Set(nil)
+}
+
+// UnsetStripePaymentIntentId ensures that no value is present for StripePaymentIntentId, not even an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) UnsetStripePaymentIntentId() {
+	o.StripePaymentIntentId.Unset()
+}
+
+// GetAttempts returns the Attempts field value
+func (o *GetWorldContestMineResponseDataEntries) GetAttempts() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Attempts
+}
+
+// GetAttemptsOk returns a tuple with the Attempts field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataEntries) GetAttemptsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Attempts, true
+}
+
+// SetAttempts sets field value
+func (o *GetWorldContestMineResponseDataEntries) SetAttempts(v float32) {
+	o.Attempts = v
+}
+
+// GetContestId returns the ContestId field value
+func (o *GetWorldContestMineResponseDataEntries) GetContestId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.ContestId
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetContestIdOk returns a tuple with the ContestId field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetNameOk() (*string, bool) {
+func (o *GetWorldContestMineResponseDataEntries) GetContestIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.ContestId, true
 }
 
-// SetName sets field value
-func (o *ListWorldInteractiveDesignsItem) SetName(v string) {
-	o.Name = v
+// SetContestId sets field value
+func (o *GetWorldContestMineResponseDataEntries) SetContestId(v string) {
+	o.ContestId = v
+}
+
+// GetBestScore returns the BestScore field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldContestMineResponseDataEntries) GetBestScore() float32 {
+	if o == nil || o.BestScore.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.BestScore.Get()
+}
+
+// GetBestScoreOk returns a tuple with the BestScore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldContestMineResponseDataEntries) GetBestScoreOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BestScore.Get(), o.BestScore.IsSet()
+}
+
+// HasBestScore returns a boolean if a field has been set.
+func (o *GetWorldContestMineResponseDataEntries) HasBestScore() bool {
+	if o != nil && o.BestScore.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBestScore gets a reference to the given NullableFloat32 and assigns it to the BestScore field.
+func (o *GetWorldContestMineResponseDataEntries) SetBestScore(v float32) {
+	o.BestScore.Set(&v)
+}
+// SetBestScoreNil sets the value for BestScore to be an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) SetBestScoreNil() {
+	o.BestScore.Set(nil)
+}
+
+// UnsetBestScore ensures that no value is present for BestScore, not even an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) UnsetBestScore() {
+	o.BestScore.Unset()
+}
+
+// GetBestAt returns the BestAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldContestMineResponseDataEntries) GetBestAt() time.Time {
+	if o == nil || o.BestAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.BestAt.Get()
+}
+
+// GetBestAtOk returns a tuple with the BestAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldContestMineResponseDataEntries) GetBestAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BestAt.Get(), o.BestAt.IsSet()
+}
+
+// HasBestAt returns a boolean if a field has been set.
+func (o *GetWorldContestMineResponseDataEntries) HasBestAt() bool {
+	if o != nil && o.BestAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBestAt gets a reference to the given NullableTime and assigns it to the BestAt field.
+func (o *GetWorldContestMineResponseDataEntries) SetBestAt(v time.Time) {
+	o.BestAt.Set(&v)
+}
+// SetBestAtNil sets the value for BestAt to be an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) SetBestAtNil() {
+	o.BestAt.Set(nil)
+}
+
+// UnsetBestAt ensures that no value is present for BestAt, not even an explicit nil
+func (o *GetWorldContestMineResponseDataEntries) UnsetBestAt() {
+	o.BestAt.Unset()
+}
+
+// GetPaymentState returns the PaymentState field value
+func (o *GetWorldContestMineResponseDataEntries) GetPaymentState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PaymentState
+}
+
+// GetPaymentStateOk returns a tuple with the PaymentState field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataEntries) GetPaymentStateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaymentState, true
+}
+
+// SetPaymentState sets field value
+func (o *GetWorldContestMineResponseDataEntries) SetPaymentState(v string) {
+	o.PaymentState = v
+}
+
+func (o GetWorldContestMineResponseDataEntries) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.StripePaymentIntentId.IsSet() {
+		toSerialize["stripePaymentIntentId"] = o.StripePaymentIntentId.Get()
+	}
+	if true {
+		toSerialize["attempts"] = o.Attempts
+	}
+	if true {
+		toSerialize["contestId"] = o.ContestId
+	}
+	if o.BestScore.IsSet() {
+		toSerialize["bestScore"] = o.BestScore.Get()
+	}
+	if o.BestAt.IsSet() {
+		toSerialize["bestAt"] = o.BestAt.Get()
+	}
+	if true {
+		toSerialize["paymentState"] = o.PaymentState
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldContestMineResponseDataEntries struct {
+	value *GetWorldContestMineResponseDataEntries
+	isSet bool
+}
+
+func (v NullableGetWorldContestMineResponseDataEntries) Get() *GetWorldContestMineResponseDataEntries {
+	return v.value
+}
+
+func (v *NullableGetWorldContestMineResponseDataEntries) Set(val *GetWorldContestMineResponseDataEntries) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldContestMineResponseDataEntries) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldContestMineResponseDataEntries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldContestMineResponseDataEntries(val *GetWorldContestMineResponseDataEntries) *NullableGetWorldContestMineResponseDataEntries {
+	return &NullableGetWorldContestMineResponseDataEntries{value: val, isSet: true}
+}
+
+func (v NullableGetWorldContestMineResponseDataEntries) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldContestMineResponseDataEntries) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldContestMineResponseDataPrizes struct for GetWorldContestMineResponseDataPrizes
+type GetWorldContestMineResponseDataPrizes struct {
+	Id string `json:"id"`
+	Ref NullableString `json:"ref,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Status string `json:"status"`
+	Amount float32 `json:"amount"`
+	Kind string `json:"kind"`
+	Note NullableString `json:"note,omitempty"`
+	Place float32 `json:"place"`
+	ContestId string `json:"contestId"`
+}
+
+// NewGetWorldContestMineResponseDataPrizes instantiates a new GetWorldContestMineResponseDataPrizes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldContestMineResponseDataPrizes(id string, createdAt time.Time, userId string, status string, amount float32, kind string, place float32, contestId string) *GetWorldContestMineResponseDataPrizes {
+	this := GetWorldContestMineResponseDataPrizes{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Status = status
+	this.Amount = amount
+	this.Kind = kind
+	this.Place = place
+	this.ContestId = contestId
+	return &this
+}
+
+// NewGetWorldContestMineResponseDataPrizesWithDefaults instantiates a new GetWorldContestMineResponseDataPrizes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldContestMineResponseDataPrizesWithDefaults() *GetWorldContestMineResponseDataPrizes {
+	this := GetWorldContestMineResponseDataPrizes{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldContestMineResponseDataPrizes) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetId(v string) {
+	o.Id = v
+}
+
+// GetRef returns the Ref field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldContestMineResponseDataPrizes) GetRef() string {
+	if o == nil || o.Ref.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Ref.Get()
+}
+
+// GetRefOk returns a tuple with the Ref field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldContestMineResponseDataPrizes) GetRefOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Ref.Get(), o.Ref.IsSet()
+}
+
+// HasRef returns a boolean if a field has been set.
+func (o *GetWorldContestMineResponseDataPrizes) HasRef() bool {
+	if o != nil && o.Ref.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRef gets a reference to the given NullableString and assigns it to the Ref field.
+func (o *GetWorldContestMineResponseDataPrizes) SetRef(v string) {
+	o.Ref.Set(&v)
+}
+// SetRefNil sets the value for Ref to be an explicit nil
+func (o *GetWorldContestMineResponseDataPrizes) SetRefNil() {
+	o.Ref.Set(nil)
+}
+
+// UnsetRef ensures that no value is present for Ref, not even an explicit nil
+func (o *GetWorldContestMineResponseDataPrizes) UnsetRef() {
+	o.Ref.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetWorldContestMineResponseDataPrizes) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *GetWorldContestMineResponseDataPrizes) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldContestMineResponseDataPrizes) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetAmount returns the Amount field value
+func (o *GetWorldContestMineResponseDataPrizes) GetAmount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetAmountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
+// SetAmount sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetAmount(v float32) {
+	o.Amount = v
+}
+
+// GetKind returns the Kind field value
+func (o *GetWorldContestMineResponseDataPrizes) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldContestMineResponseDataPrizes) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldContestMineResponseDataPrizes) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *GetWorldContestMineResponseDataPrizes) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *GetWorldContestMineResponseDataPrizes) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *GetWorldContestMineResponseDataPrizes) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *GetWorldContestMineResponseDataPrizes) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetPlace returns the Place field value
+func (o *GetWorldContestMineResponseDataPrizes) GetPlace() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Place
+}
+
+// GetPlaceOk returns a tuple with the Place field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetPlaceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Place, true
+}
+
+// SetPlace sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetPlace(v float32) {
+	o.Place = v
+}
+
+// GetContestId returns the ContestId field value
+func (o *GetWorldContestMineResponseDataPrizes) GetContestId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContestId
+}
+
+// GetContestIdOk returns a tuple with the ContestId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldContestMineResponseDataPrizes) GetContestIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ContestId, true
+}
+
+// SetContestId sets field value
+func (o *GetWorldContestMineResponseDataPrizes) SetContestId(v string) {
+	o.ContestId = v
+}
+
+func (o GetWorldContestMineResponseDataPrizes) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.Ref.IsSet() {
+		toSerialize["ref"] = o.Ref.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["place"] = o.Place
+	}
+	if true {
+		toSerialize["contestId"] = o.ContestId
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldContestMineResponseDataPrizes struct {
+	value *GetWorldContestMineResponseDataPrizes
+	isSet bool
+}
+
+func (v NullableGetWorldContestMineResponseDataPrizes) Get() *GetWorldContestMineResponseDataPrizes {
+	return v.value
+}
+
+func (v *NullableGetWorldContestMineResponseDataPrizes) Set(val *GetWorldContestMineResponseDataPrizes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldContestMineResponseDataPrizes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldContestMineResponseDataPrizes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldContestMineResponseDataPrizes(val *GetWorldContestMineResponseDataPrizes) *NullableGetWorldContestMineResponseDataPrizes {
+	return &NullableGetWorldContestMineResponseDataPrizes{value: val, isSet: true}
+}
+
+func (v NullableGetWorldContestMineResponseDataPrizes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldContestMineResponseDataPrizes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldControlResponse struct for GetWorldControlResponse
+type GetWorldControlResponse struct {
+	Data GetWorldControlResponseData `json:"data"`
+}
+
+// NewGetWorldControlResponse instantiates a new GetWorldControlResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldControlResponse(data GetWorldControlResponseData) *GetWorldControlResponse {
+	this := GetWorldControlResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldControlResponseWithDefaults instantiates a new GetWorldControlResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldControlResponseWithDefaults() *GetWorldControlResponse {
+	this := GetWorldControlResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldControlResponse) GetData() GetWorldControlResponseData {
+	if o == nil {
+		var ret GetWorldControlResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponse) GetDataOk() (*GetWorldControlResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldControlResponse) SetData(v GetWorldControlResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldControlResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldControlResponse struct {
+	value *GetWorldControlResponse
+	isSet bool
+}
+
+func (v NullableGetWorldControlResponse) Get() *GetWorldControlResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldControlResponse) Set(val *GetWorldControlResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldControlResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldControlResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldControlResponse(val *GetWorldControlResponse) *NullableGetWorldControlResponse {
+	return &NullableGetWorldControlResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldControlResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldControlResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldControlResponseData struct for GetWorldControlResponseData
+type GetWorldControlResponseData struct {
+	Prefs GetWorldControlResponseDataPrefs `json:"prefs"`
+	// Whether the first-time controls tutorial has been finished or skipped.
+	TutorialSeen bool `json:"tutorialSeen"`
+}
+
+// NewGetWorldControlResponseData instantiates a new GetWorldControlResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldControlResponseData(prefs GetWorldControlResponseDataPrefs, tutorialSeen bool) *GetWorldControlResponseData {
+	this := GetWorldControlResponseData{}
+	this.Prefs = prefs
+	this.TutorialSeen = tutorialSeen
+	return &this
+}
+
+// NewGetWorldControlResponseDataWithDefaults instantiates a new GetWorldControlResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldControlResponseDataWithDefaults() *GetWorldControlResponseData {
+	this := GetWorldControlResponseData{}
+	return &this
+}
+
+// GetPrefs returns the Prefs field value
+func (o *GetWorldControlResponseData) GetPrefs() GetWorldControlResponseDataPrefs {
+	if o == nil {
+		var ret GetWorldControlResponseDataPrefs
+		return ret
+	}
+
+	return o.Prefs
+}
+
+// GetPrefsOk returns a tuple with the Prefs field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseData) GetPrefsOk() (*GetWorldControlResponseDataPrefs, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Prefs, true
+}
+
+// SetPrefs sets field value
+func (o *GetWorldControlResponseData) SetPrefs(v GetWorldControlResponseDataPrefs) {
+	o.Prefs = v
+}
+
+// GetTutorialSeen returns the TutorialSeen field value
+func (o *GetWorldControlResponseData) GetTutorialSeen() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.TutorialSeen
+}
+
+// GetTutorialSeenOk returns a tuple with the TutorialSeen field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseData) GetTutorialSeenOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TutorialSeen, true
+}
+
+// SetTutorialSeen sets field value
+func (o *GetWorldControlResponseData) SetTutorialSeen(v bool) {
+	o.TutorialSeen = v
+}
+
+func (o GetWorldControlResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["prefs"] = o.Prefs
+	}
+	if true {
+		toSerialize["tutorialSeen"] = o.TutorialSeen
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldControlResponseData struct {
+	value *GetWorldControlResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldControlResponseData) Get() *GetWorldControlResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldControlResponseData) Set(val *GetWorldControlResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldControlResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldControlResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldControlResponseData(val *GetWorldControlResponseData) *NullableGetWorldControlResponseData {
+	return &NullableGetWorldControlResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldControlResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldControlResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldControlResponseDataPrefs struct for GetWorldControlResponseDataPrefs
+type GetWorldControlResponseDataPrefs struct {
+	// Multiplies the look rate (drag to look). 0.5 - 2.
+	LookSensitivity float32 `json:"lookSensitivity"`
+	// Drag up looks down (both axes flip, as the orbit camera turns as one).
+	InvertLook bool `json:"invertLook"`
+	StickSize string `json:"stickSize"`
+	// The stick on the right thumb, look on the left.
+	LeftHanded bool `json:"leftHanded"`
+	// How far the camera sits behind you by default (walls still pull it in).
+	CameraDistance string `json:"cameraDistance"`
+	// No look inertia, no auto-recentre swing, gentler zoom: for motion sensitivity.
+	ReduceCameraMotion bool `json:"reduceCameraMotion"`
+	// Tap the floor to walk there.
+	TapToWalk bool `json:"tapToWalk"`
+	// Short vibrations on arrival and interactions, where the device has them.
+	Haptics bool `json:"haptics"`
+}
+
+// NewGetWorldControlResponseDataPrefs instantiates a new GetWorldControlResponseDataPrefs object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldControlResponseDataPrefs(lookSensitivity float32, invertLook bool, stickSize string, leftHanded bool, cameraDistance string, reduceCameraMotion bool, tapToWalk bool, haptics bool) *GetWorldControlResponseDataPrefs {
+	this := GetWorldControlResponseDataPrefs{}
+	this.LookSensitivity = lookSensitivity
+	this.InvertLook = invertLook
+	this.StickSize = stickSize
+	this.LeftHanded = leftHanded
+	this.CameraDistance = cameraDistance
+	this.ReduceCameraMotion = reduceCameraMotion
+	this.TapToWalk = tapToWalk
+	this.Haptics = haptics
+	return &this
+}
+
+// NewGetWorldControlResponseDataPrefsWithDefaults instantiates a new GetWorldControlResponseDataPrefs object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldControlResponseDataPrefsWithDefaults() *GetWorldControlResponseDataPrefs {
+	this := GetWorldControlResponseDataPrefs{}
+	return &this
+}
+
+// GetLookSensitivity returns the LookSensitivity field value
+func (o *GetWorldControlResponseDataPrefs) GetLookSensitivity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LookSensitivity
+}
+
+// GetLookSensitivityOk returns a tuple with the LookSensitivity field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetLookSensitivityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LookSensitivity, true
+}
+
+// SetLookSensitivity sets field value
+func (o *GetWorldControlResponseDataPrefs) SetLookSensitivity(v float32) {
+	o.LookSensitivity = v
+}
+
+// GetInvertLook returns the InvertLook field value
+func (o *GetWorldControlResponseDataPrefs) GetInvertLook() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InvertLook
+}
+
+// GetInvertLookOk returns a tuple with the InvertLook field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetInvertLookOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InvertLook, true
+}
+
+// SetInvertLook sets field value
+func (o *GetWorldControlResponseDataPrefs) SetInvertLook(v bool) {
+	o.InvertLook = v
+}
+
+// GetStickSize returns the StickSize field value
+func (o *GetWorldControlResponseDataPrefs) GetStickSize() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StickSize
+}
+
+// GetStickSizeOk returns a tuple with the StickSize field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetStickSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StickSize, true
+}
+
+// SetStickSize sets field value
+func (o *GetWorldControlResponseDataPrefs) SetStickSize(v string) {
+	o.StickSize = v
+}
+
+// GetLeftHanded returns the LeftHanded field value
+func (o *GetWorldControlResponseDataPrefs) GetLeftHanded() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.LeftHanded
+}
+
+// GetLeftHandedOk returns a tuple with the LeftHanded field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetLeftHandedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LeftHanded, true
+}
+
+// SetLeftHanded sets field value
+func (o *GetWorldControlResponseDataPrefs) SetLeftHanded(v bool) {
+	o.LeftHanded = v
+}
+
+// GetCameraDistance returns the CameraDistance field value
+func (o *GetWorldControlResponseDataPrefs) GetCameraDistance() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CameraDistance
+}
+
+// GetCameraDistanceOk returns a tuple with the CameraDistance field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetCameraDistanceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CameraDistance, true
+}
+
+// SetCameraDistance sets field value
+func (o *GetWorldControlResponseDataPrefs) SetCameraDistance(v string) {
+	o.CameraDistance = v
+}
+
+// GetReduceCameraMotion returns the ReduceCameraMotion field value
+func (o *GetWorldControlResponseDataPrefs) GetReduceCameraMotion() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ReduceCameraMotion
+}
+
+// GetReduceCameraMotionOk returns a tuple with the ReduceCameraMotion field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetReduceCameraMotionOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ReduceCameraMotion, true
+}
+
+// SetReduceCameraMotion sets field value
+func (o *GetWorldControlResponseDataPrefs) SetReduceCameraMotion(v bool) {
+	o.ReduceCameraMotion = v
+}
+
+// GetTapToWalk returns the TapToWalk field value
+func (o *GetWorldControlResponseDataPrefs) GetTapToWalk() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.TapToWalk
+}
+
+// GetTapToWalkOk returns a tuple with the TapToWalk field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetTapToWalkOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TapToWalk, true
+}
+
+// SetTapToWalk sets field value
+func (o *GetWorldControlResponseDataPrefs) SetTapToWalk(v bool) {
+	o.TapToWalk = v
+}
+
+// GetHaptics returns the Haptics field value
+func (o *GetWorldControlResponseDataPrefs) GetHaptics() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Haptics
+}
+
+// GetHapticsOk returns a tuple with the Haptics field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldControlResponseDataPrefs) GetHapticsOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Haptics, true
+}
+
+// SetHaptics sets field value
+func (o *GetWorldControlResponseDataPrefs) SetHaptics(v bool) {
+	o.Haptics = v
+}
+
+func (o GetWorldControlResponseDataPrefs) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["lookSensitivity"] = o.LookSensitivity
+	}
+	if true {
+		toSerialize["invertLook"] = o.InvertLook
+	}
+	if true {
+		toSerialize["stickSize"] = o.StickSize
+	}
+	if true {
+		toSerialize["leftHanded"] = o.LeftHanded
+	}
+	if true {
+		toSerialize["cameraDistance"] = o.CameraDistance
+	}
+	if true {
+		toSerialize["reduceCameraMotion"] = o.ReduceCameraMotion
+	}
+	if true {
+		toSerialize["tapToWalk"] = o.TapToWalk
+	}
+	if true {
+		toSerialize["haptics"] = o.Haptics
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldControlResponseDataPrefs struct {
+	value *GetWorldControlResponseDataPrefs
+	isSet bool
+}
+
+func (v NullableGetWorldControlResponseDataPrefs) Get() *GetWorldControlResponseDataPrefs {
+	return v.value
+}
+
+func (v *NullableGetWorldControlResponseDataPrefs) Set(val *GetWorldControlResponseDataPrefs) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldControlResponseDataPrefs) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldControlResponseDataPrefs) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldControlResponseDataPrefs(val *GetWorldControlResponseDataPrefs) *NullableGetWorldControlResponseDataPrefs {
+	return &NullableGetWorldControlResponseDataPrefs{value: val, isSet: true}
+}
+
+func (v NullableGetWorldControlResponseDataPrefs) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldControlResponseDataPrefs) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionExhibitResponse struct for GetWorldConventionExhibitResponse
+type GetWorldConventionExhibitResponse struct {
+	Convention GetWorldConventionExhibitResponseConvention `json:"convention"`
+	Tiers []GetWorldConventionExhibitResponseTiers `json:"tiers"`
+	WalkIn NullableGetWorldConventionManageResponseWalkIn `json:"walkIn,omitempty"`
+	Rails GetWorldConventionExhibitResponseRails `json:"rails"`
+	Mine NullableGetWorldConventionExhibitResponseMine `json:"mine,omitempty"`
+}
+
+// NewGetWorldConventionExhibitResponse instantiates a new GetWorldConventionExhibitResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionExhibitResponse(convention GetWorldConventionExhibitResponseConvention, tiers []GetWorldConventionExhibitResponseTiers, rails GetWorldConventionExhibitResponseRails) *GetWorldConventionExhibitResponse {
+	this := GetWorldConventionExhibitResponse{}
+	this.Convention = convention
+	this.Tiers = tiers
+	this.Rails = rails
+	return &this
+}
+
+// NewGetWorldConventionExhibitResponseWithDefaults instantiates a new GetWorldConventionExhibitResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionExhibitResponseWithDefaults() *GetWorldConventionExhibitResponse {
+	this := GetWorldConventionExhibitResponse{}
+	return &this
+}
+
+// GetConvention returns the Convention field value
+func (o *GetWorldConventionExhibitResponse) GetConvention() GetWorldConventionExhibitResponseConvention {
+	if o == nil {
+		var ret GetWorldConventionExhibitResponseConvention
+		return ret
+	}
+
+	return o.Convention
+}
+
+// GetConventionOk returns a tuple with the Convention field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponse) GetConventionOk() (*GetWorldConventionExhibitResponseConvention, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Convention, true
+}
+
+// SetConvention sets field value
+func (o *GetWorldConventionExhibitResponse) SetConvention(v GetWorldConventionExhibitResponseConvention) {
+	o.Convention = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *GetWorldConventionExhibitResponse) GetTiers() []GetWorldConventionExhibitResponseTiers {
+	if o == nil {
+		var ret []GetWorldConventionExhibitResponseTiers
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponse) GetTiersOk() ([]GetWorldConventionExhibitResponseTiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetWorldConventionExhibitResponse) SetTiers(v []GetWorldConventionExhibitResponseTiers) {
+	o.Tiers = v
+}
+
+// GetWalkIn returns the WalkIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponse) GetWalkIn() GetWorldConventionManageResponseWalkIn {
+	if o == nil || o.WalkIn.Get() == nil {
+		var ret GetWorldConventionManageResponseWalkIn
+		return ret
+	}
+	return *o.WalkIn.Get()
+}
+
+// GetWalkInOk returns a tuple with the WalkIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionExhibitResponse) GetWalkInOk() (*GetWorldConventionManageResponseWalkIn, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WalkIn.Get(), o.WalkIn.IsSet()
+}
+
+// HasWalkIn returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponse) HasWalkIn() bool {
+	if o != nil && o.WalkIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWalkIn gets a reference to the given NullableGetWorldConventionManageResponseWalkIn and assigns it to the WalkIn field.
+func (o *GetWorldConventionExhibitResponse) SetWalkIn(v GetWorldConventionManageResponseWalkIn) {
+	o.WalkIn.Set(&v)
+}
+// SetWalkInNil sets the value for WalkIn to be an explicit nil
+func (o *GetWorldConventionExhibitResponse) SetWalkInNil() {
+	o.WalkIn.Set(nil)
+}
+
+// UnsetWalkIn ensures that no value is present for WalkIn, not even an explicit nil
+func (o *GetWorldConventionExhibitResponse) UnsetWalkIn() {
+	o.WalkIn.Unset()
+}
+
+// GetRails returns the Rails field value
+func (o *GetWorldConventionExhibitResponse) GetRails() GetWorldConventionExhibitResponseRails {
+	if o == nil {
+		var ret GetWorldConventionExhibitResponseRails
+		return ret
+	}
+
+	return o.Rails
+}
+
+// GetRailsOk returns a tuple with the Rails field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponse) GetRailsOk() (*GetWorldConventionExhibitResponseRails, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rails, true
+}
+
+// SetRails sets field value
+func (o *GetWorldConventionExhibitResponse) SetRails(v GetWorldConventionExhibitResponseRails) {
+	o.Rails = v
+}
+
+// GetMine returns the Mine field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponse) GetMine() GetWorldConventionExhibitResponseMine {
+	if o == nil || o.Mine.Get() == nil {
+		var ret GetWorldConventionExhibitResponseMine
+		return ret
+	}
+	return *o.Mine.Get()
+}
+
+// GetMineOk returns a tuple with the Mine field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionExhibitResponse) GetMineOk() (*GetWorldConventionExhibitResponseMine, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Mine.Get(), o.Mine.IsSet()
+}
+
+// HasMine returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponse) HasMine() bool {
+	if o != nil && o.Mine.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMine gets a reference to the given NullableGetWorldConventionExhibitResponseMine and assigns it to the Mine field.
+func (o *GetWorldConventionExhibitResponse) SetMine(v GetWorldConventionExhibitResponseMine) {
+	o.Mine.Set(&v)
+}
+// SetMineNil sets the value for Mine to be an explicit nil
+func (o *GetWorldConventionExhibitResponse) SetMineNil() {
+	o.Mine.Set(nil)
+}
+
+// UnsetMine ensures that no value is present for Mine, not even an explicit nil
+func (o *GetWorldConventionExhibitResponse) UnsetMine() {
+	o.Mine.Unset()
+}
+
+func (o GetWorldConventionExhibitResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["convention"] = o.Convention
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if o.WalkIn.IsSet() {
+		toSerialize["walkIn"] = o.WalkIn.Get()
+	}
+	if true {
+		toSerialize["rails"] = o.Rails
+	}
+	if o.Mine.IsSet() {
+		toSerialize["mine"] = o.Mine.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionExhibitResponse struct {
+	value *GetWorldConventionExhibitResponse
+	isSet bool
+}
+
+func (v NullableGetWorldConventionExhibitResponse) Get() *GetWorldConventionExhibitResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionExhibitResponse) Set(val *GetWorldConventionExhibitResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionExhibitResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionExhibitResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionExhibitResponse(val *GetWorldConventionExhibitResponse) *NullableGetWorldConventionExhibitResponse {
+	return &NullableGetWorldConventionExhibitResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionExhibitResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionExhibitResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionExhibitResponseConvention struct for GetWorldConventionExhibitResponseConvention
+type GetWorldConventionExhibitResponseConvention struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	Description NullableString `json:"description,omitempty"`
+	Status string `json:"status"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	OpensHour float32 `json:"opensHour"`
+	ClosesHour float32 `json:"closesHour"`
+	Timezone string `json:"timezone"`
+	Theme string `json:"theme"`
+	BookingMode string `json:"bookingMode"`
+	RevenueShareBps float32 `json:"revenueShareBps"`
+	Categories []string `json:"categories"`
+	// True for a convention made on the full page (tiers); false for a legacy one (one table each).
+	Tiered bool `json:"tiered"`
+	IsHost bool `json:"isHost"`
+}
+
+// NewGetWorldConventionExhibitResponseConvention instantiates a new GetWorldConventionExhibitResponseConvention object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionExhibitResponseConvention(id string, title string, status string, startsAt string, endsAt string, opensHour float32, closesHour float32, timezone string, theme string, bookingMode string, revenueShareBps float32, categories []string, tiered bool, isHost bool) *GetWorldConventionExhibitResponseConvention {
+	this := GetWorldConventionExhibitResponseConvention{}
+	this.Id = id
+	this.Title = title
+	this.Status = status
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	this.OpensHour = opensHour
+	this.ClosesHour = closesHour
+	this.Timezone = timezone
+	this.Theme = theme
+	this.BookingMode = bookingMode
+	this.RevenueShareBps = revenueShareBps
+	this.Categories = categories
+	this.Tiered = tiered
+	this.IsHost = isHost
+	return &this
+}
+
+// NewGetWorldConventionExhibitResponseConventionWithDefaults instantiates a new GetWorldConventionExhibitResponseConvention object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionExhibitResponseConventionWithDefaults() *GetWorldConventionExhibitResponseConvention {
+	this := GetWorldConventionExhibitResponseConvention{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldConventionExhibitResponseConvention) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetWorldConventionExhibitResponseConvention) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetDescription() string {
+func (o *GetWorldConventionExhibitResponseConvention) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
 		var ret string
 		return ret
@@ -1308,7 +2349,7 @@ func (o *ListWorldInteractiveDesignsItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetDescriptionOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseConvention) GetDescriptionOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1316,7 +2357,7 @@ func (o *ListWorldInteractiveDesignsItem) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasDescription() bool {
+func (o *GetWorldConventionExhibitResponseConvention) HasDescription() bool {
 	if o != nil && o.Description.IsSet() {
 		return true
 	}
@@ -1325,4723 +2366,21 @@ func (o *ListWorldInteractiveDesignsItem) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *ListWorldInteractiveDesignsItem) SetDescription(v string) {
+func (o *GetWorldConventionExhibitResponseConvention) SetDescription(v string) {
 	o.Description.Set(&v)
 }
 // SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetDescriptionNil() {
+func (o *GetWorldConventionExhibitResponseConvention) SetDescriptionNil() {
 	o.Description.Set(nil)
 }
 
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetDescription() {
+func (o *GetWorldConventionExhibitResponseConvention) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetFootprint returns the Footprint field value
-func (o *ListWorldInteractiveDesignsItem) GetFootprint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Footprint
-}
-
-// GetFootprintOk returns a tuple with the Footprint field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetFootprintOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Footprint, true
-}
-
-// SetFootprint sets field value
-func (o *ListWorldInteractiveDesignsItem) SetFootprint(v string) {
-	o.Footprint = v
-}
-
-// GetTint returns the Tint field value
-func (o *ListWorldInteractiveDesignsItem) GetTint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Tint
-}
-
-// GetTintOk returns a tuple with the Tint field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetTintOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Tint, true
-}
-
-// SetTint sets field value
-func (o *ListWorldInteractiveDesignsItem) SetTint(v string) {
-	o.Tint = v
-}
-
-// GetPriceBaseUnits returns the PriceBaseUnits field value
-func (o *ListWorldInteractiveDesignsItem) GetPriceBaseUnits() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PriceBaseUnits
-}
-
-// GetPriceBaseUnitsOk returns a tuple with the PriceBaseUnits field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetPriceBaseUnitsOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceBaseUnits, true
-}
-
-// SetPriceBaseUnits sets field value
-func (o *ListWorldInteractiveDesignsItem) SetPriceBaseUnits(v string) {
-	o.PriceBaseUnits = v
-}
-
-// GetMaxSupply returns the MaxSupply field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetMaxSupply() float32 {
-	if o == nil || o.MaxSupply.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.MaxSupply.Get()
-}
-
-// GetMaxSupplyOk returns a tuple with the MaxSupply field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetMaxSupplyOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.MaxSupply.Get(), o.MaxSupply.IsSet()
-}
-
-// HasMaxSupply returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasMaxSupply() bool {
-	if o != nil && o.MaxSupply.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxSupply gets a reference to the given NullableFloat32 and assigns it to the MaxSupply field.
-func (o *ListWorldInteractiveDesignsItem) SetMaxSupply(v float32) {
-	o.MaxSupply.Set(&v)
-}
-// SetMaxSupplyNil sets the value for MaxSupply to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetMaxSupplyNil() {
-	o.MaxSupply.Set(nil)
-}
-
-// UnsetMaxSupply ensures that no value is present for MaxSupply, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetMaxSupply() {
-	o.MaxSupply.Unset()
-}
-
-// GetModel returns the Model field value
-func (o *ListWorldInteractiveDesignsItem) GetModel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Model
-}
-
-// GetModelOk returns a tuple with the Model field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetModelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Model, true
-}
-
-// SetModel sets field value
-func (o *ListWorldInteractiveDesignsItem) SetModel(v string) {
-	o.Model = v
-}
-
-// GetDecorValue returns the DecorValue field value
-func (o *ListWorldInteractiveDesignsItem) GetDecorValue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DecorValue
-}
-
-// GetDecorValueOk returns a tuple with the DecorValue field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetDecorValueOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DecorValue, true
-}
-
-// SetDecorValue sets field value
-func (o *ListWorldInteractiveDesignsItem) SetDecorValue(v string) {
-	o.DecorValue = v
-}
-
-// GetCosmeticId returns the CosmeticId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetCosmeticId() string {
-	if o == nil || o.CosmeticId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CosmeticId.Get()
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CosmeticId.Get(), o.CosmeticId.IsSet()
-}
-
-// HasCosmeticId returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasCosmeticId() bool {
-	if o != nil && o.CosmeticId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCosmeticId gets a reference to the given NullableString and assigns it to the CosmeticId field.
-func (o *ListWorldInteractiveDesignsItem) SetCosmeticId(v string) {
-	o.CosmeticId.Set(&v)
-}
-// SetCosmeticIdNil sets the value for CosmeticId to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetCosmeticIdNil() {
-	o.CosmeticId.Set(nil)
-}
-
-// UnsetCosmeticId ensures that no value is present for CosmeticId, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetCosmeticId() {
-	o.CosmeticId.Unset()
-}
-
-// GetLiveVersion returns the LiveVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetLiveVersion() float32 {
-	if o == nil || o.LiveVersion.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.LiveVersion.Get()
-}
-
-// GetLiveVersionOk returns a tuple with the LiveVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetLiveVersionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LiveVersion.Get(), o.LiveVersion.IsSet()
-}
-
-// HasLiveVersion returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasLiveVersion() bool {
-	if o != nil && o.LiveVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLiveVersion gets a reference to the given NullableFloat32 and assigns it to the LiveVersion field.
-func (o *ListWorldInteractiveDesignsItem) SetLiveVersion(v float32) {
-	o.LiveVersion.Set(&v)
-}
-// SetLiveVersionNil sets the value for LiveVersion to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetLiveVersionNil() {
-	o.LiveVersion.Set(nil)
-}
-
-// UnsetLiveVersion ensures that no value is present for LiveVersion, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetLiveVersion() {
-	o.LiveVersion.Unset()
-}
-
-// GetWithdrawnReason returns the WithdrawnReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetWithdrawnReason() string {
-	if o == nil || o.WithdrawnReason.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.WithdrawnReason.Get()
-}
-
-// GetWithdrawnReasonOk returns a tuple with the WithdrawnReason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetWithdrawnReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.WithdrawnReason.Get(), o.WithdrawnReason.IsSet()
-}
-
-// HasWithdrawnReason returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasWithdrawnReason() bool {
-	if o != nil && o.WithdrawnReason.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWithdrawnReason gets a reference to the given NullableString and assigns it to the WithdrawnReason field.
-func (o *ListWorldInteractiveDesignsItem) SetWithdrawnReason(v string) {
-	o.WithdrawnReason.Set(&v)
-}
-// SetWithdrawnReasonNil sets the value for WithdrawnReason to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetWithdrawnReasonNil() {
-	o.WithdrawnReason.Set(nil)
-}
-
-// UnsetWithdrawnReason ensures that no value is present for WithdrawnReason, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetWithdrawnReason() {
-	o.WithdrawnReason.Unset()
-}
-
-// GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItem) GetArchivedAt() time.Time {
-	if o == nil || o.ArchivedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ArchivedAt.Get()
-}
-
-// GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItem) GetArchivedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ArchivedAt.Get(), o.ArchivedAt.IsSet()
-}
-
-// HasArchivedAt returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItem) HasArchivedAt() bool {
-	if o != nil && o.ArchivedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetArchivedAt gets a reference to the given NullableTime and assigns it to the ArchivedAt field.
-func (o *ListWorldInteractiveDesignsItem) SetArchivedAt(v time.Time) {
-	o.ArchivedAt.Set(&v)
-}
-// SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil
-func (o *ListWorldInteractiveDesignsItem) SetArchivedAtNil() {
-	o.ArchivedAt.Set(nil)
-}
-
-// UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItem) UnsetArchivedAt() {
-	o.ArchivedAt.Unset()
-}
-
-// GetDraftUpdatedAt returns the DraftUpdatedAt field value
-func (o *ListWorldInteractiveDesignsItem) GetDraftUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.DraftUpdatedAt
-}
-
-// GetDraftUpdatedAtOk returns a tuple with the DraftUpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetDraftUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DraftUpdatedAt, true
-}
-
-// SetDraftUpdatedAt sets field value
-func (o *ListWorldInteractiveDesignsItem) SetDraftUpdatedAt(v time.Time) {
-	o.DraftUpdatedAt = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListWorldInteractiveDesignsItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListWorldInteractiveDesignsItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-func (o ListWorldInteractiveDesignsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.LatestVersion.IsSet() {
-		toSerialize["latestVersion"] = o.LatestVersion.Get()
-	}
-	if true {
-		toSerialize["inReview"] = o.InReview
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["handle"] = o.Handle
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["footprint"] = o.Footprint
-	}
-	if true {
-		toSerialize["tint"] = o.Tint
-	}
-	if true {
-		toSerialize["priceBaseUnits"] = o.PriceBaseUnits
-	}
-	if o.MaxSupply.IsSet() {
-		toSerialize["maxSupply"] = o.MaxSupply.Get()
-	}
-	if true {
-		toSerialize["model"] = o.Model
-	}
-	if true {
-		toSerialize["decorValue"] = o.DecorValue
-	}
-	if o.CosmeticId.IsSet() {
-		toSerialize["cosmeticId"] = o.CosmeticId.Get()
-	}
-	if o.LiveVersion.IsSet() {
-		toSerialize["liveVersion"] = o.LiveVersion.Get()
-	}
-	if o.WithdrawnReason.IsSet() {
-		toSerialize["withdrawnReason"] = o.WithdrawnReason.Get()
-	}
-	if o.ArchivedAt.IsSet() {
-		toSerialize["archivedAt"] = o.ArchivedAt.Get()
-	}
-	if true {
-		toSerialize["draftUpdatedAt"] = o.DraftUpdatedAt
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldInteractiveDesignsItem struct {
-	value *ListWorldInteractiveDesignsItem
-	isSet bool
-}
-
-func (v NullableListWorldInteractiveDesignsItem) Get() *ListWorldInteractiveDesignsItem {
-	return v.value
-}
-
-func (v *NullableListWorldInteractiveDesignsItem) Set(val *ListWorldInteractiveDesignsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldInteractiveDesignsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldInteractiveDesignsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldInteractiveDesignsItem(val *ListWorldInteractiveDesignsItem) *NullableListWorldInteractiveDesignsItem {
-	return &NullableListWorldInteractiveDesignsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldInteractiveDesignsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldInteractiveDesignsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldInteractiveDesignsItemLatestVersion struct for ListWorldInteractiveDesignsItemLatestVersion
-type ListWorldInteractiveDesignsItemLatestVersion struct {
-	Version float32 `json:"version"`
-	State string `json:"state"`
-	DecisionNote NullableString `json:"decisionNote,omitempty"`
-}
-
-// NewListWorldInteractiveDesignsItemLatestVersion instantiates a new ListWorldInteractiveDesignsItemLatestVersion object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldInteractiveDesignsItemLatestVersion(version float32, state string) *ListWorldInteractiveDesignsItemLatestVersion {
-	this := ListWorldInteractiveDesignsItemLatestVersion{}
-	this.Version = version
-	this.State = state
-	return &this
-}
-
-// NewListWorldInteractiveDesignsItemLatestVersionWithDefaults instantiates a new ListWorldInteractiveDesignsItemLatestVersion object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldInteractiveDesignsItemLatestVersionWithDefaults() *ListWorldInteractiveDesignsItemLatestVersion {
-	this := ListWorldInteractiveDesignsItemLatestVersion{}
-	return &this
-}
-
-// GetVersion returns the Version field value
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetVersion() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetVersionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *ListWorldInteractiveDesignsItemLatestVersion) SetVersion(v float32) {
-	o.Version = v
-}
-
-// GetState returns the State field value
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetState() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.State
-}
-
-// GetStateOk returns a tuple with the State field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetStateOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.State, true
-}
-
-// SetState sets field value
-func (o *ListWorldInteractiveDesignsItemLatestVersion) SetState(v string) {
-	o.State = v
-}
-
-// GetDecisionNote returns the DecisionNote field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetDecisionNote() string {
-	if o == nil || o.DecisionNote.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.DecisionNote.Get()
-}
-
-// GetDecisionNoteOk returns a tuple with the DecisionNote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldInteractiveDesignsItemLatestVersion) GetDecisionNoteOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.DecisionNote.Get(), o.DecisionNote.IsSet()
-}
-
-// HasDecisionNote returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsItemLatestVersion) HasDecisionNote() bool {
-	if o != nil && o.DecisionNote.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDecisionNote gets a reference to the given NullableString and assigns it to the DecisionNote field.
-func (o *ListWorldInteractiveDesignsItemLatestVersion) SetDecisionNote(v string) {
-	o.DecisionNote.Set(&v)
-}
-// SetDecisionNoteNil sets the value for DecisionNote to be an explicit nil
-func (o *ListWorldInteractiveDesignsItemLatestVersion) SetDecisionNoteNil() {
-	o.DecisionNote.Set(nil)
-}
-
-// UnsetDecisionNote ensures that no value is present for DecisionNote, not even an explicit nil
-func (o *ListWorldInteractiveDesignsItemLatestVersion) UnsetDecisionNote() {
-	o.DecisionNote.Unset()
-}
-
-func (o ListWorldInteractiveDesignsItemLatestVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["version"] = o.Version
-	}
-	if true {
-		toSerialize["state"] = o.State
-	}
-	if o.DecisionNote.IsSet() {
-		toSerialize["decisionNote"] = o.DecisionNote.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldInteractiveDesignsItemLatestVersion struct {
-	value *ListWorldInteractiveDesignsItemLatestVersion
-	isSet bool
-}
-
-func (v NullableListWorldInteractiveDesignsItemLatestVersion) Get() *ListWorldInteractiveDesignsItemLatestVersion {
-	return v.value
-}
-
-func (v *NullableListWorldInteractiveDesignsItemLatestVersion) Set(val *ListWorldInteractiveDesignsItemLatestVersion) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldInteractiveDesignsItemLatestVersion) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldInteractiveDesignsItemLatestVersion) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldInteractiveDesignsItemLatestVersion(val *ListWorldInteractiveDesignsItemLatestVersion) *NullableListWorldInteractiveDesignsItemLatestVersion {
-	return &NullableListWorldInteractiveDesignsItemLatestVersion{value: val, isSet: true}
-}
-
-func (v NullableListWorldInteractiveDesignsItemLatestVersion) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldInteractiveDesignsItemLatestVersion) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldInteractiveDesignsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldInteractiveDesignsResponse struct {
-	// The rows.
-	Data []ListWorldInteractiveDesignsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldInteractiveDesignsResponse instantiates a new ListWorldInteractiveDesignsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldInteractiveDesignsResponse(data []ListWorldInteractiveDesignsItem) *ListWorldInteractiveDesignsResponse {
-	this := ListWorldInteractiveDesignsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldInteractiveDesignsResponseWithDefaults instantiates a new ListWorldInteractiveDesignsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldInteractiveDesignsResponseWithDefaults() *ListWorldInteractiveDesignsResponse {
-	this := ListWorldInteractiveDesignsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldInteractiveDesignsResponse) GetData() []ListWorldInteractiveDesignsItem {
-	if o == nil {
-		var ret []ListWorldInteractiveDesignsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsResponse) GetDataOk() ([]ListWorldInteractiveDesignsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldInteractiveDesignsResponse) SetData(v []ListWorldInteractiveDesignsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldInteractiveDesignsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldInteractiveDesignsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldInteractiveDesignsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldInteractiveDesignsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldInteractiveDesignsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldInteractiveDesignsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldInteractiveDesignsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldInteractiveDesignsResponse struct {
-	value *ListWorldInteractiveDesignsResponse
-	isSet bool
-}
-
-func (v NullableListWorldInteractiveDesignsResponse) Get() *ListWorldInteractiveDesignsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldInteractiveDesignsResponse) Set(val *ListWorldInteractiveDesignsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldInteractiveDesignsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldInteractiveDesignsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldInteractiveDesignsResponse(val *ListWorldInteractiveDesignsResponse) *NullableListWorldInteractiveDesignsResponse {
-	return &NullableListWorldInteractiveDesignsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldInteractiveDesignsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldInteractiveDesignsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldItemSearchItem struct for ListWorldItemSearchItem
-type ListWorldItemSearchItem struct {
-	RoomSlug string `json:"roomSlug"`
-	RoomName string `json:"roomName"`
-	ItemId string `json:"itemId"`
-	Title string `json:"title"`
-	ListingSlug string `json:"listingSlug"`
-	PriceCents float32 `json:"priceCents"`
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
-}
-
-// NewListWorldItemSearchItem instantiates a new ListWorldItemSearchItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldItemSearchItem(roomSlug string, roomName string, itemId string, title string, listingSlug string, priceCents float32) *ListWorldItemSearchItem {
-	this := ListWorldItemSearchItem{}
-	this.RoomSlug = roomSlug
-	this.RoomName = roomName
-	this.ItemId = itemId
-	this.Title = title
-	this.ListingSlug = listingSlug
-	this.PriceCents = priceCents
-	return &this
-}
-
-// NewListWorldItemSearchItemWithDefaults instantiates a new ListWorldItemSearchItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldItemSearchItemWithDefaults() *ListWorldItemSearchItem {
-	this := ListWorldItemSearchItem{}
-	return &this
-}
-
-// GetRoomSlug returns the RoomSlug field value
-func (o *ListWorldItemSearchItem) GetRoomSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RoomSlug
-}
-
-// GetRoomSlugOk returns a tuple with the RoomSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetRoomSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RoomSlug, true
-}
-
-// SetRoomSlug sets field value
-func (o *ListWorldItemSearchItem) SetRoomSlug(v string) {
-	o.RoomSlug = v
-}
-
-// GetRoomName returns the RoomName field value
-func (o *ListWorldItemSearchItem) GetRoomName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RoomName
-}
-
-// GetRoomNameOk returns a tuple with the RoomName field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetRoomNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RoomName, true
-}
-
-// SetRoomName sets field value
-func (o *ListWorldItemSearchItem) SetRoomName(v string) {
-	o.RoomName = v
-}
-
-// GetItemId returns the ItemId field value
-func (o *ListWorldItemSearchItem) GetItemId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ItemId
-}
-
-// GetItemIdOk returns a tuple with the ItemId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ItemId, true
-}
-
-// SetItemId sets field value
-func (o *ListWorldItemSearchItem) SetItemId(v string) {
-	o.ItemId = v
-}
-
-// GetTitle returns the Title field value
-func (o *ListWorldItemSearchItem) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListWorldItemSearchItem) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetListingSlug returns the ListingSlug field value
-func (o *ListWorldItemSearchItem) GetListingSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ListingSlug
-}
-
-// GetListingSlugOk returns a tuple with the ListingSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetListingSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ListingSlug, true
-}
-
-// SetListingSlug sets field value
-func (o *ListWorldItemSearchItem) SetListingSlug(v string) {
-	o.ListingSlug = v
-}
-
-// GetPriceCents returns the PriceCents field value
-func (o *ListWorldItemSearchItem) GetPriceCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PriceCents
-}
-
-// GetPriceCentsOk returns a tuple with the PriceCents field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchItem) GetPriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceCents, true
-}
-
-// SetPriceCents sets field value
-func (o *ListWorldItemSearchItem) SetPriceCents(v float32) {
-	o.PriceCents = v
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldItemSearchItem) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImageUrl.Get()
-}
-
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldItemSearchItem) GetImageUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
-}
-
-// HasImageUrl returns a boolean if a field has been set.
-func (o *ListWorldItemSearchItem) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *ListWorldItemSearchItem) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *ListWorldItemSearchItem) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *ListWorldItemSearchItem) UnsetImageUrl() {
-	o.ImageUrl.Unset()
-}
-
-func (o ListWorldItemSearchItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["roomSlug"] = o.RoomSlug
-	}
-	if true {
-		toSerialize["roomName"] = o.RoomName
-	}
-	if true {
-		toSerialize["itemId"] = o.ItemId
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["listingSlug"] = o.ListingSlug
-	}
-	if true {
-		toSerialize["priceCents"] = o.PriceCents
-	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldItemSearchItem struct {
-	value *ListWorldItemSearchItem
-	isSet bool
-}
-
-func (v NullableListWorldItemSearchItem) Get() *ListWorldItemSearchItem {
-	return v.value
-}
-
-func (v *NullableListWorldItemSearchItem) Set(val *ListWorldItemSearchItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldItemSearchItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldItemSearchItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldItemSearchItem(val *ListWorldItemSearchItem) *NullableListWorldItemSearchItem {
-	return &NullableListWorldItemSearchItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldItemSearchItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldItemSearchItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldItemSearchResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldItemSearchResponse struct {
-	// The rows.
-	Data []ListWorldItemSearchItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldItemSearchResponse instantiates a new ListWorldItemSearchResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldItemSearchResponse(data []ListWorldItemSearchItem) *ListWorldItemSearchResponse {
-	this := ListWorldItemSearchResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldItemSearchResponseWithDefaults instantiates a new ListWorldItemSearchResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldItemSearchResponseWithDefaults() *ListWorldItemSearchResponse {
-	this := ListWorldItemSearchResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldItemSearchResponse) GetData() []ListWorldItemSearchItem {
-	if o == nil {
-		var ret []ListWorldItemSearchItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchResponse) GetDataOk() ([]ListWorldItemSearchItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldItemSearchResponse) SetData(v []ListWorldItemSearchItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldItemSearchResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldItemSearchResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldItemSearchResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldItemSearchResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldItemSearchResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldItemSearchResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldItemSearchResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldItemSearchResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldItemSearchResponse struct {
-	value *ListWorldItemSearchResponse
-	isSet bool
-}
-
-func (v NullableListWorldItemSearchResponse) Get() *ListWorldItemSearchResponse {
-	return v.value
-}
-
-func (v *NullableListWorldItemSearchResponse) Set(val *ListWorldItemSearchResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldItemSearchResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldItemSearchResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldItemSearchResponse(val *ListWorldItemSearchResponse) *NullableListWorldItemSearchResponse {
-	return &NullableListWorldItemSearchResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldItemSearchResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldItemSearchResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldOutfitsItem struct for ListWorldOutfitsItem
-type ListWorldOutfitsItem struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
-	Appearance ListWorldOutfitsItemAppearance `json:"appearance"`
-	Items []ListWorldOutfitsItemItems `json:"items"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
-}
-
-// NewListWorldOutfitsItem instantiates a new ListWorldOutfitsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldOutfitsItem(id string, name string, appearance ListWorldOutfitsItemAppearance, items []ListWorldOutfitsItemItems, createdAt string, updatedAt string) *ListWorldOutfitsItem {
-	this := ListWorldOutfitsItem{}
-	this.Id = id
-	this.Name = name
-	this.Appearance = appearance
-	this.Items = items
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	return &this
-}
-
-// NewListWorldOutfitsItemWithDefaults instantiates a new ListWorldOutfitsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldOutfitsItemWithDefaults() *ListWorldOutfitsItem {
-	this := ListWorldOutfitsItem{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListWorldOutfitsItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListWorldOutfitsItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *ListWorldOutfitsItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldOutfitsItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetAppearance returns the Appearance field value
-func (o *ListWorldOutfitsItem) GetAppearance() ListWorldOutfitsItemAppearance {
-	if o == nil {
-		var ret ListWorldOutfitsItemAppearance
-		return ret
-	}
-
-	return o.Appearance
-}
-
-// GetAppearanceOk returns a tuple with the Appearance field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetAppearanceOk() (*ListWorldOutfitsItemAppearance, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Appearance, true
-}
-
-// SetAppearance sets field value
-func (o *ListWorldOutfitsItem) SetAppearance(v ListWorldOutfitsItemAppearance) {
-	o.Appearance = v
-}
-
-// GetItems returns the Items field value
-func (o *ListWorldOutfitsItem) GetItems() []ListWorldOutfitsItemItems {
-	if o == nil {
-		var ret []ListWorldOutfitsItemItems
-		return ret
-	}
-
-	return o.Items
-}
-
-// GetItemsOk returns a tuple with the Items field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetItemsOk() ([]ListWorldOutfitsItemItems, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Items, true
-}
-
-// SetItems sets field value
-func (o *ListWorldOutfitsItem) SetItems(v []ListWorldOutfitsItemItems) {
-	o.Items = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListWorldOutfitsItem) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListWorldOutfitsItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *ListWorldOutfitsItem) GetUpdatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItem) GetUpdatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *ListWorldOutfitsItem) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
-}
-
-func (o ListWorldOutfitsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["appearance"] = o.Appearance
-	}
-	if true {
-		toSerialize["items"] = o.Items
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldOutfitsItem struct {
-	value *ListWorldOutfitsItem
-	isSet bool
-}
-
-func (v NullableListWorldOutfitsItem) Get() *ListWorldOutfitsItem {
-	return v.value
-}
-
-func (v *NullableListWorldOutfitsItem) Set(val *ListWorldOutfitsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldOutfitsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldOutfitsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldOutfitsItem(val *ListWorldOutfitsItem) *NullableListWorldOutfitsItem {
-	return &NullableListWorldOutfitsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldOutfitsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldOutfitsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldOutfitsItemAppearance The look to put on your character (the client stores it, as the creator does).
-type ListWorldOutfitsItemAppearance struct {
-	Skin string `json:"skin"`
-	Hair string `json:"hair"`
-	HairColour string `json:"hairColour"`
-	Eyes string `json:"eyes"`
-	Build string `json:"build"`
-	// Face presets (BROW_STYLES, MOUTH_RESTS). Optional: a look saved before they existed is the defaults.
-	Brows NullableString `json:"brows,omitempty"`
-	Mouth NullableString `json:"mouth,omitempty"`
-	// A body shape (BODY_SHAPES). Optional, like the face presets.
-	Shape NullableString `json:"shape,omitempty"`
-}
-
-// NewListWorldOutfitsItemAppearance instantiates a new ListWorldOutfitsItemAppearance object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldOutfitsItemAppearance(skin string, hair string, hairColour string, eyes string, build string) *ListWorldOutfitsItemAppearance {
-	this := ListWorldOutfitsItemAppearance{}
-	this.Skin = skin
-	this.Hair = hair
-	this.HairColour = hairColour
-	this.Eyes = eyes
-	this.Build = build
-	return &this
-}
-
-// NewListWorldOutfitsItemAppearanceWithDefaults instantiates a new ListWorldOutfitsItemAppearance object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldOutfitsItemAppearanceWithDefaults() *ListWorldOutfitsItemAppearance {
-	this := ListWorldOutfitsItemAppearance{}
-	return &this
-}
-
-// GetSkin returns the Skin field value
-func (o *ListWorldOutfitsItemAppearance) GetSkin() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Skin
-}
-
-// GetSkinOk returns a tuple with the Skin field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemAppearance) GetSkinOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Skin, true
-}
-
-// SetSkin sets field value
-func (o *ListWorldOutfitsItemAppearance) SetSkin(v string) {
-	o.Skin = v
-}
-
-// GetHair returns the Hair field value
-func (o *ListWorldOutfitsItemAppearance) GetHair() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Hair
-}
-
-// GetHairOk returns a tuple with the Hair field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemAppearance) GetHairOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Hair, true
-}
-
-// SetHair sets field value
-func (o *ListWorldOutfitsItemAppearance) SetHair(v string) {
-	o.Hair = v
-}
-
-// GetHairColour returns the HairColour field value
-func (o *ListWorldOutfitsItemAppearance) GetHairColour() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.HairColour
-}
-
-// GetHairColourOk returns a tuple with the HairColour field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemAppearance) GetHairColourOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.HairColour, true
-}
-
-// SetHairColour sets field value
-func (o *ListWorldOutfitsItemAppearance) SetHairColour(v string) {
-	o.HairColour = v
-}
-
-// GetEyes returns the Eyes field value
-func (o *ListWorldOutfitsItemAppearance) GetEyes() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Eyes
-}
-
-// GetEyesOk returns a tuple with the Eyes field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemAppearance) GetEyesOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Eyes, true
-}
-
-// SetEyes sets field value
-func (o *ListWorldOutfitsItemAppearance) SetEyes(v string) {
-	o.Eyes = v
-}
-
-// GetBuild returns the Build field value
-func (o *ListWorldOutfitsItemAppearance) GetBuild() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Build
-}
-
-// GetBuildOk returns a tuple with the Build field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemAppearance) GetBuildOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Build, true
-}
-
-// SetBuild sets field value
-func (o *ListWorldOutfitsItemAppearance) SetBuild(v string) {
-	o.Build = v
-}
-
-// GetBrows returns the Brows field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldOutfitsItemAppearance) GetBrows() string {
-	if o == nil || o.Brows.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Brows.Get()
-}
-
-// GetBrowsOk returns a tuple with the Brows field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldOutfitsItemAppearance) GetBrowsOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Brows.Get(), o.Brows.IsSet()
-}
-
-// HasBrows returns a boolean if a field has been set.
-func (o *ListWorldOutfitsItemAppearance) HasBrows() bool {
-	if o != nil && o.Brows.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBrows gets a reference to the given NullableString and assigns it to the Brows field.
-func (o *ListWorldOutfitsItemAppearance) SetBrows(v string) {
-	o.Brows.Set(&v)
-}
-// SetBrowsNil sets the value for Brows to be an explicit nil
-func (o *ListWorldOutfitsItemAppearance) SetBrowsNil() {
-	o.Brows.Set(nil)
-}
-
-// UnsetBrows ensures that no value is present for Brows, not even an explicit nil
-func (o *ListWorldOutfitsItemAppearance) UnsetBrows() {
-	o.Brows.Unset()
-}
-
-// GetMouth returns the Mouth field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldOutfitsItemAppearance) GetMouth() string {
-	if o == nil || o.Mouth.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Mouth.Get()
-}
-
-// GetMouthOk returns a tuple with the Mouth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldOutfitsItemAppearance) GetMouthOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Mouth.Get(), o.Mouth.IsSet()
-}
-
-// HasMouth returns a boolean if a field has been set.
-func (o *ListWorldOutfitsItemAppearance) HasMouth() bool {
-	if o != nil && o.Mouth.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMouth gets a reference to the given NullableString and assigns it to the Mouth field.
-func (o *ListWorldOutfitsItemAppearance) SetMouth(v string) {
-	o.Mouth.Set(&v)
-}
-// SetMouthNil sets the value for Mouth to be an explicit nil
-func (o *ListWorldOutfitsItemAppearance) SetMouthNil() {
-	o.Mouth.Set(nil)
-}
-
-// UnsetMouth ensures that no value is present for Mouth, not even an explicit nil
-func (o *ListWorldOutfitsItemAppearance) UnsetMouth() {
-	o.Mouth.Unset()
-}
-
-// GetShape returns the Shape field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldOutfitsItemAppearance) GetShape() string {
-	if o == nil || o.Shape.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Shape.Get()
-}
-
-// GetShapeOk returns a tuple with the Shape field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldOutfitsItemAppearance) GetShapeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Shape.Get(), o.Shape.IsSet()
-}
-
-// HasShape returns a boolean if a field has been set.
-func (o *ListWorldOutfitsItemAppearance) HasShape() bool {
-	if o != nil && o.Shape.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetShape gets a reference to the given NullableString and assigns it to the Shape field.
-func (o *ListWorldOutfitsItemAppearance) SetShape(v string) {
-	o.Shape.Set(&v)
-}
-// SetShapeNil sets the value for Shape to be an explicit nil
-func (o *ListWorldOutfitsItemAppearance) SetShapeNil() {
-	o.Shape.Set(nil)
-}
-
-// UnsetShape ensures that no value is present for Shape, not even an explicit nil
-func (o *ListWorldOutfitsItemAppearance) UnsetShape() {
-	o.Shape.Unset()
-}
-
-func (o ListWorldOutfitsItemAppearance) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["skin"] = o.Skin
-	}
-	if true {
-		toSerialize["hair"] = o.Hair
-	}
-	if true {
-		toSerialize["hairColour"] = o.HairColour
-	}
-	if true {
-		toSerialize["eyes"] = o.Eyes
-	}
-	if true {
-		toSerialize["build"] = o.Build
-	}
-	if o.Brows.IsSet() {
-		toSerialize["brows"] = o.Brows.Get()
-	}
-	if o.Mouth.IsSet() {
-		toSerialize["mouth"] = o.Mouth.Get()
-	}
-	if o.Shape.IsSet() {
-		toSerialize["shape"] = o.Shape.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldOutfitsItemAppearance struct {
-	value *ListWorldOutfitsItemAppearance
-	isSet bool
-}
-
-func (v NullableListWorldOutfitsItemAppearance) Get() *ListWorldOutfitsItemAppearance {
-	return v.value
-}
-
-func (v *NullableListWorldOutfitsItemAppearance) Set(val *ListWorldOutfitsItemAppearance) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldOutfitsItemAppearance) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldOutfitsItemAppearance) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldOutfitsItemAppearance(val *ListWorldOutfitsItemAppearance) *NullableListWorldOutfitsItemAppearance {
-	return &NullableListWorldOutfitsItemAppearance{value: val, isSet: true}
-}
-
-func (v NullableListWorldOutfitsItemAppearance) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldOutfitsItemAppearance) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldOutfitsItemItems struct for ListWorldOutfitsItemItems
-type ListWorldOutfitsItemItems struct {
-	// avatar_head | avatar_body | avatar_legs | avatar_feet | avatar_back
-	Slot string `json:"slot"`
-	Door string `json:"door"`
-	// cosmeticId, receiptId or inventoryItemId, by door.
-	Id string `json:"id"`
-	// What it was called when saved, for \"skipped: <label>\".
-	Label string `json:"label"`
-}
-
-// NewListWorldOutfitsItemItems instantiates a new ListWorldOutfitsItemItems object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldOutfitsItemItems(slot string, door string, id string, label string) *ListWorldOutfitsItemItems {
-	this := ListWorldOutfitsItemItems{}
-	this.Slot = slot
-	this.Door = door
-	this.Id = id
-	this.Label = label
-	return &this
-}
-
-// NewListWorldOutfitsItemItemsWithDefaults instantiates a new ListWorldOutfitsItemItems object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldOutfitsItemItemsWithDefaults() *ListWorldOutfitsItemItems {
-	this := ListWorldOutfitsItemItems{}
-	return &this
-}
-
-// GetSlot returns the Slot field value
-func (o *ListWorldOutfitsItemItems) GetSlot() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slot
-}
-
-// GetSlotOk returns a tuple with the Slot field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemItems) GetSlotOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slot, true
-}
-
-// SetSlot sets field value
-func (o *ListWorldOutfitsItemItems) SetSlot(v string) {
-	o.Slot = v
-}
-
-// GetDoor returns the Door field value
-func (o *ListWorldOutfitsItemItems) GetDoor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Door
-}
-
-// GetDoorOk returns a tuple with the Door field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemItems) GetDoorOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Door, true
-}
-
-// SetDoor sets field value
-func (o *ListWorldOutfitsItemItems) SetDoor(v string) {
-	o.Door = v
-}
-
-// GetId returns the Id field value
-func (o *ListWorldOutfitsItemItems) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemItems) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListWorldOutfitsItemItems) SetId(v string) {
-	o.Id = v
-}
-
-// GetLabel returns the Label field value
-func (o *ListWorldOutfitsItemItems) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsItemItems) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *ListWorldOutfitsItemItems) SetLabel(v string) {
-	o.Label = v
-}
-
-func (o ListWorldOutfitsItemItems) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["slot"] = o.Slot
-	}
-	if true {
-		toSerialize["door"] = o.Door
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldOutfitsItemItems struct {
-	value *ListWorldOutfitsItemItems
-	isSet bool
-}
-
-func (v NullableListWorldOutfitsItemItems) Get() *ListWorldOutfitsItemItems {
-	return v.value
-}
-
-func (v *NullableListWorldOutfitsItemItems) Set(val *ListWorldOutfitsItemItems) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldOutfitsItemItems) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldOutfitsItemItems) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldOutfitsItemItems(val *ListWorldOutfitsItemItems) *NullableListWorldOutfitsItemItems {
-	return &NullableListWorldOutfitsItemItems{value: val, isSet: true}
-}
-
-func (v NullableListWorldOutfitsItemItems) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldOutfitsItemItems) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldOutfitsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldOutfitsResponse struct {
-	// The rows.
-	Data []ListWorldOutfitsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldOutfitsResponse instantiates a new ListWorldOutfitsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldOutfitsResponse(data []ListWorldOutfitsItem) *ListWorldOutfitsResponse {
-	this := ListWorldOutfitsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldOutfitsResponseWithDefaults instantiates a new ListWorldOutfitsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldOutfitsResponseWithDefaults() *ListWorldOutfitsResponse {
-	this := ListWorldOutfitsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldOutfitsResponse) GetData() []ListWorldOutfitsItem {
-	if o == nil {
-		var ret []ListWorldOutfitsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsResponse) GetDataOk() ([]ListWorldOutfitsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldOutfitsResponse) SetData(v []ListWorldOutfitsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldOutfitsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldOutfitsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldOutfitsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldOutfitsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldOutfitsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldOutfitsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldOutfitsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldOutfitsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldOutfitsResponse struct {
-	value *ListWorldOutfitsResponse
-	isSet bool
-}
-
-func (v NullableListWorldOutfitsResponse) Get() *ListWorldOutfitsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldOutfitsResponse) Set(val *ListWorldOutfitsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldOutfitsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldOutfitsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldOutfitsResponse(val *ListWorldOutfitsResponse) *NullableListWorldOutfitsResponse {
-	return &NullableListWorldOutfitsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldOutfitsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldOutfitsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceBansItem struct for ListWorldPlaceBansItem
-type ListWorldPlaceBansItem struct {
-	UserId string `json:"userId"`
-	// Their room name, or the pseudonym they had in the room when banned.
-	Name string `json:"name"`
-	BannedAt string `json:"bannedAt"`
-}
-
-// NewListWorldPlaceBansItem instantiates a new ListWorldPlaceBansItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceBansItem(userId string, name string, bannedAt string) *ListWorldPlaceBansItem {
-	this := ListWorldPlaceBansItem{}
-	this.UserId = userId
-	this.Name = name
-	this.BannedAt = bannedAt
-	return &this
-}
-
-// NewListWorldPlaceBansItemWithDefaults instantiates a new ListWorldPlaceBansItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceBansItemWithDefaults() *ListWorldPlaceBansItem {
-	this := ListWorldPlaceBansItem{}
-	return &this
-}
-
-// GetUserId returns the UserId field value
-func (o *ListWorldPlaceBansItem) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansItem) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UserId, true
-}
-
-// SetUserId sets field value
-func (o *ListWorldPlaceBansItem) SetUserId(v string) {
-	o.UserId = v
-}
-
-// GetName returns the Name field value
-func (o *ListWorldPlaceBansItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldPlaceBansItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetBannedAt returns the BannedAt field value
-func (o *ListWorldPlaceBansItem) GetBannedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BannedAt
-}
-
-// GetBannedAtOk returns a tuple with the BannedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansItem) GetBannedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BannedAt, true
-}
-
-// SetBannedAt sets field value
-func (o *ListWorldPlaceBansItem) SetBannedAt(v string) {
-	o.BannedAt = v
-}
-
-func (o ListWorldPlaceBansItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["bannedAt"] = o.BannedAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceBansItem struct {
-	value *ListWorldPlaceBansItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceBansItem) Get() *ListWorldPlaceBansItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceBansItem) Set(val *ListWorldPlaceBansItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceBansItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceBansItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceBansItem(val *ListWorldPlaceBansItem) *NullableListWorldPlaceBansItem {
-	return &NullableListWorldPlaceBansItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceBansItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceBansItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceBansResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceBansResponse struct {
-	// The rows.
-	Data []ListWorldPlaceBansItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceBansResponse instantiates a new ListWorldPlaceBansResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceBansResponse(data []ListWorldPlaceBansItem) *ListWorldPlaceBansResponse {
-	this := ListWorldPlaceBansResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceBansResponseWithDefaults instantiates a new ListWorldPlaceBansResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceBansResponseWithDefaults() *ListWorldPlaceBansResponse {
-	this := ListWorldPlaceBansResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceBansResponse) GetData() []ListWorldPlaceBansItem {
-	if o == nil {
-		var ret []ListWorldPlaceBansItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansResponse) GetDataOk() ([]ListWorldPlaceBansItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceBansResponse) SetData(v []ListWorldPlaceBansItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceBansResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceBansResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceBansResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceBansResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBansResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceBansResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceBansResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceBansResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceBansResponse struct {
-	value *ListWorldPlaceBansResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceBansResponse) Get() *ListWorldPlaceBansResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceBansResponse) Set(val *ListWorldPlaceBansResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceBansResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceBansResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceBansResponse(val *ListWorldPlaceBansResponse) *NullableListWorldPlaceBansResponse {
-	return &NullableListWorldPlaceBansResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceBansResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceBansResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceBundlesItem struct for ListWorldPlaceBundlesItem
-type ListWorldPlaceBundlesItem struct {
-	Name NullableString `json:"name,omitempty"`
-	MinItems float32 `json:"minItems"`
-	Percent float32 `json:"percent"`
-	ItemIds []string `json:"itemIds,omitempty"`
-}
-
-// NewListWorldPlaceBundlesItem instantiates a new ListWorldPlaceBundlesItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceBundlesItem(minItems float32, percent float32) *ListWorldPlaceBundlesItem {
-	this := ListWorldPlaceBundlesItem{}
-	this.MinItems = minItems
-	this.Percent = percent
-	return &this
-}
-
-// NewListWorldPlaceBundlesItemWithDefaults instantiates a new ListWorldPlaceBundlesItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceBundlesItemWithDefaults() *ListWorldPlaceBundlesItem {
-	this := ListWorldPlaceBundlesItem{}
-	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceBundlesItem) GetName() string {
-	if o == nil || o.Name.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceBundlesItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *ListWorldPlaceBundlesItem) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *ListWorldPlaceBundlesItem) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *ListWorldPlaceBundlesItem) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *ListWorldPlaceBundlesItem) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetMinItems returns the MinItems field value
-func (o *ListWorldPlaceBundlesItem) GetMinItems() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MinItems
-}
-
-// GetMinItemsOk returns a tuple with the MinItems field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBundlesItem) GetMinItemsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MinItems, true
-}
-
-// SetMinItems sets field value
-func (o *ListWorldPlaceBundlesItem) SetMinItems(v float32) {
-	o.MinItems = v
-}
-
-// GetPercent returns the Percent field value
-func (o *ListWorldPlaceBundlesItem) GetPercent() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Percent
-}
-
-// GetPercentOk returns a tuple with the Percent field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBundlesItem) GetPercentOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Percent, true
-}
-
-// SetPercent sets field value
-func (o *ListWorldPlaceBundlesItem) SetPercent(v float32) {
-	o.Percent = v
-}
-
-// GetItemIds returns the ItemIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceBundlesItem) GetItemIds() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.ItemIds
-}
-
-// GetItemIdsOk returns a tuple with the ItemIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceBundlesItem) GetItemIdsOk() ([]string, bool) {
-	if o == nil || o.ItemIds == nil {
-		return nil, false
-	}
-	return o.ItemIds, true
-}
-
-// HasItemIds returns a boolean if a field has been set.
-func (o *ListWorldPlaceBundlesItem) HasItemIds() bool {
-	if o != nil && o.ItemIds != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItemIds gets a reference to the given []string and assigns it to the ItemIds field.
-func (o *ListWorldPlaceBundlesItem) SetItemIds(v []string) {
-	o.ItemIds = v
-}
-
-func (o ListWorldPlaceBundlesItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
-	if true {
-		toSerialize["minItems"] = o.MinItems
-	}
-	if true {
-		toSerialize["percent"] = o.Percent
-	}
-	if o.ItemIds != nil {
-		toSerialize["itemIds"] = o.ItemIds
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceBundlesItem struct {
-	value *ListWorldPlaceBundlesItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceBundlesItem) Get() *ListWorldPlaceBundlesItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceBundlesItem) Set(val *ListWorldPlaceBundlesItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceBundlesItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceBundlesItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceBundlesItem(val *ListWorldPlaceBundlesItem) *NullableListWorldPlaceBundlesItem {
-	return &NullableListWorldPlaceBundlesItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceBundlesItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceBundlesItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceBundlesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceBundlesResponse struct {
-	// The rows.
-	Data []ListWorldPlaceBundlesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceBundlesResponse instantiates a new ListWorldPlaceBundlesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceBundlesResponse(data []ListWorldPlaceBundlesItem) *ListWorldPlaceBundlesResponse {
-	this := ListWorldPlaceBundlesResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceBundlesResponseWithDefaults instantiates a new ListWorldPlaceBundlesResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceBundlesResponseWithDefaults() *ListWorldPlaceBundlesResponse {
-	this := ListWorldPlaceBundlesResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceBundlesResponse) GetData() []ListWorldPlaceBundlesItem {
-	if o == nil {
-		var ret []ListWorldPlaceBundlesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBundlesResponse) GetDataOk() ([]ListWorldPlaceBundlesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceBundlesResponse) SetData(v []ListWorldPlaceBundlesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceBundlesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBundlesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceBundlesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceBundlesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceBundlesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceBundlesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceBundlesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceBundlesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceBundlesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceBundlesResponse struct {
-	value *ListWorldPlaceBundlesResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceBundlesResponse) Get() *ListWorldPlaceBundlesResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceBundlesResponse) Set(val *ListWorldPlaceBundlesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceBundlesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceBundlesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceBundlesResponse(val *ListWorldPlaceBundlesResponse) *NullableListWorldPlaceBundlesResponse {
-	return &NullableListWorldPlaceBundlesResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceBundlesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceBundlesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceCollectionsItem struct for ListWorldPlaceCollectionsItem
-type ListWorldPlaceCollectionsItem struct {
-	Category string `json:"category"`
-	Brand string `json:"brand"`
-	Model string `json:"model"`
-	BrandSlug string `json:"brandSlug"`
-	ModelSlug string `json:"modelSlug"`
-	// Pieces in the set (the directory's count).
-	Total float32 `json:"total"`
-	// Of those, how many the owner has.
-	Owned float32 `json:"owned"`
-}
-
-// NewListWorldPlaceCollectionsItem instantiates a new ListWorldPlaceCollectionsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceCollectionsItem(category string, brand string, model string, brandSlug string, modelSlug string, total float32, owned float32) *ListWorldPlaceCollectionsItem {
-	this := ListWorldPlaceCollectionsItem{}
-	this.Category = category
-	this.Brand = brand
-	this.Model = model
-	this.BrandSlug = brandSlug
-	this.ModelSlug = modelSlug
-	this.Total = total
-	this.Owned = owned
-	return &this
-}
-
-// NewListWorldPlaceCollectionsItemWithDefaults instantiates a new ListWorldPlaceCollectionsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceCollectionsItemWithDefaults() *ListWorldPlaceCollectionsItem {
-	this := ListWorldPlaceCollectionsItem{}
-	return &this
-}
-
-// GetCategory returns the Category field value
-func (o *ListWorldPlaceCollectionsItem) GetCategory() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Category
-}
-
-// GetCategoryOk returns a tuple with the Category field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetCategoryOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Category, true
-}
-
-// SetCategory sets field value
-func (o *ListWorldPlaceCollectionsItem) SetCategory(v string) {
-	o.Category = v
-}
-
-// GetBrand returns the Brand field value
-func (o *ListWorldPlaceCollectionsItem) GetBrand() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Brand
-}
-
-// GetBrandOk returns a tuple with the Brand field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetBrandOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Brand, true
-}
-
-// SetBrand sets field value
-func (o *ListWorldPlaceCollectionsItem) SetBrand(v string) {
-	o.Brand = v
-}
-
-// GetModel returns the Model field value
-func (o *ListWorldPlaceCollectionsItem) GetModel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Model
-}
-
-// GetModelOk returns a tuple with the Model field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetModelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Model, true
-}
-
-// SetModel sets field value
-func (o *ListWorldPlaceCollectionsItem) SetModel(v string) {
-	o.Model = v
-}
-
-// GetBrandSlug returns the BrandSlug field value
-func (o *ListWorldPlaceCollectionsItem) GetBrandSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BrandSlug
-}
-
-// GetBrandSlugOk returns a tuple with the BrandSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetBrandSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BrandSlug, true
-}
-
-// SetBrandSlug sets field value
-func (o *ListWorldPlaceCollectionsItem) SetBrandSlug(v string) {
-	o.BrandSlug = v
-}
-
-// GetModelSlug returns the ModelSlug field value
-func (o *ListWorldPlaceCollectionsItem) GetModelSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ModelSlug
-}
-
-// GetModelSlugOk returns a tuple with the ModelSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetModelSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ModelSlug, true
-}
-
-// SetModelSlug sets field value
-func (o *ListWorldPlaceCollectionsItem) SetModelSlug(v string) {
-	o.ModelSlug = v
-}
-
-// GetTotal returns the Total field value
-func (o *ListWorldPlaceCollectionsItem) GetTotal() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Total
-}
-
-// GetTotalOk returns a tuple with the Total field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetTotalOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Total, true
-}
-
-// SetTotal sets field value
-func (o *ListWorldPlaceCollectionsItem) SetTotal(v float32) {
-	o.Total = v
-}
-
-// GetOwned returns the Owned field value
-func (o *ListWorldPlaceCollectionsItem) GetOwned() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Owned
-}
-
-// GetOwnedOk returns a tuple with the Owned field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsItem) GetOwnedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Owned, true
-}
-
-// SetOwned sets field value
-func (o *ListWorldPlaceCollectionsItem) SetOwned(v float32) {
-	o.Owned = v
-}
-
-func (o ListWorldPlaceCollectionsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["category"] = o.Category
-	}
-	if true {
-		toSerialize["brand"] = o.Brand
-	}
-	if true {
-		toSerialize["model"] = o.Model
-	}
-	if true {
-		toSerialize["brandSlug"] = o.BrandSlug
-	}
-	if true {
-		toSerialize["modelSlug"] = o.ModelSlug
-	}
-	if true {
-		toSerialize["total"] = o.Total
-	}
-	if true {
-		toSerialize["owned"] = o.Owned
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceCollectionsItem struct {
-	value *ListWorldPlaceCollectionsItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceCollectionsItem) Get() *ListWorldPlaceCollectionsItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceCollectionsItem) Set(val *ListWorldPlaceCollectionsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceCollectionsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceCollectionsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceCollectionsItem(val *ListWorldPlaceCollectionsItem) *NullableListWorldPlaceCollectionsItem {
-	return &NullableListWorldPlaceCollectionsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceCollectionsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceCollectionsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceCollectionsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceCollectionsResponse struct {
-	// The rows.
-	Data []ListWorldPlaceCollectionsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceCollectionsResponse instantiates a new ListWorldPlaceCollectionsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceCollectionsResponse(data []ListWorldPlaceCollectionsItem) *ListWorldPlaceCollectionsResponse {
-	this := ListWorldPlaceCollectionsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceCollectionsResponseWithDefaults instantiates a new ListWorldPlaceCollectionsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceCollectionsResponseWithDefaults() *ListWorldPlaceCollectionsResponse {
-	this := ListWorldPlaceCollectionsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceCollectionsResponse) GetData() []ListWorldPlaceCollectionsItem {
-	if o == nil {
-		var ret []ListWorldPlaceCollectionsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsResponse) GetDataOk() ([]ListWorldPlaceCollectionsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceCollectionsResponse) SetData(v []ListWorldPlaceCollectionsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceCollectionsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceCollectionsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceCollectionsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceCollectionsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceCollectionsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceCollectionsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceCollectionsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceCollectionsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceCollectionsResponse struct {
-	value *ListWorldPlaceCollectionsResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceCollectionsResponse) Get() *ListWorldPlaceCollectionsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceCollectionsResponse) Set(val *ListWorldPlaceCollectionsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceCollectionsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceCollectionsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceCollectionsResponse(val *ListWorldPlaceCollectionsResponse) *NullableListWorldPlaceCollectionsResponse {
-	return &NullableListWorldPlaceCollectionsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceCollectionsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceCollectionsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceOffersItem struct for ListWorldPlaceOffersItem
-type ListWorldPlaceOffersItem struct {
-	ItemId string `json:"itemId"`
-	// platform_listings.platform_listing_id — what POST /cart/items takes.
-	ListingSlug string `json:"listingSlug"`
-	PriceCents float32 `json:"priceCents"`
-	Currency string `json:"currency"`
-	// Remaining stock, when the listing declares one. Null = unknown.
-	Available NullableFloat32 `json:"available,omitempty"`
-	// What a buyer is entitled to know before they add it.
-	Condition NullableString `json:"condition,omitempty"`
-	// Canonical grade key when the item is slabbed, e.g. `psa-10`.
-	GradeKey NullableString `json:"gradeKey,omitempty"`
-	Market NullableListWorldPlaceOffersItemMarket `json:"market,omitempty"`
-}
-
-// NewListWorldPlaceOffersItem instantiates a new ListWorldPlaceOffersItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceOffersItem(itemId string, listingSlug string, priceCents float32, currency string) *ListWorldPlaceOffersItem {
-	this := ListWorldPlaceOffersItem{}
-	this.ItemId = itemId
-	this.ListingSlug = listingSlug
-	this.PriceCents = priceCents
-	this.Currency = currency
-	return &this
-}
-
-// NewListWorldPlaceOffersItemWithDefaults instantiates a new ListWorldPlaceOffersItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceOffersItemWithDefaults() *ListWorldPlaceOffersItem {
-	this := ListWorldPlaceOffersItem{}
-	return &this
-}
-
-// GetItemId returns the ItemId field value
-func (o *ListWorldPlaceOffersItem) GetItemId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ItemId
-}
-
-// GetItemIdOk returns a tuple with the ItemId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItem) GetItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ItemId, true
-}
-
-// SetItemId sets field value
-func (o *ListWorldPlaceOffersItem) SetItemId(v string) {
-	o.ItemId = v
-}
-
-// GetListingSlug returns the ListingSlug field value
-func (o *ListWorldPlaceOffersItem) GetListingSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ListingSlug
-}
-
-// GetListingSlugOk returns a tuple with the ListingSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItem) GetListingSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ListingSlug, true
-}
-
-// SetListingSlug sets field value
-func (o *ListWorldPlaceOffersItem) SetListingSlug(v string) {
-	o.ListingSlug = v
-}
-
-// GetPriceCents returns the PriceCents field value
-func (o *ListWorldPlaceOffersItem) GetPriceCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PriceCents
-}
-
-// GetPriceCentsOk returns a tuple with the PriceCents field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItem) GetPriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceCents, true
-}
-
-// SetPriceCents sets field value
-func (o *ListWorldPlaceOffersItem) SetPriceCents(v float32) {
-	o.PriceCents = v
-}
-
-// GetCurrency returns the Currency field value
-func (o *ListWorldPlaceOffersItem) GetCurrency() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Currency
-}
-
-// GetCurrencyOk returns a tuple with the Currency field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItem) GetCurrencyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Currency, true
-}
-
-// SetCurrency sets field value
-func (o *ListWorldPlaceOffersItem) SetCurrency(v string) {
-	o.Currency = v
-}
-
-// GetAvailable returns the Available field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItem) GetAvailable() float32 {
-	if o == nil || o.Available.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Available.Get()
-}
-
-// GetAvailableOk returns a tuple with the Available field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItem) GetAvailableOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Available.Get(), o.Available.IsSet()
-}
-
-// HasAvailable returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItem) HasAvailable() bool {
-	if o != nil && o.Available.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAvailable gets a reference to the given NullableFloat32 and assigns it to the Available field.
-func (o *ListWorldPlaceOffersItem) SetAvailable(v float32) {
-	o.Available.Set(&v)
-}
-// SetAvailableNil sets the value for Available to be an explicit nil
-func (o *ListWorldPlaceOffersItem) SetAvailableNil() {
-	o.Available.Set(nil)
-}
-
-// UnsetAvailable ensures that no value is present for Available, not even an explicit nil
-func (o *ListWorldPlaceOffersItem) UnsetAvailable() {
-	o.Available.Unset()
-}
-
-// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItem) GetCondition() string {
-	if o == nil || o.Condition.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Condition.Get()
-}
-
-// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItem) GetConditionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Condition.Get(), o.Condition.IsSet()
-}
-
-// HasCondition returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItem) HasCondition() bool {
-	if o != nil && o.Condition.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCondition gets a reference to the given NullableString and assigns it to the Condition field.
-func (o *ListWorldPlaceOffersItem) SetCondition(v string) {
-	o.Condition.Set(&v)
-}
-// SetConditionNil sets the value for Condition to be an explicit nil
-func (o *ListWorldPlaceOffersItem) SetConditionNil() {
-	o.Condition.Set(nil)
-}
-
-// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
-func (o *ListWorldPlaceOffersItem) UnsetCondition() {
-	o.Condition.Unset()
-}
-
-// GetGradeKey returns the GradeKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItem) GetGradeKey() string {
-	if o == nil || o.GradeKey.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GradeKey.Get()
-}
-
-// GetGradeKeyOk returns a tuple with the GradeKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItem) GetGradeKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GradeKey.Get(), o.GradeKey.IsSet()
-}
-
-// HasGradeKey returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItem) HasGradeKey() bool {
-	if o != nil && o.GradeKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGradeKey gets a reference to the given NullableString and assigns it to the GradeKey field.
-func (o *ListWorldPlaceOffersItem) SetGradeKey(v string) {
-	o.GradeKey.Set(&v)
-}
-// SetGradeKeyNil sets the value for GradeKey to be an explicit nil
-func (o *ListWorldPlaceOffersItem) SetGradeKeyNil() {
-	o.GradeKey.Set(nil)
-}
-
-// UnsetGradeKey ensures that no value is present for GradeKey, not even an explicit nil
-func (o *ListWorldPlaceOffersItem) UnsetGradeKey() {
-	o.GradeKey.Unset()
-}
-
-// GetMarket returns the Market field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItem) GetMarket() ListWorldPlaceOffersItemMarket {
-	if o == nil || o.Market.Get() == nil {
-		var ret ListWorldPlaceOffersItemMarket
-		return ret
-	}
-	return *o.Market.Get()
-}
-
-// GetMarketOk returns a tuple with the Market field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItem) GetMarketOk() (*ListWorldPlaceOffersItemMarket, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Market.Get(), o.Market.IsSet()
-}
-
-// HasMarket returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItem) HasMarket() bool {
-	if o != nil && o.Market.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMarket gets a reference to the given NullableListWorldPlaceOffersItemMarket and assigns it to the Market field.
-func (o *ListWorldPlaceOffersItem) SetMarket(v ListWorldPlaceOffersItemMarket) {
-	o.Market.Set(&v)
-}
-// SetMarketNil sets the value for Market to be an explicit nil
-func (o *ListWorldPlaceOffersItem) SetMarketNil() {
-	o.Market.Set(nil)
-}
-
-// UnsetMarket ensures that no value is present for Market, not even an explicit nil
-func (o *ListWorldPlaceOffersItem) UnsetMarket() {
-	o.Market.Unset()
-}
-
-func (o ListWorldPlaceOffersItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["itemId"] = o.ItemId
-	}
-	if true {
-		toSerialize["listingSlug"] = o.ListingSlug
-	}
-	if true {
-		toSerialize["priceCents"] = o.PriceCents
-	}
-	if true {
-		toSerialize["currency"] = o.Currency
-	}
-	if o.Available.IsSet() {
-		toSerialize["available"] = o.Available.Get()
-	}
-	if o.Condition.IsSet() {
-		toSerialize["condition"] = o.Condition.Get()
-	}
-	if o.GradeKey.IsSet() {
-		toSerialize["gradeKey"] = o.GradeKey.Get()
-	}
-	if o.Market.IsSet() {
-		toSerialize["market"] = o.Market.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceOffersItem struct {
-	value *ListWorldPlaceOffersItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceOffersItem) Get() *ListWorldPlaceOffersItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceOffersItem) Set(val *ListWorldPlaceOffersItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceOffersItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceOffersItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceOffersItem(val *ListWorldPlaceOffersItem) *NullableListWorldPlaceOffersItem {
-	return &NullableListWorldPlaceOffersItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceOffersItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceOffersItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceOffersItemMarket struct for ListWorldPlaceOffersItemMarket
-type ListWorldPlaceOffersItemMarket struct {
-	SkuId string `json:"skuId"`
-	Name string `json:"name"`
-	LowestAskCents NullableFloat32 `json:"lowestAskCents,omitempty"`
-	LastSaleCents NullableFloat32 `json:"lastSaleCents,omitempty"`
-}
-
-// NewListWorldPlaceOffersItemMarket instantiates a new ListWorldPlaceOffersItemMarket object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceOffersItemMarket(skuId string, name string) *ListWorldPlaceOffersItemMarket {
-	this := ListWorldPlaceOffersItemMarket{}
-	this.SkuId = skuId
-	this.Name = name
-	return &this
-}
-
-// NewListWorldPlaceOffersItemMarketWithDefaults instantiates a new ListWorldPlaceOffersItemMarket object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceOffersItemMarketWithDefaults() *ListWorldPlaceOffersItemMarket {
-	this := ListWorldPlaceOffersItemMarket{}
-	return &this
-}
-
-// GetSkuId returns the SkuId field value
-func (o *ListWorldPlaceOffersItemMarket) GetSkuId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SkuId
-}
-
-// GetSkuIdOk returns a tuple with the SkuId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItemMarket) GetSkuIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SkuId, true
-}
-
-// SetSkuId sets field value
-func (o *ListWorldPlaceOffersItemMarket) SetSkuId(v string) {
-	o.SkuId = v
-}
-
-// GetName returns the Name field value
-func (o *ListWorldPlaceOffersItemMarket) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersItemMarket) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldPlaceOffersItemMarket) SetName(v string) {
-	o.Name = v
-}
-
-// GetLowestAskCents returns the LowestAskCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItemMarket) GetLowestAskCents() float32 {
-	if o == nil || o.LowestAskCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.LowestAskCents.Get()
-}
-
-// GetLowestAskCentsOk returns a tuple with the LowestAskCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItemMarket) GetLowestAskCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LowestAskCents.Get(), o.LowestAskCents.IsSet()
-}
-
-// HasLowestAskCents returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItemMarket) HasLowestAskCents() bool {
-	if o != nil && o.LowestAskCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLowestAskCents gets a reference to the given NullableFloat32 and assigns it to the LowestAskCents field.
-func (o *ListWorldPlaceOffersItemMarket) SetLowestAskCents(v float32) {
-	o.LowestAskCents.Set(&v)
-}
-// SetLowestAskCentsNil sets the value for LowestAskCents to be an explicit nil
-func (o *ListWorldPlaceOffersItemMarket) SetLowestAskCentsNil() {
-	o.LowestAskCents.Set(nil)
-}
-
-// UnsetLowestAskCents ensures that no value is present for LowestAskCents, not even an explicit nil
-func (o *ListWorldPlaceOffersItemMarket) UnsetLowestAskCents() {
-	o.LowestAskCents.Unset()
-}
-
-// GetLastSaleCents returns the LastSaleCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceOffersItemMarket) GetLastSaleCents() float32 {
-	if o == nil || o.LastSaleCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.LastSaleCents.Get()
-}
-
-// GetLastSaleCentsOk returns a tuple with the LastSaleCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceOffersItemMarket) GetLastSaleCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastSaleCents.Get(), o.LastSaleCents.IsSet()
-}
-
-// HasLastSaleCents returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersItemMarket) HasLastSaleCents() bool {
-	if o != nil && o.LastSaleCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastSaleCents gets a reference to the given NullableFloat32 and assigns it to the LastSaleCents field.
-func (o *ListWorldPlaceOffersItemMarket) SetLastSaleCents(v float32) {
-	o.LastSaleCents.Set(&v)
-}
-// SetLastSaleCentsNil sets the value for LastSaleCents to be an explicit nil
-func (o *ListWorldPlaceOffersItemMarket) SetLastSaleCentsNil() {
-	o.LastSaleCents.Set(nil)
-}
-
-// UnsetLastSaleCents ensures that no value is present for LastSaleCents, not even an explicit nil
-func (o *ListWorldPlaceOffersItemMarket) UnsetLastSaleCents() {
-	o.LastSaleCents.Unset()
-}
-
-func (o ListWorldPlaceOffersItemMarket) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["skuId"] = o.SkuId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.LowestAskCents.IsSet() {
-		toSerialize["lowestAskCents"] = o.LowestAskCents.Get()
-	}
-	if o.LastSaleCents.IsSet() {
-		toSerialize["lastSaleCents"] = o.LastSaleCents.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceOffersItemMarket struct {
-	value *ListWorldPlaceOffersItemMarket
-	isSet bool
-}
-
-func (v NullableListWorldPlaceOffersItemMarket) Get() *ListWorldPlaceOffersItemMarket {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceOffersItemMarket) Set(val *ListWorldPlaceOffersItemMarket) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceOffersItemMarket) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceOffersItemMarket) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceOffersItemMarket(val *ListWorldPlaceOffersItemMarket) *NullableListWorldPlaceOffersItemMarket {
-	return &NullableListWorldPlaceOffersItemMarket{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceOffersItemMarket) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceOffersItemMarket) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceOffersResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceOffersResponse struct {
-	// The rows.
-	Data []ListWorldPlaceOffersItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceOffersResponse instantiates a new ListWorldPlaceOffersResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceOffersResponse(data []ListWorldPlaceOffersItem) *ListWorldPlaceOffersResponse {
-	this := ListWorldPlaceOffersResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceOffersResponseWithDefaults instantiates a new ListWorldPlaceOffersResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceOffersResponseWithDefaults() *ListWorldPlaceOffersResponse {
-	this := ListWorldPlaceOffersResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceOffersResponse) GetData() []ListWorldPlaceOffersItem {
-	if o == nil {
-		var ret []ListWorldPlaceOffersItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersResponse) GetDataOk() ([]ListWorldPlaceOffersItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceOffersResponse) SetData(v []ListWorldPlaceOffersItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceOffersResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceOffersResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceOffersResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceOffersResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceOffersResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceOffersResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceOffersResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceOffersResponse struct {
-	value *ListWorldPlaceOffersResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceOffersResponse) Get() *ListWorldPlaceOffersResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceOffersResponse) Set(val *ListWorldPlaceOffersResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceOffersResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceOffersResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceOffersResponse(val *ListWorldPlaceOffersResponse) *NullableListWorldPlaceOffersResponse {
-	return &NullableListWorldPlaceOffersResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceOffersResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceOffersResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceRadarItem struct for ListWorldPlaceRadarItem
-type ListWorldPlaceRadarItem struct {
-	PeerId string `json:"peerId"`
-	Count float32 `json:"count"`
-	Names []string `json:"names"`
-}
-
-// NewListWorldPlaceRadarItem instantiates a new ListWorldPlaceRadarItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceRadarItem(peerId string, count float32, names []string) *ListWorldPlaceRadarItem {
-	this := ListWorldPlaceRadarItem{}
-	this.PeerId = peerId
-	this.Count = count
-	this.Names = names
-	return &this
-}
-
-// NewListWorldPlaceRadarItemWithDefaults instantiates a new ListWorldPlaceRadarItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceRadarItemWithDefaults() *ListWorldPlaceRadarItem {
-	this := ListWorldPlaceRadarItem{}
-	return &this
-}
-
-// GetPeerId returns the PeerId field value
-func (o *ListWorldPlaceRadarItem) GetPeerId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PeerId
-}
-
-// GetPeerIdOk returns a tuple with the PeerId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarItem) GetPeerIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PeerId, true
-}
-
-// SetPeerId sets field value
-func (o *ListWorldPlaceRadarItem) SetPeerId(v string) {
-	o.PeerId = v
-}
-
-// GetCount returns the Count field value
-func (o *ListWorldPlaceRadarItem) GetCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Count
-}
-
-// GetCountOk returns a tuple with the Count field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarItem) GetCountOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Count, true
-}
-
-// SetCount sets field value
-func (o *ListWorldPlaceRadarItem) SetCount(v float32) {
-	o.Count = v
-}
-
-// GetNames returns the Names field value
-func (o *ListWorldPlaceRadarItem) GetNames() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Names
-}
-
-// GetNamesOk returns a tuple with the Names field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarItem) GetNamesOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Names, true
-}
-
-// SetNames sets field value
-func (o *ListWorldPlaceRadarItem) SetNames(v []string) {
-	o.Names = v
-}
-
-func (o ListWorldPlaceRadarItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["peerId"] = o.PeerId
-	}
-	if true {
-		toSerialize["count"] = o.Count
-	}
-	if true {
-		toSerialize["names"] = o.Names
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceRadarItem struct {
-	value *ListWorldPlaceRadarItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceRadarItem) Get() *ListWorldPlaceRadarItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceRadarItem) Set(val *ListWorldPlaceRadarItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceRadarItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceRadarItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceRadarItem(val *ListWorldPlaceRadarItem) *NullableListWorldPlaceRadarItem {
-	return &NullableListWorldPlaceRadarItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceRadarItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceRadarItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceRadarResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceRadarResponse struct {
-	// The rows.
-	Data []ListWorldPlaceRadarItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceRadarResponse instantiates a new ListWorldPlaceRadarResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceRadarResponse(data []ListWorldPlaceRadarItem) *ListWorldPlaceRadarResponse {
-	this := ListWorldPlaceRadarResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceRadarResponseWithDefaults instantiates a new ListWorldPlaceRadarResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceRadarResponseWithDefaults() *ListWorldPlaceRadarResponse {
-	this := ListWorldPlaceRadarResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceRadarResponse) GetData() []ListWorldPlaceRadarItem {
-	if o == nil {
-		var ret []ListWorldPlaceRadarItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarResponse) GetDataOk() ([]ListWorldPlaceRadarItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceRadarResponse) SetData(v []ListWorldPlaceRadarItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceRadarResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceRadarResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceRadarResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceRadarResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceRadarResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceRadarResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceRadarResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceRadarResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceRadarResponse struct {
-	value *ListWorldPlaceRadarResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceRadarResponse) Get() *ListWorldPlaceRadarResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceRadarResponse) Set(val *ListWorldPlaceRadarResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceRadarResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceRadarResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceRadarResponse(val *ListWorldPlaceRadarResponse) *NullableListWorldPlaceRadarResponse {
-	return &NullableListWorldPlaceRadarResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceRadarResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceRadarResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesItem struct for ListWorldPlaceTradeTablesItem
-type ListWorldPlaceTradeTablesItem struct {
-	Visitor NullableListWorldPlaceTradeTablesItemVisitor `json:"visitor,omitempty"`
-	Totals ListWorldPlaceTradeTablesItemTotals `json:"totals"`
-	You NullableString `json:"you,omitempty"`
-	Line ListWorldPlaceTradeTablesItemLine `json:"line"`
-	Id string `json:"id"`
-	// The seller's trade post this table trades on.
-	PostId string `json:"postId"`
-	// Where the table stands (a place slug, e.g. trade-floor).
-	Place string `json:"place"`
-	Seller UserIdName `json:"seller"`
-	Mat ListWorldPlaceTradeTablesItemMat `json:"mat"`
-	Cash ListWorldPlaceTradeTablesItemCash `json:"cash"`
-	Shook ListWorldPlaceTradeTablesItemShook `json:"shook"`
-	// open: dealing at the mat · done: shaken, a trade exists · closed: the seller left.
-	Status string `json:"status"`
-	TradeId NullableString `json:"tradeId,omitempty"`
-	// Bumped on every change, so a client can drop a stale echo.
-	Version float32 `json:"version"`
-}
-
-// NewListWorldPlaceTradeTablesItem instantiates a new ListWorldPlaceTradeTablesItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItem(totals ListWorldPlaceTradeTablesItemTotals, line ListWorldPlaceTradeTablesItemLine, id string, postId string, place string, seller UserIdName, mat ListWorldPlaceTradeTablesItemMat, cash ListWorldPlaceTradeTablesItemCash, shook ListWorldPlaceTradeTablesItemShook, status string, version float32) *ListWorldPlaceTradeTablesItem {
-	this := ListWorldPlaceTradeTablesItem{}
-	this.Totals = totals
-	this.Line = line
-	this.Id = id
-	this.PostId = postId
-	this.Place = place
-	this.Seller = seller
-	this.Mat = mat
-	this.Cash = cash
-	this.Shook = shook
-	this.Status = status
-	this.Version = version
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesItemWithDefaults instantiates a new ListWorldPlaceTradeTablesItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemWithDefaults() *ListWorldPlaceTradeTablesItem {
-	this := ListWorldPlaceTradeTablesItem{}
-	return &this
-}
-
-// GetVisitor returns the Visitor field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceTradeTablesItem) GetVisitor() ListWorldPlaceTradeTablesItemVisitor {
-	if o == nil || o.Visitor.Get() == nil {
-		var ret ListWorldPlaceTradeTablesItemVisitor
-		return ret
-	}
-	return *o.Visitor.Get()
-}
-
-// GetVisitorOk returns a tuple with the Visitor field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceTradeTablesItem) GetVisitorOk() (*ListWorldPlaceTradeTablesItemVisitor, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Visitor.Get(), o.Visitor.IsSet()
-}
-
-// HasVisitor returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesItem) HasVisitor() bool {
-	if o != nil && o.Visitor.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVisitor gets a reference to the given NullableListWorldPlaceTradeTablesItemVisitor and assigns it to the Visitor field.
-func (o *ListWorldPlaceTradeTablesItem) SetVisitor(v ListWorldPlaceTradeTablesItemVisitor) {
-	o.Visitor.Set(&v)
-}
-// SetVisitorNil sets the value for Visitor to be an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) SetVisitorNil() {
-	o.Visitor.Set(nil)
-}
-
-// UnsetVisitor ensures that no value is present for Visitor, not even an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) UnsetVisitor() {
-	o.Visitor.Unset()
-}
-
-// GetTotals returns the Totals field value
-func (o *ListWorldPlaceTradeTablesItem) GetTotals() ListWorldPlaceTradeTablesItemTotals {
-	if o == nil {
-		var ret ListWorldPlaceTradeTablesItemTotals
-		return ret
-	}
-
-	return o.Totals
-}
-
-// GetTotalsOk returns a tuple with the Totals field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetTotalsOk() (*ListWorldPlaceTradeTablesItemTotals, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Totals, true
-}
-
-// SetTotals sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetTotals(v ListWorldPlaceTradeTablesItemTotals) {
-	o.Totals = v
-}
-
-// GetYou returns the You field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceTradeTablesItem) GetYou() string {
-	if o == nil || o.You.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.You.Get()
-}
-
-// GetYouOk returns a tuple with the You field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceTradeTablesItem) GetYouOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.You.Get(), o.You.IsSet()
-}
-
-// HasYou returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesItem) HasYou() bool {
-	if o != nil && o.You.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetYou gets a reference to the given NullableString and assigns it to the You field.
-func (o *ListWorldPlaceTradeTablesItem) SetYou(v string) {
-	o.You.Set(&v)
-}
-// SetYouNil sets the value for You to be an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) SetYouNil() {
-	o.You.Set(nil)
-}
-
-// UnsetYou ensures that no value is present for You, not even an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) UnsetYou() {
-	o.You.Unset()
-}
-
-// GetLine returns the Line field value
-func (o *ListWorldPlaceTradeTablesItem) GetLine() ListWorldPlaceTradeTablesItemLine {
-	if o == nil {
-		var ret ListWorldPlaceTradeTablesItemLine
-		return ret
-	}
-
-	return o.Line
-}
-
-// GetLineOk returns a tuple with the Line field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetLineOk() (*ListWorldPlaceTradeTablesItemLine, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Line, true
-}
-
-// SetLine sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetLine(v ListWorldPlaceTradeTablesItemLine) {
-	o.Line = v
-}
-
-// GetId returns the Id field value
-func (o *ListWorldPlaceTradeTablesItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetPostId returns the PostId field value
-func (o *ListWorldPlaceTradeTablesItem) GetPostId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PostId
-}
-
-// GetPostIdOk returns a tuple with the PostId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetPostIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PostId, true
-}
-
-// SetPostId sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetPostId(v string) {
-	o.PostId = v
-}
-
-// GetPlace returns the Place field value
-func (o *ListWorldPlaceTradeTablesItem) GetPlace() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Place
-}
-
-// GetPlaceOk returns a tuple with the Place field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetPlaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Place, true
-}
-
-// SetPlace sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetPlace(v string) {
-	o.Place = v
-}
-
-// GetSeller returns the Seller field value
-func (o *ListWorldPlaceTradeTablesItem) GetSeller() UserIdName {
-	if o == nil {
-		var ret UserIdName
-		return ret
-	}
-
-	return o.Seller
-}
-
-// GetSellerOk returns a tuple with the Seller field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetSellerOk() (*UserIdName, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Seller, true
-}
-
-// SetSeller sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetSeller(v UserIdName) {
-	o.Seller = v
-}
-
-// GetMat returns the Mat field value
-func (o *ListWorldPlaceTradeTablesItem) GetMat() ListWorldPlaceTradeTablesItemMat {
-	if o == nil {
-		var ret ListWorldPlaceTradeTablesItemMat
-		return ret
-	}
-
-	return o.Mat
-}
-
-// GetMatOk returns a tuple with the Mat field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetMatOk() (*ListWorldPlaceTradeTablesItemMat, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Mat, true
-}
-
-// SetMat sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetMat(v ListWorldPlaceTradeTablesItemMat) {
-	o.Mat = v
-}
-
-// GetCash returns the Cash field value
-func (o *ListWorldPlaceTradeTablesItem) GetCash() ListWorldPlaceTradeTablesItemCash {
-	if o == nil {
-		var ret ListWorldPlaceTradeTablesItemCash
-		return ret
-	}
-
-	return o.Cash
-}
-
-// GetCashOk returns a tuple with the Cash field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetCashOk() (*ListWorldPlaceTradeTablesItemCash, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cash, true
-}
-
-// SetCash sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetCash(v ListWorldPlaceTradeTablesItemCash) {
-	o.Cash = v
-}
-
-// GetShook returns the Shook field value
-func (o *ListWorldPlaceTradeTablesItem) GetShook() ListWorldPlaceTradeTablesItemShook {
-	if o == nil {
-		var ret ListWorldPlaceTradeTablesItemShook
-		return ret
-	}
-
-	return o.Shook
-}
-
-// GetShookOk returns a tuple with the Shook field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetShookOk() (*ListWorldPlaceTradeTablesItemShook, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Shook, true
-}
-
-// SetShook sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetShook(v ListWorldPlaceTradeTablesItemShook) {
-	o.Shook = v
-}
-
 // GetStatus returns the Status field value
-func (o *ListWorldPlaceTradeTablesItem) GetStatus() string {
+func (o *GetWorldConventionExhibitResponseConvention) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -6052,7 +2391,7 @@ func (o *ListWorldPlaceTradeTablesItem) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetStatusOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseConvention) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -6060,779 +2399,533 @@ func (o *ListWorldPlaceTradeTablesItem) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetStatus(v string) {
+func (o *GetWorldConventionExhibitResponseConvention) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetTradeId returns the TradeId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceTradeTablesItem) GetTradeId() string {
-	if o == nil || o.TradeId.Get() == nil {
+// GetStartsAt returns the StartsAt field value
+func (o *GetWorldConventionExhibitResponseConvention) GetStartsAt() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.TradeId.Get()
+
+	return o.StartsAt
 }
 
-// GetTradeIdOk returns a tuple with the TradeId field value if set, nil otherwise
+// GetStartsAtOk returns a tuple with the StartsAt field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceTradeTablesItem) GetTradeIdOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseConvention) GetStartsAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.TradeId.Get(), o.TradeId.IsSet()
+	return &o.StartsAt, true
 }
 
-// HasTradeId returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesItem) HasTradeId() bool {
-	if o != nil && o.TradeId.IsSet() {
-		return true
+// SetStartsAt sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *GetWorldConventionExhibitResponseConvention) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.EndsAt
 }
 
-// SetTradeId gets a reference to the given NullableString and assigns it to the TradeId field.
-func (o *ListWorldPlaceTradeTablesItem) SetTradeId(v string) {
-	o.TradeId.Set(&v)
-}
-// SetTradeIdNil sets the value for TradeId to be an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) SetTradeIdNil() {
-	o.TradeId.Set(nil)
-}
-
-// UnsetTradeId ensures that no value is present for TradeId, not even an explicit nil
-func (o *ListWorldPlaceTradeTablesItem) UnsetTradeId() {
-	o.TradeId.Unset()
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
 }
 
-// GetVersion returns the Version field value
-func (o *ListWorldPlaceTradeTablesItem) GetVersion() float32 {
+// SetEndsAt sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetOpensHour returns the OpensHour field value
+func (o *GetWorldConventionExhibitResponseConvention) GetOpensHour() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Version
+	return o.OpensHour
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetOpensHourOk returns a tuple with the OpensHour field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItem) GetVersionOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseConvention) GetOpensHourOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Version, true
+	return &o.OpensHour, true
 }
 
-// SetVersion sets field value
-func (o *ListWorldPlaceTradeTablesItem) SetVersion(v float32) {
-	o.Version = v
+// SetOpensHour sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetOpensHour(v float32) {
+	o.OpensHour = v
 }
 
-func (o ListWorldPlaceTradeTablesItem) MarshalJSON() ([]byte, error) {
+// GetClosesHour returns the ClosesHour field value
+func (o *GetWorldConventionExhibitResponseConvention) GetClosesHour() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ClosesHour
+}
+
+// GetClosesHourOk returns a tuple with the ClosesHour field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetClosesHourOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ClosesHour, true
+}
+
+// SetClosesHour sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetClosesHour(v float32) {
+	o.ClosesHour = v
+}
+
+// GetTimezone returns the Timezone field value
+func (o *GetWorldConventionExhibitResponseConvention) GetTimezone() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetTimezoneOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Timezone, true
+}
+
+// SetTimezone sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetTimezone(v string) {
+	o.Timezone = v
+}
+
+// GetTheme returns the Theme field value
+func (o *GetWorldConventionExhibitResponseConvention) GetTheme() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Theme
+}
+
+// GetThemeOk returns a tuple with the Theme field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetThemeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Theme, true
+}
+
+// SetTheme sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetTheme(v string) {
+	o.Theme = v
+}
+
+// GetBookingMode returns the BookingMode field value
+func (o *GetWorldConventionExhibitResponseConvention) GetBookingMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookingMode
+}
+
+// GetBookingModeOk returns a tuple with the BookingMode field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetBookingModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookingMode, true
+}
+
+// SetBookingMode sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetBookingMode(v string) {
+	o.BookingMode = v
+}
+
+// GetRevenueShareBps returns the RevenueShareBps field value
+func (o *GetWorldConventionExhibitResponseConvention) GetRevenueShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RevenueShareBps
+}
+
+// GetRevenueShareBpsOk returns a tuple with the RevenueShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetRevenueShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RevenueShareBps, true
+}
+
+// SetRevenueShareBps sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetRevenueShareBps(v float32) {
+	o.RevenueShareBps = v
+}
+
+// GetCategories returns the Categories field value
+func (o *GetWorldConventionExhibitResponseConvention) GetCategories() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Categories
+}
+
+// GetCategoriesOk returns a tuple with the Categories field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetCategoriesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Categories, true
+}
+
+// SetCategories sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetCategories(v []string) {
+	o.Categories = v
+}
+
+// GetTiered returns the Tiered field value
+func (o *GetWorldConventionExhibitResponseConvention) GetTiered() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Tiered
+}
+
+// GetTieredOk returns a tuple with the Tiered field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetTieredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tiered, true
+}
+
+// SetTiered sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetTiered(v bool) {
+	o.Tiered = v
+}
+
+// GetIsHost returns the IsHost field value
+func (o *GetWorldConventionExhibitResponseConvention) GetIsHost() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsHost
+}
+
+// GetIsHostOk returns a tuple with the IsHost field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseConvention) GetIsHostOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsHost, true
+}
+
+// SetIsHost sets field value
+func (o *GetWorldConventionExhibitResponseConvention) SetIsHost(v bool) {
+	o.IsHost = v
+}
+
+func (o GetWorldConventionExhibitResponseConvention) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Visitor.IsSet() {
-		toSerialize["visitor"] = o.Visitor.Get()
-	}
-	if true {
-		toSerialize["totals"] = o.Totals
-	}
-	if o.You.IsSet() {
-		toSerialize["you"] = o.You.Get()
-	}
-	if true {
-		toSerialize["line"] = o.Line
-	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["postId"] = o.PostId
+		toSerialize["title"] = o.Title
 	}
-	if true {
-		toSerialize["place"] = o.Place
-	}
-	if true {
-		toSerialize["seller"] = o.Seller
-	}
-	if true {
-		toSerialize["mat"] = o.Mat
-	}
-	if true {
-		toSerialize["cash"] = o.Cash
-	}
-	if true {
-		toSerialize["shook"] = o.Shook
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if true {
 		toSerialize["status"] = o.Status
 	}
-	if o.TradeId.IsSet() {
-		toSerialize["tradeId"] = o.TradeId.Get()
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
 	}
 	if true {
-		toSerialize["version"] = o.Version
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if true {
+		toSerialize["opensHour"] = o.OpensHour
+	}
+	if true {
+		toSerialize["closesHour"] = o.ClosesHour
+	}
+	if true {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if true {
+		toSerialize["theme"] = o.Theme
+	}
+	if true {
+		toSerialize["bookingMode"] = o.BookingMode
+	}
+	if true {
+		toSerialize["revenueShareBps"] = o.RevenueShareBps
+	}
+	if true {
+		toSerialize["categories"] = o.Categories
+	}
+	if true {
+		toSerialize["tiered"] = o.Tiered
+	}
+	if true {
+		toSerialize["isHost"] = o.IsHost
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldPlaceTradeTablesItem struct {
-	value *ListWorldPlaceTradeTablesItem
+type NullableGetWorldConventionExhibitResponseConvention struct {
+	value *GetWorldConventionExhibitResponseConvention
 	isSet bool
 }
 
-func (v NullableListWorldPlaceTradeTablesItem) Get() *ListWorldPlaceTradeTablesItem {
+func (v NullableGetWorldConventionExhibitResponseConvention) Get() *GetWorldConventionExhibitResponseConvention {
 	return v.value
 }
 
-func (v *NullableListWorldPlaceTradeTablesItem) Set(val *ListWorldPlaceTradeTablesItem) {
+func (v *NullableGetWorldConventionExhibitResponseConvention) Set(val *GetWorldConventionExhibitResponseConvention) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldPlaceTradeTablesItem) IsSet() bool {
+func (v NullableGetWorldConventionExhibitResponseConvention) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldPlaceTradeTablesItem) Unset() {
+func (v *NullableGetWorldConventionExhibitResponseConvention) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldPlaceTradeTablesItem(val *ListWorldPlaceTradeTablesItem) *NullableListWorldPlaceTradeTablesItem {
-	return &NullableListWorldPlaceTradeTablesItem{value: val, isSet: true}
+func NewNullableGetWorldConventionExhibitResponseConvention(val *GetWorldConventionExhibitResponseConvention) *NullableGetWorldConventionExhibitResponseConvention {
+	return &NullableGetWorldConventionExhibitResponseConvention{value: val, isSet: true}
 }
 
-func (v NullableListWorldPlaceTradeTablesItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionExhibitResponseConvention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldPlaceTradeTablesItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionExhibitResponseConvention) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldPlaceTradeTablesItemCash struct for ListWorldPlaceTradeTablesItemCash
-type ListWorldPlaceTradeTablesItemCash struct {
-	Cents float32 `json:"cents"`
-	Payer NullableString `json:"payer,omitempty"`
+// GetWorldConventionExhibitResponseMine struct for GetWorldConventionExhibitResponseMine
+type GetWorldConventionExhibitResponseMine struct {
+	ExhibitorId string `json:"exhibitorId"`
+	Status string `json:"status"`
+	TierId NullableString `json:"tierId,omitempty"`
+	BoothKey NullableString `json:"boothKey,omitempty"`
+	FeeCents float32 `json:"feeCents"`
+	Paid bool `json:"paid"`
+	PaidCents float32 `json:"paidCents"`
+	PaymentRail NullableString `json:"paymentRail,omitempty"`
+	CheckedInAt NullableString `json:"checkedInAt,omitempty"`
+	ListingIds []string `json:"listingIds"`
+	Capacity float32 `json:"capacity"`
 }
 
-// NewListWorldPlaceTradeTablesItemCash instantiates a new ListWorldPlaceTradeTablesItemCash object
+// NewGetWorldConventionExhibitResponseMine instantiates a new GetWorldConventionExhibitResponseMine object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemCash(cents float32) *ListWorldPlaceTradeTablesItemCash {
-	this := ListWorldPlaceTradeTablesItemCash{}
-	this.Cents = cents
+func NewGetWorldConventionExhibitResponseMine(exhibitorId string, status string, feeCents float32, paid bool, paidCents float32, listingIds []string, capacity float32) *GetWorldConventionExhibitResponseMine {
+	this := GetWorldConventionExhibitResponseMine{}
+	this.ExhibitorId = exhibitorId
+	this.Status = status
+	this.FeeCents = feeCents
+	this.Paid = paid
+	this.PaidCents = paidCents
+	this.ListingIds = listingIds
+	this.Capacity = capacity
 	return &this
 }
 
-// NewListWorldPlaceTradeTablesItemCashWithDefaults instantiates a new ListWorldPlaceTradeTablesItemCash object
+// NewGetWorldConventionExhibitResponseMineWithDefaults instantiates a new GetWorldConventionExhibitResponseMine object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemCashWithDefaults() *ListWorldPlaceTradeTablesItemCash {
-	this := ListWorldPlaceTradeTablesItemCash{}
+func NewGetWorldConventionExhibitResponseMineWithDefaults() *GetWorldConventionExhibitResponseMine {
+	this := GetWorldConventionExhibitResponseMine{}
 	return &this
 }
 
-// GetCents returns the Cents field value
-func (o *ListWorldPlaceTradeTablesItemCash) GetCents() float32 {
+// GetExhibitorId returns the ExhibitorId field value
+func (o *GetWorldConventionExhibitResponseMine) GetExhibitorId() string {
 	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Cents
-}
-
-// GetCentsOk returns a tuple with the Cents field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemCash) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cents, true
-}
-
-// SetCents sets field value
-func (o *ListWorldPlaceTradeTablesItemCash) SetCents(v float32) {
-	o.Cents = v
-}
-
-// GetPayer returns the Payer field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceTradeTablesItemCash) GetPayer() string {
-	if o == nil || o.Payer.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Payer.Get()
+
+	return o.ExhibitorId
 }
 
-// GetPayerOk returns a tuple with the Payer field value if set, nil otherwise
+// GetExhibitorIdOk returns a tuple with the ExhibitorId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceTradeTablesItemCash) GetPayerOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseMine) GetExhibitorIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Payer.Get(), o.Payer.IsSet()
+	return &o.ExhibitorId, true
 }
 
-// HasPayer returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesItemCash) HasPayer() bool {
-	if o != nil && o.Payer.IsSet() {
+// SetExhibitorId sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetExhibitorId(v string) {
+	o.ExhibitorId = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldConventionExhibitResponseMine) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseMine) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetTierId returns the TierId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponseMine) GetTierId() string {
+	if o == nil || o.TierId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TierId.Get()
+}
+
+// GetTierIdOk returns a tuple with the TierId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionExhibitResponseMine) GetTierIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TierId.Get(), o.TierId.IsSet()
+}
+
+// HasTierId returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponseMine) HasTierId() bool {
+	if o != nil && o.TierId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPayer gets a reference to the given NullableString and assigns it to the Payer field.
-func (o *ListWorldPlaceTradeTablesItemCash) SetPayer(v string) {
-	o.Payer.Set(&v)
+// SetTierId gets a reference to the given NullableString and assigns it to the TierId field.
+func (o *GetWorldConventionExhibitResponseMine) SetTierId(v string) {
+	o.TierId.Set(&v)
 }
-// SetPayerNil sets the value for Payer to be an explicit nil
-func (o *ListWorldPlaceTradeTablesItemCash) SetPayerNil() {
-	o.Payer.Set(nil)
-}
-
-// UnsetPayer ensures that no value is present for Payer, not even an explicit nil
-func (o *ListWorldPlaceTradeTablesItemCash) UnsetPayer() {
-	o.Payer.Unset()
+// SetTierIdNil sets the value for TierId to be an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) SetTierIdNil() {
+	o.TierId.Set(nil)
 }
 
-func (o ListWorldPlaceTradeTablesItemCash) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["cents"] = o.Cents
-	}
-	if o.Payer.IsSet() {
-		toSerialize["payer"] = o.Payer.Get()
-	}
-	return json.Marshal(toSerialize)
+// UnsetTierId ensures that no value is present for TierId, not even an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) UnsetTierId() {
+	o.TierId.Unset()
 }
 
-type NullableListWorldPlaceTradeTablesItemCash struct {
-	value *ListWorldPlaceTradeTablesItemCash
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesItemCash) Get() *ListWorldPlaceTradeTablesItemCash {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemCash) Set(val *ListWorldPlaceTradeTablesItemCash) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesItemCash) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemCash) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesItemCash(val *ListWorldPlaceTradeTablesItemCash) *NullableListWorldPlaceTradeTablesItemCash {
-	return &NullableListWorldPlaceTradeTablesItemCash{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesItemCash) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemCash) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesItemLine struct for ListWorldPlaceTradeTablesItemLine
-type ListWorldPlaceTradeTablesItemLine struct {
-	Waiting float32 `json:"waiting"`
-	YourPlace NullableFloat32 `json:"yourPlace,omitempty"`
-	Priority bool `json:"priority"`
-}
-
-// NewListWorldPlaceTradeTablesItemLine instantiates a new ListWorldPlaceTradeTablesItemLine object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemLine(waiting float32, priority bool) *ListWorldPlaceTradeTablesItemLine {
-	this := ListWorldPlaceTradeTablesItemLine{}
-	this.Waiting = waiting
-	this.Priority = priority
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesItemLineWithDefaults instantiates a new ListWorldPlaceTradeTablesItemLine object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemLineWithDefaults() *ListWorldPlaceTradeTablesItemLine {
-	this := ListWorldPlaceTradeTablesItemLine{}
-	return &this
-}
-
-// GetWaiting returns the Waiting field value
-func (o *ListWorldPlaceTradeTablesItemLine) GetWaiting() float32 {
-	if o == nil {
-		var ret float32
+// GetBoothKey returns the BoothKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponseMine) GetBoothKey() string {
+	if o == nil || o.BoothKey.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Waiting
+	return *o.BoothKey.Get()
 }
 
-// GetWaitingOk returns a tuple with the Waiting field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemLine) GetWaitingOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Waiting, true
-}
-
-// SetWaiting sets field value
-func (o *ListWorldPlaceTradeTablesItemLine) SetWaiting(v float32) {
-	o.Waiting = v
-}
-
-// GetYourPlace returns the YourPlace field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldPlaceTradeTablesItemLine) GetYourPlace() float32 {
-	if o == nil || o.YourPlace.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.YourPlace.Get()
-}
-
-// GetYourPlaceOk returns a tuple with the YourPlace field value if set, nil otherwise
+// GetBoothKeyOk returns a tuple with the BoothKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldPlaceTradeTablesItemLine) GetYourPlaceOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseMine) GetBoothKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.YourPlace.Get(), o.YourPlace.IsSet()
+	return o.BoothKey.Get(), o.BoothKey.IsSet()
 }
 
-// HasYourPlace returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesItemLine) HasYourPlace() bool {
-	if o != nil && o.YourPlace.IsSet() {
+// HasBoothKey returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponseMine) HasBoothKey() bool {
+	if o != nil && o.BoothKey.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetYourPlace gets a reference to the given NullableFloat32 and assigns it to the YourPlace field.
-func (o *ListWorldPlaceTradeTablesItemLine) SetYourPlace(v float32) {
-	o.YourPlace.Set(&v)
+// SetBoothKey gets a reference to the given NullableString and assigns it to the BoothKey field.
+func (o *GetWorldConventionExhibitResponseMine) SetBoothKey(v string) {
+	o.BoothKey.Set(&v)
 }
-// SetYourPlaceNil sets the value for YourPlace to be an explicit nil
-func (o *ListWorldPlaceTradeTablesItemLine) SetYourPlaceNil() {
-	o.YourPlace.Set(nil)
-}
-
-// UnsetYourPlace ensures that no value is present for YourPlace, not even an explicit nil
-func (o *ListWorldPlaceTradeTablesItemLine) UnsetYourPlace() {
-	o.YourPlace.Unset()
+// SetBoothKeyNil sets the value for BoothKey to be an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) SetBoothKeyNil() {
+	o.BoothKey.Set(nil)
 }
 
-// GetPriority returns the Priority field value
-func (o *ListWorldPlaceTradeTablesItemLine) GetPriority() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Priority
-}
-
-// GetPriorityOk returns a tuple with the Priority field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemLine) GetPriorityOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Priority, true
-}
-
-// SetPriority sets field value
-func (o *ListWorldPlaceTradeTablesItemLine) SetPriority(v bool) {
-	o.Priority = v
-}
-
-func (o ListWorldPlaceTradeTablesItemLine) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["waiting"] = o.Waiting
-	}
-	if o.YourPlace.IsSet() {
-		toSerialize["yourPlace"] = o.YourPlace.Get()
-	}
-	if true {
-		toSerialize["priority"] = o.Priority
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradeTablesItemLine struct {
-	value *ListWorldPlaceTradeTablesItemLine
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesItemLine) Get() *ListWorldPlaceTradeTablesItemLine {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemLine) Set(val *ListWorldPlaceTradeTablesItemLine) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesItemLine) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemLine) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesItemLine(val *ListWorldPlaceTradeTablesItemLine) *NullableListWorldPlaceTradeTablesItemLine {
-	return &NullableListWorldPlaceTradeTablesItemLine{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesItemLine) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemLine) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesItemMat struct for ListWorldPlaceTradeTablesItemMat
-type ListWorldPlaceTradeTablesItemMat struct {
-	Seller []ListWorldTradeTableBinderItem `json:"seller"`
-	Visitor []ListWorldTradeTableBinderItem `json:"visitor"`
-}
-
-// NewListWorldPlaceTradeTablesItemMat instantiates a new ListWorldPlaceTradeTablesItemMat object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemMat(seller []ListWorldTradeTableBinderItem, visitor []ListWorldTradeTableBinderItem) *ListWorldPlaceTradeTablesItemMat {
-	this := ListWorldPlaceTradeTablesItemMat{}
-	this.Seller = seller
-	this.Visitor = visitor
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesItemMatWithDefaults instantiates a new ListWorldPlaceTradeTablesItemMat object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemMatWithDefaults() *ListWorldPlaceTradeTablesItemMat {
-	this := ListWorldPlaceTradeTablesItemMat{}
-	return &this
-}
-
-// GetSeller returns the Seller field value
-func (o *ListWorldPlaceTradeTablesItemMat) GetSeller() []ListWorldTradeTableBinderItem {
-	if o == nil {
-		var ret []ListWorldTradeTableBinderItem
-		return ret
-	}
-
-	return o.Seller
-}
-
-// GetSellerOk returns a tuple with the Seller field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemMat) GetSellerOk() ([]ListWorldTradeTableBinderItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Seller, true
-}
-
-// SetSeller sets field value
-func (o *ListWorldPlaceTradeTablesItemMat) SetSeller(v []ListWorldTradeTableBinderItem) {
-	o.Seller = v
-}
-
-// GetVisitor returns the Visitor field value
-func (o *ListWorldPlaceTradeTablesItemMat) GetVisitor() []ListWorldTradeTableBinderItem {
-	if o == nil {
-		var ret []ListWorldTradeTableBinderItem
-		return ret
-	}
-
-	return o.Visitor
-}
-
-// GetVisitorOk returns a tuple with the Visitor field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemMat) GetVisitorOk() ([]ListWorldTradeTableBinderItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Visitor, true
-}
-
-// SetVisitor sets field value
-func (o *ListWorldPlaceTradeTablesItemMat) SetVisitor(v []ListWorldTradeTableBinderItem) {
-	o.Visitor = v
-}
-
-func (o ListWorldPlaceTradeTablesItemMat) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["seller"] = o.Seller
-	}
-	if true {
-		toSerialize["visitor"] = o.Visitor
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradeTablesItemMat struct {
-	value *ListWorldPlaceTradeTablesItemMat
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesItemMat) Get() *ListWorldPlaceTradeTablesItemMat {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemMat) Set(val *ListWorldPlaceTradeTablesItemMat) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesItemMat) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemMat) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesItemMat(val *ListWorldPlaceTradeTablesItemMat) *NullableListWorldPlaceTradeTablesItemMat {
-	return &NullableListWorldPlaceTradeTablesItemMat{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesItemMat) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemMat) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesItemShook struct for ListWorldPlaceTradeTablesItemShook
-type ListWorldPlaceTradeTablesItemShook struct {
-	Seller bool `json:"seller"`
-	Visitor bool `json:"visitor"`
-}
-
-// NewListWorldPlaceTradeTablesItemShook instantiates a new ListWorldPlaceTradeTablesItemShook object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemShook(seller bool, visitor bool) *ListWorldPlaceTradeTablesItemShook {
-	this := ListWorldPlaceTradeTablesItemShook{}
-	this.Seller = seller
-	this.Visitor = visitor
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesItemShookWithDefaults instantiates a new ListWorldPlaceTradeTablesItemShook object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemShookWithDefaults() *ListWorldPlaceTradeTablesItemShook {
-	this := ListWorldPlaceTradeTablesItemShook{}
-	return &this
-}
-
-// GetSeller returns the Seller field value
-func (o *ListWorldPlaceTradeTablesItemShook) GetSeller() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Seller
-}
-
-// GetSellerOk returns a tuple with the Seller field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemShook) GetSellerOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Seller, true
-}
-
-// SetSeller sets field value
-func (o *ListWorldPlaceTradeTablesItemShook) SetSeller(v bool) {
-	o.Seller = v
-}
-
-// GetVisitor returns the Visitor field value
-func (o *ListWorldPlaceTradeTablesItemShook) GetVisitor() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Visitor
-}
-
-// GetVisitorOk returns a tuple with the Visitor field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemShook) GetVisitorOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Visitor, true
-}
-
-// SetVisitor sets field value
-func (o *ListWorldPlaceTradeTablesItemShook) SetVisitor(v bool) {
-	o.Visitor = v
-}
-
-func (o ListWorldPlaceTradeTablesItemShook) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["seller"] = o.Seller
-	}
-	if true {
-		toSerialize["visitor"] = o.Visitor
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradeTablesItemShook struct {
-	value *ListWorldPlaceTradeTablesItemShook
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesItemShook) Get() *ListWorldPlaceTradeTablesItemShook {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemShook) Set(val *ListWorldPlaceTradeTablesItemShook) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesItemShook) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemShook) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesItemShook(val *ListWorldPlaceTradeTablesItemShook) *NullableListWorldPlaceTradeTablesItemShook {
-	return &NullableListWorldPlaceTradeTablesItemShook{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesItemShook) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemShook) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesItemTotals struct for ListWorldPlaceTradeTablesItemTotals
-type ListWorldPlaceTradeTablesItemTotals struct {
-	Seller float32 `json:"seller"`
-	Visitor float32 `json:"visitor"`
-	FeeCents float32 `json:"feeCents"`
-}
-
-// NewListWorldPlaceTradeTablesItemTotals instantiates a new ListWorldPlaceTradeTablesItemTotals object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemTotals(seller float32, visitor float32, feeCents float32) *ListWorldPlaceTradeTablesItemTotals {
-	this := ListWorldPlaceTradeTablesItemTotals{}
-	this.Seller = seller
-	this.Visitor = visitor
-	this.FeeCents = feeCents
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesItemTotalsWithDefaults instantiates a new ListWorldPlaceTradeTablesItemTotals object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemTotalsWithDefaults() *ListWorldPlaceTradeTablesItemTotals {
-	this := ListWorldPlaceTradeTablesItemTotals{}
-	return &this
-}
-
-// GetSeller returns the Seller field value
-func (o *ListWorldPlaceTradeTablesItemTotals) GetSeller() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Seller
-}
-
-// GetSellerOk returns a tuple with the Seller field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemTotals) GetSellerOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Seller, true
-}
-
-// SetSeller sets field value
-func (o *ListWorldPlaceTradeTablesItemTotals) SetSeller(v float32) {
-	o.Seller = v
-}
-
-// GetVisitor returns the Visitor field value
-func (o *ListWorldPlaceTradeTablesItemTotals) GetVisitor() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Visitor
-}
-
-// GetVisitorOk returns a tuple with the Visitor field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemTotals) GetVisitorOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Visitor, true
-}
-
-// SetVisitor sets field value
-func (o *ListWorldPlaceTradeTablesItemTotals) SetVisitor(v float32) {
-	o.Visitor = v
+// UnsetBoothKey ensures that no value is present for BoothKey, not even an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) UnsetBoothKey() {
+	o.BoothKey.Unset()
 }
 
 // GetFeeCents returns the FeeCents field value
-func (o *ListWorldPlaceTradeTablesItemTotals) GetFeeCents() float32 {
+func (o *GetWorldConventionExhibitResponseMine) GetFeeCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -6843,7 +2936,7 @@ func (o *ListWorldPlaceTradeTablesItemTotals) GetFeeCents() float32 {
 
 // GetFeeCentsOk returns a tuple with the FeeCents field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemTotals) GetFeeCentsOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseMine) GetFeeCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -6851,111 +2944,541 @@ func (o *ListWorldPlaceTradeTablesItemTotals) GetFeeCentsOk() (*float32, bool) {
 }
 
 // SetFeeCents sets field value
-func (o *ListWorldPlaceTradeTablesItemTotals) SetFeeCents(v float32) {
+func (o *GetWorldConventionExhibitResponseMine) SetFeeCents(v float32) {
 	o.FeeCents = v
 }
 
-func (o ListWorldPlaceTradeTablesItemTotals) MarshalJSON() ([]byte, error) {
+// GetPaid returns the Paid field value
+func (o *GetWorldConventionExhibitResponseMine) GetPaid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseMine) GetPaidOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetPaid(v bool) {
+	o.Paid = v
+}
+
+// GetPaidCents returns the PaidCents field value
+func (o *GetWorldConventionExhibitResponseMine) GetPaidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PaidCents
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseMine) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaidCents, true
+}
+
+// SetPaidCents sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetPaidCents(v float32) {
+	o.PaidCents = v
+}
+
+// GetPaymentRail returns the PaymentRail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponseMine) GetPaymentRail() string {
+	if o == nil || o.PaymentRail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaymentRail.Get()
+}
+
+// GetPaymentRailOk returns a tuple with the PaymentRail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionExhibitResponseMine) GetPaymentRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaymentRail.Get(), o.PaymentRail.IsSet()
+}
+
+// HasPaymentRail returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponseMine) HasPaymentRail() bool {
+	if o != nil && o.PaymentRail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentRail gets a reference to the given NullableString and assigns it to the PaymentRail field.
+func (o *GetWorldConventionExhibitResponseMine) SetPaymentRail(v string) {
+	o.PaymentRail.Set(&v)
+}
+// SetPaymentRailNil sets the value for PaymentRail to be an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) SetPaymentRailNil() {
+	o.PaymentRail.Set(nil)
+}
+
+// UnsetPaymentRail ensures that no value is present for PaymentRail, not even an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) UnsetPaymentRail() {
+	o.PaymentRail.Unset()
+}
+
+// GetCheckedInAt returns the CheckedInAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionExhibitResponseMine) GetCheckedInAt() string {
+	if o == nil || o.CheckedInAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CheckedInAt.Get()
+}
+
+// GetCheckedInAtOk returns a tuple with the CheckedInAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionExhibitResponseMine) GetCheckedInAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CheckedInAt.Get(), o.CheckedInAt.IsSet()
+}
+
+// HasCheckedInAt returns a boolean if a field has been set.
+func (o *GetWorldConventionExhibitResponseMine) HasCheckedInAt() bool {
+	if o != nil && o.CheckedInAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckedInAt gets a reference to the given NullableString and assigns it to the CheckedInAt field.
+func (o *GetWorldConventionExhibitResponseMine) SetCheckedInAt(v string) {
+	o.CheckedInAt.Set(&v)
+}
+// SetCheckedInAtNil sets the value for CheckedInAt to be an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) SetCheckedInAtNil() {
+	o.CheckedInAt.Set(nil)
+}
+
+// UnsetCheckedInAt ensures that no value is present for CheckedInAt, not even an explicit nil
+func (o *GetWorldConventionExhibitResponseMine) UnsetCheckedInAt() {
+	o.CheckedInAt.Unset()
+}
+
+// GetListingIds returns the ListingIds field value
+func (o *GetWorldConventionExhibitResponseMine) GetListingIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.ListingIds
+}
+
+// GetListingIdsOk returns a tuple with the ListingIds field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseMine) GetListingIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingIds, true
+}
+
+// SetListingIds sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetListingIds(v []string) {
+	o.ListingIds = v
+}
+
+// GetCapacity returns the Capacity field value
+func (o *GetWorldConventionExhibitResponseMine) GetCapacity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Capacity
+}
+
+// GetCapacityOk returns a tuple with the Capacity field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseMine) GetCapacityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capacity, true
+}
+
+// SetCapacity sets field value
+func (o *GetWorldConventionExhibitResponseMine) SetCapacity(v float32) {
+	o.Capacity = v
+}
+
+func (o GetWorldConventionExhibitResponseMine) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["seller"] = o.Seller
+		toSerialize["exhibitorId"] = o.ExhibitorId
 	}
 	if true {
-		toSerialize["visitor"] = o.Visitor
+		toSerialize["status"] = o.Status
+	}
+	if o.TierId.IsSet() {
+		toSerialize["tierId"] = o.TierId.Get()
+	}
+	if o.BoothKey.IsSet() {
+		toSerialize["boothKey"] = o.BoothKey.Get()
 	}
 	if true {
 		toSerialize["feeCents"] = o.FeeCents
 	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	if true {
+		toSerialize["paidCents"] = o.PaidCents
+	}
+	if o.PaymentRail.IsSet() {
+		toSerialize["paymentRail"] = o.PaymentRail.Get()
+	}
+	if o.CheckedInAt.IsSet() {
+		toSerialize["checkedInAt"] = o.CheckedInAt.Get()
+	}
+	if true {
+		toSerialize["listingIds"] = o.ListingIds
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
+	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldPlaceTradeTablesItemTotals struct {
-	value *ListWorldPlaceTradeTablesItemTotals
+type NullableGetWorldConventionExhibitResponseMine struct {
+	value *GetWorldConventionExhibitResponseMine
 	isSet bool
 }
 
-func (v NullableListWorldPlaceTradeTablesItemTotals) Get() *ListWorldPlaceTradeTablesItemTotals {
+func (v NullableGetWorldConventionExhibitResponseMine) Get() *GetWorldConventionExhibitResponseMine {
 	return v.value
 }
 
-func (v *NullableListWorldPlaceTradeTablesItemTotals) Set(val *ListWorldPlaceTradeTablesItemTotals) {
+func (v *NullableGetWorldConventionExhibitResponseMine) Set(val *GetWorldConventionExhibitResponseMine) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldPlaceTradeTablesItemTotals) IsSet() bool {
+func (v NullableGetWorldConventionExhibitResponseMine) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldPlaceTradeTablesItemTotals) Unset() {
+func (v *NullableGetWorldConventionExhibitResponseMine) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldPlaceTradeTablesItemTotals(val *ListWorldPlaceTradeTablesItemTotals) *NullableListWorldPlaceTradeTablesItemTotals {
-	return &NullableListWorldPlaceTradeTablesItemTotals{value: val, isSet: true}
+func NewNullableGetWorldConventionExhibitResponseMine(val *GetWorldConventionExhibitResponseMine) *NullableGetWorldConventionExhibitResponseMine {
+	return &NullableGetWorldConventionExhibitResponseMine{value: val, isSet: true}
 }
 
-func (v NullableListWorldPlaceTradeTablesItemTotals) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionExhibitResponseMine) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldPlaceTradeTablesItemTotals) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionExhibitResponseMine) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldPlaceTradeTablesItemVisitor struct for ListWorldPlaceTradeTablesItemVisitor
-type ListWorldPlaceTradeTablesItemVisitor struct {
-	UserId string `json:"userId"`
-	Name string `json:"name"`
+// GetWorldConventionExhibitResponseRails struct for GetWorldConventionExhibitResponseRails
+type GetWorldConventionExhibitResponseRails struct {
+	Effective []GetWorldConventionExhibitResponseRailsEffectiveItem `json:"effective"`
+	ShowCbxNotLive bool `json:"showCbxNotLive"`
 }
 
-// NewListWorldPlaceTradeTablesItemVisitor instantiates a new ListWorldPlaceTradeTablesItemVisitor object
+// NewGetWorldConventionExhibitResponseRails instantiates a new GetWorldConventionExhibitResponseRails object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesItemVisitor(userId string, name string) *ListWorldPlaceTradeTablesItemVisitor {
-	this := ListWorldPlaceTradeTablesItemVisitor{}
-	this.UserId = userId
-	this.Name = name
+func NewGetWorldConventionExhibitResponseRails(effective []GetWorldConventionExhibitResponseRailsEffectiveItem, showCbxNotLive bool) *GetWorldConventionExhibitResponseRails {
+	this := GetWorldConventionExhibitResponseRails{}
+	this.Effective = effective
+	this.ShowCbxNotLive = showCbxNotLive
 	return &this
 }
 
-// NewListWorldPlaceTradeTablesItemVisitorWithDefaults instantiates a new ListWorldPlaceTradeTablesItemVisitor object
+// NewGetWorldConventionExhibitResponseRailsWithDefaults instantiates a new GetWorldConventionExhibitResponseRails object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesItemVisitorWithDefaults() *ListWorldPlaceTradeTablesItemVisitor {
-	this := ListWorldPlaceTradeTablesItemVisitor{}
+func NewGetWorldConventionExhibitResponseRailsWithDefaults() *GetWorldConventionExhibitResponseRails {
+	this := GetWorldConventionExhibitResponseRails{}
 	return &this
 }
 
-// GetUserId returns the UserId field value
-func (o *ListWorldPlaceTradeTablesItemVisitor) GetUserId() string {
+// GetEffective returns the Effective field value
+func (o *GetWorldConventionExhibitResponseRails) GetEffective() []GetWorldConventionExhibitResponseRailsEffectiveItem {
+	if o == nil {
+		var ret []GetWorldConventionExhibitResponseRailsEffectiveItem
+		return ret
+	}
+
+	return o.Effective
+}
+
+// GetEffectiveOk returns a tuple with the Effective field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseRails) GetEffectiveOk() ([]GetWorldConventionExhibitResponseRailsEffectiveItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Effective, true
+}
+
+// SetEffective sets field value
+func (o *GetWorldConventionExhibitResponseRails) SetEffective(v []GetWorldConventionExhibitResponseRailsEffectiveItem) {
+	o.Effective = v
+}
+
+// GetShowCbxNotLive returns the ShowCbxNotLive field value
+func (o *GetWorldConventionExhibitResponseRails) GetShowCbxNotLive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ShowCbxNotLive
+}
+
+// GetShowCbxNotLiveOk returns a tuple with the ShowCbxNotLive field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionExhibitResponseRails) GetShowCbxNotLiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShowCbxNotLive, true
+}
+
+// SetShowCbxNotLive sets field value
+func (o *GetWorldConventionExhibitResponseRails) SetShowCbxNotLive(v bool) {
+	o.ShowCbxNotLive = v
+}
+
+func (o GetWorldConventionExhibitResponseRails) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["effective"] = o.Effective
+	}
+	if true {
+		toSerialize["showCbxNotLive"] = o.ShowCbxNotLive
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionExhibitResponseRails struct {
+	value *GetWorldConventionExhibitResponseRails
+	isSet bool
+}
+
+func (v NullableGetWorldConventionExhibitResponseRails) Get() *GetWorldConventionExhibitResponseRails {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRails) Set(val *GetWorldConventionExhibitResponseRails) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionExhibitResponseRails) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRails) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionExhibitResponseRails(val *GetWorldConventionExhibitResponseRails) *NullableGetWorldConventionExhibitResponseRails {
+	return &NullableGetWorldConventionExhibitResponseRails{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionExhibitResponseRails) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRails) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionExhibitResponseRailsEffectiveItem the model 'GetWorldConventionExhibitResponseRailsEffectiveItem'
+type GetWorldConventionExhibitResponseRailsEffectiveItem string
+
+// List of GetWorldConventionExhibitResponseRailsEffectiveItem
+const (
+	GETWORLDCONVENTIONEXHIBITRESPONSERAILSEFFECTIVEITEM_CASH GetWorldConventionExhibitResponseRailsEffectiveItem = "cash"
+	GETWORLDCONVENTIONEXHIBITRESPONSERAILSEFFECTIVEITEM_CBX GetWorldConventionExhibitResponseRailsEffectiveItem = "cbx"
+)
+
+// All allowed values of GetWorldConventionExhibitResponseRailsEffectiveItem enum
+var AllowedGetWorldConventionExhibitResponseRailsEffectiveItemEnumValues = []GetWorldConventionExhibitResponseRailsEffectiveItem{
+	"cash",
+	"cbx",
+}
+
+func (v *GetWorldConventionExhibitResponseRailsEffectiveItem) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := GetWorldConventionExhibitResponseRailsEffectiveItem(value)
+	for _, existing := range AllowedGetWorldConventionExhibitResponseRailsEffectiveItemEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetWorldConventionExhibitResponseRailsEffectiveItem", value)
+}
+
+// NewGetWorldConventionExhibitResponseRailsEffectiveItemFromValue returns a pointer to a valid GetWorldConventionExhibitResponseRailsEffectiveItem
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetWorldConventionExhibitResponseRailsEffectiveItemFromValue(v string) (*GetWorldConventionExhibitResponseRailsEffectiveItem, error) {
+	ev := GetWorldConventionExhibitResponseRailsEffectiveItem(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetWorldConventionExhibitResponseRailsEffectiveItem: valid values are %v", v, AllowedGetWorldConventionExhibitResponseRailsEffectiveItemEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetWorldConventionExhibitResponseRailsEffectiveItem) IsValid() bool {
+	for _, existing := range AllowedGetWorldConventionExhibitResponseRailsEffectiveItemEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to GetWorldConventionExhibitResponseRailsEffectiveItem value
+func (v GetWorldConventionExhibitResponseRailsEffectiveItem) Ptr() *GetWorldConventionExhibitResponseRailsEffectiveItem {
+	return &v
+}
+
+type NullableGetWorldConventionExhibitResponseRailsEffectiveItem struct {
+	value *GetWorldConventionExhibitResponseRailsEffectiveItem
+	isSet bool
+}
+
+func (v NullableGetWorldConventionExhibitResponseRailsEffectiveItem) Get() *GetWorldConventionExhibitResponseRailsEffectiveItem {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRailsEffectiveItem) Set(val *GetWorldConventionExhibitResponseRailsEffectiveItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionExhibitResponseRailsEffectiveItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRailsEffectiveItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionExhibitResponseRailsEffectiveItem(val *GetWorldConventionExhibitResponseRailsEffectiveItem) *NullableGetWorldConventionExhibitResponseRailsEffectiveItem {
+	return &NullableGetWorldConventionExhibitResponseRailsEffectiveItem{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionExhibitResponseRailsEffectiveItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionExhibitResponseRailsEffectiveItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionExhibitResponseTiers struct for GetWorldConventionExhibitResponseTiers
+type GetWorldConventionExhibitResponseTiers struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Size string `json:"size"`
+	PriceCents float32 `json:"priceCents"`
+	Count float32 `json:"count"`
+	Left float32 `json:"left"`
+	Capacity float32 `json:"capacity"`
+	Perks []string `json:"perks"`
+}
+
+// NewGetWorldConventionExhibitResponseTiers instantiates a new GetWorldConventionExhibitResponseTiers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionExhibitResponseTiers(id string, name string, size string, priceCents float32, count float32, left float32, capacity float32, perks []string) *GetWorldConventionExhibitResponseTiers {
+	this := GetWorldConventionExhibitResponseTiers{}
+	this.Id = id
+	this.Name = name
+	this.Size = size
+	this.PriceCents = priceCents
+	this.Count = count
+	this.Left = left
+	this.Capacity = capacity
+	this.Perks = perks
+	return &this
+}
+
+// NewGetWorldConventionExhibitResponseTiersWithDefaults instantiates a new GetWorldConventionExhibitResponseTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionExhibitResponseTiersWithDefaults() *GetWorldConventionExhibitResponseTiers {
+	this := GetWorldConventionExhibitResponseTiers{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldConventionExhibitResponseTiers) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UserId
+	return o.Id
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemVisitor) GetUserIdOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UserId, true
+	return &o.Id, true
 }
 
-// SetUserId sets field value
-func (o *ListWorldPlaceTradeTablesItemVisitor) SetUserId(v string) {
-	o.UserId = v
+// SetId sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetId(v string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *ListWorldPlaceTradeTablesItemVisitor) GetName() string {
+func (o *GetWorldConventionExhibitResponseTiers) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -6966,7 +3489,7 @@ func (o *ListWorldPlaceTradeTablesItemVisitor) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesItemVisitor) GetNameOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -6974,1107 +3497,60 @@ func (o *ListWorldPlaceTradeTablesItemVisitor) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ListWorldPlaceTradeTablesItemVisitor) SetName(v string) {
+func (o *GetWorldConventionExhibitResponseTiers) SetName(v string) {
 	o.Name = v
 }
 
-func (o ListWorldPlaceTradeTablesItemVisitor) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradeTablesItemVisitor struct {
-	value *ListWorldPlaceTradeTablesItemVisitor
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesItemVisitor) Get() *ListWorldPlaceTradeTablesItemVisitor {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemVisitor) Set(val *ListWorldPlaceTradeTablesItemVisitor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesItemVisitor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemVisitor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesItemVisitor(val *ListWorldPlaceTradeTablesItemVisitor) *NullableListWorldPlaceTradeTablesItemVisitor {
-	return &NullableListWorldPlaceTradeTablesItemVisitor{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesItemVisitor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesItemVisitor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradeTablesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceTradeTablesResponse struct {
-	// The rows.
-	Data []ListWorldPlaceTradeTablesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceTradeTablesResponse instantiates a new ListWorldPlaceTradeTablesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradeTablesResponse(data []ListWorldPlaceTradeTablesItem) *ListWorldPlaceTradeTablesResponse {
-	this := ListWorldPlaceTradeTablesResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceTradeTablesResponseWithDefaults instantiates a new ListWorldPlaceTradeTablesResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradeTablesResponseWithDefaults() *ListWorldPlaceTradeTablesResponse {
-	this := ListWorldPlaceTradeTablesResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceTradeTablesResponse) GetData() []ListWorldPlaceTradeTablesItem {
-	if o == nil {
-		var ret []ListWorldPlaceTradeTablesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesResponse) GetDataOk() ([]ListWorldPlaceTradeTablesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceTradeTablesResponse) SetData(v []ListWorldPlaceTradeTablesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceTradeTablesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceTradeTablesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceTradeTablesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradeTablesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradeTablesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceTradeTablesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceTradeTablesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradeTablesResponse struct {
-	value *ListWorldPlaceTradeTablesResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradeTablesResponse) Get() *ListWorldPlaceTradeTablesResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradeTablesResponse) Set(val *ListWorldPlaceTradeTablesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradeTablesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradeTablesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradeTablesResponse(val *ListWorldPlaceTradeTablesResponse) *NullableListWorldPlaceTradeTablesResponse {
-	return &NullableListWorldPlaceTradeTablesResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradeTablesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradeTablesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradesItem struct for ListWorldPlaceTradesItem
-type ListWorldPlaceTradesItem struct {
-	ItemId string `json:"itemId"`
-	PostPath string `json:"postPath"`
-	Title string `json:"title"`
-}
-
-// NewListWorldPlaceTradesItem instantiates a new ListWorldPlaceTradesItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradesItem(itemId string, postPath string, title string) *ListWorldPlaceTradesItem {
-	this := ListWorldPlaceTradesItem{}
-	this.ItemId = itemId
-	this.PostPath = postPath
-	this.Title = title
-	return &this
-}
-
-// NewListWorldPlaceTradesItemWithDefaults instantiates a new ListWorldPlaceTradesItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradesItemWithDefaults() *ListWorldPlaceTradesItem {
-	this := ListWorldPlaceTradesItem{}
-	return &this
-}
-
-// GetItemId returns the ItemId field value
-func (o *ListWorldPlaceTradesItem) GetItemId() string {
+// GetSize returns the Size field value
+func (o *GetWorldConventionExhibitResponseTiers) GetSize() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ItemId
+	return o.Size
 }
 
-// GetItemIdOk returns a tuple with the ItemId field value
+// GetSizeOk returns a tuple with the Size field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesItem) GetItemIdOk() (*string, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetSizeOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ItemId, true
+	return &o.Size, true
 }
 
-// SetItemId sets field value
-func (o *ListWorldPlaceTradesItem) SetItemId(v string) {
-	o.ItemId = v
+// SetSize sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetSize(v string) {
+	o.Size = v
 }
 
-// GetPostPath returns the PostPath field value
-func (o *ListWorldPlaceTradesItem) GetPostPath() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PostPath
-}
-
-// GetPostPathOk returns a tuple with the PostPath field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesItem) GetPostPathOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PostPath, true
-}
-
-// SetPostPath sets field value
-func (o *ListWorldPlaceTradesItem) SetPostPath(v string) {
-	o.PostPath = v
-}
-
-// GetTitle returns the Title field value
-func (o *ListWorldPlaceTradesItem) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListWorldPlaceTradesItem) SetTitle(v string) {
-	o.Title = v
-}
-
-func (o ListWorldPlaceTradesItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["itemId"] = o.ItemId
-	}
-	if true {
-		toSerialize["postPath"] = o.PostPath
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradesItem struct {
-	value *ListWorldPlaceTradesItem
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradesItem) Get() *ListWorldPlaceTradesItem {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradesItem) Set(val *ListWorldPlaceTradesItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradesItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradesItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradesItem(val *ListWorldPlaceTradesItem) *NullableListWorldPlaceTradesItem {
-	return &NullableListWorldPlaceTradesItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradesItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradesItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldPlaceTradesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldPlaceTradesResponse struct {
-	// The rows.
-	Data []ListWorldPlaceTradesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldPlaceTradesResponse instantiates a new ListWorldPlaceTradesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldPlaceTradesResponse(data []ListWorldPlaceTradesItem) *ListWorldPlaceTradesResponse {
-	this := ListWorldPlaceTradesResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldPlaceTradesResponseWithDefaults instantiates a new ListWorldPlaceTradesResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldPlaceTradesResponseWithDefaults() *ListWorldPlaceTradesResponse {
-	this := ListWorldPlaceTradesResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldPlaceTradesResponse) GetData() []ListWorldPlaceTradesItem {
-	if o == nil {
-		var ret []ListWorldPlaceTradesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesResponse) GetDataOk() ([]ListWorldPlaceTradesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldPlaceTradesResponse) SetData(v []ListWorldPlaceTradesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldPlaceTradesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldPlaceTradesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldPlaceTradesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldPlaceTradesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldPlaceTradesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldPlaceTradesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldPlaceTradesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldPlaceTradesResponse struct {
-	value *ListWorldPlaceTradesResponse
-	isSet bool
-}
-
-func (v NullableListWorldPlaceTradesResponse) Get() *ListWorldPlaceTradesResponse {
-	return v.value
-}
-
-func (v *NullableListWorldPlaceTradesResponse) Set(val *ListWorldPlaceTradesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldPlaceTradesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldPlaceTradesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldPlaceTradesResponse(val *ListWorldPlaceTradesResponse) *NullableListWorldPlaceTradesResponse {
-	return &NullableListWorldPlaceTradesResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldPlaceTradesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldPlaceTradesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldProvenanceItem struct for ListWorldProvenanceItem
-type ListWorldProvenanceItem struct {
-	PlatformListingId string `json:"platformListingId"`
-	// The listing's public slug (what an order line carries), or null.
-	Slug NullableString `json:"slug,omitempty"`
-	Kind string `json:"kind"`
-	// The place's name, resolved (null when it is gone).
-	Place NullableString `json:"place,omitempty"`
-	// When it was bought (ISO).
-	At string `json:"at"`
-	Line string `json:"line"`
-}
-
-// NewListWorldProvenanceItem instantiates a new ListWorldProvenanceItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldProvenanceItem(platformListingId string, kind string, at string, line string) *ListWorldProvenanceItem {
-	this := ListWorldProvenanceItem{}
-	this.PlatformListingId = platformListingId
-	this.Kind = kind
-	this.At = at
-	this.Line = line
-	return &this
-}
-
-// NewListWorldProvenanceItemWithDefaults instantiates a new ListWorldProvenanceItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldProvenanceItemWithDefaults() *ListWorldProvenanceItem {
-	this := ListWorldProvenanceItem{}
-	return &this
-}
-
-// GetPlatformListingId returns the PlatformListingId field value
-func (o *ListWorldProvenanceItem) GetPlatformListingId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PlatformListingId
-}
-
-// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceItem) GetPlatformListingIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PlatformListingId, true
-}
-
-// SetPlatformListingId sets field value
-func (o *ListWorldProvenanceItem) SetPlatformListingId(v string) {
-	o.PlatformListingId = v
-}
-
-// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldProvenanceItem) GetSlug() string {
-	if o == nil || o.Slug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Slug.Get()
-}
-
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldProvenanceItem) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Slug.Get(), o.Slug.IsSet()
-}
-
-// HasSlug returns a boolean if a field has been set.
-func (o *ListWorldProvenanceItem) HasSlug() bool {
-	if o != nil && o.Slug.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
-func (o *ListWorldProvenanceItem) SetSlug(v string) {
-	o.Slug.Set(&v)
-}
-// SetSlugNil sets the value for Slug to be an explicit nil
-func (o *ListWorldProvenanceItem) SetSlugNil() {
-	o.Slug.Set(nil)
-}
-
-// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
-func (o *ListWorldProvenanceItem) UnsetSlug() {
-	o.Slug.Unset()
-}
-
-// GetKind returns the Kind field value
-func (o *ListWorldProvenanceItem) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceItem) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *ListWorldProvenanceItem) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetPlace returns the Place field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldProvenanceItem) GetPlace() string {
-	if o == nil || o.Place.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Place.Get()
-}
-
-// GetPlaceOk returns a tuple with the Place field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldProvenanceItem) GetPlaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Place.Get(), o.Place.IsSet()
-}
-
-// HasPlace returns a boolean if a field has been set.
-func (o *ListWorldProvenanceItem) HasPlace() bool {
-	if o != nil && o.Place.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPlace gets a reference to the given NullableString and assigns it to the Place field.
-func (o *ListWorldProvenanceItem) SetPlace(v string) {
-	o.Place.Set(&v)
-}
-// SetPlaceNil sets the value for Place to be an explicit nil
-func (o *ListWorldProvenanceItem) SetPlaceNil() {
-	o.Place.Set(nil)
-}
-
-// UnsetPlace ensures that no value is present for Place, not even an explicit nil
-func (o *ListWorldProvenanceItem) UnsetPlace() {
-	o.Place.Unset()
-}
-
-// GetAt returns the At field value
-func (o *ListWorldProvenanceItem) GetAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceItem) GetAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *ListWorldProvenanceItem) SetAt(v string) {
-	o.At = v
-}
-
-// GetLine returns the Line field value
-func (o *ListWorldProvenanceItem) GetLine() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Line
-}
-
-// GetLineOk returns a tuple with the Line field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceItem) GetLineOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Line, true
-}
-
-// SetLine sets field value
-func (o *ListWorldProvenanceItem) SetLine(v string) {
-	o.Line = v
-}
-
-func (o ListWorldProvenanceItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["platformListingId"] = o.PlatformListingId
-	}
-	if o.Slug.IsSet() {
-		toSerialize["slug"] = o.Slug.Get()
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if o.Place.IsSet() {
-		toSerialize["place"] = o.Place.Get()
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	if true {
-		toSerialize["line"] = o.Line
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldProvenanceItem struct {
-	value *ListWorldProvenanceItem
-	isSet bool
-}
-
-func (v NullableListWorldProvenanceItem) Get() *ListWorldProvenanceItem {
-	return v.value
-}
-
-func (v *NullableListWorldProvenanceItem) Set(val *ListWorldProvenanceItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldProvenanceItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldProvenanceItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldProvenanceItem(val *ListWorldProvenanceItem) *NullableListWorldProvenanceItem {
-	return &NullableListWorldProvenanceItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldProvenanceItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldProvenanceItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldProvenanceResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldProvenanceResponse struct {
-	// The rows.
-	Data []ListWorldProvenanceItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldProvenanceResponse instantiates a new ListWorldProvenanceResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldProvenanceResponse(data []ListWorldProvenanceItem) *ListWorldProvenanceResponse {
-	this := ListWorldProvenanceResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldProvenanceResponseWithDefaults instantiates a new ListWorldProvenanceResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldProvenanceResponseWithDefaults() *ListWorldProvenanceResponse {
-	this := ListWorldProvenanceResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldProvenanceResponse) GetData() []ListWorldProvenanceItem {
-	if o == nil {
-		var ret []ListWorldProvenanceItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceResponse) GetDataOk() ([]ListWorldProvenanceItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldProvenanceResponse) SetData(v []ListWorldProvenanceItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldProvenanceResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldProvenanceResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldProvenanceResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldProvenanceResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldProvenanceResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldProvenanceResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldProvenanceResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldProvenanceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldProvenanceResponse struct {
-	value *ListWorldProvenanceResponse
-	isSet bool
-}
-
-func (v NullableListWorldProvenanceResponse) Get() *ListWorldProvenanceResponse {
-	return v.value
-}
-
-func (v *NullableListWorldProvenanceResponse) Set(val *ListWorldProvenanceResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldProvenanceResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldProvenanceResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldProvenanceResponse(val *ListWorldProvenanceResponse) *NullableListWorldProvenanceResponse {
-	return &NullableListWorldProvenanceResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldProvenanceResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldProvenanceResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldQuestsItem struct for ListWorldQuestsItem
-type ListWorldQuestsItem struct {
-	Key string `json:"key"`
-	Pin string `json:"pin"`
-	Goal string `json:"goal"`
-	Target float32 `json:"target"`
-	Count float32 `json:"count"`
-	Done bool `json:"done"`
-	Colour string `json:"colour"`
-}
-
-// NewListWorldQuestsItem instantiates a new ListWorldQuestsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldQuestsItem(key string, pin string, goal string, target float32, count float32, done bool, colour string) *ListWorldQuestsItem {
-	this := ListWorldQuestsItem{}
-	this.Key = key
-	this.Pin = pin
-	this.Goal = goal
-	this.Target = target
-	this.Count = count
-	this.Done = done
-	this.Colour = colour
-	return &this
-}
-
-// NewListWorldQuestsItemWithDefaults instantiates a new ListWorldQuestsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldQuestsItemWithDefaults() *ListWorldQuestsItem {
-	this := ListWorldQuestsItem{}
-	return &this
-}
-
-// GetKey returns the Key field value
-func (o *ListWorldQuestsItem) GetKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Key, true
-}
-
-// SetKey sets field value
-func (o *ListWorldQuestsItem) SetKey(v string) {
-	o.Key = v
-}
-
-// GetPin returns the Pin field value
-func (o *ListWorldQuestsItem) GetPin() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Pin
-}
-
-// GetPinOk returns a tuple with the Pin field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetPinOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Pin, true
-}
-
-// SetPin sets field value
-func (o *ListWorldQuestsItem) SetPin(v string) {
-	o.Pin = v
-}
-
-// GetGoal returns the Goal field value
-func (o *ListWorldQuestsItem) GetGoal() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Goal
-}
-
-// GetGoalOk returns a tuple with the Goal field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetGoalOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Goal, true
-}
-
-// SetGoal sets field value
-func (o *ListWorldQuestsItem) SetGoal(v string) {
-	o.Goal = v
-}
-
-// GetTarget returns the Target field value
-func (o *ListWorldQuestsItem) GetTarget() float32 {
+// GetPriceCents returns the PriceCents field value
+func (o *GetWorldConventionExhibitResponseTiers) GetPriceCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Target
+	return o.PriceCents
 }
 
-// GetTargetOk returns a tuple with the Target field value
+// GetPriceCentsOk returns a tuple with the PriceCents field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetTargetOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetPriceCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Target, true
+	return &o.PriceCents, true
 }
 
-// SetTarget sets field value
-func (o *ListWorldQuestsItem) SetTarget(v float32) {
-	o.Target = v
+// SetPriceCents sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetPriceCents(v float32) {
+	o.PriceCents = v
 }
 
 // GetCount returns the Count field value
-func (o *ListWorldQuestsItem) GetCount() float32 {
+func (o *GetWorldConventionExhibitResponseTiers) GetCount() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -8085,7 +3561,7 @@ func (o *ListWorldQuestsItem) GetCount() float32 {
 
 // GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetCountOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetCountOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -8093,622 +3569,593 @@ func (o *ListWorldQuestsItem) GetCountOk() (*float32, bool) {
 }
 
 // SetCount sets field value
-func (o *ListWorldQuestsItem) SetCount(v float32) {
+func (o *GetWorldConventionExhibitResponseTiers) SetCount(v float32) {
 	o.Count = v
 }
 
-// GetDone returns the Done field value
-func (o *ListWorldQuestsItem) GetDone() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Done
-}
-
-// GetDoneOk returns a tuple with the Done field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetDoneOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Done, true
-}
-
-// SetDone sets field value
-func (o *ListWorldQuestsItem) SetDone(v bool) {
-	o.Done = v
-}
-
-// GetColour returns the Colour field value
-func (o *ListWorldQuestsItem) GetColour() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Colour
-}
-
-// GetColourOk returns a tuple with the Colour field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsItem) GetColourOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Colour, true
-}
-
-// SetColour sets field value
-func (o *ListWorldQuestsItem) SetColour(v string) {
-	o.Colour = v
-}
-
-func (o ListWorldQuestsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["pin"] = o.Pin
-	}
-	if true {
-		toSerialize["goal"] = o.Goal
-	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["count"] = o.Count
-	}
-	if true {
-		toSerialize["done"] = o.Done
-	}
-	if true {
-		toSerialize["colour"] = o.Colour
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldQuestsItem struct {
-	value *ListWorldQuestsItem
-	isSet bool
-}
-
-func (v NullableListWorldQuestsItem) Get() *ListWorldQuestsItem {
-	return v.value
-}
-
-func (v *NullableListWorldQuestsItem) Set(val *ListWorldQuestsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldQuestsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldQuestsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldQuestsItem(val *ListWorldQuestsItem) *NullableListWorldQuestsItem {
-	return &NullableListWorldQuestsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldQuestsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldQuestsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldQuestsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldQuestsResponse struct {
-	// The rows.
-	Data []ListWorldQuestsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldQuestsResponse instantiates a new ListWorldQuestsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldQuestsResponse(data []ListWorldQuestsItem) *ListWorldQuestsResponse {
-	this := ListWorldQuestsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldQuestsResponseWithDefaults instantiates a new ListWorldQuestsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldQuestsResponseWithDefaults() *ListWorldQuestsResponse {
-	this := ListWorldQuestsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldQuestsResponse) GetData() []ListWorldQuestsItem {
-	if o == nil {
-		var ret []ListWorldQuestsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsResponse) GetDataOk() ([]ListWorldQuestsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldQuestsResponse) SetData(v []ListWorldQuestsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldQuestsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldQuestsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldQuestsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldQuestsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldQuestsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldQuestsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldQuestsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldQuestsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldQuestsResponse struct {
-	value *ListWorldQuestsResponse
-	isSet bool
-}
-
-func (v NullableListWorldQuestsResponse) Get() *ListWorldQuestsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldQuestsResponse) Set(val *ListWorldQuestsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldQuestsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldQuestsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldQuestsResponse(val *ListWorldQuestsResponse) *NullableListWorldQuestsResponse {
-	return &NullableListWorldQuestsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldQuestsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldQuestsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldRoomWantsItem struct for ListWorldRoomWantsItem
-type ListWorldRoomWantsItem struct {
-	ItemId string `json:"itemId"`
-	Wants float32 `json:"wants"`
-}
-
-// NewListWorldRoomWantsItem instantiates a new ListWorldRoomWantsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldRoomWantsItem(itemId string, wants float32) *ListWorldRoomWantsItem {
-	this := ListWorldRoomWantsItem{}
-	this.ItemId = itemId
-	this.Wants = wants
-	return &this
-}
-
-// NewListWorldRoomWantsItemWithDefaults instantiates a new ListWorldRoomWantsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldRoomWantsItemWithDefaults() *ListWorldRoomWantsItem {
-	this := ListWorldRoomWantsItem{}
-	return &this
-}
-
-// GetItemId returns the ItemId field value
-func (o *ListWorldRoomWantsItem) GetItemId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ItemId
-}
-
-// GetItemIdOk returns a tuple with the ItemId field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldRoomWantsItem) GetItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ItemId, true
-}
-
-// SetItemId sets field value
-func (o *ListWorldRoomWantsItem) SetItemId(v string) {
-	o.ItemId = v
-}
-
-// GetWants returns the Wants field value
-func (o *ListWorldRoomWantsItem) GetWants() float32 {
+// GetLeft returns the Left field value
+func (o *GetWorldConventionExhibitResponseTiers) GetLeft() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Wants
+	return o.Left
 }
 
-// GetWantsOk returns a tuple with the Wants field value
+// GetLeftOk returns a tuple with the Left field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldRoomWantsItem) GetWantsOk() (*float32, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetLeftOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Wants, true
+	return &o.Left, true
 }
 
-// SetWants sets field value
-func (o *ListWorldRoomWantsItem) SetWants(v float32) {
-	o.Wants = v
+// SetLeft sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetLeft(v float32) {
+	o.Left = v
 }
 
-func (o ListWorldRoomWantsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["itemId"] = o.ItemId
-	}
-	if true {
-		toSerialize["wants"] = o.Wants
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldRoomWantsItem struct {
-	value *ListWorldRoomWantsItem
-	isSet bool
-}
-
-func (v NullableListWorldRoomWantsItem) Get() *ListWorldRoomWantsItem {
-	return v.value
-}
-
-func (v *NullableListWorldRoomWantsItem) Set(val *ListWorldRoomWantsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldRoomWantsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldRoomWantsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldRoomWantsItem(val *ListWorldRoomWantsItem) *NullableListWorldRoomWantsItem {
-	return &NullableListWorldRoomWantsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldRoomWantsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldRoomWantsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldRoomWantsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldRoomWantsResponse struct {
-	// The rows.
-	Data []ListWorldRoomWantsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldRoomWantsResponse instantiates a new ListWorldRoomWantsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldRoomWantsResponse(data []ListWorldRoomWantsItem) *ListWorldRoomWantsResponse {
-	this := ListWorldRoomWantsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldRoomWantsResponseWithDefaults instantiates a new ListWorldRoomWantsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldRoomWantsResponseWithDefaults() *ListWorldRoomWantsResponse {
-	this := ListWorldRoomWantsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldRoomWantsResponse) GetData() []ListWorldRoomWantsItem {
+// GetCapacity returns the Capacity field value
+func (o *GetWorldConventionExhibitResponseTiers) GetCapacity() float32 {
 	if o == nil {
-		var ret []ListWorldRoomWantsItem
+		var ret float32
 		return ret
 	}
 
-	return o.Data
+	return o.Capacity
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetCapacityOk returns a tuple with the Capacity field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldRoomWantsResponse) GetDataOk() ([]ListWorldRoomWantsItem, bool) {
+func (o *GetWorldConventionExhibitResponseTiers) GetCapacityOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Capacity, true
 }
 
-// SetData sets field value
-func (o *ListWorldRoomWantsResponse) SetData(v []ListWorldRoomWantsItem) {
-	o.Data = v
+// SetCapacity sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetCapacity(v float32) {
+	o.Capacity = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldRoomWantsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
+// GetPerks returns the Perks field value
+func (o *GetWorldConventionExhibitResponseTiers) GetPerks() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Pagination
+
+	return o.Perks
 }
 
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// GetPerksOk returns a tuple with the Perks field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldRoomWantsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
+func (o *GetWorldConventionExhibitResponseTiers) GetPerksOk() ([]string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Pagination, true
+	return o.Perks, true
 }
 
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldRoomWantsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+// SetPerks sets field value
+func (o *GetWorldConventionExhibitResponseTiers) SetPerks(v []string) {
+	o.Perks = v
 }
 
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldRoomWantsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldRoomWantsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldRoomWantsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldRoomWantsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldRoomWantsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldRoomWantsResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldConventionExhibitResponseTiers) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["data"] = o.Data
+		toSerialize["id"] = o.Id
 	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
+	if true {
+		toSerialize["name"] = o.Name
 	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
+	if true {
+		toSerialize["size"] = o.Size
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["count"] = o.Count
+	}
+	if true {
+		toSerialize["left"] = o.Left
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
+	}
+	if true {
+		toSerialize["perks"] = o.Perks
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldRoomWantsResponse struct {
-	value *ListWorldRoomWantsResponse
+type NullableGetWorldConventionExhibitResponseTiers struct {
+	value *GetWorldConventionExhibitResponseTiers
 	isSet bool
 }
 
-func (v NullableListWorldRoomWantsResponse) Get() *ListWorldRoomWantsResponse {
+func (v NullableGetWorldConventionExhibitResponseTiers) Get() *GetWorldConventionExhibitResponseTiers {
 	return v.value
 }
 
-func (v *NullableListWorldRoomWantsResponse) Set(val *ListWorldRoomWantsResponse) {
+func (v *NullableGetWorldConventionExhibitResponseTiers) Set(val *GetWorldConventionExhibitResponseTiers) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldRoomWantsResponse) IsSet() bool {
+func (v NullableGetWorldConventionExhibitResponseTiers) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldRoomWantsResponse) Unset() {
+func (v *NullableGetWorldConventionExhibitResponseTiers) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldRoomWantsResponse(val *ListWorldRoomWantsResponse) *NullableListWorldRoomWantsResponse {
-	return &NullableListWorldRoomWantsResponse{value: val, isSet: true}
+func NewNullableGetWorldConventionExhibitResponseTiers(val *GetWorldConventionExhibitResponseTiers) *NullableGetWorldConventionExhibitResponseTiers {
+	return &NullableGetWorldConventionExhibitResponseTiers{value: val, isSet: true}
 }
 
-func (v NullableListWorldRoomWantsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionExhibitResponseTiers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldRoomWantsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionExhibitResponseTiers) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldSpaceRequestsItem struct for ListWorldSpaceRequestsItem
-type ListWorldSpaceRequestsItem struct {
-	UserId string `json:"userId"`
-	Name NullableString `json:"name,omitempty"`
-	At time.Time `json:"at"`
+// GetWorldConventionHallResponse struct for GetWorldConventionHallResponse
+type GetWorldConventionHallResponse struct {
+	Doc NullableGetWorldConventionHallResponseDoc `json:"doc,omitempty"`
+	Version float32 `json:"version"`
+	Context GetWorldConventionHallResponseContext `json:"context"`
+	Problems []GetWorldConventionHallResponseProblems `json:"problems"`
 }
 
-// NewListWorldSpaceRequestsItem instantiates a new ListWorldSpaceRequestsItem object
+// NewGetWorldConventionHallResponse instantiates a new GetWorldConventionHallResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldSpaceRequestsItem(userId string, at time.Time) *ListWorldSpaceRequestsItem {
-	this := ListWorldSpaceRequestsItem{}
-	this.UserId = userId
-	this.At = at
+func NewGetWorldConventionHallResponse(version float32, context GetWorldConventionHallResponseContext, problems []GetWorldConventionHallResponseProblems) *GetWorldConventionHallResponse {
+	this := GetWorldConventionHallResponse{}
+	this.Version = version
+	this.Context = context
+	this.Problems = problems
 	return &this
 }
 
-// NewListWorldSpaceRequestsItemWithDefaults instantiates a new ListWorldSpaceRequestsItem object
+// NewGetWorldConventionHallResponseWithDefaults instantiates a new GetWorldConventionHallResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldSpaceRequestsItemWithDefaults() *ListWorldSpaceRequestsItem {
-	this := ListWorldSpaceRequestsItem{}
+func NewGetWorldConventionHallResponseWithDefaults() *GetWorldConventionHallResponse {
+	this := GetWorldConventionHallResponse{}
 	return &this
 }
 
-// GetUserId returns the UserId field value
-func (o *ListWorldSpaceRequestsItem) GetUserId() string {
+// GetDoc returns the Doc field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionHallResponse) GetDoc() GetWorldConventionHallResponseDoc {
+	if o == nil || o.Doc.Get() == nil {
+		var ret GetWorldConventionHallResponseDoc
+		return ret
+	}
+	return *o.Doc.Get()
+}
+
+// GetDocOk returns a tuple with the Doc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionHallResponse) GetDocOk() (*GetWorldConventionHallResponseDoc, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Doc.Get(), o.Doc.IsSet()
+}
+
+// HasDoc returns a boolean if a field has been set.
+func (o *GetWorldConventionHallResponse) HasDoc() bool {
+	if o != nil && o.Doc.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDoc gets a reference to the given NullableGetWorldConventionHallResponseDoc and assigns it to the Doc field.
+func (o *GetWorldConventionHallResponse) SetDoc(v GetWorldConventionHallResponseDoc) {
+	o.Doc.Set(&v)
+}
+// SetDocNil sets the value for Doc to be an explicit nil
+func (o *GetWorldConventionHallResponse) SetDocNil() {
+	o.Doc.Set(nil)
+}
+
+// UnsetDoc ensures that no value is present for Doc, not even an explicit nil
+func (o *GetWorldConventionHallResponse) UnsetDoc() {
+	o.Doc.Unset()
+}
+
+// GetVersion returns the Version field value
+func (o *GetWorldConventionHallResponse) GetVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponse) GetVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetWorldConventionHallResponse) SetVersion(v float32) {
+	o.Version = v
+}
+
+// GetContext returns the Context field value
+func (o *GetWorldConventionHallResponse) GetContext() GetWorldConventionHallResponseContext {
+	if o == nil {
+		var ret GetWorldConventionHallResponseContext
+		return ret
+	}
+
+	return o.Context
+}
+
+// GetContextOk returns a tuple with the Context field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponse) GetContextOk() (*GetWorldConventionHallResponseContext, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Context, true
+}
+
+// SetContext sets field value
+func (o *GetWorldConventionHallResponse) SetContext(v GetWorldConventionHallResponseContext) {
+	o.Context = v
+}
+
+// GetProblems returns the Problems field value
+func (o *GetWorldConventionHallResponse) GetProblems() []GetWorldConventionHallResponseProblems {
+	if o == nil {
+		var ret []GetWorldConventionHallResponseProblems
+		return ret
+	}
+
+	return o.Problems
+}
+
+// GetProblemsOk returns a tuple with the Problems field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponse) GetProblemsOk() ([]GetWorldConventionHallResponseProblems, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Problems, true
+}
+
+// SetProblems sets field value
+func (o *GetWorldConventionHallResponse) SetProblems(v []GetWorldConventionHallResponseProblems) {
+	o.Problems = v
+}
+
+func (o GetWorldConventionHallResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Doc.IsSet() {
+		toSerialize["doc"] = o.Doc.Get()
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["context"] = o.Context
+	}
+	if true {
+		toSerialize["problems"] = o.Problems
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionHallResponse struct {
+	value *GetWorldConventionHallResponse
+	isSet bool
+}
+
+func (v NullableGetWorldConventionHallResponse) Get() *GetWorldConventionHallResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionHallResponse) Set(val *GetWorldConventionHallResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionHallResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionHallResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionHallResponse(val *GetWorldConventionHallResponse) *NullableGetWorldConventionHallResponse {
+	return &NullableGetWorldConventionHallResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionHallResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionHallResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionHallResponseContext struct for GetWorldConventionHallResponseContext
+type GetWorldConventionHallResponseContext struct {
+	WidthM float32 `json:"widthM"`
+	DepthM float32 `json:"depthM"`
+	Tiers []GetWorldConventionHallResponseContextTiers `json:"tiers"`
+}
+
+// NewGetWorldConventionHallResponseContext instantiates a new GetWorldConventionHallResponseContext object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionHallResponseContext(widthM float32, depthM float32, tiers []GetWorldConventionHallResponseContextTiers) *GetWorldConventionHallResponseContext {
+	this := GetWorldConventionHallResponseContext{}
+	this.WidthM = widthM
+	this.DepthM = depthM
+	this.Tiers = tiers
+	return &this
+}
+
+// NewGetWorldConventionHallResponseContextWithDefaults instantiates a new GetWorldConventionHallResponseContext object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionHallResponseContextWithDefaults() *GetWorldConventionHallResponseContext {
+	this := GetWorldConventionHallResponseContext{}
+	return &this
+}
+
+// GetWidthM returns the WidthM field value
+func (o *GetWorldConventionHallResponseContext) GetWidthM() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WidthM
+}
+
+// GetWidthMOk returns a tuple with the WidthM field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseContext) GetWidthMOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WidthM, true
+}
+
+// SetWidthM sets field value
+func (o *GetWorldConventionHallResponseContext) SetWidthM(v float32) {
+	o.WidthM = v
+}
+
+// GetDepthM returns the DepthM field value
+func (o *GetWorldConventionHallResponseContext) GetDepthM() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.DepthM
+}
+
+// GetDepthMOk returns a tuple with the DepthM field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseContext) GetDepthMOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DepthM, true
+}
+
+// SetDepthM sets field value
+func (o *GetWorldConventionHallResponseContext) SetDepthM(v float32) {
+	o.DepthM = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *GetWorldConventionHallResponseContext) GetTiers() []GetWorldConventionHallResponseContextTiers {
+	if o == nil {
+		var ret []GetWorldConventionHallResponseContextTiers
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseContext) GetTiersOk() ([]GetWorldConventionHallResponseContextTiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetWorldConventionHallResponseContext) SetTiers(v []GetWorldConventionHallResponseContextTiers) {
+	o.Tiers = v
+}
+
+func (o GetWorldConventionHallResponseContext) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["widthM"] = o.WidthM
+	}
+	if true {
+		toSerialize["depthM"] = o.DepthM
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionHallResponseContext struct {
+	value *GetWorldConventionHallResponseContext
+	isSet bool
+}
+
+func (v NullableGetWorldConventionHallResponseContext) Get() *GetWorldConventionHallResponseContext {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionHallResponseContext) Set(val *GetWorldConventionHallResponseContext) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionHallResponseContext) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionHallResponseContext) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionHallResponseContext(val *GetWorldConventionHallResponseContext) *NullableGetWorldConventionHallResponseContext {
+	return &NullableGetWorldConventionHallResponseContext{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionHallResponseContext) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionHallResponseContext) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionHallResponseContextTiers struct for GetWorldConventionHallResponseContextTiers
+type GetWorldConventionHallResponseContextTiers struct {
+	Id string `json:"id"`
+	Size string `json:"size"`
+	Count float32 `json:"count"`
+	Name NullableString `json:"name,omitempty"`
+}
+
+// NewGetWorldConventionHallResponseContextTiers instantiates a new GetWorldConventionHallResponseContextTiers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionHallResponseContextTiers(id string, size string, count float32) *GetWorldConventionHallResponseContextTiers {
+	this := GetWorldConventionHallResponseContextTiers{}
+	this.Id = id
+	this.Size = size
+	this.Count = count
+	return &this
+}
+
+// NewGetWorldConventionHallResponseContextTiersWithDefaults instantiates a new GetWorldConventionHallResponseContextTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionHallResponseContextTiersWithDefaults() *GetWorldConventionHallResponseContextTiers {
+	this := GetWorldConventionHallResponseContextTiers{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldConventionHallResponseContextTiers) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UserId
+	return o.Id
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldSpaceRequestsItem) GetUserIdOk() (*string, bool) {
+func (o *GetWorldConventionHallResponseContextTiers) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UserId, true
+	return &o.Id, true
 }
 
-// SetUserId sets field value
-func (o *ListWorldSpaceRequestsItem) SetUserId(v string) {
-	o.UserId = v
+// SetId sets field value
+func (o *GetWorldConventionHallResponseContextTiers) SetId(v string) {
+	o.Id = v
+}
+
+// GetSize returns the Size field value
+func (o *GetWorldConventionHallResponseContextTiers) GetSize() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseContextTiers) GetSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Size, true
+}
+
+// SetSize sets field value
+func (o *GetWorldConventionHallResponseContextTiers) SetSize(v string) {
+	o.Size = v
+}
+
+// GetCount returns the Count field value
+func (o *GetWorldConventionHallResponseContextTiers) GetCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseContextTiers) GetCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *GetWorldConventionHallResponseContextTiers) SetCount(v float32) {
+	o.Count = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldSpaceRequestsItem) GetName() string {
+func (o *GetWorldConventionHallResponseContextTiers) GetName() string {
 	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
@@ -8719,7 +4166,7 @@ func (o *ListWorldSpaceRequestsItem) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldSpaceRequestsItem) GetNameOk() (*string, bool) {
+func (o *GetWorldConventionHallResponseContextTiers) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -8727,7 +4174,7 @@ func (o *ListWorldSpaceRequestsItem) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ListWorldSpaceRequestsItem) HasName() bool {
+func (o *GetWorldConventionHallResponseContextTiers) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -8736,1722 +4183,255 @@ func (o *ListWorldSpaceRequestsItem) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *ListWorldSpaceRequestsItem) SetName(v string) {
+func (o *GetWorldConventionHallResponseContextTiers) SetName(v string) {
 	o.Name.Set(&v)
 }
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *ListWorldSpaceRequestsItem) SetNameNil() {
+func (o *GetWorldConventionHallResponseContextTiers) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *ListWorldSpaceRequestsItem) UnsetName() {
+func (o *GetWorldConventionHallResponseContextTiers) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetAt returns the At field value
-func (o *ListWorldSpaceRequestsItem) GetAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceRequestsItem) GetAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *ListWorldSpaceRequestsItem) SetAt(v time.Time) {
-	o.At = v
-}
-
-func (o ListWorldSpaceRequestsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldSpaceRequestsItem struct {
-	value *ListWorldSpaceRequestsItem
-	isSet bool
-}
-
-func (v NullableListWorldSpaceRequestsItem) Get() *ListWorldSpaceRequestsItem {
-	return v.value
-}
-
-func (v *NullableListWorldSpaceRequestsItem) Set(val *ListWorldSpaceRequestsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldSpaceRequestsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldSpaceRequestsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldSpaceRequestsItem(val *ListWorldSpaceRequestsItem) *NullableListWorldSpaceRequestsItem {
-	return &NullableListWorldSpaceRequestsItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldSpaceRequestsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldSpaceRequestsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldSpaceRequestsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldSpaceRequestsResponse struct {
-	// The rows.
-	Data []ListWorldSpaceRequestsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldSpaceRequestsResponse instantiates a new ListWorldSpaceRequestsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldSpaceRequestsResponse(data []ListWorldSpaceRequestsItem) *ListWorldSpaceRequestsResponse {
-	this := ListWorldSpaceRequestsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldSpaceRequestsResponseWithDefaults instantiates a new ListWorldSpaceRequestsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldSpaceRequestsResponseWithDefaults() *ListWorldSpaceRequestsResponse {
-	this := ListWorldSpaceRequestsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldSpaceRequestsResponse) GetData() []ListWorldSpaceRequestsItem {
-	if o == nil {
-		var ret []ListWorldSpaceRequestsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceRequestsResponse) GetDataOk() ([]ListWorldSpaceRequestsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldSpaceRequestsResponse) SetData(v []ListWorldSpaceRequestsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldSpaceRequestsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceRequestsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldSpaceRequestsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldSpaceRequestsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldSpaceRequestsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceRequestsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldSpaceRequestsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldSpaceRequestsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldSpaceRequestsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldSpaceRequestsResponse struct {
-	value *ListWorldSpaceRequestsResponse
-	isSet bool
-}
-
-func (v NullableListWorldSpaceRequestsResponse) Get() *ListWorldSpaceRequestsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldSpaceRequestsResponse) Set(val *ListWorldSpaceRequestsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldSpaceRequestsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldSpaceRequestsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldSpaceRequestsResponse(val *ListWorldSpaceRequestsResponse) *NullableListWorldSpaceRequestsResponse {
-	return &NullableListWorldSpaceRequestsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldSpaceRequestsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldSpaceRequestsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldSpaceWhatsOnItem struct for ListWorldSpaceWhatsOnItem
-type ListWorldSpaceWhatsOnItem struct {
-	Id string `json:"id"`
-	Title string `json:"title"`
-	Kind string `json:"kind"`
-	StartsAt string `json:"startsAt"`
-	EndsAt string `json:"endsAt"`
-	Slug string `json:"slug"`
-	SpaceName string `json:"spaceName"`
-	Place string `json:"place"`
-	// Run by a Host at WHATS_ON_FEATURE_LEVEL+ (shared reputation.ts): badged, and first when it starts within two days.
-	Featured NullableBool `json:"featured,omitempty"`
-}
-
-// NewListWorldSpaceWhatsOnItem instantiates a new ListWorldSpaceWhatsOnItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldSpaceWhatsOnItem(id string, title string, kind string, startsAt string, endsAt string, slug string, spaceName string, place string) *ListWorldSpaceWhatsOnItem {
-	this := ListWorldSpaceWhatsOnItem{}
-	this.Id = id
-	this.Title = title
-	this.Kind = kind
-	this.StartsAt = startsAt
-	this.EndsAt = endsAt
-	this.Slug = slug
-	this.SpaceName = spaceName
-	this.Place = place
-	return &this
-}
-
-// NewListWorldSpaceWhatsOnItemWithDefaults instantiates a new ListWorldSpaceWhatsOnItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldSpaceWhatsOnItemWithDefaults() *ListWorldSpaceWhatsOnItem {
-	this := ListWorldSpaceWhatsOnItem{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListWorldSpaceWhatsOnItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetTitle returns the Title field value
-func (o *ListWorldSpaceWhatsOnItem) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetKind returns the Kind field value
-func (o *ListWorldSpaceWhatsOnItem) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetStartsAt returns the StartsAt field value
-func (o *ListWorldSpaceWhatsOnItem) GetStartsAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.StartsAt
-}
-
-// GetStartsAtOk returns a tuple with the StartsAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetStartsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.StartsAt, true
-}
-
-// SetStartsAt sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetStartsAt(v string) {
-	o.StartsAt = v
-}
-
-// GetEndsAt returns the EndsAt field value
-func (o *ListWorldSpaceWhatsOnItem) GetEndsAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndsAt
-}
-
-// GetEndsAtOk returns a tuple with the EndsAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetEndsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EndsAt, true
-}
-
-// SetEndsAt sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetEndsAt(v string) {
-	o.EndsAt = v
-}
-
-// GetSlug returns the Slug field value
-func (o *ListWorldSpaceWhatsOnItem) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetSlug(v string) {
-	o.Slug = v
-}
-
-// GetSpaceName returns the SpaceName field value
-func (o *ListWorldSpaceWhatsOnItem) GetSpaceName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SpaceName
-}
-
-// GetSpaceNameOk returns a tuple with the SpaceName field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetSpaceNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SpaceName, true
-}
-
-// SetSpaceName sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetSpaceName(v string) {
-	o.SpaceName = v
-}
-
-// GetPlace returns the Place field value
-func (o *ListWorldSpaceWhatsOnItem) GetPlace() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Place
-}
-
-// GetPlaceOk returns a tuple with the Place field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnItem) GetPlaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Place, true
-}
-
-// SetPlace sets field value
-func (o *ListWorldSpaceWhatsOnItem) SetPlace(v string) {
-	o.Place = v
-}
-
-// GetFeatured returns the Featured field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldSpaceWhatsOnItem) GetFeatured() bool {
-	if o == nil || o.Featured.Get() == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Featured.Get()
-}
-
-// GetFeaturedOk returns a tuple with the Featured field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldSpaceWhatsOnItem) GetFeaturedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Featured.Get(), o.Featured.IsSet()
-}
-
-// HasFeatured returns a boolean if a field has been set.
-func (o *ListWorldSpaceWhatsOnItem) HasFeatured() bool {
-	if o != nil && o.Featured.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFeatured gets a reference to the given NullableBool and assigns it to the Featured field.
-func (o *ListWorldSpaceWhatsOnItem) SetFeatured(v bool) {
-	o.Featured.Set(&v)
-}
-// SetFeaturedNil sets the value for Featured to be an explicit nil
-func (o *ListWorldSpaceWhatsOnItem) SetFeaturedNil() {
-	o.Featured.Set(nil)
-}
-
-// UnsetFeatured ensures that no value is present for Featured, not even an explicit nil
-func (o *ListWorldSpaceWhatsOnItem) UnsetFeatured() {
-	o.Featured.Unset()
-}
-
-func (o ListWorldSpaceWhatsOnItem) MarshalJSON() ([]byte, error) {
+func (o GetWorldConventionHallResponseContextTiers) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["title"] = o.Title
+		toSerialize["size"] = o.Size
 	}
 	if true {
-		toSerialize["kind"] = o.Kind
+		toSerialize["count"] = o.Count
 	}
-	if true {
-		toSerialize["startsAt"] = o.StartsAt
-	}
-	if true {
-		toSerialize["endsAt"] = o.EndsAt
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["spaceName"] = o.SpaceName
-	}
-	if true {
-		toSerialize["place"] = o.Place
-	}
-	if o.Featured.IsSet() {
-		toSerialize["featured"] = o.Featured.Get()
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldSpaceWhatsOnItem struct {
-	value *ListWorldSpaceWhatsOnItem
+type NullableGetWorldConventionHallResponseContextTiers struct {
+	value *GetWorldConventionHallResponseContextTiers
 	isSet bool
 }
 
-func (v NullableListWorldSpaceWhatsOnItem) Get() *ListWorldSpaceWhatsOnItem {
+func (v NullableGetWorldConventionHallResponseContextTiers) Get() *GetWorldConventionHallResponseContextTiers {
 	return v.value
 }
 
-func (v *NullableListWorldSpaceWhatsOnItem) Set(val *ListWorldSpaceWhatsOnItem) {
+func (v *NullableGetWorldConventionHallResponseContextTiers) Set(val *GetWorldConventionHallResponseContextTiers) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldSpaceWhatsOnItem) IsSet() bool {
+func (v NullableGetWorldConventionHallResponseContextTiers) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldSpaceWhatsOnItem) Unset() {
+func (v *NullableGetWorldConventionHallResponseContextTiers) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldSpaceWhatsOnItem(val *ListWorldSpaceWhatsOnItem) *NullableListWorldSpaceWhatsOnItem {
-	return &NullableListWorldSpaceWhatsOnItem{value: val, isSet: true}
+func NewNullableGetWorldConventionHallResponseContextTiers(val *GetWorldConventionHallResponseContextTiers) *NullableGetWorldConventionHallResponseContextTiers {
+	return &NullableGetWorldConventionHallResponseContextTiers{value: val, isSet: true}
 }
 
-func (v NullableListWorldSpaceWhatsOnItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionHallResponseContextTiers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldSpaceWhatsOnItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionHallResponseContextTiers) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldSpaceWhatsOnResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldSpaceWhatsOnResponse struct {
-	// The rows.
-	Data []ListWorldSpaceWhatsOnItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetWorldConventionHallResponseDoc struct for GetWorldConventionHallResponseDoc
+type GetWorldConventionHallResponseDoc struct {
+	Target string `json:"target"`
+	Version string `json:"version"`
+	Objects []GetWorldConventionHallResponseDocObjects `json:"objects"`
 }
 
-// NewListWorldSpaceWhatsOnResponse instantiates a new ListWorldSpaceWhatsOnResponse object
+// NewGetWorldConventionHallResponseDoc instantiates a new GetWorldConventionHallResponseDoc object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldSpaceWhatsOnResponse(data []ListWorldSpaceWhatsOnItem) *ListWorldSpaceWhatsOnResponse {
-	this := ListWorldSpaceWhatsOnResponse{}
-	this.Data = data
+func NewGetWorldConventionHallResponseDoc(target string, version string, objects []GetWorldConventionHallResponseDocObjects) *GetWorldConventionHallResponseDoc {
+	this := GetWorldConventionHallResponseDoc{}
+	this.Target = target
+	this.Version = version
+	this.Objects = objects
 	return &this
 }
 
-// NewListWorldSpaceWhatsOnResponseWithDefaults instantiates a new ListWorldSpaceWhatsOnResponse object
+// NewGetWorldConventionHallResponseDocWithDefaults instantiates a new GetWorldConventionHallResponseDoc object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldSpaceWhatsOnResponseWithDefaults() *ListWorldSpaceWhatsOnResponse {
-	this := ListWorldSpaceWhatsOnResponse{}
+func NewGetWorldConventionHallResponseDocWithDefaults() *GetWorldConventionHallResponseDoc {
+	this := GetWorldConventionHallResponseDoc{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *ListWorldSpaceWhatsOnResponse) GetData() []ListWorldSpaceWhatsOnItem {
+// GetTarget returns the Target field value
+func (o *GetWorldConventionHallResponseDoc) GetTarget() string {
 	if o == nil {
-		var ret []ListWorldSpaceWhatsOnItem
+		var ret string
 		return ret
 	}
 
-	return o.Data
+	return o.Target
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnResponse) GetDataOk() ([]ListWorldSpaceWhatsOnItem, bool) {
+func (o *GetWorldConventionHallResponseDoc) GetTargetOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Target, true
 }
 
-// SetData sets field value
-func (o *ListWorldSpaceWhatsOnResponse) SetData(v []ListWorldSpaceWhatsOnItem) {
-	o.Data = v
+// SetTarget sets field value
+func (o *GetWorldConventionHallResponseDoc) SetTarget(v string) {
+	o.Target = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldSpaceWhatsOnResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
+// GetVersion returns the Version field value
+func (o *GetWorldConventionHallResponseDoc) GetVersion() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Pagination
+
+	return o.Version
 }
 
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
+func (o *GetWorldConventionHallResponseDoc) GetVersionOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Pagination, true
+	return &o.Version, true
 }
 
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldSpaceWhatsOnResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+// SetVersion sets field value
+func (o *GetWorldConventionHallResponseDoc) SetVersion(v string) {
+	o.Version = v
 }
 
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldSpaceWhatsOnResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldSpaceWhatsOnResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
+// GetObjects returns the Objects field value
+func (o *GetWorldConventionHallResponseDoc) GetObjects() []GetWorldConventionHallResponseDocObjects {
+	if o == nil {
+		var ret []GetWorldConventionHallResponseDocObjects
 		return ret
 	}
-	return o.Meta
+
+	return o.Objects
 }
 
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// GetObjectsOk returns a tuple with the Objects field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldSpaceWhatsOnResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
+func (o *GetWorldConventionHallResponseDoc) GetObjectsOk() ([]GetWorldConventionHallResponseDocObjects, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Meta, true
+	return o.Objects, true
 }
 
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldSpaceWhatsOnResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+// SetObjects sets field value
+func (o *GetWorldConventionHallResponseDoc) SetObjects(v []GetWorldConventionHallResponseDocObjects) {
+	o.Objects = v
 }
 
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldSpaceWhatsOnResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldSpaceWhatsOnResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldConventionHallResponseDoc) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["data"] = o.Data
+		toSerialize["target"] = o.Target
 	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
+	if true {
+		toSerialize["version"] = o.Version
 	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
+	if true {
+		toSerialize["objects"] = o.Objects
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldSpaceWhatsOnResponse struct {
-	value *ListWorldSpaceWhatsOnResponse
+type NullableGetWorldConventionHallResponseDoc struct {
+	value *GetWorldConventionHallResponseDoc
 	isSet bool
 }
 
-func (v NullableListWorldSpaceWhatsOnResponse) Get() *ListWorldSpaceWhatsOnResponse {
+func (v NullableGetWorldConventionHallResponseDoc) Get() *GetWorldConventionHallResponseDoc {
 	return v.value
 }
 
-func (v *NullableListWorldSpaceWhatsOnResponse) Set(val *ListWorldSpaceWhatsOnResponse) {
+func (v *NullableGetWorldConventionHallResponseDoc) Set(val *GetWorldConventionHallResponseDoc) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldSpaceWhatsOnResponse) IsSet() bool {
+func (v NullableGetWorldConventionHallResponseDoc) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldSpaceWhatsOnResponse) Unset() {
+func (v *NullableGetWorldConventionHallResponseDoc) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldSpaceWhatsOnResponse(val *ListWorldSpaceWhatsOnResponse) *NullableListWorldSpaceWhatsOnResponse {
-	return &NullableListWorldSpaceWhatsOnResponse{value: val, isSet: true}
+func NewNullableGetWorldConventionHallResponseDoc(val *GetWorldConventionHallResponseDoc) *NullableGetWorldConventionHallResponseDoc {
+	return &NullableGetWorldConventionHallResponseDoc{value: val, isSet: true}
 }
 
-func (v NullableListWorldSpaceWhatsOnResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionHallResponseDoc) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldSpaceWhatsOnResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionHallResponseDoc) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldSpacesItem struct for ListWorldSpacesItem
-type ListWorldSpacesItem struct {
-	Slug string `json:"slug"`
-	Name string `json:"name"`
-	Venue string `json:"venue"`
-	About NullableString `json:"about,omitempty"`
-	Members float32 `json:"members"`
-	Here float32 `json:"here"`
-	Next NullableListWorldSpacesItemNext `json:"next,omitempty"`
-}
-
-// NewListWorldSpacesItem instantiates a new ListWorldSpacesItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldSpacesItem(slug string, name string, venue string, members float32, here float32) *ListWorldSpacesItem {
-	this := ListWorldSpacesItem{}
-	this.Slug = slug
-	this.Name = name
-	this.Venue = venue
-	this.Members = members
-	this.Here = here
-	return &this
-}
-
-// NewListWorldSpacesItemWithDefaults instantiates a new ListWorldSpacesItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldSpacesItemWithDefaults() *ListWorldSpacesItem {
-	this := ListWorldSpacesItem{}
-	return &this
-}
-
-// GetSlug returns the Slug field value
-func (o *ListWorldSpacesItem) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItem) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *ListWorldSpacesItem) SetSlug(v string) {
-	o.Slug = v
-}
-
-// GetName returns the Name field value
-func (o *ListWorldSpacesItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldSpacesItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetVenue returns the Venue field value
-func (o *ListWorldSpacesItem) GetVenue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Venue
-}
-
-// GetVenueOk returns a tuple with the Venue field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItem) GetVenueOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Venue, true
-}
-
-// SetVenue sets field value
-func (o *ListWorldSpacesItem) SetVenue(v string) {
-	o.Venue = v
-}
-
-// GetAbout returns the About field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldSpacesItem) GetAbout() string {
-	if o == nil || o.About.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.About.Get()
-}
-
-// GetAboutOk returns a tuple with the About field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldSpacesItem) GetAboutOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.About.Get(), o.About.IsSet()
-}
-
-// HasAbout returns a boolean if a field has been set.
-func (o *ListWorldSpacesItem) HasAbout() bool {
-	if o != nil && o.About.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAbout gets a reference to the given NullableString and assigns it to the About field.
-func (o *ListWorldSpacesItem) SetAbout(v string) {
-	o.About.Set(&v)
-}
-// SetAboutNil sets the value for About to be an explicit nil
-func (o *ListWorldSpacesItem) SetAboutNil() {
-	o.About.Set(nil)
-}
-
-// UnsetAbout ensures that no value is present for About, not even an explicit nil
-func (o *ListWorldSpacesItem) UnsetAbout() {
-	o.About.Unset()
-}
-
-// GetMembers returns the Members field value
-func (o *ListWorldSpacesItem) GetMembers() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Members
-}
-
-// GetMembersOk returns a tuple with the Members field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItem) GetMembersOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Members, true
-}
-
-// SetMembers sets field value
-func (o *ListWorldSpacesItem) SetMembers(v float32) {
-	o.Members = v
-}
-
-// GetHere returns the Here field value
-func (o *ListWorldSpacesItem) GetHere() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Here
-}
-
-// GetHereOk returns a tuple with the Here field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItem) GetHereOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Here, true
-}
-
-// SetHere sets field value
-func (o *ListWorldSpacesItem) SetHere(v float32) {
-	o.Here = v
-}
-
-// GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldSpacesItem) GetNext() ListWorldSpacesItemNext {
-	if o == nil || o.Next.Get() == nil {
-		var ret ListWorldSpacesItemNext
-		return ret
-	}
-	return *o.Next.Get()
-}
-
-// GetNextOk returns a tuple with the Next field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldSpacesItem) GetNextOk() (*ListWorldSpacesItemNext, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Next.Get(), o.Next.IsSet()
-}
-
-// HasNext returns a boolean if a field has been set.
-func (o *ListWorldSpacesItem) HasNext() bool {
-	if o != nil && o.Next.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNext gets a reference to the given NullableListWorldSpacesItemNext and assigns it to the Next field.
-func (o *ListWorldSpacesItem) SetNext(v ListWorldSpacesItemNext) {
-	o.Next.Set(&v)
-}
-// SetNextNil sets the value for Next to be an explicit nil
-func (o *ListWorldSpacesItem) SetNextNil() {
-	o.Next.Set(nil)
-}
-
-// UnsetNext ensures that no value is present for Next, not even an explicit nil
-func (o *ListWorldSpacesItem) UnsetNext() {
-	o.Next.Unset()
-}
-
-func (o ListWorldSpacesItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["venue"] = o.Venue
-	}
-	if o.About.IsSet() {
-		toSerialize["about"] = o.About.Get()
-	}
-	if true {
-		toSerialize["members"] = o.Members
-	}
-	if true {
-		toSerialize["here"] = o.Here
-	}
-	if o.Next.IsSet() {
-		toSerialize["next"] = o.Next.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldSpacesItem struct {
-	value *ListWorldSpacesItem
-	isSet bool
-}
-
-func (v NullableListWorldSpacesItem) Get() *ListWorldSpacesItem {
-	return v.value
-}
-
-func (v *NullableListWorldSpacesItem) Set(val *ListWorldSpacesItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldSpacesItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldSpacesItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldSpacesItem(val *ListWorldSpacesItem) *NullableListWorldSpacesItem {
-	return &NullableListWorldSpacesItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldSpacesItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldSpacesItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldSpacesItemNext struct for ListWorldSpacesItemNext
-type ListWorldSpacesItemNext struct {
-	Title string `json:"title"`
-	Kind string `json:"kind"`
-	StartsAt string `json:"startsAt"`
-	EndsAt string `json:"endsAt"`
-}
-
-// NewListWorldSpacesItemNext instantiates a new ListWorldSpacesItemNext object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldSpacesItemNext(title string, kind string, startsAt string, endsAt string) *ListWorldSpacesItemNext {
-	this := ListWorldSpacesItemNext{}
-	this.Title = title
-	this.Kind = kind
-	this.StartsAt = startsAt
-	this.EndsAt = endsAt
-	return &this
-}
-
-// NewListWorldSpacesItemNextWithDefaults instantiates a new ListWorldSpacesItemNext object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldSpacesItemNextWithDefaults() *ListWorldSpacesItemNext {
-	this := ListWorldSpacesItemNext{}
-	return &this
-}
-
-// GetTitle returns the Title field value
-func (o *ListWorldSpacesItemNext) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItemNext) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListWorldSpacesItemNext) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetKind returns the Kind field value
-func (o *ListWorldSpacesItemNext) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItemNext) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *ListWorldSpacesItemNext) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetStartsAt returns the StartsAt field value
-func (o *ListWorldSpacesItemNext) GetStartsAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.StartsAt
-}
-
-// GetStartsAtOk returns a tuple with the StartsAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItemNext) GetStartsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.StartsAt, true
-}
-
-// SetStartsAt sets field value
-func (o *ListWorldSpacesItemNext) SetStartsAt(v string) {
-	o.StartsAt = v
-}
-
-// GetEndsAt returns the EndsAt field value
-func (o *ListWorldSpacesItemNext) GetEndsAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndsAt
-}
-
-// GetEndsAtOk returns a tuple with the EndsAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesItemNext) GetEndsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EndsAt, true
-}
-
-// SetEndsAt sets field value
-func (o *ListWorldSpacesItemNext) SetEndsAt(v string) {
-	o.EndsAt = v
-}
-
-func (o ListWorldSpacesItemNext) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["startsAt"] = o.StartsAt
-	}
-	if true {
-		toSerialize["endsAt"] = o.EndsAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldSpacesItemNext struct {
-	value *ListWorldSpacesItemNext
-	isSet bool
-}
-
-func (v NullableListWorldSpacesItemNext) Get() *ListWorldSpacesItemNext {
-	return v.value
-}
-
-func (v *NullableListWorldSpacesItemNext) Set(val *ListWorldSpacesItemNext) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldSpacesItemNext) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldSpacesItemNext) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldSpacesItemNext(val *ListWorldSpacesItemNext) *NullableListWorldSpacesItemNext {
-	return &NullableListWorldSpacesItemNext{value: val, isSet: true}
-}
-
-func (v NullableListWorldSpacesItemNext) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldSpacesItemNext) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldSpacesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldSpacesResponse struct {
-	// The rows.
-	Data []ListWorldSpacesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldSpacesResponse instantiates a new ListWorldSpacesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldSpacesResponse(data []ListWorldSpacesItem) *ListWorldSpacesResponse {
-	this := ListWorldSpacesResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldSpacesResponseWithDefaults instantiates a new ListWorldSpacesResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldSpacesResponseWithDefaults() *ListWorldSpacesResponse {
-	this := ListWorldSpacesResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldSpacesResponse) GetData() []ListWorldSpacesItem {
-	if o == nil {
-		var ret []ListWorldSpacesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesResponse) GetDataOk() ([]ListWorldSpacesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldSpacesResponse) SetData(v []ListWorldSpacesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldSpacesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldSpacesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldSpacesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldSpacesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldSpacesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldSpacesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldSpacesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldSpacesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldSpacesResponse struct {
-	value *ListWorldSpacesResponse
-	isSet bool
-}
-
-func (v NullableListWorldSpacesResponse) Get() *ListWorldSpacesResponse {
-	return v.value
-}
-
-func (v *NullableListWorldSpacesResponse) Set(val *ListWorldSpacesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldSpacesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldSpacesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldSpacesResponse(val *ListWorldSpacesResponse) *NullableListWorldSpacesResponse {
-	return &NullableListWorldSpacesResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldSpacesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldSpacesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldStreaksItem struct for ListWorldStreaksItem
-type ListWorldStreaksItem struct {
-	Name string `json:"name"`
-	Days float32 `json:"days"`
-}
-
-// NewListWorldStreaksItem instantiates a new ListWorldStreaksItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldStreaksItem(name string, days float32) *ListWorldStreaksItem {
-	this := ListWorldStreaksItem{}
-	this.Name = name
-	this.Days = days
-	return &this
-}
-
-// NewListWorldStreaksItemWithDefaults instantiates a new ListWorldStreaksItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldStreaksItemWithDefaults() *ListWorldStreaksItem {
-	this := ListWorldStreaksItem{}
-	return &this
-}
-
-// GetName returns the Name field value
-func (o *ListWorldStreaksItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldStreaksItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListWorldStreaksItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetDays returns the Days field value
-func (o *ListWorldStreaksItem) GetDays() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Days
-}
-
-// GetDaysOk returns a tuple with the Days field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldStreaksItem) GetDaysOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Days, true
-}
-
-// SetDays sets field value
-func (o *ListWorldStreaksItem) SetDays(v float32) {
-	o.Days = v
-}
-
-func (o ListWorldStreaksItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["days"] = o.Days
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldStreaksItem struct {
-	value *ListWorldStreaksItem
-	isSet bool
-}
-
-func (v NullableListWorldStreaksItem) Get() *ListWorldStreaksItem {
-	return v.value
-}
-
-func (v *NullableListWorldStreaksItem) Set(val *ListWorldStreaksItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldStreaksItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldStreaksItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldStreaksItem(val *ListWorldStreaksItem) *NullableListWorldStreaksItem {
-	return &NullableListWorldStreaksItem{value: val, isSet: true}
-}
-
-func (v NullableListWorldStreaksItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldStreaksItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldStreaksResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldStreaksResponse struct {
-	// The rows.
-	Data []ListWorldStreaksItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWorldStreaksResponse instantiates a new ListWorldStreaksResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldStreaksResponse(data []ListWorldStreaksItem) *ListWorldStreaksResponse {
-	this := ListWorldStreaksResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWorldStreaksResponseWithDefaults instantiates a new ListWorldStreaksResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldStreaksResponseWithDefaults() *ListWorldStreaksResponse {
-	this := ListWorldStreaksResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWorldStreaksResponse) GetData() []ListWorldStreaksItem {
-	if o == nil {
-		var ret []ListWorldStreaksItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldStreaksResponse) GetDataOk() ([]ListWorldStreaksItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldStreaksResponse) SetData(v []ListWorldStreaksItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldStreaksResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldStreaksResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldStreaksResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldStreaksResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldStreaksResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldStreaksResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldStreaksResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldStreaksResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldStreaksResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldStreaksResponse struct {
-	value *ListWorldStreaksResponse
-	isSet bool
-}
-
-func (v NullableListWorldStreaksResponse) Get() *ListWorldStreaksResponse {
-	return v.value
-}
-
-func (v *NullableListWorldStreaksResponse) Set(val *ListWorldStreaksResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldStreaksResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldStreaksResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldStreaksResponse(val *ListWorldStreaksResponse) *NullableListWorldStreaksResponse {
-	return &NullableListWorldStreaksResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldStreaksResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldStreaksResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldTradeMineItem struct for ListWorldTradeMineItem
-type ListWorldTradeMineItem struct {
+// GetWorldConventionHallResponseDocObjects struct for GetWorldConventionHallResponseDocObjects
+type GetWorldConventionHallResponseDocObjects struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
-	CreatedAt time.Time `json:"createdAt"`
-	Items []ListWorldTradeMineItemItems `json:"items"`
+	Kind string `json:"kind"`
+	Position []float32 `json:"position"`
+	RotationY float32 `json:"rotationY"`
+	// booth: {tierId, boothKey}; sign: {text}; others: {}.
+	Props map[string]interface{} `json:"props"`
 }
 
-// NewListWorldTradeMineItem instantiates a new ListWorldTradeMineItem object
+// NewGetWorldConventionHallResponseDocObjects instantiates a new GetWorldConventionHallResponseDocObjects object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeMineItem(id string, status string, createdAt time.Time, items []ListWorldTradeMineItemItems) *ListWorldTradeMineItem {
-	this := ListWorldTradeMineItem{}
+func NewGetWorldConventionHallResponseDocObjects(id string, kind string, position []float32, rotationY float32, props map[string]interface{}) *GetWorldConventionHallResponseDocObjects {
+	this := GetWorldConventionHallResponseDocObjects{}
 	this.Id = id
-	this.Status = status
-	this.CreatedAt = createdAt
-	this.Items = items
+	this.Kind = kind
+	this.Position = position
+	this.RotationY = rotationY
+	this.Props = props
 	return &this
 }
 
-// NewListWorldTradeMineItemWithDefaults instantiates a new ListWorldTradeMineItem object
+// NewGetWorldConventionHallResponseDocObjectsWithDefaults instantiates a new GetWorldConventionHallResponseDocObjects object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeMineItemWithDefaults() *ListWorldTradeMineItem {
-	this := ListWorldTradeMineItem{}
+func NewGetWorldConventionHallResponseDocObjectsWithDefaults() *GetWorldConventionHallResponseDocObjects {
+	this := GetWorldConventionHallResponseDocObjects{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *ListWorldTradeMineItem) GetId() string {
+func (o *GetWorldConventionHallResponseDocObjects) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -10462,7 +4442,7 @@ func (o *ListWorldTradeMineItem) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineItem) GetIdOk() (*string, bool) {
+func (o *GetWorldConventionHallResponseDocObjects) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -10470,12 +4450,709 @@ func (o *ListWorldTradeMineItem) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ListWorldTradeMineItem) SetId(v string) {
+func (o *GetWorldConventionHallResponseDocObjects) SetId(v string) {
 	o.Id = v
 }
 
+// GetKind returns the Kind field value
+func (o *GetWorldConventionHallResponseDocObjects) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseDocObjects) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetWorldConventionHallResponseDocObjects) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetPosition returns the Position field value
+func (o *GetWorldConventionHallResponseDocObjects) GetPosition() []float32 {
+	if o == nil {
+		var ret []float32
+		return ret
+	}
+
+	return o.Position
+}
+
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseDocObjects) GetPositionOk() ([]float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Position, true
+}
+
+// SetPosition sets field value
+func (o *GetWorldConventionHallResponseDocObjects) SetPosition(v []float32) {
+	o.Position = v
+}
+
+// GetRotationY returns the RotationY field value
+func (o *GetWorldConventionHallResponseDocObjects) GetRotationY() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RotationY
+}
+
+// GetRotationYOk returns a tuple with the RotationY field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseDocObjects) GetRotationYOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RotationY, true
+}
+
+// SetRotationY sets field value
+func (o *GetWorldConventionHallResponseDocObjects) SetRotationY(v float32) {
+	o.RotationY = v
+}
+
+// GetProps returns the Props field value
+func (o *GetWorldConventionHallResponseDocObjects) GetProps() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Props
+}
+
+// GetPropsOk returns a tuple with the Props field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseDocObjects) GetPropsOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Props, true
+}
+
+// SetProps sets field value
+func (o *GetWorldConventionHallResponseDocObjects) SetProps(v map[string]interface{}) {
+	o.Props = v
+}
+
+func (o GetWorldConventionHallResponseDocObjects) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["position"] = o.Position
+	}
+	if true {
+		toSerialize["rotationY"] = o.RotationY
+	}
+	if true {
+		toSerialize["props"] = o.Props
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionHallResponseDocObjects struct {
+	value *GetWorldConventionHallResponseDocObjects
+	isSet bool
+}
+
+func (v NullableGetWorldConventionHallResponseDocObjects) Get() *GetWorldConventionHallResponseDocObjects {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionHallResponseDocObjects) Set(val *GetWorldConventionHallResponseDocObjects) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionHallResponseDocObjects) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionHallResponseDocObjects) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionHallResponseDocObjects(val *GetWorldConventionHallResponseDocObjects) *NullableGetWorldConventionHallResponseDocObjects {
+	return &NullableGetWorldConventionHallResponseDocObjects{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionHallResponseDocObjects) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionHallResponseDocObjects) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionHallResponseProblems struct for GetWorldConventionHallResponseProblems
+type GetWorldConventionHallResponseProblems struct {
+	ObjectId NullableString `json:"objectId,omitempty"`
+	// 'error' refuses the save; 'warning' saves and says so.
+	Level string `json:"level"`
+	Message string `json:"message"`
+}
+
+// NewGetWorldConventionHallResponseProblems instantiates a new GetWorldConventionHallResponseProblems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionHallResponseProblems(level string, message string) *GetWorldConventionHallResponseProblems {
+	this := GetWorldConventionHallResponseProblems{}
+	this.Level = level
+	this.Message = message
+	return &this
+}
+
+// NewGetWorldConventionHallResponseProblemsWithDefaults instantiates a new GetWorldConventionHallResponseProblems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionHallResponseProblemsWithDefaults() *GetWorldConventionHallResponseProblems {
+	this := GetWorldConventionHallResponseProblems{}
+	return &this
+}
+
+// GetObjectId returns the ObjectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionHallResponseProblems) GetObjectId() string {
+	if o == nil || o.ObjectId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ObjectId.Get()
+}
+
+// GetObjectIdOk returns a tuple with the ObjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionHallResponseProblems) GetObjectIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ObjectId.Get(), o.ObjectId.IsSet()
+}
+
+// HasObjectId returns a boolean if a field has been set.
+func (o *GetWorldConventionHallResponseProblems) HasObjectId() bool {
+	if o != nil && o.ObjectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetObjectId gets a reference to the given NullableString and assigns it to the ObjectId field.
+func (o *GetWorldConventionHallResponseProblems) SetObjectId(v string) {
+	o.ObjectId.Set(&v)
+}
+// SetObjectIdNil sets the value for ObjectId to be an explicit nil
+func (o *GetWorldConventionHallResponseProblems) SetObjectIdNil() {
+	o.ObjectId.Set(nil)
+}
+
+// UnsetObjectId ensures that no value is present for ObjectId, not even an explicit nil
+func (o *GetWorldConventionHallResponseProblems) UnsetObjectId() {
+	o.ObjectId.Unset()
+}
+
+// GetLevel returns the Level field value
+func (o *GetWorldConventionHallResponseProblems) GetLevel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseProblems) GetLevelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Level, true
+}
+
+// SetLevel sets field value
+func (o *GetWorldConventionHallResponseProblems) SetLevel(v string) {
+	o.Level = v
+}
+
+// GetMessage returns the Message field value
+func (o *GetWorldConventionHallResponseProblems) GetMessage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionHallResponseProblems) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GetWorldConventionHallResponseProblems) SetMessage(v string) {
+	o.Message = v
+}
+
+func (o GetWorldConventionHallResponseProblems) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ObjectId.IsSet() {
+		toSerialize["objectId"] = o.ObjectId.Get()
+	}
+	if true {
+		toSerialize["level"] = o.Level
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionHallResponseProblems struct {
+	value *GetWorldConventionHallResponseProblems
+	isSet bool
+}
+
+func (v NullableGetWorldConventionHallResponseProblems) Get() *GetWorldConventionHallResponseProblems {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionHallResponseProblems) Set(val *GetWorldConventionHallResponseProblems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionHallResponseProblems) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionHallResponseProblems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionHallResponseProblems(val *GetWorldConventionHallResponseProblems) *NullableGetWorldConventionHallResponseProblems {
+	return &NullableGetWorldConventionHallResponseProblems{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionHallResponseProblems) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionHallResponseProblems) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionManageResponse struct for GetWorldConventionManageResponse
+type GetWorldConventionManageResponse struct {
+	Convention GetWorldConventionManageResponseConvention `json:"convention"`
+	Tiers []GetWorldConventionManageResponseTiers `json:"tiers"`
+	WalkIn NullableGetWorldConventionManageResponseWalkIn `json:"walkIn,omitempty"`
+	Sellers []GetWorldConventionManageResponseSellers `json:"sellers"`
+	Venue NullableGetWorldConventionManageResponseVenue `json:"venue,omitempty"`
+}
+
+// NewGetWorldConventionManageResponse instantiates a new GetWorldConventionManageResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionManageResponse(convention GetWorldConventionManageResponseConvention, tiers []GetWorldConventionManageResponseTiers, sellers []GetWorldConventionManageResponseSellers) *GetWorldConventionManageResponse {
+	this := GetWorldConventionManageResponse{}
+	this.Convention = convention
+	this.Tiers = tiers
+	this.Sellers = sellers
+	return &this
+}
+
+// NewGetWorldConventionManageResponseWithDefaults instantiates a new GetWorldConventionManageResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionManageResponseWithDefaults() *GetWorldConventionManageResponse {
+	this := GetWorldConventionManageResponse{}
+	return &this
+}
+
+// GetConvention returns the Convention field value
+func (o *GetWorldConventionManageResponse) GetConvention() GetWorldConventionManageResponseConvention {
+	if o == nil {
+		var ret GetWorldConventionManageResponseConvention
+		return ret
+	}
+
+	return o.Convention
+}
+
+// GetConventionOk returns a tuple with the Convention field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponse) GetConventionOk() (*GetWorldConventionManageResponseConvention, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Convention, true
+}
+
+// SetConvention sets field value
+func (o *GetWorldConventionManageResponse) SetConvention(v GetWorldConventionManageResponseConvention) {
+	o.Convention = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *GetWorldConventionManageResponse) GetTiers() []GetWorldConventionManageResponseTiers {
+	if o == nil {
+		var ret []GetWorldConventionManageResponseTiers
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponse) GetTiersOk() ([]GetWorldConventionManageResponseTiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetWorldConventionManageResponse) SetTiers(v []GetWorldConventionManageResponseTiers) {
+	o.Tiers = v
+}
+
+// GetWalkIn returns the WalkIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponse) GetWalkIn() GetWorldConventionManageResponseWalkIn {
+	if o == nil || o.WalkIn.Get() == nil {
+		var ret GetWorldConventionManageResponseWalkIn
+		return ret
+	}
+	return *o.WalkIn.Get()
+}
+
+// GetWalkInOk returns a tuple with the WalkIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponse) GetWalkInOk() (*GetWorldConventionManageResponseWalkIn, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WalkIn.Get(), o.WalkIn.IsSet()
+}
+
+// HasWalkIn returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponse) HasWalkIn() bool {
+	if o != nil && o.WalkIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWalkIn gets a reference to the given NullableGetWorldConventionManageResponseWalkIn and assigns it to the WalkIn field.
+func (o *GetWorldConventionManageResponse) SetWalkIn(v GetWorldConventionManageResponseWalkIn) {
+	o.WalkIn.Set(&v)
+}
+// SetWalkInNil sets the value for WalkIn to be an explicit nil
+func (o *GetWorldConventionManageResponse) SetWalkInNil() {
+	o.WalkIn.Set(nil)
+}
+
+// UnsetWalkIn ensures that no value is present for WalkIn, not even an explicit nil
+func (o *GetWorldConventionManageResponse) UnsetWalkIn() {
+	o.WalkIn.Unset()
+}
+
+// GetSellers returns the Sellers field value
+func (o *GetWorldConventionManageResponse) GetSellers() []GetWorldConventionManageResponseSellers {
+	if o == nil {
+		var ret []GetWorldConventionManageResponseSellers
+		return ret
+	}
+
+	return o.Sellers
+}
+
+// GetSellersOk returns a tuple with the Sellers field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponse) GetSellersOk() ([]GetWorldConventionManageResponseSellers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Sellers, true
+}
+
+// SetSellers sets field value
+func (o *GetWorldConventionManageResponse) SetSellers(v []GetWorldConventionManageResponseSellers) {
+	o.Sellers = v
+}
+
+// GetVenue returns the Venue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponse) GetVenue() GetWorldConventionManageResponseVenue {
+	if o == nil || o.Venue.Get() == nil {
+		var ret GetWorldConventionManageResponseVenue
+		return ret
+	}
+	return *o.Venue.Get()
+}
+
+// GetVenueOk returns a tuple with the Venue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponse) GetVenueOk() (*GetWorldConventionManageResponseVenue, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Venue.Get(), o.Venue.IsSet()
+}
+
+// HasVenue returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponse) HasVenue() bool {
+	if o != nil && o.Venue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVenue gets a reference to the given NullableGetWorldConventionManageResponseVenue and assigns it to the Venue field.
+func (o *GetWorldConventionManageResponse) SetVenue(v GetWorldConventionManageResponseVenue) {
+	o.Venue.Set(&v)
+}
+// SetVenueNil sets the value for Venue to be an explicit nil
+func (o *GetWorldConventionManageResponse) SetVenueNil() {
+	o.Venue.Set(nil)
+}
+
+// UnsetVenue ensures that no value is present for Venue, not even an explicit nil
+func (o *GetWorldConventionManageResponse) UnsetVenue() {
+	o.Venue.Unset()
+}
+
+func (o GetWorldConventionManageResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["convention"] = o.Convention
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if o.WalkIn.IsSet() {
+		toSerialize["walkIn"] = o.WalkIn.Get()
+	}
+	if true {
+		toSerialize["sellers"] = o.Sellers
+	}
+	if o.Venue.IsSet() {
+		toSerialize["venue"] = o.Venue.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionManageResponse struct {
+	value *GetWorldConventionManageResponse
+	isSet bool
+}
+
+func (v NullableGetWorldConventionManageResponse) Get() *GetWorldConventionManageResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionManageResponse) Set(val *GetWorldConventionManageResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionManageResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionManageResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionManageResponse(val *GetWorldConventionManageResponse) *NullableGetWorldConventionManageResponse {
+	return &NullableGetWorldConventionManageResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionManageResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionManageResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionManageResponseConvention struct for GetWorldConventionManageResponseConvention
+type GetWorldConventionManageResponseConvention struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	Description NullableString `json:"description,omitempty"`
+	Status string `json:"status"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	OpensHour float32 `json:"opensHour"`
+	ClosesHour float32 `json:"closesHour"`
+	Timezone string `json:"timezone"`
+	Theme string `json:"theme"`
+	BookingMode string `json:"bookingMode"`
+	RevenueShareBps float32 `json:"revenueShareBps"`
+	SellerEventId NullableString `json:"sellerEventId,omitempty"`
+	FloorPlanVersion float32 `json:"floorPlanVersion"`
+}
+
+// NewGetWorldConventionManageResponseConvention instantiates a new GetWorldConventionManageResponseConvention object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionManageResponseConvention(id string, title string, status string, startsAt string, endsAt string, opensHour float32, closesHour float32, timezone string, theme string, bookingMode string, revenueShareBps float32, floorPlanVersion float32) *GetWorldConventionManageResponseConvention {
+	this := GetWorldConventionManageResponseConvention{}
+	this.Id = id
+	this.Title = title
+	this.Status = status
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	this.OpensHour = opensHour
+	this.ClosesHour = closesHour
+	this.Timezone = timezone
+	this.Theme = theme
+	this.BookingMode = bookingMode
+	this.RevenueShareBps = revenueShareBps
+	this.FloorPlanVersion = floorPlanVersion
+	return &this
+}
+
+// NewGetWorldConventionManageResponseConventionWithDefaults instantiates a new GetWorldConventionManageResponseConvention object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionManageResponseConventionWithDefaults() *GetWorldConventionManageResponseConvention {
+	this := GetWorldConventionManageResponseConvention{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldConventionManageResponseConvention) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldConventionManageResponseConvention) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetWorldConventionManageResponseConvention) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetWorldConventionManageResponseConvention) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseConvention) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseConvention) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseConvention) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetWorldConventionManageResponseConvention) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetWorldConventionManageResponseConvention) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetWorldConventionManageResponseConvention) UnsetDescription() {
+	o.Description.Unset()
+}
+
 // GetStatus returns the Status field value
-func (o *ListWorldTradeMineItem) GetStatus() string {
+func (o *GetWorldConventionManageResponseConvention) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -10486,7 +5163,7 @@ func (o *ListWorldTradeMineItem) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineItem) GetStatusOk() (*string, bool) {
+func (o *GetWorldConventionManageResponseConvention) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -10494,296 +5171,1581 @@ func (o *ListWorldTradeMineItem) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *ListWorldTradeMineItem) SetStatus(v string) {
+func (o *GetWorldConventionManageResponseConvention) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListWorldTradeMineItem) GetCreatedAt() time.Time {
+// GetStartsAt returns the StartsAt field value
+func (o *GetWorldConventionManageResponseConvention) GetStartsAt() string {
 	if o == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.StartsAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetStartsAtOk returns a tuple with the StartsAt field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineItem) GetCreatedAtOk() (*time.Time, bool) {
+func (o *GetWorldConventionManageResponseConvention) GetStartsAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.StartsAt, true
 }
 
-// SetCreatedAt sets field value
-func (o *ListWorldTradeMineItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+// SetStartsAt sets field value
+func (o *GetWorldConventionManageResponseConvention) SetStartsAt(v string) {
+	o.StartsAt = v
 }
 
-// GetItems returns the Items field value
-func (o *ListWorldTradeMineItem) GetItems() []ListWorldTradeMineItemItems {
+// GetEndsAt returns the EndsAt field value
+func (o *GetWorldConventionManageResponseConvention) GetEndsAt() string {
 	if o == nil {
-		var ret []ListWorldTradeMineItemItems
+		var ret string
 		return ret
 	}
 
-	return o.Items
+	return o.EndsAt
 }
 
-// GetItemsOk returns a tuple with the Items field value
+// GetEndsAtOk returns a tuple with the EndsAt field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineItem) GetItemsOk() ([]ListWorldTradeMineItemItems, bool) {
+func (o *GetWorldConventionManageResponseConvention) GetEndsAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.EndsAt, true
 }
 
-// SetItems sets field value
-func (o *ListWorldTradeMineItem) SetItems(v []ListWorldTradeMineItemItems) {
-	o.Items = v
+// SetEndsAt sets field value
+func (o *GetWorldConventionManageResponseConvention) SetEndsAt(v string) {
+	o.EndsAt = v
 }
 
-func (o ListWorldTradeMineItem) MarshalJSON() ([]byte, error) {
+// GetOpensHour returns the OpensHour field value
+func (o *GetWorldConventionManageResponseConvention) GetOpensHour() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.OpensHour
+}
+
+// GetOpensHourOk returns a tuple with the OpensHour field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetOpensHourOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OpensHour, true
+}
+
+// SetOpensHour sets field value
+func (o *GetWorldConventionManageResponseConvention) SetOpensHour(v float32) {
+	o.OpensHour = v
+}
+
+// GetClosesHour returns the ClosesHour field value
+func (o *GetWorldConventionManageResponseConvention) GetClosesHour() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ClosesHour
+}
+
+// GetClosesHourOk returns a tuple with the ClosesHour field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetClosesHourOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ClosesHour, true
+}
+
+// SetClosesHour sets field value
+func (o *GetWorldConventionManageResponseConvention) SetClosesHour(v float32) {
+	o.ClosesHour = v
+}
+
+// GetTimezone returns the Timezone field value
+func (o *GetWorldConventionManageResponseConvention) GetTimezone() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetTimezoneOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Timezone, true
+}
+
+// SetTimezone sets field value
+func (o *GetWorldConventionManageResponseConvention) SetTimezone(v string) {
+	o.Timezone = v
+}
+
+// GetTheme returns the Theme field value
+func (o *GetWorldConventionManageResponseConvention) GetTheme() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Theme
+}
+
+// GetThemeOk returns a tuple with the Theme field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetThemeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Theme, true
+}
+
+// SetTheme sets field value
+func (o *GetWorldConventionManageResponseConvention) SetTheme(v string) {
+	o.Theme = v
+}
+
+// GetBookingMode returns the BookingMode field value
+func (o *GetWorldConventionManageResponseConvention) GetBookingMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookingMode
+}
+
+// GetBookingModeOk returns a tuple with the BookingMode field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetBookingModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookingMode, true
+}
+
+// SetBookingMode sets field value
+func (o *GetWorldConventionManageResponseConvention) SetBookingMode(v string) {
+	o.BookingMode = v
+}
+
+// GetRevenueShareBps returns the RevenueShareBps field value
+func (o *GetWorldConventionManageResponseConvention) GetRevenueShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RevenueShareBps
+}
+
+// GetRevenueShareBpsOk returns a tuple with the RevenueShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetRevenueShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RevenueShareBps, true
+}
+
+// SetRevenueShareBps sets field value
+func (o *GetWorldConventionManageResponseConvention) SetRevenueShareBps(v float32) {
+	o.RevenueShareBps = v
+}
+
+// GetSellerEventId returns the SellerEventId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseConvention) GetSellerEventId() string {
+	if o == nil || o.SellerEventId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerEventId.Get()
+}
+
+// GetSellerEventIdOk returns a tuple with the SellerEventId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseConvention) GetSellerEventIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerEventId.Get(), o.SellerEventId.IsSet()
+}
+
+// HasSellerEventId returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseConvention) HasSellerEventId() bool {
+	if o != nil && o.SellerEventId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerEventId gets a reference to the given NullableString and assigns it to the SellerEventId field.
+func (o *GetWorldConventionManageResponseConvention) SetSellerEventId(v string) {
+	o.SellerEventId.Set(&v)
+}
+// SetSellerEventIdNil sets the value for SellerEventId to be an explicit nil
+func (o *GetWorldConventionManageResponseConvention) SetSellerEventIdNil() {
+	o.SellerEventId.Set(nil)
+}
+
+// UnsetSellerEventId ensures that no value is present for SellerEventId, not even an explicit nil
+func (o *GetWorldConventionManageResponseConvention) UnsetSellerEventId() {
+	o.SellerEventId.Unset()
+}
+
+// GetFloorPlanVersion returns the FloorPlanVersion field value
+func (o *GetWorldConventionManageResponseConvention) GetFloorPlanVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FloorPlanVersion
+}
+
+// GetFloorPlanVersionOk returns a tuple with the FloorPlanVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseConvention) GetFloorPlanVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FloorPlanVersion, true
+}
+
+// SetFloorPlanVersion sets field value
+func (o *GetWorldConventionManageResponseConvention) SetFloorPlanVersion(v float32) {
+	o.FloorPlanVersion = v
+}
+
+func (o GetWorldConventionManageResponseConvention) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if true {
 		toSerialize["status"] = o.Status
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["startsAt"] = o.StartsAt
 	}
 	if true {
-		toSerialize["items"] = o.Items
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if true {
+		toSerialize["opensHour"] = o.OpensHour
+	}
+	if true {
+		toSerialize["closesHour"] = o.ClosesHour
+	}
+	if true {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if true {
+		toSerialize["theme"] = o.Theme
+	}
+	if true {
+		toSerialize["bookingMode"] = o.BookingMode
+	}
+	if true {
+		toSerialize["revenueShareBps"] = o.RevenueShareBps
+	}
+	if o.SellerEventId.IsSet() {
+		toSerialize["sellerEventId"] = o.SellerEventId.Get()
+	}
+	if true {
+		toSerialize["floorPlanVersion"] = o.FloorPlanVersion
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldTradeMineItem struct {
-	value *ListWorldTradeMineItem
+type NullableGetWorldConventionManageResponseConvention struct {
+	value *GetWorldConventionManageResponseConvention
 	isSet bool
 }
 
-func (v NullableListWorldTradeMineItem) Get() *ListWorldTradeMineItem {
+func (v NullableGetWorldConventionManageResponseConvention) Get() *GetWorldConventionManageResponseConvention {
 	return v.value
 }
 
-func (v *NullableListWorldTradeMineItem) Set(val *ListWorldTradeMineItem) {
+func (v *NullableGetWorldConventionManageResponseConvention) Set(val *GetWorldConventionManageResponseConvention) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldTradeMineItem) IsSet() bool {
+func (v NullableGetWorldConventionManageResponseConvention) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldTradeMineItem) Unset() {
+func (v *NullableGetWorldConventionManageResponseConvention) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldTradeMineItem(val *ListWorldTradeMineItem) *NullableListWorldTradeMineItem {
-	return &NullableListWorldTradeMineItem{value: val, isSet: true}
+func NewNullableGetWorldConventionManageResponseConvention(val *GetWorldConventionManageResponseConvention) *NullableGetWorldConventionManageResponseConvention {
+	return &NullableGetWorldConventionManageResponseConvention{value: val, isSet: true}
 }
 
-func (v NullableListWorldTradeMineItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionManageResponseConvention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldTradeMineItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionManageResponseConvention) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldTradeMineItemItems struct for ListWorldTradeMineItemItems
-type ListWorldTradeMineItemItems struct {
-	VerifiedAt NullableTime `json:"verifiedAt,omitempty"`
-	FailedAt NullableTime `json:"failedAt,omitempty"`
+// GetWorldConventionManageResponseSellers struct for GetWorldConventionManageResponseSellers
+type GetWorldConventionManageResponseSellers struct {
+	ExhibitorId string `json:"exhibitorId"`
+	UserId string `json:"userId"`
+	Name string `json:"name"`
+	Status string `json:"status"`
+	TierId NullableString `json:"tierId,omitempty"`
+	BoothKey NullableString `json:"boothKey,omitempty"`
+	FeeCents float32 `json:"feeCents"`
+	PaidCents float32 `json:"paidCents"`
+	Paid bool `json:"paid"`
+	PaymentRail NullableString `json:"paymentRail,omitempty"`
+	CheckedInAt NullableString `json:"checkedInAt,omitempty"`
+	ListingIds []string `json:"listingIds"`
+	Note NullableString `json:"note,omitempty"`
+	AppliedAt string `json:"appliedAt"`
 }
 
-// NewListWorldTradeMineItemItems instantiates a new ListWorldTradeMineItemItems object
+// NewGetWorldConventionManageResponseSellers instantiates a new GetWorldConventionManageResponseSellers object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeMineItemItems() *ListWorldTradeMineItemItems {
-	this := ListWorldTradeMineItemItems{}
+func NewGetWorldConventionManageResponseSellers(exhibitorId string, userId string, name string, status string, feeCents float32, paidCents float32, paid bool, listingIds []string, appliedAt string) *GetWorldConventionManageResponseSellers {
+	this := GetWorldConventionManageResponseSellers{}
+	this.ExhibitorId = exhibitorId
+	this.UserId = userId
+	this.Name = name
+	this.Status = status
+	this.FeeCents = feeCents
+	this.PaidCents = paidCents
+	this.Paid = paid
+	this.ListingIds = listingIds
+	this.AppliedAt = appliedAt
 	return &this
 }
 
-// NewListWorldTradeMineItemItemsWithDefaults instantiates a new ListWorldTradeMineItemItems object
+// NewGetWorldConventionManageResponseSellersWithDefaults instantiates a new GetWorldConventionManageResponseSellers object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeMineItemItemsWithDefaults() *ListWorldTradeMineItemItems {
-	this := ListWorldTradeMineItemItems{}
+func NewGetWorldConventionManageResponseSellersWithDefaults() *GetWorldConventionManageResponseSellers {
+	this := GetWorldConventionManageResponseSellers{}
 	return &this
 }
 
-// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldTradeMineItemItems) GetVerifiedAt() time.Time {
-	if o == nil || o.VerifiedAt.Get() == nil {
-		var ret time.Time
+// GetExhibitorId returns the ExhibitorId field value
+func (o *GetWorldConventionManageResponseSellers) GetExhibitorId() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.VerifiedAt.Get()
+
+	return o.ExhibitorId
 }
 
-// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
+// GetExhibitorIdOk returns a tuple with the ExhibitorId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldTradeMineItemItems) GetVerifiedAtOk() (*time.Time, bool) {
+func (o *GetWorldConventionManageResponseSellers) GetExhibitorIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.VerifiedAt.Get(), o.VerifiedAt.IsSet()
+	return &o.ExhibitorId, true
 }
 
-// HasVerifiedAt returns a boolean if a field has been set.
-func (o *ListWorldTradeMineItemItems) HasVerifiedAt() bool {
-	if o != nil && o.VerifiedAt.IsSet() {
+// SetExhibitorId sets field value
+func (o *GetWorldConventionManageResponseSellers) SetExhibitorId(v string) {
+	o.ExhibitorId = v
+}
+
+// GetUserId returns the UserId field value
+func (o *GetWorldConventionManageResponseSellers) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *GetWorldConventionManageResponseSellers) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetName returns the Name field value
+func (o *GetWorldConventionManageResponseSellers) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldConventionManageResponseSellers) SetName(v string) {
+	o.Name = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldConventionManageResponseSellers) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWorldConventionManageResponseSellers) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetTierId returns the TierId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseSellers) GetTierId() string {
+	if o == nil || o.TierId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TierId.Get()
+}
+
+// GetTierIdOk returns a tuple with the TierId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseSellers) GetTierIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TierId.Get(), o.TierId.IsSet()
+}
+
+// HasTierId returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseSellers) HasTierId() bool {
+	if o != nil && o.TierId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVerifiedAt gets a reference to the given NullableTime and assigns it to the VerifiedAt field.
-func (o *ListWorldTradeMineItemItems) SetVerifiedAt(v time.Time) {
-	o.VerifiedAt.Set(&v)
+// SetTierId gets a reference to the given NullableString and assigns it to the TierId field.
+func (o *GetWorldConventionManageResponseSellers) SetTierId(v string) {
+	o.TierId.Set(&v)
 }
-// SetVerifiedAtNil sets the value for VerifiedAt to be an explicit nil
-func (o *ListWorldTradeMineItemItems) SetVerifiedAtNil() {
-	o.VerifiedAt.Set(nil)
-}
-
-// UnsetVerifiedAt ensures that no value is present for VerifiedAt, not even an explicit nil
-func (o *ListWorldTradeMineItemItems) UnsetVerifiedAt() {
-	o.VerifiedAt.Unset()
+// SetTierIdNil sets the value for TierId to be an explicit nil
+func (o *GetWorldConventionManageResponseSellers) SetTierIdNil() {
+	o.TierId.Set(nil)
 }
 
-// GetFailedAt returns the FailedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldTradeMineItemItems) GetFailedAt() time.Time {
-	if o == nil || o.FailedAt.Get() == nil {
-		var ret time.Time
+// UnsetTierId ensures that no value is present for TierId, not even an explicit nil
+func (o *GetWorldConventionManageResponseSellers) UnsetTierId() {
+	o.TierId.Unset()
+}
+
+// GetBoothKey returns the BoothKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseSellers) GetBoothKey() string {
+	if o == nil || o.BoothKey.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.FailedAt.Get()
+	return *o.BoothKey.Get()
 }
 
-// GetFailedAtOk returns a tuple with the FailedAt field value if set, nil otherwise
+// GetBoothKeyOk returns a tuple with the BoothKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldTradeMineItemItems) GetFailedAtOk() (*time.Time, bool) {
+func (o *GetWorldConventionManageResponseSellers) GetBoothKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.FailedAt.Get(), o.FailedAt.IsSet()
+	return o.BoothKey.Get(), o.BoothKey.IsSet()
 }
 
-// HasFailedAt returns a boolean if a field has been set.
-func (o *ListWorldTradeMineItemItems) HasFailedAt() bool {
-	if o != nil && o.FailedAt.IsSet() {
+// HasBoothKey returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseSellers) HasBoothKey() bool {
+	if o != nil && o.BoothKey.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFailedAt gets a reference to the given NullableTime and assigns it to the FailedAt field.
-func (o *ListWorldTradeMineItemItems) SetFailedAt(v time.Time) {
-	o.FailedAt.Set(&v)
+// SetBoothKey gets a reference to the given NullableString and assigns it to the BoothKey field.
+func (o *GetWorldConventionManageResponseSellers) SetBoothKey(v string) {
+	o.BoothKey.Set(&v)
 }
-// SetFailedAtNil sets the value for FailedAt to be an explicit nil
-func (o *ListWorldTradeMineItemItems) SetFailedAtNil() {
-	o.FailedAt.Set(nil)
-}
-
-// UnsetFailedAt ensures that no value is present for FailedAt, not even an explicit nil
-func (o *ListWorldTradeMineItemItems) UnsetFailedAt() {
-	o.FailedAt.Unset()
+// SetBoothKeyNil sets the value for BoothKey to be an explicit nil
+func (o *GetWorldConventionManageResponseSellers) SetBoothKeyNil() {
+	o.BoothKey.Set(nil)
 }
 
-func (o ListWorldTradeMineItemItems) MarshalJSON() ([]byte, error) {
+// UnsetBoothKey ensures that no value is present for BoothKey, not even an explicit nil
+func (o *GetWorldConventionManageResponseSellers) UnsetBoothKey() {
+	o.BoothKey.Unset()
+}
+
+// GetFeeCents returns the FeeCents field value
+func (o *GetWorldConventionManageResponseSellers) GetFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FeeCents
+}
+
+// GetFeeCentsOk returns a tuple with the FeeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCents, true
+}
+
+// SetFeeCents sets field value
+func (o *GetWorldConventionManageResponseSellers) SetFeeCents(v float32) {
+	o.FeeCents = v
+}
+
+// GetPaidCents returns the PaidCents field value
+func (o *GetWorldConventionManageResponseSellers) GetPaidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PaidCents
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaidCents, true
+}
+
+// SetPaidCents sets field value
+func (o *GetWorldConventionManageResponseSellers) SetPaidCents(v float32) {
+	o.PaidCents = v
+}
+
+// GetPaid returns the Paid field value
+func (o *GetWorldConventionManageResponseSellers) GetPaid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetPaidOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *GetWorldConventionManageResponseSellers) SetPaid(v bool) {
+	o.Paid = v
+}
+
+// GetPaymentRail returns the PaymentRail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseSellers) GetPaymentRail() string {
+	if o == nil || o.PaymentRail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaymentRail.Get()
+}
+
+// GetPaymentRailOk returns a tuple with the PaymentRail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseSellers) GetPaymentRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaymentRail.Get(), o.PaymentRail.IsSet()
+}
+
+// HasPaymentRail returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseSellers) HasPaymentRail() bool {
+	if o != nil && o.PaymentRail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentRail gets a reference to the given NullableString and assigns it to the PaymentRail field.
+func (o *GetWorldConventionManageResponseSellers) SetPaymentRail(v string) {
+	o.PaymentRail.Set(&v)
+}
+// SetPaymentRailNil sets the value for PaymentRail to be an explicit nil
+func (o *GetWorldConventionManageResponseSellers) SetPaymentRailNil() {
+	o.PaymentRail.Set(nil)
+}
+
+// UnsetPaymentRail ensures that no value is present for PaymentRail, not even an explicit nil
+func (o *GetWorldConventionManageResponseSellers) UnsetPaymentRail() {
+	o.PaymentRail.Unset()
+}
+
+// GetCheckedInAt returns the CheckedInAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseSellers) GetCheckedInAt() string {
+	if o == nil || o.CheckedInAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CheckedInAt.Get()
+}
+
+// GetCheckedInAtOk returns a tuple with the CheckedInAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseSellers) GetCheckedInAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CheckedInAt.Get(), o.CheckedInAt.IsSet()
+}
+
+// HasCheckedInAt returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseSellers) HasCheckedInAt() bool {
+	if o != nil && o.CheckedInAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckedInAt gets a reference to the given NullableString and assigns it to the CheckedInAt field.
+func (o *GetWorldConventionManageResponseSellers) SetCheckedInAt(v string) {
+	o.CheckedInAt.Set(&v)
+}
+// SetCheckedInAtNil sets the value for CheckedInAt to be an explicit nil
+func (o *GetWorldConventionManageResponseSellers) SetCheckedInAtNil() {
+	o.CheckedInAt.Set(nil)
+}
+
+// UnsetCheckedInAt ensures that no value is present for CheckedInAt, not even an explicit nil
+func (o *GetWorldConventionManageResponseSellers) UnsetCheckedInAt() {
+	o.CheckedInAt.Unset()
+}
+
+// GetListingIds returns the ListingIds field value
+func (o *GetWorldConventionManageResponseSellers) GetListingIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.ListingIds
+}
+
+// GetListingIdsOk returns a tuple with the ListingIds field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetListingIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingIds, true
+}
+
+// SetListingIds sets field value
+func (o *GetWorldConventionManageResponseSellers) SetListingIds(v []string) {
+	o.ListingIds = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldConventionManageResponseSellers) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldConventionManageResponseSellers) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *GetWorldConventionManageResponseSellers) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *GetWorldConventionManageResponseSellers) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *GetWorldConventionManageResponseSellers) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *GetWorldConventionManageResponseSellers) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetAppliedAt returns the AppliedAt field value
+func (o *GetWorldConventionManageResponseSellers) GetAppliedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AppliedAt
+}
+
+// GetAppliedAtOk returns a tuple with the AppliedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseSellers) GetAppliedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AppliedAt, true
+}
+
+// SetAppliedAt sets field value
+func (o *GetWorldConventionManageResponseSellers) SetAppliedAt(v string) {
+	o.AppliedAt = v
+}
+
+func (o GetWorldConventionManageResponseSellers) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.VerifiedAt.IsSet() {
-		toSerialize["verifiedAt"] = o.VerifiedAt.Get()
+	if true {
+		toSerialize["exhibitorId"] = o.ExhibitorId
 	}
-	if o.FailedAt.IsSet() {
-		toSerialize["failedAt"] = o.FailedAt.Get()
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.TierId.IsSet() {
+		toSerialize["tierId"] = o.TierId.Get()
+	}
+	if o.BoothKey.IsSet() {
+		toSerialize["boothKey"] = o.BoothKey.Get()
+	}
+	if true {
+		toSerialize["feeCents"] = o.FeeCents
+	}
+	if true {
+		toSerialize["paidCents"] = o.PaidCents
+	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	if o.PaymentRail.IsSet() {
+		toSerialize["paymentRail"] = o.PaymentRail.Get()
+	}
+	if o.CheckedInAt.IsSet() {
+		toSerialize["checkedInAt"] = o.CheckedInAt.Get()
+	}
+	if true {
+		toSerialize["listingIds"] = o.ListingIds
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["appliedAt"] = o.AppliedAt
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldTradeMineItemItems struct {
-	value *ListWorldTradeMineItemItems
+type NullableGetWorldConventionManageResponseSellers struct {
+	value *GetWorldConventionManageResponseSellers
 	isSet bool
 }
 
-func (v NullableListWorldTradeMineItemItems) Get() *ListWorldTradeMineItemItems {
+func (v NullableGetWorldConventionManageResponseSellers) Get() *GetWorldConventionManageResponseSellers {
 	return v.value
 }
 
-func (v *NullableListWorldTradeMineItemItems) Set(val *ListWorldTradeMineItemItems) {
+func (v *NullableGetWorldConventionManageResponseSellers) Set(val *GetWorldConventionManageResponseSellers) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldTradeMineItemItems) IsSet() bool {
+func (v NullableGetWorldConventionManageResponseSellers) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldTradeMineItemItems) Unset() {
+func (v *NullableGetWorldConventionManageResponseSellers) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldTradeMineItemItems(val *ListWorldTradeMineItemItems) *NullableListWorldTradeMineItemItems {
-	return &NullableListWorldTradeMineItemItems{value: val, isSet: true}
+func NewNullableGetWorldConventionManageResponseSellers(val *GetWorldConventionManageResponseSellers) *NullableGetWorldConventionManageResponseSellers {
+	return &NullableGetWorldConventionManageResponseSellers{value: val, isSet: true}
 }
 
-func (v NullableListWorldTradeMineItemItems) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldConventionManageResponseSellers) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldTradeMineItemItems) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldConventionManageResponseSellers) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldTradeMineResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldTradeMineResponse struct {
-	// The rows.
-	Data []ListWorldTradeMineItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetWorldConventionManageResponseTiers struct for GetWorldConventionManageResponseTiers
+type GetWorldConventionManageResponseTiers struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Size string `json:"size"`
+	PriceCents float32 `json:"priceCents"`
+	Count float32 `json:"count"`
+	Perks []string `json:"perks"`
 }
 
-// NewListWorldTradeMineResponse instantiates a new ListWorldTradeMineResponse object
+// NewGetWorldConventionManageResponseTiers instantiates a new GetWorldConventionManageResponseTiers object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeMineResponse(data []ListWorldTradeMineItem) *ListWorldTradeMineResponse {
-	this := ListWorldTradeMineResponse{}
+func NewGetWorldConventionManageResponseTiers(id string, name string, size string, priceCents float32, count float32, perks []string) *GetWorldConventionManageResponseTiers {
+	this := GetWorldConventionManageResponseTiers{}
+	this.Id = id
+	this.Name = name
+	this.Size = size
+	this.PriceCents = priceCents
+	this.Count = count
+	this.Perks = perks
+	return &this
+}
+
+// NewGetWorldConventionManageResponseTiersWithDefaults instantiates a new GetWorldConventionManageResponseTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionManageResponseTiersWithDefaults() *GetWorldConventionManageResponseTiers {
+	this := GetWorldConventionManageResponseTiers{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldConventionManageResponseTiers) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldConventionManageResponseTiers) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *GetWorldConventionManageResponseTiers) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldConventionManageResponseTiers) SetName(v string) {
+	o.Name = v
+}
+
+// GetSize returns the Size field value
+func (o *GetWorldConventionManageResponseTiers) GetSize() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Size, true
+}
+
+// SetSize sets field value
+func (o *GetWorldConventionManageResponseTiers) SetSize(v string) {
+	o.Size = v
+}
+
+// GetPriceCents returns the PriceCents field value
+func (o *GetWorldConventionManageResponseTiers) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *GetWorldConventionManageResponseTiers) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+// GetCount returns the Count field value
+func (o *GetWorldConventionManageResponseTiers) GetCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *GetWorldConventionManageResponseTiers) SetCount(v float32) {
+	o.Count = v
+}
+
+// GetPerks returns the Perks field value
+func (o *GetWorldConventionManageResponseTiers) GetPerks() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Perks
+}
+
+// GetPerksOk returns a tuple with the Perks field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseTiers) GetPerksOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Perks, true
+}
+
+// SetPerks sets field value
+func (o *GetWorldConventionManageResponseTiers) SetPerks(v []string) {
+	o.Perks = v
+}
+
+func (o GetWorldConventionManageResponseTiers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["size"] = o.Size
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["count"] = o.Count
+	}
+	if true {
+		toSerialize["perks"] = o.Perks
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionManageResponseTiers struct {
+	value *GetWorldConventionManageResponseTiers
+	isSet bool
+}
+
+func (v NullableGetWorldConventionManageResponseTiers) Get() *GetWorldConventionManageResponseTiers {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionManageResponseTiers) Set(val *GetWorldConventionManageResponseTiers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionManageResponseTiers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionManageResponseTiers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionManageResponseTiers(val *GetWorldConventionManageResponseTiers) *NullableGetWorldConventionManageResponseTiers {
+	return &NullableGetWorldConventionManageResponseTiers{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionManageResponseTiers) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionManageResponseTiers) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionManageResponseVenue struct for GetWorldConventionManageResponseVenue
+type GetWorldConventionManageResponseVenue struct {
+	BookingId string `json:"bookingId"`
+	Name string `json:"name"`
+	Size string `json:"size"`
+	StartsOn string `json:"startsOn"`
+	EndsOn string `json:"endsOn"`
+	TotalCents float32 `json:"totalCents"`
+	Rail string `json:"rail"`
+	Status string `json:"status"`
+}
+
+// NewGetWorldConventionManageResponseVenue instantiates a new GetWorldConventionManageResponseVenue object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionManageResponseVenue(bookingId string, name string, size string, startsOn string, endsOn string, totalCents float32, rail string, status string) *GetWorldConventionManageResponseVenue {
+	this := GetWorldConventionManageResponseVenue{}
+	this.BookingId = bookingId
+	this.Name = name
+	this.Size = size
+	this.StartsOn = startsOn
+	this.EndsOn = endsOn
+	this.TotalCents = totalCents
+	this.Rail = rail
+	this.Status = status
+	return &this
+}
+
+// NewGetWorldConventionManageResponseVenueWithDefaults instantiates a new GetWorldConventionManageResponseVenue object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionManageResponseVenueWithDefaults() *GetWorldConventionManageResponseVenue {
+	this := GetWorldConventionManageResponseVenue{}
+	return &this
+}
+
+// GetBookingId returns the BookingId field value
+func (o *GetWorldConventionManageResponseVenue) GetBookingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookingId
+}
+
+// GetBookingIdOk returns a tuple with the BookingId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetBookingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookingId, true
+}
+
+// SetBookingId sets field value
+func (o *GetWorldConventionManageResponseVenue) SetBookingId(v string) {
+	o.BookingId = v
+}
+
+// GetName returns the Name field value
+func (o *GetWorldConventionManageResponseVenue) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldConventionManageResponseVenue) SetName(v string) {
+	o.Name = v
+}
+
+// GetSize returns the Size field value
+func (o *GetWorldConventionManageResponseVenue) GetSize() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Size, true
+}
+
+// SetSize sets field value
+func (o *GetWorldConventionManageResponseVenue) SetSize(v string) {
+	o.Size = v
+}
+
+// GetStartsOn returns the StartsOn field value
+func (o *GetWorldConventionManageResponseVenue) GetStartsOn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsOn
+}
+
+// GetStartsOnOk returns a tuple with the StartsOn field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetStartsOnOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsOn, true
+}
+
+// SetStartsOn sets field value
+func (o *GetWorldConventionManageResponseVenue) SetStartsOn(v string) {
+	o.StartsOn = v
+}
+
+// GetEndsOn returns the EndsOn field value
+func (o *GetWorldConventionManageResponseVenue) GetEndsOn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsOn
+}
+
+// GetEndsOnOk returns a tuple with the EndsOn field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetEndsOnOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsOn, true
+}
+
+// SetEndsOn sets field value
+func (o *GetWorldConventionManageResponseVenue) SetEndsOn(v string) {
+	o.EndsOn = v
+}
+
+// GetTotalCents returns the TotalCents field value
+func (o *GetWorldConventionManageResponseVenue) GetTotalCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalCents
+}
+
+// GetTotalCentsOk returns a tuple with the TotalCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetTotalCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TotalCents, true
+}
+
+// SetTotalCents sets field value
+func (o *GetWorldConventionManageResponseVenue) SetTotalCents(v float32) {
+	o.TotalCents = v
+}
+
+// GetRail returns the Rail field value
+func (o *GetWorldConventionManageResponseVenue) GetRail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Rail
+}
+
+// GetRailOk returns a tuple with the Rail field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rail, true
+}
+
+// SetRail sets field value
+func (o *GetWorldConventionManageResponseVenue) SetRail(v string) {
+	o.Rail = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldConventionManageResponseVenue) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseVenue) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWorldConventionManageResponseVenue) SetStatus(v string) {
+	o.Status = v
+}
+
+func (o GetWorldConventionManageResponseVenue) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bookingId"] = o.BookingId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["size"] = o.Size
+	}
+	if true {
+		toSerialize["startsOn"] = o.StartsOn
+	}
+	if true {
+		toSerialize["endsOn"] = o.EndsOn
+	}
+	if true {
+		toSerialize["totalCents"] = o.TotalCents
+	}
+	if true {
+		toSerialize["rail"] = o.Rail
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionManageResponseVenue struct {
+	value *GetWorldConventionManageResponseVenue
+	isSet bool
+}
+
+func (v NullableGetWorldConventionManageResponseVenue) Get() *GetWorldConventionManageResponseVenue {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionManageResponseVenue) Set(val *GetWorldConventionManageResponseVenue) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionManageResponseVenue) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionManageResponseVenue) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionManageResponseVenue(val *GetWorldConventionManageResponseVenue) *NullableGetWorldConventionManageResponseVenue {
+	return &NullableGetWorldConventionManageResponseVenue{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionManageResponseVenue) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionManageResponseVenue) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionManageResponseWalkIn Where the organiser walks in to design the hall (the Worlds app's hall builder), and visitors walk in.
+type GetWorldConventionManageResponseWalkIn struct {
+	App string `json:"app"`
+	Web string `json:"web"`
+}
+
+// NewGetWorldConventionManageResponseWalkIn instantiates a new GetWorldConventionManageResponseWalkIn object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionManageResponseWalkIn(app string, web string) *GetWorldConventionManageResponseWalkIn {
+	this := GetWorldConventionManageResponseWalkIn{}
+	this.App = app
+	this.Web = web
+	return &this
+}
+
+// NewGetWorldConventionManageResponseWalkInWithDefaults instantiates a new GetWorldConventionManageResponseWalkIn object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionManageResponseWalkInWithDefaults() *GetWorldConventionManageResponseWalkIn {
+	this := GetWorldConventionManageResponseWalkIn{}
+	return &this
+}
+
+// GetApp returns the App field value
+func (o *GetWorldConventionManageResponseWalkIn) GetApp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.App
+}
+
+// GetAppOk returns a tuple with the App field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseWalkIn) GetAppOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.App, true
+}
+
+// SetApp sets field value
+func (o *GetWorldConventionManageResponseWalkIn) SetApp(v string) {
+	o.App = v
+}
+
+// GetWeb returns the Web field value
+func (o *GetWorldConventionManageResponseWalkIn) GetWeb() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Web
+}
+
+// GetWebOk returns a tuple with the Web field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionManageResponseWalkIn) GetWebOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Web, true
+}
+
+// SetWeb sets field value
+func (o *GetWorldConventionManageResponseWalkIn) SetWeb(v string) {
+	o.Web = v
+}
+
+func (o GetWorldConventionManageResponseWalkIn) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["app"] = o.App
+	}
+	if true {
+		toSerialize["web"] = o.Web
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionManageResponseWalkIn struct {
+	value *GetWorldConventionManageResponseWalkIn
+	isSet bool
+}
+
+func (v NullableGetWorldConventionManageResponseWalkIn) Get() *GetWorldConventionManageResponseWalkIn {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionManageResponseWalkIn) Set(val *GetWorldConventionManageResponseWalkIn) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionManageResponseWalkIn) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionManageResponseWalkIn) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionManageResponseWalkIn(val *GetWorldConventionManageResponseWalkIn) *NullableGetWorldConventionManageResponseWalkIn {
+	return &NullableGetWorldConventionManageResponseWalkIn{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionManageResponseWalkIn) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionManageResponseWalkIn) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionResponse struct for GetWorldConventionResponse
+type GetWorldConventionResponse struct {
+	Data ListWorldConventionsItem `json:"data"`
+}
+
+// NewGetWorldConventionResponse instantiates a new GetWorldConventionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionResponse(data ListWorldConventionsItem) *GetWorldConventionResponse {
+	this := GetWorldConventionResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewListWorldTradeMineResponseWithDefaults instantiates a new ListWorldTradeMineResponse object
+// NewGetWorldConventionResponseWithDefaults instantiates a new GetWorldConventionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeMineResponseWithDefaults() *ListWorldTradeMineResponse {
-	this := ListWorldTradeMineResponse{}
+func NewGetWorldConventionResponseWithDefaults() *GetWorldConventionResponse {
+	this := GetWorldConventionResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *ListWorldTradeMineResponse) GetData() []ListWorldTradeMineItem {
+func (o *GetWorldConventionResponse) GetData() ListWorldConventionsItem {
 	if o == nil {
-		var ret []ListWorldTradeMineItem
+		var ret ListWorldConventionsItem
 		return ret
 	}
 
@@ -10792,7 +6754,2809 @@ func (o *ListWorldTradeMineResponse) GetData() []ListWorldTradeMineItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineResponse) GetDataOk() ([]ListWorldTradeMineItem, bool) {
+func (o *GetWorldConventionResponse) GetDataOk() (*ListWorldConventionsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldConventionResponse) SetData(v ListWorldConventionsItem) {
+	o.Data = v
+}
+
+func (o GetWorldConventionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionResponse struct {
+	value *GetWorldConventionResponse
+	isSet bool
+}
+
+func (v NullableGetWorldConventionResponse) Get() *GetWorldConventionResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionResponse) Set(val *GetWorldConventionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionResponse(val *GetWorldConventionResponse) *NullableGetWorldConventionResponse {
+	return &NullableGetWorldConventionResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponse struct for GetWorldConventionStatusPageResponse
+type GetWorldConventionStatusPageResponse struct {
+	ConventionId string `json:"conventionId"`
+	Status string `json:"status"`
+	Sellers GetWorldConventionStatusPageResponseSellers `json:"sellers"`
+	Booths []GetWorldConventionStatusPageResponseBooths `json:"booths"`
+	Attendance GetWorldConventionStatusPageResponseAttendance `json:"attendance"`
+	Sales GetWorldConventionStatusPageResponseSales `json:"sales"`
+	Money GetWorldConventionStatusPageResponseMoney `json:"money"`
+}
+
+// NewGetWorldConventionStatusPageResponse instantiates a new GetWorldConventionStatusPageResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponse(conventionId string, status string, sellers GetWorldConventionStatusPageResponseSellers, booths []GetWorldConventionStatusPageResponseBooths, attendance GetWorldConventionStatusPageResponseAttendance, sales GetWorldConventionStatusPageResponseSales, money GetWorldConventionStatusPageResponseMoney) *GetWorldConventionStatusPageResponse {
+	this := GetWorldConventionStatusPageResponse{}
+	this.ConventionId = conventionId
+	this.Status = status
+	this.Sellers = sellers
+	this.Booths = booths
+	this.Attendance = attendance
+	this.Sales = sales
+	this.Money = money
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseWithDefaults instantiates a new GetWorldConventionStatusPageResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseWithDefaults() *GetWorldConventionStatusPageResponse {
+	this := GetWorldConventionStatusPageResponse{}
+	return &this
+}
+
+// GetConventionId returns the ConventionId field value
+func (o *GetWorldConventionStatusPageResponse) GetConventionId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ConventionId
+}
+
+// GetConventionIdOk returns a tuple with the ConventionId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetConventionIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConventionId, true
+}
+
+// SetConventionId sets field value
+func (o *GetWorldConventionStatusPageResponse) SetConventionId(v string) {
+	o.ConventionId = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldConventionStatusPageResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWorldConventionStatusPageResponse) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetSellers returns the Sellers field value
+func (o *GetWorldConventionStatusPageResponse) GetSellers() GetWorldConventionStatusPageResponseSellers {
+	if o == nil {
+		var ret GetWorldConventionStatusPageResponseSellers
+		return ret
+	}
+
+	return o.Sellers
+}
+
+// GetSellersOk returns a tuple with the Sellers field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetSellersOk() (*GetWorldConventionStatusPageResponseSellers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sellers, true
+}
+
+// SetSellers sets field value
+func (o *GetWorldConventionStatusPageResponse) SetSellers(v GetWorldConventionStatusPageResponseSellers) {
+	o.Sellers = v
+}
+
+// GetBooths returns the Booths field value
+func (o *GetWorldConventionStatusPageResponse) GetBooths() []GetWorldConventionStatusPageResponseBooths {
+	if o == nil {
+		var ret []GetWorldConventionStatusPageResponseBooths
+		return ret
+	}
+
+	return o.Booths
+}
+
+// GetBoothsOk returns a tuple with the Booths field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetBoothsOk() ([]GetWorldConventionStatusPageResponseBooths, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Booths, true
+}
+
+// SetBooths sets field value
+func (o *GetWorldConventionStatusPageResponse) SetBooths(v []GetWorldConventionStatusPageResponseBooths) {
+	o.Booths = v
+}
+
+// GetAttendance returns the Attendance field value
+func (o *GetWorldConventionStatusPageResponse) GetAttendance() GetWorldConventionStatusPageResponseAttendance {
+	if o == nil {
+		var ret GetWorldConventionStatusPageResponseAttendance
+		return ret
+	}
+
+	return o.Attendance
+}
+
+// GetAttendanceOk returns a tuple with the Attendance field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetAttendanceOk() (*GetWorldConventionStatusPageResponseAttendance, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Attendance, true
+}
+
+// SetAttendance sets field value
+func (o *GetWorldConventionStatusPageResponse) SetAttendance(v GetWorldConventionStatusPageResponseAttendance) {
+	o.Attendance = v
+}
+
+// GetSales returns the Sales field value
+func (o *GetWorldConventionStatusPageResponse) GetSales() GetWorldConventionStatusPageResponseSales {
+	if o == nil {
+		var ret GetWorldConventionStatusPageResponseSales
+		return ret
+	}
+
+	return o.Sales
+}
+
+// GetSalesOk returns a tuple with the Sales field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetSalesOk() (*GetWorldConventionStatusPageResponseSales, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sales, true
+}
+
+// SetSales sets field value
+func (o *GetWorldConventionStatusPageResponse) SetSales(v GetWorldConventionStatusPageResponseSales) {
+	o.Sales = v
+}
+
+// GetMoney returns the Money field value
+func (o *GetWorldConventionStatusPageResponse) GetMoney() GetWorldConventionStatusPageResponseMoney {
+	if o == nil {
+		var ret GetWorldConventionStatusPageResponseMoney
+		return ret
+	}
+
+	return o.Money
+}
+
+// GetMoneyOk returns a tuple with the Money field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponse) GetMoneyOk() (*GetWorldConventionStatusPageResponseMoney, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Money, true
+}
+
+// SetMoney sets field value
+func (o *GetWorldConventionStatusPageResponse) SetMoney(v GetWorldConventionStatusPageResponseMoney) {
+	o.Money = v
+}
+
+func (o GetWorldConventionStatusPageResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["conventionId"] = o.ConventionId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["sellers"] = o.Sellers
+	}
+	if true {
+		toSerialize["booths"] = o.Booths
+	}
+	if true {
+		toSerialize["attendance"] = o.Attendance
+	}
+	if true {
+		toSerialize["sales"] = o.Sales
+	}
+	if true {
+		toSerialize["money"] = o.Money
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponse struct {
+	value *GetWorldConventionStatusPageResponse
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponse) Get() *GetWorldConventionStatusPageResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponse) Set(val *GetWorldConventionStatusPageResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponse(val *GetWorldConventionStatusPageResponse) *NullableGetWorldConventionStatusPageResponse {
+	return &NullableGetWorldConventionStatusPageResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponseAttendance struct for GetWorldConventionStatusPageResponseAttendance
+type GetWorldConventionStatusPageResponseAttendance struct {
+	WalkIns float32 `json:"walkIns"`
+}
+
+// NewGetWorldConventionStatusPageResponseAttendance instantiates a new GetWorldConventionStatusPageResponseAttendance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponseAttendance(walkIns float32) *GetWorldConventionStatusPageResponseAttendance {
+	this := GetWorldConventionStatusPageResponseAttendance{}
+	this.WalkIns = walkIns
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseAttendanceWithDefaults instantiates a new GetWorldConventionStatusPageResponseAttendance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseAttendanceWithDefaults() *GetWorldConventionStatusPageResponseAttendance {
+	this := GetWorldConventionStatusPageResponseAttendance{}
+	return &this
+}
+
+// GetWalkIns returns the WalkIns field value
+func (o *GetWorldConventionStatusPageResponseAttendance) GetWalkIns() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WalkIns
+}
+
+// GetWalkInsOk returns a tuple with the WalkIns field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseAttendance) GetWalkInsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WalkIns, true
+}
+
+// SetWalkIns sets field value
+func (o *GetWorldConventionStatusPageResponseAttendance) SetWalkIns(v float32) {
+	o.WalkIns = v
+}
+
+func (o GetWorldConventionStatusPageResponseAttendance) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["walkIns"] = o.WalkIns
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponseAttendance struct {
+	value *GetWorldConventionStatusPageResponseAttendance
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponseAttendance) Get() *GetWorldConventionStatusPageResponseAttendance {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseAttendance) Set(val *GetWorldConventionStatusPageResponseAttendance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponseAttendance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseAttendance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponseAttendance(val *GetWorldConventionStatusPageResponseAttendance) *NullableGetWorldConventionStatusPageResponseAttendance {
+	return &NullableGetWorldConventionStatusPageResponseAttendance{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponseAttendance) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseAttendance) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponseBooths struct for GetWorldConventionStatusPageResponseBooths
+type GetWorldConventionStatusPageResponseBooths struct {
+	TierId string `json:"tierId"`
+	Name string `json:"name"`
+	Size string `json:"size"`
+	Count float32 `json:"count"`
+	Filled float32 `json:"filled"`
+}
+
+// NewGetWorldConventionStatusPageResponseBooths instantiates a new GetWorldConventionStatusPageResponseBooths object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponseBooths(tierId string, name string, size string, count float32, filled float32) *GetWorldConventionStatusPageResponseBooths {
+	this := GetWorldConventionStatusPageResponseBooths{}
+	this.TierId = tierId
+	this.Name = name
+	this.Size = size
+	this.Count = count
+	this.Filled = filled
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseBoothsWithDefaults instantiates a new GetWorldConventionStatusPageResponseBooths object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseBoothsWithDefaults() *GetWorldConventionStatusPageResponseBooths {
+	this := GetWorldConventionStatusPageResponseBooths{}
+	return &this
+}
+
+// GetTierId returns the TierId field value
+func (o *GetWorldConventionStatusPageResponseBooths) GetTierId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TierId
+}
+
+// GetTierIdOk returns a tuple with the TierId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseBooths) GetTierIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TierId, true
+}
+
+// SetTierId sets field value
+func (o *GetWorldConventionStatusPageResponseBooths) SetTierId(v string) {
+	o.TierId = v
+}
+
+// GetName returns the Name field value
+func (o *GetWorldConventionStatusPageResponseBooths) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseBooths) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldConventionStatusPageResponseBooths) SetName(v string) {
+	o.Name = v
+}
+
+// GetSize returns the Size field value
+func (o *GetWorldConventionStatusPageResponseBooths) GetSize() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseBooths) GetSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Size, true
+}
+
+// SetSize sets field value
+func (o *GetWorldConventionStatusPageResponseBooths) SetSize(v string) {
+	o.Size = v
+}
+
+// GetCount returns the Count field value
+func (o *GetWorldConventionStatusPageResponseBooths) GetCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseBooths) GetCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *GetWorldConventionStatusPageResponseBooths) SetCount(v float32) {
+	o.Count = v
+}
+
+// GetFilled returns the Filled field value
+func (o *GetWorldConventionStatusPageResponseBooths) GetFilled() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Filled
+}
+
+// GetFilledOk returns a tuple with the Filled field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseBooths) GetFilledOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Filled, true
+}
+
+// SetFilled sets field value
+func (o *GetWorldConventionStatusPageResponseBooths) SetFilled(v float32) {
+	o.Filled = v
+}
+
+func (o GetWorldConventionStatusPageResponseBooths) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["tierId"] = o.TierId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["size"] = o.Size
+	}
+	if true {
+		toSerialize["count"] = o.Count
+	}
+	if true {
+		toSerialize["filled"] = o.Filled
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponseBooths struct {
+	value *GetWorldConventionStatusPageResponseBooths
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponseBooths) Get() *GetWorldConventionStatusPageResponseBooths {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseBooths) Set(val *GetWorldConventionStatusPageResponseBooths) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponseBooths) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseBooths) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponseBooths(val *GetWorldConventionStatusPageResponseBooths) *NullableGetWorldConventionStatusPageResponseBooths {
+	return &NullableGetWorldConventionStatusPageResponseBooths{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponseBooths) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseBooths) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponseMoney struct for GetWorldConventionStatusPageResponseMoney
+type GetWorldConventionStatusPageResponseMoney struct {
+	BoothFeesCents float32 `json:"boothFeesCents"`
+	BoothFeesPaid float32 `json:"boothFeesPaid"`
+	BoothFeesOwed float32 `json:"boothFeesOwed"`
+}
+
+// NewGetWorldConventionStatusPageResponseMoney instantiates a new GetWorldConventionStatusPageResponseMoney object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponseMoney(boothFeesCents float32, boothFeesPaid float32, boothFeesOwed float32) *GetWorldConventionStatusPageResponseMoney {
+	this := GetWorldConventionStatusPageResponseMoney{}
+	this.BoothFeesCents = boothFeesCents
+	this.BoothFeesPaid = boothFeesPaid
+	this.BoothFeesOwed = boothFeesOwed
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseMoneyWithDefaults instantiates a new GetWorldConventionStatusPageResponseMoney object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseMoneyWithDefaults() *GetWorldConventionStatusPageResponseMoney {
+	this := GetWorldConventionStatusPageResponseMoney{}
+	return &this
+}
+
+// GetBoothFeesCents returns the BoothFeesCents field value
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BoothFeesCents
+}
+
+// GetBoothFeesCentsOk returns a tuple with the BoothFeesCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothFeesCents, true
+}
+
+// SetBoothFeesCents sets field value
+func (o *GetWorldConventionStatusPageResponseMoney) SetBoothFeesCents(v float32) {
+	o.BoothFeesCents = v
+}
+
+// GetBoothFeesPaid returns the BoothFeesPaid field value
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesPaid() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BoothFeesPaid
+}
+
+// GetBoothFeesPaidOk returns a tuple with the BoothFeesPaid field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesPaidOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothFeesPaid, true
+}
+
+// SetBoothFeesPaid sets field value
+func (o *GetWorldConventionStatusPageResponseMoney) SetBoothFeesPaid(v float32) {
+	o.BoothFeesPaid = v
+}
+
+// GetBoothFeesOwed returns the BoothFeesOwed field value
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesOwed() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BoothFeesOwed
+}
+
+// GetBoothFeesOwedOk returns a tuple with the BoothFeesOwed field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseMoney) GetBoothFeesOwedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothFeesOwed, true
+}
+
+// SetBoothFeesOwed sets field value
+func (o *GetWorldConventionStatusPageResponseMoney) SetBoothFeesOwed(v float32) {
+	o.BoothFeesOwed = v
+}
+
+func (o GetWorldConventionStatusPageResponseMoney) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["boothFeesCents"] = o.BoothFeesCents
+	}
+	if true {
+		toSerialize["boothFeesPaid"] = o.BoothFeesPaid
+	}
+	if true {
+		toSerialize["boothFeesOwed"] = o.BoothFeesOwed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponseMoney struct {
+	value *GetWorldConventionStatusPageResponseMoney
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponseMoney) Get() *GetWorldConventionStatusPageResponseMoney {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseMoney) Set(val *GetWorldConventionStatusPageResponseMoney) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponseMoney) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseMoney) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponseMoney(val *GetWorldConventionStatusPageResponseMoney) *NullableGetWorldConventionStatusPageResponseMoney {
+	return &NullableGetWorldConventionStatusPageResponseMoney{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponseMoney) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseMoney) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponseSales struct for GetWorldConventionStatusPageResponseSales
+type GetWorldConventionStatusPageResponseSales struct {
+	Count float32 `json:"count"`
+	GrossCents float32 `json:"grossCents"`
+	ShareCents float32 `json:"shareCents"`
+}
+
+// NewGetWorldConventionStatusPageResponseSales instantiates a new GetWorldConventionStatusPageResponseSales object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponseSales(count float32, grossCents float32, shareCents float32) *GetWorldConventionStatusPageResponseSales {
+	this := GetWorldConventionStatusPageResponseSales{}
+	this.Count = count
+	this.GrossCents = grossCents
+	this.ShareCents = shareCents
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseSalesWithDefaults instantiates a new GetWorldConventionStatusPageResponseSales object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseSalesWithDefaults() *GetWorldConventionStatusPageResponseSales {
+	this := GetWorldConventionStatusPageResponseSales{}
+	return &this
+}
+
+// GetCount returns the Count field value
+func (o *GetWorldConventionStatusPageResponseSales) GetCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSales) GetCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *GetWorldConventionStatusPageResponseSales) SetCount(v float32) {
+	o.Count = v
+}
+
+// GetGrossCents returns the GrossCents field value
+func (o *GetWorldConventionStatusPageResponseSales) GetGrossCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.GrossCents
+}
+
+// GetGrossCentsOk returns a tuple with the GrossCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSales) GetGrossCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.GrossCents, true
+}
+
+// SetGrossCents sets field value
+func (o *GetWorldConventionStatusPageResponseSales) SetGrossCents(v float32) {
+	o.GrossCents = v
+}
+
+// GetShareCents returns the ShareCents field value
+func (o *GetWorldConventionStatusPageResponseSales) GetShareCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareCents
+}
+
+// GetShareCentsOk returns a tuple with the ShareCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSales) GetShareCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareCents, true
+}
+
+// SetShareCents sets field value
+func (o *GetWorldConventionStatusPageResponseSales) SetShareCents(v float32) {
+	o.ShareCents = v
+}
+
+func (o GetWorldConventionStatusPageResponseSales) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["count"] = o.Count
+	}
+	if true {
+		toSerialize["grossCents"] = o.GrossCents
+	}
+	if true {
+		toSerialize["shareCents"] = o.ShareCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponseSales struct {
+	value *GetWorldConventionStatusPageResponseSales
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSales) Get() *GetWorldConventionStatusPageResponseSales {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSales) Set(val *GetWorldConventionStatusPageResponseSales) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSales) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSales) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponseSales(val *GetWorldConventionStatusPageResponseSales) *NullableGetWorldConventionStatusPageResponseSales {
+	return &NullableGetWorldConventionStatusPageResponseSales{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSales) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSales) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldConventionStatusPageResponseSellers struct for GetWorldConventionStatusPageResponseSellers
+type GetWorldConventionStatusPageResponseSellers struct {
+	Applied float32 `json:"applied"`
+	Accepted float32 `json:"accepted"`
+	CheckedIn float32 `json:"checkedIn"`
+	Declined float32 `json:"declined"`
+}
+
+// NewGetWorldConventionStatusPageResponseSellers instantiates a new GetWorldConventionStatusPageResponseSellers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldConventionStatusPageResponseSellers(applied float32, accepted float32, checkedIn float32, declined float32) *GetWorldConventionStatusPageResponseSellers {
+	this := GetWorldConventionStatusPageResponseSellers{}
+	this.Applied = applied
+	this.Accepted = accepted
+	this.CheckedIn = checkedIn
+	this.Declined = declined
+	return &this
+}
+
+// NewGetWorldConventionStatusPageResponseSellersWithDefaults instantiates a new GetWorldConventionStatusPageResponseSellers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldConventionStatusPageResponseSellersWithDefaults() *GetWorldConventionStatusPageResponseSellers {
+	this := GetWorldConventionStatusPageResponseSellers{}
+	return &this
+}
+
+// GetApplied returns the Applied field value
+func (o *GetWorldConventionStatusPageResponseSellers) GetApplied() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Applied
+}
+
+// GetAppliedOk returns a tuple with the Applied field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSellers) GetAppliedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Applied, true
+}
+
+// SetApplied sets field value
+func (o *GetWorldConventionStatusPageResponseSellers) SetApplied(v float32) {
+	o.Applied = v
+}
+
+// GetAccepted returns the Accepted field value
+func (o *GetWorldConventionStatusPageResponseSellers) GetAccepted() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Accepted
+}
+
+// GetAcceptedOk returns a tuple with the Accepted field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSellers) GetAcceptedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Accepted, true
+}
+
+// SetAccepted sets field value
+func (o *GetWorldConventionStatusPageResponseSellers) SetAccepted(v float32) {
+	o.Accepted = v
+}
+
+// GetCheckedIn returns the CheckedIn field value
+func (o *GetWorldConventionStatusPageResponseSellers) GetCheckedIn() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CheckedIn
+}
+
+// GetCheckedInOk returns a tuple with the CheckedIn field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSellers) GetCheckedInOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CheckedIn, true
+}
+
+// SetCheckedIn sets field value
+func (o *GetWorldConventionStatusPageResponseSellers) SetCheckedIn(v float32) {
+	o.CheckedIn = v
+}
+
+// GetDeclined returns the Declined field value
+func (o *GetWorldConventionStatusPageResponseSellers) GetDeclined() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Declined
+}
+
+// GetDeclinedOk returns a tuple with the Declined field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldConventionStatusPageResponseSellers) GetDeclinedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Declined, true
+}
+
+// SetDeclined sets field value
+func (o *GetWorldConventionStatusPageResponseSellers) SetDeclined(v float32) {
+	o.Declined = v
+}
+
+func (o GetWorldConventionStatusPageResponseSellers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applied"] = o.Applied
+	}
+	if true {
+		toSerialize["accepted"] = o.Accepted
+	}
+	if true {
+		toSerialize["checkedIn"] = o.CheckedIn
+	}
+	if true {
+		toSerialize["declined"] = o.Declined
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldConventionStatusPageResponseSellers struct {
+	value *GetWorldConventionStatusPageResponseSellers
+	isSet bool
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSellers) Get() *GetWorldConventionStatusPageResponseSellers {
+	return v.value
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSellers) Set(val *GetWorldConventionStatusPageResponseSellers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSellers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSellers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldConventionStatusPageResponseSellers(val *GetWorldConventionStatusPageResponseSellers) *NullableGetWorldConventionStatusPageResponseSellers {
+	return &NullableGetWorldConventionStatusPageResponseSellers{value: val, isSet: true}
+}
+
+func (v NullableGetWorldConventionStatusPageResponseSellers) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldConventionStatusPageResponseSellers) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCosmBalanceResponse struct for GetWorldCosmBalanceResponse
+type GetWorldCosmBalanceResponse struct {
+	Data GetWorldCosmBalanceResponseData `json:"data"`
+}
+
+// NewGetWorldCosmBalanceResponse instantiates a new GetWorldCosmBalanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCosmBalanceResponse(data GetWorldCosmBalanceResponseData) *GetWorldCosmBalanceResponse {
+	this := GetWorldCosmBalanceResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldCosmBalanceResponseWithDefaults instantiates a new GetWorldCosmBalanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCosmBalanceResponseWithDefaults() *GetWorldCosmBalanceResponse {
+	this := GetWorldCosmBalanceResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldCosmBalanceResponse) GetData() GetWorldCosmBalanceResponseData {
+	if o == nil {
+		var ret GetWorldCosmBalanceResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCosmBalanceResponse) GetDataOk() (*GetWorldCosmBalanceResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldCosmBalanceResponse) SetData(v GetWorldCosmBalanceResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldCosmBalanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCosmBalanceResponse struct {
+	value *GetWorldCosmBalanceResponse
+	isSet bool
+}
+
+func (v NullableGetWorldCosmBalanceResponse) Get() *GetWorldCosmBalanceResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldCosmBalanceResponse) Set(val *GetWorldCosmBalanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCosmBalanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCosmBalanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCosmBalanceResponse(val *GetWorldCosmBalanceResponse) *NullableGetWorldCosmBalanceResponse {
+	return &NullableGetWorldCosmBalanceResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCosmBalanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCosmBalanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCosmBalanceResponseData struct for GetWorldCosmBalanceResponseData
+type GetWorldCosmBalanceResponseData struct {
+	Available bool `json:"available"`
+	Reason NullableString `json:"reason,omitempty"`
+	SubjectId NullableString `json:"subjectId,omitempty"`
+	BaseUnits string `json:"baseUnits"`
+	Decimals float32 `json:"decimals"`
+}
+
+// NewGetWorldCosmBalanceResponseData instantiates a new GetWorldCosmBalanceResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCosmBalanceResponseData(available bool, baseUnits string, decimals float32) *GetWorldCosmBalanceResponseData {
+	this := GetWorldCosmBalanceResponseData{}
+	this.Available = available
+	this.BaseUnits = baseUnits
+	this.Decimals = decimals
+	return &this
+}
+
+// NewGetWorldCosmBalanceResponseDataWithDefaults instantiates a new GetWorldCosmBalanceResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCosmBalanceResponseDataWithDefaults() *GetWorldCosmBalanceResponseData {
+	this := GetWorldCosmBalanceResponseData{}
+	return &this
+}
+
+// GetAvailable returns the Available field value
+func (o *GetWorldCosmBalanceResponseData) GetAvailable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCosmBalanceResponseData) GetAvailableOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Available, true
+}
+
+// SetAvailable sets field value
+func (o *GetWorldCosmBalanceResponseData) SetAvailable(v bool) {
+	o.Available = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldCosmBalanceResponseData) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldCosmBalanceResponseData) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *GetWorldCosmBalanceResponseData) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *GetWorldCosmBalanceResponseData) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *GetWorldCosmBalanceResponseData) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *GetWorldCosmBalanceResponseData) UnsetReason() {
+	o.Reason.Unset()
+}
+
+// GetSubjectId returns the SubjectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldCosmBalanceResponseData) GetSubjectId() string {
+	if o == nil || o.SubjectId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubjectId.Get()
+}
+
+// GetSubjectIdOk returns a tuple with the SubjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldCosmBalanceResponseData) GetSubjectIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SubjectId.Get(), o.SubjectId.IsSet()
+}
+
+// HasSubjectId returns a boolean if a field has been set.
+func (o *GetWorldCosmBalanceResponseData) HasSubjectId() bool {
+	if o != nil && o.SubjectId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectId gets a reference to the given NullableString and assigns it to the SubjectId field.
+func (o *GetWorldCosmBalanceResponseData) SetSubjectId(v string) {
+	o.SubjectId.Set(&v)
+}
+// SetSubjectIdNil sets the value for SubjectId to be an explicit nil
+func (o *GetWorldCosmBalanceResponseData) SetSubjectIdNil() {
+	o.SubjectId.Set(nil)
+}
+
+// UnsetSubjectId ensures that no value is present for SubjectId, not even an explicit nil
+func (o *GetWorldCosmBalanceResponseData) UnsetSubjectId() {
+	o.SubjectId.Unset()
+}
+
+// GetBaseUnits returns the BaseUnits field value
+func (o *GetWorldCosmBalanceResponseData) GetBaseUnits() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BaseUnits
+}
+
+// GetBaseUnitsOk returns a tuple with the BaseUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCosmBalanceResponseData) GetBaseUnitsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BaseUnits, true
+}
+
+// SetBaseUnits sets field value
+func (o *GetWorldCosmBalanceResponseData) SetBaseUnits(v string) {
+	o.BaseUnits = v
+}
+
+// GetDecimals returns the Decimals field value
+func (o *GetWorldCosmBalanceResponseData) GetDecimals() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Decimals
+}
+
+// GetDecimalsOk returns a tuple with the Decimals field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCosmBalanceResponseData) GetDecimalsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Decimals, true
+}
+
+// SetDecimals sets field value
+func (o *GetWorldCosmBalanceResponseData) SetDecimals(v float32) {
+	o.Decimals = v
+}
+
+func (o GetWorldCosmBalanceResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["available"] = o.Available
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	if o.SubjectId.IsSet() {
+		toSerialize["subjectId"] = o.SubjectId.Get()
+	}
+	if true {
+		toSerialize["baseUnits"] = o.BaseUnits
+	}
+	if true {
+		toSerialize["decimals"] = o.Decimals
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCosmBalanceResponseData struct {
+	value *GetWorldCosmBalanceResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldCosmBalanceResponseData) Get() *GetWorldCosmBalanceResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldCosmBalanceResponseData) Set(val *GetWorldCosmBalanceResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCosmBalanceResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCosmBalanceResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCosmBalanceResponseData(val *GetWorldCosmBalanceResponseData) *NullableGetWorldCosmBalanceResponseData {
+	return &NullableGetWorldCosmBalanceResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCosmBalanceResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCosmBalanceResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCrewResponse struct for GetWorldCrewResponse
+type GetWorldCrewResponse struct {
+	Data GetWorldCrewResponseData `json:"data"`
+}
+
+// NewGetWorldCrewResponse instantiates a new GetWorldCrewResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCrewResponse(data GetWorldCrewResponseData) *GetWorldCrewResponse {
+	this := GetWorldCrewResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldCrewResponseWithDefaults instantiates a new GetWorldCrewResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCrewResponseWithDefaults() *GetWorldCrewResponse {
+	this := GetWorldCrewResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldCrewResponse) GetData() GetWorldCrewResponseData {
+	if o == nil {
+		var ret GetWorldCrewResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponse) GetDataOk() (*GetWorldCrewResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldCrewResponse) SetData(v GetWorldCrewResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldCrewResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCrewResponse struct {
+	value *GetWorldCrewResponse
+	isSet bool
+}
+
+func (v NullableGetWorldCrewResponse) Get() *GetWorldCrewResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldCrewResponse) Set(val *GetWorldCrewResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCrewResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCrewResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCrewResponse(val *GetWorldCrewResponse) *NullableGetWorldCrewResponse {
+	return &NullableGetWorldCrewResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCrewResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCrewResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCrewResponseData struct for GetWorldCrewResponseData
+type GetWorldCrewResponseData struct {
+	Crew NullableGetWorldCrewResponseDataCrew `json:"crew,omitempty"`
+	Members []GetWorldCrewResponseDataMembers `json:"members"`
+}
+
+// NewGetWorldCrewResponseData instantiates a new GetWorldCrewResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCrewResponseData(members []GetWorldCrewResponseDataMembers) *GetWorldCrewResponseData {
+	this := GetWorldCrewResponseData{}
+	this.Members = members
+	return &this
+}
+
+// NewGetWorldCrewResponseDataWithDefaults instantiates a new GetWorldCrewResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCrewResponseDataWithDefaults() *GetWorldCrewResponseData {
+	this := GetWorldCrewResponseData{}
+	return &this
+}
+
+// GetCrew returns the Crew field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldCrewResponseData) GetCrew() GetWorldCrewResponseDataCrew {
+	if o == nil || o.Crew.Get() == nil {
+		var ret GetWorldCrewResponseDataCrew
+		return ret
+	}
+	return *o.Crew.Get()
+}
+
+// GetCrewOk returns a tuple with the Crew field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldCrewResponseData) GetCrewOk() (*GetWorldCrewResponseDataCrew, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Crew.Get(), o.Crew.IsSet()
+}
+
+// HasCrew returns a boolean if a field has been set.
+func (o *GetWorldCrewResponseData) HasCrew() bool {
+	if o != nil && o.Crew.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrew gets a reference to the given NullableGetWorldCrewResponseDataCrew and assigns it to the Crew field.
+func (o *GetWorldCrewResponseData) SetCrew(v GetWorldCrewResponseDataCrew) {
+	o.Crew.Set(&v)
+}
+// SetCrewNil sets the value for Crew to be an explicit nil
+func (o *GetWorldCrewResponseData) SetCrewNil() {
+	o.Crew.Set(nil)
+}
+
+// UnsetCrew ensures that no value is present for Crew, not even an explicit nil
+func (o *GetWorldCrewResponseData) UnsetCrew() {
+	o.Crew.Unset()
+}
+
+// GetMembers returns the Members field value
+func (o *GetWorldCrewResponseData) GetMembers() []GetWorldCrewResponseDataMembers {
+	if o == nil {
+		var ret []GetWorldCrewResponseDataMembers
+		return ret
+	}
+
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseData) GetMembersOk() ([]GetWorldCrewResponseDataMembers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// SetMembers sets field value
+func (o *GetWorldCrewResponseData) SetMembers(v []GetWorldCrewResponseDataMembers) {
+	o.Members = v
+}
+
+func (o GetWorldCrewResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Crew.IsSet() {
+		toSerialize["crew"] = o.Crew.Get()
+	}
+	if true {
+		toSerialize["members"] = o.Members
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCrewResponseData struct {
+	value *GetWorldCrewResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldCrewResponseData) Get() *GetWorldCrewResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldCrewResponseData) Set(val *GetWorldCrewResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCrewResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCrewResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCrewResponseData(val *GetWorldCrewResponseData) *NullableGetWorldCrewResponseData {
+	return &NullableGetWorldCrewResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCrewResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCrewResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCrewResponseDataCrew `homeSlug`: the crew's hangout -- its owner's home, when they have one that is not locked (Wave 4.9).
+type GetWorldCrewResponseDataCrew struct {
+	Name string `json:"name"`
+	Tag string `json:"tag"`
+	Code string `json:"code"`
+	Owner bool `json:"owner"`
+	HomeSlug NullableString `json:"homeSlug,omitempty"`
+}
+
+// NewGetWorldCrewResponseDataCrew instantiates a new GetWorldCrewResponseDataCrew object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCrewResponseDataCrew(name string, tag string, code string, owner bool) *GetWorldCrewResponseDataCrew {
+	this := GetWorldCrewResponseDataCrew{}
+	this.Name = name
+	this.Tag = tag
+	this.Code = code
+	this.Owner = owner
+	return &this
+}
+
+// NewGetWorldCrewResponseDataCrewWithDefaults instantiates a new GetWorldCrewResponseDataCrew object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCrewResponseDataCrewWithDefaults() *GetWorldCrewResponseDataCrew {
+	this := GetWorldCrewResponseDataCrew{}
+	return &this
+}
+
+// GetName returns the Name field value
+func (o *GetWorldCrewResponseDataCrew) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataCrew) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldCrewResponseDataCrew) SetName(v string) {
+	o.Name = v
+}
+
+// GetTag returns the Tag field value
+func (o *GetWorldCrewResponseDataCrew) GetTag() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tag
+}
+
+// GetTagOk returns a tuple with the Tag field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataCrew) GetTagOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tag, true
+}
+
+// SetTag sets field value
+func (o *GetWorldCrewResponseDataCrew) SetTag(v string) {
+	o.Tag = v
+}
+
+// GetCode returns the Code field value
+func (o *GetWorldCrewResponseDataCrew) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataCrew) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *GetWorldCrewResponseDataCrew) SetCode(v string) {
+	o.Code = v
+}
+
+// GetOwner returns the Owner field value
+func (o *GetWorldCrewResponseDataCrew) GetOwner() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataCrew) GetOwnerOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Owner, true
+}
+
+// SetOwner sets field value
+func (o *GetWorldCrewResponseDataCrew) SetOwner(v bool) {
+	o.Owner = v
+}
+
+// GetHomeSlug returns the HomeSlug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldCrewResponseDataCrew) GetHomeSlug() string {
+	if o == nil || o.HomeSlug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HomeSlug.Get()
+}
+
+// GetHomeSlugOk returns a tuple with the HomeSlug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldCrewResponseDataCrew) GetHomeSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HomeSlug.Get(), o.HomeSlug.IsSet()
+}
+
+// HasHomeSlug returns a boolean if a field has been set.
+func (o *GetWorldCrewResponseDataCrew) HasHomeSlug() bool {
+	if o != nil && o.HomeSlug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHomeSlug gets a reference to the given NullableString and assigns it to the HomeSlug field.
+func (o *GetWorldCrewResponseDataCrew) SetHomeSlug(v string) {
+	o.HomeSlug.Set(&v)
+}
+// SetHomeSlugNil sets the value for HomeSlug to be an explicit nil
+func (o *GetWorldCrewResponseDataCrew) SetHomeSlugNil() {
+	o.HomeSlug.Set(nil)
+}
+
+// UnsetHomeSlug ensures that no value is present for HomeSlug, not even an explicit nil
+func (o *GetWorldCrewResponseDataCrew) UnsetHomeSlug() {
+	o.HomeSlug.Unset()
+}
+
+func (o GetWorldCrewResponseDataCrew) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["tag"] = o.Tag
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["owner"] = o.Owner
+	}
+	if o.HomeSlug.IsSet() {
+		toSerialize["homeSlug"] = o.HomeSlug.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCrewResponseDataCrew struct {
+	value *GetWorldCrewResponseDataCrew
+	isSet bool
+}
+
+func (v NullableGetWorldCrewResponseDataCrew) Get() *GetWorldCrewResponseDataCrew {
+	return v.value
+}
+
+func (v *NullableGetWorldCrewResponseDataCrew) Set(val *GetWorldCrewResponseDataCrew) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCrewResponseDataCrew) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCrewResponseDataCrew) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCrewResponseDataCrew(val *GetWorldCrewResponseDataCrew) *NullableGetWorldCrewResponseDataCrew {
+	return &NullableGetWorldCrewResponseDataCrew{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCrewResponseDataCrew) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCrewResponseDataCrew) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldCrewResponseDataMembers struct for GetWorldCrewResponseDataMembers
+type GetWorldCrewResponseDataMembers struct {
+	UserId string `json:"userId"`
+	Name string `json:"name"`
+	You bool `json:"you"`
+	Room NullableNameSlug2 `json:"room,omitempty"`
+}
+
+// NewGetWorldCrewResponseDataMembers instantiates a new GetWorldCrewResponseDataMembers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldCrewResponseDataMembers(userId string, name string, you bool) *GetWorldCrewResponseDataMembers {
+	this := GetWorldCrewResponseDataMembers{}
+	this.UserId = userId
+	this.Name = name
+	this.You = you
+	return &this
+}
+
+// NewGetWorldCrewResponseDataMembersWithDefaults instantiates a new GetWorldCrewResponseDataMembers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldCrewResponseDataMembersWithDefaults() *GetWorldCrewResponseDataMembers {
+	this := GetWorldCrewResponseDataMembers{}
+	return &this
+}
+
+// GetUserId returns the UserId field value
+func (o *GetWorldCrewResponseDataMembers) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataMembers) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *GetWorldCrewResponseDataMembers) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetName returns the Name field value
+func (o *GetWorldCrewResponseDataMembers) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataMembers) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWorldCrewResponseDataMembers) SetName(v string) {
+	o.Name = v
+}
+
+// GetYou returns the You field value
+func (o *GetWorldCrewResponseDataMembers) GetYou() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.You
+}
+
+// GetYouOk returns a tuple with the You field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldCrewResponseDataMembers) GetYouOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.You, true
+}
+
+// SetYou sets field value
+func (o *GetWorldCrewResponseDataMembers) SetYou(v bool) {
+	o.You = v
+}
+
+// GetRoom returns the Room field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldCrewResponseDataMembers) GetRoom() NameSlug2 {
+	if o == nil || o.Room.Get() == nil {
+		var ret NameSlug2
+		return ret
+	}
+	return *o.Room.Get()
+}
+
+// GetRoomOk returns a tuple with the Room field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldCrewResponseDataMembers) GetRoomOk() (*NameSlug2, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Room.Get(), o.Room.IsSet()
+}
+
+// HasRoom returns a boolean if a field has been set.
+func (o *GetWorldCrewResponseDataMembers) HasRoom() bool {
+	if o != nil && o.Room.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRoom gets a reference to the given NullableNameSlug2 and assigns it to the Room field.
+func (o *GetWorldCrewResponseDataMembers) SetRoom(v NameSlug2) {
+	o.Room.Set(&v)
+}
+// SetRoomNil sets the value for Room to be an explicit nil
+func (o *GetWorldCrewResponseDataMembers) SetRoomNil() {
+	o.Room.Set(nil)
+}
+
+// UnsetRoom ensures that no value is present for Room, not even an explicit nil
+func (o *GetWorldCrewResponseDataMembers) UnsetRoom() {
+	o.Room.Unset()
+}
+
+func (o GetWorldCrewResponseDataMembers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["you"] = o.You
+	}
+	if o.Room.IsSet() {
+		toSerialize["room"] = o.Room.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldCrewResponseDataMembers struct {
+	value *GetWorldCrewResponseDataMembers
+	isSet bool
+}
+
+func (v NullableGetWorldCrewResponseDataMembers) Get() *GetWorldCrewResponseDataMembers {
+	return v.value
+}
+
+func (v *NullableGetWorldCrewResponseDataMembers) Set(val *GetWorldCrewResponseDataMembers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldCrewResponseDataMembers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldCrewResponseDataMembers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldCrewResponseDataMembers(val *GetWorldCrewResponseDataMembers) *NullableGetWorldCrewResponseDataMembers {
+	return &NullableGetWorldCrewResponseDataMembers{value: val, isSet: true}
+}
+
+func (v NullableGetWorldCrewResponseDataMembers) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldCrewResponseDataMembers) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldDiscoverRowResponse struct for GetWorldDiscoverRowResponse
+type GetWorldDiscoverRowResponse struct {
+	Data GetWorldDiscoverRowResponseData `json:"data"`
+}
+
+// NewGetWorldDiscoverRowResponse instantiates a new GetWorldDiscoverRowResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldDiscoverRowResponse(data GetWorldDiscoverRowResponseData) *GetWorldDiscoverRowResponse {
+	this := GetWorldDiscoverRowResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldDiscoverRowResponseWithDefaults instantiates a new GetWorldDiscoverRowResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldDiscoverRowResponseWithDefaults() *GetWorldDiscoverRowResponse {
+	this := GetWorldDiscoverRowResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldDiscoverRowResponse) GetData() GetWorldDiscoverRowResponseData {
+	if o == nil {
+		var ret GetWorldDiscoverRowResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponse) GetDataOk() (*GetWorldDiscoverRowResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldDiscoverRowResponse) SetData(v GetWorldDiscoverRowResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldDiscoverRowResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldDiscoverRowResponse struct {
+	value *GetWorldDiscoverRowResponse
+	isSet bool
+}
+
+func (v NullableGetWorldDiscoverRowResponse) Get() *GetWorldDiscoverRowResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldDiscoverRowResponse) Set(val *GetWorldDiscoverRowResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldDiscoverRowResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldDiscoverRowResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldDiscoverRowResponse(val *GetWorldDiscoverRowResponse) *NullableGetWorldDiscoverRowResponse {
+	return &NullableGetWorldDiscoverRowResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldDiscoverRowResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldDiscoverRowResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldDiscoverRowResponseData struct for GetWorldDiscoverRowResponseData
+type GetWorldDiscoverRowResponseData struct {
+	Weights string `json:"weights"`
+	GeneratedAt string `json:"generatedAt"`
+	Rows []GetWorldDiscoverRowResponseDataRows `json:"rows"`
+}
+
+// NewGetWorldDiscoverRowResponseData instantiates a new GetWorldDiscoverRowResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldDiscoverRowResponseData(weights string, generatedAt string, rows []GetWorldDiscoverRowResponseDataRows) *GetWorldDiscoverRowResponseData {
+	this := GetWorldDiscoverRowResponseData{}
+	this.Weights = weights
+	this.GeneratedAt = generatedAt
+	this.Rows = rows
+	return &this
+}
+
+// NewGetWorldDiscoverRowResponseDataWithDefaults instantiates a new GetWorldDiscoverRowResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldDiscoverRowResponseDataWithDefaults() *GetWorldDiscoverRowResponseData {
+	this := GetWorldDiscoverRowResponseData{}
+	return &this
+}
+
+// GetWeights returns the Weights field value
+func (o *GetWorldDiscoverRowResponseData) GetWeights() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Weights
+}
+
+// GetWeightsOk returns a tuple with the Weights field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseData) GetWeightsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Weights, true
+}
+
+// SetWeights sets field value
+func (o *GetWorldDiscoverRowResponseData) SetWeights(v string) {
+	o.Weights = v
+}
+
+// GetGeneratedAt returns the GeneratedAt field value
+func (o *GetWorldDiscoverRowResponseData) GetGeneratedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.GeneratedAt
+}
+
+// GetGeneratedAtOk returns a tuple with the GeneratedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseData) GetGeneratedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.GeneratedAt, true
+}
+
+// SetGeneratedAt sets field value
+func (o *GetWorldDiscoverRowResponseData) SetGeneratedAt(v string) {
+	o.GeneratedAt = v
+}
+
+// GetRows returns the Rows field value
+func (o *GetWorldDiscoverRowResponseData) GetRows() []GetWorldDiscoverRowResponseDataRows {
+	if o == nil {
+		var ret []GetWorldDiscoverRowResponseDataRows
+		return ret
+	}
+
+	return o.Rows
+}
+
+// GetRowsOk returns a tuple with the Rows field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseData) GetRowsOk() ([]GetWorldDiscoverRowResponseDataRows, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rows, true
+}
+
+// SetRows sets field value
+func (o *GetWorldDiscoverRowResponseData) SetRows(v []GetWorldDiscoverRowResponseDataRows) {
+	o.Rows = v
+}
+
+func (o GetWorldDiscoverRowResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["weights"] = o.Weights
+	}
+	if true {
+		toSerialize["generatedAt"] = o.GeneratedAt
+	}
+	if true {
+		toSerialize["rows"] = o.Rows
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldDiscoverRowResponseData struct {
+	value *GetWorldDiscoverRowResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldDiscoverRowResponseData) Get() *GetWorldDiscoverRowResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldDiscoverRowResponseData) Set(val *GetWorldDiscoverRowResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldDiscoverRowResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldDiscoverRowResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldDiscoverRowResponseData(val *GetWorldDiscoverRowResponseData) *NullableGetWorldDiscoverRowResponseData {
+	return &NullableGetWorldDiscoverRowResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldDiscoverRowResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldDiscoverRowResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldDiscoverRowResponseDataRows struct for GetWorldDiscoverRowResponseDataRows
+type GetWorldDiscoverRowResponseDataRows struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	// The chart the row previews (\"See all\" opens it), when it is one.
+	Chart NullableString `json:"chart,omitempty"`
+	Genre NullableString `json:"genre,omitempty"`
+	Tiles []map[string]interface{} `json:"tiles"`
+}
+
+// NewGetWorldDiscoverRowResponseDataRows instantiates a new GetWorldDiscoverRowResponseDataRows object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldDiscoverRowResponseDataRows(id string, title string, tiles []map[string]interface{}) *GetWorldDiscoverRowResponseDataRows {
+	this := GetWorldDiscoverRowResponseDataRows{}
+	this.Id = id
+	this.Title = title
+	this.Tiles = tiles
+	return &this
+}
+
+// NewGetWorldDiscoverRowResponseDataRowsWithDefaults instantiates a new GetWorldDiscoverRowResponseDataRows object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldDiscoverRowResponseDataRowsWithDefaults() *GetWorldDiscoverRowResponseDataRows {
+	this := GetWorldDiscoverRowResponseDataRows{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldDiscoverRowResponseDataRows) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseDataRows) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldDiscoverRowResponseDataRows) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetWorldDiscoverRowResponseDataRows) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseDataRows) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetWorldDiscoverRowResponseDataRows) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetChart returns the Chart field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldDiscoverRowResponseDataRows) GetChart() string {
+	if o == nil || o.Chart.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Chart.Get()
+}
+
+// GetChartOk returns a tuple with the Chart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldDiscoverRowResponseDataRows) GetChartOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Chart.Get(), o.Chart.IsSet()
+}
+
+// HasChart returns a boolean if a field has been set.
+func (o *GetWorldDiscoverRowResponseDataRows) HasChart() bool {
+	if o != nil && o.Chart.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetChart gets a reference to the given NullableString and assigns it to the Chart field.
+func (o *GetWorldDiscoverRowResponseDataRows) SetChart(v string) {
+	o.Chart.Set(&v)
+}
+// SetChartNil sets the value for Chart to be an explicit nil
+func (o *GetWorldDiscoverRowResponseDataRows) SetChartNil() {
+	o.Chart.Set(nil)
+}
+
+// UnsetChart ensures that no value is present for Chart, not even an explicit nil
+func (o *GetWorldDiscoverRowResponseDataRows) UnsetChart() {
+	o.Chart.Unset()
+}
+
+// GetGenre returns the Genre field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldDiscoverRowResponseDataRows) GetGenre() string {
+	if o == nil || o.Genre.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Genre.Get()
+}
+
+// GetGenreOk returns a tuple with the Genre field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldDiscoverRowResponseDataRows) GetGenreOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Genre.Get(), o.Genre.IsSet()
+}
+
+// HasGenre returns a boolean if a field has been set.
+func (o *GetWorldDiscoverRowResponseDataRows) HasGenre() bool {
+	if o != nil && o.Genre.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGenre gets a reference to the given NullableString and assigns it to the Genre field.
+func (o *GetWorldDiscoverRowResponseDataRows) SetGenre(v string) {
+	o.Genre.Set(&v)
+}
+// SetGenreNil sets the value for Genre to be an explicit nil
+func (o *GetWorldDiscoverRowResponseDataRows) SetGenreNil() {
+	o.Genre.Set(nil)
+}
+
+// UnsetGenre ensures that no value is present for Genre, not even an explicit nil
+func (o *GetWorldDiscoverRowResponseDataRows) UnsetGenre() {
+	o.Genre.Unset()
+}
+
+// GetTiles returns the Tiles field value
+func (o *GetWorldDiscoverRowResponseDataRows) GetTiles() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Tiles
+}
+
+// GetTilesOk returns a tuple with the Tiles field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDiscoverRowResponseDataRows) GetTilesOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiles, true
+}
+
+// SetTiles sets field value
+func (o *GetWorldDiscoverRowResponseDataRows) SetTiles(v []map[string]interface{}) {
+	o.Tiles = v
+}
+
+func (o GetWorldDiscoverRowResponseDataRows) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Chart.IsSet() {
+		toSerialize["chart"] = o.Chart.Get()
+	}
+	if o.Genre.IsSet() {
+		toSerialize["genre"] = o.Genre.Get()
+	}
+	if true {
+		toSerialize["tiles"] = o.Tiles
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldDiscoverRowResponseDataRows struct {
+	value *GetWorldDiscoverRowResponseDataRows
+	isSet bool
+}
+
+func (v NullableGetWorldDiscoverRowResponseDataRows) Get() *GetWorldDiscoverRowResponseDataRows {
+	return v.value
+}
+
+func (v *NullableGetWorldDiscoverRowResponseDataRows) Set(val *GetWorldDiscoverRowResponseDataRows) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldDiscoverRowResponseDataRows) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldDiscoverRowResponseDataRows) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldDiscoverRowResponseDataRows(val *GetWorldDiscoverRowResponseDataRows) *NullableGetWorldDiscoverRowResponseDataRows {
+	return &NullableGetWorldDiscoverRowResponseDataRows{value: val, isSet: true}
+}
+
+func (v NullableGetWorldDiscoverRowResponseDataRows) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldDiscoverRowResponseDataRows) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldDmItem struct for GetWorldDmItem
+type GetWorldDmItem struct {
+	Id string `json:"id"`
+	From string `json:"from"`
+	Text string `json:"text"`
+	At string `json:"at"`
+	Mine bool `json:"mine"`
+}
+
+// NewGetWorldDmItem instantiates a new GetWorldDmItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldDmItem(id string, from string, text string, at string, mine bool) *GetWorldDmItem {
+	this := GetWorldDmItem{}
+	this.Id = id
+	this.From = from
+	this.Text = text
+	this.At = at
+	this.Mine = mine
+	return &this
+}
+
+// NewGetWorldDmItemWithDefaults instantiates a new GetWorldDmItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldDmItemWithDefaults() *GetWorldDmItem {
+	this := GetWorldDmItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWorldDmItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWorldDmItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetFrom returns the From field value
+func (o *GetWorldDmItem) GetFrom() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.From
+}
+
+// GetFromOk returns a tuple with the From field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmItem) GetFromOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.From, true
+}
+
+// SetFrom sets field value
+func (o *GetWorldDmItem) SetFrom(v string) {
+	o.From = v
+}
+
+// GetText returns the Text field value
+func (o *GetWorldDmItem) GetText() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Text
+}
+
+// GetTextOk returns a tuple with the Text field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmItem) GetTextOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Text, true
+}
+
+// SetText sets field value
+func (o *GetWorldDmItem) SetText(v string) {
+	o.Text = v
+}
+
+// GetAt returns the At field value
+func (o *GetWorldDmItem) GetAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.At
+}
+
+// GetAtOk returns a tuple with the At field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmItem) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.At, true
+}
+
+// SetAt sets field value
+func (o *GetWorldDmItem) SetAt(v string) {
+	o.At = v
+}
+
+// GetMine returns the Mine field value
+func (o *GetWorldDmItem) GetMine() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mine
+}
+
+// GetMineOk returns a tuple with the Mine field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmItem) GetMineOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mine, true
+}
+
+// SetMine sets field value
+func (o *GetWorldDmItem) SetMine(v bool) {
+	o.Mine = v
+}
+
+func (o GetWorldDmItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["from"] = o.From
+	}
+	if true {
+		toSerialize["text"] = o.Text
+	}
+	if true {
+		toSerialize["at"] = o.At
+	}
+	if true {
+		toSerialize["mine"] = o.Mine
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldDmItem struct {
+	value *GetWorldDmItem
+	isSet bool
+}
+
+func (v NullableGetWorldDmItem) Get() *GetWorldDmItem {
+	return v.value
+}
+
+func (v *NullableGetWorldDmItem) Set(val *GetWorldDmItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldDmItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldDmItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldDmItem(val *GetWorldDmItem) *NullableGetWorldDmItem {
+	return &NullableGetWorldDmItem{value: val, isSet: true}
+}
+
+func (v NullableGetWorldDmItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldDmItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldDmResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type GetWorldDmResponse struct {
+	// The rows.
+	Data []GetWorldDmItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewGetWorldDmResponse instantiates a new GetWorldDmResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldDmResponse(data []GetWorldDmItem) *GetWorldDmResponse {
+	this := GetWorldDmResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldDmResponseWithDefaults instantiates a new GetWorldDmResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldDmResponseWithDefaults() *GetWorldDmResponse {
+	this := GetWorldDmResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldDmResponse) GetData() []GetWorldDmItem {
+	if o == nil {
+		var ret []GetWorldDmItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldDmResponse) GetDataOk() ([]GetWorldDmItem, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -10800,12 +9564,12 @@ func (o *ListWorldTradeMineResponse) GetDataOk() ([]ListWorldTradeMineItem, bool
 }
 
 // SetData sets field value
-func (o *ListWorldTradeMineResponse) SetData(v []ListWorldTradeMineItem) {
+func (o *GetWorldDmResponse) SetData(v []GetWorldDmItem) {
 	o.Data = v
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldTradeMineResponse) GetPagination() Pagination {
+func (o *GetWorldDmResponse) GetPagination() Pagination {
 	if o == nil || o.Pagination == nil {
 		var ret Pagination
 		return ret
@@ -10815,7 +9579,7 @@ func (o *ListWorldTradeMineResponse) GetPagination() Pagination {
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineResponse) GetPaginationOk() (*Pagination, bool) {
+func (o *GetWorldDmResponse) GetPaginationOk() (*Pagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -10823,7 +9587,7 @@ func (o *ListWorldTradeMineResponse) GetPaginationOk() (*Pagination, bool) {
 }
 
 // HasPagination returns a boolean if a field has been set.
-func (o *ListWorldTradeMineResponse) HasPagination() bool {
+func (o *GetWorldDmResponse) HasPagination() bool {
 	if o != nil && o.Pagination != nil {
 		return true
 	}
@@ -10832,12 +9596,12 @@ func (o *ListWorldTradeMineResponse) HasPagination() bool {
 }
 
 // SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldTradeMineResponse) SetPagination(v Pagination) {
+func (o *GetWorldDmResponse) SetPagination(v Pagination) {
 	o.Pagination = &v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldTradeMineResponse) GetMeta() map[string]map[string]interface{} {
+func (o *GetWorldDmResponse) GetMeta() map[string]map[string]interface{} {
 	if o == nil || o.Meta == nil {
 		var ret map[string]map[string]interface{}
 		return ret
@@ -10847,7 +9611,7 @@ func (o *ListWorldTradeMineResponse) GetMeta() map[string]map[string]interface{}
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeMineResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+func (o *GetWorldDmResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -10855,7 +9619,7 @@ func (o *ListWorldTradeMineResponse) GetMetaOk() (map[string]map[string]interfac
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *ListWorldTradeMineResponse) HasMeta() bool {
+func (o *GetWorldDmResponse) HasMeta() bool {
 	if o != nil && o.Meta != nil {
 		return true
 	}
@@ -10864,11 +9628,11 @@ func (o *ListWorldTradeMineResponse) HasMeta() bool {
 }
 
 // SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldTradeMineResponse) SetMeta(v map[string]map[string]interface{}) {
+func (o *GetWorldDmResponse) SetMeta(v map[string]map[string]interface{}) {
 	o.Meta = v
 }
 
-func (o ListWorldTradeMineResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldDmResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
@@ -10882,261 +9646,3238 @@ func (o ListWorldTradeMineResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldTradeMineResponse struct {
-	value *ListWorldTradeMineResponse
+type NullableGetWorldDmResponse struct {
+	value *GetWorldDmResponse
 	isSet bool
 }
 
-func (v NullableListWorldTradeMineResponse) Get() *ListWorldTradeMineResponse {
+func (v NullableGetWorldDmResponse) Get() *GetWorldDmResponse {
 	return v.value
 }
 
-func (v *NullableListWorldTradeMineResponse) Set(val *ListWorldTradeMineResponse) {
+func (v *NullableGetWorldDmResponse) Set(val *GetWorldDmResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldTradeMineResponse) IsSet() bool {
+func (v NullableGetWorldDmResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldTradeMineResponse) Unset() {
+func (v *NullableGetWorldDmResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldTradeMineResponse(val *ListWorldTradeMineResponse) *NullableListWorldTradeMineResponse {
-	return &NullableListWorldTradeMineResponse{value: val, isSet: true}
+func NewNullableGetWorldDmResponse(val *GetWorldDmResponse) *NullableGetWorldDmResponse {
+	return &NullableGetWorldDmResponse{value: val, isSet: true}
 }
 
-func (v NullableListWorldTradeMineResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldDmResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldTradeMineResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldDmResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldTradeTableBinderItem struct for ListWorldTradeTableBinderItem
-type ListWorldTradeTableBinderItem struct {
-	// Unique on this mat (the source row's id).
-	Key string `json:"key"`
-	VariantId string `json:"variantId"`
-	Condition string `json:"condition"`
-	GradeKey NullableString `json:"gradeKey,omitempty"`
-	// The owner's collection row it came from (visitor side), when there is one.
-	PortfolioId NullableString `json:"portfolioId,omitempty"`
-	Name string `json:"name"`
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	// Market value at the time it was laid down (the Trade Block's valueTier), cents.
-	ValueCents float32 `json:"valueCents"`
+// GetWorldEarningPayoutAccountResponse struct for GetWorldEarningPayoutAccountResponse
+type GetWorldEarningPayoutAccountResponse struct {
+	Data GetWorldEarningPayoutAccountResponseData `json:"data"`
 }
 
-// NewListWorldTradeTableBinderItem instantiates a new ListWorldTradeTableBinderItem object
+// NewGetWorldEarningPayoutAccountResponse instantiates a new GetWorldEarningPayoutAccountResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeTableBinderItem(key string, variantId string, condition string, name string, valueCents float32) *ListWorldTradeTableBinderItem {
-	this := ListWorldTradeTableBinderItem{}
-	this.Key = key
-	this.VariantId = variantId
-	this.Condition = condition
-	this.Name = name
-	this.ValueCents = valueCents
+func NewGetWorldEarningPayoutAccountResponse(data GetWorldEarningPayoutAccountResponseData) *GetWorldEarningPayoutAccountResponse {
+	this := GetWorldEarningPayoutAccountResponse{}
+	this.Data = data
 	return &this
 }
 
-// NewListWorldTradeTableBinderItemWithDefaults instantiates a new ListWorldTradeTableBinderItem object
+// NewGetWorldEarningPayoutAccountResponseWithDefaults instantiates a new GetWorldEarningPayoutAccountResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeTableBinderItemWithDefaults() *ListWorldTradeTableBinderItem {
-	this := ListWorldTradeTableBinderItem{}
+func NewGetWorldEarningPayoutAccountResponseWithDefaults() *GetWorldEarningPayoutAccountResponse {
+	this := GetWorldEarningPayoutAccountResponse{}
 	return &this
 }
 
-// GetKey returns the Key field value
-func (o *ListWorldTradeTableBinderItem) GetKey() string {
+// GetData returns the Data field value
+func (o *GetWorldEarningPayoutAccountResponse) GetData() GetWorldEarningPayoutAccountResponseData {
+	if o == nil {
+		var ret GetWorldEarningPayoutAccountResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningPayoutAccountResponse) GetDataOk() (*GetWorldEarningPayoutAccountResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldEarningPayoutAccountResponse) SetData(v GetWorldEarningPayoutAccountResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldEarningPayoutAccountResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningPayoutAccountResponse struct {
+	value *GetWorldEarningPayoutAccountResponse
+	isSet bool
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponse) Get() *GetWorldEarningPayoutAccountResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponse) Set(val *GetWorldEarningPayoutAccountResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningPayoutAccountResponse(val *GetWorldEarningPayoutAccountResponse) *NullableGetWorldEarningPayoutAccountResponse {
+	return &NullableGetWorldEarningPayoutAccountResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEarningPayoutAccountResponseData struct for GetWorldEarningPayoutAccountResponseData
+type GetWorldEarningPayoutAccountResponseData struct {
+	Status string `json:"status"`
+	AccountId *string `json:"accountId,omitempty"`
+	Country NullableString `json:"country,omitempty"`
+	PayoutsSupported *bool `json:"payoutsSupported,omitempty"`
+	Message NullableString `json:"message,omitempty"`
+}
+
+// NewGetWorldEarningPayoutAccountResponseData instantiates a new GetWorldEarningPayoutAccountResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEarningPayoutAccountResponseData(status string) *GetWorldEarningPayoutAccountResponseData {
+	this := GetWorldEarningPayoutAccountResponseData{}
+	this.Status = status
+	return &this
+}
+
+// NewGetWorldEarningPayoutAccountResponseDataWithDefaults instantiates a new GetWorldEarningPayoutAccountResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEarningPayoutAccountResponseDataWithDefaults() *GetWorldEarningPayoutAccountResponseData {
+	this := GetWorldEarningPayoutAccountResponseData{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetWorldEarningPayoutAccountResponseData) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Key
+	return o.Status
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderItem) GetKeyOk() (*string, bool) {
+func (o *GetWorldEarningPayoutAccountResponseData) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Key, true
+	return &o.Status, true
 }
 
-// SetKey sets field value
-func (o *ListWorldTradeTableBinderItem) SetKey(v string) {
-	o.Key = v
+// SetStatus sets field value
+func (o *GetWorldEarningPayoutAccountResponseData) SetStatus(v string) {
+	o.Status = v
 }
 
-// GetVariantId returns the VariantId field value
-func (o *ListWorldTradeTableBinderItem) GetVariantId() string {
-	if o == nil {
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
+func (o *GetWorldEarningPayoutAccountResponseData) GetAccountId() string {
+	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.VariantId
+	return *o.AccountId
 }
 
-// GetVariantIdOk returns a tuple with the VariantId field value
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderItem) GetVariantIdOk() (*string, bool) {
-	if o == nil  {
+func (o *GetWorldEarningPayoutAccountResponseData) GetAccountIdOk() (*string, bool) {
+	if o == nil || o.AccountId == nil {
 		return nil, false
 	}
-	return &o.VariantId, true
+	return o.AccountId, true
 }
 
-// SetVariantId sets field value
-func (o *ListWorldTradeTableBinderItem) SetVariantId(v string) {
-	o.VariantId = v
-}
-
-// GetCondition returns the Condition field value
-func (o *ListWorldTradeTableBinderItem) GetCondition() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Condition
-}
-
-// GetConditionOk returns a tuple with the Condition field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderItem) GetConditionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Condition, true
-}
-
-// SetCondition sets field value
-func (o *ListWorldTradeTableBinderItem) SetCondition(v string) {
-	o.Condition = v
-}
-
-// GetGradeKey returns the GradeKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldTradeTableBinderItem) GetGradeKey() string {
-	if o == nil || o.GradeKey.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GradeKey.Get()
-}
-
-// GetGradeKeyOk returns a tuple with the GradeKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldTradeTableBinderItem) GetGradeKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GradeKey.Get(), o.GradeKey.IsSet()
-}
-
-// HasGradeKey returns a boolean if a field has been set.
-func (o *ListWorldTradeTableBinderItem) HasGradeKey() bool {
-	if o != nil && o.GradeKey.IsSet() {
+// HasAccountId returns a boolean if a field has been set.
+func (o *GetWorldEarningPayoutAccountResponseData) HasAccountId() bool {
+	if o != nil && o.AccountId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetGradeKey gets a reference to the given NullableString and assigns it to the GradeKey field.
-func (o *ListWorldTradeTableBinderItem) SetGradeKey(v string) {
-	o.GradeKey.Set(&v)
-}
-// SetGradeKeyNil sets the value for GradeKey to be an explicit nil
-func (o *ListWorldTradeTableBinderItem) SetGradeKeyNil() {
-	o.GradeKey.Set(nil)
+// SetAccountId gets a reference to the given string and assigns it to the AccountId field.
+func (o *GetWorldEarningPayoutAccountResponseData) SetAccountId(v string) {
+	o.AccountId = &v
 }
 
-// UnsetGradeKey ensures that no value is present for GradeKey, not even an explicit nil
-func (o *ListWorldTradeTableBinderItem) UnsetGradeKey() {
-	o.GradeKey.Unset()
-}
-
-// GetPortfolioId returns the PortfolioId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldTradeTableBinderItem) GetPortfolioId() string {
-	if o == nil || o.PortfolioId.Get() == nil {
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldEarningPayoutAccountResponseData) GetCountry() string {
+	if o == nil || o.Country.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.PortfolioId.Get()
+	return *o.Country.Get()
 }
 
-// GetPortfolioIdOk returns a tuple with the PortfolioId field value if set, nil otherwise
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldTradeTableBinderItem) GetPortfolioIdOk() (*string, bool) {
+func (o *GetWorldEarningPayoutAccountResponseData) GetCountryOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.PortfolioId.Get(), o.PortfolioId.IsSet()
+	return o.Country.Get(), o.Country.IsSet()
 }
 
-// HasPortfolioId returns a boolean if a field has been set.
-func (o *ListWorldTradeTableBinderItem) HasPortfolioId() bool {
-	if o != nil && o.PortfolioId.IsSet() {
+// HasCountry returns a boolean if a field has been set.
+func (o *GetWorldEarningPayoutAccountResponseData) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPortfolioId gets a reference to the given NullableString and assigns it to the PortfolioId field.
-func (o *ListWorldTradeTableBinderItem) SetPortfolioId(v string) {
-	o.PortfolioId.Set(&v)
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
+func (o *GetWorldEarningPayoutAccountResponseData) SetCountry(v string) {
+	o.Country.Set(&v)
 }
-// SetPortfolioIdNil sets the value for PortfolioId to be an explicit nil
-func (o *ListWorldTradeTableBinderItem) SetPortfolioIdNil() {
-	o.PortfolioId.Set(nil)
-}
-
-// UnsetPortfolioId ensures that no value is present for PortfolioId, not even an explicit nil
-func (o *ListWorldTradeTableBinderItem) UnsetPortfolioId() {
-	o.PortfolioId.Unset()
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *GetWorldEarningPayoutAccountResponseData) SetCountryNil() {
+	o.Country.Set(nil)
 }
 
-// GetName returns the Name field value
-func (o *ListWorldTradeTableBinderItem) GetName() string {
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *GetWorldEarningPayoutAccountResponseData) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetPayoutsSupported returns the PayoutsSupported field value if set, zero value otherwise.
+func (o *GetWorldEarningPayoutAccountResponseData) GetPayoutsSupported() bool {
+	if o == nil || o.PayoutsSupported == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PayoutsSupported
+}
+
+// GetPayoutsSupportedOk returns a tuple with the PayoutsSupported field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningPayoutAccountResponseData) GetPayoutsSupportedOk() (*bool, bool) {
+	if o == nil || o.PayoutsSupported == nil {
+		return nil, false
+	}
+	return o.PayoutsSupported, true
+}
+
+// HasPayoutsSupported returns a boolean if a field has been set.
+func (o *GetWorldEarningPayoutAccountResponseData) HasPayoutsSupported() bool {
+	if o != nil && o.PayoutsSupported != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPayoutsSupported gets a reference to the given bool and assigns it to the PayoutsSupported field.
+func (o *GetWorldEarningPayoutAccountResponseData) SetPayoutsSupported(v bool) {
+	o.PayoutsSupported = &v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldEarningPayoutAccountResponseData) GetMessage() string {
+	if o == nil || o.Message.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message.Get()
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldEarningPayoutAccountResponseData) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Message.Get(), o.Message.IsSet()
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *GetWorldEarningPayoutAccountResponseData) HasMessage() bool {
+	if o != nil && o.Message.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+func (o *GetWorldEarningPayoutAccountResponseData) SetMessage(v string) {
+	o.Message.Set(&v)
+}
+// SetMessageNil sets the value for Message to be an explicit nil
+func (o *GetWorldEarningPayoutAccountResponseData) SetMessageNil() {
+	o.Message.Set(nil)
+}
+
+// UnsetMessage ensures that no value is present for Message, not even an explicit nil
+func (o *GetWorldEarningPayoutAccountResponseData) UnsetMessage() {
+	o.Message.Unset()
+}
+
+func (o GetWorldEarningPayoutAccountResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.AccountId != nil {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
+	if o.PayoutsSupported != nil {
+		toSerialize["payoutsSupported"] = o.PayoutsSupported
+	}
+	if o.Message.IsSet() {
+		toSerialize["message"] = o.Message.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningPayoutAccountResponseData struct {
+	value *GetWorldEarningPayoutAccountResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponseData) Get() *GetWorldEarningPayoutAccountResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponseData) Set(val *GetWorldEarningPayoutAccountResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningPayoutAccountResponseData(val *GetWorldEarningPayoutAccountResponseData) *NullableGetWorldEarningPayoutAccountResponseData {
+	return &NullableGetWorldEarningPayoutAccountResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningPayoutAccountResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningPayoutAccountResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEarningResponse struct for GetWorldEarningResponse
+type GetWorldEarningResponse struct {
+	Data GetWorldEarningResponseData `json:"data"`
+}
+
+// NewGetWorldEarningResponse instantiates a new GetWorldEarningResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEarningResponse(data GetWorldEarningResponseData) *GetWorldEarningResponse {
+	this := GetWorldEarningResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldEarningResponseWithDefaults instantiates a new GetWorldEarningResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEarningResponseWithDefaults() *GetWorldEarningResponse {
+	this := GetWorldEarningResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldEarningResponse) GetData() GetWorldEarningResponseData {
+	if o == nil {
+		var ret GetWorldEarningResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponse) GetDataOk() (*GetWorldEarningResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldEarningResponse) SetData(v GetWorldEarningResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldEarningResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningResponse struct {
+	value *GetWorldEarningResponse
+	isSet bool
+}
+
+func (v NullableGetWorldEarningResponse) Get() *GetWorldEarningResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningResponse) Set(val *GetWorldEarningResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningResponse(val *GetWorldEarningResponse) *NullableGetWorldEarningResponse {
+	return &NullableGetWorldEarningResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEarningResponseData struct for GetWorldEarningResponseData
+type GetWorldEarningResponseData struct {
+	Currency string `json:"currency"`
+	Balances GetWorldEarningResponseDataBalances `json:"balances"`
+	PayoutMinimumCents float32 `json:"payoutMinimumCents"`
+	NextPayoutDate string `json:"nextPayoutDate"`
+	NextPayoutCents float32 `json:"nextPayoutCents"`
+	CarriesForward bool `json:"carriesForward"`
+	Eligibility GetWorldEarningResponseDataEligibility `json:"eligibility"`
+	TermsVersion float32 `json:"termsVersion"`
+	CreatorSharePct float32 `json:"creatorSharePct"`
+	MaturityDays float32 `json:"maturityDays"`
+}
+
+// NewGetWorldEarningResponseData instantiates a new GetWorldEarningResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEarningResponseData(currency string, balances GetWorldEarningResponseDataBalances, payoutMinimumCents float32, nextPayoutDate string, nextPayoutCents float32, carriesForward bool, eligibility GetWorldEarningResponseDataEligibility, termsVersion float32, creatorSharePct float32, maturityDays float32) *GetWorldEarningResponseData {
+	this := GetWorldEarningResponseData{}
+	this.Currency = currency
+	this.Balances = balances
+	this.PayoutMinimumCents = payoutMinimumCents
+	this.NextPayoutDate = nextPayoutDate
+	this.NextPayoutCents = nextPayoutCents
+	this.CarriesForward = carriesForward
+	this.Eligibility = eligibility
+	this.TermsVersion = termsVersion
+	this.CreatorSharePct = creatorSharePct
+	this.MaturityDays = maturityDays
+	return &this
+}
+
+// NewGetWorldEarningResponseDataWithDefaults instantiates a new GetWorldEarningResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEarningResponseDataWithDefaults() *GetWorldEarningResponseData {
+	this := GetWorldEarningResponseData{}
+	return &this
+}
+
+// GetCurrency returns the Currency field value
+func (o *GetWorldEarningResponseData) GetCurrency() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Currency
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderItem) GetNameOk() (*string, bool) {
+func (o *GetWorldEarningResponseData) GetCurrencyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Currency, true
 }
 
-// SetName sets field value
-func (o *ListWorldTradeTableBinderItem) SetName(v string) {
-	o.Name = v
+// SetCurrency sets field value
+func (o *GetWorldEarningResponseData) SetCurrency(v string) {
+	o.Currency = v
+}
+
+// GetBalances returns the Balances field value
+func (o *GetWorldEarningResponseData) GetBalances() GetWorldEarningResponseDataBalances {
+	if o == nil {
+		var ret GetWorldEarningResponseDataBalances
+		return ret
+	}
+
+	return o.Balances
+}
+
+// GetBalancesOk returns a tuple with the Balances field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetBalancesOk() (*GetWorldEarningResponseDataBalances, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Balances, true
+}
+
+// SetBalances sets field value
+func (o *GetWorldEarningResponseData) SetBalances(v GetWorldEarningResponseDataBalances) {
+	o.Balances = v
+}
+
+// GetPayoutMinimumCents returns the PayoutMinimumCents field value
+func (o *GetWorldEarningResponseData) GetPayoutMinimumCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PayoutMinimumCents
+}
+
+// GetPayoutMinimumCentsOk returns a tuple with the PayoutMinimumCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetPayoutMinimumCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayoutMinimumCents, true
+}
+
+// SetPayoutMinimumCents sets field value
+func (o *GetWorldEarningResponseData) SetPayoutMinimumCents(v float32) {
+	o.PayoutMinimumCents = v
+}
+
+// GetNextPayoutDate returns the NextPayoutDate field value
+func (o *GetWorldEarningResponseData) GetNextPayoutDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NextPayoutDate
+}
+
+// GetNextPayoutDateOk returns a tuple with the NextPayoutDate field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetNextPayoutDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NextPayoutDate, true
+}
+
+// SetNextPayoutDate sets field value
+func (o *GetWorldEarningResponseData) SetNextPayoutDate(v string) {
+	o.NextPayoutDate = v
+}
+
+// GetNextPayoutCents returns the NextPayoutCents field value
+func (o *GetWorldEarningResponseData) GetNextPayoutCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NextPayoutCents
+}
+
+// GetNextPayoutCentsOk returns a tuple with the NextPayoutCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetNextPayoutCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NextPayoutCents, true
+}
+
+// SetNextPayoutCents sets field value
+func (o *GetWorldEarningResponseData) SetNextPayoutCents(v float32) {
+	o.NextPayoutCents = v
+}
+
+// GetCarriesForward returns the CarriesForward field value
+func (o *GetWorldEarningResponseData) GetCarriesForward() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CarriesForward
+}
+
+// GetCarriesForwardOk returns a tuple with the CarriesForward field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetCarriesForwardOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CarriesForward, true
+}
+
+// SetCarriesForward sets field value
+func (o *GetWorldEarningResponseData) SetCarriesForward(v bool) {
+	o.CarriesForward = v
+}
+
+// GetEligibility returns the Eligibility field value
+func (o *GetWorldEarningResponseData) GetEligibility() GetWorldEarningResponseDataEligibility {
+	if o == nil {
+		var ret GetWorldEarningResponseDataEligibility
+		return ret
+	}
+
+	return o.Eligibility
+}
+
+// GetEligibilityOk returns a tuple with the Eligibility field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetEligibilityOk() (*GetWorldEarningResponseDataEligibility, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Eligibility, true
+}
+
+// SetEligibility sets field value
+func (o *GetWorldEarningResponseData) SetEligibility(v GetWorldEarningResponseDataEligibility) {
+	o.Eligibility = v
+}
+
+// GetTermsVersion returns the TermsVersion field value
+func (o *GetWorldEarningResponseData) GetTermsVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TermsVersion
+}
+
+// GetTermsVersionOk returns a tuple with the TermsVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetTermsVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TermsVersion, true
+}
+
+// SetTermsVersion sets field value
+func (o *GetWorldEarningResponseData) SetTermsVersion(v float32) {
+	o.TermsVersion = v
+}
+
+// GetCreatorSharePct returns the CreatorSharePct field value
+func (o *GetWorldEarningResponseData) GetCreatorSharePct() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CreatorSharePct
+}
+
+// GetCreatorSharePctOk returns a tuple with the CreatorSharePct field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetCreatorSharePctOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatorSharePct, true
+}
+
+// SetCreatorSharePct sets field value
+func (o *GetWorldEarningResponseData) SetCreatorSharePct(v float32) {
+	o.CreatorSharePct = v
+}
+
+// GetMaturityDays returns the MaturityDays field value
+func (o *GetWorldEarningResponseData) GetMaturityDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaturityDays
+}
+
+// GetMaturityDaysOk returns a tuple with the MaturityDays field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseData) GetMaturityDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaturityDays, true
+}
+
+// SetMaturityDays sets field value
+func (o *GetWorldEarningResponseData) SetMaturityDays(v float32) {
+	o.MaturityDays = v
+}
+
+func (o GetWorldEarningResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	if true {
+		toSerialize["balances"] = o.Balances
+	}
+	if true {
+		toSerialize["payoutMinimumCents"] = o.PayoutMinimumCents
+	}
+	if true {
+		toSerialize["nextPayoutDate"] = o.NextPayoutDate
+	}
+	if true {
+		toSerialize["nextPayoutCents"] = o.NextPayoutCents
+	}
+	if true {
+		toSerialize["carriesForward"] = o.CarriesForward
+	}
+	if true {
+		toSerialize["eligibility"] = o.Eligibility
+	}
+	if true {
+		toSerialize["termsVersion"] = o.TermsVersion
+	}
+	if true {
+		toSerialize["creatorSharePct"] = o.CreatorSharePct
+	}
+	if true {
+		toSerialize["maturityDays"] = o.MaturityDays
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningResponseData struct {
+	value *GetWorldEarningResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldEarningResponseData) Get() *GetWorldEarningResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningResponseData) Set(val *GetWorldEarningResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningResponseData(val *GetWorldEarningResponseData) *NullableGetWorldEarningResponseData {
+	return &NullableGetWorldEarningResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEarningResponseDataBalances struct for GetWorldEarningResponseDataBalances
+type GetWorldEarningResponseDataBalances struct {
+	// Not yet matured (inside the chargeback window).
+	PendingCents float32 `json:"pendingCents"`
+	// Matured and unpaid: what the next payout would send (if ≥ the minimum).
+	AvailableCents float32 `json:"availableCents"`
+	// Matured but held (fraud review / policy hold).
+	HeldCents float32 `json:"heldCents"`
+	PaidCents float32 `json:"paidCents"`
+	// Everything ever credited net of reversals.
+	LifetimeCents float32 `json:"lifetimeCents"`
+}
+
+// NewGetWorldEarningResponseDataBalances instantiates a new GetWorldEarningResponseDataBalances object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEarningResponseDataBalances(pendingCents float32, availableCents float32, heldCents float32, paidCents float32, lifetimeCents float32) *GetWorldEarningResponseDataBalances {
+	this := GetWorldEarningResponseDataBalances{}
+	this.PendingCents = pendingCents
+	this.AvailableCents = availableCents
+	this.HeldCents = heldCents
+	this.PaidCents = paidCents
+	this.LifetimeCents = lifetimeCents
+	return &this
+}
+
+// NewGetWorldEarningResponseDataBalancesWithDefaults instantiates a new GetWorldEarningResponseDataBalances object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEarningResponseDataBalancesWithDefaults() *GetWorldEarningResponseDataBalances {
+	this := GetWorldEarningResponseDataBalances{}
+	return &this
+}
+
+// GetPendingCents returns the PendingCents field value
+func (o *GetWorldEarningResponseDataBalances) GetPendingCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PendingCents
+}
+
+// GetPendingCentsOk returns a tuple with the PendingCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataBalances) GetPendingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PendingCents, true
+}
+
+// SetPendingCents sets field value
+func (o *GetWorldEarningResponseDataBalances) SetPendingCents(v float32) {
+	o.PendingCents = v
+}
+
+// GetAvailableCents returns the AvailableCents field value
+func (o *GetWorldEarningResponseDataBalances) GetAvailableCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AvailableCents
+}
+
+// GetAvailableCentsOk returns a tuple with the AvailableCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataBalances) GetAvailableCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AvailableCents, true
+}
+
+// SetAvailableCents sets field value
+func (o *GetWorldEarningResponseDataBalances) SetAvailableCents(v float32) {
+	o.AvailableCents = v
+}
+
+// GetHeldCents returns the HeldCents field value
+func (o *GetWorldEarningResponseDataBalances) GetHeldCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.HeldCents
+}
+
+// GetHeldCentsOk returns a tuple with the HeldCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataBalances) GetHeldCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HeldCents, true
+}
+
+// SetHeldCents sets field value
+func (o *GetWorldEarningResponseDataBalances) SetHeldCents(v float32) {
+	o.HeldCents = v
+}
+
+// GetPaidCents returns the PaidCents field value
+func (o *GetWorldEarningResponseDataBalances) GetPaidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PaidCents
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataBalances) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaidCents, true
+}
+
+// SetPaidCents sets field value
+func (o *GetWorldEarningResponseDataBalances) SetPaidCents(v float32) {
+	o.PaidCents = v
+}
+
+// GetLifetimeCents returns the LifetimeCents field value
+func (o *GetWorldEarningResponseDataBalances) GetLifetimeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LifetimeCents
+}
+
+// GetLifetimeCentsOk returns a tuple with the LifetimeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataBalances) GetLifetimeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LifetimeCents, true
+}
+
+// SetLifetimeCents sets field value
+func (o *GetWorldEarningResponseDataBalances) SetLifetimeCents(v float32) {
+	o.LifetimeCents = v
+}
+
+func (o GetWorldEarningResponseDataBalances) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["pendingCents"] = o.PendingCents
+	}
+	if true {
+		toSerialize["availableCents"] = o.AvailableCents
+	}
+	if true {
+		toSerialize["heldCents"] = o.HeldCents
+	}
+	if true {
+		toSerialize["paidCents"] = o.PaidCents
+	}
+	if true {
+		toSerialize["lifetimeCents"] = o.LifetimeCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningResponseDataBalances struct {
+	value *GetWorldEarningResponseDataBalances
+	isSet bool
+}
+
+func (v NullableGetWorldEarningResponseDataBalances) Get() *GetWorldEarningResponseDataBalances {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningResponseDataBalances) Set(val *GetWorldEarningResponseDataBalances) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningResponseDataBalances) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningResponseDataBalances) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningResponseDataBalances(val *GetWorldEarningResponseDataBalances) *NullableGetWorldEarningResponseDataBalances {
+	return &NullableGetWorldEarningResponseDataBalances{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningResponseDataBalances) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningResponseDataBalances) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEarningResponseDataEligibility struct for GetWorldEarningResponseDataEligibility
+type GetWorldEarningResponseDataEligibility struct {
+	Eligible bool `json:"eligible"`
+	Adult bool `json:"adult"`
+	IdentityVerified bool `json:"identityVerified"`
+	PayoutAccountReady bool `json:"payoutAccountReady"`
+	CountrySupported bool `json:"countrySupported"`
+	// Where the next payout goes: the creator account, the person's own Connect account, or nowhere yet.
+	DestinationKind NullableString `json:"destinationKind,omitempty"`
+	// What is still needed, in words, in the order to do it.
+	Missing []string `json:"missing"`
+}
+
+// NewGetWorldEarningResponseDataEligibility instantiates a new GetWorldEarningResponseDataEligibility object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEarningResponseDataEligibility(eligible bool, adult bool, identityVerified bool, payoutAccountReady bool, countrySupported bool, missing []string) *GetWorldEarningResponseDataEligibility {
+	this := GetWorldEarningResponseDataEligibility{}
+	this.Eligible = eligible
+	this.Adult = adult
+	this.IdentityVerified = identityVerified
+	this.PayoutAccountReady = payoutAccountReady
+	this.CountrySupported = countrySupported
+	this.Missing = missing
+	return &this
+}
+
+// NewGetWorldEarningResponseDataEligibilityWithDefaults instantiates a new GetWorldEarningResponseDataEligibility object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEarningResponseDataEligibilityWithDefaults() *GetWorldEarningResponseDataEligibility {
+	this := GetWorldEarningResponseDataEligibility{}
+	return &this
+}
+
+// GetEligible returns the Eligible field value
+func (o *GetWorldEarningResponseDataEligibility) GetEligible() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Eligible
+}
+
+// GetEligibleOk returns a tuple with the Eligible field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetEligibleOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Eligible, true
+}
+
+// SetEligible sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetEligible(v bool) {
+	o.Eligible = v
+}
+
+// GetAdult returns the Adult field value
+func (o *GetWorldEarningResponseDataEligibility) GetAdult() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Adult
+}
+
+// GetAdultOk returns a tuple with the Adult field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetAdultOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Adult, true
+}
+
+// SetAdult sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetAdult(v bool) {
+	o.Adult = v
+}
+
+// GetIdentityVerified returns the IdentityVerified field value
+func (o *GetWorldEarningResponseDataEligibility) GetIdentityVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IdentityVerified
+}
+
+// GetIdentityVerifiedOk returns a tuple with the IdentityVerified field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetIdentityVerifiedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IdentityVerified, true
+}
+
+// SetIdentityVerified sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetIdentityVerified(v bool) {
+	o.IdentityVerified = v
+}
+
+// GetPayoutAccountReady returns the PayoutAccountReady field value
+func (o *GetWorldEarningResponseDataEligibility) GetPayoutAccountReady() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PayoutAccountReady
+}
+
+// GetPayoutAccountReadyOk returns a tuple with the PayoutAccountReady field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetPayoutAccountReadyOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayoutAccountReady, true
+}
+
+// SetPayoutAccountReady sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetPayoutAccountReady(v bool) {
+	o.PayoutAccountReady = v
+}
+
+// GetCountrySupported returns the CountrySupported field value
+func (o *GetWorldEarningResponseDataEligibility) GetCountrySupported() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CountrySupported
+}
+
+// GetCountrySupportedOk returns a tuple with the CountrySupported field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetCountrySupportedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CountrySupported, true
+}
+
+// SetCountrySupported sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetCountrySupported(v bool) {
+	o.CountrySupported = v
+}
+
+// GetDestinationKind returns the DestinationKind field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldEarningResponseDataEligibility) GetDestinationKind() string {
+	if o == nil || o.DestinationKind.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DestinationKind.Get()
+}
+
+// GetDestinationKindOk returns a tuple with the DestinationKind field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldEarningResponseDataEligibility) GetDestinationKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DestinationKind.Get(), o.DestinationKind.IsSet()
+}
+
+// HasDestinationKind returns a boolean if a field has been set.
+func (o *GetWorldEarningResponseDataEligibility) HasDestinationKind() bool {
+	if o != nil && o.DestinationKind.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDestinationKind gets a reference to the given NullableString and assigns it to the DestinationKind field.
+func (o *GetWorldEarningResponseDataEligibility) SetDestinationKind(v string) {
+	o.DestinationKind.Set(&v)
+}
+// SetDestinationKindNil sets the value for DestinationKind to be an explicit nil
+func (o *GetWorldEarningResponseDataEligibility) SetDestinationKindNil() {
+	o.DestinationKind.Set(nil)
+}
+
+// UnsetDestinationKind ensures that no value is present for DestinationKind, not even an explicit nil
+func (o *GetWorldEarningResponseDataEligibility) UnsetDestinationKind() {
+	o.DestinationKind.Unset()
+}
+
+// GetMissing returns the Missing field value
+func (o *GetWorldEarningResponseDataEligibility) GetMissing() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Missing
+}
+
+// GetMissingOk returns a tuple with the Missing field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEarningResponseDataEligibility) GetMissingOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Missing, true
+}
+
+// SetMissing sets field value
+func (o *GetWorldEarningResponseDataEligibility) SetMissing(v []string) {
+	o.Missing = v
+}
+
+func (o GetWorldEarningResponseDataEligibility) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["eligible"] = o.Eligible
+	}
+	if true {
+		toSerialize["adult"] = o.Adult
+	}
+	if true {
+		toSerialize["identityVerified"] = o.IdentityVerified
+	}
+	if true {
+		toSerialize["payoutAccountReady"] = o.PayoutAccountReady
+	}
+	if true {
+		toSerialize["countrySupported"] = o.CountrySupported
+	}
+	if o.DestinationKind.IsSet() {
+		toSerialize["destinationKind"] = o.DestinationKind.Get()
+	}
+	if true {
+		toSerialize["missing"] = o.Missing
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEarningResponseDataEligibility struct {
+	value *GetWorldEarningResponseDataEligibility
+	isSet bool
+}
+
+func (v NullableGetWorldEarningResponseDataEligibility) Get() *GetWorldEarningResponseDataEligibility {
+	return v.value
+}
+
+func (v *NullableGetWorldEarningResponseDataEligibility) Set(val *GetWorldEarningResponseDataEligibility) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEarningResponseDataEligibility) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEarningResponseDataEligibility) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEarningResponseDataEligibility(val *GetWorldEarningResponseDataEligibility) *NullableGetWorldEarningResponseDataEligibility {
+	return &NullableGetWorldEarningResponseDataEligibility{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEarningResponseDataEligibility) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEarningResponseDataEligibility) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponse struct for GetWorldEconomyResponse
+type GetWorldEconomyResponse struct {
+	Data GetWorldEconomyResponseData `json:"data"`
+}
+
+// NewGetWorldEconomyResponse instantiates a new GetWorldEconomyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponse(data GetWorldEconomyResponseData) *GetWorldEconomyResponse {
+	this := GetWorldEconomyResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldEconomyResponseWithDefaults instantiates a new GetWorldEconomyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseWithDefaults() *GetWorldEconomyResponse {
+	this := GetWorldEconomyResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldEconomyResponse) GetData() GetWorldEconomyResponseData {
+	if o == nil {
+		var ret GetWorldEconomyResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponse) GetDataOk() (*GetWorldEconomyResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldEconomyResponse) SetData(v GetWorldEconomyResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldEconomyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponse struct {
+	value *GetWorldEconomyResponse
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponse) Get() *GetWorldEconomyResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponse) Set(val *GetWorldEconomyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponse(val *GetWorldEconomyResponse) *NullableGetWorldEconomyResponse {
+	return &NullableGetWorldEconomyResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponseData struct for GetWorldEconomyResponseData
+type GetWorldEconomyResponseData struct {
+	Version float32 `json:"version"`
+	EffectiveAt string `json:"effectiveAt"`
+	Terms GetWorldEconomyResponseDataTerms `json:"terms"`
+	Scheduled []GetWorldEconomyResponseDataScheduled `json:"scheduled"`
+	History []GetWorldEconomyResponseDataHistory `json:"history"`
+	Formula GetWorldEconomyResponseDataFormula `json:"formula"`
+	Guarantees []string `json:"guarantees"`
+}
+
+// NewGetWorldEconomyResponseData instantiates a new GetWorldEconomyResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponseData(version float32, effectiveAt string, terms GetWorldEconomyResponseDataTerms, scheduled []GetWorldEconomyResponseDataScheduled, history []GetWorldEconomyResponseDataHistory, formula GetWorldEconomyResponseDataFormula, guarantees []string) *GetWorldEconomyResponseData {
+	this := GetWorldEconomyResponseData{}
+	this.Version = version
+	this.EffectiveAt = effectiveAt
+	this.Terms = terms
+	this.Scheduled = scheduled
+	this.History = history
+	this.Formula = formula
+	this.Guarantees = guarantees
+	return &this
+}
+
+// NewGetWorldEconomyResponseDataWithDefaults instantiates a new GetWorldEconomyResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseDataWithDefaults() *GetWorldEconomyResponseData {
+	this := GetWorldEconomyResponseData{}
+	return &this
+}
+
+// GetVersion returns the Version field value
+func (o *GetWorldEconomyResponseData) GetVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetWorldEconomyResponseData) SetVersion(v float32) {
+	o.Version = v
+}
+
+// GetEffectiveAt returns the EffectiveAt field value
+func (o *GetWorldEconomyResponseData) GetEffectiveAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EffectiveAt
+}
+
+// GetEffectiveAtOk returns a tuple with the EffectiveAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetEffectiveAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EffectiveAt, true
+}
+
+// SetEffectiveAt sets field value
+func (o *GetWorldEconomyResponseData) SetEffectiveAt(v string) {
+	o.EffectiveAt = v
+}
+
+// GetTerms returns the Terms field value
+func (o *GetWorldEconomyResponseData) GetTerms() GetWorldEconomyResponseDataTerms {
+	if o == nil {
+		var ret GetWorldEconomyResponseDataTerms
+		return ret
+	}
+
+	return o.Terms
+}
+
+// GetTermsOk returns a tuple with the Terms field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetTermsOk() (*GetWorldEconomyResponseDataTerms, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Terms, true
+}
+
+// SetTerms sets field value
+func (o *GetWorldEconomyResponseData) SetTerms(v GetWorldEconomyResponseDataTerms) {
+	o.Terms = v
+}
+
+// GetScheduled returns the Scheduled field value
+func (o *GetWorldEconomyResponseData) GetScheduled() []GetWorldEconomyResponseDataScheduled {
+	if o == nil {
+		var ret []GetWorldEconomyResponseDataScheduled
+		return ret
+	}
+
+	return o.Scheduled
+}
+
+// GetScheduledOk returns a tuple with the Scheduled field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetScheduledOk() ([]GetWorldEconomyResponseDataScheduled, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Scheduled, true
+}
+
+// SetScheduled sets field value
+func (o *GetWorldEconomyResponseData) SetScheduled(v []GetWorldEconomyResponseDataScheduled) {
+	o.Scheduled = v
+}
+
+// GetHistory returns the History field value
+func (o *GetWorldEconomyResponseData) GetHistory() []GetWorldEconomyResponseDataHistory {
+	if o == nil {
+		var ret []GetWorldEconomyResponseDataHistory
+		return ret
+	}
+
+	return o.History
+}
+
+// GetHistoryOk returns a tuple with the History field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetHistoryOk() ([]GetWorldEconomyResponseDataHistory, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.History, true
+}
+
+// SetHistory sets field value
+func (o *GetWorldEconomyResponseData) SetHistory(v []GetWorldEconomyResponseDataHistory) {
+	o.History = v
+}
+
+// GetFormula returns the Formula field value
+func (o *GetWorldEconomyResponseData) GetFormula() GetWorldEconomyResponseDataFormula {
+	if o == nil {
+		var ret GetWorldEconomyResponseDataFormula
+		return ret
+	}
+
+	return o.Formula
+}
+
+// GetFormulaOk returns a tuple with the Formula field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetFormulaOk() (*GetWorldEconomyResponseDataFormula, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Formula, true
+}
+
+// SetFormula sets field value
+func (o *GetWorldEconomyResponseData) SetFormula(v GetWorldEconomyResponseDataFormula) {
+	o.Formula = v
+}
+
+// GetGuarantees returns the Guarantees field value
+func (o *GetWorldEconomyResponseData) GetGuarantees() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Guarantees
+}
+
+// GetGuaranteesOk returns a tuple with the Guarantees field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseData) GetGuaranteesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Guarantees, true
+}
+
+// SetGuarantees sets field value
+func (o *GetWorldEconomyResponseData) SetGuarantees(v []string) {
+	o.Guarantees = v
+}
+
+func (o GetWorldEconomyResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["effectiveAt"] = o.EffectiveAt
+	}
+	if true {
+		toSerialize["terms"] = o.Terms
+	}
+	if true {
+		toSerialize["scheduled"] = o.Scheduled
+	}
+	if true {
+		toSerialize["history"] = o.History
+	}
+	if true {
+		toSerialize["formula"] = o.Formula
+	}
+	if true {
+		toSerialize["guarantees"] = o.Guarantees
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponseData struct {
+	value *GetWorldEconomyResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponseData) Get() *GetWorldEconomyResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponseData) Set(val *GetWorldEconomyResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponseData(val *GetWorldEconomyResponseData) *NullableGetWorldEconomyResponseData {
+	return &NullableGetWorldEconomyResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponseDataFormula struct for GetWorldEconomyResponseDataFormula
+type GetWorldEconomyResponseDataFormula struct {
+	Net string `json:"net"`
+	CreatorShare string `json:"creatorShare"`
+	Toolbox string `json:"toolbox"`
+	Cosm string `json:"cosm"`
+	Affiliate string `json:"affiliate"`
+	Maturity string `json:"maturity"`
+	Payout string `json:"payout"`
+	Eligibility string `json:"eligibility"`
+	CreatorRewards string `json:"creatorRewards"`
+	InGameAds string `json:"inGameAds"`
+	Chargebacks string `json:"chargebacks"`
+}
+
+// NewGetWorldEconomyResponseDataFormula instantiates a new GetWorldEconomyResponseDataFormula object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponseDataFormula(net string, creatorShare string, toolbox string, cosm string, affiliate string, maturity string, payout string, eligibility string, creatorRewards string, inGameAds string, chargebacks string) *GetWorldEconomyResponseDataFormula {
+	this := GetWorldEconomyResponseDataFormula{}
+	this.Net = net
+	this.CreatorShare = creatorShare
+	this.Toolbox = toolbox
+	this.Cosm = cosm
+	this.Affiliate = affiliate
+	this.Maturity = maturity
+	this.Payout = payout
+	this.Eligibility = eligibility
+	this.CreatorRewards = creatorRewards
+	this.InGameAds = inGameAds
+	this.Chargebacks = chargebacks
+	return &this
+}
+
+// NewGetWorldEconomyResponseDataFormulaWithDefaults instantiates a new GetWorldEconomyResponseDataFormula object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseDataFormulaWithDefaults() *GetWorldEconomyResponseDataFormula {
+	this := GetWorldEconomyResponseDataFormula{}
+	return &this
+}
+
+// GetNet returns the Net field value
+func (o *GetWorldEconomyResponseDataFormula) GetNet() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Net
+}
+
+// GetNetOk returns a tuple with the Net field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetNetOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Net, true
+}
+
+// SetNet sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetNet(v string) {
+	o.Net = v
+}
+
+// GetCreatorShare returns the CreatorShare field value
+func (o *GetWorldEconomyResponseDataFormula) GetCreatorShare() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatorShare
+}
+
+// GetCreatorShareOk returns a tuple with the CreatorShare field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetCreatorShareOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatorShare, true
+}
+
+// SetCreatorShare sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetCreatorShare(v string) {
+	o.CreatorShare = v
+}
+
+// GetToolbox returns the Toolbox field value
+func (o *GetWorldEconomyResponseDataFormula) GetToolbox() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Toolbox
+}
+
+// GetToolboxOk returns a tuple with the Toolbox field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetToolboxOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Toolbox, true
+}
+
+// SetToolbox sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetToolbox(v string) {
+	o.Toolbox = v
+}
+
+// GetCosm returns the Cosm field value
+func (o *GetWorldEconomyResponseDataFormula) GetCosm() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Cosm
+}
+
+// GetCosmOk returns a tuple with the Cosm field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetCosmOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Cosm, true
+}
+
+// SetCosm sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetCosm(v string) {
+	o.Cosm = v
+}
+
+// GetAffiliate returns the Affiliate field value
+func (o *GetWorldEconomyResponseDataFormula) GetAffiliate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Affiliate
+}
+
+// GetAffiliateOk returns a tuple with the Affiliate field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetAffiliateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Affiliate, true
+}
+
+// SetAffiliate sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetAffiliate(v string) {
+	o.Affiliate = v
+}
+
+// GetMaturity returns the Maturity field value
+func (o *GetWorldEconomyResponseDataFormula) GetMaturity() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Maturity
+}
+
+// GetMaturityOk returns a tuple with the Maturity field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetMaturityOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Maturity, true
+}
+
+// SetMaturity sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetMaturity(v string) {
+	o.Maturity = v
+}
+
+// GetPayout returns the Payout field value
+func (o *GetWorldEconomyResponseDataFormula) GetPayout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Payout
+}
+
+// GetPayoutOk returns a tuple with the Payout field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetPayoutOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Payout, true
+}
+
+// SetPayout sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetPayout(v string) {
+	o.Payout = v
+}
+
+// GetEligibility returns the Eligibility field value
+func (o *GetWorldEconomyResponseDataFormula) GetEligibility() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Eligibility
+}
+
+// GetEligibilityOk returns a tuple with the Eligibility field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetEligibilityOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Eligibility, true
+}
+
+// SetEligibility sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetEligibility(v string) {
+	o.Eligibility = v
+}
+
+// GetCreatorRewards returns the CreatorRewards field value
+func (o *GetWorldEconomyResponseDataFormula) GetCreatorRewards() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatorRewards
+}
+
+// GetCreatorRewardsOk returns a tuple with the CreatorRewards field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetCreatorRewardsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatorRewards, true
+}
+
+// SetCreatorRewards sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetCreatorRewards(v string) {
+	o.CreatorRewards = v
+}
+
+// GetInGameAds returns the InGameAds field value
+func (o *GetWorldEconomyResponseDataFormula) GetInGameAds() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InGameAds
+}
+
+// GetInGameAdsOk returns a tuple with the InGameAds field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetInGameAdsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InGameAds, true
+}
+
+// SetInGameAds sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetInGameAds(v string) {
+	o.InGameAds = v
+}
+
+// GetChargebacks returns the Chargebacks field value
+func (o *GetWorldEconomyResponseDataFormula) GetChargebacks() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Chargebacks
+}
+
+// GetChargebacksOk returns a tuple with the Chargebacks field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataFormula) GetChargebacksOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Chargebacks, true
+}
+
+// SetChargebacks sets field value
+func (o *GetWorldEconomyResponseDataFormula) SetChargebacks(v string) {
+	o.Chargebacks = v
+}
+
+func (o GetWorldEconomyResponseDataFormula) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["net"] = o.Net
+	}
+	if true {
+		toSerialize["creatorShare"] = o.CreatorShare
+	}
+	if true {
+		toSerialize["toolbox"] = o.Toolbox
+	}
+	if true {
+		toSerialize["cosm"] = o.Cosm
+	}
+	if true {
+		toSerialize["affiliate"] = o.Affiliate
+	}
+	if true {
+		toSerialize["maturity"] = o.Maturity
+	}
+	if true {
+		toSerialize["payout"] = o.Payout
+	}
+	if true {
+		toSerialize["eligibility"] = o.Eligibility
+	}
+	if true {
+		toSerialize["creatorRewards"] = o.CreatorRewards
+	}
+	if true {
+		toSerialize["inGameAds"] = o.InGameAds
+	}
+	if true {
+		toSerialize["chargebacks"] = o.Chargebacks
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponseDataFormula struct {
+	value *GetWorldEconomyResponseDataFormula
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponseDataFormula) Get() *GetWorldEconomyResponseDataFormula {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponseDataFormula) Set(val *GetWorldEconomyResponseDataFormula) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponseDataFormula) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponseDataFormula) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponseDataFormula(val *GetWorldEconomyResponseDataFormula) *NullableGetWorldEconomyResponseDataFormula {
+	return &NullableGetWorldEconomyResponseDataFormula{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponseDataFormula) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponseDataFormula) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponseDataHistory struct for GetWorldEconomyResponseDataHistory
+type GetWorldEconomyResponseDataHistory struct {
+	Version float32 `json:"version"`
+	Summary string `json:"summary"`
+	AnnouncedAt string `json:"announcedAt"`
+	EffectiveAt string `json:"effectiveAt"`
+}
+
+// NewGetWorldEconomyResponseDataHistory instantiates a new GetWorldEconomyResponseDataHistory object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponseDataHistory(version float32, summary string, announcedAt string, effectiveAt string) *GetWorldEconomyResponseDataHistory {
+	this := GetWorldEconomyResponseDataHistory{}
+	this.Version = version
+	this.Summary = summary
+	this.AnnouncedAt = announcedAt
+	this.EffectiveAt = effectiveAt
+	return &this
+}
+
+// NewGetWorldEconomyResponseDataHistoryWithDefaults instantiates a new GetWorldEconomyResponseDataHistory object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseDataHistoryWithDefaults() *GetWorldEconomyResponseDataHistory {
+	this := GetWorldEconomyResponseDataHistory{}
+	return &this
+}
+
+// GetVersion returns the Version field value
+func (o *GetWorldEconomyResponseDataHistory) GetVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataHistory) GetVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetWorldEconomyResponseDataHistory) SetVersion(v float32) {
+	o.Version = v
+}
+
+// GetSummary returns the Summary field value
+func (o *GetWorldEconomyResponseDataHistory) GetSummary() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataHistory) GetSummaryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Summary, true
+}
+
+// SetSummary sets field value
+func (o *GetWorldEconomyResponseDataHistory) SetSummary(v string) {
+	o.Summary = v
+}
+
+// GetAnnouncedAt returns the AnnouncedAt field value
+func (o *GetWorldEconomyResponseDataHistory) GetAnnouncedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AnnouncedAt
+}
+
+// GetAnnouncedAtOk returns a tuple with the AnnouncedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataHistory) GetAnnouncedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AnnouncedAt, true
+}
+
+// SetAnnouncedAt sets field value
+func (o *GetWorldEconomyResponseDataHistory) SetAnnouncedAt(v string) {
+	o.AnnouncedAt = v
+}
+
+// GetEffectiveAt returns the EffectiveAt field value
+func (o *GetWorldEconomyResponseDataHistory) GetEffectiveAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EffectiveAt
+}
+
+// GetEffectiveAtOk returns a tuple with the EffectiveAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataHistory) GetEffectiveAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EffectiveAt, true
+}
+
+// SetEffectiveAt sets field value
+func (o *GetWorldEconomyResponseDataHistory) SetEffectiveAt(v string) {
+	o.EffectiveAt = v
+}
+
+func (o GetWorldEconomyResponseDataHistory) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["announcedAt"] = o.AnnouncedAt
+	}
+	if true {
+		toSerialize["effectiveAt"] = o.EffectiveAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponseDataHistory struct {
+	value *GetWorldEconomyResponseDataHistory
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponseDataHistory) Get() *GetWorldEconomyResponseDataHistory {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponseDataHistory) Set(val *GetWorldEconomyResponseDataHistory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponseDataHistory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponseDataHistory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponseDataHistory(val *GetWorldEconomyResponseDataHistory) *NullableGetWorldEconomyResponseDataHistory {
+	return &NullableGetWorldEconomyResponseDataHistory{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponseDataHistory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponseDataHistory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponseDataScheduled struct for GetWorldEconomyResponseDataScheduled
+type GetWorldEconomyResponseDataScheduled struct {
+	Version float32 `json:"version"`
+	Terms GetWorldEconomyResponseDataTerms `json:"terms"`
+	Summary string `json:"summary"`
+	AnnouncedAt string `json:"announcedAt"`
+	EffectiveAt string `json:"effectiveAt"`
+}
+
+// NewGetWorldEconomyResponseDataScheduled instantiates a new GetWorldEconomyResponseDataScheduled object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponseDataScheduled(version float32, terms GetWorldEconomyResponseDataTerms, summary string, announcedAt string, effectiveAt string) *GetWorldEconomyResponseDataScheduled {
+	this := GetWorldEconomyResponseDataScheduled{}
+	this.Version = version
+	this.Terms = terms
+	this.Summary = summary
+	this.AnnouncedAt = announcedAt
+	this.EffectiveAt = effectiveAt
+	return &this
+}
+
+// NewGetWorldEconomyResponseDataScheduledWithDefaults instantiates a new GetWorldEconomyResponseDataScheduled object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseDataScheduledWithDefaults() *GetWorldEconomyResponseDataScheduled {
+	this := GetWorldEconomyResponseDataScheduled{}
+	return &this
+}
+
+// GetVersion returns the Version field value
+func (o *GetWorldEconomyResponseDataScheduled) GetVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataScheduled) GetVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetWorldEconomyResponseDataScheduled) SetVersion(v float32) {
+	o.Version = v
+}
+
+// GetTerms returns the Terms field value
+func (o *GetWorldEconomyResponseDataScheduled) GetTerms() GetWorldEconomyResponseDataTerms {
+	if o == nil {
+		var ret GetWorldEconomyResponseDataTerms
+		return ret
+	}
+
+	return o.Terms
+}
+
+// GetTermsOk returns a tuple with the Terms field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataScheduled) GetTermsOk() (*GetWorldEconomyResponseDataTerms, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Terms, true
+}
+
+// SetTerms sets field value
+func (o *GetWorldEconomyResponseDataScheduled) SetTerms(v GetWorldEconomyResponseDataTerms) {
+	o.Terms = v
+}
+
+// GetSummary returns the Summary field value
+func (o *GetWorldEconomyResponseDataScheduled) GetSummary() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataScheduled) GetSummaryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Summary, true
+}
+
+// SetSummary sets field value
+func (o *GetWorldEconomyResponseDataScheduled) SetSummary(v string) {
+	o.Summary = v
+}
+
+// GetAnnouncedAt returns the AnnouncedAt field value
+func (o *GetWorldEconomyResponseDataScheduled) GetAnnouncedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AnnouncedAt
+}
+
+// GetAnnouncedAtOk returns a tuple with the AnnouncedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataScheduled) GetAnnouncedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AnnouncedAt, true
+}
+
+// SetAnnouncedAt sets field value
+func (o *GetWorldEconomyResponseDataScheduled) SetAnnouncedAt(v string) {
+	o.AnnouncedAt = v
+}
+
+// GetEffectiveAt returns the EffectiveAt field value
+func (o *GetWorldEconomyResponseDataScheduled) GetEffectiveAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EffectiveAt
+}
+
+// GetEffectiveAtOk returns a tuple with the EffectiveAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataScheduled) GetEffectiveAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EffectiveAt, true
+}
+
+// SetEffectiveAt sets field value
+func (o *GetWorldEconomyResponseDataScheduled) SetEffectiveAt(v string) {
+	o.EffectiveAt = v
+}
+
+func (o GetWorldEconomyResponseDataScheduled) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["terms"] = o.Terms
+	}
+	if true {
+		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["announcedAt"] = o.AnnouncedAt
+	}
+	if true {
+		toSerialize["effectiveAt"] = o.EffectiveAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponseDataScheduled struct {
+	value *GetWorldEconomyResponseDataScheduled
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponseDataScheduled) Get() *GetWorldEconomyResponseDataScheduled {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponseDataScheduled) Set(val *GetWorldEconomyResponseDataScheduled) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponseDataScheduled) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponseDataScheduled) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponseDataScheduled(val *GetWorldEconomyResponseDataScheduled) *NullableGetWorldEconomyResponseDataScheduled {
+	return &NullableGetWorldEconomyResponseDataScheduled{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponseDataScheduled) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponseDataScheduled) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEconomyResponseDataTerms struct for GetWorldEconomyResponseDataTerms
+type GetWorldEconomyResponseDataTerms struct {
+	CreatorCashShareBps float32 `json:"creatorCashShareBps"`
+	ToolboxShareBps float32 `json:"toolboxShareBps"`
+	CosmRoyaltyBps float32 `json:"cosmRoyaltyBps"`
+	AffiliateFeeShareBps float32 `json:"affiliateFeeShareBps"`
+	AttributionDays float32 `json:"attributionDays"`
+	PayoutMinimumCents float32 `json:"payoutMinimumCents"`
+	MaturityDays float32 `json:"maturityDays"`
+	RenewalGraceDays float32 `json:"renewalGraceDays"`
+	ReceiptRefundDays float32 `json:"receiptRefundDays"`
+	ConsumableSelfRefundMinutes float32 `json:"consumableSelfRefundMinutes"`
+	// Creator Rewards (0891): the pool's share of Crossly's net Worlds take, in bps.
+	RewardsPoolShareBps float32 `json:"rewardsPoolShareBps"`
+	// Creator Rewards formula version (0930): 1 = counted minutes, 2 = retention + new-player weights.
+	RewardsFormulaVersion float32 `json:"rewardsFormulaVersion"`
+	// v2: extra weight on a retained player's minutes, in bps (5000 = ×1.5).
+	RewardsRetentionBonusBps float32 `json:"rewardsRetentionBonusBps"`
+	// v2: extra weight on a new player's minutes, in bps.
+	RewardsNewPlayerBonusBps float32 `json:"rewardsNewPlayerBonusBps"`
+	// In-experience ads (0910): the game creator's share of Crossly's ad REVENUE (the 80% revenue side of on-platform CBX ad spend) on clicks served in the game, paid only on the part of a charge settled from earned CBX.
+	AdSurfaceShareBps float32 `json:"adSurfaceShareBps"`
+}
+
+// NewGetWorldEconomyResponseDataTerms instantiates a new GetWorldEconomyResponseDataTerms object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEconomyResponseDataTerms(creatorCashShareBps float32, toolboxShareBps float32, cosmRoyaltyBps float32, affiliateFeeShareBps float32, attributionDays float32, payoutMinimumCents float32, maturityDays float32, renewalGraceDays float32, receiptRefundDays float32, consumableSelfRefundMinutes float32, rewardsPoolShareBps float32, rewardsFormulaVersion float32, rewardsRetentionBonusBps float32, rewardsNewPlayerBonusBps float32, adSurfaceShareBps float32) *GetWorldEconomyResponseDataTerms {
+	this := GetWorldEconomyResponseDataTerms{}
+	this.CreatorCashShareBps = creatorCashShareBps
+	this.ToolboxShareBps = toolboxShareBps
+	this.CosmRoyaltyBps = cosmRoyaltyBps
+	this.AffiliateFeeShareBps = affiliateFeeShareBps
+	this.AttributionDays = attributionDays
+	this.PayoutMinimumCents = payoutMinimumCents
+	this.MaturityDays = maturityDays
+	this.RenewalGraceDays = renewalGraceDays
+	this.ReceiptRefundDays = receiptRefundDays
+	this.ConsumableSelfRefundMinutes = consumableSelfRefundMinutes
+	this.RewardsPoolShareBps = rewardsPoolShareBps
+	this.RewardsFormulaVersion = rewardsFormulaVersion
+	this.RewardsRetentionBonusBps = rewardsRetentionBonusBps
+	this.RewardsNewPlayerBonusBps = rewardsNewPlayerBonusBps
+	this.AdSurfaceShareBps = adSurfaceShareBps
+	return &this
+}
+
+// NewGetWorldEconomyResponseDataTermsWithDefaults instantiates a new GetWorldEconomyResponseDataTerms object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEconomyResponseDataTermsWithDefaults() *GetWorldEconomyResponseDataTerms {
+	this := GetWorldEconomyResponseDataTerms{}
+	return &this
+}
+
+// GetCreatorCashShareBps returns the CreatorCashShareBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetCreatorCashShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CreatorCashShareBps
+}
+
+// GetCreatorCashShareBpsOk returns a tuple with the CreatorCashShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetCreatorCashShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatorCashShareBps, true
+}
+
+// SetCreatorCashShareBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetCreatorCashShareBps(v float32) {
+	o.CreatorCashShareBps = v
+}
+
+// GetToolboxShareBps returns the ToolboxShareBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetToolboxShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ToolboxShareBps
+}
+
+// GetToolboxShareBpsOk returns a tuple with the ToolboxShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetToolboxShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ToolboxShareBps, true
+}
+
+// SetToolboxShareBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetToolboxShareBps(v float32) {
+	o.ToolboxShareBps = v
+}
+
+// GetCosmRoyaltyBps returns the CosmRoyaltyBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetCosmRoyaltyBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CosmRoyaltyBps
+}
+
+// GetCosmRoyaltyBpsOk returns a tuple with the CosmRoyaltyBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetCosmRoyaltyBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmRoyaltyBps, true
+}
+
+// SetCosmRoyaltyBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetCosmRoyaltyBps(v float32) {
+	o.CosmRoyaltyBps = v
+}
+
+// GetAffiliateFeeShareBps returns the AffiliateFeeShareBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetAffiliateFeeShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AffiliateFeeShareBps
+}
+
+// GetAffiliateFeeShareBpsOk returns a tuple with the AffiliateFeeShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetAffiliateFeeShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AffiliateFeeShareBps, true
+}
+
+// SetAffiliateFeeShareBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetAffiliateFeeShareBps(v float32) {
+	o.AffiliateFeeShareBps = v
+}
+
+// GetAttributionDays returns the AttributionDays field value
+func (o *GetWorldEconomyResponseDataTerms) GetAttributionDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AttributionDays
+}
+
+// GetAttributionDaysOk returns a tuple with the AttributionDays field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetAttributionDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AttributionDays, true
+}
+
+// SetAttributionDays sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetAttributionDays(v float32) {
+	o.AttributionDays = v
+}
+
+// GetPayoutMinimumCents returns the PayoutMinimumCents field value
+func (o *GetWorldEconomyResponseDataTerms) GetPayoutMinimumCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PayoutMinimumCents
+}
+
+// GetPayoutMinimumCentsOk returns a tuple with the PayoutMinimumCents field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetPayoutMinimumCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayoutMinimumCents, true
+}
+
+// SetPayoutMinimumCents sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetPayoutMinimumCents(v float32) {
+	o.PayoutMinimumCents = v
+}
+
+// GetMaturityDays returns the MaturityDays field value
+func (o *GetWorldEconomyResponseDataTerms) GetMaturityDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaturityDays
+}
+
+// GetMaturityDaysOk returns a tuple with the MaturityDays field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetMaturityDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaturityDays, true
+}
+
+// SetMaturityDays sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetMaturityDays(v float32) {
+	o.MaturityDays = v
+}
+
+// GetRenewalGraceDays returns the RenewalGraceDays field value
+func (o *GetWorldEconomyResponseDataTerms) GetRenewalGraceDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RenewalGraceDays
+}
+
+// GetRenewalGraceDaysOk returns a tuple with the RenewalGraceDays field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetRenewalGraceDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RenewalGraceDays, true
+}
+
+// SetRenewalGraceDays sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetRenewalGraceDays(v float32) {
+	o.RenewalGraceDays = v
+}
+
+// GetReceiptRefundDays returns the ReceiptRefundDays field value
+func (o *GetWorldEconomyResponseDataTerms) GetReceiptRefundDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ReceiptRefundDays
+}
+
+// GetReceiptRefundDaysOk returns a tuple with the ReceiptRefundDays field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetReceiptRefundDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ReceiptRefundDays, true
+}
+
+// SetReceiptRefundDays sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetReceiptRefundDays(v float32) {
+	o.ReceiptRefundDays = v
+}
+
+// GetConsumableSelfRefundMinutes returns the ConsumableSelfRefundMinutes field value
+func (o *GetWorldEconomyResponseDataTerms) GetConsumableSelfRefundMinutes() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ConsumableSelfRefundMinutes
+}
+
+// GetConsumableSelfRefundMinutesOk returns a tuple with the ConsumableSelfRefundMinutes field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetConsumableSelfRefundMinutesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConsumableSelfRefundMinutes, true
+}
+
+// SetConsumableSelfRefundMinutes sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetConsumableSelfRefundMinutes(v float32) {
+	o.ConsumableSelfRefundMinutes = v
+}
+
+// GetRewardsPoolShareBps returns the RewardsPoolShareBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsPoolShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RewardsPoolShareBps
+}
+
+// GetRewardsPoolShareBpsOk returns a tuple with the RewardsPoolShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsPoolShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RewardsPoolShareBps, true
+}
+
+// SetRewardsPoolShareBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetRewardsPoolShareBps(v float32) {
+	o.RewardsPoolShareBps = v
+}
+
+// GetRewardsFormulaVersion returns the RewardsFormulaVersion field value
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsFormulaVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RewardsFormulaVersion
+}
+
+// GetRewardsFormulaVersionOk returns a tuple with the RewardsFormulaVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsFormulaVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RewardsFormulaVersion, true
+}
+
+// SetRewardsFormulaVersion sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetRewardsFormulaVersion(v float32) {
+	o.RewardsFormulaVersion = v
+}
+
+// GetRewardsRetentionBonusBps returns the RewardsRetentionBonusBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsRetentionBonusBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RewardsRetentionBonusBps
+}
+
+// GetRewardsRetentionBonusBpsOk returns a tuple with the RewardsRetentionBonusBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsRetentionBonusBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RewardsRetentionBonusBps, true
+}
+
+// SetRewardsRetentionBonusBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetRewardsRetentionBonusBps(v float32) {
+	o.RewardsRetentionBonusBps = v
+}
+
+// GetRewardsNewPlayerBonusBps returns the RewardsNewPlayerBonusBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsNewPlayerBonusBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RewardsNewPlayerBonusBps
+}
+
+// GetRewardsNewPlayerBonusBpsOk returns a tuple with the RewardsNewPlayerBonusBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetRewardsNewPlayerBonusBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RewardsNewPlayerBonusBps, true
+}
+
+// SetRewardsNewPlayerBonusBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetRewardsNewPlayerBonusBps(v float32) {
+	o.RewardsNewPlayerBonusBps = v
+}
+
+// GetAdSurfaceShareBps returns the AdSurfaceShareBps field value
+func (o *GetWorldEconomyResponseDataTerms) GetAdSurfaceShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AdSurfaceShareBps
+}
+
+// GetAdSurfaceShareBpsOk returns a tuple with the AdSurfaceShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEconomyResponseDataTerms) GetAdSurfaceShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AdSurfaceShareBps, true
+}
+
+// SetAdSurfaceShareBps sets field value
+func (o *GetWorldEconomyResponseDataTerms) SetAdSurfaceShareBps(v float32) {
+	o.AdSurfaceShareBps = v
+}
+
+func (o GetWorldEconomyResponseDataTerms) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["creatorCashShareBps"] = o.CreatorCashShareBps
+	}
+	if true {
+		toSerialize["toolboxShareBps"] = o.ToolboxShareBps
+	}
+	if true {
+		toSerialize["cosmRoyaltyBps"] = o.CosmRoyaltyBps
+	}
+	if true {
+		toSerialize["affiliateFeeShareBps"] = o.AffiliateFeeShareBps
+	}
+	if true {
+		toSerialize["attributionDays"] = o.AttributionDays
+	}
+	if true {
+		toSerialize["payoutMinimumCents"] = o.PayoutMinimumCents
+	}
+	if true {
+		toSerialize["maturityDays"] = o.MaturityDays
+	}
+	if true {
+		toSerialize["renewalGraceDays"] = o.RenewalGraceDays
+	}
+	if true {
+		toSerialize["receiptRefundDays"] = o.ReceiptRefundDays
+	}
+	if true {
+		toSerialize["consumableSelfRefundMinutes"] = o.ConsumableSelfRefundMinutes
+	}
+	if true {
+		toSerialize["rewardsPoolShareBps"] = o.RewardsPoolShareBps
+	}
+	if true {
+		toSerialize["rewardsFormulaVersion"] = o.RewardsFormulaVersion
+	}
+	if true {
+		toSerialize["rewardsRetentionBonusBps"] = o.RewardsRetentionBonusBps
+	}
+	if true {
+		toSerialize["rewardsNewPlayerBonusBps"] = o.RewardsNewPlayerBonusBps
+	}
+	if true {
+		toSerialize["adSurfaceShareBps"] = o.AdSurfaceShareBps
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEconomyResponseDataTerms struct {
+	value *GetWorldEconomyResponseDataTerms
+	isSet bool
+}
+
+func (v NullableGetWorldEconomyResponseDataTerms) Get() *GetWorldEconomyResponseDataTerms {
+	return v.value
+}
+
+func (v *NullableGetWorldEconomyResponseDataTerms) Set(val *GetWorldEconomyResponseDataTerms) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEconomyResponseDataTerms) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEconomyResponseDataTerms) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEconomyResponseDataTerms(val *GetWorldEconomyResponseDataTerms) *NullableGetWorldEconomyResponseDataTerms {
+	return &NullableGetWorldEconomyResponseDataTerms{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEconomyResponseDataTerms) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEconomyResponseDataTerms) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEmoteShowableResponse struct for GetWorldEmoteShowableResponse
+type GetWorldEmoteShowableResponse struct {
+	Data GetWorldEmoteShowableResponseData `json:"data"`
+}
+
+// NewGetWorldEmoteShowableResponse instantiates a new GetWorldEmoteShowableResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEmoteShowableResponse(data GetWorldEmoteShowableResponseData) *GetWorldEmoteShowableResponse {
+	this := GetWorldEmoteShowableResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWorldEmoteShowableResponseWithDefaults instantiates a new GetWorldEmoteShowableResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEmoteShowableResponseWithDefaults() *GetWorldEmoteShowableResponse {
+	this := GetWorldEmoteShowableResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWorldEmoteShowableResponse) GetData() GetWorldEmoteShowableResponseData {
+	if o == nil {
+		var ret GetWorldEmoteShowableResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEmoteShowableResponse) GetDataOk() (*GetWorldEmoteShowableResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWorldEmoteShowableResponse) SetData(v GetWorldEmoteShowableResponseData) {
+	o.Data = v
+}
+
+func (o GetWorldEmoteShowableResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEmoteShowableResponse struct {
+	value *GetWorldEmoteShowableResponse
+	isSet bool
+}
+
+func (v NullableGetWorldEmoteShowableResponse) Get() *GetWorldEmoteShowableResponse {
+	return v.value
+}
+
+func (v *NullableGetWorldEmoteShowableResponse) Set(val *GetWorldEmoteShowableResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEmoteShowableResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEmoteShowableResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEmoteShowableResponse(val *GetWorldEmoteShowableResponse) *NullableGetWorldEmoteShowableResponse {
+	return &NullableGetWorldEmoteShowableResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEmoteShowableResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEmoteShowableResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEmoteShowableResponseData struct for GetWorldEmoteShowableResponseData
+type GetWorldEmoteShowableResponseData struct {
+	Listings []GetWorldEmoteShowableResponseDataListings `json:"listings"`
+	Collection []GetWorldEmoteShowableResponseDataListings `json:"collection"`
+}
+
+// NewGetWorldEmoteShowableResponseData instantiates a new GetWorldEmoteShowableResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEmoteShowableResponseData(listings []GetWorldEmoteShowableResponseDataListings, collection []GetWorldEmoteShowableResponseDataListings) *GetWorldEmoteShowableResponseData {
+	this := GetWorldEmoteShowableResponseData{}
+	this.Listings = listings
+	this.Collection = collection
+	return &this
+}
+
+// NewGetWorldEmoteShowableResponseDataWithDefaults instantiates a new GetWorldEmoteShowableResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEmoteShowableResponseDataWithDefaults() *GetWorldEmoteShowableResponseData {
+	this := GetWorldEmoteShowableResponseData{}
+	return &this
+}
+
+// GetListings returns the Listings field value
+func (o *GetWorldEmoteShowableResponseData) GetListings() []GetWorldEmoteShowableResponseDataListings {
+	if o == nil {
+		var ret []GetWorldEmoteShowableResponseDataListings
+		return ret
+	}
+
+	return o.Listings
+}
+
+// GetListingsOk returns a tuple with the Listings field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEmoteShowableResponseData) GetListingsOk() ([]GetWorldEmoteShowableResponseDataListings, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Listings, true
+}
+
+// SetListings sets field value
+func (o *GetWorldEmoteShowableResponseData) SetListings(v []GetWorldEmoteShowableResponseDataListings) {
+	o.Listings = v
+}
+
+// GetCollection returns the Collection field value
+func (o *GetWorldEmoteShowableResponseData) GetCollection() []GetWorldEmoteShowableResponseDataListings {
+	if o == nil {
+		var ret []GetWorldEmoteShowableResponseDataListings
+		return ret
+	}
+
+	return o.Collection
+}
+
+// GetCollectionOk returns a tuple with the Collection field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEmoteShowableResponseData) GetCollectionOk() ([]GetWorldEmoteShowableResponseDataListings, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Collection, true
+}
+
+// SetCollection sets field value
+func (o *GetWorldEmoteShowableResponseData) SetCollection(v []GetWorldEmoteShowableResponseDataListings) {
+	o.Collection = v
+}
+
+func (o GetWorldEmoteShowableResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["listings"] = o.Listings
+	}
+	if true {
+		toSerialize["collection"] = o.Collection
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWorldEmoteShowableResponseData struct {
+	value *GetWorldEmoteShowableResponseData
+	isSet bool
+}
+
+func (v NullableGetWorldEmoteShowableResponseData) Get() *GetWorldEmoteShowableResponseData {
+	return v.value
+}
+
+func (v *NullableGetWorldEmoteShowableResponseData) Set(val *GetWorldEmoteShowableResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWorldEmoteShowableResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWorldEmoteShowableResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWorldEmoteShowableResponseData(val *GetWorldEmoteShowableResponseData) *NullableGetWorldEmoteShowableResponseData {
+	return &NullableGetWorldEmoteShowableResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWorldEmoteShowableResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWorldEmoteShowableResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWorldEmoteShowableResponseDataListings struct for GetWorldEmoteShowableResponseDataListings
+type GetWorldEmoteShowableResponseDataListings struct {
+	Ref GetWorldEmoteShowableResponseDataListingsRef `json:"ref"`
+	Title string `json:"title"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	PriceCents NullableFloat32 `json:"priceCents,omitempty"`
+}
+
+// NewGetWorldEmoteShowableResponseDataListings instantiates a new GetWorldEmoteShowableResponseDataListings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWorldEmoteShowableResponseDataListings(ref GetWorldEmoteShowableResponseDataListingsRef, title string) *GetWorldEmoteShowableResponseDataListings {
+	this := GetWorldEmoteShowableResponseDataListings{}
+	this.Ref = ref
+	this.Title = title
+	return &this
+}
+
+// NewGetWorldEmoteShowableResponseDataListingsWithDefaults instantiates a new GetWorldEmoteShowableResponseDataListings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWorldEmoteShowableResponseDataListingsWithDefaults() *GetWorldEmoteShowableResponseDataListings {
+	this := GetWorldEmoteShowableResponseDataListings{}
+	return &this
+}
+
+// GetRef returns the Ref field value
+func (o *GetWorldEmoteShowableResponseDataListings) GetRef() GetWorldEmoteShowableResponseDataListingsRef {
+	if o == nil {
+		var ret GetWorldEmoteShowableResponseDataListingsRef
+		return ret
+	}
+
+	return o.Ref
+}
+
+// GetRefOk returns a tuple with the Ref field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEmoteShowableResponseDataListings) GetRefOk() (*GetWorldEmoteShowableResponseDataListingsRef, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Ref, true
+}
+
+// SetRef sets field value
+func (o *GetWorldEmoteShowableResponseDataListings) SetRef(v GetWorldEmoteShowableResponseDataListingsRef) {
+	o.Ref = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetWorldEmoteShowableResponseDataListings) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetWorldEmoteShowableResponseDataListings) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetWorldEmoteShowableResponseDataListings) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWorldTradeTableBinderItem) GetImageUrl() string {
+func (o *GetWorldEmoteShowableResponseDataListings) GetImageUrl() string {
 	if o == nil || o.ImageUrl.Get() == nil {
 		var ret string
 		return ret
@@ -11147,7 +12888,7 @@ func (o *ListWorldTradeTableBinderItem) GetImageUrl() string {
 // GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWorldTradeTableBinderItem) GetImageUrlOk() (*string, bool) {
+func (o *GetWorldEmoteShowableResponseDataListings) GetImageUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -11155,7 +12896,7 @@ func (o *ListWorldTradeTableBinderItem) GetImageUrlOk() (*string, bool) {
 }
 
 // HasImageUrl returns a boolean if a field has been set.
-func (o *ListWorldTradeTableBinderItem) HasImageUrl() bool {
+func (o *GetWorldEmoteShowableResponseDataListings) HasImageUrl() bool {
 	if o != nil && o.ImageUrl.IsSet() {
 		return true
 	}
@@ -11164,300 +12905,165 @@ func (o *ListWorldTradeTableBinderItem) HasImageUrl() bool {
 }
 
 // SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *ListWorldTradeTableBinderItem) SetImageUrl(v string) {
+func (o *GetWorldEmoteShowableResponseDataListings) SetImageUrl(v string) {
 	o.ImageUrl.Set(&v)
 }
 // SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *ListWorldTradeTableBinderItem) SetImageUrlNil() {
+func (o *GetWorldEmoteShowableResponseDataListings) SetImageUrlNil() {
 	o.ImageUrl.Set(nil)
 }
 
 // UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *ListWorldTradeTableBinderItem) UnsetImageUrl() {
+func (o *GetWorldEmoteShowableResponseDataListings) UnsetImageUrl() {
 	o.ImageUrl.Unset()
 }
 
-// GetValueCents returns the ValueCents field value
-func (o *ListWorldTradeTableBinderItem) GetValueCents() float32 {
-	if o == nil {
+// GetPriceCents returns the PriceCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldEmoteShowableResponseDataListings) GetPriceCents() float32 {
+	if o == nil || o.PriceCents.Get() == nil {
 		var ret float32
 		return ret
 	}
-
-	return o.ValueCents
+	return *o.PriceCents.Get()
 }
 
-// GetValueCentsOk returns a tuple with the ValueCents field value
+// GetPriceCentsOk returns a tuple with the PriceCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderItem) GetValueCentsOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldEmoteShowableResponseDataListings) GetPriceCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ValueCents, true
+	return o.PriceCents.Get(), o.PriceCents.IsSet()
 }
 
-// SetValueCents sets field value
-func (o *ListWorldTradeTableBinderItem) SetValueCents(v float32) {
-	o.ValueCents = v
+// HasPriceCents returns a boolean if a field has been set.
+func (o *GetWorldEmoteShowableResponseDataListings) HasPriceCents() bool {
+	if o != nil && o.PriceCents.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-func (o ListWorldTradeTableBinderItem) MarshalJSON() ([]byte, error) {
+// SetPriceCents gets a reference to the given NullableFloat32 and assigns it to the PriceCents field.
+func (o *GetWorldEmoteShowableResponseDataListings) SetPriceCents(v float32) {
+	o.PriceCents.Set(&v)
+}
+// SetPriceCentsNil sets the value for PriceCents to be an explicit nil
+func (o *GetWorldEmoteShowableResponseDataListings) SetPriceCentsNil() {
+	o.PriceCents.Set(nil)
+}
+
+// UnsetPriceCents ensures that no value is present for PriceCents, not even an explicit nil
+func (o *GetWorldEmoteShowableResponseDataListings) UnsetPriceCents() {
+	o.PriceCents.Unset()
+}
+
+func (o GetWorldEmoteShowableResponseDataListings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["key"] = o.Key
+		toSerialize["ref"] = o.Ref
 	}
 	if true {
-		toSerialize["variantId"] = o.VariantId
-	}
-	if true {
-		toSerialize["condition"] = o.Condition
-	}
-	if o.GradeKey.IsSet() {
-		toSerialize["gradeKey"] = o.GradeKey.Get()
-	}
-	if o.PortfolioId.IsSet() {
-		toSerialize["portfolioId"] = o.PortfolioId.Get()
-	}
-	if true {
-		toSerialize["name"] = o.Name
+		toSerialize["title"] = o.Title
 	}
 	if o.ImageUrl.IsSet() {
 		toSerialize["imageUrl"] = o.ImageUrl.Get()
 	}
-	if true {
-		toSerialize["valueCents"] = o.ValueCents
+	if o.PriceCents.IsSet() {
+		toSerialize["priceCents"] = o.PriceCents.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldTradeTableBinderItem struct {
-	value *ListWorldTradeTableBinderItem
+type NullableGetWorldEmoteShowableResponseDataListings struct {
+	value *GetWorldEmoteShowableResponseDataListings
 	isSet bool
 }
 
-func (v NullableListWorldTradeTableBinderItem) Get() *ListWorldTradeTableBinderItem {
+func (v NullableGetWorldEmoteShowableResponseDataListings) Get() *GetWorldEmoteShowableResponseDataListings {
 	return v.value
 }
 
-func (v *NullableListWorldTradeTableBinderItem) Set(val *ListWorldTradeTableBinderItem) {
+func (v *NullableGetWorldEmoteShowableResponseDataListings) Set(val *GetWorldEmoteShowableResponseDataListings) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldTradeTableBinderItem) IsSet() bool {
+func (v NullableGetWorldEmoteShowableResponseDataListings) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldTradeTableBinderItem) Unset() {
+func (v *NullableGetWorldEmoteShowableResponseDataListings) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldTradeTableBinderItem(val *ListWorldTradeTableBinderItem) *NullableListWorldTradeTableBinderItem {
-	return &NullableListWorldTradeTableBinderItem{value: val, isSet: true}
+func NewNullableGetWorldEmoteShowableResponseDataListings(val *GetWorldEmoteShowableResponseDataListings) *NullableGetWorldEmoteShowableResponseDataListings {
+	return &NullableGetWorldEmoteShowableResponseDataListings{value: val, isSet: true}
 }
 
-func (v NullableListWorldTradeTableBinderItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldEmoteShowableResponseDataListings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldTradeTableBinderItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldEmoteShowableResponseDataListings) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldTradeTableBinderResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldTradeTableBinderResponse struct {
-	// The rows.
-	Data []ListWorldTradeTableBinderItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetWorldEmoteShowableResponseDataListingsRef struct for GetWorldEmoteShowableResponseDataListingsRef
+type GetWorldEmoteShowableResponseDataListingsRef struct {
+	Kind string `json:"kind"`
+	Id string `json:"id"`
 }
 
-// NewListWorldTradeTableBinderResponse instantiates a new ListWorldTradeTableBinderResponse object
+// NewGetWorldEmoteShowableResponseDataListingsRef instantiates a new GetWorldEmoteShowableResponseDataListingsRef object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeTableBinderResponse(data []ListWorldTradeTableBinderItem) *ListWorldTradeTableBinderResponse {
-	this := ListWorldTradeTableBinderResponse{}
-	this.Data = data
+func NewGetWorldEmoteShowableResponseDataListingsRef(kind string, id string) *GetWorldEmoteShowableResponseDataListingsRef {
+	this := GetWorldEmoteShowableResponseDataListingsRef{}
+	this.Kind = kind
+	this.Id = id
 	return &this
 }
 
-// NewListWorldTradeTableBinderResponseWithDefaults instantiates a new ListWorldTradeTableBinderResponse object
+// NewGetWorldEmoteShowableResponseDataListingsRefWithDefaults instantiates a new GetWorldEmoteShowableResponseDataListingsRef object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeTableBinderResponseWithDefaults() *ListWorldTradeTableBinderResponse {
-	this := ListWorldTradeTableBinderResponse{}
+func NewGetWorldEmoteShowableResponseDataListingsRefWithDefaults() *GetWorldEmoteShowableResponseDataListingsRef {
+	this := GetWorldEmoteShowableResponseDataListingsRef{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *ListWorldTradeTableBinderResponse) GetData() []ListWorldTradeTableBinderItem {
+// GetKind returns the Kind field value
+func (o *GetWorldEmoteShowableResponseDataListingsRef) GetKind() string {
 	if o == nil {
-		var ret []ListWorldTradeTableBinderItem
+		var ret string
 		return ret
 	}
 
-	return o.Data
+	return o.Kind
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderResponse) GetDataOk() ([]ListWorldTradeTableBinderItem, bool) {
+func (o *GetWorldEmoteShowableResponseDataListingsRef) GetKindOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Kind, true
 }
 
-// SetData sets field value
-func (o *ListWorldTradeTableBinderResponse) SetData(v []ListWorldTradeTableBinderItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldTradeTableBinderResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldTradeTableBinderResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldTradeTableBinderResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldTradeTableBinderResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableBinderResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldTradeTableBinderResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldTradeTableBinderResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldTradeTableBinderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldTradeTableBinderResponse struct {
-	value *ListWorldTradeTableBinderResponse
-	isSet bool
-}
-
-func (v NullableListWorldTradeTableBinderResponse) Get() *ListWorldTradeTableBinderResponse {
-	return v.value
-}
-
-func (v *NullableListWorldTradeTableBinderResponse) Set(val *ListWorldTradeTableBinderResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldTradeTableBinderResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldTradeTableBinderResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldTradeTableBinderResponse(val *ListWorldTradeTableBinderResponse) *NullableListWorldTradeTableBinderResponse {
-	return &NullableListWorldTradeTableBinderResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldTradeTableBinderResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldTradeTableBinderResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWorldTradeTableListingsItem struct for ListWorldTradeTableListingsItem
-type ListWorldTradeTableListingsItem struct {
-	Id string `json:"id"`
-	Items []string `json:"items"`
-}
-
-// NewListWorldTradeTableListingsItem instantiates a new ListWorldTradeTableListingsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWorldTradeTableListingsItem(id string, items []string) *ListWorldTradeTableListingsItem {
-	this := ListWorldTradeTableListingsItem{}
-	this.Id = id
-	this.Items = items
-	return &this
-}
-
-// NewListWorldTradeTableListingsItemWithDefaults instantiates a new ListWorldTradeTableListingsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeTableListingsItemWithDefaults() *ListWorldTradeTableListingsItem {
-	this := ListWorldTradeTableListingsItem{}
-	return &this
+// SetKind sets field value
+func (o *GetWorldEmoteShowableResponseDataListingsRef) SetKind(v string) {
+	o.Kind = v
 }
 
 // GetId returns the Id field value
-func (o *ListWorldTradeTableListingsItem) GetId() string {
+func (o *GetWorldEmoteShowableResponseDataListingsRef) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -11468,7 +13074,7 @@ func (o *ListWorldTradeTableListingsItem) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableListingsItem) GetIdOk() (*string, bool) {
+func (o *GetWorldEmoteShowableResponseDataListingsRef) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -11476,112 +13082,84 @@ func (o *ListWorldTradeTableListingsItem) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ListWorldTradeTableListingsItem) SetId(v string) {
+func (o *GetWorldEmoteShowableResponseDataListingsRef) SetId(v string) {
 	o.Id = v
 }
 
-// GetItems returns the Items field value
-func (o *ListWorldTradeTableListingsItem) GetItems() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Items
-}
-
-// GetItemsOk returns a tuple with the Items field value
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableListingsItem) GetItemsOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Items, true
-}
-
-// SetItems sets field value
-func (o *ListWorldTradeTableListingsItem) SetItems(v []string) {
-	o.Items = v
-}
-
-func (o ListWorldTradeTableListingsItem) MarshalJSON() ([]byte, error) {
+func (o GetWorldEmoteShowableResponseDataListingsRef) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["items"] = o.Items
-	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWorldTradeTableListingsItem struct {
-	value *ListWorldTradeTableListingsItem
+type NullableGetWorldEmoteShowableResponseDataListingsRef struct {
+	value *GetWorldEmoteShowableResponseDataListingsRef
 	isSet bool
 }
 
-func (v NullableListWorldTradeTableListingsItem) Get() *ListWorldTradeTableListingsItem {
+func (v NullableGetWorldEmoteShowableResponseDataListingsRef) Get() *GetWorldEmoteShowableResponseDataListingsRef {
 	return v.value
 }
 
-func (v *NullableListWorldTradeTableListingsItem) Set(val *ListWorldTradeTableListingsItem) {
+func (v *NullableGetWorldEmoteShowableResponseDataListingsRef) Set(val *GetWorldEmoteShowableResponseDataListingsRef) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorldTradeTableListingsItem) IsSet() bool {
+func (v NullableGetWorldEmoteShowableResponseDataListingsRef) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorldTradeTableListingsItem) Unset() {
+func (v *NullableGetWorldEmoteShowableResponseDataListingsRef) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorldTradeTableListingsItem(val *ListWorldTradeTableListingsItem) *NullableListWorldTradeTableListingsItem {
-	return &NullableListWorldTradeTableListingsItem{value: val, isSet: true}
+func NewNullableGetWorldEmoteShowableResponseDataListingsRef(val *GetWorldEmoteShowableResponseDataListingsRef) *NullableGetWorldEmoteShowableResponseDataListingsRef {
+	return &NullableGetWorldEmoteShowableResponseDataListingsRef{value: val, isSet: true}
 }
 
-func (v NullableListWorldTradeTableListingsItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldEmoteShowableResponseDataListingsRef) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorldTradeTableListingsItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldEmoteShowableResponseDataListingsRef) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWorldTradeTableListingsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWorldTradeTableListingsResponse struct {
-	// The rows.
-	Data []ListWorldTradeTableListingsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetWorldExperienceAccessLimitResponse struct for GetWorldExperienceAccessLimitResponse
+type GetWorldExperienceAccessLimitResponse struct {
+	Data GetWorldExperienceAccessLimitResponseData `json:"data"`
 }
 
-// NewListWorldTradeTableListingsResponse instantiates a new ListWorldTradeTableListingsResponse object
+// NewGetWorldExperienceAccessLimitResponse instantiates a new GetWorldExperienceAccessLimitResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorldTradeTableListingsResponse(data []ListWorldTradeTableListingsItem) *ListWorldTradeTableListingsResponse {
-	this := ListWorldTradeTableListingsResponse{}
+func NewGetWorldExperienceAccessLimitResponse(data GetWorldExperienceAccessLimitResponseData) *GetWorldExperienceAccessLimitResponse {
+	this := GetWorldExperienceAccessLimitResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewListWorldTradeTableListingsResponseWithDefaults instantiates a new ListWorldTradeTableListingsResponse object
+// NewGetWorldExperienceAccessLimitResponseWithDefaults instantiates a new GetWorldExperienceAccessLimitResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorldTradeTableListingsResponseWithDefaults() *ListWorldTradeTableListingsResponse {
-	this := ListWorldTradeTableListingsResponse{}
+func NewGetWorldExperienceAccessLimitResponseWithDefaults() *GetWorldExperienceAccessLimitResponse {
+	this := GetWorldExperienceAccessLimitResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *ListWorldTradeTableListingsResponse) GetData() []ListWorldTradeTableListingsItem {
+func (o *GetWorldExperienceAccessLimitResponse) GetData() GetWorldExperienceAccessLimitResponseData {
 	if o == nil {
-		var ret []ListWorldTradeTableListingsItem
+		var ret GetWorldExperienceAccessLimitResponseData
 		return ret
 	}
 
@@ -11590,259 +13168,7 @@ func (o *ListWorldTradeTableListingsResponse) GetData() []ListWorldTradeTableLis
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableListingsResponse) GetDataOk() ([]ListWorldTradeTableListingsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWorldTradeTableListingsResponse) SetData(v []ListWorldTradeTableListingsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWorldTradeTableListingsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableListingsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWorldTradeTableListingsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWorldTradeTableListingsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWorldTradeTableListingsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWorldTradeTableListingsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWorldTradeTableListingsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWorldTradeTableListingsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWorldTradeTableListingsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWorldTradeTableListingsResponse struct {
-	value *ListWorldTradeTableListingsResponse
-	isSet bool
-}
-
-func (v NullableListWorldTradeTableListingsResponse) Get() *ListWorldTradeTableListingsResponse {
-	return v.value
-}
-
-func (v *NullableListWorldTradeTableListingsResponse) Set(val *ListWorldTradeTableListingsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWorldTradeTableListingsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWorldTradeTableListingsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWorldTradeTableListingsResponse(val *ListWorldTradeTableListingsResponse) *NullableListWorldTradeTableListingsResponse {
-	return &NullableListWorldTradeTableListingsResponse{value: val, isSet: true}
-}
-
-func (v NullableListWorldTradeTableListingsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWorldTradeTableListingsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldAutoShopRequest struct for UpdateWorldAutoShopRequest
-type UpdateWorldAutoShopRequest struct {
-	Enabled bool `json:"enabled"`
-}
-
-// NewUpdateWorldAutoShopRequest instantiates a new UpdateWorldAutoShopRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldAutoShopRequest(enabled bool) *UpdateWorldAutoShopRequest {
-	this := UpdateWorldAutoShopRequest{}
-	this.Enabled = enabled
-	return &this
-}
-
-// NewUpdateWorldAutoShopRequestWithDefaults instantiates a new UpdateWorldAutoShopRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAutoShopRequestWithDefaults() *UpdateWorldAutoShopRequest {
-	this := UpdateWorldAutoShopRequest{}
-	return &this
-}
-
-// GetEnabled returns the Enabled field value
-func (o *UpdateWorldAutoShopRequest) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAutoShopRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *UpdateWorldAutoShopRequest) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-func (o UpdateWorldAutoShopRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldAutoShopRequest struct {
-	value *UpdateWorldAutoShopRequest
-	isSet bool
-}
-
-func (v NullableUpdateWorldAutoShopRequest) Get() *UpdateWorldAutoShopRequest {
-	return v.value
-}
-
-func (v *NullableUpdateWorldAutoShopRequest) Set(val *UpdateWorldAutoShopRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldAutoShopRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldAutoShopRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldAutoShopRequest(val *UpdateWorldAutoShopRequest) *NullableUpdateWorldAutoShopRequest {
-	return &NullableUpdateWorldAutoShopRequest{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldAutoShopRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldAutoShopRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldAvatarIdentityResponse struct for UpdateWorldAvatarIdentityResponse
-type UpdateWorldAvatarIdentityResponse struct {
-	Data UpdateWorldAvatarIdentityResponseData `json:"data"`
-}
-
-// NewUpdateWorldAvatarIdentityResponse instantiates a new UpdateWorldAvatarIdentityResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldAvatarIdentityResponse(data UpdateWorldAvatarIdentityResponseData) *UpdateWorldAvatarIdentityResponse {
-	this := UpdateWorldAvatarIdentityResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldAvatarIdentityResponseWithDefaults instantiates a new UpdateWorldAvatarIdentityResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAvatarIdentityResponseWithDefaults() *UpdateWorldAvatarIdentityResponse {
-	this := UpdateWorldAvatarIdentityResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldAvatarIdentityResponse) GetData() UpdateWorldAvatarIdentityResponseData {
-	if o == nil {
-		var ret UpdateWorldAvatarIdentityResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarIdentityResponse) GetDataOk() (*UpdateWorldAvatarIdentityResponseData, bool) {
+func (o *GetWorldExperienceAccessLimitResponse) GetDataOk() (*GetWorldExperienceAccessLimitResponseData, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -11850,11 +13176,11 @@ func (o *UpdateWorldAvatarIdentityResponse) GetDataOk() (*UpdateWorldAvatarIdent
 }
 
 // SetData sets field value
-func (o *UpdateWorldAvatarIdentityResponse) SetData(v UpdateWorldAvatarIdentityResponseData) {
+func (o *GetWorldExperienceAccessLimitResponse) SetData(v GetWorldExperienceAccessLimitResponseData) {
 	o.Data = v
 }
 
-func (o UpdateWorldAvatarIdentityResponse) MarshalJSON() ([]byte, error) {
+func (o GetWorldExperienceAccessLimitResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
@@ -11862,1616 +13188,252 @@ func (o UpdateWorldAvatarIdentityResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUpdateWorldAvatarIdentityResponse struct {
-	value *UpdateWorldAvatarIdentityResponse
+type NullableGetWorldExperienceAccessLimitResponse struct {
+	value *GetWorldExperienceAccessLimitResponse
 	isSet bool
 }
 
-func (v NullableUpdateWorldAvatarIdentityResponse) Get() *UpdateWorldAvatarIdentityResponse {
+func (v NullableGetWorldExperienceAccessLimitResponse) Get() *GetWorldExperienceAccessLimitResponse {
 	return v.value
 }
 
-func (v *NullableUpdateWorldAvatarIdentityResponse) Set(val *UpdateWorldAvatarIdentityResponse) {
+func (v *NullableGetWorldExperienceAccessLimitResponse) Set(val *GetWorldExperienceAccessLimitResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateWorldAvatarIdentityResponse) IsSet() bool {
+func (v NullableGetWorldExperienceAccessLimitResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateWorldAvatarIdentityResponse) Unset() {
+func (v *NullableGetWorldExperienceAccessLimitResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateWorldAvatarIdentityResponse(val *UpdateWorldAvatarIdentityResponse) *NullableUpdateWorldAvatarIdentityResponse {
-	return &NullableUpdateWorldAvatarIdentityResponse{value: val, isSet: true}
+func NewNullableGetWorldExperienceAccessLimitResponse(val *GetWorldExperienceAccessLimitResponse) *NullableGetWorldExperienceAccessLimitResponse {
+	return &NullableGetWorldExperienceAccessLimitResponse{value: val, isSet: true}
 }
 
-func (v NullableUpdateWorldAvatarIdentityResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldExperienceAccessLimitResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateWorldAvatarIdentityResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldExperienceAccessLimitResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// UpdateWorldAvatarIdentityResponseData struct for UpdateWorldAvatarIdentityResponseData
-type UpdateWorldAvatarIdentityResponseData struct {
-	Choice string `json:"choice"`
-	AppliesOnNextJoin bool `json:"appliesOnNextJoin"`
+// GetWorldExperienceAccessLimitResponseData struct for GetWorldExperienceAccessLimitResponseData
+type GetWorldExperienceAccessLimitResponseData struct {
+	OwnerCrew NullableIdName2 `json:"ownerCrew,omitempty"`
+	// The crew only its members may join with; null = no crew limit.
+	CrewId NullableString `json:"crewId,omitempty"`
+	CountryMode string `json:"countryMode"`
+	// ISO 3166-1 alpha-2, upper-case. Empty when countryMode is 'all'.
+	Countries []string `json:"countries"`
 }
 
-// NewUpdateWorldAvatarIdentityResponseData instantiates a new UpdateWorldAvatarIdentityResponseData object
+// NewGetWorldExperienceAccessLimitResponseData instantiates a new GetWorldExperienceAccessLimitResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateWorldAvatarIdentityResponseData(choice string, appliesOnNextJoin bool) *UpdateWorldAvatarIdentityResponseData {
-	this := UpdateWorldAvatarIdentityResponseData{}
-	this.Choice = choice
-	this.AppliesOnNextJoin = appliesOnNextJoin
+func NewGetWorldExperienceAccessLimitResponseData(countryMode string, countries []string) *GetWorldExperienceAccessLimitResponseData {
+	this := GetWorldExperienceAccessLimitResponseData{}
+	this.CountryMode = countryMode
+	this.Countries = countries
 	return &this
 }
 
-// NewUpdateWorldAvatarIdentityResponseDataWithDefaults instantiates a new UpdateWorldAvatarIdentityResponseData object
+// NewGetWorldExperienceAccessLimitResponseDataWithDefaults instantiates a new GetWorldExperienceAccessLimitResponseData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAvatarIdentityResponseDataWithDefaults() *UpdateWorldAvatarIdentityResponseData {
-	this := UpdateWorldAvatarIdentityResponseData{}
+func NewGetWorldExperienceAccessLimitResponseDataWithDefaults() *GetWorldExperienceAccessLimitResponseData {
+	this := GetWorldExperienceAccessLimitResponseData{}
 	return &this
 }
 
-// GetChoice returns the Choice field value
-func (o *UpdateWorldAvatarIdentityResponseData) GetChoice() string {
-	if o == nil {
-		var ret string
+// GetOwnerCrew returns the OwnerCrew field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldExperienceAccessLimitResponseData) GetOwnerCrew() IdName2 {
+	if o == nil || o.OwnerCrew.Get() == nil {
+		var ret IdName2
 		return ret
 	}
-
-	return o.Choice
+	return *o.OwnerCrew.Get()
 }
 
-// GetChoiceOk returns a tuple with the Choice field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarIdentityResponseData) GetChoiceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Choice, true
-}
-
-// SetChoice sets field value
-func (o *UpdateWorldAvatarIdentityResponseData) SetChoice(v string) {
-	o.Choice = v
-}
-
-// GetAppliesOnNextJoin returns the AppliesOnNextJoin field value
-func (o *UpdateWorldAvatarIdentityResponseData) GetAppliesOnNextJoin() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AppliesOnNextJoin
-}
-
-// GetAppliesOnNextJoinOk returns a tuple with the AppliesOnNextJoin field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarIdentityResponseData) GetAppliesOnNextJoinOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.AppliesOnNextJoin, true
-}
-
-// SetAppliesOnNextJoin sets field value
-func (o *UpdateWorldAvatarIdentityResponseData) SetAppliesOnNextJoin(v bool) {
-	o.AppliesOnNextJoin = v
-}
-
-func (o UpdateWorldAvatarIdentityResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["choice"] = o.Choice
-	}
-	if true {
-		toSerialize["appliesOnNextJoin"] = o.AppliesOnNextJoin
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldAvatarIdentityResponseData struct {
-	value *UpdateWorldAvatarIdentityResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldAvatarIdentityResponseData) Get() *UpdateWorldAvatarIdentityResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldAvatarIdentityResponseData) Set(val *UpdateWorldAvatarIdentityResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldAvatarIdentityResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldAvatarIdentityResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldAvatarIdentityResponseData(val *UpdateWorldAvatarIdentityResponseData) *NullableUpdateWorldAvatarIdentityResponseData {
-	return &NullableUpdateWorldAvatarIdentityResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldAvatarIdentityResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldAvatarIdentityResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldAvatarLookResponse struct for UpdateWorldAvatarLookResponse
-type UpdateWorldAvatarLookResponse struct {
-	Data UpdateWorldAvatarLookResponseData `json:"data"`
-}
-
-// NewUpdateWorldAvatarLookResponse instantiates a new UpdateWorldAvatarLookResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldAvatarLookResponse(data UpdateWorldAvatarLookResponseData) *UpdateWorldAvatarLookResponse {
-	this := UpdateWorldAvatarLookResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldAvatarLookResponseWithDefaults instantiates a new UpdateWorldAvatarLookResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAvatarLookResponseWithDefaults() *UpdateWorldAvatarLookResponse {
-	this := UpdateWorldAvatarLookResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldAvatarLookResponse) GetData() UpdateWorldAvatarLookResponseData {
-	if o == nil {
-		var ret UpdateWorldAvatarLookResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarLookResponse) GetDataOk() (*UpdateWorldAvatarLookResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *UpdateWorldAvatarLookResponse) SetData(v UpdateWorldAvatarLookResponseData) {
-	o.Data = v
-}
-
-func (o UpdateWorldAvatarLookResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldAvatarLookResponse struct {
-	value *UpdateWorldAvatarLookResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldAvatarLookResponse) Get() *UpdateWorldAvatarLookResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldAvatarLookResponse) Set(val *UpdateWorldAvatarLookResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldAvatarLookResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldAvatarLookResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldAvatarLookResponse(val *UpdateWorldAvatarLookResponse) *NullableUpdateWorldAvatarLookResponse {
-	return &NullableUpdateWorldAvatarLookResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldAvatarLookResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldAvatarLookResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldAvatarLookResponseData struct for UpdateWorldAvatarLookResponseData
-type UpdateWorldAvatarLookResponseData struct {
-	Look UpdateWorldAvatarLookResponseDataLook `json:"look"`
-}
-
-// NewUpdateWorldAvatarLookResponseData instantiates a new UpdateWorldAvatarLookResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldAvatarLookResponseData(look UpdateWorldAvatarLookResponseDataLook) *UpdateWorldAvatarLookResponseData {
-	this := UpdateWorldAvatarLookResponseData{}
-	this.Look = look
-	return &this
-}
-
-// NewUpdateWorldAvatarLookResponseDataWithDefaults instantiates a new UpdateWorldAvatarLookResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAvatarLookResponseDataWithDefaults() *UpdateWorldAvatarLookResponseData {
-	this := UpdateWorldAvatarLookResponseData{}
-	return &this
-}
-
-// GetLook returns the Look field value
-func (o *UpdateWorldAvatarLookResponseData) GetLook() UpdateWorldAvatarLookResponseDataLook {
-	if o == nil {
-		var ret UpdateWorldAvatarLookResponseDataLook
-		return ret
-	}
-
-	return o.Look
-}
-
-// GetLookOk returns a tuple with the Look field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarLookResponseData) GetLookOk() (*UpdateWorldAvatarLookResponseDataLook, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Look, true
-}
-
-// SetLook sets field value
-func (o *UpdateWorldAvatarLookResponseData) SetLook(v UpdateWorldAvatarLookResponseDataLook) {
-	o.Look = v
-}
-
-func (o UpdateWorldAvatarLookResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["look"] = o.Look
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldAvatarLookResponseData struct {
-	value *UpdateWorldAvatarLookResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldAvatarLookResponseData) Get() *UpdateWorldAvatarLookResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseData) Set(val *UpdateWorldAvatarLookResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldAvatarLookResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldAvatarLookResponseData(val *UpdateWorldAvatarLookResponseData) *NullableUpdateWorldAvatarLookResponseData {
-	return &NullableUpdateWorldAvatarLookResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldAvatarLookResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldAvatarLookResponseDataLook struct for UpdateWorldAvatarLookResponseDataLook
-type UpdateWorldAvatarLookResponseDataLook struct {
-	Look NullableGetWorldAvatarLookResponseDataLookLook `json:"look,omitempty"`
-	Appearance ListWorldOutfitsItemAppearance `json:"appearance"`
-}
-
-// NewUpdateWorldAvatarLookResponseDataLook instantiates a new UpdateWorldAvatarLookResponseDataLook object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldAvatarLookResponseDataLook(appearance ListWorldOutfitsItemAppearance) *UpdateWorldAvatarLookResponseDataLook {
-	this := UpdateWorldAvatarLookResponseDataLook{}
-	this.Appearance = appearance
-	return &this
-}
-
-// NewUpdateWorldAvatarLookResponseDataLookWithDefaults instantiates a new UpdateWorldAvatarLookResponseDataLook object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldAvatarLookResponseDataLookWithDefaults() *UpdateWorldAvatarLookResponseDataLook {
-	this := UpdateWorldAvatarLookResponseDataLook{}
-	return &this
-}
-
-// GetLook returns the Look field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateWorldAvatarLookResponseDataLook) GetLook() GetWorldAvatarLookResponseDataLookLook {
-	if o == nil || o.Look.Get() == nil {
-		var ret GetWorldAvatarLookResponseDataLookLook
-		return ret
-	}
-	return *o.Look.Get()
-}
-
-// GetLookOk returns a tuple with the Look field value if set, nil otherwise
+// GetOwnerCrewOk returns a tuple with the OwnerCrew field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateWorldAvatarLookResponseDataLook) GetLookOk() (*GetWorldAvatarLookResponseDataLookLook, bool) {
+func (o *GetWorldExperienceAccessLimitResponseData) GetOwnerCrewOk() (*IdName2, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Look.Get(), o.Look.IsSet()
+	return o.OwnerCrew.Get(), o.OwnerCrew.IsSet()
 }
 
-// HasLook returns a boolean if a field has been set.
-func (o *UpdateWorldAvatarLookResponseDataLook) HasLook() bool {
-	if o != nil && o.Look.IsSet() {
+// HasOwnerCrew returns a boolean if a field has been set.
+func (o *GetWorldExperienceAccessLimitResponseData) HasOwnerCrew() bool {
+	if o != nil && o.OwnerCrew.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLook gets a reference to the given NullableGetWorldAvatarLookResponseDataLookLook and assigns it to the Look field.
-func (o *UpdateWorldAvatarLookResponseDataLook) SetLook(v GetWorldAvatarLookResponseDataLookLook) {
-	o.Look.Set(&v)
+// SetOwnerCrew gets a reference to the given NullableIdName2 and assigns it to the OwnerCrew field.
+func (o *GetWorldExperienceAccessLimitResponseData) SetOwnerCrew(v IdName2) {
+	o.OwnerCrew.Set(&v)
 }
-// SetLookNil sets the value for Look to be an explicit nil
-func (o *UpdateWorldAvatarLookResponseDataLook) SetLookNil() {
-	o.Look.Set(nil)
-}
-
-// UnsetLook ensures that no value is present for Look, not even an explicit nil
-func (o *UpdateWorldAvatarLookResponseDataLook) UnsetLook() {
-	o.Look.Unset()
+// SetOwnerCrewNil sets the value for OwnerCrew to be an explicit nil
+func (o *GetWorldExperienceAccessLimitResponseData) SetOwnerCrewNil() {
+	o.OwnerCrew.Set(nil)
 }
 
-// GetAppearance returns the Appearance field value
-func (o *UpdateWorldAvatarLookResponseDataLook) GetAppearance() ListWorldOutfitsItemAppearance {
-	if o == nil {
-		var ret ListWorldOutfitsItemAppearance
+// UnsetOwnerCrew ensures that no value is present for OwnerCrew, not even an explicit nil
+func (o *GetWorldExperienceAccessLimitResponseData) UnsetOwnerCrew() {
+	o.OwnerCrew.Unset()
+}
+
+// GetCrewId returns the CrewId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWorldExperienceAccessLimitResponseData) GetCrewId() string {
+	if o == nil || o.CrewId.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Appearance
+	return *o.CrewId.Get()
 }
 
-// GetAppearanceOk returns a tuple with the Appearance field value
+// GetCrewIdOk returns a tuple with the CrewId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateWorldAvatarLookResponseDataLook) GetAppearanceOk() (*ListWorldOutfitsItemAppearance, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWorldExperienceAccessLimitResponseData) GetCrewIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Appearance, true
+	return o.CrewId.Get(), o.CrewId.IsSet()
 }
 
-// SetAppearance sets field value
-func (o *UpdateWorldAvatarLookResponseDataLook) SetAppearance(v ListWorldOutfitsItemAppearance) {
-	o.Appearance = v
-}
-
-func (o UpdateWorldAvatarLookResponseDataLook) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Look.IsSet() {
-		toSerialize["look"] = o.Look.Get()
-	}
-	if true {
-		toSerialize["appearance"] = o.Appearance
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldAvatarLookResponseDataLook struct {
-	value *UpdateWorldAvatarLookResponseDataLook
-	isSet bool
-}
-
-func (v NullableUpdateWorldAvatarLookResponseDataLook) Get() *UpdateWorldAvatarLookResponseDataLook {
-	return v.value
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseDataLook) Set(val *UpdateWorldAvatarLookResponseDataLook) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldAvatarLookResponseDataLook) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseDataLook) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldAvatarLookResponseDataLook(val *UpdateWorldAvatarLookResponseDataLook) *NullableUpdateWorldAvatarLookResponseDataLook {
-	return &NullableUpdateWorldAvatarLookResponseDataLook{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldAvatarLookResponseDataLook) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldAvatarLookResponseDataLook) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldConventionStatusResponse struct for UpdateWorldConventionStatusResponse
-type UpdateWorldConventionStatusResponse struct {
-	Data UpdateWorldConventionStatusResponseData `json:"data"`
-}
-
-// NewUpdateWorldConventionStatusResponse instantiates a new UpdateWorldConventionStatusResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldConventionStatusResponse(data UpdateWorldConventionStatusResponseData) *UpdateWorldConventionStatusResponse {
-	this := UpdateWorldConventionStatusResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldConventionStatusResponseWithDefaults instantiates a new UpdateWorldConventionStatusResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldConventionStatusResponseWithDefaults() *UpdateWorldConventionStatusResponse {
-	this := UpdateWorldConventionStatusResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldConventionStatusResponse) GetData() UpdateWorldConventionStatusResponseData {
-	if o == nil {
-		var ret UpdateWorldConventionStatusResponseData
-		return ret
+// HasCrewId returns a boolean if a field has been set.
+func (o *GetWorldExperienceAccessLimitResponseData) HasCrewId() bool {
+	if o != nil && o.CrewId.IsSet() {
+		return true
 	}
 
-	return o.Data
+	return false
 }
 
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldConventionStatusResponse) GetDataOk() (*UpdateWorldConventionStatusResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
+// SetCrewId gets a reference to the given NullableString and assigns it to the CrewId field.
+func (o *GetWorldExperienceAccessLimitResponseData) SetCrewId(v string) {
+	o.CrewId.Set(&v)
+}
+// SetCrewIdNil sets the value for CrewId to be an explicit nil
+func (o *GetWorldExperienceAccessLimitResponseData) SetCrewIdNil() {
+	o.CrewId.Set(nil)
 }
 
-// SetData sets field value
-func (o *UpdateWorldConventionStatusResponse) SetData(v UpdateWorldConventionStatusResponseData) {
-	o.Data = v
+// UnsetCrewId ensures that no value is present for CrewId, not even an explicit nil
+func (o *GetWorldExperienceAccessLimitResponseData) UnsetCrewId() {
+	o.CrewId.Unset()
 }
 
-func (o UpdateWorldConventionStatusResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldConventionStatusResponse struct {
-	value *UpdateWorldConventionStatusResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldConventionStatusResponse) Get() *UpdateWorldConventionStatusResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldConventionStatusResponse) Set(val *UpdateWorldConventionStatusResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldConventionStatusResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldConventionStatusResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldConventionStatusResponse(val *UpdateWorldConventionStatusResponse) *NullableUpdateWorldConventionStatusResponse {
-	return &NullableUpdateWorldConventionStatusResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldConventionStatusResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldConventionStatusResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldConventionStatusResponseData struct for UpdateWorldConventionStatusResponseData
-type UpdateWorldConventionStatusResponseData struct {
-	Status string `json:"status"`
-}
-
-// NewUpdateWorldConventionStatusResponseData instantiates a new UpdateWorldConventionStatusResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldConventionStatusResponseData(status string) *UpdateWorldConventionStatusResponseData {
-	this := UpdateWorldConventionStatusResponseData{}
-	this.Status = status
-	return &this
-}
-
-// NewUpdateWorldConventionStatusResponseDataWithDefaults instantiates a new UpdateWorldConventionStatusResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldConventionStatusResponseDataWithDefaults() *UpdateWorldConventionStatusResponseData {
-	this := UpdateWorldConventionStatusResponseData{}
-	return &this
-}
-
-// GetStatus returns the Status field value
-func (o *UpdateWorldConventionStatusResponseData) GetStatus() string {
+// GetCountryMode returns the CountryMode field value
+func (o *GetWorldExperienceAccessLimitResponseData) GetCountryMode() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.CountryMode
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetCountryModeOk returns a tuple with the CountryMode field value
 // and a boolean to check if the value has been set.
-func (o *UpdateWorldConventionStatusResponseData) GetStatusOk() (*string, bool) {
+func (o *GetWorldExperienceAccessLimitResponseData) GetCountryModeOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.CountryMode, true
 }
 
-// SetStatus sets field value
-func (o *UpdateWorldConventionStatusResponseData) SetStatus(v string) {
-	o.Status = v
+// SetCountryMode sets field value
+func (o *GetWorldExperienceAccessLimitResponseData) SetCountryMode(v string) {
+	o.CountryMode = v
 }
 
-func (o UpdateWorldConventionStatusResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldConventionStatusResponseData struct {
-	value *UpdateWorldConventionStatusResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldConventionStatusResponseData) Get() *UpdateWorldConventionStatusResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldConventionStatusResponseData) Set(val *UpdateWorldConventionStatusResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldConventionStatusResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldConventionStatusResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldConventionStatusResponseData(val *UpdateWorldConventionStatusResponseData) *NullableUpdateWorldConventionStatusResponseData {
-	return &NullableUpdateWorldConventionStatusResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldConventionStatusResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldConventionStatusResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldEmoteWheelRequest struct for UpdateWorldEmoteWheelRequest
-type UpdateWorldEmoteWheelRequest struct {
-	Wheel []*string `json:"wheel"`
-}
-
-// NewUpdateWorldEmoteWheelRequest instantiates a new UpdateWorldEmoteWheelRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldEmoteWheelRequest(wheel []*string) *UpdateWorldEmoteWheelRequest {
-	this := UpdateWorldEmoteWheelRequest{}
-	this.Wheel = wheel
-	return &this
-}
-
-// NewUpdateWorldEmoteWheelRequestWithDefaults instantiates a new UpdateWorldEmoteWheelRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldEmoteWheelRequestWithDefaults() *UpdateWorldEmoteWheelRequest {
-	this := UpdateWorldEmoteWheelRequest{}
-	return &this
-}
-
-// GetWheel returns the Wheel field value
-func (o *UpdateWorldEmoteWheelRequest) GetWheel() []*string {
-	if o == nil {
-		var ret []*string
-		return ret
-	}
-
-	return o.Wheel
-}
-
-// GetWheelOk returns a tuple with the Wheel field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldEmoteWheelRequest) GetWheelOk() ([]*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Wheel, true
-}
-
-// SetWheel sets field value
-func (o *UpdateWorldEmoteWheelRequest) SetWheel(v []*string) {
-	o.Wheel = v
-}
-
-func (o UpdateWorldEmoteWheelRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["wheel"] = o.Wheel
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldEmoteWheelRequest struct {
-	value *UpdateWorldEmoteWheelRequest
-	isSet bool
-}
-
-func (v NullableUpdateWorldEmoteWheelRequest) Get() *UpdateWorldEmoteWheelRequest {
-	return v.value
-}
-
-func (v *NullableUpdateWorldEmoteWheelRequest) Set(val *UpdateWorldEmoteWheelRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldEmoteWheelRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldEmoteWheelRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldEmoteWheelRequest(val *UpdateWorldEmoteWheelRequest) *NullableUpdateWorldEmoteWheelRequest {
-	return &NullableUpdateWorldEmoteWheelRequest{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldEmoteWheelRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldEmoteWheelRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldEmoteWheelResponse struct for UpdateWorldEmoteWheelResponse
-type UpdateWorldEmoteWheelResponse struct {
-	Data UpdateWorldEmoteWheelResponseData `json:"data"`
-}
-
-// NewUpdateWorldEmoteWheelResponse instantiates a new UpdateWorldEmoteWheelResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldEmoteWheelResponse(data UpdateWorldEmoteWheelResponseData) *UpdateWorldEmoteWheelResponse {
-	this := UpdateWorldEmoteWheelResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldEmoteWheelResponseWithDefaults instantiates a new UpdateWorldEmoteWheelResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldEmoteWheelResponseWithDefaults() *UpdateWorldEmoteWheelResponse {
-	this := UpdateWorldEmoteWheelResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldEmoteWheelResponse) GetData() UpdateWorldEmoteWheelResponseData {
-	if o == nil {
-		var ret UpdateWorldEmoteWheelResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldEmoteWheelResponse) GetDataOk() (*UpdateWorldEmoteWheelResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *UpdateWorldEmoteWheelResponse) SetData(v UpdateWorldEmoteWheelResponseData) {
-	o.Data = v
-}
-
-func (o UpdateWorldEmoteWheelResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldEmoteWheelResponse struct {
-	value *UpdateWorldEmoteWheelResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldEmoteWheelResponse) Get() *UpdateWorldEmoteWheelResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponse) Set(val *UpdateWorldEmoteWheelResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldEmoteWheelResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldEmoteWheelResponse(val *UpdateWorldEmoteWheelResponse) *NullableUpdateWorldEmoteWheelResponse {
-	return &NullableUpdateWorldEmoteWheelResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldEmoteWheelResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldEmoteWheelResponseData struct for UpdateWorldEmoteWheelResponseData
-type UpdateWorldEmoteWheelResponseData struct {
-	Wheel []UpdateWorldEmoteWheelResponseDataWheelItem `json:"wheel"`
-}
-
-// NewUpdateWorldEmoteWheelResponseData instantiates a new UpdateWorldEmoteWheelResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldEmoteWheelResponseData(wheel []UpdateWorldEmoteWheelResponseDataWheelItem) *UpdateWorldEmoteWheelResponseData {
-	this := UpdateWorldEmoteWheelResponseData{}
-	this.Wheel = wheel
-	return &this
-}
-
-// NewUpdateWorldEmoteWheelResponseDataWithDefaults instantiates a new UpdateWorldEmoteWheelResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldEmoteWheelResponseDataWithDefaults() *UpdateWorldEmoteWheelResponseData {
-	this := UpdateWorldEmoteWheelResponseData{}
-	return &this
-}
-
-// GetWheel returns the Wheel field value
-func (o *UpdateWorldEmoteWheelResponseData) GetWheel() []UpdateWorldEmoteWheelResponseDataWheelItem {
-	if o == nil {
-		var ret []UpdateWorldEmoteWheelResponseDataWheelItem
-		return ret
-	}
-
-	return o.Wheel
-}
-
-// GetWheelOk returns a tuple with the Wheel field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldEmoteWheelResponseData) GetWheelOk() ([]UpdateWorldEmoteWheelResponseDataWheelItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Wheel, true
-}
-
-// SetWheel sets field value
-func (o *UpdateWorldEmoteWheelResponseData) SetWheel(v []UpdateWorldEmoteWheelResponseDataWheelItem) {
-	o.Wheel = v
-}
-
-func (o UpdateWorldEmoteWheelResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["wheel"] = o.Wheel
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldEmoteWheelResponseData struct {
-	value *UpdateWorldEmoteWheelResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseData) Get() *UpdateWorldEmoteWheelResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseData) Set(val *UpdateWorldEmoteWheelResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldEmoteWheelResponseData(val *UpdateWorldEmoteWheelResponseData) *NullableUpdateWorldEmoteWheelResponseData {
-	return &NullableUpdateWorldEmoteWheelResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldEmoteWheelResponseDataWheelItem the model 'UpdateWorldEmoteWheelResponseDataWheelItem'
-type UpdateWorldEmoteWheelResponseDataWheelItem string
-
-// List of UpdateWorldEmoteWheelResponseDataWheelItem
-const (
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_SPIN UpdateWorldEmoteWheelResponseDataWheelItem = "spin"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_WAVE UpdateWorldEmoteWheelResponseDataWheelItem = "wave"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_POINT UpdateWorldEmoteWheelResponseDataWheelItem = "point"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_CLAP UpdateWorldEmoteWheelResponseDataWheelItem = "clap"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_CHEER UpdateWorldEmoteWheelResponseDataWheelItem = "cheer"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_HYPE UpdateWorldEmoteWheelResponseDataWheelItem = "hype"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_SHRUG UpdateWorldEmoteWheelResponseDataWheelItem = "shrug"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_NOD UpdateWorldEmoteWheelResponseDataWheelItem = "nod"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_SIT UpdateWorldEmoteWheelResponseDataWheelItem = "sit"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_LEAN UpdateWorldEmoteWheelResponseDataWheelItem = "lean"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_REACH UpdateWorldEmoteWheelResponseDataWheelItem = "reach"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_DANCE UpdateWorldEmoteWheelResponseDataWheelItem = "dance"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_BOW UpdateWorldEmoteWheelResponseDataWheelItem = "bow"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_THUMBS UpdateWorldEmoteWheelResponseDataWheelItem = "thumbs"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_LOUPE UpdateWorldEmoteWheelResponseDataWheelItem = "loupe"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_BOX_SPIN UpdateWorldEmoteWheelResponseDataWheelItem = "box_spin"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_FLEX UpdateWorldEmoteWheelResponseDataWheelItem = "flex"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_HUG UpdateWorldEmoteWheelResponseDataWheelItem = "hug"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_HIGH_FIVE UpdateWorldEmoteWheelResponseDataWheelItem = "high_five"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_HANDSHAKE UpdateWorldEmoteWheelResponseDataWheelItem = "handshake"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_SHOWOFF UpdateWorldEmoteWheelResponseDataWheelItem = "showoff"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_MOMENTHANDSHAKE UpdateWorldEmoteWheelResponseDataWheelItem = "moment:handshake"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_MOMENTUNBOX UpdateWorldEmoteWheelResponseDataWheelItem = "moment:unbox"
-	UPDATEWORLDEMOTEWHEELRESPONSEDATAWHEELITEM_MOMENTSLAB_FLIP UpdateWorldEmoteWheelResponseDataWheelItem = "moment:slab_flip"
-)
-
-// All allowed values of UpdateWorldEmoteWheelResponseDataWheelItem enum
-var AllowedUpdateWorldEmoteWheelResponseDataWheelItemEnumValues = []UpdateWorldEmoteWheelResponseDataWheelItem{
-	"spin",
-	"wave",
-	"point",
-	"clap",
-	"cheer",
-	"hype",
-	"shrug",
-	"nod",
-	"sit",
-	"lean",
-	"reach",
-	"dance",
-	"bow",
-	"thumbs",
-	"loupe",
-	"box_spin",
-	"flex",
-	"hug",
-	"high_five",
-	"handshake",
-	"showoff",
-	"moment:handshake",
-	"moment:unbox",
-	"moment:slab_flip",
-}
-
-func (v *UpdateWorldEmoteWheelResponseDataWheelItem) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := UpdateWorldEmoteWheelResponseDataWheelItem(value)
-	for _, existing := range AllowedUpdateWorldEmoteWheelResponseDataWheelItemEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid UpdateWorldEmoteWheelResponseDataWheelItem", value)
-}
-
-// NewUpdateWorldEmoteWheelResponseDataWheelItemFromValue returns a pointer to a valid UpdateWorldEmoteWheelResponseDataWheelItem
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewUpdateWorldEmoteWheelResponseDataWheelItemFromValue(v string) (*UpdateWorldEmoteWheelResponseDataWheelItem, error) {
-	ev := UpdateWorldEmoteWheelResponseDataWheelItem(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for UpdateWorldEmoteWheelResponseDataWheelItem: valid values are %v", v, AllowedUpdateWorldEmoteWheelResponseDataWheelItemEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v UpdateWorldEmoteWheelResponseDataWheelItem) IsValid() bool {
-	for _, existing := range AllowedUpdateWorldEmoteWheelResponseDataWheelItemEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to UpdateWorldEmoteWheelResponseDataWheelItem value
-func (v UpdateWorldEmoteWheelResponseDataWheelItem) Ptr() *UpdateWorldEmoteWheelResponseDataWheelItem {
-	return &v
-}
-
-type NullableUpdateWorldEmoteWheelResponseDataWheelItem struct {
-	value *UpdateWorldEmoteWheelResponseDataWheelItem
-	isSet bool
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseDataWheelItem) Get() *UpdateWorldEmoteWheelResponseDataWheelItem {
-	return v.value
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseDataWheelItem) Set(val *UpdateWorldEmoteWheelResponseDataWheelItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseDataWheelItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseDataWheelItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldEmoteWheelResponseDataWheelItem(val *UpdateWorldEmoteWheelResponseDataWheelItem) *NullableUpdateWorldEmoteWheelResponseDataWheelItem {
-	return &NullableUpdateWorldEmoteWheelResponseDataWheelItem{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldEmoteWheelResponseDataWheelItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldEmoteWheelResponseDataWheelItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldFitValueShareResponse struct for UpdateWorldFitValueShareResponse
-type UpdateWorldFitValueShareResponse struct {
-	Data UpdateWorldFitValueShareResponseData `json:"data"`
-}
-
-// NewUpdateWorldFitValueShareResponse instantiates a new UpdateWorldFitValueShareResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldFitValueShareResponse(data UpdateWorldFitValueShareResponseData) *UpdateWorldFitValueShareResponse {
-	this := UpdateWorldFitValueShareResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldFitValueShareResponseWithDefaults instantiates a new UpdateWorldFitValueShareResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldFitValueShareResponseWithDefaults() *UpdateWorldFitValueShareResponse {
-	this := UpdateWorldFitValueShareResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldFitValueShareResponse) GetData() UpdateWorldFitValueShareResponseData {
-	if o == nil {
-		var ret UpdateWorldFitValueShareResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldFitValueShareResponse) GetDataOk() (*UpdateWorldFitValueShareResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *UpdateWorldFitValueShareResponse) SetData(v UpdateWorldFitValueShareResponseData) {
-	o.Data = v
-}
-
-func (o UpdateWorldFitValueShareResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldFitValueShareResponse struct {
-	value *UpdateWorldFitValueShareResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldFitValueShareResponse) Get() *UpdateWorldFitValueShareResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldFitValueShareResponse) Set(val *UpdateWorldFitValueShareResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldFitValueShareResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldFitValueShareResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldFitValueShareResponse(val *UpdateWorldFitValueShareResponse) *NullableUpdateWorldFitValueShareResponse {
-	return &NullableUpdateWorldFitValueShareResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldFitValueShareResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldFitValueShareResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldFitValueShareResponseData struct for UpdateWorldFitValueShareResponseData
-type UpdateWorldFitValueShareResponseData struct {
-	Share bool `json:"share"`
-}
-
-// NewUpdateWorldFitValueShareResponseData instantiates a new UpdateWorldFitValueShareResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldFitValueShareResponseData(share bool) *UpdateWorldFitValueShareResponseData {
-	this := UpdateWorldFitValueShareResponseData{}
-	this.Share = share
-	return &this
-}
-
-// NewUpdateWorldFitValueShareResponseDataWithDefaults instantiates a new UpdateWorldFitValueShareResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldFitValueShareResponseDataWithDefaults() *UpdateWorldFitValueShareResponseData {
-	this := UpdateWorldFitValueShareResponseData{}
-	return &this
-}
-
-// GetShare returns the Share field value
-func (o *UpdateWorldFitValueShareResponseData) GetShare() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Share
-}
-
-// GetShareOk returns a tuple with the Share field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldFitValueShareResponseData) GetShareOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Share, true
-}
-
-// SetShare sets field value
-func (o *UpdateWorldFitValueShareResponseData) SetShare(v bool) {
-	o.Share = v
-}
-
-func (o UpdateWorldFitValueShareResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["share"] = o.Share
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldFitValueShareResponseData struct {
-	value *UpdateWorldFitValueShareResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldFitValueShareResponseData) Get() *UpdateWorldFitValueShareResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldFitValueShareResponseData) Set(val *UpdateWorldFitValueShareResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldFitValueShareResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldFitValueShareResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldFitValueShareResponseData(val *UpdateWorldFitValueShareResponseData) *NullableUpdateWorldFitValueShareResponseData {
-	return &NullableUpdateWorldFitValueShareResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldFitValueShareResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldFitValueShareResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldHomeBuilderRequest struct for UpdateWorldHomeBuilderRequest
-type UpdateWorldHomeBuilderRequest struct {
-	UserIds []string `json:"userIds"`
-}
-
-// NewUpdateWorldHomeBuilderRequest instantiates a new UpdateWorldHomeBuilderRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldHomeBuilderRequest(userIds []string) *UpdateWorldHomeBuilderRequest {
-	this := UpdateWorldHomeBuilderRequest{}
-	this.UserIds = userIds
-	return &this
-}
-
-// NewUpdateWorldHomeBuilderRequestWithDefaults instantiates a new UpdateWorldHomeBuilderRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldHomeBuilderRequestWithDefaults() *UpdateWorldHomeBuilderRequest {
-	this := UpdateWorldHomeBuilderRequest{}
-	return &this
-}
-
-// GetUserIds returns the UserIds field value
-func (o *UpdateWorldHomeBuilderRequest) GetUserIds() []string {
+// GetCountries returns the Countries field value
+func (o *GetWorldExperienceAccessLimitResponseData) GetCountries() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
 
-	return o.UserIds
+	return o.Countries
 }
 
-// GetUserIdsOk returns a tuple with the UserIds field value
+// GetCountriesOk returns a tuple with the Countries field value
 // and a boolean to check if the value has been set.
-func (o *UpdateWorldHomeBuilderRequest) GetUserIdsOk() ([]string, bool) {
+func (o *GetWorldExperienceAccessLimitResponseData) GetCountriesOk() ([]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.UserIds, true
+	return o.Countries, true
 }
 
-// SetUserIds sets field value
-func (o *UpdateWorldHomeBuilderRequest) SetUserIds(v []string) {
-	o.UserIds = v
+// SetCountries sets field value
+func (o *GetWorldExperienceAccessLimitResponseData) SetCountries(v []string) {
+	o.Countries = v
 }
 
-func (o UpdateWorldHomeBuilderRequest) MarshalJSON() ([]byte, error) {
+func (o GetWorldExperienceAccessLimitResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.OwnerCrew.IsSet() {
+		toSerialize["ownerCrew"] = o.OwnerCrew.Get()
+	}
+	if o.CrewId.IsSet() {
+		toSerialize["crewId"] = o.CrewId.Get()
+	}
 	if true {
-		toSerialize["userIds"] = o.UserIds
+		toSerialize["countryMode"] = o.CountryMode
+	}
+	if true {
+		toSerialize["countries"] = o.Countries
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableUpdateWorldHomeBuilderRequest struct {
-	value *UpdateWorldHomeBuilderRequest
+type NullableGetWorldExperienceAccessLimitResponseData struct {
+	value *GetWorldExperienceAccessLimitResponseData
 	isSet bool
 }
 
-func (v NullableUpdateWorldHomeBuilderRequest) Get() *UpdateWorldHomeBuilderRequest {
+func (v NullableGetWorldExperienceAccessLimitResponseData) Get() *GetWorldExperienceAccessLimitResponseData {
 	return v.value
 }
 
-func (v *NullableUpdateWorldHomeBuilderRequest) Set(val *UpdateWorldHomeBuilderRequest) {
+func (v *NullableGetWorldExperienceAccessLimitResponseData) Set(val *GetWorldExperienceAccessLimitResponseData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateWorldHomeBuilderRequest) IsSet() bool {
+func (v NullableGetWorldExperienceAccessLimitResponseData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateWorldHomeBuilderRequest) Unset() {
+func (v *NullableGetWorldExperienceAccessLimitResponseData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateWorldHomeBuilderRequest(val *UpdateWorldHomeBuilderRequest) *NullableUpdateWorldHomeBuilderRequest {
-	return &NullableUpdateWorldHomeBuilderRequest{value: val, isSet: true}
+func NewNullableGetWorldExperienceAccessLimitResponseData(val *GetWorldExperienceAccessLimitResponseData) *NullableGetWorldExperienceAccessLimitResponseData {
+	return &NullableGetWorldExperienceAccessLimitResponseData{value: val, isSet: true}
 }
 
-func (v NullableUpdateWorldHomeBuilderRequest) MarshalJSON() ([]byte, error) {
+func (v NullableGetWorldExperienceAccessLimitResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateWorldHomeBuilderRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldHomeBuilderResponse struct for UpdateWorldHomeBuilderResponse
-type UpdateWorldHomeBuilderResponse struct {
-	Data UpdateWorldHomeBuilderResponseData `json:"data"`
-}
-
-// NewUpdateWorldHomeBuilderResponse instantiates a new UpdateWorldHomeBuilderResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldHomeBuilderResponse(data UpdateWorldHomeBuilderResponseData) *UpdateWorldHomeBuilderResponse {
-	this := UpdateWorldHomeBuilderResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldHomeBuilderResponseWithDefaults instantiates a new UpdateWorldHomeBuilderResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldHomeBuilderResponseWithDefaults() *UpdateWorldHomeBuilderResponse {
-	this := UpdateWorldHomeBuilderResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldHomeBuilderResponse) GetData() UpdateWorldHomeBuilderResponseData {
-	if o == nil {
-		var ret UpdateWorldHomeBuilderResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldHomeBuilderResponse) GetDataOk() (*UpdateWorldHomeBuilderResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *UpdateWorldHomeBuilderResponse) SetData(v UpdateWorldHomeBuilderResponseData) {
-	o.Data = v
-}
-
-func (o UpdateWorldHomeBuilderResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldHomeBuilderResponse struct {
-	value *UpdateWorldHomeBuilderResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldHomeBuilderResponse) Get() *UpdateWorldHomeBuilderResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponse) Set(val *UpdateWorldHomeBuilderResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldHomeBuilderResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldHomeBuilderResponse(val *UpdateWorldHomeBuilderResponse) *NullableUpdateWorldHomeBuilderResponse {
-	return &NullableUpdateWorldHomeBuilderResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldHomeBuilderResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldHomeBuilderResponseData struct for UpdateWorldHomeBuilderResponseData
-type UpdateWorldHomeBuilderResponseData struct {
-	Builders []ListHomeMineBuildersItem `json:"builders"`
-}
-
-// NewUpdateWorldHomeBuilderResponseData instantiates a new UpdateWorldHomeBuilderResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldHomeBuilderResponseData(builders []ListHomeMineBuildersItem) *UpdateWorldHomeBuilderResponseData {
-	this := UpdateWorldHomeBuilderResponseData{}
-	this.Builders = builders
-	return &this
-}
-
-// NewUpdateWorldHomeBuilderResponseDataWithDefaults instantiates a new UpdateWorldHomeBuilderResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldHomeBuilderResponseDataWithDefaults() *UpdateWorldHomeBuilderResponseData {
-	this := UpdateWorldHomeBuilderResponseData{}
-	return &this
-}
-
-// GetBuilders returns the Builders field value
-func (o *UpdateWorldHomeBuilderResponseData) GetBuilders() []ListHomeMineBuildersItem {
-	if o == nil {
-		var ret []ListHomeMineBuildersItem
-		return ret
-	}
-
-	return o.Builders
-}
-
-// GetBuildersOk returns a tuple with the Builders field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldHomeBuilderResponseData) GetBuildersOk() ([]ListHomeMineBuildersItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Builders, true
-}
-
-// SetBuilders sets field value
-func (o *UpdateWorldHomeBuilderResponseData) SetBuilders(v []ListHomeMineBuildersItem) {
-	o.Builders = v
-}
-
-func (o UpdateWorldHomeBuilderResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["builders"] = o.Builders
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldHomeBuilderResponseData struct {
-	value *UpdateWorldHomeBuilderResponseData
-	isSet bool
-}
-
-func (v NullableUpdateWorldHomeBuilderResponseData) Get() *UpdateWorldHomeBuilderResponseData {
-	return v.value
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponseData) Set(val *UpdateWorldHomeBuilderResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldHomeBuilderResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldHomeBuilderResponseData(val *UpdateWorldHomeBuilderResponseData) *NullableUpdateWorldHomeBuilderResponseData {
-	return &NullableUpdateWorldHomeBuilderResponseData{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldHomeBuilderResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldHomeBuilderResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateWorldInteractiveDesignDraftResponse struct for UpdateWorldInteractiveDesignDraftResponse
-type UpdateWorldInteractiveDesignDraftResponse struct {
-	Data UpdateWorldInteractiveDesignDraftResponseData `json:"data"`
-}
-
-// NewUpdateWorldInteractiveDesignDraftResponse instantiates a new UpdateWorldInteractiveDesignDraftResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateWorldInteractiveDesignDraftResponse(data UpdateWorldInteractiveDesignDraftResponseData) *UpdateWorldInteractiveDesignDraftResponse {
-	this := UpdateWorldInteractiveDesignDraftResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewUpdateWorldInteractiveDesignDraftResponseWithDefaults instantiates a new UpdateWorldInteractiveDesignDraftResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateWorldInteractiveDesignDraftResponseWithDefaults() *UpdateWorldInteractiveDesignDraftResponse {
-	this := UpdateWorldInteractiveDesignDraftResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *UpdateWorldInteractiveDesignDraftResponse) GetData() UpdateWorldInteractiveDesignDraftResponseData {
-	if o == nil {
-		var ret UpdateWorldInteractiveDesignDraftResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *UpdateWorldInteractiveDesignDraftResponse) GetDataOk() (*UpdateWorldInteractiveDesignDraftResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *UpdateWorldInteractiveDesignDraftResponse) SetData(v UpdateWorldInteractiveDesignDraftResponseData) {
-	o.Data = v
-}
-
-func (o UpdateWorldInteractiveDesignDraftResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateWorldInteractiveDesignDraftResponse struct {
-	value *UpdateWorldInteractiveDesignDraftResponse
-	isSet bool
-}
-
-func (v NullableUpdateWorldInteractiveDesignDraftResponse) Get() *UpdateWorldInteractiveDesignDraftResponse {
-	return v.value
-}
-
-func (v *NullableUpdateWorldInteractiveDesignDraftResponse) Set(val *UpdateWorldInteractiveDesignDraftResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateWorldInteractiveDesignDraftResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateWorldInteractiveDesignDraftResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateWorldInteractiveDesignDraftResponse(val *UpdateWorldInteractiveDesignDraftResponse) *NullableUpdateWorldInteractiveDesignDraftResponse {
-	return &NullableUpdateWorldInteractiveDesignDraftResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateWorldInteractiveDesignDraftResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateWorldInteractiveDesignDraftResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetWorldExperienceAccessLimitResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

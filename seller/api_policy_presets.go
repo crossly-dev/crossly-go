@@ -27,13 +27,172 @@ var (
 // PolicyPresetsApiService PolicyPresetsApi service
 type PolicyPresetsApiService service
 
+type ApiCreateGeoLocationCheckRequest struct {
+	ctx context.Context
+	ApiService *PolicyPresetsApiService
+}
+
+
+func (r ApiCreateGeoLocationCheckRequest) Execute() (*CreateGeoLocationCheckResponse, *http.Response, error) {
+	return r.ApiService.CreateGeoLocationCheckExecute(r)
+}
+
+/*
+CreateGeoLocationCheck Check whether a shipping policy ships to an address.
+
+Pass an unsaved `policy` draft or a `presetId` (neither = your default shipping policy), an `address`, and optionally `consolidateVia` (a ship-together hub). Returns `ships`, and when it does not: `reason`, `stage` (buyer | hub), `message` and the deciding `rule`. `partial` means a fuller address (state, ZIP) could change the answer. A draft that is not a valid shipping policy is a 422; a presetId that is not yours is a 404.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateGeoLocationCheckRequest
+*/
+func (a *PolicyPresetsApiService) CreateGeoLocationCheck(ctx context.Context) ApiCreateGeoLocationCheckRequest {
+	return ApiCreateGeoLocationCheckRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CreateGeoLocationCheckResponse
+func (a *PolicyPresetsApiService) CreateGeoLocationCheckExecute(r ApiCreateGeoLocationCheckRequest) (*CreateGeoLocationCheckResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateGeoLocationCheckResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPresetsApiService.CreateGeoLocationCheck")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/geo/location-check"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiCreatePolicyPresetRequest struct {
 	ctx context.Context
 	ApiService *PolicyPresetsApiService
 }
 
 
-func (r ApiCreatePolicyPresetRequest) Execute() (*ListPolicyPresetsItem, *http.Response, error) {
+func (r ApiCreatePolicyPresetRequest) Execute() (*CreatePolicyPresetResponse, *http.Response, error) {
 	return r.ApiService.CreatePolicyPresetExecute(r)
 }
 
@@ -51,13 +210,13 @@ func (a *PolicyPresetsApiService) CreatePolicyPreset(ctx context.Context) ApiCre
 }
 
 // Execute executes the request
-//  @return ListPolicyPresetsItem
-func (a *PolicyPresetsApiService) CreatePolicyPresetExecute(r ApiCreatePolicyPresetRequest) (*ListPolicyPresetsItem, *http.Response, error) {
+//  @return CreatePolicyPresetResponse
+func (a *PolicyPresetsApiService) CreatePolicyPresetExecute(r ApiCreatePolicyPresetRequest) (*CreatePolicyPresetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListPolicyPresetsItem
+		localVarReturnValue  *CreatePolicyPresetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPresetsApiService.CreatePolicyPreset")
@@ -191,12 +350,12 @@ type ApiDeletePolicyPresetRequest struct {
 }
 
 
-func (r ApiDeletePolicyPresetRequest) Execute() (*OkResponse, *http.Response, error) {
+func (r ApiDeletePolicyPresetRequest) Execute() (*DeletePolicyPresetResponse, *http.Response, error) {
 	return r.ApiService.DeletePolicyPresetExecute(r)
 }
 
 /*
-DeletePolicyPreset Delete a policy preset.
+DeletePolicyPreset Delete a policy preset. Listings that used it switch to the default preset of its kind.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -211,13 +370,13 @@ func (a *PolicyPresetsApiService) DeletePolicyPreset(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return OkResponse
-func (a *PolicyPresetsApiService) DeletePolicyPresetExecute(r ApiDeletePolicyPresetRequest) (*OkResponse, *http.Response, error) {
+//  @return DeletePolicyPresetResponse
+func (a *PolicyPresetsApiService) DeletePolicyPresetExecute(r ApiDeletePolicyPresetRequest) (*DeletePolicyPresetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *OkResponse
+		localVarReturnValue  *DeletePolicyPresetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPresetsApiService.DeletePolicyPreset")
@@ -227,6 +386,165 @@ func (a *PolicyPresetsApiService) DeletePolicyPresetExecute(r ApiDeletePolicyPre
 
 	localVarPath := localBasePath + "/v1/policy-presets/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetPolicyRequest struct {
+	ctx context.Context
+	ApiService *PolicyPresetsApiService
+}
+
+
+func (r ApiGetPolicyRequest) Execute() (*GetPolicyResponse, *http.Response, error) {
+	return r.ApiService.GetPolicyExecute(r)
+}
+
+/*
+GetPolicy The seller's shipping / return / payment policy presets by kind, with each kind's default.
+
+Pass a preset `id` as `policies.shippingPresetId` / `returnPresetId` / `paymentPresetId` on POST or PATCH /v1/listings (null = the marketplace's own default). A kind you omit uses `defaultPresetId`.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetPolicyRequest
+*/
+func (a *PolicyPresetsApiService) GetPolicy(ctx context.Context) ApiGetPolicyRequest {
+	return ApiGetPolicyRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetPolicyResponse
+func (a *PolicyPresetsApiService) GetPolicyExecute(r ApiGetPolicyRequest) (*GetPolicyResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPolicyResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPresetsApiService.GetPolicy")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/policies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -361,7 +679,7 @@ func (r ApiListPolicyPresetsRequest) Execute() (*ListPolicyPresetsResponse, *htt
 }
 
 /*
-ListPolicyPresets List the seller's return / shipping / payment policy presets.
+ListPolicyPresets List the seller's return / shipping / payment policy presets. meta.migrationNotices lists defaults the policy migration demoted (kind still has no default).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListPolicyPresetsRequest
@@ -517,7 +835,7 @@ type ApiUpdatePolicyPresetRequest struct {
 }
 
 
-func (r ApiUpdatePolicyPresetRequest) Execute() (*ListPolicyPresetsItem, *http.Response, error) {
+func (r ApiUpdatePolicyPresetRequest) Execute() (*CreatePolicyPresetResponse, *http.Response, error) {
 	return r.ApiService.UpdatePolicyPresetExecute(r)
 }
 
@@ -537,13 +855,13 @@ func (a *PolicyPresetsApiService) UpdatePolicyPreset(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return ListPolicyPresetsItem
-func (a *PolicyPresetsApiService) UpdatePolicyPresetExecute(r ApiUpdatePolicyPresetRequest) (*ListPolicyPresetsItem, *http.Response, error) {
+//  @return CreatePolicyPresetResponse
+func (a *PolicyPresetsApiService) UpdatePolicyPresetExecute(r ApiUpdatePolicyPresetRequest) (*CreatePolicyPresetResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListPolicyPresetsItem
+		localVarReturnValue  *CreatePolicyPresetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPresetsApiService.UpdatePolicyPreset")

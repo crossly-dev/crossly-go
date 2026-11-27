@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**GetDepartment**](ReferenceApi.md#GetDepartment) | **Get** /v1/departments | Search the eBay-sourced \&quot;Department\&quot; item-specific values.
 [**GetGender**](ReferenceApi.md#GetGender) | **Get** /v1/genders | Search the eBay-sourced \&quot;Gender\&quot; item-specific values.
 [**GetPattern**](ReferenceApi.md#GetPattern) | **Get** /v1/patterns | Search the eBay-sourced \&quot;Pattern\&quot; item-specific values.
+[**GetReferencePostal**](ReferenceApi.md#GetReferencePostal) | **Get** /v1/reference/postal/{country}/{code} | Look up a postal code: canonical shape, state and US metro areas.
 [**GetSizeSystem**](ReferenceApi.md#GetSizeSystem) | **Get** /v1/size-systems | Search the Poshmark + Vestiaire size-system union (US/UK/EU/AU/FR/KR).
 [**GetStyle**](ReferenceApi.md#GetStyle) | **Get** /v1/styles | Search the eBay-sourced \&quot;Style\&quot; item-specific values.
 [**GetType**](ReferenceApi.md#GetType) | **Get** /v1/types | Search the eBay-sourced \&quot;Type\&quot; item-specific values.
 [**ListReferenceCountries**](ReferenceApi.md#ListReferenceCountries) | **Get** /v1/reference/countries | Every country with its delivery-address rules.
+[**ListReferenceMetros**](ReferenceApi.md#ListReferenceMetros) | **Get** /v1/reference/metros | Search US metro areas (CSA / CBSA) for location rules.
 
 
 
@@ -306,6 +308,78 @@ Other parameters are passed through a pointer to a apiGetPatternRequest struct v
 [[Back to README]](../README.md)
 
 
+## GetReferencePostal
+
+> GetReferencePostalResponse GetReferencePostal(ctx, country, code).Execute()
+
+Look up a postal code: canonical shape, state and US metro areas.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    country := "country_example" // string | 
+    code := "code_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReferenceApi.GetReferencePostal(context.Background(), country, code).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReferenceApi.GetReferencePostal``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetReferencePostal`: GetReferencePostalResponse
+    fmt.Fprintf(os.Stdout, "Response from `ReferenceApi.GetReferencePostal`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**country** | **string** |  | 
+**code** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetReferencePostalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**GetReferencePostalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetSizeSystem
 
 > GetSizeSystemResponse GetSizeSystem(ctx).Execute()
@@ -526,6 +600,73 @@ Other parameters are passed through a pointer to a apiListReferenceCountriesRequ
 ### Return type
 
 **ListReferenceCountriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListReferenceMetros
+
+> ListReferenceMetrosResponse ListReferenceMetros(ctx).Q(q).Limit(limit).Execute()
+
+Search US metro areas (CSA / CBSA) for location rules.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    q := "q_example" // string | 
+    limit := int32(56) // int32 |  (optional) (default to 20)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReferenceApi.ListReferenceMetros(context.Background()).Q(q).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReferenceApi.ListReferenceMetros``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListReferenceMetros`: ListReferenceMetrosResponse
+    fmt.Fprintf(os.Stdout, "Response from `ReferenceApi.ListReferenceMetros`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListReferenceMetrosRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string** |  | 
+ **limit** | **int32** |  | [default to 20]
+
+### Return type
+
+**ListReferenceMetrosResponse**
 
 ### Authorization
 

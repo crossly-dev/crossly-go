@@ -107,21 +107,21 @@ func (v *NullableCreateBuyerSellerClubJoinResponse) UnmarshalJSON(src []byte) er
 
 // CreateBuyerSellerClubJoinResponseData struct for CreateBuyerSellerClubJoinResponseData
 type CreateBuyerSellerClubJoinResponseData struct {
+	SellerUserId string `json:"sellerUserId"`
 	Name string `json:"name"`
 	Description NullableString `json:"description,omitempty"`
-	SellerUserId string `json:"sellerUserId"`
-	Member NullableCreateBuyerSellerClubJoinResponseDataMember `json:"member,omitempty"`
 	Tiers []CreateBuyerSellerClubJoinResponseDataTiers `json:"tiers"`
+	Member NullableCreateBuyerSellerClubJoinResponseDataMember `json:"member,omitempty"`
 }
 
 // NewCreateBuyerSellerClubJoinResponseData instantiates a new CreateBuyerSellerClubJoinResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerSellerClubJoinResponseData(name string, sellerUserId string, tiers []CreateBuyerSellerClubJoinResponseDataTiers) *CreateBuyerSellerClubJoinResponseData {
+func NewCreateBuyerSellerClubJoinResponseData(sellerUserId string, name string, tiers []CreateBuyerSellerClubJoinResponseDataTiers) *CreateBuyerSellerClubJoinResponseData {
 	this := CreateBuyerSellerClubJoinResponseData{}
-	this.Name = name
 	this.SellerUserId = sellerUserId
+	this.Name = name
 	this.Tiers = tiers
 	return &this
 }
@@ -132,6 +132,30 @@ func NewCreateBuyerSellerClubJoinResponseData(name string, sellerUserId string, 
 func NewCreateBuyerSellerClubJoinResponseDataWithDefaults() *CreateBuyerSellerClubJoinResponseData {
 	this := CreateBuyerSellerClubJoinResponseData{}
 	return &this
+}
+
+// GetSellerUserId returns the SellerUserId field value
+func (o *CreateBuyerSellerClubJoinResponseData) GetSellerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerUserId
+}
+
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerSellerClubJoinResponseData) GetSellerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerUserId, true
+}
+
+// SetSellerUserId sets field value
+func (o *CreateBuyerSellerClubJoinResponseData) SetSellerUserId(v string) {
+	o.SellerUserId = v
 }
 
 // GetName returns the Name field value
@@ -200,28 +224,28 @@ func (o *CreateBuyerSellerClubJoinResponseData) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetSellerUserId returns the SellerUserId field value
-func (o *CreateBuyerSellerClubJoinResponseData) GetSellerUserId() string {
+// GetTiers returns the Tiers field value
+func (o *CreateBuyerSellerClubJoinResponseData) GetTiers() []CreateBuyerSellerClubJoinResponseDataTiers {
 	if o == nil {
-		var ret string
+		var ret []CreateBuyerSellerClubJoinResponseDataTiers
 		return ret
 	}
 
-	return o.SellerUserId
+	return o.Tiers
 }
 
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// GetTiersOk returns a tuple with the Tiers field value
 // and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerClubJoinResponseData) GetSellerUserIdOk() (*string, bool) {
+func (o *CreateBuyerSellerClubJoinResponseData) GetTiersOk() ([]CreateBuyerSellerClubJoinResponseDataTiers, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SellerUserId, true
+	return o.Tiers, true
 }
 
-// SetSellerUserId sets field value
-func (o *CreateBuyerSellerClubJoinResponseData) SetSellerUserId(v string) {
-	o.SellerUserId = v
+// SetTiers sets field value
+func (o *CreateBuyerSellerClubJoinResponseData) SetTiers(v []CreateBuyerSellerClubJoinResponseDataTiers) {
+	o.Tiers = v
 }
 
 // GetMember returns the Member field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -266,32 +290,11 @@ func (o *CreateBuyerSellerClubJoinResponseData) UnsetMember() {
 	o.Member.Unset()
 }
 
-// GetTiers returns the Tiers field value
-func (o *CreateBuyerSellerClubJoinResponseData) GetTiers() []CreateBuyerSellerClubJoinResponseDataTiers {
-	if o == nil {
-		var ret []CreateBuyerSellerClubJoinResponseDataTiers
-		return ret
-	}
-
-	return o.Tiers
-}
-
-// GetTiersOk returns a tuple with the Tiers field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerClubJoinResponseData) GetTiersOk() ([]CreateBuyerSellerClubJoinResponseDataTiers, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Tiers, true
-}
-
-// SetTiers sets field value
-func (o *CreateBuyerSellerClubJoinResponseData) SetTiers(v []CreateBuyerSellerClubJoinResponseDataTiers) {
-	o.Tiers = v
-}
-
 func (o CreateBuyerSellerClubJoinResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sellerUserId"] = o.SellerUserId
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
@@ -299,13 +302,10 @@ func (o CreateBuyerSellerClubJoinResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
+		toSerialize["tiers"] = o.Tiers
 	}
 	if o.Member.IsSet() {
 		toSerialize["member"] = o.Member.Get()
-	}
-	if true {
-		toSerialize["tiers"] = o.Tiers
 	}
 	return json.Marshal(toSerialize)
 }
@@ -348,22 +348,22 @@ func (v *NullableCreateBuyerSellerClubJoinResponseData) UnmarshalJSON(src []byte
 
 // CreateBuyerSellerClubJoinResponseDataMember struct for CreateBuyerSellerClubJoinResponseDataMember
 type CreateBuyerSellerClubJoinResponseDataMember struct {
-	Tier NullableString `json:"tier,omitempty"`
-	JoinedAt string `json:"joinedAt"`
-	DiscountBps float32 `json:"discountBps"`
 	SpendCents float32 `json:"spendCents"`
+	Tier NullableString `json:"tier,omitempty"`
+	DiscountBps float32 `json:"discountBps"`
 	Next NullableCreateBuyerSellerClubJoinResponseDataMemberNext `json:"next,omitempty"`
+	JoinedAt string `json:"joinedAt"`
 }
 
 // NewCreateBuyerSellerClubJoinResponseDataMember instantiates a new CreateBuyerSellerClubJoinResponseDataMember object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerSellerClubJoinResponseDataMember(joinedAt string, discountBps float32, spendCents float32) *CreateBuyerSellerClubJoinResponseDataMember {
+func NewCreateBuyerSellerClubJoinResponseDataMember(spendCents float32, discountBps float32, joinedAt string) *CreateBuyerSellerClubJoinResponseDataMember {
 	this := CreateBuyerSellerClubJoinResponseDataMember{}
-	this.JoinedAt = joinedAt
-	this.DiscountBps = discountBps
 	this.SpendCents = spendCents
+	this.DiscountBps = discountBps
+	this.JoinedAt = joinedAt
 	return &this
 }
 
@@ -373,6 +373,30 @@ func NewCreateBuyerSellerClubJoinResponseDataMember(joinedAt string, discountBps
 func NewCreateBuyerSellerClubJoinResponseDataMemberWithDefaults() *CreateBuyerSellerClubJoinResponseDataMember {
 	this := CreateBuyerSellerClubJoinResponseDataMember{}
 	return &this
+}
+
+// GetSpendCents returns the SpendCents field value
+func (o *CreateBuyerSellerClubJoinResponseDataMember) GetSpendCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SpendCents
+}
+
+// GetSpendCentsOk returns a tuple with the SpendCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerSellerClubJoinResponseDataMember) GetSpendCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SpendCents, true
+}
+
+// SetSpendCents sets field value
+func (o *CreateBuyerSellerClubJoinResponseDataMember) SetSpendCents(v float32) {
+	o.SpendCents = v
 }
 
 // GetTier returns the Tier field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -417,30 +441,6 @@ func (o *CreateBuyerSellerClubJoinResponseDataMember) UnsetTier() {
 	o.Tier.Unset()
 }
 
-// GetJoinedAt returns the JoinedAt field value
-func (o *CreateBuyerSellerClubJoinResponseDataMember) GetJoinedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.JoinedAt
-}
-
-// GetJoinedAtOk returns a tuple with the JoinedAt field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerClubJoinResponseDataMember) GetJoinedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.JoinedAt, true
-}
-
-// SetJoinedAt sets field value
-func (o *CreateBuyerSellerClubJoinResponseDataMember) SetJoinedAt(v string) {
-	o.JoinedAt = v
-}
-
 // GetDiscountBps returns the DiscountBps field value
 func (o *CreateBuyerSellerClubJoinResponseDataMember) GetDiscountBps() float32 {
 	if o == nil {
@@ -463,30 +463,6 @@ func (o *CreateBuyerSellerClubJoinResponseDataMember) GetDiscountBpsOk() (*float
 // SetDiscountBps sets field value
 func (o *CreateBuyerSellerClubJoinResponseDataMember) SetDiscountBps(v float32) {
 	o.DiscountBps = v
-}
-
-// GetSpendCents returns the SpendCents field value
-func (o *CreateBuyerSellerClubJoinResponseDataMember) GetSpendCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.SpendCents
-}
-
-// GetSpendCentsOk returns a tuple with the SpendCents field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerClubJoinResponseDataMember) GetSpendCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SpendCents, true
-}
-
-// SetSpendCents sets field value
-func (o *CreateBuyerSellerClubJoinResponseDataMember) SetSpendCents(v float32) {
-	o.SpendCents = v
 }
 
 // GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -531,22 +507,46 @@ func (o *CreateBuyerSellerClubJoinResponseDataMember) UnsetNext() {
 	o.Next.Unset()
 }
 
+// GetJoinedAt returns the JoinedAt field value
+func (o *CreateBuyerSellerClubJoinResponseDataMember) GetJoinedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.JoinedAt
+}
+
+// GetJoinedAtOk returns a tuple with the JoinedAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerSellerClubJoinResponseDataMember) GetJoinedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.JoinedAt, true
+}
+
+// SetJoinedAt sets field value
+func (o *CreateBuyerSellerClubJoinResponseDataMember) SetJoinedAt(v string) {
+	o.JoinedAt = v
+}
+
 func (o CreateBuyerSellerClubJoinResponseDataMember) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["spendCents"] = o.SpendCents
+	}
 	if o.Tier.IsSet() {
 		toSerialize["tier"] = o.Tier.Get()
 	}
 	if true {
-		toSerialize["joinedAt"] = o.JoinedAt
-	}
-	if true {
 		toSerialize["discountBps"] = o.DiscountBps
-	}
-	if true {
-		toSerialize["spendCents"] = o.SpendCents
 	}
 	if o.Next.IsSet() {
 		toSerialize["next"] = o.Next.Get()
+	}
+	if true {
+		toSerialize["joinedAt"] = o.JoinedAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1068,264 +1068,6 @@ func (v *NullableCreateBuyerSellerReportRequest) UnmarshalJSON(src []byte) error
 	return json.Unmarshal(src, &v.value)
 }
 
-// CreateBuyerSellerReportResponse struct for CreateBuyerSellerReportResponse
-type CreateBuyerSellerReportResponse struct {
-	Data CreateBuyerSellerReportResponseData `json:"data"`
-}
-
-// NewCreateBuyerSellerReportResponse instantiates a new CreateBuyerSellerReportResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateBuyerSellerReportResponse(data CreateBuyerSellerReportResponseData) *CreateBuyerSellerReportResponse {
-	this := CreateBuyerSellerReportResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewCreateBuyerSellerReportResponseWithDefaults instantiates a new CreateBuyerSellerReportResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateBuyerSellerReportResponseWithDefaults() *CreateBuyerSellerReportResponse {
-	this := CreateBuyerSellerReportResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *CreateBuyerSellerReportResponse) GetData() CreateBuyerSellerReportResponseData {
-	if o == nil {
-		var ret CreateBuyerSellerReportResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerReportResponse) GetDataOk() (*CreateBuyerSellerReportResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *CreateBuyerSellerReportResponse) SetData(v CreateBuyerSellerReportResponseData) {
-	o.Data = v
-}
-
-func (o CreateBuyerSellerReportResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateBuyerSellerReportResponse struct {
-	value *CreateBuyerSellerReportResponse
-	isSet bool
-}
-
-func (v NullableCreateBuyerSellerReportResponse) Get() *CreateBuyerSellerReportResponse {
-	return v.value
-}
-
-func (v *NullableCreateBuyerSellerReportResponse) Set(val *CreateBuyerSellerReportResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateBuyerSellerReportResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateBuyerSellerReportResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateBuyerSellerReportResponse(val *CreateBuyerSellerReportResponse) *NullableCreateBuyerSellerReportResponse {
-	return &NullableCreateBuyerSellerReportResponse{value: val, isSet: true}
-}
-
-func (v NullableCreateBuyerSellerReportResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateBuyerSellerReportResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// CreateBuyerSellerReportResponseData struct for CreateBuyerSellerReportResponseData
-type CreateBuyerSellerReportResponseData struct {
-	Ok bool `json:"ok"`
-	ReportId NullableString `json:"reportId,omitempty"`
-	// true = folded into your earlier report that is still under review.
-	Updated bool `json:"updated"`
-}
-
-// NewCreateBuyerSellerReportResponseData instantiates a new CreateBuyerSellerReportResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateBuyerSellerReportResponseData(ok bool, updated bool) *CreateBuyerSellerReportResponseData {
-	this := CreateBuyerSellerReportResponseData{}
-	this.Ok = ok
-	this.Updated = updated
-	return &this
-}
-
-// NewCreateBuyerSellerReportResponseDataWithDefaults instantiates a new CreateBuyerSellerReportResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateBuyerSellerReportResponseDataWithDefaults() *CreateBuyerSellerReportResponseData {
-	this := CreateBuyerSellerReportResponseData{}
-	return &this
-}
-
-// GetOk returns the Ok field value
-func (o *CreateBuyerSellerReportResponseData) GetOk() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Ok
-}
-
-// GetOkOk returns a tuple with the Ok field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerReportResponseData) GetOkOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Ok, true
-}
-
-// SetOk sets field value
-func (o *CreateBuyerSellerReportResponseData) SetOk(v bool) {
-	o.Ok = v
-}
-
-// GetReportId returns the ReportId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateBuyerSellerReportResponseData) GetReportId() string {
-	if o == nil || o.ReportId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReportId.Get()
-}
-
-// GetReportIdOk returns a tuple with the ReportId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateBuyerSellerReportResponseData) GetReportIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReportId.Get(), o.ReportId.IsSet()
-}
-
-// HasReportId returns a boolean if a field has been set.
-func (o *CreateBuyerSellerReportResponseData) HasReportId() bool {
-	if o != nil && o.ReportId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReportId gets a reference to the given NullableString and assigns it to the ReportId field.
-func (o *CreateBuyerSellerReportResponseData) SetReportId(v string) {
-	o.ReportId.Set(&v)
-}
-// SetReportIdNil sets the value for ReportId to be an explicit nil
-func (o *CreateBuyerSellerReportResponseData) SetReportIdNil() {
-	o.ReportId.Set(nil)
-}
-
-// UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
-func (o *CreateBuyerSellerReportResponseData) UnsetReportId() {
-	o.ReportId.Unset()
-}
-
-// GetUpdated returns the Updated field value
-func (o *CreateBuyerSellerReportResponseData) GetUpdated() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Updated
-}
-
-// GetUpdatedOk returns a tuple with the Updated field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerSellerReportResponseData) GetUpdatedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Updated, true
-}
-
-// SetUpdated sets field value
-func (o *CreateBuyerSellerReportResponseData) SetUpdated(v bool) {
-	o.Updated = v
-}
-
-func (o CreateBuyerSellerReportResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ok"] = o.Ok
-	}
-	if o.ReportId.IsSet() {
-		toSerialize["reportId"] = o.ReportId.Get()
-	}
-	if true {
-		toSerialize["updated"] = o.Updated
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateBuyerSellerReportResponseData struct {
-	value *CreateBuyerSellerReportResponseData
-	isSet bool
-}
-
-func (v NullableCreateBuyerSellerReportResponseData) Get() *CreateBuyerSellerReportResponseData {
-	return v.value
-}
-
-func (v *NullableCreateBuyerSellerReportResponseData) Set(val *CreateBuyerSellerReportResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateBuyerSellerReportResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateBuyerSellerReportResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateBuyerSellerReportResponseData(val *CreateBuyerSellerReportResponseData) *NullableCreateBuyerSellerReportResponseData {
-	return &NullableCreateBuyerSellerReportResponseData{value: val, isSet: true}
-}
-
-func (v NullableCreateBuyerSellerReportResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateBuyerSellerReportResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // GetBuyerSellerClubResponse struct for GetBuyerSellerClubResponse
 type GetBuyerSellerClubResponse struct {
 	Data NullableGetBuyerSellerClubResponseData `json:"data,omitempty"`
@@ -1436,21 +1178,21 @@ func (v *NullableGetBuyerSellerClubResponse) UnmarshalJSON(src []byte) error {
 
 // GetBuyerSellerClubResponseData struct for GetBuyerSellerClubResponseData
 type GetBuyerSellerClubResponseData struct {
+	SellerUserId string `json:"sellerUserId"`
 	Name string `json:"name"`
 	Description NullableString `json:"description,omitempty"`
-	SellerUserId string `json:"sellerUserId"`
-	Member NullableCreateBuyerSellerClubJoinResponseDataMember `json:"member,omitempty"`
 	Tiers []CreateBuyerSellerClubJoinResponseDataTiers `json:"tiers"`
+	Member NullableCreateBuyerSellerClubJoinResponseDataMember `json:"member,omitempty"`
 }
 
 // NewGetBuyerSellerClubResponseData instantiates a new GetBuyerSellerClubResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerSellerClubResponseData(name string, sellerUserId string, tiers []CreateBuyerSellerClubJoinResponseDataTiers) *GetBuyerSellerClubResponseData {
+func NewGetBuyerSellerClubResponseData(sellerUserId string, name string, tiers []CreateBuyerSellerClubJoinResponseDataTiers) *GetBuyerSellerClubResponseData {
 	this := GetBuyerSellerClubResponseData{}
-	this.Name = name
 	this.SellerUserId = sellerUserId
+	this.Name = name
 	this.Tiers = tiers
 	return &this
 }
@@ -1461,6 +1203,30 @@ func NewGetBuyerSellerClubResponseData(name string, sellerUserId string, tiers [
 func NewGetBuyerSellerClubResponseDataWithDefaults() *GetBuyerSellerClubResponseData {
 	this := GetBuyerSellerClubResponseData{}
 	return &this
+}
+
+// GetSellerUserId returns the SellerUserId field value
+func (o *GetBuyerSellerClubResponseData) GetSellerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerUserId
+}
+
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerClubResponseData) GetSellerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerUserId, true
+}
+
+// SetSellerUserId sets field value
+func (o *GetBuyerSellerClubResponseData) SetSellerUserId(v string) {
+	o.SellerUserId = v
 }
 
 // GetName returns the Name field value
@@ -1529,28 +1295,28 @@ func (o *GetBuyerSellerClubResponseData) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetSellerUserId returns the SellerUserId field value
-func (o *GetBuyerSellerClubResponseData) GetSellerUserId() string {
+// GetTiers returns the Tiers field value
+func (o *GetBuyerSellerClubResponseData) GetTiers() []CreateBuyerSellerClubJoinResponseDataTiers {
 	if o == nil {
-		var ret string
+		var ret []CreateBuyerSellerClubJoinResponseDataTiers
 		return ret
 	}
 
-	return o.SellerUserId
+	return o.Tiers
 }
 
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// GetTiersOk returns a tuple with the Tiers field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerSellerClubResponseData) GetSellerUserIdOk() (*string, bool) {
+func (o *GetBuyerSellerClubResponseData) GetTiersOk() ([]CreateBuyerSellerClubJoinResponseDataTiers, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SellerUserId, true
+	return o.Tiers, true
 }
 
-// SetSellerUserId sets field value
-func (o *GetBuyerSellerClubResponseData) SetSellerUserId(v string) {
-	o.SellerUserId = v
+// SetTiers sets field value
+func (o *GetBuyerSellerClubResponseData) SetTiers(v []CreateBuyerSellerClubJoinResponseDataTiers) {
+	o.Tiers = v
 }
 
 // GetMember returns the Member field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1595,32 +1361,11 @@ func (o *GetBuyerSellerClubResponseData) UnsetMember() {
 	o.Member.Unset()
 }
 
-// GetTiers returns the Tiers field value
-func (o *GetBuyerSellerClubResponseData) GetTiers() []CreateBuyerSellerClubJoinResponseDataTiers {
-	if o == nil {
-		var ret []CreateBuyerSellerClubJoinResponseDataTiers
-		return ret
-	}
-
-	return o.Tiers
-}
-
-// GetTiersOk returns a tuple with the Tiers field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerSellerClubResponseData) GetTiersOk() ([]CreateBuyerSellerClubJoinResponseDataTiers, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Tiers, true
-}
-
-// SetTiers sets field value
-func (o *GetBuyerSellerClubResponseData) SetTiers(v []CreateBuyerSellerClubJoinResponseDataTiers) {
-	o.Tiers = v
-}
-
 func (o GetBuyerSellerClubResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sellerUserId"] = o.SellerUserId
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
@@ -1628,13 +1373,10 @@ func (o GetBuyerSellerClubResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
+		toSerialize["tiers"] = o.Tiers
 	}
 	if o.Member.IsSet() {
 		toSerialize["member"] = o.Member.Get()
-	}
-	if true {
-		toSerialize["tiers"] = o.Tiers
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1671,6 +1413,2204 @@ func (v NullableGetBuyerSellerClubResponseData) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetBuyerSellerClubResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponse struct for GetBuyerSellerLoyaltyResponse
+type GetBuyerSellerLoyaltyResponse struct {
+	Data NullableGetBuyerSellerLoyaltyResponseData `json:"data,omitempty"`
+}
+
+// NewGetBuyerSellerLoyaltyResponse instantiates a new GetBuyerSellerLoyaltyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponse() *GetBuyerSellerLoyaltyResponse {
+	this := GetBuyerSellerLoyaltyResponse{}
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseWithDefaults instantiates a new GetBuyerSellerLoyaltyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseWithDefaults() *GetBuyerSellerLoyaltyResponse {
+	this := GetBuyerSellerLoyaltyResponse{}
+	return &this
+}
+
+// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponse) GetData() GetBuyerSellerLoyaltyResponseData {
+	if o == nil || o.Data.Get() == nil {
+		var ret GetBuyerSellerLoyaltyResponseData
+		return ret
+	}
+	return *o.Data.Get()
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponse) GetDataOk() (*GetBuyerSellerLoyaltyResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data.Get(), o.Data.IsSet()
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponse) HasData() bool {
+	if o != nil && o.Data.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given NullableGetBuyerSellerLoyaltyResponseData and assigns it to the Data field.
+func (o *GetBuyerSellerLoyaltyResponse) SetData(v GetBuyerSellerLoyaltyResponseData) {
+	o.Data.Set(&v)
+}
+// SetDataNil sets the value for Data to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponse) SetDataNil() {
+	o.Data.Set(nil)
+}
+
+// UnsetData ensures that no value is present for Data, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponse) UnsetData() {
+	o.Data.Unset()
+}
+
+func (o GetBuyerSellerLoyaltyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Data.IsSet() {
+		toSerialize["data"] = o.Data.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponse struct {
+	value *GetBuyerSellerLoyaltyResponse
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponse) Get() *GetBuyerSellerLoyaltyResponse {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponse) Set(val *GetBuyerSellerLoyaltyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponse(val *GetBuyerSellerLoyaltyResponse) *NullableGetBuyerSellerLoyaltyResponse {
+	return &NullableGetBuyerSellerLoyaltyResponse{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseData struct for GetBuyerSellerLoyaltyResponseData
+type GetBuyerSellerLoyaltyResponseData struct {
+	ClubId string `json:"clubId"`
+	SellerUserId string `json:"sellerUserId"`
+	SellerName string `json:"sellerName"`
+	Store map[string]interface{} `json:"store,omitempty"`
+	Name string `json:"name"`
+	Description NullableString `json:"description,omitempty"`
+	Qualification string `json:"qualification"`
+	JoinMode string `json:"joinMode"`
+	Tiers []GetBuyerSellerLoyaltyResponseDataMemberNextTier `json:"tiers"`
+	Member NullableGetBuyerSellerLoyaltyResponseDataMember `json:"member,omitempty"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseData instantiates a new GetBuyerSellerLoyaltyResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseData(clubId string, sellerUserId string, sellerName string, name string, qualification string, joinMode string, tiers []GetBuyerSellerLoyaltyResponseDataMemberNextTier) *GetBuyerSellerLoyaltyResponseData {
+	this := GetBuyerSellerLoyaltyResponseData{}
+	this.ClubId = clubId
+	this.SellerUserId = sellerUserId
+	this.SellerName = sellerName
+	this.Name = name
+	this.Qualification = qualification
+	this.JoinMode = joinMode
+	this.Tiers = tiers
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataWithDefaults() *GetBuyerSellerLoyaltyResponseData {
+	this := GetBuyerSellerLoyaltyResponseData{}
+	return &this
+}
+
+// GetClubId returns the ClubId field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetClubId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ClubId
+}
+
+// GetClubIdOk returns a tuple with the ClubId field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetClubIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ClubId, true
+}
+
+// SetClubId sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetClubId(v string) {
+	o.ClubId = v
+}
+
+// GetSellerUserId returns the SellerUserId field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetSellerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerUserId
+}
+
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetSellerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerUserId, true
+}
+
+// SetSellerUserId sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetSellerUserId(v string) {
+	o.SellerUserId = v
+}
+
+// GetSellerName returns the SellerName field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetSellerName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerName
+}
+
+// GetSellerNameOk returns a tuple with the SellerName field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetSellerNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerName, true
+}
+
+// SetSellerName sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetSellerName(v string) {
+	o.SellerName = v
+}
+
+// GetStore returns the Store field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseData) GetStore() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Store
+}
+
+// GetStoreOk returns a tuple with the Store field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseData) GetStoreOk() (map[string]interface{}, bool) {
+	if o == nil || o.Store == nil {
+		return nil, false
+	}
+	return o.Store, true
+}
+
+// HasStore returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) HasStore() bool {
+	if o != nil && o.Store != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStore gets a reference to the given map[string]interface{} and assigns it to the Store field.
+func (o *GetBuyerSellerLoyaltyResponseData) SetStore(v map[string]interface{}) {
+	o.Store = v
+}
+
+// GetName returns the Name field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseData) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseData) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetBuyerSellerLoyaltyResponseData) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseData) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseData) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetQualification returns the Qualification field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetQualification() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Qualification
+}
+
+// GetQualificationOk returns a tuple with the Qualification field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetQualificationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Qualification, true
+}
+
+// SetQualification sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetQualification(v string) {
+	o.Qualification = v
+}
+
+// GetJoinMode returns the JoinMode field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetJoinMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.JoinMode
+}
+
+// GetJoinModeOk returns a tuple with the JoinMode field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetJoinModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.JoinMode, true
+}
+
+// SetJoinMode sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetJoinMode(v string) {
+	o.JoinMode = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *GetBuyerSellerLoyaltyResponseData) GetTiers() []GetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	if o == nil {
+		var ret []GetBuyerSellerLoyaltyResponseDataMemberNextTier
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) GetTiersOk() ([]GetBuyerSellerLoyaltyResponseDataMemberNextTier, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetBuyerSellerLoyaltyResponseData) SetTiers(v []GetBuyerSellerLoyaltyResponseDataMemberNextTier) {
+	o.Tiers = v
+}
+
+// GetMember returns the Member field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseData) GetMember() GetBuyerSellerLoyaltyResponseDataMember {
+	if o == nil || o.Member.Get() == nil {
+		var ret GetBuyerSellerLoyaltyResponseDataMember
+		return ret
+	}
+	return *o.Member.Get()
+}
+
+// GetMemberOk returns a tuple with the Member field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseData) GetMemberOk() (*GetBuyerSellerLoyaltyResponseDataMember, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Member.Get(), o.Member.IsSet()
+}
+
+// HasMember returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseData) HasMember() bool {
+	if o != nil && o.Member.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMember gets a reference to the given NullableGetBuyerSellerLoyaltyResponseDataMember and assigns it to the Member field.
+func (o *GetBuyerSellerLoyaltyResponseData) SetMember(v GetBuyerSellerLoyaltyResponseDataMember) {
+	o.Member.Set(&v)
+}
+// SetMemberNil sets the value for Member to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseData) SetMemberNil() {
+	o.Member.Set(nil)
+}
+
+// UnsetMember ensures that no value is present for Member, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseData) UnsetMember() {
+	o.Member.Unset()
+}
+
+func (o GetBuyerSellerLoyaltyResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["clubId"] = o.ClubId
+	}
+	if true {
+		toSerialize["sellerUserId"] = o.SellerUserId
+	}
+	if true {
+		toSerialize["sellerName"] = o.SellerName
+	}
+	if o.Store != nil {
+		toSerialize["store"] = o.Store
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if true {
+		toSerialize["qualification"] = o.Qualification
+	}
+	if true {
+		toSerialize["joinMode"] = o.JoinMode
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if o.Member.IsSet() {
+		toSerialize["member"] = o.Member.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseData struct {
+	value *GetBuyerSellerLoyaltyResponseData
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseData) Get() *GetBuyerSellerLoyaltyResponseData {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseData) Set(val *GetBuyerSellerLoyaltyResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseData(val *GetBuyerSellerLoyaltyResponseData) *NullableGetBuyerSellerLoyaltyResponseData {
+	return &NullableGetBuyerSellerLoyaltyResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMember struct for GetBuyerSellerLoyaltyResponseDataMember
+type GetBuyerSellerLoyaltyResponseDataMember struct {
+	Standing GetBuyerSellerLoyaltyResponseDataMemberStanding `json:"standing"`
+	Value float32 `json:"value"`
+	Tier NullableGetBuyerSellerLoyaltyResponseDataMemberTier `json:"tier,omitempty"`
+	Next NullableGetBuyerSellerLoyaltyResponseDataMemberNext `json:"next,omitempty"`
+	GraceUntil NullableString `json:"graceUntil,omitempty"`
+	JoinedAt string `json:"joinedAt"`
+	Perks []GetBuyerSellerLoyaltyResponseDataMemberPerks `json:"perks"`
+	History []GetBuyerSellerLoyaltyResponseDataMemberHistory `json:"history"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMember instantiates a new GetBuyerSellerLoyaltyResponseDataMember object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMember(standing GetBuyerSellerLoyaltyResponseDataMemberStanding, value float32, joinedAt string, perks []GetBuyerSellerLoyaltyResponseDataMemberPerks, history []GetBuyerSellerLoyaltyResponseDataMemberHistory) *GetBuyerSellerLoyaltyResponseDataMember {
+	this := GetBuyerSellerLoyaltyResponseDataMember{}
+	this.Standing = standing
+	this.Value = value
+	this.JoinedAt = joinedAt
+	this.Perks = perks
+	this.History = history
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMember object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberWithDefaults() *GetBuyerSellerLoyaltyResponseDataMember {
+	this := GetBuyerSellerLoyaltyResponseDataMember{}
+	return &this
+}
+
+// GetStanding returns the Standing field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetStanding() GetBuyerSellerLoyaltyResponseDataMemberStanding {
+	if o == nil {
+		var ret GetBuyerSellerLoyaltyResponseDataMemberStanding
+		return ret
+	}
+
+	return o.Standing
+}
+
+// GetStandingOk returns a tuple with the Standing field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetStandingOk() (*GetBuyerSellerLoyaltyResponseDataMemberStanding, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Standing, true
+}
+
+// SetStanding sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetStanding(v GetBuyerSellerLoyaltyResponseDataMemberStanding) {
+	o.Standing = v
+}
+
+// GetValue returns the Value field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetValue() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetValue(v float32) {
+	o.Value = v
+}
+
+// GetTier returns the Tier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetTier() GetBuyerSellerLoyaltyResponseDataMemberTier {
+	if o == nil || o.Tier.Get() == nil {
+		var ret GetBuyerSellerLoyaltyResponseDataMemberTier
+		return ret
+	}
+	return *o.Tier.Get()
+}
+
+// GetTierOk returns a tuple with the Tier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetTierOk() (*GetBuyerSellerLoyaltyResponseDataMemberTier, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tier.Get(), o.Tier.IsSet()
+}
+
+// HasTier returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) HasTier() bool {
+	if o != nil && o.Tier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTier gets a reference to the given NullableGetBuyerSellerLoyaltyResponseDataMemberTier and assigns it to the Tier field.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetTier(v GetBuyerSellerLoyaltyResponseDataMemberTier) {
+	o.Tier.Set(&v)
+}
+// SetTierNil sets the value for Tier to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetTierNil() {
+	o.Tier.Set(nil)
+}
+
+// UnsetTier ensures that no value is present for Tier, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) UnsetTier() {
+	o.Tier.Unset()
+}
+
+// GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetNext() GetBuyerSellerLoyaltyResponseDataMemberNext {
+	if o == nil || o.Next.Get() == nil {
+		var ret GetBuyerSellerLoyaltyResponseDataMemberNext
+		return ret
+	}
+	return *o.Next.Get()
+}
+
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetNextOk() (*GetBuyerSellerLoyaltyResponseDataMemberNext, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Next.Get(), o.Next.IsSet()
+}
+
+// HasNext returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) HasNext() bool {
+	if o != nil && o.Next.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NullableGetBuyerSellerLoyaltyResponseDataMemberNext and assigns it to the Next field.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetNext(v GetBuyerSellerLoyaltyResponseDataMemberNext) {
+	o.Next.Set(&v)
+}
+// SetNextNil sets the value for Next to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetNextNil() {
+	o.Next.Set(nil)
+}
+
+// UnsetNext ensures that no value is present for Next, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) UnsetNext() {
+	o.Next.Unset()
+}
+
+// GetGraceUntil returns the GraceUntil field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetGraceUntil() string {
+	if o == nil || o.GraceUntil.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.GraceUntil.Get()
+}
+
+// GetGraceUntilOk returns a tuple with the GraceUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetGraceUntilOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.GraceUntil.Get(), o.GraceUntil.IsSet()
+}
+
+// HasGraceUntil returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) HasGraceUntil() bool {
+	if o != nil && o.GraceUntil.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGraceUntil gets a reference to the given NullableString and assigns it to the GraceUntil field.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetGraceUntil(v string) {
+	o.GraceUntil.Set(&v)
+}
+// SetGraceUntilNil sets the value for GraceUntil to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetGraceUntilNil() {
+	o.GraceUntil.Set(nil)
+}
+
+// UnsetGraceUntil ensures that no value is present for GraceUntil, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMember) UnsetGraceUntil() {
+	o.GraceUntil.Unset()
+}
+
+// GetJoinedAt returns the JoinedAt field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetJoinedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.JoinedAt
+}
+
+// GetJoinedAtOk returns a tuple with the JoinedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetJoinedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.JoinedAt, true
+}
+
+// SetJoinedAt sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetJoinedAt(v string) {
+	o.JoinedAt = v
+}
+
+// GetPerks returns the Perks field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetPerks() []GetBuyerSellerLoyaltyResponseDataMemberPerks {
+	if o == nil {
+		var ret []GetBuyerSellerLoyaltyResponseDataMemberPerks
+		return ret
+	}
+
+	return o.Perks
+}
+
+// GetPerksOk returns a tuple with the Perks field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetPerksOk() ([]GetBuyerSellerLoyaltyResponseDataMemberPerks, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Perks, true
+}
+
+// SetPerks sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetPerks(v []GetBuyerSellerLoyaltyResponseDataMemberPerks) {
+	o.Perks = v
+}
+
+// GetHistory returns the History field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetHistory() []GetBuyerSellerLoyaltyResponseDataMemberHistory {
+	if o == nil {
+		var ret []GetBuyerSellerLoyaltyResponseDataMemberHistory
+		return ret
+	}
+
+	return o.History
+}
+
+// GetHistoryOk returns a tuple with the History field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMember) GetHistoryOk() ([]GetBuyerSellerLoyaltyResponseDataMemberHistory, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.History, true
+}
+
+// SetHistory sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMember) SetHistory(v []GetBuyerSellerLoyaltyResponseDataMemberHistory) {
+	o.History = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMember) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["standing"] = o.Standing
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.Tier.IsSet() {
+		toSerialize["tier"] = o.Tier.Get()
+	}
+	if o.Next.IsSet() {
+		toSerialize["next"] = o.Next.Get()
+	}
+	if o.GraceUntil.IsSet() {
+		toSerialize["graceUntil"] = o.GraceUntil.Get()
+	}
+	if true {
+		toSerialize["joinedAt"] = o.JoinedAt
+	}
+	if true {
+		toSerialize["perks"] = o.Perks
+	}
+	if true {
+		toSerialize["history"] = o.History
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMember struct {
+	value *GetBuyerSellerLoyaltyResponseDataMember
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMember) Get() *GetBuyerSellerLoyaltyResponseDataMember {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMember) Set(val *GetBuyerSellerLoyaltyResponseDataMember) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMember) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMember) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMember(val *GetBuyerSellerLoyaltyResponseDataMember) *NullableGetBuyerSellerLoyaltyResponseDataMember {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMember{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMember) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMember) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberHistory struct for GetBuyerSellerLoyaltyResponseDataMemberHistory
+type GetBuyerSellerLoyaltyResponseDataMemberHistory struct {
+	Kind string `json:"kind"`
+	Data map[string]interface{} `json:"data"`
+	At string `json:"at"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberHistory instantiates a new GetBuyerSellerLoyaltyResponseDataMemberHistory object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberHistory(kind string, data map[string]interface{}, at string) *GetBuyerSellerLoyaltyResponseDataMemberHistory {
+	this := GetBuyerSellerLoyaltyResponseDataMemberHistory{}
+	this.Kind = kind
+	this.Data = data
+	this.At = at
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberHistoryWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberHistory object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberHistoryWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberHistory {
+	this := GetBuyerSellerLoyaltyResponseDataMemberHistory{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetData returns the Data field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetData() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetDataOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) SetData(v map[string]interface{}) {
+	o.Data = v
+}
+
+// GetAt returns the At field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.At
+}
+
+// GetAtOk returns a tuple with the At field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.At, true
+}
+
+// SetAt sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberHistory) SetAt(v string) {
+	o.At = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberHistory) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if true {
+		toSerialize["at"] = o.At
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberHistory struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberHistory
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) Get() *GetBuyerSellerLoyaltyResponseDataMemberHistory {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) Set(val *GetBuyerSellerLoyaltyResponseDataMemberHistory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberHistory(val *GetBuyerSellerLoyaltyResponseDataMemberHistory) *NullableGetBuyerSellerLoyaltyResponseDataMemberHistory {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberHistory{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberHistory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberNext struct for GetBuyerSellerLoyaltyResponseDataMemberNext
+type GetBuyerSellerLoyaltyResponseDataMemberNext struct {
+	Tier GetBuyerSellerLoyaltyResponseDataMemberNextTier `json:"tier"`
+	ToNext float32 `json:"toNext"`
+	ProgressPct float32 `json:"progressPct"`
+	How string `json:"how"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberNext instantiates a new GetBuyerSellerLoyaltyResponseDataMemberNext object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberNext(tier GetBuyerSellerLoyaltyResponseDataMemberNextTier, toNext float32, progressPct float32, how string) *GetBuyerSellerLoyaltyResponseDataMemberNext {
+	this := GetBuyerSellerLoyaltyResponseDataMemberNext{}
+	this.Tier = tier
+	this.ToNext = toNext
+	this.ProgressPct = progressPct
+	this.How = how
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberNextWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberNext object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberNextWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberNext {
+	this := GetBuyerSellerLoyaltyResponseDataMemberNext{}
+	return &this
+}
+
+// GetTier returns the Tier field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetTier() GetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	if o == nil {
+		var ret GetBuyerSellerLoyaltyResponseDataMemberNextTier
+		return ret
+	}
+
+	return o.Tier
+}
+
+// GetTierOk returns a tuple with the Tier field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetTierOk() (*GetBuyerSellerLoyaltyResponseDataMemberNextTier, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tier, true
+}
+
+// SetTier sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) SetTier(v GetBuyerSellerLoyaltyResponseDataMemberNextTier) {
+	o.Tier = v
+}
+
+// GetToNext returns the ToNext field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetToNext() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ToNext
+}
+
+// GetToNextOk returns a tuple with the ToNext field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetToNextOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ToNext, true
+}
+
+// SetToNext sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) SetToNext(v float32) {
+	o.ToNext = v
+}
+
+// GetProgressPct returns the ProgressPct field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetProgressPct() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ProgressPct
+}
+
+// GetProgressPctOk returns a tuple with the ProgressPct field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetProgressPctOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ProgressPct, true
+}
+
+// SetProgressPct sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) SetProgressPct(v float32) {
+	o.ProgressPct = v
+}
+
+// GetHow returns the How field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetHow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.How
+}
+
+// GetHowOk returns a tuple with the How field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) GetHowOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.How, true
+}
+
+// SetHow sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNext) SetHow(v string) {
+	o.How = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberNext) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["tier"] = o.Tier
+	}
+	if true {
+		toSerialize["toNext"] = o.ToNext
+	}
+	if true {
+		toSerialize["progressPct"] = o.ProgressPct
+	}
+	if true {
+		toSerialize["how"] = o.How
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberNext struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberNext
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNext) Get() *GetBuyerSellerLoyaltyResponseDataMemberNext {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNext) Set(val *GetBuyerSellerLoyaltyResponseDataMemberNext) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNext) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNext) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberNext(val *GetBuyerSellerLoyaltyResponseDataMemberNext) *NullableGetBuyerSellerLoyaltyResponseDataMemberNext {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberNext{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNext) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNext) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberNextTier struct for GetBuyerSellerLoyaltyResponseDataMemberNextTier
+type GetBuyerSellerLoyaltyResponseDataMemberNextTier struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Description NullableString `json:"description,omitempty"`
+	Color string `json:"color"`
+	Badge string `json:"badge"`
+	Threshold float32 `json:"threshold"`
+	Perks []map[string]interface{} `json:"perks"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberNextTier instantiates a new GetBuyerSellerLoyaltyResponseDataMemberNextTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberNextTier(id string, name string, color string, badge string, threshold float32, perks []map[string]interface{}) *GetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	this := GetBuyerSellerLoyaltyResponseDataMemberNextTier{}
+	this.Id = id
+	this.Name = name
+	this.Color = color
+	this.Badge = badge
+	this.Threshold = threshold
+	this.Perks = perks
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberNextTierWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberNextTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberNextTierWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	this := GetBuyerSellerLoyaltyResponseDataMemberNextTier{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetColor returns the Color field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetColor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Color
+}
+
+// GetColorOk returns a tuple with the Color field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetColorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Color, true
+}
+
+// SetColor sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetColor(v string) {
+	o.Color = v
+}
+
+// GetBadge returns the Badge field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetBadge() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Badge
+}
+
+// GetBadgeOk returns a tuple with the Badge field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetBadgeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Badge, true
+}
+
+// SetBadge sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetBadge(v string) {
+	o.Badge = v
+}
+
+// GetThreshold returns the Threshold field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetThreshold() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Threshold
+}
+
+// GetThresholdOk returns a tuple with the Threshold field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetThresholdOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Threshold, true
+}
+
+// SetThreshold sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetThreshold(v float32) {
+	o.Threshold = v
+}
+
+// GetPerks returns the Perks field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetPerks() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Perks
+}
+
+// GetPerksOk returns a tuple with the Perks field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) GetPerksOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Perks, true
+}
+
+// SetPerks sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberNextTier) SetPerks(v []map[string]interface{}) {
+	o.Perks = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberNextTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if true {
+		toSerialize["color"] = o.Color
+	}
+	if true {
+		toSerialize["badge"] = o.Badge
+	}
+	if true {
+		toSerialize["threshold"] = o.Threshold
+	}
+	if true {
+		toSerialize["perks"] = o.Perks
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberNextTier
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) Get() *GetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) Set(val *GetBuyerSellerLoyaltyResponseDataMemberNextTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberNextTier(val *GetBuyerSellerLoyaltyResponseDataMemberNextTier) *NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberNextTier) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberPerks struct for GetBuyerSellerLoyaltyResponseDataMemberPerks
+type GetBuyerSellerLoyaltyResponseDataMemberPerks struct {
+	PerkId string `json:"perkId"`
+	Type string `json:"type"`
+	Label string `json:"label"`
+	Help string `json:"help"`
+	Status string `json:"status"`
+	Note NullableString `json:"note,omitempty"`
+	GrantedAt string `json:"grantedAt"`
+	Perk map[string]interface{} `json:"perk"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberPerks instantiates a new GetBuyerSellerLoyaltyResponseDataMemberPerks object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberPerks(perkId string, type_ string, label string, help string, status string, grantedAt string, perk map[string]interface{}) *GetBuyerSellerLoyaltyResponseDataMemberPerks {
+	this := GetBuyerSellerLoyaltyResponseDataMemberPerks{}
+	this.PerkId = perkId
+	this.Type = type_
+	this.Label = label
+	this.Help = help
+	this.Status = status
+	this.GrantedAt = grantedAt
+	this.Perk = perk
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberPerksWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberPerks object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberPerksWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberPerks {
+	this := GetBuyerSellerLoyaltyResponseDataMemberPerks{}
+	return &this
+}
+
+// GetPerkId returns the PerkId field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetPerkId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PerkId
+}
+
+// GetPerkIdOk returns a tuple with the PerkId field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetPerkIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PerkId, true
+}
+
+// SetPerkId sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetPerkId(v string) {
+	o.PerkId = v
+}
+
+// GetType returns the Type field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetType(v string) {
+	o.Type = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetHelp returns the Help field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetHelp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Help
+}
+
+// GetHelpOk returns a tuple with the Help field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetHelpOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Help, true
+}
+
+// SetHelp sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetHelp(v string) {
+	o.Help = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetGrantedAt returns the GrantedAt field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetGrantedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.GrantedAt
+}
+
+// GetGrantedAtOk returns a tuple with the GrantedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetGrantedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.GrantedAt, true
+}
+
+// SetGrantedAt sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetGrantedAt(v string) {
+	o.GrantedAt = v
+}
+
+// GetPerk returns the Perk field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetPerk() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Perk
+}
+
+// GetPerkOk returns a tuple with the Perk field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) GetPerkOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Perk, true
+}
+
+// SetPerk sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberPerks) SetPerk(v map[string]interface{}) {
+	o.Perk = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberPerks) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["perkId"] = o.PerkId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["help"] = o.Help
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["grantedAt"] = o.GrantedAt
+	}
+	if true {
+		toSerialize["perk"] = o.Perk
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberPerks struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberPerks
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) Get() *GetBuyerSellerLoyaltyResponseDataMemberPerks {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) Set(val *GetBuyerSellerLoyaltyResponseDataMemberPerks) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberPerks(val *GetBuyerSellerLoyaltyResponseDataMemberPerks) *NullableGetBuyerSellerLoyaltyResponseDataMemberPerks {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberPerks{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberPerks) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberStanding struct for GetBuyerSellerLoyaltyResponseDataMemberStanding
+type GetBuyerSellerLoyaltyResponseDataMemberStanding struct {
+	SpendCents float32 `json:"spendCents"`
+	Orders float32 `json:"orders"`
+	Points float32 `json:"points"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberStanding instantiates a new GetBuyerSellerLoyaltyResponseDataMemberStanding object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberStanding(spendCents float32, orders float32, points float32) *GetBuyerSellerLoyaltyResponseDataMemberStanding {
+	this := GetBuyerSellerLoyaltyResponseDataMemberStanding{}
+	this.SpendCents = spendCents
+	this.Orders = orders
+	this.Points = points
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberStandingWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberStanding object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberStandingWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberStanding {
+	this := GetBuyerSellerLoyaltyResponseDataMemberStanding{}
+	return &this
+}
+
+// GetSpendCents returns the SpendCents field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetSpendCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SpendCents
+}
+
+// GetSpendCentsOk returns a tuple with the SpendCents field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetSpendCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SpendCents, true
+}
+
+// SetSpendCents sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) SetSpendCents(v float32) {
+	o.SpendCents = v
+}
+
+// GetOrders returns the Orders field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetOrders() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Orders
+}
+
+// GetOrdersOk returns a tuple with the Orders field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetOrdersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Orders, true
+}
+
+// SetOrders sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) SetOrders(v float32) {
+	o.Orders = v
+}
+
+// GetPoints returns the Points field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Points
+}
+
+// GetPointsOk returns a tuple with the Points field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) GetPointsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Points, true
+}
+
+// SetPoints sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberStanding) SetPoints(v float32) {
+	o.Points = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberStanding) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["spendCents"] = o.SpendCents
+	}
+	if true {
+		toSerialize["orders"] = o.Orders
+	}
+	if true {
+		toSerialize["points"] = o.Points
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberStanding struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberStanding
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) Get() *GetBuyerSellerLoyaltyResponseDataMemberStanding {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) Set(val *GetBuyerSellerLoyaltyResponseDataMemberStanding) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberStanding(val *GetBuyerSellerLoyaltyResponseDataMemberStanding) *NullableGetBuyerSellerLoyaltyResponseDataMemberStanding {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberStanding{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberStanding) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetBuyerSellerLoyaltyResponseDataMemberTier struct for GetBuyerSellerLoyaltyResponseDataMemberTier
+type GetBuyerSellerLoyaltyResponseDataMemberTier struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Description NullableString `json:"description,omitempty"`
+	Color string `json:"color"`
+	Badge string `json:"badge"`
+	Threshold float32 `json:"threshold"`
+	Perks []map[string]interface{} `json:"perks"`
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberTier instantiates a new GetBuyerSellerLoyaltyResponseDataMemberTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetBuyerSellerLoyaltyResponseDataMemberTier(id string, name string, color string, badge string, threshold float32, perks []map[string]interface{}) *GetBuyerSellerLoyaltyResponseDataMemberTier {
+	this := GetBuyerSellerLoyaltyResponseDataMemberTier{}
+	this.Id = id
+	this.Name = name
+	this.Color = color
+	this.Badge = badge
+	this.Threshold = threshold
+	this.Perks = perks
+	return &this
+}
+
+// NewGetBuyerSellerLoyaltyResponseDataMemberTierWithDefaults instantiates a new GetBuyerSellerLoyaltyResponseDataMemberTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetBuyerSellerLoyaltyResponseDataMemberTierWithDefaults() *GetBuyerSellerLoyaltyResponseDataMemberTier {
+	this := GetBuyerSellerLoyaltyResponseDataMemberTier{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetColor returns the Color field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetColor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Color
+}
+
+// GetColorOk returns a tuple with the Color field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetColorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Color, true
+}
+
+// SetColor sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetColor(v string) {
+	o.Color = v
+}
+
+// GetBadge returns the Badge field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetBadge() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Badge
+}
+
+// GetBadgeOk returns a tuple with the Badge field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetBadgeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Badge, true
+}
+
+// SetBadge sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetBadge(v string) {
+	o.Badge = v
+}
+
+// GetThreshold returns the Threshold field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetThreshold() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Threshold
+}
+
+// GetThresholdOk returns a tuple with the Threshold field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetThresholdOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Threshold, true
+}
+
+// SetThreshold sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetThreshold(v float32) {
+	o.Threshold = v
+}
+
+// GetPerks returns the Perks field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetPerks() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Perks
+}
+
+// GetPerksOk returns a tuple with the Perks field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) GetPerksOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Perks, true
+}
+
+// SetPerks sets field value
+func (o *GetBuyerSellerLoyaltyResponseDataMemberTier) SetPerks(v []map[string]interface{}) {
+	o.Perks = v
+}
+
+func (o GetBuyerSellerLoyaltyResponseDataMemberTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if true {
+		toSerialize["color"] = o.Color
+	}
+	if true {
+		toSerialize["badge"] = o.Badge
+	}
+	if true {
+		toSerialize["threshold"] = o.Threshold
+	}
+	if true {
+		toSerialize["perks"] = o.Perks
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetBuyerSellerLoyaltyResponseDataMemberTier struct {
+	value *GetBuyerSellerLoyaltyResponseDataMemberTier
+	isSet bool
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberTier) Get() *GetBuyerSellerLoyaltyResponseDataMemberTier {
+	return v.value
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberTier) Set(val *GetBuyerSellerLoyaltyResponseDataMemberTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetBuyerSellerLoyaltyResponseDataMemberTier(val *GetBuyerSellerLoyaltyResponseDataMemberTier) *NullableGetBuyerSellerLoyaltyResponseDataMemberTier {
+	return &NullableGetBuyerSellerLoyaltyResponseDataMemberTier{value: val, isSet: true}
+}
+
+func (v NullableGetBuyerSellerLoyaltyResponseDataMemberTier) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetBuyerSellerLoyaltyResponseDataMemberTier) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

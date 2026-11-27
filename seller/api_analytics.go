@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 // Linger please
@@ -25,6 +26,646 @@ var (
 
 // AnalyticsApiService AnalyticsApi service
 type AnalyticsApiService service
+
+type ApiCreateAnalyticExperimentRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+}
+
+
+func (r ApiCreateAnalyticExperimentRequest) Execute() (*AnalyticExperimentResponse, *http.Response, error) {
+	return r.ApiService.CreateAnalyticExperimentExecute(r)
+}
+
+/*
+CreateAnalyticExperiment Start a listing experiment. split: 2-4 live platform listings observed over the same window; sequential: one platform listing, before vs after changeAt (optionally applying a new price).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateAnalyticExperimentRequest
+*/
+func (a *AnalyticsApiService) CreateAnalyticExperiment(ctx context.Context) ApiCreateAnalyticExperimentRequest {
+	return ApiCreateAnalyticExperimentRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AnalyticExperimentResponse
+func (a *AnalyticsApiService) CreateAnalyticExperimentExecute(r ApiCreateAnalyticExperimentRequest) (*AnalyticExperimentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AnalyticExperimentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.CreateAnalyticExperiment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateAnalyticExperimentDeclareRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	id string
+}
+
+
+func (r ApiCreateAnalyticExperimentDeclareRequest) Execute() (*AnalyticExperimentResponse, *http.Response, error) {
+	return r.ApiService.CreateAnalyticExperimentDeclareExecute(r)
+}
+
+/*
+CreateAnalyticExperimentDeclare Record the outcome: a winning arm, no difference, or inconclusive. Concludes the experiment.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The experiment id (a uuid; any other id is a 404).
+ @return ApiCreateAnalyticExperimentDeclareRequest
+*/
+func (a *AnalyticsApiService) CreateAnalyticExperimentDeclare(ctx context.Context, id string) ApiCreateAnalyticExperimentDeclareRequest {
+	return ApiCreateAnalyticExperimentDeclareRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return AnalyticExperimentResponse
+func (a *AnalyticsApiService) CreateAnalyticExperimentDeclareExecute(r ApiCreateAnalyticExperimentDeclareRequest) (*AnalyticExperimentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AnalyticExperimentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.CreateAnalyticExperimentDeclare")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments/{id}/declare"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateAnalyticExperimentStopRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	id string
+}
+
+
+func (r ApiCreateAnalyticExperimentStopRequest) Execute() (*AnalyticExperimentResponse, *http.Response, error) {
+	return r.ApiService.CreateAnalyticExperimentStopExecute(r)
+}
+
+/*
+CreateAnalyticExperimentStop Stop an experiment: no more data is counted after now.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The experiment id (a uuid; any other id is a 404).
+ @return ApiCreateAnalyticExperimentStopRequest
+*/
+func (a *AnalyticsApiService) CreateAnalyticExperimentStop(ctx context.Context, id string) ApiCreateAnalyticExperimentStopRequest {
+	return ApiCreateAnalyticExperimentStopRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return AnalyticExperimentResponse
+func (a *AnalyticsApiService) CreateAnalyticExperimentStopExecute(r ApiCreateAnalyticExperimentStopRequest) (*AnalyticExperimentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AnalyticExperimentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.CreateAnalyticExperimentStop")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments/{id}/stop"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeleteAnalyticExperimentRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	id string
+}
+
+
+func (r ApiDeleteAnalyticExperimentRequest) Execute() (*DeleteStoryResponse, *http.Response, error) {
+	return r.ApiService.DeleteAnalyticExperimentExecute(r)
+}
+
+/*
+DeleteAnalyticExperiment Delete an experiment. The listings are untouched.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The experiment id (a uuid; any other id is a 404).
+ @return ApiDeleteAnalyticExperimentRequest
+*/
+func (a *AnalyticsApiService) DeleteAnalyticExperiment(ctx context.Context, id string) ApiDeleteAnalyticExperimentRequest {
+	return ApiDeleteAnalyticExperimentRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DeleteStoryResponse
+func (a *AnalyticsApiService) DeleteAnalyticExperimentExecute(r ApiDeleteAnalyticExperimentRequest) (*DeleteStoryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeleteStoryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.DeleteAnalyticExperiment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiGetAnalyticBookkeepingRequest struct {
 	ctx context.Context
@@ -186,15 +827,27 @@ func (a *AnalyticsApiService) GetAnalyticBookkeepingExecute(r ApiGetAnalyticBook
 type ApiGetAnalyticByPlatformRequest struct {
 	ctx context.Context
 	ApiService *AnalyticsApiService
+	days *int32
+	tz *string
 }
 
+// Calendar days back, today included. Larger values are clamped to 365.
+func (r ApiGetAnalyticByPlatformRequest) Days(days int32) ApiGetAnalyticByPlatformRequest {
+	r.days = &days
+	return r
+}
+// IANA time zone for day boundaries. Default UTC.
+func (r ApiGetAnalyticByPlatformRequest) Tz(tz string) ApiGetAnalyticByPlatformRequest {
+	r.tz = &tz
+	return r
+}
 
 func (r ApiGetAnalyticByPlatformRequest) Execute() (*GetAnalyticByPlatformResponse, *http.Response, error) {
 	return r.ApiService.GetAnalyticByPlatformExecute(r)
 }
 
 /*
-GetAnalyticByPlatform Sales + revenue grouped by platform for the last N days.
+GetAnalyticByPlatform Sales, net sales, fees and net profit by platform for the last N days.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAnalyticByPlatformRequest
@@ -227,6 +880,206 @@ func (a *AnalyticsApiService) GetAnalyticByPlatformExecute(r ApiGetAnalyticByPla
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.days != nil {
+		localVarQueryParams.Add("days", parameterToString(*r.days, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticCompareRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	ids *string
+	align *string
+	platform *string
+	tz *string
+}
+
+// Comma-separated listing ids, 2 to 4. The first is arm A.
+func (r ApiGetAnalyticCompareRequest) Ids(ids string) ApiGetAnalyticCompareRequest {
+	r.ids = &ids
+	return r
+}
+// age &#x3D; x is days since first listed (default); calendar &#x3D; x is the date.
+func (r ApiGetAnalyticCompareRequest) Align(align string) ApiGetAnalyticCompareRequest {
+	r.align = &align
+	return r
+}
+// Restrict engagement to one channel (platform id).
+func (r ApiGetAnalyticCompareRequest) Platform(platform string) ApiGetAnalyticCompareRequest {
+	r.platform = &platform
+	return r
+}
+// IANA time zone. Default UTC.
+func (r ApiGetAnalyticCompareRequest) Tz(tz string) ApiGetAnalyticCompareRequest {
+	r.tz = &tz
+	return r
+}
+
+func (r ApiGetAnalyticCompareRequest) Execute() (*GetAnalyticCompareResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticCompareExecute(r)
+}
+
+/*
+GetAnalyticCompare Compare 2-4 of your listings: columns of price, quality, channels, views, favorites, offers and outcome, engagement curves, the fields that differ, and observational tests of favorite rate, view-to-offer rate and views per day.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticCompareRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticCompare(ctx context.Context) ApiGetAnalyticCompareRequest {
+	return ApiGetAnalyticCompareRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticCompareResponse
+func (a *AnalyticsApiService) GetAnalyticCompareExecute(r ApiGetAnalyticCompareRequest) (*GetAnalyticCompareResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticCompareResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticCompare")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/compare"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.ids == nil {
+		return localVarReturnValue, nil, reportError("ids is required and must be specified")
+	}
+
+	localVarQueryParams.Add("ids", parameterToString(*r.ids, ""))
+	if r.align != nil {
+		localVarQueryParams.Add("align", parameterToString(*r.align, ""))
+	}
+	if r.platform != nil {
+		localVarQueryParams.Add("platform", parameterToString(*r.platform, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -497,6 +1350,616 @@ func (a *AnalyticsApiService) GetAnalyticDashboardExecute(r ApiGetAnalyticDashbo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetAnalyticExperimentRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	status *string
+	page *int32
+	size *int32
+}
+
+// Default all.
+func (r ApiGetAnalyticExperimentRequest) Status(status string) ApiGetAnalyticExperimentRequest {
+	r.status = &status
+	return r
+}
+// 1-indexed page. Default 1.
+func (r ApiGetAnalyticExperimentRequest) Page(page int32) ApiGetAnalyticExperimentRequest {
+	r.page = &page
+	return r
+}
+// Rows per page. Default 20.
+func (r ApiGetAnalyticExperimentRequest) Size(size int32) ApiGetAnalyticExperimentRequest {
+	r.size = &size
+	return r
+}
+
+func (r ApiGetAnalyticExperimentRequest) Execute() (*GetAnalyticExperimentResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticExperimentExecute(r)
+}
+
+/*
+GetAnalyticExperiment Your listing A/B experiments, newest first, with status, days running and the current verdict.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticExperimentRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticExperiment(ctx context.Context) ApiGetAnalyticExperimentRequest {
+	return ApiGetAnalyticExperimentRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticExperimentResponse
+func (a *AnalyticsApiService) GetAnalyticExperimentExecute(r ApiGetAnalyticExperimentRequest) (*GetAnalyticExperimentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticExperimentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticExperiment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.size != nil {
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticExperimentByIdRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	id string
+}
+
+
+func (r ApiGetAnalyticExperimentByIdRequest) Execute() (*GetAnalyticExperimentByIdResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticExperimentByIdExecute(r)
+}
+
+/*
+GetAnalyticExperimentById One experiment: arms with their windows, exposure and rates, the primary-metric test per arm against A, guardrail tests, the daily series and what to do next.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The experiment id (a uuid).
+ @return ApiGetAnalyticExperimentByIdRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticExperimentById(ctx context.Context, id string) ApiGetAnalyticExperimentByIdRequest {
+	return ApiGetAnalyticExperimentByIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticExperimentByIdResponse
+func (a *AnalyticsApiService) GetAnalyticExperimentByIdExecute(r ApiGetAnalyticExperimentByIdRequest) (*GetAnalyticExperimentByIdResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticExperimentByIdResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticExperimentById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticInventoryRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	maturity *int32
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticInventoryRequest) Range_(range_ string) ApiGetAnalyticInventoryRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticInventoryRequest) From(from string) ApiGetAnalyticInventoryRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticInventoryRequest) To(to string) ApiGetAnalyticInventoryRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticInventoryRequest) Compare(compare string) ApiGetAnalyticInventoryRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticInventoryRequest) CmpFrom(cmpFrom string) ApiGetAnalyticInventoryRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticInventoryRequest) CmpTo(cmpTo string) ApiGetAnalyticInventoryRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticInventoryRequest) Labels(labels string) ApiGetAnalyticInventoryRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticInventoryRequest) Platforms(platforms string) ApiGetAnalyticInventoryRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticInventoryRequest) Category(category string) ApiGetAnalyticInventoryRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticInventoryRequest) Brand(brand string) ApiGetAnalyticInventoryRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticInventoryRequest) Tz(tz string) ApiGetAnalyticInventoryRequest {
+	r.tz = &tz
+	return r
+}
+// Days an item has to sell within to count as sold in the cohort. Default 30.
+func (r ApiGetAnalyticInventoryRequest) Maturity(maturity int32) ApiGetAnalyticInventoryRequest {
+	r.maturity = &maturity
+	return r
+}
+
+func (r ApiGetAnalyticInventoryRequest) Execute() (*GetAnalyticInventoryResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticInventoryExecute(r)
+}
+
+/*
+GetAnalyticInventory Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticInventoryRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticInventory(ctx context.Context) ApiGetAnalyticInventoryRequest {
+	return ApiGetAnalyticInventoryRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticInventoryResponse
+func (a *AnalyticsApiService) GetAnalyticInventoryExecute(r ApiGetAnalyticInventoryRequest) (*GetAnalyticInventoryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticInventoryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticInventory")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/inventory"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.maturity != nil {
+		localVarQueryParams.Add("maturity", parameterToString(*r.maturity, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetAnalyticItemRequest struct {
 	ctx context.Context
 	ApiService *AnalyticsApiService
@@ -654,14 +2117,2080 @@ func (a *AnalyticsApiService) GetAnalyticItemExecute(r ApiGetAnalyticItemRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetAnalyticItemByListingIdRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	listingId string
+	by *string
+	tz *string
+}
+
+// inventory &#x3D; the id is an inventory item id; the answer is { redirectListingId }. Default listing.
+func (r ApiGetAnalyticItemByListingIdRequest) By(by string) ApiGetAnalyticItemByListingIdRequest {
+	r.by = &by
+	return r
+}
+// IANA time zone for day boundaries. Default UTC.
+func (r ApiGetAnalyticItemByListingIdRequest) Tz(tz string) ApiGetAnalyticItemByListingIdRequest {
+	r.tz = &tz
+	return r
+}
+
+func (r ApiGetAnalyticItemByListingIdRequest) Execute() (*GetAnalyticItemByListingIdResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticItemByListingIdExecute(r)
+}
+
+/*
+GetAnalyticItemByListingId One listing in depth: channels with views, favorites and offers, the merged timeline, engagement series, price history, comps, money waterfall, days on market, offers, messages, experiments and suggestions.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param listingId A listings.id you own (or an inventory item id with by=inventory).
+ @return ApiGetAnalyticItemByListingIdRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticItemByListingId(ctx context.Context, listingId string) ApiGetAnalyticItemByListingIdRequest {
+	return ApiGetAnalyticItemByListingIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		listingId: listingId,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticItemByListingIdResponse
+func (a *AnalyticsApiService) GetAnalyticItemByListingIdExecute(r ApiGetAnalyticItemByListingIdRequest) (*GetAnalyticItemByListingIdResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticItemByListingIdResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticItemByListingId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/items/{listingId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"listingId"+"}", url.PathEscape(parameterToString(r.listingId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.by != nil {
+		localVarQueryParams.Add("by", parameterToString(*r.by, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticMarketplaceRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	vs *string
+	sort *string
+	dir *string
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticMarketplaceRequest) Range_(range_ string) ApiGetAnalyticMarketplaceRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceRequest) From(from string) ApiGetAnalyticMarketplaceRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceRequest) To(to string) ApiGetAnalyticMarketplaceRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticMarketplaceRequest) Compare(compare string) ApiGetAnalyticMarketplaceRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceRequest) CmpFrom(cmpFrom string) ApiGetAnalyticMarketplaceRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceRequest) CmpTo(cmpTo string) ApiGetAnalyticMarketplaceRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticMarketplaceRequest) Labels(labels string) ApiGetAnalyticMarketplaceRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticMarketplaceRequest) Platforms(platforms string) ApiGetAnalyticMarketplaceRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticMarketplaceRequest) Category(category string) ApiGetAnalyticMarketplaceRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticMarketplaceRequest) Brand(brand string) ApiGetAnalyticMarketplaceRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticMarketplaceRequest) Tz(tz string) ApiGetAnalyticMarketplaceRequest {
+	r.tz = &tz
+	return r
+}
+// Comma-separated 2-3 platform ids for the head-to-head.
+func (r ApiGetAnalyticMarketplaceRequest) Vs(vs string) ApiGetAnalyticMarketplaceRequest {
+	r.vs = &vs
+	return r
+}
+// Default netSales.
+func (r ApiGetAnalyticMarketplaceRequest) Sort(sort string) ApiGetAnalyticMarketplaceRequest {
+	r.sort = &sort
+	return r
+}
+// Default desc.
+func (r ApiGetAnalyticMarketplaceRequest) Dir(dir string) ApiGetAnalyticMarketplaceRequest {
+	r.dir = &dir
+	return r
+}
+
+func (r ApiGetAnalyticMarketplaceRequest) Execute() (*GetAnalyticMarketplaceResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticMarketplaceExecute(r)
+}
+
+/*
+GetAnalyticMarketplace Every marketplace side by side: net sales and profit, units, ASP, take rate, margin, shipping subsidy, days to sell, sell-through, cancel and return rates, offers and engagement; with vs=2-3 platforms, a head-to-head over listings live on all of them.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticMarketplaceRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticMarketplace(ctx context.Context) ApiGetAnalyticMarketplaceRequest {
+	return ApiGetAnalyticMarketplaceRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticMarketplaceResponse
+func (a *AnalyticsApiService) GetAnalyticMarketplaceExecute(r ApiGetAnalyticMarketplaceRequest) (*GetAnalyticMarketplaceResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticMarketplaceResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticMarketplace")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/marketplaces"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.vs != nil {
+		localVarQueryParams.Add("vs", parameterToString(*r.vs, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+	}
+	if r.dir != nil {
+		localVarQueryParams.Add("dir", parameterToString(*r.dir, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticMarketplaceByPlatformRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	platform string
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Range_(range_ string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) From(from string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) To(to string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Compare(compare string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) CmpFrom(cmpFrom string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) CmpTo(cmpTo string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Labels(labels string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Platforms(platforms string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Category(category string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Brand(brand string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Tz(tz string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	r.tz = &tz
+	return r
+}
+
+func (r ApiGetAnalyticMarketplaceByPlatformRequest) Execute() (*GetAnalyticMarketplaceByPlatformResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticMarketplaceByPlatformExecute(r)
+}
+
+/*
+GetAnalyticMarketplaceByPlatform One marketplace in depth: its row, the money series, fee breakdown, days-to-sell and price-realization histograms, categories, top items, at-risk listings, a day-by-hour sales heatmap and offer stats.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param platform A platform id, e.g. ebay, poshmark.
+ @return ApiGetAnalyticMarketplaceByPlatformRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticMarketplaceByPlatform(ctx context.Context, platform string) ApiGetAnalyticMarketplaceByPlatformRequest {
+	return ApiGetAnalyticMarketplaceByPlatformRequest{
+		ApiService: a,
+		ctx: ctx,
+		platform: platform,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticMarketplaceByPlatformResponse
+func (a *AnalyticsApiService) GetAnalyticMarketplaceByPlatformExecute(r ApiGetAnalyticMarketplaceByPlatformRequest) (*GetAnalyticMarketplaceByPlatformResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticMarketplaceByPlatformResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticMarketplaceByPlatform")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/marketplaces/{platform}"
+	localVarPath = strings.Replace(localVarPath, "{"+"platform"+"}", url.PathEscape(parameterToString(r.platform, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticOverviewRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	stores *string
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticOverviewRequest) Range_(range_ string) ApiGetAnalyticOverviewRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticOverviewRequest) From(from string) ApiGetAnalyticOverviewRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticOverviewRequest) To(to string) ApiGetAnalyticOverviewRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticOverviewRequest) Compare(compare string) ApiGetAnalyticOverviewRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticOverviewRequest) CmpFrom(cmpFrom string) ApiGetAnalyticOverviewRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticOverviewRequest) CmpTo(cmpTo string) ApiGetAnalyticOverviewRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticOverviewRequest) Labels(labels string) ApiGetAnalyticOverviewRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticOverviewRequest) Platforms(platforms string) ApiGetAnalyticOverviewRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticOverviewRequest) Category(category string) ApiGetAnalyticOverviewRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticOverviewRequest) Brand(brand string) ApiGetAnalyticOverviewRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticOverviewRequest) Tz(tz string) ApiGetAnalyticOverviewRequest {
+	r.tz = &tz
+	return r
+}
+// Comma-separated store ids.
+func (r ApiGetAnalyticOverviewRequest) Stores(stores string) ApiGetAnalyticOverviewRequest {
+	r.stores = &stores
+	return r
+}
+
+func (r ApiGetAnalyticOverviewRequest) Execute() (*GetAnalyticOverviewResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticOverviewExecute(r)
+}
+
+/*
+GetAnalyticOverview KPIs with deltas (net sales, net profit, units, ASP, margin, sell-through, median days to sell, active listings, take rate), the trend series, by-marketplace split, top categories, brands and items, sell-through cohort, data health and insights.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticOverviewRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticOverview(ctx context.Context) ApiGetAnalyticOverviewRequest {
+	return ApiGetAnalyticOverviewRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticOverviewResponse
+func (a *AnalyticsApiService) GetAnalyticOverviewExecute(r ApiGetAnalyticOverviewRequest) (*GetAnalyticOverviewResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticOverviewResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticOverview")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/overview"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.stores != nil {
+		localVarQueryParams.Add("stores", parameterToString(*r.stores, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticPerformanceRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	status *string
+	q *string
+	sort *string
+	dir *string
+	page *int32
+	size *int32
+	minDays *int32
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticPerformanceRequest) Range_(range_ string) ApiGetAnalyticPerformanceRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticPerformanceRequest) From(from string) ApiGetAnalyticPerformanceRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticPerformanceRequest) To(to string) ApiGetAnalyticPerformanceRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticPerformanceRequest) Compare(compare string) ApiGetAnalyticPerformanceRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticPerformanceRequest) CmpFrom(cmpFrom string) ApiGetAnalyticPerformanceRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticPerformanceRequest) CmpTo(cmpTo string) ApiGetAnalyticPerformanceRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticPerformanceRequest) Labels(labels string) ApiGetAnalyticPerformanceRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticPerformanceRequest) Platforms(platforms string) ApiGetAnalyticPerformanceRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticPerformanceRequest) Category(category string) ApiGetAnalyticPerformanceRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticPerformanceRequest) Brand(brand string) ApiGetAnalyticPerformanceRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticPerformanceRequest) Tz(tz string) ApiGetAnalyticPerformanceRequest {
+	r.tz = &tz
+	return r
+}
+// unsold &#x3D; listed at least minDays with no completed sale.
+func (r ApiGetAnalyticPerformanceRequest) Status(status string) ApiGetAnalyticPerformanceRequest {
+	r.status = &status
+	return r
+}
+// Title, SKU or brand contains.
+func (r ApiGetAnalyticPerformanceRequest) Q(q string) ApiGetAnalyticPerformanceRequest {
+	r.q = &q
+	return r
+}
+// Default lastActivity.
+func (r ApiGetAnalyticPerformanceRequest) Sort(sort string) ApiGetAnalyticPerformanceRequest {
+	r.sort = &sort
+	return r
+}
+// Default desc.
+func (r ApiGetAnalyticPerformanceRequest) Dir(dir string) ApiGetAnalyticPerformanceRequest {
+	r.dir = &dir
+	return r
+}
+// 1-indexed page. Default 1.
+func (r ApiGetAnalyticPerformanceRequest) Page(page int32) ApiGetAnalyticPerformanceRequest {
+	r.page = &page
+	return r
+}
+// Rows per page. Default 50.
+func (r ApiGetAnalyticPerformanceRequest) Size(size int32) ApiGetAnalyticPerformanceRequest {
+	r.size = &size
+	return r
+}
+// Minimum days listed (for status&#x3D;unsold). Default 0.
+func (r ApiGetAnalyticPerformanceRequest) MinDays(minDays int32) ApiGetAnalyticPerformanceRequest {
+	r.minDays = &minDays
+	return r
+}
+
+func (r ApiGetAnalyticPerformanceRequest) Execute() (*GetAnalyticPerformanceResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticPerformanceExecute(r)
+}
+
+/*
+GetAnalyticPerformance Per-listing performance: channels, views, favorites, offers and conversations in the period, units sold, net sales and profit, margin, days to sell and a 0-100 health score, paged and sortable.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticPerformanceRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticPerformance(ctx context.Context) ApiGetAnalyticPerformanceRequest {
+	return ApiGetAnalyticPerformanceRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticPerformanceResponse
+func (a *AnalyticsApiService) GetAnalyticPerformanceExecute(r ApiGetAnalyticPerformanceRequest) (*GetAnalyticPerformanceResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticPerformanceResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticPerformance")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/performance"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+	}
+	if r.dir != nil {
+		localVarQueryParams.Add("dir", parameterToString(*r.dir, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.size != nil {
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	}
+	if r.minDays != nil {
+		localVarQueryParams.Add("minDays", parameterToString(*r.minDays, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticProgramRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	program string
+	from *string
+	to *string
+	by *string
+}
+
+// First UTC day (YYYY-MM-DD), inclusive.
+func (r ApiGetAnalyticProgramRequest) From(from string) ApiGetAnalyticProgramRequest {
+	r.from = &from
+	return r
+}
+// Last UTC day (YYYY-MM-DD), inclusive. Default today.
+func (r ApiGetAnalyticProgramRequest) To(to string) ApiGetAnalyticProgramRequest {
+	r.to = &to
+	return r
+}
+// Breakdown dimension, when the program offers one (worlds: showroom, property, event).
+func (r ApiGetAnalyticProgramRequest) By(by string) ApiGetAnalyticProgramRequest {
+	r.by = &by
+	return r
+}
+
+func (r ApiGetAnalyticProgramRequest) Execute() (*GetAnalyticProgramResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticProgramExecute(r)
+}
+
+/*
+GetAnalyticProgram One program's report over a date range (default the last 30 days, at most 366): KPIs, a daily trend and a breakdown table. Money in integer cents.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param program
+ @return ApiGetAnalyticProgramRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticProgram(ctx context.Context, program string) ApiGetAnalyticProgramRequest {
+	return ApiGetAnalyticProgramRequest{
+		ApiService: a,
+		ctx: ctx,
+		program: program,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticProgramResponse
+func (a *AnalyticsApiService) GetAnalyticProgramExecute(r ApiGetAnalyticProgramRequest) (*GetAnalyticProgramResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticProgramResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticProgram")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/programs/{program}"
+	localVarPath = strings.Replace(localVarPath, "{"+"program"+"}", url.PathEscape(parameterToString(r.program, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.by != nil {
+		localVarQueryParams.Add("by", parameterToString(*r.by, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticSegmentRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	dim *string
+	sort *string
+	dir *string
+	minN *int32
+	q *string
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticSegmentRequest) Range_(range_ string) ApiGetAnalyticSegmentRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticSegmentRequest) From(from string) ApiGetAnalyticSegmentRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticSegmentRequest) To(to string) ApiGetAnalyticSegmentRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticSegmentRequest) Compare(compare string) ApiGetAnalyticSegmentRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticSegmentRequest) CmpFrom(cmpFrom string) ApiGetAnalyticSegmentRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticSegmentRequest) CmpTo(cmpTo string) ApiGetAnalyticSegmentRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticSegmentRequest) Labels(labels string) ApiGetAnalyticSegmentRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticSegmentRequest) Platforms(platforms string) ApiGetAnalyticSegmentRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticSegmentRequest) Category(category string) ApiGetAnalyticSegmentRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticSegmentRequest) Brand(brand string) ApiGetAnalyticSegmentRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticSegmentRequest) Tz(tz string) ApiGetAnalyticSegmentRequest {
+	r.tz = &tz
+	return r
+}
+// category &#x3D; main category; subcategory &#x3D; main &gt; sub; brand; condition; size; source &#x3D; where you acquired it; department; priceBand &#x3D; ask in &lt;$10, $10-25, $25-50, $50-100, $100-250, $250+; ageBand &#x3D; days live at sale or now (&lt;7, 7-30, 30-90, 90+).
+func (r ApiGetAnalyticSegmentRequest) Dim(dim string) ApiGetAnalyticSegmentRequest {
+	r.dim = &dim
+	return r
+}
+// Default netSales.
+func (r ApiGetAnalyticSegmentRequest) Sort(sort string) ApiGetAnalyticSegmentRequest {
+	r.sort = &sort
+	return r
+}
+// Default desc.
+func (r ApiGetAnalyticSegmentRequest) Dir(dir string) ApiGetAnalyticSegmentRequest {
+	r.dir = &dir
+	return r
+}
+// Minimum sample for a row to count as a winner or loser. Default 3.
+func (r ApiGetAnalyticSegmentRequest) MinN(minN int32) ApiGetAnalyticSegmentRequest {
+	r.minN = &minN
+	return r
+}
+// Segment label contains.
+func (r ApiGetAnalyticSegmentRequest) Q(q string) ApiGetAnalyticSegmentRequest {
+	r.q = &q
+	return r
+}
+
+func (r ApiGetAnalyticSegmentRequest) Execute() (*GetAnalyticSegmentResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticSegmentExecute(r)
+}
+
+/*
+GetAnalyticSegment Niches along one dimension: listed and active counts, units sold, cohort sell-through, median days to sell, net sales and profit, margin, ROI, ASP and discount from ask; rows under minN are flagged lowSample.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAnalyticSegmentRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticSegment(ctx context.Context) ApiGetAnalyticSegmentRequest {
+	return ApiGetAnalyticSegmentRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticSegmentResponse
+func (a *AnalyticsApiService) GetAnalyticSegmentExecute(r ApiGetAnalyticSegmentRequest) (*GetAnalyticSegmentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticSegmentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticSegment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/segments"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.dim != nil {
+		localVarQueryParams.Add("dim", parameterToString(*r.dim, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+	}
+	if r.dir != nil {
+		localVarQueryParams.Add("dir", parameterToString(*r.dir, ""))
+	}
+	if r.minN != nil {
+		localVarQueryParams.Add("minN", parameterToString(*r.minN, ""))
+	}
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAnalyticSegmentByKeyRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	dim string
+	key string
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r ApiGetAnalyticSegmentByKeyRequest) Range_(range_ string) ApiGetAnalyticSegmentByKeyRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticSegmentByKeyRequest) From(from string) ApiGetAnalyticSegmentByKeyRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r ApiGetAnalyticSegmentByKeyRequest) To(to string) ApiGetAnalyticSegmentByKeyRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r ApiGetAnalyticSegmentByKeyRequest) Compare(compare string) ApiGetAnalyticSegmentByKeyRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticSegmentByKeyRequest) CmpFrom(cmpFrom string) ApiGetAnalyticSegmentByKeyRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r ApiGetAnalyticSegmentByKeyRequest) CmpTo(cmpTo string) ApiGetAnalyticSegmentByKeyRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r ApiGetAnalyticSegmentByKeyRequest) Labels(labels string) ApiGetAnalyticSegmentByKeyRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r ApiGetAnalyticSegmentByKeyRequest) Platforms(platforms string) ApiGetAnalyticSegmentByKeyRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r ApiGetAnalyticSegmentByKeyRequest) Category(category string) ApiGetAnalyticSegmentByKeyRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r ApiGetAnalyticSegmentByKeyRequest) Brand(brand string) ApiGetAnalyticSegmentByKeyRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r ApiGetAnalyticSegmentByKeyRequest) Tz(tz string) ApiGetAnalyticSegmentByKeyRequest {
+	r.tz = &tz
+	return r
+}
+
+func (r ApiGetAnalyticSegmentByKeyRequest) Execute() (*GetAnalyticSegmentByKeyResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticSegmentByKeyExecute(r)
+}
+
+/*
+GetAnalyticSegmentByKey One niche in depth: its row, series, by-marketplace split, days-to-sell histogram, price bands, top items and the 10 oldest unsold listings in it.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param dim One of category, subcategory, brand, condition, size, source, department, priceBand, ageBand. category = main category; subcategory = main > sub; brand; condition; size; source = where you acquired it; department; priceBand = ask in <$10, $10-25, $25-50, $50-100, $100-250, $250+; ageBand = days live at sale or now (<7, 7-30, 30-90, 90+).
+ @param key The segment key from a segments row (URL-encoded). A key with no data in scope is a 404.
+ @return ApiGetAnalyticSegmentByKeyRequest
+*/
+func (a *AnalyticsApiService) GetAnalyticSegmentByKey(ctx context.Context, dim string, key string) ApiGetAnalyticSegmentByKeyRequest {
+	return ApiGetAnalyticSegmentByKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		dim: dim,
+		key: key,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticSegmentByKeyResponse
+func (a *AnalyticsApiService) GetAnalyticSegmentByKeyExecute(r ApiGetAnalyticSegmentByKeyRequest) (*GetAnalyticSegmentByKeyResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticSegmentByKeyResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.GetAnalyticSegmentByKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/segments/{dim}/{key}"
+	localVarPath = strings.Replace(localVarPath, "{"+"dim"+"}", url.PathEscape(parameterToString(r.dim, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", url.PathEscape(parameterToString(r.key, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetAnalyticSummaryRequest struct {
 	ctx context.Context
 	ApiService *AnalyticsApiService
 	days *int32
+	tz *string
 }
 
+// Calendar days back, today included. Larger values are clamped to 365.
 func (r ApiGetAnalyticSummaryRequest) Days(days int32) ApiGetAnalyticSummaryRequest {
 	r.days = &days
+	return r
+}
+// IANA time zone for day boundaries. Default UTC.
+func (r ApiGetAnalyticSummaryRequest) Tz(tz string) ApiGetAnalyticSummaryRequest {
+	r.tz = &tz
 	return r
 }
 
@@ -670,7 +4199,7 @@ func (r ApiGetAnalyticSummaryRequest) Execute() (*GetAnalyticSummaryResponse, *h
 }
 
 /*
-GetAnalyticSummary Headline KPIs for the last N days.
+GetAnalyticSummary Headline KPIs for the last N days (the same numbers as the analytics overview).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAnalyticSummaryRequest
@@ -705,6 +4234,9 @@ func (a *AnalyticsApiService) GetAnalyticSummaryExecute(r ApiGetAnalyticSummaryR
 
 	if r.days != nil {
 		localVarQueryParams.Add("days", parameterToString(*r.days, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -822,15 +4354,27 @@ func (a *AnalyticsApiService) GetAnalyticSummaryExecute(r ApiGetAnalyticSummaryR
 type ApiGetAnalyticTimeseryRequest struct {
 	ctx context.Context
 	ApiService *AnalyticsApiService
+	days *int32
+	tz *string
 }
 
+// Calendar days back, today included. Larger values are clamped to 365.
+func (r ApiGetAnalyticTimeseryRequest) Days(days int32) ApiGetAnalyticTimeseryRequest {
+	r.days = &days
+	return r
+}
+// IANA time zone for day boundaries. Default UTC.
+func (r ApiGetAnalyticTimeseryRequest) Tz(tz string) ApiGetAnalyticTimeseryRequest {
+	r.tz = &tz
+	return r
+}
 
 func (r ApiGetAnalyticTimeseryRequest) Execute() (*GetAnalyticTimeseryResponse, *http.Response, error) {
 	return r.ApiService.GetAnalyticTimeseryExecute(r)
 }
 
 /*
-GetAnalyticTimesery Daily sales + revenue series for the last N days.
+GetAnalyticTimesery Sales and net sales over the last N days, zero-filled, one row per calendar day.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAnalyticTimeseryRequest
@@ -863,6 +4407,12 @@ func (a *AnalyticsApiService) GetAnalyticTimeseryExecute(r ApiGetAnalyticTimeser
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.days != nil {
+		localVarQueryParams.Add("days", parameterToString(*r.days, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1136,15 +4686,21 @@ func (a *AnalyticsApiService) GetAnalyticTodayExecute(r ApiGetAnalyticTodayReque
 type ApiListInsightByPlatformRequest struct {
 	ctx context.Context
 	ApiService *AnalyticsApiService
+	tz *string
 }
 
+// IANA time zone for day boundaries. Default UTC.
+func (r ApiListInsightByPlatformRequest) Tz(tz string) ApiListInsightByPlatformRequest {
+	r.tz = &tz
+	return r
+}
 
 func (r ApiListInsightByPlatformRequest) Execute() (*ListInsightByPlatformResponse, *http.Response, error) {
 	return r.ApiService.ListInsightByPlatformExecute(r)
 }
 
 /*
-ListInsightByPlatform Platform velocity + margin insight (90-day window).
+ListInsightByPlatform Platform velocity + margin insight (90-day window): units, net sales, median days to sell, ASP and net after the real marketplace fees.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListInsightByPlatformRequest
@@ -1172,6 +4728,170 @@ func (a *AnalyticsApiService) ListInsightByPlatformExecute(r ApiListInsightByPla
 	}
 
 	localVarPath := localBasePath + "/v1/insights/by-platform"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateAnalyticExperimentRequest struct {
+	ctx context.Context
+	ApiService *AnalyticsApiService
+	id string
+}
+
+
+func (r ApiUpdateAnalyticExperimentRequest) Execute() (*AnalyticExperimentResponse, *http.Response, error) {
+	return r.ApiService.UpdateAnalyticExperimentExecute(r)
+}
+
+/*
+UpdateAnalyticExperiment Rename an experiment or change its hypothesis, notes or planned end.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The experiment id (a uuid; any other id is a 404).
+ @return ApiUpdateAnalyticExperimentRequest
+*/
+func (a *AnalyticsApiService) UpdateAnalyticExperiment(ctx context.Context, id string) ApiUpdateAnalyticExperimentRequest {
+	return ApiUpdateAnalyticExperimentRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return AnalyticExperimentResponse
+func (a *AnalyticsApiService) UpdateAnalyticExperimentExecute(r ApiUpdateAnalyticExperimentRequest) (*AnalyticExperimentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AnalyticExperimentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AnalyticsApiService.UpdateAnalyticExperiment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/experiments/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

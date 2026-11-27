@@ -790,7 +790,7 @@ Name | Type | Description  | Notes
 
 ## GetBuyerCatalogListingShipping
 
-> GetBuyerCatalogListingShippingResponse GetBuyerCatalogListingShipping(ctx, slug).Zip(zip).Country(country).Quantity(quantity).Execute()
+> GetBuyerCatalogListingShippingResponse GetBuyerCatalogListingShipping(ctx, slug).Zip(zip).State(state).Country(country).Quantity(quantity).Execute()
 
 Shipping services and prices to a destination.
 
@@ -811,12 +811,13 @@ import (
 func main() {
     slug := "slug_example" // string | 
     zip := "zip_example" // string |  (optional)
+    state := "state_example" // string |  (optional)
     country := "country_example" // string |  (optional)
     quantity := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuyerCatalogApi.GetBuyerCatalogListingShipping(context.Background(), slug).Zip(zip).Country(country).Quantity(quantity).Execute()
+    resp, r, err := apiClient.BuyerCatalogApi.GetBuyerCatalogListingShipping(context.Background(), slug).Zip(zip).State(state).Country(country).Quantity(quantity).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BuyerCatalogApi.GetBuyerCatalogListingShipping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -843,6 +844,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **zip** | **string** |  | 
+ **state** | **string** |  | 
  **country** | **string** |  | 
  **quantity** | **int32** |  | 
 

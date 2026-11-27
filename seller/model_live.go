@@ -105,6 +105,1311 @@ func (v *NullableCreateLiveShipmentShipResponse) UnmarshalJSON(src []byte) error
 	return json.Unmarshal(src, &v.value)
 }
 
+// CreateLiveStreamConnectionResponse struct for CreateLiveStreamConnectionResponse
+type CreateLiveStreamConnectionResponse struct {
+	Data CreateLiveStreamConnectionResponseData `json:"data"`
+}
+
+// NewCreateLiveStreamConnectionResponse instantiates a new CreateLiveStreamConnectionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateLiveStreamConnectionResponse(data CreateLiveStreamConnectionResponseData) *CreateLiveStreamConnectionResponse {
+	this := CreateLiveStreamConnectionResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreateLiveStreamConnectionResponseWithDefaults instantiates a new CreateLiveStreamConnectionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateLiveStreamConnectionResponseWithDefaults() *CreateLiveStreamConnectionResponse {
+	this := CreateLiveStreamConnectionResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreateLiveStreamConnectionResponse) GetData() CreateLiveStreamConnectionResponseData {
+	if o == nil {
+		var ret CreateLiveStreamConnectionResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponse) GetDataOk() (*CreateLiveStreamConnectionResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreateLiveStreamConnectionResponse) SetData(v CreateLiveStreamConnectionResponseData) {
+	o.Data = v
+}
+
+func (o CreateLiveStreamConnectionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateLiveStreamConnectionResponse struct {
+	value *CreateLiveStreamConnectionResponse
+	isSet bool
+}
+
+func (v NullableCreateLiveStreamConnectionResponse) Get() *CreateLiveStreamConnectionResponse {
+	return v.value
+}
+
+func (v *NullableCreateLiveStreamConnectionResponse) Set(val *CreateLiveStreamConnectionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateLiveStreamConnectionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateLiveStreamConnectionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateLiveStreamConnectionResponse(val *CreateLiveStreamConnectionResponse) *NullableCreateLiveStreamConnectionResponse {
+	return &NullableCreateLiveStreamConnectionResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateLiveStreamConnectionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateLiveStreamConnectionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateLiveStreamConnectionResponseData struct for CreateLiveStreamConnectionResponseData
+type CreateLiveStreamConnectionResponseData struct {
+	Configured bool `json:"configured"`
+	Provider string `json:"provider"`
+	Capabilities CreateLiveStreamConnectionResponseDataCapabilities `json:"capabilities"`
+	Reason NullableString `json:"reason,omitempty"`
+	IngestUrl NullableString `json:"ingestUrl,omitempty"`
+	IngestKey NullableString `json:"ingestKey,omitempty"`
+	IngestSrtUrl NullableString `json:"ingestSrtUrl,omitempty"`
+	PlaybackUrl NullableString `json:"playbackUrl,omitempty"`
+	// WHIP endpoint for publishing from a browser; null when the ingest has none.
+	WhipUrl NullableString `json:"whipUrl,omitempty"`
+}
+
+// NewCreateLiveStreamConnectionResponseData instantiates a new CreateLiveStreamConnectionResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateLiveStreamConnectionResponseData(configured bool, provider string, capabilities CreateLiveStreamConnectionResponseDataCapabilities) *CreateLiveStreamConnectionResponseData {
+	this := CreateLiveStreamConnectionResponseData{}
+	this.Configured = configured
+	this.Provider = provider
+	this.Capabilities = capabilities
+	return &this
+}
+
+// NewCreateLiveStreamConnectionResponseDataWithDefaults instantiates a new CreateLiveStreamConnectionResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateLiveStreamConnectionResponseDataWithDefaults() *CreateLiveStreamConnectionResponseData {
+	this := CreateLiveStreamConnectionResponseData{}
+	return &this
+}
+
+// GetConfigured returns the Configured field value
+func (o *CreateLiveStreamConnectionResponseData) GetConfigured() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Configured
+}
+
+// GetConfiguredOk returns a tuple with the Configured field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseData) GetConfiguredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Configured, true
+}
+
+// SetConfigured sets field value
+func (o *CreateLiveStreamConnectionResponseData) SetConfigured(v bool) {
+	o.Configured = v
+}
+
+// GetProvider returns the Provider field value
+func (o *CreateLiveStreamConnectionResponseData) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseData) GetProviderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *CreateLiveStreamConnectionResponseData) SetProvider(v string) {
+	o.Provider = v
+}
+
+// GetCapabilities returns the Capabilities field value
+func (o *CreateLiveStreamConnectionResponseData) GetCapabilities() CreateLiveStreamConnectionResponseDataCapabilities {
+	if o == nil {
+		var ret CreateLiveStreamConnectionResponseDataCapabilities
+		return ret
+	}
+
+	return o.Capabilities
+}
+
+// GetCapabilitiesOk returns a tuple with the Capabilities field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseData) GetCapabilitiesOk() (*CreateLiveStreamConnectionResponseDataCapabilities, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capabilities, true
+}
+
+// SetCapabilities sets field value
+func (o *CreateLiveStreamConnectionResponseData) SetCapabilities(v CreateLiveStreamConnectionResponseDataCapabilities) {
+	o.Capabilities = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *CreateLiveStreamConnectionResponseData) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetReason() {
+	o.Reason.Unset()
+}
+
+// GetIngestUrl returns the IngestUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetIngestUrl() string {
+	if o == nil || o.IngestUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IngestUrl.Get()
+}
+
+// GetIngestUrlOk returns a tuple with the IngestUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetIngestUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.IngestUrl.Get(), o.IngestUrl.IsSet()
+}
+
+// HasIngestUrl returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasIngestUrl() bool {
+	if o != nil && o.IngestUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIngestUrl gets a reference to the given NullableString and assigns it to the IngestUrl field.
+func (o *CreateLiveStreamConnectionResponseData) SetIngestUrl(v string) {
+	o.IngestUrl.Set(&v)
+}
+// SetIngestUrlNil sets the value for IngestUrl to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetIngestUrlNil() {
+	o.IngestUrl.Set(nil)
+}
+
+// UnsetIngestUrl ensures that no value is present for IngestUrl, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetIngestUrl() {
+	o.IngestUrl.Unset()
+}
+
+// GetIngestKey returns the IngestKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetIngestKey() string {
+	if o == nil || o.IngestKey.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IngestKey.Get()
+}
+
+// GetIngestKeyOk returns a tuple with the IngestKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetIngestKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.IngestKey.Get(), o.IngestKey.IsSet()
+}
+
+// HasIngestKey returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasIngestKey() bool {
+	if o != nil && o.IngestKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIngestKey gets a reference to the given NullableString and assigns it to the IngestKey field.
+func (o *CreateLiveStreamConnectionResponseData) SetIngestKey(v string) {
+	o.IngestKey.Set(&v)
+}
+// SetIngestKeyNil sets the value for IngestKey to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetIngestKeyNil() {
+	o.IngestKey.Set(nil)
+}
+
+// UnsetIngestKey ensures that no value is present for IngestKey, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetIngestKey() {
+	o.IngestKey.Unset()
+}
+
+// GetIngestSrtUrl returns the IngestSrtUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetIngestSrtUrl() string {
+	if o == nil || o.IngestSrtUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IngestSrtUrl.Get()
+}
+
+// GetIngestSrtUrlOk returns a tuple with the IngestSrtUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetIngestSrtUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.IngestSrtUrl.Get(), o.IngestSrtUrl.IsSet()
+}
+
+// HasIngestSrtUrl returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasIngestSrtUrl() bool {
+	if o != nil && o.IngestSrtUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIngestSrtUrl gets a reference to the given NullableString and assigns it to the IngestSrtUrl field.
+func (o *CreateLiveStreamConnectionResponseData) SetIngestSrtUrl(v string) {
+	o.IngestSrtUrl.Set(&v)
+}
+// SetIngestSrtUrlNil sets the value for IngestSrtUrl to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetIngestSrtUrlNil() {
+	o.IngestSrtUrl.Set(nil)
+}
+
+// UnsetIngestSrtUrl ensures that no value is present for IngestSrtUrl, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetIngestSrtUrl() {
+	o.IngestSrtUrl.Unset()
+}
+
+// GetPlaybackUrl returns the PlaybackUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetPlaybackUrl() string {
+	if o == nil || o.PlaybackUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlaybackUrl.Get()
+}
+
+// GetPlaybackUrlOk returns a tuple with the PlaybackUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetPlaybackUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlaybackUrl.Get(), o.PlaybackUrl.IsSet()
+}
+
+// HasPlaybackUrl returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasPlaybackUrl() bool {
+	if o != nil && o.PlaybackUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaybackUrl gets a reference to the given NullableString and assigns it to the PlaybackUrl field.
+func (o *CreateLiveStreamConnectionResponseData) SetPlaybackUrl(v string) {
+	o.PlaybackUrl.Set(&v)
+}
+// SetPlaybackUrlNil sets the value for PlaybackUrl to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetPlaybackUrlNil() {
+	o.PlaybackUrl.Set(nil)
+}
+
+// UnsetPlaybackUrl ensures that no value is present for PlaybackUrl, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetPlaybackUrl() {
+	o.PlaybackUrl.Unset()
+}
+
+// GetWhipUrl returns the WhipUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateLiveStreamConnectionResponseData) GetWhipUrl() string {
+	if o == nil || o.WhipUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.WhipUrl.Get()
+}
+
+// GetWhipUrlOk returns a tuple with the WhipUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateLiveStreamConnectionResponseData) GetWhipUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WhipUrl.Get(), o.WhipUrl.IsSet()
+}
+
+// HasWhipUrl returns a boolean if a field has been set.
+func (o *CreateLiveStreamConnectionResponseData) HasWhipUrl() bool {
+	if o != nil && o.WhipUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWhipUrl gets a reference to the given NullableString and assigns it to the WhipUrl field.
+func (o *CreateLiveStreamConnectionResponseData) SetWhipUrl(v string) {
+	o.WhipUrl.Set(&v)
+}
+// SetWhipUrlNil sets the value for WhipUrl to be an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) SetWhipUrlNil() {
+	o.WhipUrl.Set(nil)
+}
+
+// UnsetWhipUrl ensures that no value is present for WhipUrl, not even an explicit nil
+func (o *CreateLiveStreamConnectionResponseData) UnsetWhipUrl() {
+	o.WhipUrl.Unset()
+}
+
+func (o CreateLiveStreamConnectionResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["configured"] = o.Configured
+	}
+	if true {
+		toSerialize["provider"] = o.Provider
+	}
+	if true {
+		toSerialize["capabilities"] = o.Capabilities
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	if o.IngestUrl.IsSet() {
+		toSerialize["ingestUrl"] = o.IngestUrl.Get()
+	}
+	if o.IngestKey.IsSet() {
+		toSerialize["ingestKey"] = o.IngestKey.Get()
+	}
+	if o.IngestSrtUrl.IsSet() {
+		toSerialize["ingestSrtUrl"] = o.IngestSrtUrl.Get()
+	}
+	if o.PlaybackUrl.IsSet() {
+		toSerialize["playbackUrl"] = o.PlaybackUrl.Get()
+	}
+	if o.WhipUrl.IsSet() {
+		toSerialize["whipUrl"] = o.WhipUrl.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateLiveStreamConnectionResponseData struct {
+	value *CreateLiveStreamConnectionResponseData
+	isSet bool
+}
+
+func (v NullableCreateLiveStreamConnectionResponseData) Get() *CreateLiveStreamConnectionResponseData {
+	return v.value
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseData) Set(val *CreateLiveStreamConnectionResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateLiveStreamConnectionResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateLiveStreamConnectionResponseData(val *CreateLiveStreamConnectionResponseData) *NullableCreateLiveStreamConnectionResponseData {
+	return &NullableCreateLiveStreamConnectionResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreateLiveStreamConnectionResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateLiveStreamConnectionResponseDataCapabilities struct for CreateLiveStreamConnectionResponseDataCapabilities
+type CreateLiveStreamConnectionResponseDataCapabilities struct {
+	Rtmp bool `json:"rtmp"`
+	Srt bool `json:"srt"`
+	Whip bool `json:"whip"`
+}
+
+// NewCreateLiveStreamConnectionResponseDataCapabilities instantiates a new CreateLiveStreamConnectionResponseDataCapabilities object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateLiveStreamConnectionResponseDataCapabilities(rtmp bool, srt bool, whip bool) *CreateLiveStreamConnectionResponseDataCapabilities {
+	this := CreateLiveStreamConnectionResponseDataCapabilities{}
+	this.Rtmp = rtmp
+	this.Srt = srt
+	this.Whip = whip
+	return &this
+}
+
+// NewCreateLiveStreamConnectionResponseDataCapabilitiesWithDefaults instantiates a new CreateLiveStreamConnectionResponseDataCapabilities object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateLiveStreamConnectionResponseDataCapabilitiesWithDefaults() *CreateLiveStreamConnectionResponseDataCapabilities {
+	this := CreateLiveStreamConnectionResponseDataCapabilities{}
+	return &this
+}
+
+// GetRtmp returns the Rtmp field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetRtmp() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Rtmp
+}
+
+// GetRtmpOk returns a tuple with the Rtmp field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetRtmpOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rtmp, true
+}
+
+// SetRtmp sets field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) SetRtmp(v bool) {
+	o.Rtmp = v
+}
+
+// GetSrt returns the Srt field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetSrt() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Srt
+}
+
+// GetSrtOk returns a tuple with the Srt field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetSrtOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Srt, true
+}
+
+// SetSrt sets field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) SetSrt(v bool) {
+	o.Srt = v
+}
+
+// GetWhip returns the Whip field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetWhip() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Whip
+}
+
+// GetWhipOk returns a tuple with the Whip field value
+// and a boolean to check if the value has been set.
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) GetWhipOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Whip, true
+}
+
+// SetWhip sets field value
+func (o *CreateLiveStreamConnectionResponseDataCapabilities) SetWhip(v bool) {
+	o.Whip = v
+}
+
+func (o CreateLiveStreamConnectionResponseDataCapabilities) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["rtmp"] = o.Rtmp
+	}
+	if true {
+		toSerialize["srt"] = o.Srt
+	}
+	if true {
+		toSerialize["whip"] = o.Whip
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateLiveStreamConnectionResponseDataCapabilities struct {
+	value *CreateLiveStreamConnectionResponseDataCapabilities
+	isSet bool
+}
+
+func (v NullableCreateLiveStreamConnectionResponseDataCapabilities) Get() *CreateLiveStreamConnectionResponseDataCapabilities {
+	return v.value
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseDataCapabilities) Set(val *CreateLiveStreamConnectionResponseDataCapabilities) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateLiveStreamConnectionResponseDataCapabilities) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseDataCapabilities) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateLiveStreamConnectionResponseDataCapabilities(val *CreateLiveStreamConnectionResponseDataCapabilities) *NullableCreateLiveStreamConnectionResponseDataCapabilities {
+	return &NullableCreateLiveStreamConnectionResponseDataCapabilities{value: val, isSet: true}
+}
+
+func (v NullableCreateLiveStreamConnectionResponseDataCapabilities) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateLiveStreamConnectionResponseDataCapabilities) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetLiveStreamRecapResponse struct for GetLiveStreamRecapResponse
+type GetLiveStreamRecapResponse struct {
+	Data GetLiveStreamRecapResponseData `json:"data"`
+}
+
+// NewGetLiveStreamRecapResponse instantiates a new GetLiveStreamRecapResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetLiveStreamRecapResponse(data GetLiveStreamRecapResponseData) *GetLiveStreamRecapResponse {
+	this := GetLiveStreamRecapResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetLiveStreamRecapResponseWithDefaults instantiates a new GetLiveStreamRecapResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetLiveStreamRecapResponseWithDefaults() *GetLiveStreamRecapResponse {
+	this := GetLiveStreamRecapResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetLiveStreamRecapResponse) GetData() GetLiveStreamRecapResponseData {
+	if o == nil {
+		var ret GetLiveStreamRecapResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponse) GetDataOk() (*GetLiveStreamRecapResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetLiveStreamRecapResponse) SetData(v GetLiveStreamRecapResponseData) {
+	o.Data = v
+}
+
+func (o GetLiveStreamRecapResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetLiveStreamRecapResponse struct {
+	value *GetLiveStreamRecapResponse
+	isSet bool
+}
+
+func (v NullableGetLiveStreamRecapResponse) Get() *GetLiveStreamRecapResponse {
+	return v.value
+}
+
+func (v *NullableGetLiveStreamRecapResponse) Set(val *GetLiveStreamRecapResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetLiveStreamRecapResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetLiveStreamRecapResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetLiveStreamRecapResponse(val *GetLiveStreamRecapResponse) *NullableGetLiveStreamRecapResponse {
+	return &NullableGetLiveStreamRecapResponse{value: val, isSet: true}
+}
+
+func (v NullableGetLiveStreamRecapResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetLiveStreamRecapResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetLiveStreamRecapResponseData struct for GetLiveStreamRecapResponseData
+type GetLiveStreamRecapResponseData struct {
+	StreamId string `json:"streamId"`
+	Title string `json:"title"`
+	Status string `json:"status"`
+	StartedAt NullableString `json:"startedAt,omitempty"`
+	EndedAt NullableString `json:"endedAt,omitempty"`
+	DurationSeconds float32 `json:"durationSeconds"`
+	PeakViewers float32 `json:"peakViewers"`
+	ItemsSold float32 `json:"itemsSold"`
+	GrossCents float32 `json:"grossCents"`
+	TipsCents float32 `json:"tipsCents"`
+	TipsCount float32 `json:"tipsCount"`
+	ChatMessages float32 `json:"chatMessages"`
+	AuctionsRun float32 `json:"auctionsRun"`
+	LineupCount float32 `json:"lineupCount"`
+	ReplayUrl NullableString `json:"replayUrl,omitempty"`
+}
+
+// NewGetLiveStreamRecapResponseData instantiates a new GetLiveStreamRecapResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetLiveStreamRecapResponseData(streamId string, title string, status string, durationSeconds float32, peakViewers float32, itemsSold float32, grossCents float32, tipsCents float32, tipsCount float32, chatMessages float32, auctionsRun float32, lineupCount float32) *GetLiveStreamRecapResponseData {
+	this := GetLiveStreamRecapResponseData{}
+	this.StreamId = streamId
+	this.Title = title
+	this.Status = status
+	this.DurationSeconds = durationSeconds
+	this.PeakViewers = peakViewers
+	this.ItemsSold = itemsSold
+	this.GrossCents = grossCents
+	this.TipsCents = tipsCents
+	this.TipsCount = tipsCount
+	this.ChatMessages = chatMessages
+	this.AuctionsRun = auctionsRun
+	this.LineupCount = lineupCount
+	return &this
+}
+
+// NewGetLiveStreamRecapResponseDataWithDefaults instantiates a new GetLiveStreamRecapResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetLiveStreamRecapResponseDataWithDefaults() *GetLiveStreamRecapResponseData {
+	this := GetLiveStreamRecapResponseData{}
+	return &this
+}
+
+// GetStreamId returns the StreamId field value
+func (o *GetLiveStreamRecapResponseData) GetStreamId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StreamId
+}
+
+// GetStreamIdOk returns a tuple with the StreamId field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetStreamIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StreamId, true
+}
+
+// SetStreamId sets field value
+func (o *GetLiveStreamRecapResponseData) SetStreamId(v string) {
+	o.StreamId = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetLiveStreamRecapResponseData) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetLiveStreamRecapResponseData) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetLiveStreamRecapResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetLiveStreamRecapResponseData) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetLiveStreamRecapResponseData) GetStartedAt() string {
+	if o == nil || o.StartedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StartedAt.Get()
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetLiveStreamRecapResponseData) GetStartedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StartedAt.Get(), o.StartedAt.IsSet()
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *GetLiveStreamRecapResponseData) HasStartedAt() bool {
+	if o != nil && o.StartedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given NullableString and assigns it to the StartedAt field.
+func (o *GetLiveStreamRecapResponseData) SetStartedAt(v string) {
+	o.StartedAt.Set(&v)
+}
+// SetStartedAtNil sets the value for StartedAt to be an explicit nil
+func (o *GetLiveStreamRecapResponseData) SetStartedAtNil() {
+	o.StartedAt.Set(nil)
+}
+
+// UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
+func (o *GetLiveStreamRecapResponseData) UnsetStartedAt() {
+	o.StartedAt.Unset()
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetLiveStreamRecapResponseData) GetEndedAt() string {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetLiveStreamRecapResponseData) GetEndedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *GetLiveStreamRecapResponseData) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableString and assigns it to the EndedAt field.
+func (o *GetLiveStreamRecapResponseData) SetEndedAt(v string) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *GetLiveStreamRecapResponseData) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *GetLiveStreamRecapResponseData) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetDurationSeconds returns the DurationSeconds field value
+func (o *GetLiveStreamRecapResponseData) GetDurationSeconds() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.DurationSeconds
+}
+
+// GetDurationSecondsOk returns a tuple with the DurationSeconds field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetDurationSecondsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DurationSeconds, true
+}
+
+// SetDurationSeconds sets field value
+func (o *GetLiveStreamRecapResponseData) SetDurationSeconds(v float32) {
+	o.DurationSeconds = v
+}
+
+// GetPeakViewers returns the PeakViewers field value
+func (o *GetLiveStreamRecapResponseData) GetPeakViewers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PeakViewers
+}
+
+// GetPeakViewersOk returns a tuple with the PeakViewers field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetPeakViewersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PeakViewers, true
+}
+
+// SetPeakViewers sets field value
+func (o *GetLiveStreamRecapResponseData) SetPeakViewers(v float32) {
+	o.PeakViewers = v
+}
+
+// GetItemsSold returns the ItemsSold field value
+func (o *GetLiveStreamRecapResponseData) GetItemsSold() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ItemsSold
+}
+
+// GetItemsSoldOk returns a tuple with the ItemsSold field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetItemsSoldOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ItemsSold, true
+}
+
+// SetItemsSold sets field value
+func (o *GetLiveStreamRecapResponseData) SetItemsSold(v float32) {
+	o.ItemsSold = v
+}
+
+// GetGrossCents returns the GrossCents field value
+func (o *GetLiveStreamRecapResponseData) GetGrossCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.GrossCents
+}
+
+// GetGrossCentsOk returns a tuple with the GrossCents field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetGrossCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.GrossCents, true
+}
+
+// SetGrossCents sets field value
+func (o *GetLiveStreamRecapResponseData) SetGrossCents(v float32) {
+	o.GrossCents = v
+}
+
+// GetTipsCents returns the TipsCents field value
+func (o *GetLiveStreamRecapResponseData) GetTipsCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TipsCents
+}
+
+// GetTipsCentsOk returns a tuple with the TipsCents field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetTipsCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TipsCents, true
+}
+
+// SetTipsCents sets field value
+func (o *GetLiveStreamRecapResponseData) SetTipsCents(v float32) {
+	o.TipsCents = v
+}
+
+// GetTipsCount returns the TipsCount field value
+func (o *GetLiveStreamRecapResponseData) GetTipsCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TipsCount
+}
+
+// GetTipsCountOk returns a tuple with the TipsCount field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetTipsCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TipsCount, true
+}
+
+// SetTipsCount sets field value
+func (o *GetLiveStreamRecapResponseData) SetTipsCount(v float32) {
+	o.TipsCount = v
+}
+
+// GetChatMessages returns the ChatMessages field value
+func (o *GetLiveStreamRecapResponseData) GetChatMessages() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ChatMessages
+}
+
+// GetChatMessagesOk returns a tuple with the ChatMessages field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetChatMessagesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ChatMessages, true
+}
+
+// SetChatMessages sets field value
+func (o *GetLiveStreamRecapResponseData) SetChatMessages(v float32) {
+	o.ChatMessages = v
+}
+
+// GetAuctionsRun returns the AuctionsRun field value
+func (o *GetLiveStreamRecapResponseData) GetAuctionsRun() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AuctionsRun
+}
+
+// GetAuctionsRunOk returns a tuple with the AuctionsRun field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetAuctionsRunOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AuctionsRun, true
+}
+
+// SetAuctionsRun sets field value
+func (o *GetLiveStreamRecapResponseData) SetAuctionsRun(v float32) {
+	o.AuctionsRun = v
+}
+
+// GetLineupCount returns the LineupCount field value
+func (o *GetLiveStreamRecapResponseData) GetLineupCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LineupCount
+}
+
+// GetLineupCountOk returns a tuple with the LineupCount field value
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamRecapResponseData) GetLineupCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LineupCount, true
+}
+
+// SetLineupCount sets field value
+func (o *GetLiveStreamRecapResponseData) SetLineupCount(v float32) {
+	o.LineupCount = v
+}
+
+// GetReplayUrl returns the ReplayUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetLiveStreamRecapResponseData) GetReplayUrl() string {
+	if o == nil || o.ReplayUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReplayUrl.Get()
+}
+
+// GetReplayUrlOk returns a tuple with the ReplayUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetLiveStreamRecapResponseData) GetReplayUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReplayUrl.Get(), o.ReplayUrl.IsSet()
+}
+
+// HasReplayUrl returns a boolean if a field has been set.
+func (o *GetLiveStreamRecapResponseData) HasReplayUrl() bool {
+	if o != nil && o.ReplayUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReplayUrl gets a reference to the given NullableString and assigns it to the ReplayUrl field.
+func (o *GetLiveStreamRecapResponseData) SetReplayUrl(v string) {
+	o.ReplayUrl.Set(&v)
+}
+// SetReplayUrlNil sets the value for ReplayUrl to be an explicit nil
+func (o *GetLiveStreamRecapResponseData) SetReplayUrlNil() {
+	o.ReplayUrl.Set(nil)
+}
+
+// UnsetReplayUrl ensures that no value is present for ReplayUrl, not even an explicit nil
+func (o *GetLiveStreamRecapResponseData) UnsetReplayUrl() {
+	o.ReplayUrl.Unset()
+}
+
+func (o GetLiveStreamRecapResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["streamId"] = o.StreamId
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.StartedAt.IsSet() {
+		toSerialize["startedAt"] = o.StartedAt.Get()
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if true {
+		toSerialize["durationSeconds"] = o.DurationSeconds
+	}
+	if true {
+		toSerialize["peakViewers"] = o.PeakViewers
+	}
+	if true {
+		toSerialize["itemsSold"] = o.ItemsSold
+	}
+	if true {
+		toSerialize["grossCents"] = o.GrossCents
+	}
+	if true {
+		toSerialize["tipsCents"] = o.TipsCents
+	}
+	if true {
+		toSerialize["tipsCount"] = o.TipsCount
+	}
+	if true {
+		toSerialize["chatMessages"] = o.ChatMessages
+	}
+	if true {
+		toSerialize["auctionsRun"] = o.AuctionsRun
+	}
+	if true {
+		toSerialize["lineupCount"] = o.LineupCount
+	}
+	if o.ReplayUrl.IsSet() {
+		toSerialize["replayUrl"] = o.ReplayUrl.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetLiveStreamRecapResponseData struct {
+	value *GetLiveStreamRecapResponseData
+	isSet bool
+}
+
+func (v NullableGetLiveStreamRecapResponseData) Get() *GetLiveStreamRecapResponseData {
+	return v.value
+}
+
+func (v *NullableGetLiveStreamRecapResponseData) Set(val *GetLiveStreamRecapResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetLiveStreamRecapResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetLiveStreamRecapResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetLiveStreamRecapResponseData(val *GetLiveStreamRecapResponseData) *NullableGetLiveStreamRecapResponseData {
+	return &NullableGetLiveStreamRecapResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetLiveStreamRecapResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetLiveStreamRecapResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListLiveShipmentsItem struct for ListLiveShipmentsItem
 type ListLiveShipmentsItem struct {
 	Id string `json:"id"`
@@ -931,15 +2236,755 @@ func (v *NullableListLiveShipmentsResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// ListLiveStreamsItem struct for ListLiveStreamsItem
+type ListLiveStreamsItem struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	Description NullableString `json:"description,omitempty"`
+	CoverImageUrl NullableString `json:"coverImageUrl,omitempty"`
+	Category NullableString `json:"category,omitempty"`
+	Status string `json:"status"`
+	ScheduledAt string `json:"scheduledAt"`
+	StartedAt NullableString `json:"startedAt,omitempty"`
+	EndedAt NullableString `json:"endedAt,omitempty"`
+	ReplayUrl NullableString `json:"replayUrl,omitempty"`
+	PinnedPlatformListingId NullableString `json:"pinnedPlatformListingId,omitempty"`
+	ConnectionMethod NullableString `json:"connectionMethod,omitempty"`
+	PeakViewers float32 `json:"peakViewers"`
+}
+
+// NewListLiveStreamsItem instantiates a new ListLiveStreamsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLiveStreamsItem(id string, title string, status string, scheduledAt string, peakViewers float32) *ListLiveStreamsItem {
+	this := ListLiveStreamsItem{}
+	this.Id = id
+	this.Title = title
+	this.Status = status
+	this.ScheduledAt = scheduledAt
+	this.PeakViewers = peakViewers
+	return &this
+}
+
+// NewListLiveStreamsItemWithDefaults instantiates a new ListLiveStreamsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLiveStreamsItemWithDefaults() *ListLiveStreamsItem {
+	this := ListLiveStreamsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListLiveStreamsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListLiveStreamsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListLiveStreamsItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListLiveStreamsItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *ListLiveStreamsItem) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *ListLiveStreamsItem) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetCoverImageUrl returns the CoverImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetCoverImageUrl() string {
+	if o == nil || o.CoverImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CoverImageUrl.Get()
+}
+
+// GetCoverImageUrlOk returns a tuple with the CoverImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetCoverImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CoverImageUrl.Get(), o.CoverImageUrl.IsSet()
+}
+
+// HasCoverImageUrl returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasCoverImageUrl() bool {
+	if o != nil && o.CoverImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoverImageUrl gets a reference to the given NullableString and assigns it to the CoverImageUrl field.
+func (o *ListLiveStreamsItem) SetCoverImageUrl(v string) {
+	o.CoverImageUrl.Set(&v)
+}
+// SetCoverImageUrlNil sets the value for CoverImageUrl to be an explicit nil
+func (o *ListLiveStreamsItem) SetCoverImageUrlNil() {
+	o.CoverImageUrl.Set(nil)
+}
+
+// UnsetCoverImageUrl ensures that no value is present for CoverImageUrl, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetCoverImageUrl() {
+	o.CoverImageUrl.Unset()
+}
+
+// GetCategory returns the Category field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetCategory() string {
+	if o == nil || o.Category.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Category.Get()
+}
+
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Category.Get(), o.Category.IsSet()
+}
+
+// HasCategory returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasCategory() bool {
+	if o != nil && o.Category.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given NullableString and assigns it to the Category field.
+func (o *ListLiveStreamsItem) SetCategory(v string) {
+	o.Category.Set(&v)
+}
+// SetCategoryNil sets the value for Category to be an explicit nil
+func (o *ListLiveStreamsItem) SetCategoryNil() {
+	o.Category.Set(nil)
+}
+
+// UnsetCategory ensures that no value is present for Category, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetCategory() {
+	o.Category.Unset()
+}
+
+// GetStatus returns the Status field value
+func (o *ListLiveStreamsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListLiveStreamsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetScheduledAt returns the ScheduledAt field value
+func (o *ListLiveStreamsItem) GetScheduledAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ScheduledAt
+}
+
+// GetScheduledAtOk returns a tuple with the ScheduledAt field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsItem) GetScheduledAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ScheduledAt, true
+}
+
+// SetScheduledAt sets field value
+func (o *ListLiveStreamsItem) SetScheduledAt(v string) {
+	o.ScheduledAt = v
+}
+
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetStartedAt() string {
+	if o == nil || o.StartedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StartedAt.Get()
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetStartedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StartedAt.Get(), o.StartedAt.IsSet()
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasStartedAt() bool {
+	if o != nil && o.StartedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given NullableString and assigns it to the StartedAt field.
+func (o *ListLiveStreamsItem) SetStartedAt(v string) {
+	o.StartedAt.Set(&v)
+}
+// SetStartedAtNil sets the value for StartedAt to be an explicit nil
+func (o *ListLiveStreamsItem) SetStartedAtNil() {
+	o.StartedAt.Set(nil)
+}
+
+// UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetStartedAt() {
+	o.StartedAt.Unset()
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetEndedAt() string {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetEndedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableString and assigns it to the EndedAt field.
+func (o *ListLiveStreamsItem) SetEndedAt(v string) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *ListLiveStreamsItem) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetReplayUrl returns the ReplayUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetReplayUrl() string {
+	if o == nil || o.ReplayUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReplayUrl.Get()
+}
+
+// GetReplayUrlOk returns a tuple with the ReplayUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetReplayUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReplayUrl.Get(), o.ReplayUrl.IsSet()
+}
+
+// HasReplayUrl returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasReplayUrl() bool {
+	if o != nil && o.ReplayUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReplayUrl gets a reference to the given NullableString and assigns it to the ReplayUrl field.
+func (o *ListLiveStreamsItem) SetReplayUrl(v string) {
+	o.ReplayUrl.Set(&v)
+}
+// SetReplayUrlNil sets the value for ReplayUrl to be an explicit nil
+func (o *ListLiveStreamsItem) SetReplayUrlNil() {
+	o.ReplayUrl.Set(nil)
+}
+
+// UnsetReplayUrl ensures that no value is present for ReplayUrl, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetReplayUrl() {
+	o.ReplayUrl.Unset()
+}
+
+// GetPinnedPlatformListingId returns the PinnedPlatformListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetPinnedPlatformListingId() string {
+	if o == nil || o.PinnedPlatformListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PinnedPlatformListingId.Get()
+}
+
+// GetPinnedPlatformListingIdOk returns a tuple with the PinnedPlatformListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetPinnedPlatformListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PinnedPlatformListingId.Get(), o.PinnedPlatformListingId.IsSet()
+}
+
+// HasPinnedPlatformListingId returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasPinnedPlatformListingId() bool {
+	if o != nil && o.PinnedPlatformListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPinnedPlatformListingId gets a reference to the given NullableString and assigns it to the PinnedPlatformListingId field.
+func (o *ListLiveStreamsItem) SetPinnedPlatformListingId(v string) {
+	o.PinnedPlatformListingId.Set(&v)
+}
+// SetPinnedPlatformListingIdNil sets the value for PinnedPlatformListingId to be an explicit nil
+func (o *ListLiveStreamsItem) SetPinnedPlatformListingIdNil() {
+	o.PinnedPlatformListingId.Set(nil)
+}
+
+// UnsetPinnedPlatformListingId ensures that no value is present for PinnedPlatformListingId, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetPinnedPlatformListingId() {
+	o.PinnedPlatformListingId.Unset()
+}
+
+// GetConnectionMethod returns the ConnectionMethod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLiveStreamsItem) GetConnectionMethod() string {
+	if o == nil || o.ConnectionMethod.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ConnectionMethod.Get()
+}
+
+// GetConnectionMethodOk returns a tuple with the ConnectionMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLiveStreamsItem) GetConnectionMethodOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ConnectionMethod.Get(), o.ConnectionMethod.IsSet()
+}
+
+// HasConnectionMethod returns a boolean if a field has been set.
+func (o *ListLiveStreamsItem) HasConnectionMethod() bool {
+	if o != nil && o.ConnectionMethod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionMethod gets a reference to the given NullableString and assigns it to the ConnectionMethod field.
+func (o *ListLiveStreamsItem) SetConnectionMethod(v string) {
+	o.ConnectionMethod.Set(&v)
+}
+// SetConnectionMethodNil sets the value for ConnectionMethod to be an explicit nil
+func (o *ListLiveStreamsItem) SetConnectionMethodNil() {
+	o.ConnectionMethod.Set(nil)
+}
+
+// UnsetConnectionMethod ensures that no value is present for ConnectionMethod, not even an explicit nil
+func (o *ListLiveStreamsItem) UnsetConnectionMethod() {
+	o.ConnectionMethod.Unset()
+}
+
+// GetPeakViewers returns the PeakViewers field value
+func (o *ListLiveStreamsItem) GetPeakViewers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PeakViewers
+}
+
+// GetPeakViewersOk returns a tuple with the PeakViewers field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsItem) GetPeakViewersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PeakViewers, true
+}
+
+// SetPeakViewers sets field value
+func (o *ListLiveStreamsItem) SetPeakViewers(v float32) {
+	o.PeakViewers = v
+}
+
+func (o ListLiveStreamsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.CoverImageUrl.IsSet() {
+		toSerialize["coverImageUrl"] = o.CoverImageUrl.Get()
+	}
+	if o.Category.IsSet() {
+		toSerialize["category"] = o.Category.Get()
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["scheduledAt"] = o.ScheduledAt
+	}
+	if o.StartedAt.IsSet() {
+		toSerialize["startedAt"] = o.StartedAt.Get()
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if o.ReplayUrl.IsSet() {
+		toSerialize["replayUrl"] = o.ReplayUrl.Get()
+	}
+	if o.PinnedPlatformListingId.IsSet() {
+		toSerialize["pinnedPlatformListingId"] = o.PinnedPlatformListingId.Get()
+	}
+	if o.ConnectionMethod.IsSet() {
+		toSerialize["connectionMethod"] = o.ConnectionMethod.Get()
+	}
+	if true {
+		toSerialize["peakViewers"] = o.PeakViewers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListLiveStreamsItem struct {
+	value *ListLiveStreamsItem
+	isSet bool
+}
+
+func (v NullableListLiveStreamsItem) Get() *ListLiveStreamsItem {
+	return v.value
+}
+
+func (v *NullableListLiveStreamsItem) Set(val *ListLiveStreamsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLiveStreamsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLiveStreamsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLiveStreamsItem(val *ListLiveStreamsItem) *NullableListLiveStreamsItem {
+	return &NullableListLiveStreamsItem{value: val, isSet: true}
+}
+
+func (v NullableListLiveStreamsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLiveStreamsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListLiveStreamsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListLiveStreamsResponse struct {
+	// The rows.
+	Data []ListLiveStreamsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListLiveStreamsResponse instantiates a new ListLiveStreamsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLiveStreamsResponse(data []ListLiveStreamsItem) *ListLiveStreamsResponse {
+	this := ListLiveStreamsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListLiveStreamsResponseWithDefaults instantiates a new ListLiveStreamsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLiveStreamsResponseWithDefaults() *ListLiveStreamsResponse {
+	this := ListLiveStreamsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListLiveStreamsResponse) GetData() []ListLiveStreamsItem {
+	if o == nil {
+		var ret []ListLiveStreamsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsResponse) GetDataOk() ([]ListLiveStreamsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListLiveStreamsResponse) SetData(v []ListLiveStreamsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListLiveStreamsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListLiveStreamsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListLiveStreamsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListLiveStreamsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLiveStreamsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListLiveStreamsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListLiveStreamsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListLiveStreamsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListLiveStreamsResponse struct {
+	value *ListLiveStreamsResponse
+	isSet bool
+}
+
+func (v NullableListLiveStreamsResponse) Get() *ListLiveStreamsResponse {
+	return v.value
+}
+
+func (v *NullableListLiveStreamsResponse) Set(val *ListLiveStreamsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLiveStreamsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLiveStreamsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLiveStreamsResponse(val *ListLiveStreamsResponse) *NullableListLiveStreamsResponse {
+	return &NullableListLiveStreamsResponse{value: val, isSet: true}
+}
+
+func (v NullableListLiveStreamsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLiveStreamsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // UpdateLiveStreamLineupItem struct for UpdateLiveStreamLineupItem
 type UpdateLiveStreamLineupItem struct {
-	Available bool `json:"available"`
-	Title NullableString `json:"title,omitempty"`
 	PlatformListingId string `json:"platformListingId"`
 	Position float32 `json:"position"`
 	Slug NullableString `json:"slug,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	PriceCents float32 `json:"priceCents"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Available bool `json:"available"`
 	Pinned bool `json:"pinned"`
 }
 
@@ -947,12 +2992,12 @@ type UpdateLiveStreamLineupItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateLiveStreamLineupItem(available bool, platformListingId string, position float32, priceCents float32, pinned bool) *UpdateLiveStreamLineupItem {
+func NewUpdateLiveStreamLineupItem(platformListingId string, position float32, priceCents float32, available bool, pinned bool) *UpdateLiveStreamLineupItem {
 	this := UpdateLiveStreamLineupItem{}
-	this.Available = available
 	this.PlatformListingId = platformListingId
 	this.Position = position
 	this.PriceCents = priceCents
+	this.Available = available
 	this.Pinned = pinned
 	return &this
 }
@@ -963,72 +3008,6 @@ func NewUpdateLiveStreamLineupItem(available bool, platformListingId string, pos
 func NewUpdateLiveStreamLineupItemWithDefaults() *UpdateLiveStreamLineupItem {
 	this := UpdateLiveStreamLineupItem{}
 	return &this
-}
-
-// GetAvailable returns the Available field value
-func (o *UpdateLiveStreamLineupItem) GetAvailable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Available
-}
-
-// GetAvailableOk returns a tuple with the Available field value
-// and a boolean to check if the value has been set.
-func (o *UpdateLiveStreamLineupItem) GetAvailableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Available, true
-}
-
-// SetAvailable sets field value
-func (o *UpdateLiveStreamLineupItem) SetAvailable(v bool) {
-	o.Available = v
-}
-
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateLiveStreamLineupItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Title.Get()
-}
-
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateLiveStreamLineupItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Title.Get(), o.Title.IsSet()
-}
-
-// HasTitle returns a boolean if a field has been set.
-func (o *UpdateLiveStreamLineupItem) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *UpdateLiveStreamLineupItem) SetTitle(v string) {
-	o.Title.Set(&v)
-}
-// SetTitleNil sets the value for Title to be an explicit nil
-func (o *UpdateLiveStreamLineupItem) SetTitleNil() {
-	o.Title.Set(nil)
-}
-
-// UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *UpdateLiveStreamLineupItem) UnsetTitle() {
-	o.Title.Unset()
 }
 
 // GetPlatformListingId returns the PlatformListingId field value
@@ -1121,6 +3100,48 @@ func (o *UpdateLiveStreamLineupItem) UnsetSlug() {
 	o.Slug.Unset()
 }
 
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateLiveStreamLineupItem) GetTitle() string {
+	if o == nil || o.Title.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title.Get()
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateLiveStreamLineupItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Title.Get(), o.Title.IsSet()
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *UpdateLiveStreamLineupItem) HasTitle() bool {
+	if o != nil && o.Title.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+func (o *UpdateLiveStreamLineupItem) SetTitle(v string) {
+	o.Title.Set(&v)
+}
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *UpdateLiveStreamLineupItem) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *UpdateLiveStreamLineupItem) UnsetTitle() {
+	o.Title.Unset()
+}
+
 // GetPriceCents returns the PriceCents field value
 func (o *UpdateLiveStreamLineupItem) GetPriceCents() float32 {
 	if o == nil {
@@ -1187,6 +3208,30 @@ func (o *UpdateLiveStreamLineupItem) UnsetImageUrl() {
 	o.ImageUrl.Unset()
 }
 
+// GetAvailable returns the Available field value
+func (o *UpdateLiveStreamLineupItem) GetAvailable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value
+// and a boolean to check if the value has been set.
+func (o *UpdateLiveStreamLineupItem) GetAvailableOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Available, true
+}
+
+// SetAvailable sets field value
+func (o *UpdateLiveStreamLineupItem) SetAvailable(v bool) {
+	o.Available = v
+}
+
 // GetPinned returns the Pinned field value
 func (o *UpdateLiveStreamLineupItem) GetPinned() bool {
 	if o == nil {
@@ -1214,12 +3259,6 @@ func (o *UpdateLiveStreamLineupItem) SetPinned(v bool) {
 func (o UpdateLiveStreamLineupItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["available"] = o.Available
-	}
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
-	}
-	if true {
 		toSerialize["platformListingId"] = o.PlatformListingId
 	}
 	if true {
@@ -1228,11 +3267,17 @@ func (o UpdateLiveStreamLineupItem) MarshalJSON() ([]byte, error) {
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
 	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
+	}
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
 	}
 	if o.ImageUrl.IsSet() {
 		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["available"] = o.Available
 	}
 	if true {
 		toSerialize["pinned"] = o.Pinned

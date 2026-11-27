@@ -107,18 +107,18 @@ func (v *NullableCreateBuyerTogetherResponse) UnmarshalJSON(src []byte) error {
 
 // CreateBuyerTogetherResponseData struct for CreateBuyerTogetherResponseData
 type CreateBuyerTogetherResponseData struct {
-	Id string `json:"id"`
 	Code string `json:"code"`
+	Id string `json:"id"`
 }
 
 // NewCreateBuyerTogetherResponseData instantiates a new CreateBuyerTogetherResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerTogetherResponseData(id string, code string) *CreateBuyerTogetherResponseData {
+func NewCreateBuyerTogetherResponseData(code string, id string) *CreateBuyerTogetherResponseData {
 	this := CreateBuyerTogetherResponseData{}
-	this.Id = id
 	this.Code = code
+	this.Id = id
 	return &this
 }
 
@@ -128,30 +128,6 @@ func NewCreateBuyerTogetherResponseData(id string, code string) *CreateBuyerToge
 func NewCreateBuyerTogetherResponseDataWithDefaults() *CreateBuyerTogetherResponseData {
 	this := CreateBuyerTogetherResponseData{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *CreateBuyerTogetherResponseData) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerTogetherResponseData) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CreateBuyerTogetherResponseData) SetId(v string) {
-	o.Id = v
 }
 
 // GetCode returns the Code field value
@@ -178,13 +154,37 @@ func (o *CreateBuyerTogetherResponseData) SetCode(v string) {
 	o.Code = v
 }
 
+// GetId returns the Id field value
+func (o *CreateBuyerTogetherResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerTogetherResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateBuyerTogetherResponseData) SetId(v string) {
+	o.Id = v
+}
+
 func (o CreateBuyerTogetherResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["id"] = o.Id
+		toSerialize["code"] = o.Code
 	}
 	if true {
-		toSerialize["code"] = o.Code
+		toSerialize["id"] = o.Id
 	}
 	return json.Marshal(toSerialize)
 }
@@ -336,29 +336,29 @@ func (v *NullableGetBuyerTogetherResponse) UnmarshalJSON(src []byte) error {
 // GetBuyerTogetherResponseData struct for GetBuyerTogetherResponseData
 type GetBuyerTogetherResponseData struct {
 	Id string `json:"id"`
-	Name string `json:"name"`
-	EndsAt string `json:"endsAt"`
 	Code string `json:"code"`
+	Name string `json:"name"`
+	IsHost bool `json:"isHost"`
+	EndsAt string `json:"endsAt"`
 	Members []GetBuyerTogetherResponseDataMembers `json:"members"`
 	Items []GetBuyerTogetherResponseDataItems `json:"items"`
 	Messages []GetBuyerTogetherResponseDataMessages `json:"messages"`
-	IsHost bool `json:"isHost"`
 }
 
 // NewGetBuyerTogetherResponseData instantiates a new GetBuyerTogetherResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerTogetherResponseData(id string, name string, endsAt string, code string, members []GetBuyerTogetherResponseDataMembers, items []GetBuyerTogetherResponseDataItems, messages []GetBuyerTogetherResponseDataMessages, isHost bool) *GetBuyerTogetherResponseData {
+func NewGetBuyerTogetherResponseData(id string, code string, name string, isHost bool, endsAt string, members []GetBuyerTogetherResponseDataMembers, items []GetBuyerTogetherResponseDataItems, messages []GetBuyerTogetherResponseDataMessages) *GetBuyerTogetherResponseData {
 	this := GetBuyerTogetherResponseData{}
 	this.Id = id
-	this.Name = name
-	this.EndsAt = endsAt
 	this.Code = code
+	this.Name = name
+	this.IsHost = isHost
+	this.EndsAt = endsAt
 	this.Members = members
 	this.Items = items
 	this.Messages = messages
-	this.IsHost = isHost
 	return &this
 }
 
@@ -394,6 +394,30 @@ func (o *GetBuyerTogetherResponseData) SetId(v string) {
 	o.Id = v
 }
 
+// GetCode returns the Code field value
+func (o *GetBuyerTogetherResponseData) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerTogetherResponseData) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *GetBuyerTogetherResponseData) SetCode(v string) {
+	o.Code = v
+}
+
 // GetName returns the Name field value
 func (o *GetBuyerTogetherResponseData) GetName() string {
 	if o == nil {
@@ -418,6 +442,30 @@ func (o *GetBuyerTogetherResponseData) SetName(v string) {
 	o.Name = v
 }
 
+// GetIsHost returns the IsHost field value
+func (o *GetBuyerTogetherResponseData) GetIsHost() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsHost
+}
+
+// GetIsHostOk returns a tuple with the IsHost field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerTogetherResponseData) GetIsHostOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsHost, true
+}
+
+// SetIsHost sets field value
+func (o *GetBuyerTogetherResponseData) SetIsHost(v bool) {
+	o.IsHost = v
+}
+
 // GetEndsAt returns the EndsAt field value
 func (o *GetBuyerTogetherResponseData) GetEndsAt() string {
 	if o == nil {
@@ -440,30 +488,6 @@ func (o *GetBuyerTogetherResponseData) GetEndsAtOk() (*string, bool) {
 // SetEndsAt sets field value
 func (o *GetBuyerTogetherResponseData) SetEndsAt(v string) {
 	o.EndsAt = v
-}
-
-// GetCode returns the Code field value
-func (o *GetBuyerTogetherResponseData) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseData) GetCodeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *GetBuyerTogetherResponseData) SetCode(v string) {
-	o.Code = v
 }
 
 // GetMembers returns the Members field value
@@ -538,43 +562,22 @@ func (o *GetBuyerTogetherResponseData) SetMessages(v []GetBuyerTogetherResponseD
 	o.Messages = v
 }
 
-// GetIsHost returns the IsHost field value
-func (o *GetBuyerTogetherResponseData) GetIsHost() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsHost
-}
-
-// GetIsHostOk returns a tuple with the IsHost field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseData) GetIsHostOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IsHost, true
-}
-
-// SetIsHost sets field value
-func (o *GetBuyerTogetherResponseData) SetIsHost(v bool) {
-	o.IsHost = v
-}
-
 func (o GetBuyerTogetherResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
-		toSerialize["endsAt"] = o.EndsAt
+		toSerialize["isHost"] = o.IsHost
 	}
 	if true {
-		toSerialize["code"] = o.Code
+		toSerialize["endsAt"] = o.EndsAt
 	}
 	if true {
 		toSerialize["members"] = o.Members
@@ -584,9 +587,6 @@ func (o GetBuyerTogetherResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["messages"] = o.Messages
-	}
-	if true {
-		toSerialize["isHost"] = o.IsHost
 	}
 	return json.Marshal(toSerialize)
 }
@@ -630,11 +630,11 @@ func (v *NullableGetBuyerTogetherResponseData) UnmarshalJSON(src []byte) error {
 // GetBuyerTogetherResponseDataItems struct for GetBuyerTogetherResponseDataItems
 type GetBuyerTogetherResponseDataItems struct {
 	Id string `json:"id"`
-	Available bool `json:"available"`
-	Title NullableString `json:"title,omitempty"`
 	Slug string `json:"slug"`
+	Title NullableString `json:"title,omitempty"`
 	PriceCents float32 `json:"priceCents"`
 	Image NullableString `json:"image,omitempty"`
+	Available bool `json:"available"`
 	AddedBy string `json:"addedBy"`
 	Up float32 `json:"up"`
 	Down float32 `json:"down"`
@@ -645,12 +645,12 @@ type GetBuyerTogetherResponseDataItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerTogetherResponseDataItems(id string, available bool, slug string, priceCents float32, addedBy string, up float32, down float32, myVote float32) *GetBuyerTogetherResponseDataItems {
+func NewGetBuyerTogetherResponseDataItems(id string, slug string, priceCents float32, available bool, addedBy string, up float32, down float32, myVote float32) *GetBuyerTogetherResponseDataItems {
 	this := GetBuyerTogetherResponseDataItems{}
 	this.Id = id
-	this.Available = available
 	this.Slug = slug
 	this.PriceCents = priceCents
+	this.Available = available
 	this.AddedBy = addedBy
 	this.Up = up
 	this.Down = down
@@ -690,28 +690,28 @@ func (o *GetBuyerTogetherResponseDataItems) SetId(v string) {
 	o.Id = v
 }
 
-// GetAvailable returns the Available field value
-func (o *GetBuyerTogetherResponseDataItems) GetAvailable() bool {
+// GetSlug returns the Slug field value
+func (o *GetBuyerTogetherResponseDataItems) GetSlug() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.Available
+	return o.Slug
 }
 
-// GetAvailableOk returns a tuple with the Available field value
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseDataItems) GetAvailableOk() (*bool, bool) {
+func (o *GetBuyerTogetherResponseDataItems) GetSlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Available, true
+	return &o.Slug, true
 }
 
-// SetAvailable sets field value
-func (o *GetBuyerTogetherResponseDataItems) SetAvailable(v bool) {
-	o.Available = v
+// SetSlug sets field value
+func (o *GetBuyerTogetherResponseDataItems) SetSlug(v string) {
+	o.Slug = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -754,30 +754,6 @@ func (o *GetBuyerTogetherResponseDataItems) SetTitleNil() {
 // UnsetTitle ensures that no value is present for Title, not even an explicit nil
 func (o *GetBuyerTogetherResponseDataItems) UnsetTitle() {
 	o.Title.Unset()
-}
-
-// GetSlug returns the Slug field value
-func (o *GetBuyerTogetherResponseDataItems) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseDataItems) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *GetBuyerTogetherResponseDataItems) SetSlug(v string) {
-	o.Slug = v
 }
 
 // GetPriceCents returns the PriceCents field value
@@ -844,6 +820,30 @@ func (o *GetBuyerTogetherResponseDataItems) SetImageNil() {
 // UnsetImage ensures that no value is present for Image, not even an explicit nil
 func (o *GetBuyerTogetherResponseDataItems) UnsetImage() {
 	o.Image.Unset()
+}
+
+// GetAvailable returns the Available field value
+func (o *GetBuyerTogetherResponseDataItems) GetAvailable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerTogetherResponseDataItems) GetAvailableOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Available, true
+}
+
+// SetAvailable sets field value
+func (o *GetBuyerTogetherResponseDataItems) SetAvailable(v bool) {
+	o.Available = v
 }
 
 // GetAddedBy returns the AddedBy field value
@@ -948,19 +948,19 @@ func (o GetBuyerTogetherResponseDataItems) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["available"] = o.Available
+		toSerialize["slug"] = o.Slug
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
 	}
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
 	}
 	if o.Image.IsSet() {
 		toSerialize["image"] = o.Image.Get()
+	}
+	if true {
+		toSerialize["available"] = o.Available
 	}
 	if true {
 		toSerialize["addedBy"] = o.AddedBy
@@ -1137,22 +1137,22 @@ func (v *NullableGetBuyerTogetherResponseDataMembers) UnmarshalJSON(src []byte) 
 type GetBuyerTogetherResponseDataMessages struct {
 	Id string `json:"id"`
 	Name string `json:"name"`
-	CreatedAt string `json:"createdAt"`
-	Body string `json:"body"`
 	Me bool `json:"me"`
+	Body string `json:"body"`
+	CreatedAt string `json:"createdAt"`
 }
 
 // NewGetBuyerTogetherResponseDataMessages instantiates a new GetBuyerTogetherResponseDataMessages object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerTogetherResponseDataMessages(id string, name string, createdAt string, body string, me bool) *GetBuyerTogetherResponseDataMessages {
+func NewGetBuyerTogetherResponseDataMessages(id string, name string, me bool, body string, createdAt string) *GetBuyerTogetherResponseDataMessages {
 	this := GetBuyerTogetherResponseDataMessages{}
 	this.Id = id
 	this.Name = name
-	this.CreatedAt = createdAt
-	this.Body = body
 	this.Me = me
+	this.Body = body
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -1212,28 +1212,28 @@ func (o *GetBuyerTogetherResponseDataMessages) SetName(v string) {
 	o.Name = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetBuyerTogetherResponseDataMessages) GetCreatedAt() string {
+// GetMe returns the Me field value
+func (o *GetBuyerTogetherResponseDataMessages) GetMe() bool {
 	if o == nil {
-		var ret string
+		var ret bool
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.Me
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetMeOk returns a tuple with the Me field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseDataMessages) GetCreatedAtOk() (*string, bool) {
+func (o *GetBuyerTogetherResponseDataMessages) GetMeOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.Me, true
 }
 
-// SetCreatedAt sets field value
-func (o *GetBuyerTogetherResponseDataMessages) SetCreatedAt(v string) {
-	o.CreatedAt = v
+// SetMe sets field value
+func (o *GetBuyerTogetherResponseDataMessages) SetMe(v bool) {
+	o.Me = v
 }
 
 // GetBody returns the Body field value
@@ -1260,28 +1260,28 @@ func (o *GetBuyerTogetherResponseDataMessages) SetBody(v string) {
 	o.Body = v
 }
 
-// GetMe returns the Me field value
-func (o *GetBuyerTogetherResponseDataMessages) GetMe() bool {
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetBuyerTogetherResponseDataMessages) GetCreatedAt() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.Me
+	return o.CreatedAt
 }
 
-// GetMeOk returns a tuple with the Me field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerTogetherResponseDataMessages) GetMeOk() (*bool, bool) {
+func (o *GetBuyerTogetherResponseDataMessages) GetCreatedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Me, true
+	return &o.CreatedAt, true
 }
 
-// SetMe sets field value
-func (o *GetBuyerTogetherResponseDataMessages) SetMe(v bool) {
-	o.Me = v
+// SetCreatedAt sets field value
+func (o *GetBuyerTogetherResponseDataMessages) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 func (o GetBuyerTogetherResponseDataMessages) MarshalJSON() ([]byte, error) {
@@ -1293,13 +1293,13 @@ func (o GetBuyerTogetherResponseDataMessages) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["me"] = o.Me
 	}
 	if true {
 		toSerialize["body"] = o.Body
 	}
 	if true {
-		toSerialize["me"] = o.Me
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1342,20 +1342,20 @@ func (v *NullableGetBuyerTogetherResponseDataMessages) UnmarshalJSON(src []byte)
 
 // ListBuyerTogetherItem struct for ListBuyerTogetherItem
 type ListBuyerTogetherItem struct {
+	Code string `json:"code"`
 	Name string `json:"name"`
 	EndsAt string `json:"endsAt"`
-	Code string `json:"code"`
 }
 
 // NewListBuyerTogetherItem instantiates a new ListBuyerTogetherItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerTogetherItem(name string, endsAt string, code string) *ListBuyerTogetherItem {
+func NewListBuyerTogetherItem(code string, name string, endsAt string) *ListBuyerTogetherItem {
 	this := ListBuyerTogetherItem{}
+	this.Code = code
 	this.Name = name
 	this.EndsAt = endsAt
-	this.Code = code
 	return &this
 }
 
@@ -1365,6 +1365,30 @@ func NewListBuyerTogetherItem(name string, endsAt string, code string) *ListBuye
 func NewListBuyerTogetherItemWithDefaults() *ListBuyerTogetherItem {
 	this := ListBuyerTogetherItem{}
 	return &this
+}
+
+// GetCode returns the Code field value
+func (o *ListBuyerTogetherItem) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerTogetherItem) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *ListBuyerTogetherItem) SetCode(v string) {
+	o.Code = v
 }
 
 // GetName returns the Name field value
@@ -1415,40 +1439,16 @@ func (o *ListBuyerTogetherItem) SetEndsAt(v string) {
 	o.EndsAt = v
 }
 
-// GetCode returns the Code field value
-func (o *ListBuyerTogetherItem) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerTogetherItem) GetCodeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *ListBuyerTogetherItem) SetCode(v string) {
-	o.Code = v
-}
-
 func (o ListBuyerTogetherItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["code"] = o.Code
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["endsAt"] = o.EndsAt
-	}
-	if true {
-		toSerialize["code"] = o.Code
 	}
 	return json.Marshal(toSerialize)
 }

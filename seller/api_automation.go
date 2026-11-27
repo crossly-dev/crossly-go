@@ -40,8 +40,12 @@ func (r ApiCreateAutomationRuleRequest) Execute() (*ListAutomationRulesItem, *ht
 /*
 CreateAutomationRule Create an automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAutomationRuleRequest
+
+Deprecated
 */
 func (a *AutomationApiService) CreateAutomationRule(ctx context.Context) ApiCreateAutomationRuleRequest {
 	return ApiCreateAutomationRuleRequest{
@@ -52,6 +56,7 @@ func (a *AutomationApiService) CreateAutomationRule(ctx context.Context) ApiCrea
 
 // Execute executes the request
 //  @return ListAutomationRulesItem
+// Deprecated
 func (a *AutomationApiService) CreateAutomationRuleExecute(r ApiCreateAutomationRuleRequest) (*ListAutomationRulesItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -202,8 +207,12 @@ func (r ApiCreateAutomationRuleImportRequest) Execute() (*CreateAutomationRuleIm
 /*
 CreateAutomationRuleImport Import one or more rules from recipe JSON (single or bundle).
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAutomationRuleImportRequest
+
+Deprecated
 */
 func (a *AutomationApiService) CreateAutomationRuleImport(ctx context.Context) ApiCreateAutomationRuleImportRequest {
 	return ApiCreateAutomationRuleImportRequest{
@@ -214,6 +223,7 @@ func (a *AutomationApiService) CreateAutomationRuleImport(ctx context.Context) A
 
 // Execute executes the request
 //  @return CreateAutomationRuleImportResponse
+// Deprecated
 func (a *AutomationApiService) CreateAutomationRuleImportExecute(r ApiCreateAutomationRuleImportRequest) (*CreateAutomationRuleImportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -363,9 +373,13 @@ func (r ApiCreateAutomationRuleRunNowRequest) Execute() (*CreateAutomationRuleRu
 /*
 CreateAutomationRuleRunNow Fire an automation rule immediately.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiCreateAutomationRuleRunNowRequest
+
+Deprecated
 */
 func (a *AutomationApiService) CreateAutomationRuleRunNow(ctx context.Context, id string) ApiCreateAutomationRuleRunNowRequest {
 	return ApiCreateAutomationRuleRunNowRequest{
@@ -377,6 +391,7 @@ func (a *AutomationApiService) CreateAutomationRuleRunNow(ctx context.Context, i
 
 // Execute executes the request
 //  @return CreateAutomationRuleRunNowResponse
+// Deprecated
 func (a *AutomationApiService) CreateAutomationRuleRunNowExecute(r ApiCreateAutomationRuleRunNowRequest) (*CreateAutomationRuleRunNowResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -517,16 +532,20 @@ type ApiCreateAutomationRuleToggleRequest struct {
 }
 
 
-func (r ApiCreateAutomationRuleToggleRequest) Execute() (*UpdateAutomationRuleResponse, *http.Response, error) {
+func (r ApiCreateAutomationRuleToggleRequest) Execute() (*GetAutomationRuleResponse, *http.Response, error) {
 	return r.ApiService.CreateAutomationRuleToggleExecute(r)
 }
 
 /*
 CreateAutomationRuleToggle Flip an automation rule between active and inactive.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiCreateAutomationRuleToggleRequest
+
+Deprecated
 */
 func (a *AutomationApiService) CreateAutomationRuleToggle(ctx context.Context, id string) ApiCreateAutomationRuleToggleRequest {
 	return ApiCreateAutomationRuleToggleRequest{
@@ -537,13 +556,14 @@ func (a *AutomationApiService) CreateAutomationRuleToggle(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return UpdateAutomationRuleResponse
-func (a *AutomationApiService) CreateAutomationRuleToggleExecute(r ApiCreateAutomationRuleToggleRequest) (*UpdateAutomationRuleResponse, *http.Response, error) {
+//  @return GetAutomationRuleResponse
+// Deprecated
+func (a *AutomationApiService) CreateAutomationRuleToggleExecute(r ApiCreateAutomationRuleToggleRequest) (*GetAutomationRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateAutomationRuleResponse
+		localVarReturnValue  *GetAutomationRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutomationApiService.CreateAutomationRuleToggle")
@@ -684,8 +704,12 @@ func (r ApiCreateAutomationRuleValidateRecipeRequest) Execute() (*CreateAutomati
 /*
 CreateAutomationRuleValidateRecipe Dry-run validate one or more recipes against the live catalog.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAutomationRuleValidateRecipeRequest
+
+Deprecated
 */
 func (a *AutomationApiService) CreateAutomationRuleValidateRecipe(ctx context.Context) ApiCreateAutomationRuleValidateRecipeRequest {
 	return ApiCreateAutomationRuleValidateRecipeRequest{
@@ -696,6 +720,7 @@ func (a *AutomationApiService) CreateAutomationRuleValidateRecipe(ctx context.Co
 
 // Execute executes the request
 //  @return CreateAutomationRuleValidateRecipeResponse
+// Deprecated
 func (a *AutomationApiService) CreateAutomationRuleValidateRecipeExecute(r ApiCreateAutomationRuleValidateRecipeRequest) (*CreateAutomationRuleValidateRecipeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1164,9 +1189,13 @@ func (r ApiDeleteAutomationRuleRequest) Execute() (*OkResponse, *http.Response, 
 /*
 DeleteAutomationRule Delete an automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiDeleteAutomationRuleRequest
+
+Deprecated
 */
 func (a *AutomationApiService) DeleteAutomationRule(ctx context.Context, id string) ApiDeleteAutomationRuleRequest {
 	return ApiDeleteAutomationRuleRequest{
@@ -1178,6 +1207,7 @@ func (a *AutomationApiService) DeleteAutomationRule(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return OkResponse
+// Deprecated
 func (a *AutomationApiService) DeleteAutomationRuleExecute(r ApiDeleteAutomationRuleRequest) (*OkResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
@@ -1482,9 +1512,13 @@ func (r ApiGetAutomationRuleRequest) Execute() (*GetAutomationRuleResponse, *htt
 /*
 GetAutomationRule Get a single automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiGetAutomationRuleRequest
+
+Deprecated
 */
 func (a *AutomationApiService) GetAutomationRule(ctx context.Context, id string) ApiGetAutomationRuleRequest {
 	return ApiGetAutomationRuleRequest{
@@ -1496,6 +1530,7 @@ func (a *AutomationApiService) GetAutomationRule(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return GetAutomationRuleResponse
+// Deprecated
 func (a *AutomationApiService) GetAutomationRuleExecute(r ApiGetAutomationRuleRequest) (*GetAutomationRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1642,8 +1677,12 @@ func (r ApiGetAutomationRuleExportRequest) Execute() (*GetAutomationRuleExportRe
 /*
 GetAutomationRuleExport Export the user's full rule library as a portable recipe bundle.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAutomationRuleExportRequest
+
+Deprecated
 */
 func (a *AutomationApiService) GetAutomationRuleExport(ctx context.Context) ApiGetAutomationRuleExportRequest {
 	return ApiGetAutomationRuleExportRequest{
@@ -1654,6 +1693,7 @@ func (a *AutomationApiService) GetAutomationRuleExport(ctx context.Context) ApiG
 
 // Execute executes the request
 //  @return GetAutomationRuleExportResponse
+// Deprecated
 func (a *AutomationApiService) GetAutomationRuleExportExecute(r ApiGetAutomationRuleExportRequest) (*GetAutomationRuleExportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1800,9 +1840,13 @@ func (r ApiGetAutomationRuleExportByIdRequest) Execute() (*GetAutomationRuleExpo
 /*
 GetAutomationRuleExportById Export a single automation rule as a portable recipe.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiGetAutomationRuleExportByIdRequest
+
+Deprecated
 */
 func (a *AutomationApiService) GetAutomationRuleExportById(ctx context.Context, id string) ApiGetAutomationRuleExportByIdRequest {
 	return ApiGetAutomationRuleExportByIdRequest{
@@ -1814,6 +1858,7 @@ func (a *AutomationApiService) GetAutomationRuleExportById(ctx context.Context, 
 
 // Execute executes the request
 //  @return GetAutomationRuleExportByIdResponse
+// Deprecated
 func (a *AutomationApiService) GetAutomationRuleExportByIdExecute(r ApiGetAutomationRuleExportByIdRequest) (*GetAutomationRuleExportByIdResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1960,8 +2005,12 @@ func (r ApiListAutomationRulesRequest) Execute() (*ListAutomationRulesResponse, 
 /*
 ListAutomationRules List automation rules.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListAutomationRulesRequest
+
+Deprecated
 */
 func (a *AutomationApiService) ListAutomationRules(ctx context.Context) ApiListAutomationRulesRequest {
 	return ApiListAutomationRulesRequest{
@@ -1972,6 +2021,7 @@ func (a *AutomationApiService) ListAutomationRules(ctx context.Context) ApiListA
 
 // Execute executes the request
 //  @return ListAutomationRulesResponse
+// Deprecated
 func (a *AutomationApiService) ListAutomationRulesExecute(r ApiListAutomationRulesRequest) (*ListAutomationRulesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -2132,8 +2182,12 @@ func (r ApiListAutomationRunsRequest) Execute() (*ListAutomationRunsResponse, *h
 /*
 ListAutomationRuns Per-fire history for automation rules and workflow chain runs.
 
+Deprecated: use /v1/workflow-runs.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListAutomationRunsRequest
+
+Deprecated
 */
 func (a *AutomationApiService) ListAutomationRuns(ctx context.Context) ApiListAutomationRunsRequest {
 	return ApiListAutomationRunsRequest{
@@ -2144,6 +2198,7 @@ func (a *AutomationApiService) ListAutomationRuns(ctx context.Context) ApiListAu
 
 // Execute executes the request
 //  @return ListAutomationRunsResponse
+// Deprecated
 func (a *AutomationApiService) ListAutomationRunsExecute(r ApiListAutomationRunsRequest) (*ListAutomationRunsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -2449,16 +2504,20 @@ type ApiUpdateAutomationRuleRequest struct {
 }
 
 
-func (r ApiUpdateAutomationRuleRequest) Execute() (*UpdateAutomationRuleResponse, *http.Response, error) {
+func (r ApiUpdateAutomationRuleRequest) Execute() (*GetAutomationRuleResponse, *http.Response, error) {
 	return r.ApiService.UpdateAutomationRuleExecute(r)
 }
 
 /*
 UpdateAutomationRule Update an automation rule (full replace).
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApiUpdateAutomationRuleRequest
+
+Deprecated
 */
 func (a *AutomationApiService) UpdateAutomationRule(ctx context.Context, id string) ApiUpdateAutomationRuleRequest {
 	return ApiUpdateAutomationRuleRequest{
@@ -2469,13 +2528,14 @@ func (a *AutomationApiService) UpdateAutomationRule(ctx context.Context, id stri
 }
 
 // Execute executes the request
-//  @return UpdateAutomationRuleResponse
-func (a *AutomationApiService) UpdateAutomationRuleExecute(r ApiUpdateAutomationRuleRequest) (*UpdateAutomationRuleResponse, *http.Response, error) {
+//  @return GetAutomationRuleResponse
+// Deprecated
+func (a *AutomationApiService) UpdateAutomationRuleExecute(r ApiUpdateAutomationRuleRequest) (*GetAutomationRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *UpdateAutomationRuleResponse
+		localVarReturnValue  *GetAutomationRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutomationApiService.UpdateAutomationRule")

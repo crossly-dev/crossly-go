@@ -4,8 +4,8 @@ All URIs are relative to *https://crossly.net/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTeamAccept**](TeamApi.md#CreateTeamAccept) | **Post** /v1/team/accept | Accept a pending team invitation by raw token.
-[**CreateTeamInvite**](TeamApi.md#CreateTeamInvite) | **Post** /v1/team/invite | Mint a team invitation; returns the one-time accept URL.
+[**CreateTeamAccept**](TeamApi.md#CreateTeamAccept) | **Post** /v1/team/accept | Accept a team invitation by the raw token from its link.
+[**CreateTeamInvite**](TeamApi.md#CreateTeamInvite) | **Post** /v1/team/invite | Issue a team invitation; returns the one-time accept URL (nothing is emailed).
 [**CreateTeamLeave**](TeamApi.md#CreateTeamLeave) | **Post** /v1/team/leave | Leave every team this user is currently a member of.
 [**CreateTeamRevoke**](TeamApi.md#CreateTeamRevoke) | **Post** /v1/team/revoke | Revoke a pending invite OR an active team member.
 [**GetTeam**](TeamApi.md#GetTeam) | **Get** /v1/team | List pending team invitations + active members.
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > CreateTeamAcceptResponse CreateTeamAccept(ctx).Execute()
 
-Accept a pending team invitation by raw token.
+Accept a team invitation by the raw token from its link.
 
 ### Example
 
@@ -75,7 +75,7 @@ Other parameters are passed through a pointer to a apiCreateTeamAcceptRequest st
 
 > CreateTeamInviteResponse CreateTeamInvite(ctx).Execute()
 
-Mint a team invitation; returns the one-time accept URL.
+Issue a team invitation; returns the one-time accept URL (nothing is emailed).
 
 ### Example
 

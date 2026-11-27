@@ -200,21 +200,20 @@ type CreateTeamInviteResponse struct {
 	Role string `json:"role"`
 	Scopes []string `json:"scopes"`
 	ExpiresAt string `json:"expiresAt"`
-	AcceptUrl string `json:"acceptUrl"`
+	AcceptUrl NullableString `json:"acceptUrl,omitempty"`
 }
 
 // NewCreateTeamInviteResponse instantiates a new CreateTeamInviteResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTeamInviteResponse(id string, inviteeEmail string, role string, scopes []string, expiresAt string, acceptUrl string) *CreateTeamInviteResponse {
+func NewCreateTeamInviteResponse(id string, inviteeEmail string, role string, scopes []string, expiresAt string) *CreateTeamInviteResponse {
 	this := CreateTeamInviteResponse{}
 	this.Id = id
 	this.InviteeEmail = inviteeEmail
 	this.Role = role
 	this.Scopes = scopes
 	this.ExpiresAt = expiresAt
-	this.AcceptUrl = acceptUrl
 	return &this
 }
 
@@ -346,28 +345,46 @@ func (o *CreateTeamInviteResponse) SetExpiresAt(v string) {
 	o.ExpiresAt = v
 }
 
-// GetAcceptUrl returns the AcceptUrl field value
+// GetAcceptUrl returns the AcceptUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTeamInviteResponse) GetAcceptUrl() string {
-	if o == nil {
+	if o == nil || o.AcceptUrl.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.AcceptUrl
+	return *o.AcceptUrl.Get()
 }
 
-// GetAcceptUrlOk returns a tuple with the AcceptUrl field value
+// GetAcceptUrlOk returns a tuple with the AcceptUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTeamInviteResponse) GetAcceptUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.AcceptUrl, true
+	return o.AcceptUrl.Get(), o.AcceptUrl.IsSet()
 }
 
-// SetAcceptUrl sets field value
+// HasAcceptUrl returns a boolean if a field has been set.
+func (o *CreateTeamInviteResponse) HasAcceptUrl() bool {
+	if o != nil && o.AcceptUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAcceptUrl gets a reference to the given NullableString and assigns it to the AcceptUrl field.
 func (o *CreateTeamInviteResponse) SetAcceptUrl(v string) {
-	o.AcceptUrl = v
+	o.AcceptUrl.Set(&v)
+}
+// SetAcceptUrlNil sets the value for AcceptUrl to be an explicit nil
+func (o *CreateTeamInviteResponse) SetAcceptUrlNil() {
+	o.AcceptUrl.Set(nil)
+}
+
+// UnsetAcceptUrl ensures that no value is present for AcceptUrl, not even an explicit nil
+func (o *CreateTeamInviteResponse) UnsetAcceptUrl() {
+	o.AcceptUrl.Unset()
 }
 
 func (o CreateTeamInviteResponse) MarshalJSON() ([]byte, error) {
@@ -387,8 +404,8 @@ func (o CreateTeamInviteResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["expiresAt"] = o.ExpiresAt
 	}
-	if true {
-		toSerialize["acceptUrl"] = o.AcceptUrl
+	if o.AcceptUrl.IsSet() {
+		toSerialize["acceptUrl"] = o.AcceptUrl.Get()
 	}
 	return json.Marshal(toSerialize)
 }

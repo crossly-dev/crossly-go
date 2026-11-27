@@ -10,7 +10,8 @@ Method | HTTP request | Description
 [**CreateInventoryBulkArchive**](InventoryApi.md#CreateInventoryBulkArchive) | **Post** /v1/inventory/bulk-archive | Bulk archive inventory items (soft).
 [**CreateInventoryBulkDelete**](InventoryApi.md#CreateInventoryBulkDelete) | **Post** /v1/inventory/bulk-delete | Bulk delete inventory items (delinks listings).
 [**CreateInventoryBulkLabel**](InventoryApi.md#CreateInventoryBulkLabel) | **Post** /v1/inventory/bulk-labels | Bulk add/remove labels on inventory items.
-[**CreateInventoryBulkQuantity**](InventoryApi.md#CreateInventoryBulkQuantity) | **Post** /v1/inventory/bulk-quantity | Set / add / subtract stock across many items, syncing live listings.
+[**CreateInventoryBulkQuantity**](InventoryApi.md#CreateInventoryBulkQuantity) | **Post** /v1/inventory/bulk-quantity | Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+[**CreateInventoryBulkRestore**](InventoryApi.md#CreateInventoryBulkRestore) | **Post** /v1/inventory/bulk-restore | Restore archived inventory items (status returns to active, or sold_out when no stock).
 [**CreateInventoryCatalogMatchRefresh**](InventoryApi.md#CreateInventoryCatalogMatchRefresh) | **Post** /v1/inventory/{id}/catalog-matches/refresh | Run catalog matching for one item now. An identifier (UPC, style code, catalogue number) that resolves to exactly one product links it; otherwise likely products are returned as suggestions to confirm.
 [**CreateInventoryCsvExport**](InventoryApi.md#CreateInventoryCsvExport) | **Post** /v1/inventory/csv/export | Export inventory as CSV. Round-trips back through csv/import.
 [**CreateInventoryCsvImport**](InventoryApi.md#CreateInventoryCsvImport) | **Post** /v1/inventory/csv/import | Import a CSV. Rows whose sku matches an existing item update it; others are added. Pass dryRun to preview.
@@ -34,18 +35,21 @@ Method | HTTP request | Description
 [**CreateSpatialStreetRequestFound**](InventoryApi.md#CreateSpatialStreetRequestFound) | **Post** /v1/spatial/streets/requests/{id}/found | Found an approved street, in CBX.
 [**DeleteInventory**](InventoryApi.md#DeleteInventory) | **Delete** /v1/inventory/{id} | Soft-archive an inventory item.
 [**DeleteSpatialStreetPlot**](InventoryApi.md#DeleteSpatialStreetPlot) | **Delete** /v1/spatial/streets/{slug}/plot | Take your shop off a street.
+[**GetAnalyticInventory**](InventoryApi.md#GetAnalyticInventory) | **Get** /v1/analytics/inventory | Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+[**GetGameEventSummary**](InventoryApi.md#GetGameEventSummary) | **Get** /v1/games/events/{eventId}/summary | The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+[**GetGameHuntBuild**](InventoryApi.md#GetGameHuntBuild) | **Get** /v1/games/hunts/{id}/build | One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
 [**GetGameLeaderboard**](InventoryApi.md#GetGameLeaderboard) | **Get** /v1/games/leaderboards | Game leaderboards: for each of Price Guess (wins, then points), scavenger hunts (finished) and speed trades (won), the top ten this week (Monday 00:00 UTC on) under week and of all time under all -- rank, name, named, value and, for Price Guess, score. A name appears only for somebody who chose to be seen by name in Crossly World; everyone else is \&quot;A player\&quot; in their place.
 [**GetHome**](InventoryApi.md#GetHome) | **Get** /v1/homes/{slug} | A home by its address, as you may see it: open homes to anybody, friends-only homes to mutual follows, locked homes to their owner. 404 when you may not enter.
 [**GetHomeMine**](InventoryApi.md#GetHomeMine) | **Get** /v1/homes/mine | Your Crossly World home: its address, privacy (open / friends / locked), theme, the room, the layout (each piece with what it shows -- things you no longer own are left out at read time) and the guestbook. Made on first read.
 [**GetInventory**](InventoryApi.md#GetInventory) | **Get** /v1/inventory/{id} | Get one inventory item with platform listings.
-[**GetInventoryAging**](InventoryApi.md#GetInventoryAging) | **Get** /v1/inventory/aging | Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+[**GetInventoryAging**](InventoryApi.md#GetInventoryAging) | **Get** /v1/inventory/aging | Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
 [**GetInventoryCatalogMatch**](InventoryApi.md#GetInventoryCatalogMatch) | **Get** /v1/inventory/{id}/catalog-matches | One inventory item&#39;s catalog binding (if confirmed) and its pending match suggestions.
 [**GetInventoryFacet**](InventoryApi.md#GetInventoryFacet) | **Get** /v1/inventory/facets | Distinct brands + categories across this user&#39;s inventory.
 [**GetInventoryLabel**](InventoryApi.md#GetInventoryLabel) | **Get** /v1/inventory/labels | List every distinct label across this user&#39;s inventory.
 [**GetInventoryLabelStat**](InventoryApi.md#GetInventoryLabelStat) | **Get** /v1/inventory/labels/stats | List distinct labels with usage counts + colors.
-[**GetInventorySellThrough**](InventoryApi.md#GetInventorySellThrough) | **Get** /v1/inventory/sell-through | Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+[**GetInventorySellThrough**](InventoryApi.md#GetInventorySellThrough) | **Get** /v1/inventory/sell-through | Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
 [**GetInventorySkuExist**](InventoryApi.md#GetInventorySkuExist) | **Get** /v1/inventory/sku-exists | Check whether a SKU is already in use on this user&#39;s inventory.
-[**GetInventoryValueHistory**](InventoryApi.md#GetInventoryValueHistory) | **Get** /v1/inventory/value-history | Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+[**GetInventoryValueHistory**](InventoryApi.md#GetInventoryValueHistory) | **Get** /v1/inventory/value-history | Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
 [**GetMainStage**](InventoryApi.md#GetMainStage) | **Get** /v1/main-stage | The Crossly World Main Stage right now: the live show (title, kind, host lineup), the stream on its big screen while a lineup host is on air, how many people are there (it holds 64 per copy and opens copies as it fills) and what is on next.
 [**GetPetMine**](InventoryApi.md#GetPetMine) | **Get** /v1/pets/mine | Your Crossly World pets: every kind (cat, dog, slab bot) with whether you own it, when it was earned and the ways to earn it (a quest or a reputation level -- pets are never sold), plus the pet walking beside you and the one greeting visitors at your shop door.
 [**GetReputation**](InventoryApi.md#GetReputation) | **Get** /v1/reputation/{profile} | Somebody&#39;s public reputation levels by their storefront handle: the level on each track and their nameplate badge. 404 for an unknown handle.
@@ -64,12 +68,14 @@ Method | HTTP request | Description
 [**GetSpatialStreet**](InventoryApi.md#GetSpatialStreet) | **Get** /v1/spatial/streets/{slug} | A street: every plot and the shop open on each.
 [**GetSpatialStreetFounding**](InventoryApi.md#GetSpatialStreetFounding) | **Get** /v1/spatial/streets/founding | What founding a street costs.
 [**GetSpatialStreetPlotQuote**](InventoryApi.md#GetSpatialStreetPlotQuote) | **Get** /v1/spatial/streets/{slug}/plots/{number}/quote | What a plot costs.
+[**GetWorldPulse**](InventoryApi.md#GetWorldPulse) | **Get** /v1/world/pulse | Crossly World&#39;s pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world&#39;s shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain&#39;s mark.
 [**GetWorldRoomFunnel**](InventoryApi.md#GetWorldRoomFunnel) | **Get** /v1/world/rooms/{sceneId}/funnel | Your room&#39;s funnel over the last &#x60;days&#x60; (1-35, default 30): visitors (people, once a day), looks, items opened, checkouts started from the room, paid sales and revenueCents. Sales count only lines the room itself put in a cart.
 [**GetWorldShelf**](InventoryApi.md#GetWorldShelf) | **Get** /v1/world/shelf/{listingSlug} | Where a Crossly listing sits on a shelf in a public room right now (roomSlug, roomName, itemId), or data:null when it is in no room.
 [**GetWorldSkusCheapest**](InventoryApi.md#GetWorldSkusCheapest) | **Get** /v1/world/skus/{skuId}/cheapest | The cheapest copy of a catalogue piece for sale on Crossly now, matched by the catalogue id (listingSlug, priceCents, and the room and item when it stands on a shelf), or data:null.
 [**ListCatalogMatches**](InventoryApi.md#ListCatalogMatches) | **Get** /v1/catalog-matches | Pending catalog-match suggestions: inventory items that look like a catalog product, awaiting your confirm.
 [**ListFestivals**](InventoryApi.md#ListFestivals) | **Get** /v1/festivals | Live and upcoming Crossly World festivals, soonest first: a weekend when every street wears one decor and the festival quest line (limited pins) counts. meta.live is the festival on now, if any.
 [**ListGameBreakUpcoming**](InventoryApi.md#ListGameBreakUpcoming) | **Get** /v1/games/breaks/upcoming | Pack breaks staged on shop stages in Crossly World, live first then soonest: the break, its shop, start time, spots (taken or not, buyer masked), hits revealed so far, and buyUrl -- the break&#39;s page on crossly.net, the only place a spot is bought (null once every spot has sold).
+[**ListGameHuntMine**](InventoryApi.md#ListGameHuntMine) | **Get** /v1/games/hunts/mine | Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
 [**ListGameHunts**](InventoryApi.md#ListGameHunts) | **Get** /v1/games/hunts | Scavenger hunts running now in Crossly World shops and pop-up stalls, ending soonest first: title, shop (name and slug -- for a hunt at a stall, the street slug, with stall.bookingId set), how many tokens, what finishing unlocks (\&quot;10% off\&quot; -- never the code), when it ends and how many people have finished. Optional place filters to one shop or street slug.
 [**ListGameResultMine**](InventoryApi.md#ListGameResultMine) | **Get** /v1/games/results/mine | Your market-game results, newest first: game (price_guess, price_guess_solo, hunt, speed_trade, break_host), the round/hunt/trade/break id, score, whether you won, Bucks prize in cents (0 while prizes are pins only) and detail. meta.unlocks lists the hunt coupons you earned (with their codes); meta.hits the break hits pulled for spots you bought, with the order each ships with.
 [**ListHomeMineBuilders**](InventoryApi.md#ListHomeMineBuilders) | **Get** /v1/homes/mine/builders | Your co-builders: friends you let rearrange your home in the world (move, turn, take out your things, add free furniture; never your bought pieces). Each: userId, name, friends (false once the friendship ended: listed but powerless).
@@ -475,7 +481,9 @@ Other parameters are passed through a pointer to a apiCreateInventoryBulkLabelRe
 
 > CreateInventoryBulkQuantityResponse CreateInventoryBulkQuantity(ctx).Execute()
 
-Set / add / subtract stock across many items, syncing live listings.
+Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+
+
 
 ### Example
 
@@ -515,6 +523,64 @@ Other parameters are passed through a pointer to a apiCreateInventoryBulkQuantit
 ### Return type
 
 **CreateInventoryBulkQuantityResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateInventoryBulkRestore
+
+> CreateInventoryBulkRestoreResponse CreateInventoryBulkRestore(ctx).Execute()
+
+Restore archived inventory items (status returns to active, or sold_out when no stock).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.CreateInventoryBulkRestore(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.CreateInventoryBulkRestore``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateInventoryBulkRestore`: CreateInventoryBulkRestoreResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.CreateInventoryBulkRestore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateInventoryBulkRestoreRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateInventoryBulkRestoreResponse**
 
 ### Authorization
 
@@ -714,7 +780,7 @@ Other parameters are passed through a pointer to a apiCreateInventoryCsvImportRe
 
 ## CreateInventoryLabelRename
 
-> CreateInventoryLabelRenameResponse CreateInventoryLabelRename(ctx).Execute()
+> UpdatedResponse CreateInventoryLabelRename(ctx).Execute()
 
 Rename a label across every inventory item.
 
@@ -739,7 +805,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.CreateInventoryLabelRename``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateInventoryLabelRename`: CreateInventoryLabelRenameResponse
+    // response from `CreateInventoryLabelRename`: UpdatedResponse
     fmt.Fprintf(os.Stdout, "Response from `InventoryApi.CreateInventoryLabelRename`: %v\n", resp)
 }
 ```
@@ -755,7 +821,7 @@ Other parameters are passed through a pointer to a apiCreateInventoryLabelRename
 
 ### Return type
 
-**CreateInventoryLabelRenameResponse**
+**UpdatedResponse**
 
 ### Authorization
 
@@ -1166,7 +1232,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialPropertyLeaseAccept
 
-> CreateSpatialPropertyLeaseAcceptResponse CreateSpatialPropertyLeaseAccept(ctx, id).Execute()
+> CreateWorldMarketPlotRentResponse CreateSpatialPropertyLeaseAccept(ctx, id).Execute()
 
 Take a plot on lease.
 
@@ -1194,7 +1260,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.CreateSpatialPropertyLeaseAccept``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialPropertyLeaseAccept`: CreateSpatialPropertyLeaseAcceptResponse
+    // response from `CreateSpatialPropertyLeaseAccept`: CreateWorldMarketPlotRentResponse
     fmt.Fprintf(os.Stdout, "Response from `InventoryApi.CreateSpatialPropertyLeaseAccept`: %v\n", resp)
 }
 ```
@@ -1218,7 +1284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateSpatialPropertyLeaseAcceptResponse**
+**CreateWorldMarketPlotRentResponse**
 
 ### Authorization
 
@@ -2053,6 +2119,225 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAnalyticInventory
+
+> GetAnalyticInventoryResponse GetAnalyticInventory(ctx).Range_(range_).From(from).To(to).Compare(compare).CmpFrom(cmpFrom).CmpTo(cmpTo).Labels(labels).Platforms(platforms).Category(category).Brand(brand).Tz(tz).Maturity(maturity).Execute()
+
+Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    range_ := "range__example" // string | Reporting window. Default 30d. custom needs from and to. (optional)
+    from := "from_example" // string | YYYY-MM-DD, inclusive, in tz. Only with range=custom. (optional)
+    to := "to_example" // string | YYYY-MM-DD, inclusive, in tz. Only with range=custom. (optional)
+    compare := "compare_example" // string | Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo). (optional)
+    cmpFrom := "cmpFrom_example" // string | YYYY-MM-DD. Only with compare=custom. (optional)
+    cmpTo := "cmpTo_example" // string | YYYY-MM-DD. Only with compare=custom. (optional)
+    labels := "labels_example" // string | Comma-separated inventory labels (any of them). (optional)
+    platforms := "platforms_example" // string | Comma-separated platform ids. (optional)
+    category := "category_example" // string | Canonical main-category key. (optional)
+    brand := "brand_example" // string | Brand name. (optional)
+    tz := "tz_example" // string | IANA time zone for day boundaries. Default UTC. An invalid name is a 400. (optional)
+    maturity := int32(56) // int32 | Days an item has to sell within to count as sold in the cohort. Default 30. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.GetAnalyticInventory(context.Background()).Range_(range_).From(from).To(to).Compare(compare).CmpFrom(cmpFrom).CmpTo(cmpTo).Labels(labels).Platforms(platforms).Category(category).Brand(brand).Tz(tz).Maturity(maturity).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.GetAnalyticInventory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAnalyticInventory`: GetAnalyticInventoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.GetAnalyticInventory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAnalyticInventoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **range_** | **string** | Reporting window. Default 30d. custom needs from and to. | 
+ **from** | **string** | YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom. | 
+ **to** | **string** | YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom. | 
+ **compare** | **string** | Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo). | 
+ **cmpFrom** | **string** | YYYY-MM-DD. Only with compare&#x3D;custom. | 
+ **cmpTo** | **string** | YYYY-MM-DD. Only with compare&#x3D;custom. | 
+ **labels** | **string** | Comma-separated inventory labels (any of them). | 
+ **platforms** | **string** | Comma-separated platform ids. | 
+ **category** | **string** | Canonical main-category key. | 
+ **brand** | **string** | Brand name. | 
+ **tz** | **string** | IANA time zone for day boundaries. Default UTC. An invalid name is a 400. | 
+ **maturity** | **int32** | Days an item has to sell within to count as sold in the cohort. Default 30. | 
+
+### Return type
+
+**GetAnalyticInventoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetGameEventSummary
+
+> GetGameEventSummaryResponse GetGameEventSummary(ctx, eventId).Execute()
+
+The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    eventId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.GetGameEventSummary(context.Background(), eventId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.GetGameEventSummary``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGameEventSummary`: GetGameEventSummaryResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.GetGameEventSummary`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**eventId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGameEventSummaryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetGameEventSummaryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetGameHuntBuild
+
+> GetGameHuntBuildResponse GetGameHuntBuild(ctx, id).Execute()
+
+One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.GetGameHuntBuild(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.GetGameHuntBuild``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGameHuntBuild`: GetGameHuntBuildResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.GetGameHuntBuild`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGameHuntBuildRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetGameHuntBuildResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetGameLeaderboard
 
 > GetGameLeaderboardResponse GetGameLeaderboard(ctx).Execute()
@@ -2307,7 +2592,7 @@ Name | Type | Description  | Notes
 
 > GetInventoryAgingResponse GetInventoryAging(ctx).Execute()
 
-Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
 
 ### Example
 
@@ -2606,7 +2891,7 @@ Other parameters are passed through a pointer to a apiGetInventoryLabelStatReque
 
 > GetInventorySellThroughResponse GetInventorySellThrough(ctx).Execute()
 
-Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
 
 ### Example
 
@@ -2727,7 +3012,7 @@ Name | Type | Description  | Notes
 
 > GetInventoryValueHistoryResponse GetInventoryValueHistory(ctx).Execute()
 
-Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
 
 ### Example
 
@@ -3941,6 +4226,64 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetWorldPulse
+
+> GetWorldPulseResponse GetWorldPulse(ctx).Execute()
+
+Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.GetWorldPulse(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.GetWorldPulse``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldPulse`: GetWorldPulseResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.GetWorldPulse`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldPulseRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldPulseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldRoomFunnel
 
 > GetWorldRoomFunnelResponse GetWorldRoomFunnel(ctx, sceneId).Days(days).Execute()
@@ -4326,6 +4669,64 @@ Other parameters are passed through a pointer to a apiListGameBreakUpcomingReque
 [[Back to README]](../README.md)
 
 
+## ListGameHuntMine
+
+> ListGameHuntMineResponse ListGameHuntMine(ctx).Execute()
+
+Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InventoryApi.ListGameHuntMine(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.ListGameHuntMine``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListGameHuntMine`: ListGameHuntMineResponse
+    fmt.Fprintf(os.Stdout, "Response from `InventoryApi.ListGameHuntMine`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListGameHuntMineRequest struct via the builder pattern
+
+
+### Return type
+
+**ListGameHuntMineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListGameHunts
 
 > ListGameHuntsResponse ListGameHunts(ctx).Place(place).Execute()
@@ -4565,7 +4966,7 @@ Other parameters are passed through a pointer to a apiListHomeOfTheWeekRequest s
 
 ## ListInventory
 
-> ListInventoryResponse ListInventory(ctx).Page(page).Limit(limit).Search(search).Status(status).Kind(kind).Platforms(platforms).PlatformMode(platformMode).Execute()
+> ListInventoryResponse ListInventory(ctx).Page(page).Limit(limit).Search(search).Status(status).Kind(kind).Platforms(platforms).PlatformMode(platformMode).Sku(sku).UpdatedSince(updatedSince).Execute()
 
 List inventory items.
 
@@ -4578,6 +4979,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
@@ -4589,10 +4991,12 @@ func main() {
     kind := "kind_example" // string | Physical goods or Web3 assets (NFTs). Omit for both. (optional)
     platforms := "platforms_example" // string | Comma-separated marketplaces, e.g. \"ebay,vinted\". Items live (an active listing) on any of them. (optional)
     platformMode := "platformMode_example" // string | \"not_listed\" inverts `platforms`: items live on none of them. Default \"listed\". (optional)
+    sku := "sku_example" // string | Exact SKU match: look up the row a supplier product maps to. (optional)
+    updatedSince := time.Now() // time.Time | Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InventoryApi.ListInventory(context.Background()).Page(page).Limit(limit).Search(search).Status(status).Kind(kind).Platforms(platforms).PlatformMode(platformMode).Execute()
+    resp, r, err := apiClient.InventoryApi.ListInventory(context.Background()).Page(page).Limit(limit).Search(search).Status(status).Kind(kind).Platforms(platforms).PlatformMode(platformMode).Sku(sku).UpdatedSince(updatedSince).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InventoryApi.ListInventory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4620,6 +5024,8 @@ Name | Type | Description  | Notes
  **kind** | **string** | Physical goods or Web3 assets (NFTs). Omit for both. | 
  **platforms** | **string** | Comma-separated marketplaces, e.g. \&quot;ebay,vinted\&quot;. Items live (an active listing) on any of them. | 
  **platformMode** | **string** | \&quot;not_listed\&quot; inverts &#x60;platforms&#x60;: items live on none of them. Default \&quot;listed\&quot;. | 
+ **sku** | **string** | Exact SKU match: look up the row a supplier product maps to. | 
+ **updatedSince** | **time.Time** | Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw. | 
 
 ### Return type
 

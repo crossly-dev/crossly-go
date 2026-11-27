@@ -273,25 +273,25 @@ func (v *NullableCreateBuyerAuctionBidResponse) UnmarshalJSON(src []byte) error 
 
 // CreateBuyerAuctionBidResponseData struct for CreateBuyerAuctionBidResponseData
 type CreateBuyerAuctionBidResponseData struct {
-	// Possibly extended by anti-sniping.
-	EndsAt string `json:"endsAt"`
-	// The price now, in cents, after proxy bidding resolved.
-	CurrentBidCents float32 `json:"currentBidCents"`
 	Ok bool `json:"ok"`
 	// false = a standing proxy bid outbid you straight away.
 	Leading bool `json:"leading"`
+	// The price now, in cents, after proxy bidding resolved.
+	CurrentBidCents float32 `json:"currentBidCents"`
+	// Possibly extended by anti-sniping.
+	EndsAt string `json:"endsAt"`
 }
 
 // NewCreateBuyerAuctionBidResponseData instantiates a new CreateBuyerAuctionBidResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerAuctionBidResponseData(endsAt string, currentBidCents float32, ok bool, leading bool) *CreateBuyerAuctionBidResponseData {
+func NewCreateBuyerAuctionBidResponseData(ok bool, leading bool, currentBidCents float32, endsAt string) *CreateBuyerAuctionBidResponseData {
 	this := CreateBuyerAuctionBidResponseData{}
-	this.EndsAt = endsAt
-	this.CurrentBidCents = currentBidCents
 	this.Ok = ok
 	this.Leading = leading
+	this.CurrentBidCents = currentBidCents
+	this.EndsAt = endsAt
 	return &this
 }
 
@@ -301,54 +301,6 @@ func NewCreateBuyerAuctionBidResponseData(endsAt string, currentBidCents float32
 func NewCreateBuyerAuctionBidResponseDataWithDefaults() *CreateBuyerAuctionBidResponseData {
 	this := CreateBuyerAuctionBidResponseData{}
 	return &this
-}
-
-// GetEndsAt returns the EndsAt field value
-func (o *CreateBuyerAuctionBidResponseData) GetEndsAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndsAt
-}
-
-// GetEndsAtOk returns a tuple with the EndsAt field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerAuctionBidResponseData) GetEndsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EndsAt, true
-}
-
-// SetEndsAt sets field value
-func (o *CreateBuyerAuctionBidResponseData) SetEndsAt(v string) {
-	o.EndsAt = v
-}
-
-// GetCurrentBidCents returns the CurrentBidCents field value
-func (o *CreateBuyerAuctionBidResponseData) GetCurrentBidCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.CurrentBidCents
-}
-
-// GetCurrentBidCentsOk returns a tuple with the CurrentBidCents field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerAuctionBidResponseData) GetCurrentBidCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CurrentBidCents, true
-}
-
-// SetCurrentBidCents sets field value
-func (o *CreateBuyerAuctionBidResponseData) SetCurrentBidCents(v float32) {
-	o.CurrentBidCents = v
 }
 
 // GetOk returns the Ok field value
@@ -399,19 +351,67 @@ func (o *CreateBuyerAuctionBidResponseData) SetLeading(v bool) {
 	o.Leading = v
 }
 
+// GetCurrentBidCents returns the CurrentBidCents field value
+func (o *CreateBuyerAuctionBidResponseData) GetCurrentBidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CurrentBidCents
+}
+
+// GetCurrentBidCentsOk returns a tuple with the CurrentBidCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerAuctionBidResponseData) GetCurrentBidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CurrentBidCents, true
+}
+
+// SetCurrentBidCents sets field value
+func (o *CreateBuyerAuctionBidResponseData) SetCurrentBidCents(v float32) {
+	o.CurrentBidCents = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *CreateBuyerAuctionBidResponseData) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerAuctionBidResponseData) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *CreateBuyerAuctionBidResponseData) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
 func (o CreateBuyerAuctionBidResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["endsAt"] = o.EndsAt
-	}
-	if true {
-		toSerialize["currentBidCents"] = o.CurrentBidCents
-	}
 	if true {
 		toSerialize["ok"] = o.Ok
 	}
 	if true {
 		toSerialize["leading"] = o.Leading
+	}
+	if true {
+		toSerialize["currentBidCents"] = o.CurrentBidCents
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -548,8 +548,8 @@ type CreateBuyerAuctionPayResponseData struct {
 	Paid bool `json:"paid"`
 	// Stripe PaymentIntent client secret — confirm it with Stripe on the buyer's device.
 	ClientSecret NullableString `json:"clientSecret,omitempty"`
-	AmountCents NullableFloat32 `json:"amountCents,omitempty"`
 	PaymentIntentId NullableString `json:"paymentIntentId,omitempty"`
+	AmountCents NullableFloat32 `json:"amountCents,omitempty"`
 }
 
 // NewCreateBuyerAuctionPayResponseData instantiates a new CreateBuyerAuctionPayResponseData object
@@ -636,48 +636,6 @@ func (o *CreateBuyerAuctionPayResponseData) UnsetClientSecret() {
 	o.ClientSecret.Unset()
 }
 
-// GetAmountCents returns the AmountCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateBuyerAuctionPayResponseData) GetAmountCents() float32 {
-	if o == nil || o.AmountCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.AmountCents.Get()
-}
-
-// GetAmountCentsOk returns a tuple with the AmountCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateBuyerAuctionPayResponseData) GetAmountCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AmountCents.Get(), o.AmountCents.IsSet()
-}
-
-// HasAmountCents returns a boolean if a field has been set.
-func (o *CreateBuyerAuctionPayResponseData) HasAmountCents() bool {
-	if o != nil && o.AmountCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAmountCents gets a reference to the given NullableFloat32 and assigns it to the AmountCents field.
-func (o *CreateBuyerAuctionPayResponseData) SetAmountCents(v float32) {
-	o.AmountCents.Set(&v)
-}
-// SetAmountCentsNil sets the value for AmountCents to be an explicit nil
-func (o *CreateBuyerAuctionPayResponseData) SetAmountCentsNil() {
-	o.AmountCents.Set(nil)
-}
-
-// UnsetAmountCents ensures that no value is present for AmountCents, not even an explicit nil
-func (o *CreateBuyerAuctionPayResponseData) UnsetAmountCents() {
-	o.AmountCents.Unset()
-}
-
 // GetPaymentIntentId returns the PaymentIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateBuyerAuctionPayResponseData) GetPaymentIntentId() string {
 	if o == nil || o.PaymentIntentId.Get() == nil {
@@ -720,6 +678,48 @@ func (o *CreateBuyerAuctionPayResponseData) UnsetPaymentIntentId() {
 	o.PaymentIntentId.Unset()
 }
 
+// GetAmountCents returns the AmountCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateBuyerAuctionPayResponseData) GetAmountCents() float32 {
+	if o == nil || o.AmountCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AmountCents.Get()
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateBuyerAuctionPayResponseData) GetAmountCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AmountCents.Get(), o.AmountCents.IsSet()
+}
+
+// HasAmountCents returns a boolean if a field has been set.
+func (o *CreateBuyerAuctionPayResponseData) HasAmountCents() bool {
+	if o != nil && o.AmountCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAmountCents gets a reference to the given NullableFloat32 and assigns it to the AmountCents field.
+func (o *CreateBuyerAuctionPayResponseData) SetAmountCents(v float32) {
+	o.AmountCents.Set(&v)
+}
+// SetAmountCentsNil sets the value for AmountCents to be an explicit nil
+func (o *CreateBuyerAuctionPayResponseData) SetAmountCentsNil() {
+	o.AmountCents.Set(nil)
+}
+
+// UnsetAmountCents ensures that no value is present for AmountCents, not even an explicit nil
+func (o *CreateBuyerAuctionPayResponseData) UnsetAmountCents() {
+	o.AmountCents.Unset()
+}
+
 func (o CreateBuyerAuctionPayResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -728,11 +728,11 @@ func (o CreateBuyerAuctionPayResponseData) MarshalJSON() ([]byte, error) {
 	if o.ClientSecret.IsSet() {
 		toSerialize["clientSecret"] = o.ClientSecret.Get()
 	}
-	if o.AmountCents.IsSet() {
-		toSerialize["amountCents"] = o.AmountCents.Get()
-	}
 	if o.PaymentIntentId.IsSet() {
 		toSerialize["paymentIntentId"] = o.PaymentIntentId.Get()
+	}
+	if o.AmountCents.IsSet() {
+		toSerialize["amountCents"] = o.AmountCents.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1141,9 +1141,9 @@ func (v *NullableGetBuyerAuctionMeResponse) UnmarshalJSON(src []byte) error {
 // GetBuyerAuctionMeResponseData struct for GetBuyerAuctionMeResponseData
 type GetBuyerAuctionMeResponseData struct {
 	Bidding bool `json:"bidding"`
-	Won NullableBool `json:"won,omitempty"`
 	MyMaxCents NullableFloat32 `json:"myMaxCents,omitempty"`
 	Leading NullableBool `json:"leading,omitempty"`
+	Won NullableBool `json:"won,omitempty"`
 	// Won, and the charge at close did not go through — call pay.
 	NeedsPayment NullableBool `json:"needsPayment,omitempty"`
 }
@@ -1188,48 +1188,6 @@ func (o *GetBuyerAuctionMeResponseData) GetBiddingOk() (*bool, bool) {
 // SetBidding sets field value
 func (o *GetBuyerAuctionMeResponseData) SetBidding(v bool) {
 	o.Bidding = v
-}
-
-// GetWon returns the Won field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerAuctionMeResponseData) GetWon() bool {
-	if o == nil || o.Won.Get() == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Won.Get()
-}
-
-// GetWonOk returns a tuple with the Won field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerAuctionMeResponseData) GetWonOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Won.Get(), o.Won.IsSet()
-}
-
-// HasWon returns a boolean if a field has been set.
-func (o *GetBuyerAuctionMeResponseData) HasWon() bool {
-	if o != nil && o.Won.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWon gets a reference to the given NullableBool and assigns it to the Won field.
-func (o *GetBuyerAuctionMeResponseData) SetWon(v bool) {
-	o.Won.Set(&v)
-}
-// SetWonNil sets the value for Won to be an explicit nil
-func (o *GetBuyerAuctionMeResponseData) SetWonNil() {
-	o.Won.Set(nil)
-}
-
-// UnsetWon ensures that no value is present for Won, not even an explicit nil
-func (o *GetBuyerAuctionMeResponseData) UnsetWon() {
-	o.Won.Unset()
 }
 
 // GetMyMaxCents returns the MyMaxCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1316,6 +1274,48 @@ func (o *GetBuyerAuctionMeResponseData) UnsetLeading() {
 	o.Leading.Unset()
 }
 
+// GetWon returns the Won field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerAuctionMeResponseData) GetWon() bool {
+	if o == nil || o.Won.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Won.Get()
+}
+
+// GetWonOk returns a tuple with the Won field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerAuctionMeResponseData) GetWonOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Won.Get(), o.Won.IsSet()
+}
+
+// HasWon returns a boolean if a field has been set.
+func (o *GetBuyerAuctionMeResponseData) HasWon() bool {
+	if o != nil && o.Won.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWon gets a reference to the given NullableBool and assigns it to the Won field.
+func (o *GetBuyerAuctionMeResponseData) SetWon(v bool) {
+	o.Won.Set(&v)
+}
+// SetWonNil sets the value for Won to be an explicit nil
+func (o *GetBuyerAuctionMeResponseData) SetWonNil() {
+	o.Won.Set(nil)
+}
+
+// UnsetWon ensures that no value is present for Won, not even an explicit nil
+func (o *GetBuyerAuctionMeResponseData) UnsetWon() {
+	o.Won.Unset()
+}
+
 // GetNeedsPayment returns the NeedsPayment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerAuctionMeResponseData) GetNeedsPayment() bool {
 	if o == nil || o.NeedsPayment.Get() == nil {
@@ -1363,14 +1363,14 @@ func (o GetBuyerAuctionMeResponseData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["bidding"] = o.Bidding
 	}
-	if o.Won.IsSet() {
-		toSerialize["won"] = o.Won.Get()
-	}
 	if o.MyMaxCents.IsSet() {
 		toSerialize["myMaxCents"] = o.MyMaxCents.Get()
 	}
 	if o.Leading.IsSet() {
 		toSerialize["leading"] = o.Leading.Get()
+	}
+	if o.Won.IsSet() {
+		toSerialize["won"] = o.Won.Get()
 	}
 	if o.NeedsPayment.IsSet() {
 		toSerialize["needsPayment"] = o.NeedsPayment.Get()
@@ -1416,9 +1416,9 @@ func (v *NullableGetBuyerAuctionMeResponseData) UnmarshalJSON(src []byte) error 
 
 // ListBuyerAuctionBidsItem struct for ListBuyerAuctionBidsItem
 type ListBuyerAuctionBidsItem struct {
-	AmountCents float32 `json:"amountCents"`
 	// \"You\" for your own bids; otherwise anonymised, e.g. \"a***e (12)\".
 	Bidder string `json:"bidder"`
+	AmountCents float32 `json:"amountCents"`
 	PlacedAt NullableString `json:"placedAt,omitempty"`
 }
 
@@ -1426,10 +1426,10 @@ type ListBuyerAuctionBidsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerAuctionBidsItem(amountCents float32, bidder string) *ListBuyerAuctionBidsItem {
+func NewListBuyerAuctionBidsItem(bidder string, amountCents float32) *ListBuyerAuctionBidsItem {
 	this := ListBuyerAuctionBidsItem{}
-	this.AmountCents = amountCents
 	this.Bidder = bidder
+	this.AmountCents = amountCents
 	return &this
 }
 
@@ -1439,30 +1439,6 @@ func NewListBuyerAuctionBidsItem(amountCents float32, bidder string) *ListBuyerA
 func NewListBuyerAuctionBidsItemWithDefaults() *ListBuyerAuctionBidsItem {
 	this := ListBuyerAuctionBidsItem{}
 	return &this
-}
-
-// GetAmountCents returns the AmountCents field value
-func (o *ListBuyerAuctionBidsItem) GetAmountCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.AmountCents
-}
-
-// GetAmountCentsOk returns a tuple with the AmountCents field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerAuctionBidsItem) GetAmountCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.AmountCents, true
-}
-
-// SetAmountCents sets field value
-func (o *ListBuyerAuctionBidsItem) SetAmountCents(v float32) {
-	o.AmountCents = v
 }
 
 // GetBidder returns the Bidder field value
@@ -1487,6 +1463,30 @@ func (o *ListBuyerAuctionBidsItem) GetBidderOk() (*string, bool) {
 // SetBidder sets field value
 func (o *ListBuyerAuctionBidsItem) SetBidder(v string) {
 	o.Bidder = v
+}
+
+// GetAmountCents returns the AmountCents field value
+func (o *ListBuyerAuctionBidsItem) GetAmountCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AmountCents
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerAuctionBidsItem) GetAmountCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AmountCents, true
+}
+
+// SetAmountCents sets field value
+func (o *ListBuyerAuctionBidsItem) SetAmountCents(v float32) {
+	o.AmountCents = v
 }
 
 // GetPlacedAt returns the PlacedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1534,10 +1534,10 @@ func (o *ListBuyerAuctionBidsItem) UnsetPlacedAt() {
 func (o ListBuyerAuctionBidsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["amountCents"] = o.AmountCents
+		toSerialize["bidder"] = o.Bidder
 	}
 	if true {
-		toSerialize["bidder"] = o.Bidder
+		toSerialize["amountCents"] = o.AmountCents
 	}
 	if o.PlacedAt.IsSet() {
 		toSerialize["placedAt"] = o.PlacedAt.Get()
@@ -1750,14 +1750,14 @@ func (v *NullableListBuyerAuctionBidsResponse) UnmarshalJSON(src []byte) error {
 type ListBuyerAuctionsItem struct {
 	Title string `json:"title"`
 	BidCount float32 `json:"bidCount"`
-	Paid bool `json:"paid"`
 	Leading bool `json:"leading"`
-	Status NullableString `json:"status,omitempty"`
-	EndsAt NullableString `json:"endsAt,omitempty"`
+	Paid bool `json:"paid"`
 	Slug NullableString `json:"slug,omitempty"`
+	Thumbnail NullableString `json:"thumbnail,omitempty"`
+	EndsAt NullableString `json:"endsAt,omitempty"`
+	Status NullableString `json:"status,omitempty"`
 	// Current high bid, in cents.
 	CurrentCents NullableFloat32 `json:"currentCents,omitempty"`
-	Thumbnail NullableString `json:"thumbnail,omitempty"`
 	// Your highest maximum (proxy) bid, in cents.
 	MyMaxCents NullableFloat32 `json:"myMaxCents,omitempty"`
 	// Hammer price once the auction closed, in cents.
@@ -1768,12 +1768,12 @@ type ListBuyerAuctionsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerAuctionsItem(title string, bidCount float32, paid bool, leading bool) *ListBuyerAuctionsItem {
+func NewListBuyerAuctionsItem(title string, bidCount float32, leading bool, paid bool) *ListBuyerAuctionsItem {
 	this := ListBuyerAuctionsItem{}
 	this.Title = title
 	this.BidCount = bidCount
-	this.Paid = paid
 	this.Leading = leading
+	this.Paid = paid
 	return &this
 }
 
@@ -1833,30 +1833,6 @@ func (o *ListBuyerAuctionsItem) SetBidCount(v float32) {
 	o.BidCount = v
 }
 
-// GetPaid returns the Paid field value
-func (o *ListBuyerAuctionsItem) GetPaid() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Paid
-}
-
-// GetPaidOk returns a tuple with the Paid field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerAuctionsItem) GetPaidOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Paid, true
-}
-
-// SetPaid sets field value
-func (o *ListBuyerAuctionsItem) SetPaid(v bool) {
-	o.Paid = v
-}
-
 // GetLeading returns the Leading field value
 func (o *ListBuyerAuctionsItem) GetLeading() bool {
 	if o == nil {
@@ -1881,88 +1857,28 @@ func (o *ListBuyerAuctionsItem) SetLeading(v bool) {
 	o.Leading = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerAuctionsItem) GetStatus() string {
-	if o == nil || o.Status.Get() == nil {
-		var ret string
+// GetPaid returns the Paid field value
+func (o *ListBuyerAuctionsItem) GetPaid() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.Status.Get()
+
+	return o.Paid
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetPaidOk returns a tuple with the Paid field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerAuctionsItem) GetStatusOk() (*string, bool) {
+func (o *ListBuyerAuctionsItem) GetPaidOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Status.Get(), o.Status.IsSet()
+	return &o.Paid, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ListBuyerAuctionsItem) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
-func (o *ListBuyerAuctionsItem) SetStatus(v string) {
-	o.Status.Set(&v)
-}
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *ListBuyerAuctionsItem) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *ListBuyerAuctionsItem) UnsetStatus() {
-	o.Status.Unset()
-}
-
-// GetEndsAt returns the EndsAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerAuctionsItem) GetEndsAt() string {
-	if o == nil || o.EndsAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.EndsAt.Get()
-}
-
-// GetEndsAtOk returns a tuple with the EndsAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerAuctionsItem) GetEndsAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.EndsAt.Get(), o.EndsAt.IsSet()
-}
-
-// HasEndsAt returns a boolean if a field has been set.
-func (o *ListBuyerAuctionsItem) HasEndsAt() bool {
-	if o != nil && o.EndsAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEndsAt gets a reference to the given NullableString and assigns it to the EndsAt field.
-func (o *ListBuyerAuctionsItem) SetEndsAt(v string) {
-	o.EndsAt.Set(&v)
-}
-// SetEndsAtNil sets the value for EndsAt to be an explicit nil
-func (o *ListBuyerAuctionsItem) SetEndsAtNil() {
-	o.EndsAt.Set(nil)
-}
-
-// UnsetEndsAt ensures that no value is present for EndsAt, not even an explicit nil
-func (o *ListBuyerAuctionsItem) UnsetEndsAt() {
-	o.EndsAt.Unset()
+// SetPaid sets field value
+func (o *ListBuyerAuctionsItem) SetPaid(v bool) {
+	o.Paid = v
 }
 
 // GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2007,48 +1923,6 @@ func (o *ListBuyerAuctionsItem) UnsetSlug() {
 	o.Slug.Unset()
 }
 
-// GetCurrentCents returns the CurrentCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerAuctionsItem) GetCurrentCents() float32 {
-	if o == nil || o.CurrentCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CurrentCents.Get()
-}
-
-// GetCurrentCentsOk returns a tuple with the CurrentCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerAuctionsItem) GetCurrentCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CurrentCents.Get(), o.CurrentCents.IsSet()
-}
-
-// HasCurrentCents returns a boolean if a field has been set.
-func (o *ListBuyerAuctionsItem) HasCurrentCents() bool {
-	if o != nil && o.CurrentCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrentCents gets a reference to the given NullableFloat32 and assigns it to the CurrentCents field.
-func (o *ListBuyerAuctionsItem) SetCurrentCents(v float32) {
-	o.CurrentCents.Set(&v)
-}
-// SetCurrentCentsNil sets the value for CurrentCents to be an explicit nil
-func (o *ListBuyerAuctionsItem) SetCurrentCentsNil() {
-	o.CurrentCents.Set(nil)
-}
-
-// UnsetCurrentCents ensures that no value is present for CurrentCents, not even an explicit nil
-func (o *ListBuyerAuctionsItem) UnsetCurrentCents() {
-	o.CurrentCents.Unset()
-}
-
 // GetThumbnail returns the Thumbnail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerAuctionsItem) GetThumbnail() string {
 	if o == nil || o.Thumbnail.Get() == nil {
@@ -2089,6 +1963,132 @@ func (o *ListBuyerAuctionsItem) SetThumbnailNil() {
 // UnsetThumbnail ensures that no value is present for Thumbnail, not even an explicit nil
 func (o *ListBuyerAuctionsItem) UnsetThumbnail() {
 	o.Thumbnail.Unset()
+}
+
+// GetEndsAt returns the EndsAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerAuctionsItem) GetEndsAt() string {
+	if o == nil || o.EndsAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndsAt.Get()
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerAuctionsItem) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndsAt.Get(), o.EndsAt.IsSet()
+}
+
+// HasEndsAt returns a boolean if a field has been set.
+func (o *ListBuyerAuctionsItem) HasEndsAt() bool {
+	if o != nil && o.EndsAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndsAt gets a reference to the given NullableString and assigns it to the EndsAt field.
+func (o *ListBuyerAuctionsItem) SetEndsAt(v string) {
+	o.EndsAt.Set(&v)
+}
+// SetEndsAtNil sets the value for EndsAt to be an explicit nil
+func (o *ListBuyerAuctionsItem) SetEndsAtNil() {
+	o.EndsAt.Set(nil)
+}
+
+// UnsetEndsAt ensures that no value is present for EndsAt, not even an explicit nil
+func (o *ListBuyerAuctionsItem) UnsetEndsAt() {
+	o.EndsAt.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerAuctionsItem) GetStatus() string {
+	if o == nil || o.Status.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerAuctionsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ListBuyerAuctionsItem) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+func (o *ListBuyerAuctionsItem) SetStatus(v string) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *ListBuyerAuctionsItem) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *ListBuyerAuctionsItem) UnsetStatus() {
+	o.Status.Unset()
+}
+
+// GetCurrentCents returns the CurrentCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerAuctionsItem) GetCurrentCents() float32 {
+	if o == nil || o.CurrentCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CurrentCents.Get()
+}
+
+// GetCurrentCentsOk returns a tuple with the CurrentCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerAuctionsItem) GetCurrentCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CurrentCents.Get(), o.CurrentCents.IsSet()
+}
+
+// HasCurrentCents returns a boolean if a field has been set.
+func (o *ListBuyerAuctionsItem) HasCurrentCents() bool {
+	if o != nil && o.CurrentCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentCents gets a reference to the given NullableFloat32 and assigns it to the CurrentCents field.
+func (o *ListBuyerAuctionsItem) SetCurrentCents(v float32) {
+	o.CurrentCents.Set(&v)
+}
+// SetCurrentCentsNil sets the value for CurrentCents to be an explicit nil
+func (o *ListBuyerAuctionsItem) SetCurrentCentsNil() {
+	o.CurrentCents.Set(nil)
+}
+
+// UnsetCurrentCents ensures that no value is present for CurrentCents, not even an explicit nil
+func (o *ListBuyerAuctionsItem) UnsetCurrentCents() {
+	o.CurrentCents.Unset()
 }
 
 // GetMyMaxCents returns the MyMaxCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2184,25 +2184,25 @@ func (o ListBuyerAuctionsItem) MarshalJSON() ([]byte, error) {
 		toSerialize["bidCount"] = o.BidCount
 	}
 	if true {
-		toSerialize["paid"] = o.Paid
-	}
-	if true {
 		toSerialize["leading"] = o.Leading
 	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
-	}
-	if o.EndsAt.IsSet() {
-		toSerialize["endsAt"] = o.EndsAt.Get()
+	if true {
+		toSerialize["paid"] = o.Paid
 	}
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
 	}
-	if o.CurrentCents.IsSet() {
-		toSerialize["currentCents"] = o.CurrentCents.Get()
-	}
 	if o.Thumbnail.IsSet() {
 		toSerialize["thumbnail"] = o.Thumbnail.Get()
+	}
+	if o.EndsAt.IsSet() {
+		toSerialize["endsAt"] = o.EndsAt.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
+	if o.CurrentCents.IsSet() {
+		toSerialize["currentCents"] = o.CurrentCents.Get()
 	}
 	if o.MyMaxCents.IsSet() {
 		toSerialize["myMaxCents"] = o.MyMaxCents.Get()

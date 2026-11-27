@@ -15,6 +15,305 @@ import (
 	"time"
 )
 
+// CreateConnectionCardnexusApiKeyResponse struct for CreateConnectionCardnexusApiKeyResponse
+type CreateConnectionCardnexusApiKeyResponse struct {
+	AccountId string `json:"accountId"`
+	Username string `json:"username"`
+	SellerCurrency NullableString `json:"sellerCurrency,omitempty"`
+	SellerStatus NullableString `json:"sellerStatus,omitempty"`
+	Mode string `json:"mode"`
+	Connected bool `json:"connected"`
+	Platform string `json:"platform"`
+}
+
+// NewCreateConnectionCardnexusApiKeyResponse instantiates a new CreateConnectionCardnexusApiKeyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateConnectionCardnexusApiKeyResponse(accountId string, username string, mode string, connected bool, platform string) *CreateConnectionCardnexusApiKeyResponse {
+	this := CreateConnectionCardnexusApiKeyResponse{}
+	this.AccountId = accountId
+	this.Username = username
+	this.Mode = mode
+	this.Connected = connected
+	this.Platform = platform
+	return &this
+}
+
+// NewCreateConnectionCardnexusApiKeyResponseWithDefaults instantiates a new CreateConnectionCardnexusApiKeyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateConnectionCardnexusApiKeyResponseWithDefaults() *CreateConnectionCardnexusApiKeyResponse {
+	this := CreateConnectionCardnexusApiKeyResponse{}
+	return &this
+}
+
+// GetAccountId returns the AccountId field value
+func (o *CreateConnectionCardnexusApiKeyResponse) GetAccountId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccountId
+}
+
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) GetAccountIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
+// SetAccountId sets field value
+func (o *CreateConnectionCardnexusApiKeyResponse) SetAccountId(v string) {
+	o.AccountId = v
+}
+
+// GetUsername returns the Username field value
+func (o *CreateConnectionCardnexusApiKeyResponse) GetUsername() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) GetUsernameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Username, true
+}
+
+// SetUsername sets field value
+func (o *CreateConnectionCardnexusApiKeyResponse) SetUsername(v string) {
+	o.Username = v
+}
+
+// GetSellerCurrency returns the SellerCurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateConnectionCardnexusApiKeyResponse) GetSellerCurrency() string {
+	if o == nil || o.SellerCurrency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerCurrency.Get()
+}
+
+// GetSellerCurrencyOk returns a tuple with the SellerCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateConnectionCardnexusApiKeyResponse) GetSellerCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerCurrency.Get(), o.SellerCurrency.IsSet()
+}
+
+// HasSellerCurrency returns a boolean if a field has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) HasSellerCurrency() bool {
+	if o != nil && o.SellerCurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerCurrency gets a reference to the given NullableString and assigns it to the SellerCurrency field.
+func (o *CreateConnectionCardnexusApiKeyResponse) SetSellerCurrency(v string) {
+	o.SellerCurrency.Set(&v)
+}
+// SetSellerCurrencyNil sets the value for SellerCurrency to be an explicit nil
+func (o *CreateConnectionCardnexusApiKeyResponse) SetSellerCurrencyNil() {
+	o.SellerCurrency.Set(nil)
+}
+
+// UnsetSellerCurrency ensures that no value is present for SellerCurrency, not even an explicit nil
+func (o *CreateConnectionCardnexusApiKeyResponse) UnsetSellerCurrency() {
+	o.SellerCurrency.Unset()
+}
+
+// GetSellerStatus returns the SellerStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateConnectionCardnexusApiKeyResponse) GetSellerStatus() string {
+	if o == nil || o.SellerStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerStatus.Get()
+}
+
+// GetSellerStatusOk returns a tuple with the SellerStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateConnectionCardnexusApiKeyResponse) GetSellerStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerStatus.Get(), o.SellerStatus.IsSet()
+}
+
+// HasSellerStatus returns a boolean if a field has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) HasSellerStatus() bool {
+	if o != nil && o.SellerStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerStatus gets a reference to the given NullableString and assigns it to the SellerStatus field.
+func (o *CreateConnectionCardnexusApiKeyResponse) SetSellerStatus(v string) {
+	o.SellerStatus.Set(&v)
+}
+// SetSellerStatusNil sets the value for SellerStatus to be an explicit nil
+func (o *CreateConnectionCardnexusApiKeyResponse) SetSellerStatusNil() {
+	o.SellerStatus.Set(nil)
+}
+
+// UnsetSellerStatus ensures that no value is present for SellerStatus, not even an explicit nil
+func (o *CreateConnectionCardnexusApiKeyResponse) UnsetSellerStatus() {
+	o.SellerStatus.Unset()
+}
+
+// GetMode returns the Mode field value
+func (o *CreateConnectionCardnexusApiKeyResponse) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *CreateConnectionCardnexusApiKeyResponse) SetMode(v string) {
+	o.Mode = v
+}
+
+// GetConnected returns the Connected field value
+func (o *CreateConnectionCardnexusApiKeyResponse) GetConnected() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Connected
+}
+
+// GetConnectedOk returns a tuple with the Connected field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) GetConnectedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Connected, true
+}
+
+// SetConnected sets field value
+func (o *CreateConnectionCardnexusApiKeyResponse) SetConnected(v bool) {
+	o.Connected = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *CreateConnectionCardnexusApiKeyResponse) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionCardnexusApiKeyResponse) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *CreateConnectionCardnexusApiKeyResponse) SetPlatform(v string) {
+	o.Platform = v
+}
+
+func (o CreateConnectionCardnexusApiKeyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["username"] = o.Username
+	}
+	if o.SellerCurrency.IsSet() {
+		toSerialize["sellerCurrency"] = o.SellerCurrency.Get()
+	}
+	if o.SellerStatus.IsSet() {
+		toSerialize["sellerStatus"] = o.SellerStatus.Get()
+	}
+	if true {
+		toSerialize["mode"] = o.Mode
+	}
+	if true {
+		toSerialize["connected"] = o.Connected
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateConnectionCardnexusApiKeyResponse struct {
+	value *CreateConnectionCardnexusApiKeyResponse
+	isSet bool
+}
+
+func (v NullableCreateConnectionCardnexusApiKeyResponse) Get() *CreateConnectionCardnexusApiKeyResponse {
+	return v.value
+}
+
+func (v *NullableCreateConnectionCardnexusApiKeyResponse) Set(val *CreateConnectionCardnexusApiKeyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateConnectionCardnexusApiKeyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateConnectionCardnexusApiKeyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateConnectionCardnexusApiKeyResponse(val *CreateConnectionCardnexusApiKeyResponse) *NullableCreateConnectionCardnexusApiKeyResponse {
+	return &NullableCreateConnectionCardnexusApiKeyResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateConnectionCardnexusApiKeyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateConnectionCardnexusApiKeyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreateConnectionEmailImapResponse struct for CreateConnectionEmailImapResponse
 type CreateConnectionEmailImapResponse struct {
 	Success bool `json:"success"`
@@ -251,6 +550,292 @@ func (v NullableCreateConnectionEmailImapTestResponse) MarshalJSON() ([]byte, er
 }
 
 func (v *NullableCreateConnectionEmailImapTestResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateConnectionLightspeedXTokenRequest struct for CreateConnectionLightspeedXTokenRequest
+type CreateConnectionLightspeedXTokenRequest struct {
+	DomainPrefix string `json:"domainPrefix"`
+	AccessToken string `json:"accessToken"`
+}
+
+// NewCreateConnectionLightspeedXTokenRequest instantiates a new CreateConnectionLightspeedXTokenRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateConnectionLightspeedXTokenRequest(domainPrefix string, accessToken string) *CreateConnectionLightspeedXTokenRequest {
+	this := CreateConnectionLightspeedXTokenRequest{}
+	this.DomainPrefix = domainPrefix
+	this.AccessToken = accessToken
+	return &this
+}
+
+// NewCreateConnectionLightspeedXTokenRequestWithDefaults instantiates a new CreateConnectionLightspeedXTokenRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateConnectionLightspeedXTokenRequestWithDefaults() *CreateConnectionLightspeedXTokenRequest {
+	this := CreateConnectionLightspeedXTokenRequest{}
+	return &this
+}
+
+// GetDomainPrefix returns the DomainPrefix field value
+func (o *CreateConnectionLightspeedXTokenRequest) GetDomainPrefix() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DomainPrefix
+}
+
+// GetDomainPrefixOk returns a tuple with the DomainPrefix field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionLightspeedXTokenRequest) GetDomainPrefixOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DomainPrefix, true
+}
+
+// SetDomainPrefix sets field value
+func (o *CreateConnectionLightspeedXTokenRequest) SetDomainPrefix(v string) {
+	o.DomainPrefix = v
+}
+
+// GetAccessToken returns the AccessToken field value
+func (o *CreateConnectionLightspeedXTokenRequest) GetAccessToken() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccessToken
+}
+
+// GetAccessTokenOk returns a tuple with the AccessToken field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionLightspeedXTokenRequest) GetAccessTokenOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccessToken, true
+}
+
+// SetAccessToken sets field value
+func (o *CreateConnectionLightspeedXTokenRequest) SetAccessToken(v string) {
+	o.AccessToken = v
+}
+
+func (o CreateConnectionLightspeedXTokenRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["domainPrefix"] = o.DomainPrefix
+	}
+	if true {
+		toSerialize["accessToken"] = o.AccessToken
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateConnectionLightspeedXTokenRequest struct {
+	value *CreateConnectionLightspeedXTokenRequest
+	isSet bool
+}
+
+func (v NullableCreateConnectionLightspeedXTokenRequest) Get() *CreateConnectionLightspeedXTokenRequest {
+	return v.value
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenRequest) Set(val *CreateConnectionLightspeedXTokenRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateConnectionLightspeedXTokenRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateConnectionLightspeedXTokenRequest(val *CreateConnectionLightspeedXTokenRequest) *NullableCreateConnectionLightspeedXTokenRequest {
+	return &NullableCreateConnectionLightspeedXTokenRequest{value: val, isSet: true}
+}
+
+func (v NullableCreateConnectionLightspeedXTokenRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateConnectionLightspeedXTokenResponse struct for CreateConnectionLightspeedXTokenResponse
+type CreateConnectionLightspeedXTokenResponse struct {
+	Store NullableString `json:"store,omitempty"`
+	Outlet string `json:"outlet"`
+	Outlets float32 `json:"outlets"`
+}
+
+// NewCreateConnectionLightspeedXTokenResponse instantiates a new CreateConnectionLightspeedXTokenResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateConnectionLightspeedXTokenResponse(outlet string, outlets float32) *CreateConnectionLightspeedXTokenResponse {
+	this := CreateConnectionLightspeedXTokenResponse{}
+	this.Outlet = outlet
+	this.Outlets = outlets
+	return &this
+}
+
+// NewCreateConnectionLightspeedXTokenResponseWithDefaults instantiates a new CreateConnectionLightspeedXTokenResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateConnectionLightspeedXTokenResponseWithDefaults() *CreateConnectionLightspeedXTokenResponse {
+	this := CreateConnectionLightspeedXTokenResponse{}
+	return &this
+}
+
+// GetStore returns the Store field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateConnectionLightspeedXTokenResponse) GetStore() string {
+	if o == nil || o.Store.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Store.Get()
+}
+
+// GetStoreOk returns a tuple with the Store field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateConnectionLightspeedXTokenResponse) GetStoreOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Store.Get(), o.Store.IsSet()
+}
+
+// HasStore returns a boolean if a field has been set.
+func (o *CreateConnectionLightspeedXTokenResponse) HasStore() bool {
+	if o != nil && o.Store.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStore gets a reference to the given NullableString and assigns it to the Store field.
+func (o *CreateConnectionLightspeedXTokenResponse) SetStore(v string) {
+	o.Store.Set(&v)
+}
+// SetStoreNil sets the value for Store to be an explicit nil
+func (o *CreateConnectionLightspeedXTokenResponse) SetStoreNil() {
+	o.Store.Set(nil)
+}
+
+// UnsetStore ensures that no value is present for Store, not even an explicit nil
+func (o *CreateConnectionLightspeedXTokenResponse) UnsetStore() {
+	o.Store.Unset()
+}
+
+// GetOutlet returns the Outlet field value
+func (o *CreateConnectionLightspeedXTokenResponse) GetOutlet() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Outlet
+}
+
+// GetOutletOk returns a tuple with the Outlet field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionLightspeedXTokenResponse) GetOutletOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Outlet, true
+}
+
+// SetOutlet sets field value
+func (o *CreateConnectionLightspeedXTokenResponse) SetOutlet(v string) {
+	o.Outlet = v
+}
+
+// GetOutlets returns the Outlets field value
+func (o *CreateConnectionLightspeedXTokenResponse) GetOutlets() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Outlets
+}
+
+// GetOutletsOk returns a tuple with the Outlets field value
+// and a boolean to check if the value has been set.
+func (o *CreateConnectionLightspeedXTokenResponse) GetOutletsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Outlets, true
+}
+
+// SetOutlets sets field value
+func (o *CreateConnectionLightspeedXTokenResponse) SetOutlets(v float32) {
+	o.Outlets = v
+}
+
+func (o CreateConnectionLightspeedXTokenResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Store.IsSet() {
+		toSerialize["store"] = o.Store.Get()
+	}
+	if true {
+		toSerialize["outlet"] = o.Outlet
+	}
+	if true {
+		toSerialize["outlets"] = o.Outlets
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateConnectionLightspeedXTokenResponse struct {
+	value *CreateConnectionLightspeedXTokenResponse
+	isSet bool
+}
+
+func (v NullableCreateConnectionLightspeedXTokenResponse) Get() *CreateConnectionLightspeedXTokenResponse {
+	return v.value
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenResponse) Set(val *CreateConnectionLightspeedXTokenResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateConnectionLightspeedXTokenResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateConnectionLightspeedXTokenResponse(val *CreateConnectionLightspeedXTokenResponse) *NullableCreateConnectionLightspeedXTokenResponse {
+	return &NullableCreateConnectionLightspeedXTokenResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateConnectionLightspeedXTokenResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateConnectionLightspeedXTokenResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -2780,6 +3365,1113 @@ func (v NullableGetConnectionHealthResponseExtension) MarshalJSON() ([]byte, err
 }
 
 func (v *NullableGetConnectionHealthResponseExtension) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetConnectionPolicyManagementOptionItem struct for GetConnectionPolicyManagementOptionItem
+type GetConnectionPolicyManagementOptionItem struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	// Free-form hints the platform reports (payment policy, rate limits…), shown under the name.
+	Detail NullableString `json:"detail,omitempty"`
+}
+
+// NewGetConnectionPolicyManagementOptionItem instantiates a new GetConnectionPolicyManagementOptionItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetConnectionPolicyManagementOptionItem(id string, name string) *GetConnectionPolicyManagementOptionItem {
+	this := GetConnectionPolicyManagementOptionItem{}
+	this.Id = id
+	this.Name = name
+	return &this
+}
+
+// NewGetConnectionPolicyManagementOptionItemWithDefaults instantiates a new GetConnectionPolicyManagementOptionItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetConnectionPolicyManagementOptionItemWithDefaults() *GetConnectionPolicyManagementOptionItem {
+	this := GetConnectionPolicyManagementOptionItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetConnectionPolicyManagementOptionItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetConnectionPolicyManagementOptionItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetConnectionPolicyManagementOptionItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *GetConnectionPolicyManagementOptionItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetConnectionPolicyManagementOptionItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetConnectionPolicyManagementOptionItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetConnectionPolicyManagementOptionItem) GetDetail() string {
+	if o == nil || o.Detail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Detail.Get()
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetConnectionPolicyManagementOptionItem) GetDetailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Detail.Get(), o.Detail.IsSet()
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *GetConnectionPolicyManagementOptionItem) HasDetail() bool {
+	if o != nil && o.Detail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
+func (o *GetConnectionPolicyManagementOptionItem) SetDetail(v string) {
+	o.Detail.Set(&v)
+}
+// SetDetailNil sets the value for Detail to be an explicit nil
+func (o *GetConnectionPolicyManagementOptionItem) SetDetailNil() {
+	o.Detail.Set(nil)
+}
+
+// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
+func (o *GetConnectionPolicyManagementOptionItem) UnsetDetail() {
+	o.Detail.Unset()
+}
+
+func (o GetConnectionPolicyManagementOptionItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Detail.IsSet() {
+		toSerialize["detail"] = o.Detail.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetConnectionPolicyManagementOptionItem struct {
+	value *GetConnectionPolicyManagementOptionItem
+	isSet bool
+}
+
+func (v NullableGetConnectionPolicyManagementOptionItem) Get() *GetConnectionPolicyManagementOptionItem {
+	return v.value
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionItem) Set(val *GetConnectionPolicyManagementOptionItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetConnectionPolicyManagementOptionItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetConnectionPolicyManagementOptionItem(val *GetConnectionPolicyManagementOptionItem) *NullableGetConnectionPolicyManagementOptionItem {
+	return &NullableGetConnectionPolicyManagementOptionItem{value: val, isSet: true}
+}
+
+func (v NullableGetConnectionPolicyManagementOptionItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetConnectionPolicyManagementOptionResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type GetConnectionPolicyManagementOptionResponse struct {
+	// The rows.
+	Data []GetConnectionPolicyManagementOptionItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewGetConnectionPolicyManagementOptionResponse instantiates a new GetConnectionPolicyManagementOptionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetConnectionPolicyManagementOptionResponse(data []GetConnectionPolicyManagementOptionItem) *GetConnectionPolicyManagementOptionResponse {
+	this := GetConnectionPolicyManagementOptionResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetConnectionPolicyManagementOptionResponseWithDefaults instantiates a new GetConnectionPolicyManagementOptionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetConnectionPolicyManagementOptionResponseWithDefaults() *GetConnectionPolicyManagementOptionResponse {
+	this := GetConnectionPolicyManagementOptionResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetConnectionPolicyManagementOptionResponse) GetData() []GetConnectionPolicyManagementOptionItem {
+	if o == nil {
+		var ret []GetConnectionPolicyManagementOptionItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetConnectionPolicyManagementOptionResponse) GetDataOk() ([]GetConnectionPolicyManagementOptionItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *GetConnectionPolicyManagementOptionResponse) SetData(v []GetConnectionPolicyManagementOptionItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *GetConnectionPolicyManagementOptionResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetConnectionPolicyManagementOptionResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *GetConnectionPolicyManagementOptionResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *GetConnectionPolicyManagementOptionResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *GetConnectionPolicyManagementOptionResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetConnectionPolicyManagementOptionResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *GetConnectionPolicyManagementOptionResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *GetConnectionPolicyManagementOptionResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o GetConnectionPolicyManagementOptionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetConnectionPolicyManagementOptionResponse struct {
+	value *GetConnectionPolicyManagementOptionResponse
+	isSet bool
+}
+
+func (v NullableGetConnectionPolicyManagementOptionResponse) Get() *GetConnectionPolicyManagementOptionResponse {
+	return v.value
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionResponse) Set(val *GetConnectionPolicyManagementOptionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetConnectionPolicyManagementOptionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetConnectionPolicyManagementOptionResponse(val *GetConnectionPolicyManagementOptionResponse) *NullableGetConnectionPolicyManagementOptionResponse {
+	return &NullableGetConnectionPolicyManagementOptionResponse{value: val, isSet: true}
+}
+
+func (v NullableGetConnectionPolicyManagementOptionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetConnectionPolicyManagementOptionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListConnectionPolicyManagementItem struct for ListConnectionPolicyManagementItem
+type ListConnectionPolicyManagementItem struct {
+	ConnectionId string `json:"connectionId"`
+	Platform string `json:"platform"`
+	// The account's name on the marketplace (username / shop), else the platform.
+	Label string `json:"label"`
+	// eBay only: EBAY_US, EBAY_GB, … (a NULL column means EBAY_US).
+	MarketplaceId NullableString `json:"marketplaceId,omitempty"`
+	// Whether Crossly can manage this account's policies at all.
+	Eligible bool `json:"eligible"`
+	// Why not, when `eligible` is false.
+	IneligibleReason NullableString `json:"ineligibleReason,omitempty"`
+	Managed bool `json:"managed"`
+	// Sync notes (adopted Seller Hub edits, skipped destinations), newest last.
+	Notes []ListConnectionPolicyManagementItemNotes `json:"notes"`
+}
+
+// NewListConnectionPolicyManagementItem instantiates a new ListConnectionPolicyManagementItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListConnectionPolicyManagementItem(connectionId string, platform string, label string, eligible bool, managed bool, notes []ListConnectionPolicyManagementItemNotes) *ListConnectionPolicyManagementItem {
+	this := ListConnectionPolicyManagementItem{}
+	this.ConnectionId = connectionId
+	this.Platform = platform
+	this.Label = label
+	this.Eligible = eligible
+	this.Managed = managed
+	this.Notes = notes
+	return &this
+}
+
+// NewListConnectionPolicyManagementItemWithDefaults instantiates a new ListConnectionPolicyManagementItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListConnectionPolicyManagementItemWithDefaults() *ListConnectionPolicyManagementItem {
+	this := ListConnectionPolicyManagementItem{}
+	return &this
+}
+
+// GetConnectionId returns the ConnectionId field value
+func (o *ListConnectionPolicyManagementItem) GetConnectionId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ConnectionId
+}
+
+// GetConnectionIdOk returns a tuple with the ConnectionId field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetConnectionIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConnectionId, true
+}
+
+// SetConnectionId sets field value
+func (o *ListConnectionPolicyManagementItem) SetConnectionId(v string) {
+	o.ConnectionId = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListConnectionPolicyManagementItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListConnectionPolicyManagementItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetLabel returns the Label field value
+func (o *ListConnectionPolicyManagementItem) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *ListConnectionPolicyManagementItem) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetMarketplaceId returns the MarketplaceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItem) GetMarketplaceId() string {
+	if o == nil || o.MarketplaceId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MarketplaceId.Get()
+}
+
+// GetMarketplaceIdOk returns a tuple with the MarketplaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItem) GetMarketplaceIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MarketplaceId.Get(), o.MarketplaceId.IsSet()
+}
+
+// HasMarketplaceId returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItem) HasMarketplaceId() bool {
+	if o != nil && o.MarketplaceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketplaceId gets a reference to the given NullableString and assigns it to the MarketplaceId field.
+func (o *ListConnectionPolicyManagementItem) SetMarketplaceId(v string) {
+	o.MarketplaceId.Set(&v)
+}
+// SetMarketplaceIdNil sets the value for MarketplaceId to be an explicit nil
+func (o *ListConnectionPolicyManagementItem) SetMarketplaceIdNil() {
+	o.MarketplaceId.Set(nil)
+}
+
+// UnsetMarketplaceId ensures that no value is present for MarketplaceId, not even an explicit nil
+func (o *ListConnectionPolicyManagementItem) UnsetMarketplaceId() {
+	o.MarketplaceId.Unset()
+}
+
+// GetEligible returns the Eligible field value
+func (o *ListConnectionPolicyManagementItem) GetEligible() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Eligible
+}
+
+// GetEligibleOk returns a tuple with the Eligible field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetEligibleOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Eligible, true
+}
+
+// SetEligible sets field value
+func (o *ListConnectionPolicyManagementItem) SetEligible(v bool) {
+	o.Eligible = v
+}
+
+// GetIneligibleReason returns the IneligibleReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItem) GetIneligibleReason() string {
+	if o == nil || o.IneligibleReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IneligibleReason.Get()
+}
+
+// GetIneligibleReasonOk returns a tuple with the IneligibleReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItem) GetIneligibleReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.IneligibleReason.Get(), o.IneligibleReason.IsSet()
+}
+
+// HasIneligibleReason returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItem) HasIneligibleReason() bool {
+	if o != nil && o.IneligibleReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIneligibleReason gets a reference to the given NullableString and assigns it to the IneligibleReason field.
+func (o *ListConnectionPolicyManagementItem) SetIneligibleReason(v string) {
+	o.IneligibleReason.Set(&v)
+}
+// SetIneligibleReasonNil sets the value for IneligibleReason to be an explicit nil
+func (o *ListConnectionPolicyManagementItem) SetIneligibleReasonNil() {
+	o.IneligibleReason.Set(nil)
+}
+
+// UnsetIneligibleReason ensures that no value is present for IneligibleReason, not even an explicit nil
+func (o *ListConnectionPolicyManagementItem) UnsetIneligibleReason() {
+	o.IneligibleReason.Unset()
+}
+
+// GetManaged returns the Managed field value
+func (o *ListConnectionPolicyManagementItem) GetManaged() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Managed
+}
+
+// GetManagedOk returns a tuple with the Managed field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetManagedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Managed, true
+}
+
+// SetManaged sets field value
+func (o *ListConnectionPolicyManagementItem) SetManaged(v bool) {
+	o.Managed = v
+}
+
+// GetNotes returns the Notes field value
+func (o *ListConnectionPolicyManagementItem) GetNotes() []ListConnectionPolicyManagementItemNotes {
+	if o == nil {
+		var ret []ListConnectionPolicyManagementItemNotes
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItem) GetNotesOk() ([]ListConnectionPolicyManagementItemNotes, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *ListConnectionPolicyManagementItem) SetNotes(v []ListConnectionPolicyManagementItemNotes) {
+	o.Notes = v
+}
+
+func (o ListConnectionPolicyManagementItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["connectionId"] = o.ConnectionId
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if o.MarketplaceId.IsSet() {
+		toSerialize["marketplaceId"] = o.MarketplaceId.Get()
+	}
+	if true {
+		toSerialize["eligible"] = o.Eligible
+	}
+	if o.IneligibleReason.IsSet() {
+		toSerialize["ineligibleReason"] = o.IneligibleReason.Get()
+	}
+	if true {
+		toSerialize["managed"] = o.Managed
+	}
+	if true {
+		toSerialize["notes"] = o.Notes
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListConnectionPolicyManagementItem struct {
+	value *ListConnectionPolicyManagementItem
+	isSet bool
+}
+
+func (v NullableListConnectionPolicyManagementItem) Get() *ListConnectionPolicyManagementItem {
+	return v.value
+}
+
+func (v *NullableListConnectionPolicyManagementItem) Set(val *ListConnectionPolicyManagementItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListConnectionPolicyManagementItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListConnectionPolicyManagementItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListConnectionPolicyManagementItem(val *ListConnectionPolicyManagementItem) *NullableListConnectionPolicyManagementItem {
+	return &NullableListConnectionPolicyManagementItem{value: val, isSet: true}
+}
+
+func (v NullableListConnectionPolicyManagementItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListConnectionPolicyManagementItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListConnectionPolicyManagementItemNotes struct for ListConnectionPolicyManagementItemNotes
+type ListConnectionPolicyManagementItemNotes struct {
+	Message string `json:"message"`
+	PresetId NullableString `json:"presetId,omitempty"`
+	// e.g. 'adopted' | 'diverged' | 'synced' | 'error'.
+	State NullableString `json:"state,omitempty"`
+	// The marketplace's id of the policy/profile the note is about.
+	PlatformPolicyId NullableString `json:"platformPolicyId,omitempty"`
+	At NullableString `json:"at,omitempty"`
+}
+
+// NewListConnectionPolicyManagementItemNotes instantiates a new ListConnectionPolicyManagementItemNotes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListConnectionPolicyManagementItemNotes(message string) *ListConnectionPolicyManagementItemNotes {
+	this := ListConnectionPolicyManagementItemNotes{}
+	this.Message = message
+	return &this
+}
+
+// NewListConnectionPolicyManagementItemNotesWithDefaults instantiates a new ListConnectionPolicyManagementItemNotes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListConnectionPolicyManagementItemNotesWithDefaults() *ListConnectionPolicyManagementItemNotes {
+	this := ListConnectionPolicyManagementItemNotes{}
+	return &this
+}
+
+// GetMessage returns the Message field value
+func (o *ListConnectionPolicyManagementItemNotes) GetMessage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementItemNotes) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *ListConnectionPolicyManagementItemNotes) SetMessage(v string) {
+	o.Message = v
+}
+
+// GetPresetId returns the PresetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItemNotes) GetPresetId() string {
+	if o == nil || o.PresetId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PresetId.Get()
+}
+
+// GetPresetIdOk returns a tuple with the PresetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItemNotes) GetPresetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PresetId.Get(), o.PresetId.IsSet()
+}
+
+// HasPresetId returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItemNotes) HasPresetId() bool {
+	if o != nil && o.PresetId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPresetId gets a reference to the given NullableString and assigns it to the PresetId field.
+func (o *ListConnectionPolicyManagementItemNotes) SetPresetId(v string) {
+	o.PresetId.Set(&v)
+}
+// SetPresetIdNil sets the value for PresetId to be an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) SetPresetIdNil() {
+	o.PresetId.Set(nil)
+}
+
+// UnsetPresetId ensures that no value is present for PresetId, not even an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) UnsetPresetId() {
+	o.PresetId.Unset()
+}
+
+// GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItemNotes) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItemNotes) GetStateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItemNotes) HasState() bool {
+	if o != nil && o.State.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given NullableString and assigns it to the State field.
+func (o *ListConnectionPolicyManagementItemNotes) SetState(v string) {
+	o.State.Set(&v)
+}
+// SetStateNil sets the value for State to be an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) SetStateNil() {
+	o.State.Set(nil)
+}
+
+// UnsetState ensures that no value is present for State, not even an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) UnsetState() {
+	o.State.Unset()
+}
+
+// GetPlatformPolicyId returns the PlatformPolicyId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItemNotes) GetPlatformPolicyId() string {
+	if o == nil || o.PlatformPolicyId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformPolicyId.Get()
+}
+
+// GetPlatformPolicyIdOk returns a tuple with the PlatformPolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItemNotes) GetPlatformPolicyIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformPolicyId.Get(), o.PlatformPolicyId.IsSet()
+}
+
+// HasPlatformPolicyId returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItemNotes) HasPlatformPolicyId() bool {
+	if o != nil && o.PlatformPolicyId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformPolicyId gets a reference to the given NullableString and assigns it to the PlatformPolicyId field.
+func (o *ListConnectionPolicyManagementItemNotes) SetPlatformPolicyId(v string) {
+	o.PlatformPolicyId.Set(&v)
+}
+// SetPlatformPolicyIdNil sets the value for PlatformPolicyId to be an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) SetPlatformPolicyIdNil() {
+	o.PlatformPolicyId.Set(nil)
+}
+
+// UnsetPlatformPolicyId ensures that no value is present for PlatformPolicyId, not even an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) UnsetPlatformPolicyId() {
+	o.PlatformPolicyId.Unset()
+}
+
+// GetAt returns the At field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectionPolicyManagementItemNotes) GetAt() string {
+	if o == nil || o.At.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.At.Get()
+}
+
+// GetAtOk returns a tuple with the At field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectionPolicyManagementItemNotes) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.At.Get(), o.At.IsSet()
+}
+
+// HasAt returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementItemNotes) HasAt() bool {
+	if o != nil && o.At.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAt gets a reference to the given NullableString and assigns it to the At field.
+func (o *ListConnectionPolicyManagementItemNotes) SetAt(v string) {
+	o.At.Set(&v)
+}
+// SetAtNil sets the value for At to be an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) SetAtNil() {
+	o.At.Set(nil)
+}
+
+// UnsetAt ensures that no value is present for At, not even an explicit nil
+func (o *ListConnectionPolicyManagementItemNotes) UnsetAt() {
+	o.At.Unset()
+}
+
+func (o ListConnectionPolicyManagementItemNotes) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	if o.PresetId.IsSet() {
+		toSerialize["presetId"] = o.PresetId.Get()
+	}
+	if o.State.IsSet() {
+		toSerialize["state"] = o.State.Get()
+	}
+	if o.PlatformPolicyId.IsSet() {
+		toSerialize["platformPolicyId"] = o.PlatformPolicyId.Get()
+	}
+	if o.At.IsSet() {
+		toSerialize["at"] = o.At.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListConnectionPolicyManagementItemNotes struct {
+	value *ListConnectionPolicyManagementItemNotes
+	isSet bool
+}
+
+func (v NullableListConnectionPolicyManagementItemNotes) Get() *ListConnectionPolicyManagementItemNotes {
+	return v.value
+}
+
+func (v *NullableListConnectionPolicyManagementItemNotes) Set(val *ListConnectionPolicyManagementItemNotes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListConnectionPolicyManagementItemNotes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListConnectionPolicyManagementItemNotes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListConnectionPolicyManagementItemNotes(val *ListConnectionPolicyManagementItemNotes) *NullableListConnectionPolicyManagementItemNotes {
+	return &NullableListConnectionPolicyManagementItemNotes{value: val, isSet: true}
+}
+
+func (v NullableListConnectionPolicyManagementItemNotes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListConnectionPolicyManagementItemNotes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListConnectionPolicyManagementResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListConnectionPolicyManagementResponse struct {
+	// The rows.
+	Data []ListConnectionPolicyManagementItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListConnectionPolicyManagementResponse instantiates a new ListConnectionPolicyManagementResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListConnectionPolicyManagementResponse(data []ListConnectionPolicyManagementItem) *ListConnectionPolicyManagementResponse {
+	this := ListConnectionPolicyManagementResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListConnectionPolicyManagementResponseWithDefaults instantiates a new ListConnectionPolicyManagementResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListConnectionPolicyManagementResponseWithDefaults() *ListConnectionPolicyManagementResponse {
+	this := ListConnectionPolicyManagementResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListConnectionPolicyManagementResponse) GetData() []ListConnectionPolicyManagementItem {
+	if o == nil {
+		var ret []ListConnectionPolicyManagementItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementResponse) GetDataOk() ([]ListConnectionPolicyManagementItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListConnectionPolicyManagementResponse) SetData(v []ListConnectionPolicyManagementItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListConnectionPolicyManagementResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListConnectionPolicyManagementResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListConnectionPolicyManagementResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectionPolicyManagementResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListConnectionPolicyManagementResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListConnectionPolicyManagementResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListConnectionPolicyManagementResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListConnectionPolicyManagementResponse struct {
+	value *ListConnectionPolicyManagementResponse
+	isSet bool
+}
+
+func (v NullableListConnectionPolicyManagementResponse) Get() *ListConnectionPolicyManagementResponse {
+	return v.value
+}
+
+func (v *NullableListConnectionPolicyManagementResponse) Set(val *ListConnectionPolicyManagementResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListConnectionPolicyManagementResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListConnectionPolicyManagementResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListConnectionPolicyManagementResponse(val *ListConnectionPolicyManagementResponse) *NullableListConnectionPolicyManagementResponse {
+	return &NullableListConnectionPolicyManagementResponse{value: val, isSet: true}
+}
+
+func (v NullableListConnectionPolicyManagementResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListConnectionPolicyManagementResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

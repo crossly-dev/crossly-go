@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateRestockPromptDismiss**](RestockPromptsApi.md#CreateRestockPromptDismiss) | **Post** /v1/restock-prompts/{id}/dismiss | Dismiss a pending restock prompt.
 [**CreateRestockPromptRepublish**](RestockPromptsApi.md#CreateRestockPromptRepublish) | **Post** /v1/restock-prompts/{id}/republish | Republish a restock prompt to platforms.
+[**GetRestockPromptSetting**](RestockPromptsApi.md#GetRestockPromptSetting) | **Get** /v1/restock-prompts/settings | Whether restocked items are republished automatically.
 [**ListRestockPrompts**](RestockPromptsApi.md#ListRestockPrompts) | **Get** /v1/restock-prompts | List pending restock prompts.
+[**UpdateRestockPromptSetting**](RestockPromptsApi.md#UpdateRestockPromptSetting) | **Put** /v1/restock-prompts/settings | Turn automatic republish of restocked items on or off.
 
 
 
@@ -144,6 +146,66 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetRestockPromptSetting
+
+> GetRestockPromptSettingResponse GetRestockPromptSetting(ctx).Execute()
+
+Whether restocked items are republished automatically.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RestockPromptsApi.GetRestockPromptSetting(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RestockPromptsApi.GetRestockPromptSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRestockPromptSetting`: GetRestockPromptSettingResponse
+    fmt.Fprintf(os.Stdout, "Response from `RestockPromptsApi.GetRestockPromptSetting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRestockPromptSettingRequest struct via the builder pattern
+
+
+### Return type
+
+**GetRestockPromptSettingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListRestockPrompts
 
 > ListRestockPromptsResponse ListRestockPrompts(ctx).Execute()
@@ -196,6 +258,69 @@ Other parameters are passed through a pointer to a apiListRestockPromptsRequest 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateRestockPromptSetting
+
+> GetRestockPromptSettingResponse UpdateRestockPromptSetting(ctx).GetRestockPromptSettingResponse(getRestockPromptSettingResponse).Execute()
+
+Turn automatic republish of restocked items on or off.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    getRestockPromptSettingResponse := *openapiclient.NewGetRestockPromptSettingResponse(false) // GetRestockPromptSettingResponse | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RestockPromptsApi.UpdateRestockPromptSetting(context.Background()).GetRestockPromptSettingResponse(getRestockPromptSettingResponse).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RestockPromptsApi.UpdateRestockPromptSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateRestockPromptSetting`: GetRestockPromptSettingResponse
+    fmt.Fprintf(os.Stdout, "Response from `RestockPromptsApi.UpdateRestockPromptSetting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateRestockPromptSettingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getRestockPromptSettingResponse** | **GetRestockPromptSettingResponse** |  | 
+
+### Return type
+
+**GetRestockPromptSettingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

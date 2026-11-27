@@ -394,10 +394,10 @@ func (v *NullableCreateBuyerOfferRespondResponse) UnmarshalJSON(src []byte) erro
 type CreateBuyerOfferRespondResponseData struct {
 	// accepted | declined | countered.
 	Status string `json:"status"`
-	// Countered: the id of YOUR new offer, now waiting on the seller.
-	OfferId NullableString `json:"offerId,omitempty"`
 	// Accepted: you can now pay for it (48 hours).
 	Redeemable NullableBool `json:"redeemable,omitempty"`
+	// Countered: the id of YOUR new offer, now waiting on the seller.
+	OfferId NullableString `json:"offerId,omitempty"`
 }
 
 // NewCreateBuyerOfferRespondResponseData instantiates a new CreateBuyerOfferRespondResponseData object
@@ -442,48 +442,6 @@ func (o *CreateBuyerOfferRespondResponseData) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetOfferId returns the OfferId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateBuyerOfferRespondResponseData) GetOfferId() string {
-	if o == nil || o.OfferId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OfferId.Get()
-}
-
-// GetOfferIdOk returns a tuple with the OfferId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateBuyerOfferRespondResponseData) GetOfferIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OfferId.Get(), o.OfferId.IsSet()
-}
-
-// HasOfferId returns a boolean if a field has been set.
-func (o *CreateBuyerOfferRespondResponseData) HasOfferId() bool {
-	if o != nil && o.OfferId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOfferId gets a reference to the given NullableString and assigns it to the OfferId field.
-func (o *CreateBuyerOfferRespondResponseData) SetOfferId(v string) {
-	o.OfferId.Set(&v)
-}
-// SetOfferIdNil sets the value for OfferId to be an explicit nil
-func (o *CreateBuyerOfferRespondResponseData) SetOfferIdNil() {
-	o.OfferId.Set(nil)
-}
-
-// UnsetOfferId ensures that no value is present for OfferId, not even an explicit nil
-func (o *CreateBuyerOfferRespondResponseData) UnsetOfferId() {
-	o.OfferId.Unset()
-}
-
 // GetRedeemable returns the Redeemable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateBuyerOfferRespondResponseData) GetRedeemable() bool {
 	if o == nil || o.Redeemable.Get() == nil {
@@ -526,16 +484,58 @@ func (o *CreateBuyerOfferRespondResponseData) UnsetRedeemable() {
 	o.Redeemable.Unset()
 }
 
+// GetOfferId returns the OfferId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateBuyerOfferRespondResponseData) GetOfferId() string {
+	if o == nil || o.OfferId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferId.Get()
+}
+
+// GetOfferIdOk returns a tuple with the OfferId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateBuyerOfferRespondResponseData) GetOfferIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferId.Get(), o.OfferId.IsSet()
+}
+
+// HasOfferId returns a boolean if a field has been set.
+func (o *CreateBuyerOfferRespondResponseData) HasOfferId() bool {
+	if o != nil && o.OfferId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferId gets a reference to the given NullableString and assigns it to the OfferId field.
+func (o *CreateBuyerOfferRespondResponseData) SetOfferId(v string) {
+	o.OfferId.Set(&v)
+}
+// SetOfferIdNil sets the value for OfferId to be an explicit nil
+func (o *CreateBuyerOfferRespondResponseData) SetOfferIdNil() {
+	o.OfferId.Set(nil)
+}
+
+// UnsetOfferId ensures that no value is present for OfferId, not even an explicit nil
+func (o *CreateBuyerOfferRespondResponseData) UnsetOfferId() {
+	o.OfferId.Unset()
+}
+
 func (o CreateBuyerOfferRespondResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["status"] = o.Status
 	}
-	if o.OfferId.IsSet() {
-		toSerialize["offerId"] = o.OfferId.Get()
-	}
 	if o.Redeemable.IsSet() {
 		toSerialize["redeemable"] = o.Redeemable.Get()
+	}
+	if o.OfferId.IsSet() {
+		toSerialize["offerId"] = o.OfferId.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -669,18 +669,18 @@ func (v *NullableCreateBuyerOfferResponse) UnmarshalJSON(src []byte) error {
 
 // CreateBuyerOfferResponseData struct for CreateBuyerOfferResponseData
 type CreateBuyerOfferResponseData struct {
-	Offer CreateBuyerOfferResponseDataOffer `json:"offer"`
 	Ok bool `json:"ok"`
+	Offer CreateBuyerOfferResponseDataOffer `json:"offer"`
 }
 
 // NewCreateBuyerOfferResponseData instantiates a new CreateBuyerOfferResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerOfferResponseData(offer CreateBuyerOfferResponseDataOffer, ok bool) *CreateBuyerOfferResponseData {
+func NewCreateBuyerOfferResponseData(ok bool, offer CreateBuyerOfferResponseDataOffer) *CreateBuyerOfferResponseData {
 	this := CreateBuyerOfferResponseData{}
-	this.Offer = offer
 	this.Ok = ok
+	this.Offer = offer
 	return &this
 }
 
@@ -690,30 +690,6 @@ func NewCreateBuyerOfferResponseData(offer CreateBuyerOfferResponseDataOffer, ok
 func NewCreateBuyerOfferResponseDataWithDefaults() *CreateBuyerOfferResponseData {
 	this := CreateBuyerOfferResponseData{}
 	return &this
-}
-
-// GetOffer returns the Offer field value
-func (o *CreateBuyerOfferResponseData) GetOffer() CreateBuyerOfferResponseDataOffer {
-	if o == nil {
-		var ret CreateBuyerOfferResponseDataOffer
-		return ret
-	}
-
-	return o.Offer
-}
-
-// GetOfferOk returns a tuple with the Offer field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerOfferResponseData) GetOfferOk() (*CreateBuyerOfferResponseDataOffer, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Offer, true
-}
-
-// SetOffer sets field value
-func (o *CreateBuyerOfferResponseData) SetOffer(v CreateBuyerOfferResponseDataOffer) {
-	o.Offer = v
 }
 
 // GetOk returns the Ok field value
@@ -740,13 +716,37 @@ func (o *CreateBuyerOfferResponseData) SetOk(v bool) {
 	o.Ok = v
 }
 
+// GetOffer returns the Offer field value
+func (o *CreateBuyerOfferResponseData) GetOffer() CreateBuyerOfferResponseDataOffer {
+	if o == nil {
+		var ret CreateBuyerOfferResponseDataOffer
+		return ret
+	}
+
+	return o.Offer
+}
+
+// GetOfferOk returns a tuple with the Offer field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerOfferResponseData) GetOfferOk() (*CreateBuyerOfferResponseDataOffer, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Offer, true
+}
+
+// SetOffer sets field value
+func (o *CreateBuyerOfferResponseData) SetOffer(v CreateBuyerOfferResponseDataOffer) {
+	o.Offer = v
+}
+
 func (o CreateBuyerOfferResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["offer"] = o.Offer
+		toSerialize["ok"] = o.Ok
 	}
 	if true {
-		toSerialize["ok"] = o.Ok
+		toSerialize["offer"] = o.Offer
 	}
 	return json.Marshal(toSerialize)
 }
@@ -790,10 +790,10 @@ func (v *NullableCreateBuyerOfferResponseData) UnmarshalJSON(src []byte) error {
 // CreateBuyerOfferResponseDataOffer struct for CreateBuyerOfferResponseDataOffer
 type CreateBuyerOfferResponseDataOffer struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
 	PlatformListingId string `json:"platformListingId"`
 	BuyerUserId string `json:"buyerUserId"`
 	AmountCents float32 `json:"amountCents"`
+	Status string `json:"status"`
 	Message NullableString `json:"message,omitempty"`
 }
 
@@ -801,13 +801,13 @@ type CreateBuyerOfferResponseDataOffer struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerOfferResponseDataOffer(id string, status string, platformListingId string, buyerUserId string, amountCents float32) *CreateBuyerOfferResponseDataOffer {
+func NewCreateBuyerOfferResponseDataOffer(id string, platformListingId string, buyerUserId string, amountCents float32, status string) *CreateBuyerOfferResponseDataOffer {
 	this := CreateBuyerOfferResponseDataOffer{}
 	this.Id = id
-	this.Status = status
 	this.PlatformListingId = platformListingId
 	this.BuyerUserId = buyerUserId
 	this.AmountCents = amountCents
+	this.Status = status
 	return &this
 }
 
@@ -841,30 +841,6 @@ func (o *CreateBuyerOfferResponseDataOffer) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *CreateBuyerOfferResponseDataOffer) SetId(v string) {
 	o.Id = v
-}
-
-// GetStatus returns the Status field value
-func (o *CreateBuyerOfferResponseDataOffer) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerOfferResponseDataOffer) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *CreateBuyerOfferResponseDataOffer) SetStatus(v string) {
-	o.Status = v
 }
 
 // GetPlatformListingId returns the PlatformListingId field value
@@ -939,6 +915,30 @@ func (o *CreateBuyerOfferResponseDataOffer) SetAmountCents(v float32) {
 	o.AmountCents = v
 }
 
+// GetStatus returns the Status field value
+func (o *CreateBuyerOfferResponseDataOffer) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerOfferResponseDataOffer) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *CreateBuyerOfferResponseDataOffer) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateBuyerOfferResponseDataOffer) GetMessage() string {
 	if o == nil || o.Message.Get() == nil {
@@ -987,9 +987,6 @@ func (o CreateBuyerOfferResponseDataOffer) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
 		toSerialize["platformListingId"] = o.PlatformListingId
 	}
 	if true {
@@ -997,6 +994,9 @@ func (o CreateBuyerOfferResponseDataOffer) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["amountCents"] = o.AmountCents
+	}
+	if true {
+		toSerialize["status"] = o.Status
 	}
 	if o.Message.IsSet() {
 		toSerialize["message"] = o.Message.Get()
@@ -1043,49 +1043,49 @@ func (v *NullableCreateBuyerOfferResponseDataOffer) UnmarshalJSON(src []byte) er
 // ListBuyerOffersItem struct for ListBuyerOffersItem
 type ListBuyerOffersItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Status string `json:"status"`
-	ExpiresAt string `json:"expiresAt"`
-	IsBundle bool `json:"isBundle"`
 	PlatformListingId string `json:"platformListingId"`
 	SellerUserId string `json:"sellerUserId"`
 	// The offer amount for the whole set, in cents.
 	AmountCents float32 `json:"amountCents"`
-	Expired bool `json:"expired"`
+	Status string `json:"status"`
+	ExpiresAt string `json:"expiresAt"`
+	CreatedAt string `json:"createdAt"`
 	Items []ListBuyerOffersItemItems `json:"items"`
-	// A seller counter waiting on YOU: accept, decline or counter back.
-	AwaitingBuyer bool `json:"awaitingBuyer"`
+	IsBundle bool `json:"isBundle"`
 	// Accepted, unpaid, unexpired and every item still live — pay for it now.
 	Redeemable bool `json:"redeemable"`
-	DecidedAt NullableString `json:"decidedAt,omitempty"`
-	Message NullableString `json:"message,omitempty"`
-	ParentOfferId NullableString `json:"parentOfferId,omitempty"`
+	Expired bool `json:"expired"`
+	// A seller counter waiting on YOU: accept, decline or counter back.
+	AwaitingBuyer bool `json:"awaitingBuyer"`
 	PlatformListingIds []string `json:"platformListingIds,omitempty"`
-	ConsumedAt NullableString `json:"consumedAt,omitempty"`
 	// Asking-price total when the offer was made, in cents.
 	ListedTotalCents NullableFloat32 `json:"listedTotalCents,omitempty"`
+	Message NullableString `json:"message,omitempty"`
+	ParentOfferId NullableString `json:"parentOfferId,omitempty"`
 	// null = you made it; seller_counter / buyer_counter / second_chance / seller_offer (to watchers) / live_auction otherwise.
 	Origin NullableString `json:"origin,omitempty"`
+	DecidedAt NullableString `json:"decidedAt,omitempty"`
+	ConsumedAt NullableString `json:"consumedAt,omitempty"`
 }
 
 // NewListBuyerOffersItem instantiates a new ListBuyerOffersItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerOffersItem(id string, createdAt string, status string, expiresAt string, isBundle bool, platformListingId string, sellerUserId string, amountCents float32, expired bool, items []ListBuyerOffersItemItems, awaitingBuyer bool, redeemable bool) *ListBuyerOffersItem {
+func NewListBuyerOffersItem(id string, platformListingId string, sellerUserId string, amountCents float32, status string, expiresAt string, createdAt string, items []ListBuyerOffersItemItems, isBundle bool, redeemable bool, expired bool, awaitingBuyer bool) *ListBuyerOffersItem {
 	this := ListBuyerOffersItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Status = status
-	this.ExpiresAt = expiresAt
-	this.IsBundle = isBundle
 	this.PlatformListingId = platformListingId
 	this.SellerUserId = sellerUserId
 	this.AmountCents = amountCents
-	this.Expired = expired
+	this.Status = status
+	this.ExpiresAt = expiresAt
+	this.CreatedAt = createdAt
 	this.Items = items
-	this.AwaitingBuyer = awaitingBuyer
+	this.IsBundle = isBundle
 	this.Redeemable = redeemable
+	this.Expired = expired
+	this.AwaitingBuyer = awaitingBuyer
 	return &this
 }
 
@@ -1119,102 +1119,6 @@ func (o *ListBuyerOffersItem) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *ListBuyerOffersItem) SetId(v string) {
 	o.Id = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerOffersItem) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListBuyerOffersItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetStatus returns the Status field value
-func (o *ListBuyerOffersItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListBuyerOffersItem) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetExpiresAt returns the ExpiresAt field value
-func (o *ListBuyerOffersItem) GetExpiresAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ExpiresAt
-}
-
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetExpiresAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ExpiresAt, true
-}
-
-// SetExpiresAt sets field value
-func (o *ListBuyerOffersItem) SetExpiresAt(v string) {
-	o.ExpiresAt = v
-}
-
-// GetIsBundle returns the IsBundle field value
-func (o *ListBuyerOffersItem) GetIsBundle() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsBundle
-}
-
-// GetIsBundleOk returns a tuple with the IsBundle field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetIsBundleOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IsBundle, true
-}
-
-// SetIsBundle sets field value
-func (o *ListBuyerOffersItem) SetIsBundle(v bool) {
-	o.IsBundle = v
 }
 
 // GetPlatformListingId returns the PlatformListingId field value
@@ -1289,28 +1193,76 @@ func (o *ListBuyerOffersItem) SetAmountCents(v float32) {
 	o.AmountCents = v
 }
 
-// GetExpired returns the Expired field value
-func (o *ListBuyerOffersItem) GetExpired() bool {
+// GetStatus returns the Status field value
+func (o *ListBuyerOffersItem) GetStatus() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.Expired
+	return o.Status
 }
 
-// GetExpiredOk returns a tuple with the Expired field value
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetExpiredOk() (*bool, bool) {
+func (o *ListBuyerOffersItem) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Expired, true
+	return &o.Status, true
 }
 
-// SetExpired sets field value
-func (o *ListBuyerOffersItem) SetExpired(v bool) {
-	o.Expired = v
+// SetStatus sets field value
+func (o *ListBuyerOffersItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *ListBuyerOffersItem) GetExpiresAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerOffersItem) GetExpiresAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *ListBuyerOffersItem) SetExpiresAt(v string) {
+	o.ExpiresAt = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerOffersItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerOffersItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerOffersItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 // GetItems returns the Items field value
@@ -1337,28 +1289,28 @@ func (o *ListBuyerOffersItem) SetItems(v []ListBuyerOffersItemItems) {
 	o.Items = v
 }
 
-// GetAwaitingBuyer returns the AwaitingBuyer field value
-func (o *ListBuyerOffersItem) GetAwaitingBuyer() bool {
+// GetIsBundle returns the IsBundle field value
+func (o *ListBuyerOffersItem) GetIsBundle() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.AwaitingBuyer
+	return o.IsBundle
 }
 
-// GetAwaitingBuyerOk returns a tuple with the AwaitingBuyer field value
+// GetIsBundleOk returns a tuple with the IsBundle field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerOffersItem) GetAwaitingBuyerOk() (*bool, bool) {
+func (o *ListBuyerOffersItem) GetIsBundleOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.AwaitingBuyer, true
+	return &o.IsBundle, true
 }
 
-// SetAwaitingBuyer sets field value
-func (o *ListBuyerOffersItem) SetAwaitingBuyer(v bool) {
-	o.AwaitingBuyer = v
+// SetIsBundle sets field value
+func (o *ListBuyerOffersItem) SetIsBundle(v bool) {
+	o.IsBundle = v
 }
 
 // GetRedeemable returns the Redeemable field value
@@ -1385,46 +1337,127 @@ func (o *ListBuyerOffersItem) SetRedeemable(v bool) {
 	o.Redeemable = v
 }
 
-// GetDecidedAt returns the DecidedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItem) GetDecidedAt() string {
-	if o == nil || o.DecidedAt.Get() == nil {
-		var ret string
+// GetExpired returns the Expired field value
+func (o *ListBuyerOffersItem) GetExpired() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.DecidedAt.Get()
+
+	return o.Expired
 }
 
-// GetDecidedAtOk returns a tuple with the DecidedAt field value if set, nil otherwise
+// GetExpiredOk returns a tuple with the Expired field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItem) GetDecidedAtOk() (*string, bool) {
+func (o *ListBuyerOffersItem) GetExpiredOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.DecidedAt.Get(), o.DecidedAt.IsSet()
+	return &o.Expired, true
 }
 
-// HasDecidedAt returns a boolean if a field has been set.
-func (o *ListBuyerOffersItem) HasDecidedAt() bool {
-	if o != nil && o.DecidedAt.IsSet() {
+// SetExpired sets field value
+func (o *ListBuyerOffersItem) SetExpired(v bool) {
+	o.Expired = v
+}
+
+// GetAwaitingBuyer returns the AwaitingBuyer field value
+func (o *ListBuyerOffersItem) GetAwaitingBuyer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AwaitingBuyer
+}
+
+// GetAwaitingBuyerOk returns a tuple with the AwaitingBuyer field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerOffersItem) GetAwaitingBuyerOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AwaitingBuyer, true
+}
+
+// SetAwaitingBuyer sets field value
+func (o *ListBuyerOffersItem) SetAwaitingBuyer(v bool) {
+	o.AwaitingBuyer = v
+}
+
+// GetPlatformListingIds returns the PlatformListingIds field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItem) GetPlatformListingIds() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.PlatformListingIds
+}
+
+// GetPlatformListingIdsOk returns a tuple with the PlatformListingIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerOffersItem) GetPlatformListingIdsOk() ([]string, bool) {
+	if o == nil || o.PlatformListingIds == nil {
+		return nil, false
+	}
+	return o.PlatformListingIds, true
+}
+
+// HasPlatformListingIds returns a boolean if a field has been set.
+func (o *ListBuyerOffersItem) HasPlatformListingIds() bool {
+	if o != nil && o.PlatformListingIds != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDecidedAt gets a reference to the given NullableString and assigns it to the DecidedAt field.
-func (o *ListBuyerOffersItem) SetDecidedAt(v string) {
-	o.DecidedAt.Set(&v)
-}
-// SetDecidedAtNil sets the value for DecidedAt to be an explicit nil
-func (o *ListBuyerOffersItem) SetDecidedAtNil() {
-	o.DecidedAt.Set(nil)
+// SetPlatformListingIds gets a reference to the given []string and assigns it to the PlatformListingIds field.
+func (o *ListBuyerOffersItem) SetPlatformListingIds(v []string) {
+	o.PlatformListingIds = v
 }
 
-// UnsetDecidedAt ensures that no value is present for DecidedAt, not even an explicit nil
-func (o *ListBuyerOffersItem) UnsetDecidedAt() {
-	o.DecidedAt.Unset()
+// GetListedTotalCents returns the ListedTotalCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItem) GetListedTotalCents() float32 {
+	if o == nil || o.ListedTotalCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ListedTotalCents.Get()
+}
+
+// GetListedTotalCentsOk returns a tuple with the ListedTotalCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerOffersItem) GetListedTotalCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListedTotalCents.Get(), o.ListedTotalCents.IsSet()
+}
+
+// HasListedTotalCents returns a boolean if a field has been set.
+func (o *ListBuyerOffersItem) HasListedTotalCents() bool {
+	if o != nil && o.ListedTotalCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListedTotalCents gets a reference to the given NullableFloat32 and assigns it to the ListedTotalCents field.
+func (o *ListBuyerOffersItem) SetListedTotalCents(v float32) {
+	o.ListedTotalCents.Set(&v)
+}
+// SetListedTotalCentsNil sets the value for ListedTotalCents to be an explicit nil
+func (o *ListBuyerOffersItem) SetListedTotalCentsNil() {
+	o.ListedTotalCents.Set(nil)
+}
+
+// UnsetListedTotalCents ensures that no value is present for ListedTotalCents, not even an explicit nil
+func (o *ListBuyerOffersItem) UnsetListedTotalCents() {
+	o.ListedTotalCents.Unset()
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1511,37 +1544,88 @@ func (o *ListBuyerOffersItem) UnsetParentOfferId() {
 	o.ParentOfferId.Unset()
 }
 
-// GetPlatformListingIds returns the PlatformListingIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItem) GetPlatformListingIds() []string {
-	if o == nil  {
-		var ret []string
+// GetOrigin returns the Origin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItem) GetOrigin() string {
+	if o == nil || o.Origin.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.PlatformListingIds
+	return *o.Origin.Get()
 }
 
-// GetPlatformListingIdsOk returns a tuple with the PlatformListingIds field value if set, nil otherwise
+// GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItem) GetPlatformListingIdsOk() ([]string, bool) {
-	if o == nil || o.PlatformListingIds == nil {
+func (o *ListBuyerOffersItem) GetOriginOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.PlatformListingIds, true
+	return o.Origin.Get(), o.Origin.IsSet()
 }
 
-// HasPlatformListingIds returns a boolean if a field has been set.
-func (o *ListBuyerOffersItem) HasPlatformListingIds() bool {
-	if o != nil && o.PlatformListingIds != nil {
+// HasOrigin returns a boolean if a field has been set.
+func (o *ListBuyerOffersItem) HasOrigin() bool {
+	if o != nil && o.Origin.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPlatformListingIds gets a reference to the given []string and assigns it to the PlatformListingIds field.
-func (o *ListBuyerOffersItem) SetPlatformListingIds(v []string) {
-	o.PlatformListingIds = v
+// SetOrigin gets a reference to the given NullableString and assigns it to the Origin field.
+func (o *ListBuyerOffersItem) SetOrigin(v string) {
+	o.Origin.Set(&v)
+}
+// SetOriginNil sets the value for Origin to be an explicit nil
+func (o *ListBuyerOffersItem) SetOriginNil() {
+	o.Origin.Set(nil)
+}
+
+// UnsetOrigin ensures that no value is present for Origin, not even an explicit nil
+func (o *ListBuyerOffersItem) UnsetOrigin() {
+	o.Origin.Unset()
+}
+
+// GetDecidedAt returns the DecidedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItem) GetDecidedAt() string {
+	if o == nil || o.DecidedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DecidedAt.Get()
+}
+
+// GetDecidedAtOk returns a tuple with the DecidedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerOffersItem) GetDecidedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DecidedAt.Get(), o.DecidedAt.IsSet()
+}
+
+// HasDecidedAt returns a boolean if a field has been set.
+func (o *ListBuyerOffersItem) HasDecidedAt() bool {
+	if o != nil && o.DecidedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDecidedAt gets a reference to the given NullableString and assigns it to the DecidedAt field.
+func (o *ListBuyerOffersItem) SetDecidedAt(v string) {
+	o.DecidedAt.Set(&v)
+}
+// SetDecidedAtNil sets the value for DecidedAt to be an explicit nil
+func (o *ListBuyerOffersItem) SetDecidedAtNil() {
+	o.DecidedAt.Set(nil)
+}
+
+// UnsetDecidedAt ensures that no value is present for DecidedAt, not even an explicit nil
+func (o *ListBuyerOffersItem) UnsetDecidedAt() {
+	o.DecidedAt.Unset()
 }
 
 // GetConsumedAt returns the ConsumedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1586,106 +1670,10 @@ func (o *ListBuyerOffersItem) UnsetConsumedAt() {
 	o.ConsumedAt.Unset()
 }
 
-// GetListedTotalCents returns the ListedTotalCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItem) GetListedTotalCents() float32 {
-	if o == nil || o.ListedTotalCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ListedTotalCents.Get()
-}
-
-// GetListedTotalCentsOk returns a tuple with the ListedTotalCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItem) GetListedTotalCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ListedTotalCents.Get(), o.ListedTotalCents.IsSet()
-}
-
-// HasListedTotalCents returns a boolean if a field has been set.
-func (o *ListBuyerOffersItem) HasListedTotalCents() bool {
-	if o != nil && o.ListedTotalCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetListedTotalCents gets a reference to the given NullableFloat32 and assigns it to the ListedTotalCents field.
-func (o *ListBuyerOffersItem) SetListedTotalCents(v float32) {
-	o.ListedTotalCents.Set(&v)
-}
-// SetListedTotalCentsNil sets the value for ListedTotalCents to be an explicit nil
-func (o *ListBuyerOffersItem) SetListedTotalCentsNil() {
-	o.ListedTotalCents.Set(nil)
-}
-
-// UnsetListedTotalCents ensures that no value is present for ListedTotalCents, not even an explicit nil
-func (o *ListBuyerOffersItem) UnsetListedTotalCents() {
-	o.ListedTotalCents.Unset()
-}
-
-// GetOrigin returns the Origin field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItem) GetOrigin() string {
-	if o == nil || o.Origin.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Origin.Get()
-}
-
-// GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItem) GetOriginOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Origin.Get(), o.Origin.IsSet()
-}
-
-// HasOrigin returns a boolean if a field has been set.
-func (o *ListBuyerOffersItem) HasOrigin() bool {
-	if o != nil && o.Origin.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOrigin gets a reference to the given NullableString and assigns it to the Origin field.
-func (o *ListBuyerOffersItem) SetOrigin(v string) {
-	o.Origin.Set(&v)
-}
-// SetOriginNil sets the value for Origin to be an explicit nil
-func (o *ListBuyerOffersItem) SetOriginNil() {
-	o.Origin.Set(nil)
-}
-
-// UnsetOrigin ensures that no value is present for Origin, not even an explicit nil
-func (o *ListBuyerOffersItem) UnsetOrigin() {
-	o.Origin.Unset()
-}
-
 func (o ListBuyerOffersItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["expiresAt"] = o.ExpiresAt
-	}
-	if true {
-		toSerialize["isBundle"] = o.IsBundle
 	}
 	if true {
 		toSerialize["platformListingId"] = o.PlatformListingId
@@ -1697,19 +1685,34 @@ func (o ListBuyerOffersItem) MarshalJSON() ([]byte, error) {
 		toSerialize["amountCents"] = o.AmountCents
 	}
 	if true {
-		toSerialize["expired"] = o.Expired
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if true {
 		toSerialize["items"] = o.Items
 	}
 	if true {
-		toSerialize["awaitingBuyer"] = o.AwaitingBuyer
+		toSerialize["isBundle"] = o.IsBundle
 	}
 	if true {
 		toSerialize["redeemable"] = o.Redeemable
 	}
-	if o.DecidedAt.IsSet() {
-		toSerialize["decidedAt"] = o.DecidedAt.Get()
+	if true {
+		toSerialize["expired"] = o.Expired
+	}
+	if true {
+		toSerialize["awaitingBuyer"] = o.AwaitingBuyer
+	}
+	if o.PlatformListingIds != nil {
+		toSerialize["platformListingIds"] = o.PlatformListingIds
+	}
+	if o.ListedTotalCents.IsSet() {
+		toSerialize["listedTotalCents"] = o.ListedTotalCents.Get()
 	}
 	if o.Message.IsSet() {
 		toSerialize["message"] = o.Message.Get()
@@ -1717,17 +1720,14 @@ func (o ListBuyerOffersItem) MarshalJSON() ([]byte, error) {
 	if o.ParentOfferId.IsSet() {
 		toSerialize["parentOfferId"] = o.ParentOfferId.Get()
 	}
-	if o.PlatformListingIds != nil {
-		toSerialize["platformListingIds"] = o.PlatformListingIds
+	if o.Origin.IsSet() {
+		toSerialize["origin"] = o.Origin.Get()
+	}
+	if o.DecidedAt.IsSet() {
+		toSerialize["decidedAt"] = o.DecidedAt.Get()
 	}
 	if o.ConsumedAt.IsSet() {
 		toSerialize["consumedAt"] = o.ConsumedAt.Get()
-	}
-	if o.ListedTotalCents.IsSet() {
-		toSerialize["listedTotalCents"] = o.ListedTotalCents.Get()
-	}
-	if o.Origin.IsSet() {
-		toSerialize["origin"] = o.Origin.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1773,10 +1773,10 @@ type ListBuyerOffersItemItems struct {
 	Id string `json:"id"`
 	// Listing price now, in cents.
 	PriceCents float32 `json:"priceCents"`
-	Status NullableString `json:"status,omitempty"`
-	Title NullableString `json:"title,omitempty"`
 	Slug NullableString `json:"slug,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	Thumbnail NullableString `json:"thumbnail,omitempty"`
+	Status NullableString `json:"status,omitempty"`
 }
 
 // NewListBuyerOffersItemItems instantiates a new ListBuyerOffersItemItems object
@@ -1846,46 +1846,46 @@ func (o *ListBuyerOffersItemItems) SetPriceCents(v float32) {
 	o.PriceCents = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItemItems) GetStatus() string {
-	if o == nil || o.Status.Get() == nil {
+// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItemItems) GetSlug() string {
+	if o == nil || o.Slug.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status.Get()
+	return *o.Slug.Get()
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItemItems) GetStatusOk() (*string, bool) {
+func (o *ListBuyerOffersItemItems) GetSlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Status.Get(), o.Status.IsSet()
+	return o.Slug.Get(), o.Slug.IsSet()
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ListBuyerOffersItemItems) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+// HasSlug returns a boolean if a field has been set.
+func (o *ListBuyerOffersItemItems) HasSlug() bool {
+	if o != nil && o.Slug.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
-func (o *ListBuyerOffersItemItems) SetStatus(v string) {
-	o.Status.Set(&v)
+// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
+func (o *ListBuyerOffersItemItems) SetSlug(v string) {
+	o.Slug.Set(&v)
 }
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *ListBuyerOffersItemItems) SetStatusNil() {
-	o.Status.Set(nil)
+// SetSlugNil sets the value for Slug to be an explicit nil
+func (o *ListBuyerOffersItemItems) SetSlugNil() {
+	o.Slug.Set(nil)
 }
 
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *ListBuyerOffersItemItems) UnsetStatus() {
-	o.Status.Unset()
+// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
+func (o *ListBuyerOffersItemItems) UnsetSlug() {
+	o.Slug.Unset()
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1930,48 +1930,6 @@ func (o *ListBuyerOffersItemItems) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerOffersItemItems) GetSlug() string {
-	if o == nil || o.Slug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Slug.Get()
-}
-
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerOffersItemItems) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Slug.Get(), o.Slug.IsSet()
-}
-
-// HasSlug returns a boolean if a field has been set.
-func (o *ListBuyerOffersItemItems) HasSlug() bool {
-	if o != nil && o.Slug.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
-func (o *ListBuyerOffersItemItems) SetSlug(v string) {
-	o.Slug.Set(&v)
-}
-// SetSlugNil sets the value for Slug to be an explicit nil
-func (o *ListBuyerOffersItemItems) SetSlugNil() {
-	o.Slug.Set(nil)
-}
-
-// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
-func (o *ListBuyerOffersItemItems) UnsetSlug() {
-	o.Slug.Unset()
-}
-
 // GetThumbnail returns the Thumbnail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerOffersItemItems) GetThumbnail() string {
 	if o == nil || o.Thumbnail.Get() == nil {
@@ -2014,6 +1972,48 @@ func (o *ListBuyerOffersItemItems) UnsetThumbnail() {
 	o.Thumbnail.Unset()
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOffersItemItems) GetStatus() string {
+	if o == nil || o.Status.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerOffersItemItems) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ListBuyerOffersItemItems) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+func (o *ListBuyerOffersItemItems) SetStatus(v string) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *ListBuyerOffersItemItems) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *ListBuyerOffersItemItems) UnsetStatus() {
+	o.Status.Unset()
+}
+
 func (o ListBuyerOffersItemItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2022,17 +2022,17 @@ func (o ListBuyerOffersItemItems) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
 	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if o.Slug.IsSet() {
-		toSerialize["slug"] = o.Slug.Get()
-	}
 	if o.Thumbnail.IsSet() {
 		toSerialize["thumbnail"] = o.Thumbnail.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
 	}
 	return json.Marshal(toSerialize)
 }

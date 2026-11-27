@@ -395,6 +395,8 @@ type CreateDaoProposalOpenResponseData struct {
 	TalliedAt NullableString `json:"talliedAt,omitempty"`
 	VetoedReason NullableString `json:"vetoedReason,omitempty"`
 	CharityGoalId NullableString `json:"charityGoalId,omitempty"`
+	ProposalKind string `json:"proposalKind"`
+	Params map[string]interface{} `json:"params,omitempty"`
 	CreatedAt string `json:"createdAt"`
 }
 
@@ -402,7 +404,7 @@ type CreateDaoProposalOpenResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateDaoProposalOpenResponseData(eligibleVoters float32, id string, title string, body string, beneficiaryKind string, status string, totalVotingPower string, powerFor string, powerAgainst string, powerAbstain string, quorumBps float32, passThresholdBps float32, createdAt string) *CreateDaoProposalOpenResponseData {
+func NewCreateDaoProposalOpenResponseData(eligibleVoters float32, id string, title string, body string, beneficiaryKind string, status string, totalVotingPower string, powerFor string, powerAgainst string, powerAbstain string, quorumBps float32, passThresholdBps float32, proposalKind string, createdAt string) *CreateDaoProposalOpenResponseData {
 	this := CreateDaoProposalOpenResponseData{}
 	this.EligibleVoters = eligibleVoters
 	this.Id = id
@@ -416,6 +418,7 @@ func NewCreateDaoProposalOpenResponseData(eligibleVoters float32, id string, tit
 	this.PowerAbstain = powerAbstain
 	this.QuorumBps = quorumBps
 	this.PassThresholdBps = passThresholdBps
+	this.ProposalKind = proposalKind
 	this.CreatedAt = createdAt
 	return &this
 }
@@ -1010,6 +1013,63 @@ func (o *CreateDaoProposalOpenResponseData) UnsetCharityGoalId() {
 	o.CharityGoalId.Unset()
 }
 
+// GetProposalKind returns the ProposalKind field value
+func (o *CreateDaoProposalOpenResponseData) GetProposalKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProposalKind
+}
+
+// GetProposalKindOk returns a tuple with the ProposalKind field value
+// and a boolean to check if the value has been set.
+func (o *CreateDaoProposalOpenResponseData) GetProposalKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ProposalKind, true
+}
+
+// SetProposalKind sets field value
+func (o *CreateDaoProposalOpenResponseData) SetProposalKind(v string) {
+	o.ProposalKind = v
+}
+
+// GetParams returns the Params field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateDaoProposalOpenResponseData) GetParams() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Params
+}
+
+// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateDaoProposalOpenResponseData) GetParamsOk() (map[string]interface{}, bool) {
+	if o == nil || o.Params == nil {
+		return nil, false
+	}
+	return o.Params, true
+}
+
+// HasParams returns a boolean if a field has been set.
+func (o *CreateDaoProposalOpenResponseData) HasParams() bool {
+	if o != nil && o.Params != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
+func (o *CreateDaoProposalOpenResponseData) SetParams(v map[string]interface{}) {
+	o.Params = v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *CreateDaoProposalOpenResponseData) GetCreatedAt() string {
 	if o == nil {
@@ -1092,6 +1152,12 @@ func (o CreateDaoProposalOpenResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.CharityGoalId.IsSet() {
 		toSerialize["charityGoalId"] = o.CharityGoalId.Get()
+	}
+	if true {
+		toSerialize["proposalKind"] = o.ProposalKind
+	}
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
 	}
 	if true {
 		toSerialize["createdAt"] = o.CreatedAt
@@ -2206,6 +2272,8 @@ type ListDaoProposalsItem struct {
 	TalliedAt NullableString `json:"talliedAt,omitempty"`
 	VetoedReason NullableString `json:"vetoedReason,omitempty"`
 	CharityGoalId NullableString `json:"charityGoalId,omitempty"`
+	ProposalKind string `json:"proposalKind"`
+	Params map[string]interface{} `json:"params,omitempty"`
 	CreatedAt string `json:"createdAt"`
 }
 
@@ -2213,7 +2281,7 @@ type ListDaoProposalsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListDaoProposalsItem(id string, title string, body string, beneficiaryKind string, status string, totalVotingPower string, powerFor string, powerAgainst string, powerAbstain string, quorumBps float32, passThresholdBps float32, createdAt string) *ListDaoProposalsItem {
+func NewListDaoProposalsItem(id string, title string, body string, beneficiaryKind string, status string, totalVotingPower string, powerFor string, powerAgainst string, powerAbstain string, quorumBps float32, passThresholdBps float32, proposalKind string, createdAt string) *ListDaoProposalsItem {
 	this := ListDaoProposalsItem{}
 	this.Id = id
 	this.Title = title
@@ -2226,6 +2294,7 @@ func NewListDaoProposalsItem(id string, title string, body string, beneficiaryKi
 	this.PowerAbstain = powerAbstain
 	this.QuorumBps = quorumBps
 	this.PassThresholdBps = passThresholdBps
+	this.ProposalKind = proposalKind
 	this.CreatedAt = createdAt
 	return &this
 }
@@ -2796,6 +2865,63 @@ func (o *ListDaoProposalsItem) UnsetCharityGoalId() {
 	o.CharityGoalId.Unset()
 }
 
+// GetProposalKind returns the ProposalKind field value
+func (o *ListDaoProposalsItem) GetProposalKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProposalKind
+}
+
+// GetProposalKindOk returns a tuple with the ProposalKind field value
+// and a boolean to check if the value has been set.
+func (o *ListDaoProposalsItem) GetProposalKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ProposalKind, true
+}
+
+// SetProposalKind sets field value
+func (o *ListDaoProposalsItem) SetProposalKind(v string) {
+	o.ProposalKind = v
+}
+
+// GetParams returns the Params field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListDaoProposalsItem) GetParams() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Params
+}
+
+// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListDaoProposalsItem) GetParamsOk() (map[string]interface{}, bool) {
+	if o == nil || o.Params == nil {
+		return nil, false
+	}
+	return o.Params, true
+}
+
+// HasParams returns a boolean if a field has been set.
+func (o *ListDaoProposalsItem) HasParams() bool {
+	if o != nil && o.Params != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
+func (o *ListDaoProposalsItem) SetParams(v map[string]interface{}) {
+	o.Params = v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *ListDaoProposalsItem) GetCreatedAt() string {
 	if o == nil {
@@ -2875,6 +3001,12 @@ func (o ListDaoProposalsItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.CharityGoalId.IsSet() {
 		toSerialize["charityGoalId"] = o.CharityGoalId.Get()
+	}
+	if true {
+		toSerialize["proposalKind"] = o.ProposalKind
+	}
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
 	}
 	if true {
 		toSerialize["createdAt"] = o.CreatedAt

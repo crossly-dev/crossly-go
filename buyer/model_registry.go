@@ -322,11 +322,11 @@ type CreateBuyerRegistryResponseData struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Token string `json:"token"`
+	OwnerUserId string `json:"ownerUserId"`
 	Kind string `json:"kind"`
 	Message NullableString `json:"message,omitempty"`
-	OwnerUserId string `json:"ownerUserId"`
 	WishlistId string `json:"wishlistId"`
+	Token string `json:"token"`
 	EventDate NullableString `json:"eventDate,omitempty"`
 	ShipAddressId NullableString `json:"shipAddressId,omitempty"`
 }
@@ -335,15 +335,15 @@ type CreateBuyerRegistryResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerRegistryResponseData(id string, createdAt time.Time, updatedAt time.Time, token string, kind string, ownerUserId string, wishlistId string) *CreateBuyerRegistryResponseData {
+func NewCreateBuyerRegistryResponseData(id string, createdAt time.Time, updatedAt time.Time, ownerUserId string, kind string, wishlistId string, token string) *CreateBuyerRegistryResponseData {
 	this := CreateBuyerRegistryResponseData{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
-	this.Token = token
-	this.Kind = kind
 	this.OwnerUserId = ownerUserId
+	this.Kind = kind
 	this.WishlistId = wishlistId
+	this.Token = token
 	return &this
 }
 
@@ -427,28 +427,28 @@ func (o *CreateBuyerRegistryResponseData) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetToken returns the Token field value
-func (o *CreateBuyerRegistryResponseData) GetToken() string {
+// GetOwnerUserId returns the OwnerUserId field value
+func (o *CreateBuyerRegistryResponseData) GetOwnerUserId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Token
+	return o.OwnerUserId
 }
 
-// GetTokenOk returns a tuple with the Token field value
+// GetOwnerUserIdOk returns a tuple with the OwnerUserId field value
 // and a boolean to check if the value has been set.
-func (o *CreateBuyerRegistryResponseData) GetTokenOk() (*string, bool) {
+func (o *CreateBuyerRegistryResponseData) GetOwnerUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Token, true
+	return &o.OwnerUserId, true
 }
 
-// SetToken sets field value
-func (o *CreateBuyerRegistryResponseData) SetToken(v string) {
-	o.Token = v
+// SetOwnerUserId sets field value
+func (o *CreateBuyerRegistryResponseData) SetOwnerUserId(v string) {
+	o.OwnerUserId = v
 }
 
 // GetKind returns the Kind field value
@@ -517,30 +517,6 @@ func (o *CreateBuyerRegistryResponseData) UnsetMessage() {
 	o.Message.Unset()
 }
 
-// GetOwnerUserId returns the OwnerUserId field value
-func (o *CreateBuyerRegistryResponseData) GetOwnerUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OwnerUserId
-}
-
-// GetOwnerUserIdOk returns a tuple with the OwnerUserId field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerRegistryResponseData) GetOwnerUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OwnerUserId, true
-}
-
-// SetOwnerUserId sets field value
-func (o *CreateBuyerRegistryResponseData) SetOwnerUserId(v string) {
-	o.OwnerUserId = v
-}
-
 // GetWishlistId returns the WishlistId field value
 func (o *CreateBuyerRegistryResponseData) GetWishlistId() string {
 	if o == nil {
@@ -563,6 +539,30 @@ func (o *CreateBuyerRegistryResponseData) GetWishlistIdOk() (*string, bool) {
 // SetWishlistId sets field value
 func (o *CreateBuyerRegistryResponseData) SetWishlistId(v string) {
 	o.WishlistId = v
+}
+
+// GetToken returns the Token field value
+func (o *CreateBuyerRegistryResponseData) GetToken() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerRegistryResponseData) GetTokenOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Token, true
+}
+
+// SetToken sets field value
+func (o *CreateBuyerRegistryResponseData) SetToken(v string) {
+	o.Token = v
 }
 
 // GetEventDate returns the EventDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -661,7 +661,7 @@ func (o CreateBuyerRegistryResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if true {
-		toSerialize["token"] = o.Token
+		toSerialize["ownerUserId"] = o.OwnerUserId
 	}
 	if true {
 		toSerialize["kind"] = o.Kind
@@ -670,10 +670,10 @@ func (o CreateBuyerRegistryResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message.Get()
 	}
 	if true {
-		toSerialize["ownerUserId"] = o.OwnerUserId
+		toSerialize["wishlistId"] = o.WishlistId
 	}
 	if true {
-		toSerialize["wishlistId"] = o.WishlistId
+		toSerialize["token"] = o.Token
 	}
 	if o.EventDate.IsSet() {
 		toSerialize["eventDate"] = o.EventDate.Get()

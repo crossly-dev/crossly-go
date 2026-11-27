@@ -6183,6 +6183,9 @@ type CreateBuyerAgentSessionTurnResponseOptions struct {
 	Facts []string `json:"facts"`
 	Reason string `json:"reason"`
 	PriceCheck NullableCreateBuyerAgentSessionActResponseQuotePriceCheck `json:"priceCheck,omitempty"`
+	// The world object it stands as, and the seller's public shop room (world-picks.ts).
+	Model NullableString `json:"model,omitempty"`
+	ShopSlug NullableString `json:"shopSlug,omitempty"`
 }
 
 // NewCreateBuyerAgentSessionTurnResponseOptions instantiates a new CreateBuyerAgentSessionTurnResponseOptions object
@@ -6688,6 +6691,90 @@ func (o *CreateBuyerAgentSessionTurnResponseOptions) UnsetPriceCheck() {
 	o.PriceCheck.Unset()
 }
 
+// GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateBuyerAgentSessionTurnResponseOptions) GetModel() string {
+	if o == nil || o.Model.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Model.Get()
+}
+
+// GetModelOk returns a tuple with the Model field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateBuyerAgentSessionTurnResponseOptions) GetModelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Model.Get(), o.Model.IsSet()
+}
+
+// HasModel returns a boolean if a field has been set.
+func (o *CreateBuyerAgentSessionTurnResponseOptions) HasModel() bool {
+	if o != nil && o.Model.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetModel gets a reference to the given NullableString and assigns it to the Model field.
+func (o *CreateBuyerAgentSessionTurnResponseOptions) SetModel(v string) {
+	o.Model.Set(&v)
+}
+// SetModelNil sets the value for Model to be an explicit nil
+func (o *CreateBuyerAgentSessionTurnResponseOptions) SetModelNil() {
+	o.Model.Set(nil)
+}
+
+// UnsetModel ensures that no value is present for Model, not even an explicit nil
+func (o *CreateBuyerAgentSessionTurnResponseOptions) UnsetModel() {
+	o.Model.Unset()
+}
+
+// GetShopSlug returns the ShopSlug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateBuyerAgentSessionTurnResponseOptions) GetShopSlug() string {
+	if o == nil || o.ShopSlug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShopSlug.Get()
+}
+
+// GetShopSlugOk returns a tuple with the ShopSlug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateBuyerAgentSessionTurnResponseOptions) GetShopSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShopSlug.Get(), o.ShopSlug.IsSet()
+}
+
+// HasShopSlug returns a boolean if a field has been set.
+func (o *CreateBuyerAgentSessionTurnResponseOptions) HasShopSlug() bool {
+	if o != nil && o.ShopSlug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShopSlug gets a reference to the given NullableString and assigns it to the ShopSlug field.
+func (o *CreateBuyerAgentSessionTurnResponseOptions) SetShopSlug(v string) {
+	o.ShopSlug.Set(&v)
+}
+// SetShopSlugNil sets the value for ShopSlug to be an explicit nil
+func (o *CreateBuyerAgentSessionTurnResponseOptions) SetShopSlugNil() {
+	o.ShopSlug.Set(nil)
+}
+
+// UnsetShopSlug ensures that no value is present for ShopSlug, not even an explicit nil
+func (o *CreateBuyerAgentSessionTurnResponseOptions) UnsetShopSlug() {
+	o.ShopSlug.Unset()
+}
+
 func (o CreateBuyerAgentSessionTurnResponseOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -6731,6 +6818,12 @@ func (o CreateBuyerAgentSessionTurnResponseOptions) MarshalJSON() ([]byte, error
 	}
 	if o.PriceCheck.IsSet() {
 		toSerialize["priceCheck"] = o.PriceCheck.Get()
+	}
+	if o.Model.IsSet() {
+		toSerialize["model"] = o.Model.Get()
+	}
+	if o.ShopSlug.IsSet() {
+		toSerialize["shopSlug"] = o.ShopSlug.Get()
 	}
 	return json.Marshal(toSerialize)
 }

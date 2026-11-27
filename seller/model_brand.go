@@ -1028,6 +1028,10 @@ type ListBrandDropListingsItem struct {
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
 	PriceCents NullableFloat32 `json:"priceCents,omitempty"`
 	Status string `json:"status"`
+	// The Crossly listing's slug (platform_listings.platform_listing_id): what the cart adds by.
+	Slug NullableString `json:"slug,omitempty"`
+	// Units the listing offers (null = untracked): a pre-book's reservable quantity.
+	Quantity NullableFloat32 `json:"quantity,omitempty"`
 }
 
 // NewListBrandDropListingsItem instantiates a new ListBrandDropListingsItem object
@@ -1248,6 +1252,90 @@ func (o *ListBrandDropListingsItem) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropListingsItem) GetSlug() string {
+	if o == nil || o.Slug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug.Get()
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropListingsItem) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Slug.Get(), o.Slug.IsSet()
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *ListBrandDropListingsItem) HasSlug() bool {
+	if o != nil && o.Slug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
+func (o *ListBrandDropListingsItem) SetSlug(v string) {
+	o.Slug.Set(&v)
+}
+// SetSlugNil sets the value for Slug to be an explicit nil
+func (o *ListBrandDropListingsItem) SetSlugNil() {
+	o.Slug.Set(nil)
+}
+
+// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
+func (o *ListBrandDropListingsItem) UnsetSlug() {
+	o.Slug.Unset()
+}
+
+// GetQuantity returns the Quantity field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropListingsItem) GetQuantity() float32 {
+	if o == nil || o.Quantity.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Quantity.Get()
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropListingsItem) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Quantity.Get(), o.Quantity.IsSet()
+}
+
+// HasQuantity returns a boolean if a field has been set.
+func (o *ListBrandDropListingsItem) HasQuantity() bool {
+	if o != nil && o.Quantity.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQuantity gets a reference to the given NullableFloat32 and assigns it to the Quantity field.
+func (o *ListBrandDropListingsItem) SetQuantity(v float32) {
+	o.Quantity.Set(&v)
+}
+// SetQuantityNil sets the value for Quantity to be an explicit nil
+func (o *ListBrandDropListingsItem) SetQuantityNil() {
+	o.Quantity.Set(nil)
+}
+
+// UnsetQuantity ensures that no value is present for Quantity, not even an explicit nil
+func (o *ListBrandDropListingsItem) UnsetQuantity() {
+	o.Quantity.Unset()
+}
+
 func (o ListBrandDropListingsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1267,6 +1355,12 @@ func (o ListBrandDropListingsItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["status"] = o.Status
+	}
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
+	}
+	if o.Quantity.IsSet() {
+		toSerialize["quantity"] = o.Quantity.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1477,26 +1571,46 @@ type ListBrandDropsItem struct {
 	Id string `json:"id"`
 	Name string `json:"name"`
 	CreatedAt time.Time `json:"createdAt"`
-	Status string `json:"status"`
+	UpdatedAt time.Time `json:"updatedAt"`
 	Description NullableString `json:"description,omitempty"`
+	Status string `json:"status"`
+	ReleasedAt NullableTime `json:"releasedAt,omitempty"`
+	Published bool `json:"published"`
+	StorefrontId NullableString `json:"storefrontId,omitempty"`
 	EndsAt NullableTime `json:"endsAt,omitempty"`
+	EventId NullableString `json:"eventId,omitempty"`
+	Format string `json:"format"`
+	Config map[string]interface{} `json:"config"`
 	SellerUserId string `json:"sellerUserId"`
 	CoverImageUrl NullableString `json:"coverImageUrl,omitempty"`
-	PublishedAt NullableTime `json:"publishedAt,omitempty"`
-	ReviewedAt NullableTime `json:"reviewedAt,omitempty"`
-	ReviewNote NullableString `json:"reviewNote,omitempty"`
-	SupplierName NullableString `json:"supplierName,omitempty"`
-	PartnerId NullableString `json:"partnerId,omitempty"`
-	Published bool `json:"published"`
 	PlatformListingIds []string `json:"platformListingIds,omitempty"`
 	DropAt time.Time `json:"dropAt"`
+	PartnerId NullableString `json:"partnerId,omitempty"`
 	WholesaleUnitCostCents NullableFloat32 `json:"wholesaleUnitCostCents,omitempty"`
 	UnitsPurchased NullableFloat32 `json:"unitsPurchased,omitempty"`
+	SupplierName NullableString `json:"supplierName,omitempty"`
 	PoReference NullableString `json:"poReference,omitempty"`
 	RetailUnitPriceCents NullableFloat32 `json:"retailUnitPriceCents,omitempty"`
 	BuyerApiEnabled bool `json:"buyerApiEnabled"`
 	PerCustomerLimit NullableFloat32 `json:"perCustomerLimit,omitempty"`
 	PreviewFrom NullableTime `json:"previewFrom,omitempty"`
+	PublishedAt NullableTime `json:"publishedAt,omitempty"`
+	ReviewNote NullableString `json:"reviewNote,omitempty"`
+	ReviewedAt NullableTime `json:"reviewedAt,omitempty"`
+	Placements []string `json:"placements"`
+	AnnounceAt NullableTime `json:"announceAt,omitempty"`
+	CountdownAt NullableTime `json:"countdownAt,omitempty"`
+	PausedAt NullableTime `json:"pausedAt,omitempty"`
+	LiveStreamId NullableString `json:"liveStreamId,omitempty"`
+	SpatialDropId NullableString `json:"spatialDropId,omitempty"`
+	Timezone NullableString `json:"timezone,omitempty"`
+	FeaturedStatus NullableString `json:"featuredStatus,omitempty"`
+	Audience string `json:"audience"`
+	AudienceCatalogId NullableString `json:"audienceCatalogId,omitempty"`
+	DropKind string `json:"dropKind"`
+	DepositBps NullableFloat32 `json:"depositBps,omitempty"`
+	ShipBy NullableString `json:"shipBy,omitempty"`
+	BalanceNetDays NullableFloat32 `json:"balanceNetDays,omitempty"`
 	ListingCount float32 `json:"listingCount"`
 }
 
@@ -1504,16 +1618,22 @@ type ListBrandDropsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBrandDropsItem(id string, name string, createdAt time.Time, status string, sellerUserId string, published bool, dropAt time.Time, buyerApiEnabled bool, listingCount float32) *ListBrandDropsItem {
+func NewListBrandDropsItem(id string, name string, createdAt time.Time, updatedAt time.Time, status string, published bool, format string, config map[string]interface{}, sellerUserId string, dropAt time.Time, buyerApiEnabled bool, placements []string, audience string, dropKind string, listingCount float32) *ListBrandDropsItem {
 	this := ListBrandDropsItem{}
 	this.Id = id
 	this.Name = name
 	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
 	this.Status = status
-	this.SellerUserId = sellerUserId
 	this.Published = published
+	this.Format = format
+	this.Config = config
+	this.SellerUserId = sellerUserId
 	this.DropAt = dropAt
 	this.BuyerApiEnabled = buyerApiEnabled
+	this.Placements = placements
+	this.Audience = audience
+	this.DropKind = dropKind
 	this.ListingCount = listingCount
 	return &this
 }
@@ -1598,28 +1718,28 @@ func (o *ListBrandDropsItem) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
-// GetStatus returns the Status field value
-func (o *ListBrandDropsItem) GetStatus() string {
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *ListBrandDropsItem) GetUpdatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
-	return o.Status
+	return o.UpdatedAt
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ListBrandDropsItem) GetStatusOk() (*string, bool) {
+func (o *ListBrandDropsItem) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.UpdatedAt, true
 }
 
-// SetStatus sets field value
-func (o *ListBrandDropsItem) SetStatus(v string) {
-	o.Status = v
+// SetUpdatedAt sets field value
+func (o *ListBrandDropsItem) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1664,6 +1784,138 @@ func (o *ListBrandDropsItem) UnsetDescription() {
 	o.Description.Unset()
 }
 
+// GetStatus returns the Status field value
+func (o *ListBrandDropsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListBrandDropsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetReleasedAt returns the ReleasedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetReleasedAt() time.Time {
+	if o == nil || o.ReleasedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ReleasedAt.Get()
+}
+
+// GetReleasedAtOk returns a tuple with the ReleasedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetReleasedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReleasedAt.Get(), o.ReleasedAt.IsSet()
+}
+
+// HasReleasedAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasReleasedAt() bool {
+	if o != nil && o.ReleasedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReleasedAt gets a reference to the given NullableTime and assigns it to the ReleasedAt field.
+func (o *ListBrandDropsItem) SetReleasedAt(v time.Time) {
+	o.ReleasedAt.Set(&v)
+}
+// SetReleasedAtNil sets the value for ReleasedAt to be an explicit nil
+func (o *ListBrandDropsItem) SetReleasedAtNil() {
+	o.ReleasedAt.Set(nil)
+}
+
+// UnsetReleasedAt ensures that no value is present for ReleasedAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetReleasedAt() {
+	o.ReleasedAt.Unset()
+}
+
+// GetPublished returns the Published field value
+func (o *ListBrandDropsItem) GetPublished() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Published
+}
+
+// GetPublishedOk returns a tuple with the Published field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetPublishedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Published, true
+}
+
+// SetPublished sets field value
+func (o *ListBrandDropsItem) SetPublished(v bool) {
+	o.Published = v
+}
+
+// GetStorefrontId returns the StorefrontId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetStorefrontId() string {
+	if o == nil || o.StorefrontId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StorefrontId.Get()
+}
+
+// GetStorefrontIdOk returns a tuple with the StorefrontId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetStorefrontIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StorefrontId.Get(), o.StorefrontId.IsSet()
+}
+
+// HasStorefrontId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasStorefrontId() bool {
+	if o != nil && o.StorefrontId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStorefrontId gets a reference to the given NullableString and assigns it to the StorefrontId field.
+func (o *ListBrandDropsItem) SetStorefrontId(v string) {
+	o.StorefrontId.Set(&v)
+}
+// SetStorefrontIdNil sets the value for StorefrontId to be an explicit nil
+func (o *ListBrandDropsItem) SetStorefrontIdNil() {
+	o.StorefrontId.Set(nil)
+}
+
+// UnsetStorefrontId ensures that no value is present for StorefrontId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetStorefrontId() {
+	o.StorefrontId.Unset()
+}
+
 // GetEndsAt returns the EndsAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBrandDropsItem) GetEndsAt() time.Time {
 	if o == nil || o.EndsAt.Get() == nil {
@@ -1704,6 +1956,96 @@ func (o *ListBrandDropsItem) SetEndsAtNil() {
 // UnsetEndsAt ensures that no value is present for EndsAt, not even an explicit nil
 func (o *ListBrandDropsItem) UnsetEndsAt() {
 	o.EndsAt.Unset()
+}
+
+// GetEventId returns the EventId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetEventId() string {
+	if o == nil || o.EventId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EventId.Get()
+}
+
+// GetEventIdOk returns a tuple with the EventId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetEventIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EventId.Get(), o.EventId.IsSet()
+}
+
+// HasEventId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasEventId() bool {
+	if o != nil && o.EventId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEventId gets a reference to the given NullableString and assigns it to the EventId field.
+func (o *ListBrandDropsItem) SetEventId(v string) {
+	o.EventId.Set(&v)
+}
+// SetEventIdNil sets the value for EventId to be an explicit nil
+func (o *ListBrandDropsItem) SetEventIdNil() {
+	o.EventId.Set(nil)
+}
+
+// UnsetEventId ensures that no value is present for EventId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetEventId() {
+	o.EventId.Unset()
+}
+
+// GetFormat returns the Format field value
+func (o *ListBrandDropsItem) GetFormat() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetFormatOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Format, true
+}
+
+// SetFormat sets field value
+func (o *ListBrandDropsItem) SetFormat(v string) {
+	o.Format = v
+}
+
+// GetConfig returns the Config field value
+func (o *ListBrandDropsItem) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetConfigOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// SetConfig sets field value
+func (o *ListBrandDropsItem) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetSellerUserId returns the SellerUserId field value
@@ -1772,240 +2114,6 @@ func (o *ListBrandDropsItem) UnsetCoverImageUrl() {
 	o.CoverImageUrl.Unset()
 }
 
-// GetPublishedAt returns the PublishedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBrandDropsItem) GetPublishedAt() time.Time {
-	if o == nil || o.PublishedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.PublishedAt.Get()
-}
-
-// GetPublishedAtOk returns a tuple with the PublishedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBrandDropsItem) GetPublishedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PublishedAt.Get(), o.PublishedAt.IsSet()
-}
-
-// HasPublishedAt returns a boolean if a field has been set.
-func (o *ListBrandDropsItem) HasPublishedAt() bool {
-	if o != nil && o.PublishedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPublishedAt gets a reference to the given NullableTime and assigns it to the PublishedAt field.
-func (o *ListBrandDropsItem) SetPublishedAt(v time.Time) {
-	o.PublishedAt.Set(&v)
-}
-// SetPublishedAtNil sets the value for PublishedAt to be an explicit nil
-func (o *ListBrandDropsItem) SetPublishedAtNil() {
-	o.PublishedAt.Set(nil)
-}
-
-// UnsetPublishedAt ensures that no value is present for PublishedAt, not even an explicit nil
-func (o *ListBrandDropsItem) UnsetPublishedAt() {
-	o.PublishedAt.Unset()
-}
-
-// GetReviewedAt returns the ReviewedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBrandDropsItem) GetReviewedAt() time.Time {
-	if o == nil || o.ReviewedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ReviewedAt.Get()
-}
-
-// GetReviewedAtOk returns a tuple with the ReviewedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBrandDropsItem) GetReviewedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReviewedAt.Get(), o.ReviewedAt.IsSet()
-}
-
-// HasReviewedAt returns a boolean if a field has been set.
-func (o *ListBrandDropsItem) HasReviewedAt() bool {
-	if o != nil && o.ReviewedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReviewedAt gets a reference to the given NullableTime and assigns it to the ReviewedAt field.
-func (o *ListBrandDropsItem) SetReviewedAt(v time.Time) {
-	o.ReviewedAt.Set(&v)
-}
-// SetReviewedAtNil sets the value for ReviewedAt to be an explicit nil
-func (o *ListBrandDropsItem) SetReviewedAtNil() {
-	o.ReviewedAt.Set(nil)
-}
-
-// UnsetReviewedAt ensures that no value is present for ReviewedAt, not even an explicit nil
-func (o *ListBrandDropsItem) UnsetReviewedAt() {
-	o.ReviewedAt.Unset()
-}
-
-// GetReviewNote returns the ReviewNote field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBrandDropsItem) GetReviewNote() string {
-	if o == nil || o.ReviewNote.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReviewNote.Get()
-}
-
-// GetReviewNoteOk returns a tuple with the ReviewNote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBrandDropsItem) GetReviewNoteOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReviewNote.Get(), o.ReviewNote.IsSet()
-}
-
-// HasReviewNote returns a boolean if a field has been set.
-func (o *ListBrandDropsItem) HasReviewNote() bool {
-	if o != nil && o.ReviewNote.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReviewNote gets a reference to the given NullableString and assigns it to the ReviewNote field.
-func (o *ListBrandDropsItem) SetReviewNote(v string) {
-	o.ReviewNote.Set(&v)
-}
-// SetReviewNoteNil sets the value for ReviewNote to be an explicit nil
-func (o *ListBrandDropsItem) SetReviewNoteNil() {
-	o.ReviewNote.Set(nil)
-}
-
-// UnsetReviewNote ensures that no value is present for ReviewNote, not even an explicit nil
-func (o *ListBrandDropsItem) UnsetReviewNote() {
-	o.ReviewNote.Unset()
-}
-
-// GetSupplierName returns the SupplierName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBrandDropsItem) GetSupplierName() string {
-	if o == nil || o.SupplierName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SupplierName.Get()
-}
-
-// GetSupplierNameOk returns a tuple with the SupplierName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBrandDropsItem) GetSupplierNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SupplierName.Get(), o.SupplierName.IsSet()
-}
-
-// HasSupplierName returns a boolean if a field has been set.
-func (o *ListBrandDropsItem) HasSupplierName() bool {
-	if o != nil && o.SupplierName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSupplierName gets a reference to the given NullableString and assigns it to the SupplierName field.
-func (o *ListBrandDropsItem) SetSupplierName(v string) {
-	o.SupplierName.Set(&v)
-}
-// SetSupplierNameNil sets the value for SupplierName to be an explicit nil
-func (o *ListBrandDropsItem) SetSupplierNameNil() {
-	o.SupplierName.Set(nil)
-}
-
-// UnsetSupplierName ensures that no value is present for SupplierName, not even an explicit nil
-func (o *ListBrandDropsItem) UnsetSupplierName() {
-	o.SupplierName.Unset()
-}
-
-// GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBrandDropsItem) GetPartnerId() string {
-	if o == nil || o.PartnerId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PartnerId.Get()
-}
-
-// GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBrandDropsItem) GetPartnerIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PartnerId.Get(), o.PartnerId.IsSet()
-}
-
-// HasPartnerId returns a boolean if a field has been set.
-func (o *ListBrandDropsItem) HasPartnerId() bool {
-	if o != nil && o.PartnerId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPartnerId gets a reference to the given NullableString and assigns it to the PartnerId field.
-func (o *ListBrandDropsItem) SetPartnerId(v string) {
-	o.PartnerId.Set(&v)
-}
-// SetPartnerIdNil sets the value for PartnerId to be an explicit nil
-func (o *ListBrandDropsItem) SetPartnerIdNil() {
-	o.PartnerId.Set(nil)
-}
-
-// UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
-func (o *ListBrandDropsItem) UnsetPartnerId() {
-	o.PartnerId.Unset()
-}
-
-// GetPublished returns the Published field value
-func (o *ListBrandDropsItem) GetPublished() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Published
-}
-
-// GetPublishedOk returns a tuple with the Published field value
-// and a boolean to check if the value has been set.
-func (o *ListBrandDropsItem) GetPublishedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Published, true
-}
-
-// SetPublished sets field value
-func (o *ListBrandDropsItem) SetPublished(v bool) {
-	o.Published = v
-}
-
 // GetPlatformListingIds returns the PlatformListingIds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBrandDropsItem) GetPlatformListingIds() []string {
 	if o == nil  {
@@ -2061,6 +2169,48 @@ func (o *ListBrandDropsItem) GetDropAtOk() (*time.Time, bool) {
 // SetDropAt sets field value
 func (o *ListBrandDropsItem) SetDropAt(v time.Time) {
 	o.DropAt = v
+}
+
+// GetPartnerId returns the PartnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetPartnerId() string {
+	if o == nil || o.PartnerId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PartnerId.Get()
+}
+
+// GetPartnerIdOk returns a tuple with the PartnerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetPartnerIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PartnerId.Get(), o.PartnerId.IsSet()
+}
+
+// HasPartnerId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasPartnerId() bool {
+	if o != nil && o.PartnerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPartnerId gets a reference to the given NullableString and assigns it to the PartnerId field.
+func (o *ListBrandDropsItem) SetPartnerId(v string) {
+	o.PartnerId.Set(&v)
+}
+// SetPartnerIdNil sets the value for PartnerId to be an explicit nil
+func (o *ListBrandDropsItem) SetPartnerIdNil() {
+	o.PartnerId.Set(nil)
+}
+
+// UnsetPartnerId ensures that no value is present for PartnerId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetPartnerId() {
+	o.PartnerId.Unset()
 }
 
 // GetWholesaleUnitCostCents returns the WholesaleUnitCostCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2145,6 +2295,48 @@ func (o *ListBrandDropsItem) SetUnitsPurchasedNil() {
 // UnsetUnitsPurchased ensures that no value is present for UnitsPurchased, not even an explicit nil
 func (o *ListBrandDropsItem) UnsetUnitsPurchased() {
 	o.UnitsPurchased.Unset()
+}
+
+// GetSupplierName returns the SupplierName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetSupplierName() string {
+	if o == nil || o.SupplierName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SupplierName.Get()
+}
+
+// GetSupplierNameOk returns a tuple with the SupplierName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetSupplierNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SupplierName.Get(), o.SupplierName.IsSet()
+}
+
+// HasSupplierName returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasSupplierName() bool {
+	if o != nil && o.SupplierName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupplierName gets a reference to the given NullableString and assigns it to the SupplierName field.
+func (o *ListBrandDropsItem) SetSupplierName(v string) {
+	o.SupplierName.Set(&v)
+}
+// SetSupplierNameNil sets the value for SupplierName to be an explicit nil
+func (o *ListBrandDropsItem) SetSupplierNameNil() {
+	o.SupplierName.Set(nil)
+}
+
+// UnsetSupplierName ensures that no value is present for SupplierName, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetSupplierName() {
+	o.SupplierName.Unset()
 }
 
 // GetPoReference returns the PoReference field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2339,6 +2531,666 @@ func (o *ListBrandDropsItem) UnsetPreviewFrom() {
 	o.PreviewFrom.Unset()
 }
 
+// GetPublishedAt returns the PublishedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetPublishedAt() time.Time {
+	if o == nil || o.PublishedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PublishedAt.Get()
+}
+
+// GetPublishedAtOk returns a tuple with the PublishedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetPublishedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PublishedAt.Get(), o.PublishedAt.IsSet()
+}
+
+// HasPublishedAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasPublishedAt() bool {
+	if o != nil && o.PublishedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPublishedAt gets a reference to the given NullableTime and assigns it to the PublishedAt field.
+func (o *ListBrandDropsItem) SetPublishedAt(v time.Time) {
+	o.PublishedAt.Set(&v)
+}
+// SetPublishedAtNil sets the value for PublishedAt to be an explicit nil
+func (o *ListBrandDropsItem) SetPublishedAtNil() {
+	o.PublishedAt.Set(nil)
+}
+
+// UnsetPublishedAt ensures that no value is present for PublishedAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetPublishedAt() {
+	o.PublishedAt.Unset()
+}
+
+// GetReviewNote returns the ReviewNote field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetReviewNote() string {
+	if o == nil || o.ReviewNote.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReviewNote.Get()
+}
+
+// GetReviewNoteOk returns a tuple with the ReviewNote field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetReviewNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReviewNote.Get(), o.ReviewNote.IsSet()
+}
+
+// HasReviewNote returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasReviewNote() bool {
+	if o != nil && o.ReviewNote.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReviewNote gets a reference to the given NullableString and assigns it to the ReviewNote field.
+func (o *ListBrandDropsItem) SetReviewNote(v string) {
+	o.ReviewNote.Set(&v)
+}
+// SetReviewNoteNil sets the value for ReviewNote to be an explicit nil
+func (o *ListBrandDropsItem) SetReviewNoteNil() {
+	o.ReviewNote.Set(nil)
+}
+
+// UnsetReviewNote ensures that no value is present for ReviewNote, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetReviewNote() {
+	o.ReviewNote.Unset()
+}
+
+// GetReviewedAt returns the ReviewedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetReviewedAt() time.Time {
+	if o == nil || o.ReviewedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ReviewedAt.Get()
+}
+
+// GetReviewedAtOk returns a tuple with the ReviewedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetReviewedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReviewedAt.Get(), o.ReviewedAt.IsSet()
+}
+
+// HasReviewedAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasReviewedAt() bool {
+	if o != nil && o.ReviewedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReviewedAt gets a reference to the given NullableTime and assigns it to the ReviewedAt field.
+func (o *ListBrandDropsItem) SetReviewedAt(v time.Time) {
+	o.ReviewedAt.Set(&v)
+}
+// SetReviewedAtNil sets the value for ReviewedAt to be an explicit nil
+func (o *ListBrandDropsItem) SetReviewedAtNil() {
+	o.ReviewedAt.Set(nil)
+}
+
+// UnsetReviewedAt ensures that no value is present for ReviewedAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetReviewedAt() {
+	o.ReviewedAt.Unset()
+}
+
+// GetPlacements returns the Placements field value
+func (o *ListBrandDropsItem) GetPlacements() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Placements
+}
+
+// GetPlacementsOk returns a tuple with the Placements field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetPlacementsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Placements, true
+}
+
+// SetPlacements sets field value
+func (o *ListBrandDropsItem) SetPlacements(v []string) {
+	o.Placements = v
+}
+
+// GetAnnounceAt returns the AnnounceAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetAnnounceAt() time.Time {
+	if o == nil || o.AnnounceAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AnnounceAt.Get()
+}
+
+// GetAnnounceAtOk returns a tuple with the AnnounceAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetAnnounceAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AnnounceAt.Get(), o.AnnounceAt.IsSet()
+}
+
+// HasAnnounceAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasAnnounceAt() bool {
+	if o != nil && o.AnnounceAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAnnounceAt gets a reference to the given NullableTime and assigns it to the AnnounceAt field.
+func (o *ListBrandDropsItem) SetAnnounceAt(v time.Time) {
+	o.AnnounceAt.Set(&v)
+}
+// SetAnnounceAtNil sets the value for AnnounceAt to be an explicit nil
+func (o *ListBrandDropsItem) SetAnnounceAtNil() {
+	o.AnnounceAt.Set(nil)
+}
+
+// UnsetAnnounceAt ensures that no value is present for AnnounceAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetAnnounceAt() {
+	o.AnnounceAt.Unset()
+}
+
+// GetCountdownAt returns the CountdownAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetCountdownAt() time.Time {
+	if o == nil || o.CountdownAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CountdownAt.Get()
+}
+
+// GetCountdownAtOk returns a tuple with the CountdownAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetCountdownAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CountdownAt.Get(), o.CountdownAt.IsSet()
+}
+
+// HasCountdownAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasCountdownAt() bool {
+	if o != nil && o.CountdownAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountdownAt gets a reference to the given NullableTime and assigns it to the CountdownAt field.
+func (o *ListBrandDropsItem) SetCountdownAt(v time.Time) {
+	o.CountdownAt.Set(&v)
+}
+// SetCountdownAtNil sets the value for CountdownAt to be an explicit nil
+func (o *ListBrandDropsItem) SetCountdownAtNil() {
+	o.CountdownAt.Set(nil)
+}
+
+// UnsetCountdownAt ensures that no value is present for CountdownAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetCountdownAt() {
+	o.CountdownAt.Unset()
+}
+
+// GetPausedAt returns the PausedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetPausedAt() time.Time {
+	if o == nil || o.PausedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PausedAt.Get()
+}
+
+// GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetPausedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PausedAt.Get(), o.PausedAt.IsSet()
+}
+
+// HasPausedAt returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasPausedAt() bool {
+	if o != nil && o.PausedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPausedAt gets a reference to the given NullableTime and assigns it to the PausedAt field.
+func (o *ListBrandDropsItem) SetPausedAt(v time.Time) {
+	o.PausedAt.Set(&v)
+}
+// SetPausedAtNil sets the value for PausedAt to be an explicit nil
+func (o *ListBrandDropsItem) SetPausedAtNil() {
+	o.PausedAt.Set(nil)
+}
+
+// UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetPausedAt() {
+	o.PausedAt.Unset()
+}
+
+// GetLiveStreamId returns the LiveStreamId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetLiveStreamId() string {
+	if o == nil || o.LiveStreamId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LiveStreamId.Get()
+}
+
+// GetLiveStreamIdOk returns a tuple with the LiveStreamId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetLiveStreamIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LiveStreamId.Get(), o.LiveStreamId.IsSet()
+}
+
+// HasLiveStreamId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasLiveStreamId() bool {
+	if o != nil && o.LiveStreamId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLiveStreamId gets a reference to the given NullableString and assigns it to the LiveStreamId field.
+func (o *ListBrandDropsItem) SetLiveStreamId(v string) {
+	o.LiveStreamId.Set(&v)
+}
+// SetLiveStreamIdNil sets the value for LiveStreamId to be an explicit nil
+func (o *ListBrandDropsItem) SetLiveStreamIdNil() {
+	o.LiveStreamId.Set(nil)
+}
+
+// UnsetLiveStreamId ensures that no value is present for LiveStreamId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetLiveStreamId() {
+	o.LiveStreamId.Unset()
+}
+
+// GetSpatialDropId returns the SpatialDropId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetSpatialDropId() string {
+	if o == nil || o.SpatialDropId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SpatialDropId.Get()
+}
+
+// GetSpatialDropIdOk returns a tuple with the SpatialDropId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetSpatialDropIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SpatialDropId.Get(), o.SpatialDropId.IsSet()
+}
+
+// HasSpatialDropId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasSpatialDropId() bool {
+	if o != nil && o.SpatialDropId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSpatialDropId gets a reference to the given NullableString and assigns it to the SpatialDropId field.
+func (o *ListBrandDropsItem) SetSpatialDropId(v string) {
+	o.SpatialDropId.Set(&v)
+}
+// SetSpatialDropIdNil sets the value for SpatialDropId to be an explicit nil
+func (o *ListBrandDropsItem) SetSpatialDropIdNil() {
+	o.SpatialDropId.Set(nil)
+}
+
+// UnsetSpatialDropId ensures that no value is present for SpatialDropId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetSpatialDropId() {
+	o.SpatialDropId.Unset()
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetTimezone() string {
+	if o == nil || o.Timezone.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timezone.Get()
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetTimezoneOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Timezone.Get(), o.Timezone.IsSet()
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasTimezone() bool {
+	if o != nil && o.Timezone.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given NullableString and assigns it to the Timezone field.
+func (o *ListBrandDropsItem) SetTimezone(v string) {
+	o.Timezone.Set(&v)
+}
+// SetTimezoneNil sets the value for Timezone to be an explicit nil
+func (o *ListBrandDropsItem) SetTimezoneNil() {
+	o.Timezone.Set(nil)
+}
+
+// UnsetTimezone ensures that no value is present for Timezone, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetTimezone() {
+	o.Timezone.Unset()
+}
+
+// GetFeaturedStatus returns the FeaturedStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetFeaturedStatus() string {
+	if o == nil || o.FeaturedStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.FeaturedStatus.Get()
+}
+
+// GetFeaturedStatusOk returns a tuple with the FeaturedStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetFeaturedStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.FeaturedStatus.Get(), o.FeaturedStatus.IsSet()
+}
+
+// HasFeaturedStatus returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasFeaturedStatus() bool {
+	if o != nil && o.FeaturedStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFeaturedStatus gets a reference to the given NullableString and assigns it to the FeaturedStatus field.
+func (o *ListBrandDropsItem) SetFeaturedStatus(v string) {
+	o.FeaturedStatus.Set(&v)
+}
+// SetFeaturedStatusNil sets the value for FeaturedStatus to be an explicit nil
+func (o *ListBrandDropsItem) SetFeaturedStatusNil() {
+	o.FeaturedStatus.Set(nil)
+}
+
+// UnsetFeaturedStatus ensures that no value is present for FeaturedStatus, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetFeaturedStatus() {
+	o.FeaturedStatus.Unset()
+}
+
+// GetAudience returns the Audience field value
+func (o *ListBrandDropsItem) GetAudience() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Audience
+}
+
+// GetAudienceOk returns a tuple with the Audience field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetAudienceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Audience, true
+}
+
+// SetAudience sets field value
+func (o *ListBrandDropsItem) SetAudience(v string) {
+	o.Audience = v
+}
+
+// GetAudienceCatalogId returns the AudienceCatalogId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetAudienceCatalogId() string {
+	if o == nil || o.AudienceCatalogId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AudienceCatalogId.Get()
+}
+
+// GetAudienceCatalogIdOk returns a tuple with the AudienceCatalogId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetAudienceCatalogIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AudienceCatalogId.Get(), o.AudienceCatalogId.IsSet()
+}
+
+// HasAudienceCatalogId returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasAudienceCatalogId() bool {
+	if o != nil && o.AudienceCatalogId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceCatalogId gets a reference to the given NullableString and assigns it to the AudienceCatalogId field.
+func (o *ListBrandDropsItem) SetAudienceCatalogId(v string) {
+	o.AudienceCatalogId.Set(&v)
+}
+// SetAudienceCatalogIdNil sets the value for AudienceCatalogId to be an explicit nil
+func (o *ListBrandDropsItem) SetAudienceCatalogIdNil() {
+	o.AudienceCatalogId.Set(nil)
+}
+
+// UnsetAudienceCatalogId ensures that no value is present for AudienceCatalogId, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetAudienceCatalogId() {
+	o.AudienceCatalogId.Unset()
+}
+
+// GetDropKind returns the DropKind field value
+func (o *ListBrandDropsItem) GetDropKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DropKind
+}
+
+// GetDropKindOk returns a tuple with the DropKind field value
+// and a boolean to check if the value has been set.
+func (o *ListBrandDropsItem) GetDropKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DropKind, true
+}
+
+// SetDropKind sets field value
+func (o *ListBrandDropsItem) SetDropKind(v string) {
+	o.DropKind = v
+}
+
+// GetDepositBps returns the DepositBps field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetDepositBps() float32 {
+	if o == nil || o.DepositBps.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DepositBps.Get()
+}
+
+// GetDepositBpsOk returns a tuple with the DepositBps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetDepositBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DepositBps.Get(), o.DepositBps.IsSet()
+}
+
+// HasDepositBps returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasDepositBps() bool {
+	if o != nil && o.DepositBps.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDepositBps gets a reference to the given NullableFloat32 and assigns it to the DepositBps field.
+func (o *ListBrandDropsItem) SetDepositBps(v float32) {
+	o.DepositBps.Set(&v)
+}
+// SetDepositBpsNil sets the value for DepositBps to be an explicit nil
+func (o *ListBrandDropsItem) SetDepositBpsNil() {
+	o.DepositBps.Set(nil)
+}
+
+// UnsetDepositBps ensures that no value is present for DepositBps, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetDepositBps() {
+	o.DepositBps.Unset()
+}
+
+// GetShipBy returns the ShipBy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetShipBy() string {
+	if o == nil || o.ShipBy.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShipBy.Get()
+}
+
+// GetShipByOk returns a tuple with the ShipBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetShipByOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShipBy.Get(), o.ShipBy.IsSet()
+}
+
+// HasShipBy returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasShipBy() bool {
+	if o != nil && o.ShipBy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShipBy gets a reference to the given NullableString and assigns it to the ShipBy field.
+func (o *ListBrandDropsItem) SetShipBy(v string) {
+	o.ShipBy.Set(&v)
+}
+// SetShipByNil sets the value for ShipBy to be an explicit nil
+func (o *ListBrandDropsItem) SetShipByNil() {
+	o.ShipBy.Set(nil)
+}
+
+// UnsetShipBy ensures that no value is present for ShipBy, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetShipBy() {
+	o.ShipBy.Unset()
+}
+
+// GetBalanceNetDays returns the BalanceNetDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBrandDropsItem) GetBalanceNetDays() float32 {
+	if o == nil || o.BalanceNetDays.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.BalanceNetDays.Get()
+}
+
+// GetBalanceNetDaysOk returns a tuple with the BalanceNetDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBrandDropsItem) GetBalanceNetDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BalanceNetDays.Get(), o.BalanceNetDays.IsSet()
+}
+
+// HasBalanceNetDays returns a boolean if a field has been set.
+func (o *ListBrandDropsItem) HasBalanceNetDays() bool {
+	if o != nil && o.BalanceNetDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBalanceNetDays gets a reference to the given NullableFloat32 and assigns it to the BalanceNetDays field.
+func (o *ListBrandDropsItem) SetBalanceNetDays(v float32) {
+	o.BalanceNetDays.Set(&v)
+}
+// SetBalanceNetDaysNil sets the value for BalanceNetDays to be an explicit nil
+func (o *ListBrandDropsItem) SetBalanceNetDaysNil() {
+	o.BalanceNetDays.Set(nil)
+}
+
+// UnsetBalanceNetDays ensures that no value is present for BalanceNetDays, not even an explicit nil
+func (o *ListBrandDropsItem) UnsetBalanceNetDays() {
+	o.BalanceNetDays.Unset()
+}
+
 // GetListingCount returns the ListingCount field value
 func (o *ListBrandDropsItem) GetListingCount() float32 {
 	if o == nil {
@@ -2375,13 +3227,34 @@ func (o ListBrandDropsItem) MarshalJSON() ([]byte, error) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.ReleasedAt.IsSet() {
+		toSerialize["releasedAt"] = o.ReleasedAt.Get()
+	}
+	if true {
+		toSerialize["published"] = o.Published
+	}
+	if o.StorefrontId.IsSet() {
+		toSerialize["storefrontId"] = o.StorefrontId.Get()
+	}
 	if o.EndsAt.IsSet() {
 		toSerialize["endsAt"] = o.EndsAt.Get()
+	}
+	if o.EventId.IsSet() {
+		toSerialize["eventId"] = o.EventId.Get()
+	}
+	if true {
+		toSerialize["format"] = o.Format
+	}
+	if true {
+		toSerialize["config"] = o.Config
 	}
 	if true {
 		toSerialize["sellerUserId"] = o.SellerUserId
@@ -2389,35 +3262,23 @@ func (o ListBrandDropsItem) MarshalJSON() ([]byte, error) {
 	if o.CoverImageUrl.IsSet() {
 		toSerialize["coverImageUrl"] = o.CoverImageUrl.Get()
 	}
-	if o.PublishedAt.IsSet() {
-		toSerialize["publishedAt"] = o.PublishedAt.Get()
-	}
-	if o.ReviewedAt.IsSet() {
-		toSerialize["reviewedAt"] = o.ReviewedAt.Get()
-	}
-	if o.ReviewNote.IsSet() {
-		toSerialize["reviewNote"] = o.ReviewNote.Get()
-	}
-	if o.SupplierName.IsSet() {
-		toSerialize["supplierName"] = o.SupplierName.Get()
-	}
-	if o.PartnerId.IsSet() {
-		toSerialize["partnerId"] = o.PartnerId.Get()
-	}
-	if true {
-		toSerialize["published"] = o.Published
-	}
 	if o.PlatformListingIds != nil {
 		toSerialize["platformListingIds"] = o.PlatformListingIds
 	}
 	if true {
 		toSerialize["dropAt"] = o.DropAt
 	}
+	if o.PartnerId.IsSet() {
+		toSerialize["partnerId"] = o.PartnerId.Get()
+	}
 	if o.WholesaleUnitCostCents.IsSet() {
 		toSerialize["wholesaleUnitCostCents"] = o.WholesaleUnitCostCents.Get()
 	}
 	if o.UnitsPurchased.IsSet() {
 		toSerialize["unitsPurchased"] = o.UnitsPurchased.Get()
+	}
+	if o.SupplierName.IsSet() {
+		toSerialize["supplierName"] = o.SupplierName.Get()
 	}
 	if o.PoReference.IsSet() {
 		toSerialize["poReference"] = o.PoReference.Get()
@@ -2433,6 +3294,57 @@ func (o ListBrandDropsItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.PreviewFrom.IsSet() {
 		toSerialize["previewFrom"] = o.PreviewFrom.Get()
+	}
+	if o.PublishedAt.IsSet() {
+		toSerialize["publishedAt"] = o.PublishedAt.Get()
+	}
+	if o.ReviewNote.IsSet() {
+		toSerialize["reviewNote"] = o.ReviewNote.Get()
+	}
+	if o.ReviewedAt.IsSet() {
+		toSerialize["reviewedAt"] = o.ReviewedAt.Get()
+	}
+	if true {
+		toSerialize["placements"] = o.Placements
+	}
+	if o.AnnounceAt.IsSet() {
+		toSerialize["announceAt"] = o.AnnounceAt.Get()
+	}
+	if o.CountdownAt.IsSet() {
+		toSerialize["countdownAt"] = o.CountdownAt.Get()
+	}
+	if o.PausedAt.IsSet() {
+		toSerialize["pausedAt"] = o.PausedAt.Get()
+	}
+	if o.LiveStreamId.IsSet() {
+		toSerialize["liveStreamId"] = o.LiveStreamId.Get()
+	}
+	if o.SpatialDropId.IsSet() {
+		toSerialize["spatialDropId"] = o.SpatialDropId.Get()
+	}
+	if o.Timezone.IsSet() {
+		toSerialize["timezone"] = o.Timezone.Get()
+	}
+	if o.FeaturedStatus.IsSet() {
+		toSerialize["featuredStatus"] = o.FeaturedStatus.Get()
+	}
+	if true {
+		toSerialize["audience"] = o.Audience
+	}
+	if o.AudienceCatalogId.IsSet() {
+		toSerialize["audienceCatalogId"] = o.AudienceCatalogId.Get()
+	}
+	if true {
+		toSerialize["dropKind"] = o.DropKind
+	}
+	if o.DepositBps.IsSet() {
+		toSerialize["depositBps"] = o.DepositBps.Get()
+	}
+	if o.ShipBy.IsSet() {
+		toSerialize["shipBy"] = o.ShipBy.Get()
+	}
+	if o.BalanceNetDays.IsSet() {
+		toSerialize["balanceNetDays"] = o.BalanceNetDays.Get()
 	}
 	if true {
 		toSerialize["listingCount"] = o.ListingCount

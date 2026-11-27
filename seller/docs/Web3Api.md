@@ -37,19 +37,31 @@ Method | HTTP request | Description
 [**CreateWeb3SolanaOrderDelistTx**](Web3Api.md#CreateWeb3SolanaOrderDelistTx) | **Post** /v1/web3/solana/orders/{hash}/delist-tx | Build the unsigned transaction that takes your Solana listing down.
 [**CreateWeb3SolanaTensorBidAcceptTx**](Web3Api.md#CreateWeb3SolanaTensorBidAcceptTx) | **Post** /v1/web3/solana/tensor-bids/accept-tx | Build the transaction that sells your NFT into a Tensor bid, never below &#x60;minLamports&#x60;.
 [**CreateWeb3SolanaTensorBidCancelTx**](Web3Api.md#CreateWeb3SolanaTensorBidCancelTx) | **Post** /v1/web3/solana/tensor-bids/cancel-tx | Build the transaction that cancels your Tensor bid.
+[**CreateWeb3SolanaTensorBidConfirm**](Web3Api.md#CreateWeb3SolanaTensorBidConfirm) | **Post** /v1/web3/solana/tensor-bids/confirm | After your wallet’s Tensor transaction confirms: &#x60;action&#x60; place, cancel or accept, with its &#x60;signature&#x60; and the &#x60;wallet&#x60; that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
 [**CreateWeb3SolanaTensorBidPlaceTx**](Web3Api.md#CreateWeb3SolanaTensorBidPlaceTx) | **Post** /v1/web3/solana/tensor-bids/place-tx | Build a Tensor collection bid (or trait bid with &#x60;trait&#x60;) for your Solana wallet to sign. Price in lamports.
+[**CreateWeb3StakingStake**](Web3Api.md#CreateWeb3StakingStake) | **Post** /v1/web3/staking/stake | Lock earned CBX (&#x60;baseUnits&#x60;, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+[**CreateWeb3StakingUnstake**](Web3Api.md#CreateWeb3StakingUnstake) | **Post** /v1/web3/staking/unstake | Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns &#x60;{ unlocksAt, cooldownDays }&#x60;.
+[**CreateWeb3StoreWallet**](Web3Api.md#CreateWeb3StoreWallet) | **Post** /v1/web3/store-wallets | Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+[**CreateWeb3StoreWalletChallenge**](Web3Api.md#CreateWeb3StoreWalletChallenge) | **Post** /v1/web3/store-wallets/challenge | Start adding a selling wallet to the store: the message the wallet signs.
+[**CreateWeb3StoreWalletImport**](Web3Api.md#CreateWeb3StoreWalletImport) | **Post** /v1/web3/store-wallets/{walletId}/import | Add picked NFTs (&#x60;tokens: [{ chain, contract, tokenId }]&#x60;) from a store wallet to inventory.
+[**CreateWeb3StoreWalletSync**](Web3Api.md#CreateWeb3StoreWalletSync) | **Post** /v1/web3/store-wallets/{walletId}/sync | Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store&#39;s link auto-imports.
+[**CreateWeb3StoreWalletVerify**](Web3Api.md#CreateWeb3StoreWalletVerify) | **Post** /v1/web3/store-wallets/verify | Finish adding a selling wallet: verify its signature and link it to the store.
 [**CreateWeb3TokenRefresh**](Web3Api.md#CreateWeb3TokenRefresh) | **Post** /v1/web3/tokens/{chain}/{contract}/{tokenId}/refresh | Re-read a token&#39;s metadata from the chain&#39;s provider (name, traits, image — a new image is copied to Crossly&#39;s CDN). Once per token per 10 minutes.
 [**CreateWeb3Transaction**](Web3Api.md#CreateWeb3Transaction) | **Post** /v1/web3/transactions | Apply a Seaport transaction&#39;s fills and cancels to the Crossly book (read from the receipt).
 [**CreateWeb3WalletChallenge**](Web3Api.md#CreateWeb3WalletChallenge) | **Post** /v1/web3/wallets/challenge | Start linking a wallet: returns the message the wallet must sign.
+[**CreateWeb3WalletImport**](Web3Api.md#CreateWeb3WalletImport) | **Post** /v1/web3/wallets/{id}/import | Add picked NFTs (&#x60;tokens&#x60;: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in &#x60;notInWallet&#x60;, never added.
 [**CreateWeb3WalletSync**](Web3Api.md#CreateWeb3WalletSync) | **Post** /v1/web3/wallets/{id}/sync | Import a linked wallet&#39;s NFTs into inventory; archives ones that have left the wallet.
 [**CreateWeb3WalletVerify**](Web3Api.md#CreateWeb3WalletVerify) | **Post** /v1/web3/wallets/verify | Finish linking a wallet with its signature over the challenge message.
 [**DeleteWeb3Alert**](Web3Api.md#DeleteWeb3Alert) | **Delete** /v1/web3/alerts/{id} | Delete a price alert.
-[**DeleteWeb3HolderPerk**](Web3Api.md#DeleteWeb3HolderPerk) | **Delete** /v1/web3/holder-perks/{id} | Remove a holder perk. Returns &#x60;{ ok }&#x60;.
+[**DeleteWeb3HolderPerk**](Web3Api.md#DeleteWeb3HolderPerk) | **Delete** /v1/web3/holder-perks/{id} | DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns &#x60;{ ok }&#x60;.
 [**DeleteWeb3Launch**](Web3Api.md#DeleteWeb3Launch) | **Delete** /v1/web3/launches/{id} | Delete a launch draft that never went live. Returns &#x60;{ ok }&#x60;.
 [**DeleteWeb3LaunchFollowCreator**](Web3Api.md#DeleteWeb3LaunchFollowCreator) | **Delete** /v1/web3/launches/{id}/follow-creator | Stop following the creator of a launch. Returns &#x60;{ following }&#x60;.
+[**DeleteWeb3LaunchPerk**](Web3Api.md#DeleteWeb3LaunchPerk) | **Delete** /v1/web3/launches/{id}/perks | Remove every collection perk of a launch. Returns &#x60;{ ok }&#x60;.
 [**DeleteWeb3MarketplaceKey**](Web3Api.md#DeleteWeb3MarketplaceKey) | **Delete** /v1/web3/marketplace-keys/{marketplace} | Remove your own key for a marketplace; Crossly&#39;s key is used again.
+[**DeleteWeb3StoreWallet**](Web3Api.md#DeleteWeb3StoreWallet) | **Delete** /v1/web3/store-wallets/{walletId} | Stop the store selling from a wallet (the wallet and its other stores are unaffected).
 [**DeleteWeb3Wallet**](Web3Api.md#DeleteWeb3Wallet) | **Delete** /v1/web3/wallets/{id} | Unlink a wallet. Its NFTs stay in inventory but stop syncing.
 [**GetWeb3Auction**](Web3Api.md#GetWeb3Auction) | **Get** /v1/web3/auctions/{chain}/{contract}/{tokenId} | A token&#39;s live (or latest) auction: reserve, end, top bid, bid count and the minimum next bid.
+[**GetWeb3Balance**](Web3Api.md#GetWeb3Balance) | **Get** /v1/web3/balances | Every CBX you have, in one read, with the three balances kept apart.
 [**GetWeb3Browse**](Web3Api.md#GetWeb3Browse) | **Get** /v1/web3/browse | The Web3 directory&#39;s categories and chains, with how many collections each holds.
 [**GetWeb3Collection**](Web3Api.md#GetWeb3Collection) | **Get** /v1/web3/collections/{chain}/{contract} | A collection: metadata and Crossly stats (floor, listed, volume, best collection offer).
 [**GetWeb3CollectionDepth**](Web3Api.md#GetWeb3CollectionDepth) | **Get** /v1/web3/collections/{chain}/{contract}/depth | A collection&#39;s Crossly order book by price level — asks cheapest first, bids dearest first, with running totals — and the floor of every trait value.
@@ -64,6 +76,7 @@ Method | HTTP request | Description
 [**GetWeb3Inventory**](Web3Api.md#GetWeb3Inventory) | **Get** /v1/web3/inventory/{itemId} | The NFT behind an inventory item: its token, wallet, and open listings on every marketplace (null if it is not an NFT).
 [**GetWeb3LaunchAllowlistRootTx**](Web3Api.md#GetWeb3LaunchAllowlistRootTx) | **Get** /v1/web3/launches/{id}/allowlist/root-tx | The setAllowlistRoot transaction for the allowlist Crossly holds (EVM, live): &#x60;{ chain, from, to, data }&#x60;.
 [**GetWeb3LaunchDeployTx**](Web3Api.md#GetWeb3LaunchDeployTx) | **Get** /v1/web3/launches/{id}/deploy-tx | The contract-creation transaction for the draft: send it from the owner wallet, then confirm it. Returns &#x60;{ chain, from, data }&#x60;.
+[**GetWeb3LaunchStat**](Web3Api.md#GetWeb3LaunchStat) | **Get** /v1/web3/launches/{id}/stats | A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
 [**GetWeb3LaunchTool**](Web3Api.md#GetWeb3LaunchTool) | **Get** /v1/web3/launches/{id}/tools | A launch’s creator tools: allowlist size and root (and whether the contract has it yet), uploaded art and reveal, supply minted.
 [**GetWeb3OrderFulfillment**](Web3Api.md#GetWeb3OrderFulfillment) | **Get** /v1/web3/orders/{chain}/{hash}/fulfillment | The signed order a taker passes to Seaport, after re-checking it can still fill.
 [**GetWeb3Phygital**](Web3Api.md#GetWeb3Phygital) | **Get** /v1/web3/phygitals/{chain}/{contract}/{tokenId} | A token&#39;s phygital: the physical item it can be redeemed for, and whether it has been.
@@ -73,7 +86,11 @@ Method | HTTP request | Description
 [**GetWeb3Profile**](Web3Api.md#GetWeb3Profile) | **Get** /v1/web3/profiles/{address} | A wallet&#39;s public profile: NFTs held, open Crossly listings, and activity.
 [**GetWeb3Resolve**](Web3Api.md#GetWeb3Resolve) | **Get** /v1/web3/resolve/{chain}/{slug} | A collection&#39;s chain and contract from its readable URL slug (e.g. eth / boredapeyachtclub).
 [**GetWeb3SolanaCollectionTensorBid**](Web3Api.md#GetWeb3SolanaCollectionTensorBid) | **Get** /v1/web3/solana/collections/{collection}/tensor-bids | A Solana collection’s Tensor bids (collection-wide and by trait), best first; price in lamports. Needs your Tensor key.
+[**GetWeb3Staking**](Web3Api.md#GetWeb3Staking) | **Get** /v1/web3/staking | Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+[**GetWeb3StoreWalletHolding**](Web3Api.md#GetWeb3StoreWalletHolding) | **Get** /v1/web3/store-wallets/{walletId}/holdings | What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+[**GetWeb3StoreWalletNft**](Web3Api.md#GetWeb3StoreWalletNft) | **Get** /v1/web3/store-wallets/nfts | The store&#39;s Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
 [**GetWeb3Token**](Web3Api.md#GetWeb3Token) | **Get** /v1/web3/tokens/{chain}/{contract}/{tokenId} | One NFT: metadata, traits, owner, open listings and offers, activity.
+[**GetWeb3WalletHolding**](Web3Api.md#GetWeb3WalletHolding) | **Get** /v1/web3/wallets/{id}/holdings | What a linked wallet holds right now, each NFT marked &#x60;inInventory&#x60; or not. Reads the chain; writes nothing.
 [**ListWeb3Activity**](Web3Api.md#ListWeb3Activity) | **Get** /v1/web3/activity | Listings, offers, sales and cancels in the Crossly book, newest first.
 [**ListWeb3Alerts**](Web3Api.md#ListWeb3Alerts) | **Get** /v1/web3/alerts | Your NFT price alerts, with the cheapest open Crossly listing each one covers now.
 [**ListWeb3Approvals**](Web3Api.md#ListWeb3Approvals) | **Get** /v1/web3/approvals | Your collections the OpenSea conduit is approved to move, per linked wallet.
@@ -85,23 +102,31 @@ Method | HTTP request | Description
 [**ListWeb3Collections**](Web3Api.md#ListWeb3Collections) | **Get** /v1/web3/collections | Collections ranked by 30-day Crossly volume, with floor and listed count.
 [**ListWeb3CreatorCollections**](Web3Api.md#ListWeb3CreatorCollections) | **Get** /v1/web3/creator/collections | Collections you are the creator of: your launches, and contracts you claimed by owning them.
 [**ListWeb3Drops**](Web3Api.md#ListWeb3Drops) | **Get** /v1/web3/drops | Upcoming and live NFT drops (curated mints on the creator&#39;s own page), soonest first, with whether you asked to be reminded.
-[**ListWeb3HolderPerks**](Web3Api.md#ListWeb3HolderPerks) | **Get** /v1/web3/holder-perks | Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+[**ListWeb3HolderPerks**](Web3Api.md#ListWeb3HolderPerks) | **Get** /v1/web3/holder-perks | DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
+[**ListWeb3LaunchPerks**](Web3Api.md#ListWeb3LaunchPerks) | **Get** /v1/web3/launches/{id}/perks | The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
 [**ListWeb3Launches**](Web3Api.md#ListWeb3Launches) | **Get** /v1/web3/launches | Your launchpad collections (drafts and live), newest first, with minted count and phase.
 [**ListWeb3Listings**](Web3Api.md#ListWeb3Listings) | **Get** /v1/web3/listings | Open NFT listings in the Crossly book — the cheapest per token.
 [**ListWeb3MarketplaceKeys**](Web3Api.md#ListWeb3MarketplaceKeys) | **Get** /v1/web3/marketplace-keys | Your own marketplace API keys (last four characters only) and whether Crossly&#39;s key covers each marketplace.
 [**ListWeb3Nfts**](Web3Api.md#ListWeb3Nfts) | **Get** /v1/web3/nfts | List the NFTs in your inventory, imported from your linked wallets.
-[**ListWeb3Orders**](Web3Api.md#ListWeb3Orders) | **Get** /v1/web3/orders | Your orders in the Crossly book (listings and offers), any status.
+[**ListWeb3Orders**](Web3Api.md#ListWeb3Orders) | **Get** /v1/web3/orders | Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store&#39;s listings (offers always).
 [**ListWeb3Purchases**](Web3Api.md#ListWeb3Purchases) | **Get** /v1/web3/purchases | NFTs your linked wallets bought — on Crossly or any marketplace the chain feed saw — newest first, with price and whether you still hold each.
 [**ListWeb3Rankings**](Web3Api.md#ListWeb3Rankings) | **Get** /v1/web3/rankings | Collections by sales volume over 24h, 7d or 30d, in one coin: the ETH chains together, or Polygon / Solana on their own.
 [**ListWeb3Reserved**](Web3Api.md#ListWeb3Reserved) | **Get** /v1/web3/reserved | Private listings reserved for one of your linked wallets — only you can see or buy them.
 [**ListWeb3Sales**](Web3Api.md#ListWeb3Sales) | **Get** /v1/web3/sales | The latest NFT sales across the directory, from the chain (Seaport and Blur) and the Crossly book, newest first; page with &#x60;before&#x60;.
 [**ListWeb3Search**](Web3Api.md#ListWeb3Search) | **Get** /v1/web3/search | Find collections by contract address (every chain) or by name.
 [**ListWeb3SearchTokens**](Web3Api.md#ListWeb3SearchTokens) | **Get** /v1/web3/search/tokens | Find tokens by collection name and number: &#39;pudgy 42&#39;, &#39;Bored Ape #1234&#39;.
+[**ListWeb3StoreWalletBalances**](Web3Api.md#ListWeb3StoreWalletBalances) | **Get** /v1/web3/store-wallets/balances | The native-coin balance (SOL, ETH, POL, …) of each of the store&#39;s selling wallets, read on chain.
+[**ListWeb3StoreWallets**](Web3Api.md#ListWeb3StoreWallets) | **Get** /v1/web3/store-wallets | List the store&#39;s selling wallets (X-Storefront-Id; default store when omitted).
 [**ListWeb3Wallets**](Web3Api.md#ListWeb3Wallets) | **Get** /v1/web3/wallets | List your verified, linked wallets (EVM and Solana).
 [**ListWeb3Watchlist**](Web3Api.md#ListWeb3Watchlist) | **Get** /v1/web3/watchlist | Your favourited NFTs, with the cheapest open Crossly listing and the last sale of each.
-[**UpdateWeb3HolderPerk**](Web3Api.md#UpdateWeb3HolderPerk) | **Put** /v1/web3/holder-perks | Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
+[**UpdateWeb3HolderPerk**](Web3Api.md#UpdateWeb3HolderPerk) | **Put** /v1/web3/holder-perks | DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
+[**UpdateWeb3Launch**](Web3Api.md#UpdateWeb3Launch) | **Patch** /v1/web3/launches/{id} | Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
 [**UpdateWeb3LaunchAllowlist**](Web3Api.md#UpdateWeb3LaunchAllowlist) | **Put** /v1/web3/launches/{id}/allowlist | Replace the early-phase allowlist (up to 10,000 wallets). EVM live launches get back &#x60;rootTx&#x60;, the setAllowlistRoot transaction for the owner wallet.
+[**UpdateWeb3LaunchPerk**](Web3Api.md#UpdateWeb3LaunchPerk) | **Put** /v1/web3/launches/{id}/perks | Replace a launch’s collection perks: &#x60;{ perks: [{ config: { type, ... }, active }] }&#x60;, one per type; a type left out is removed.
 [**UpdateWeb3MarketplaceKey**](Web3Api.md#UpdateWeb3MarketplaceKey) | **Put** /v1/web3/marketplace-keys/{marketplace} | Save your own API key for a marketplace (checked against the marketplace first where it can be); stored encrypted.
+[**UpdateWeb3StoreWallet**](Web3Api.md#UpdateWeb3StoreWallet) | **Patch** /v1/web3/store-wallets/{walletId} | Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+[**UpdateWeb3StoreWalletDefault**](Web3Api.md#UpdateWeb3StoreWalletDefault) | **Put** /v1/web3/store-wallets/{walletId}/default | Make a linked wallet the store&#39;s default selling wallet on its network (EVM or Solana).
+[**UpdateWeb3Wallet**](Web3Api.md#UpdateWeb3Wallet) | **Patch** /v1/web3/wallets/{id} | Change a linked wallet: &#x60;autoImport&#x60; (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and &#x60;label&#x60;.
 
 
 
@@ -2184,6 +2209,64 @@ Other parameters are passed through a pointer to a apiCreateWeb3SolanaTensorBidC
 [[Back to README]](../README.md)
 
 
+## CreateWeb3SolanaTensorBidConfirm
+
+> CreateWeb3SolanaTensorBidConfirmResponse CreateWeb3SolanaTensorBidConfirm(ctx).Execute()
+
+After your wallet’s Tensor transaction confirms: `action` place, cancel or accept, with its `signature` and the `wallet` that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3SolanaTensorBidConfirm(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3SolanaTensorBidConfirm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3SolanaTensorBidConfirm`: CreateWeb3SolanaTensorBidConfirmResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3SolanaTensorBidConfirm`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3SolanaTensorBidConfirmRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3SolanaTensorBidConfirmResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateWeb3SolanaTensorBidPlaceTx
 
 > CreateWeb3SolanaTensorBidPlaceTxResponse CreateWeb3SolanaTensorBidPlaceTx(ctx).Execute()
@@ -2228,6 +2311,430 @@ Other parameters are passed through a pointer to a apiCreateWeb3SolanaTensorBidP
 ### Return type
 
 **CreateWeb3SolanaTensorBidPlaceTxResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StakingStake
+
+> CreateWeb3StakingStakeResponse CreateWeb3StakingStake(ctx).Execute()
+
+Lock earned CBX (`baseUnits`, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StakingStake(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StakingStake``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StakingStake`: CreateWeb3StakingStakeResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StakingStake`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StakingStakeRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3StakingStakeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StakingUnstake
+
+> CreateWeb3StakingUnstakeResponse CreateWeb3StakingUnstake(ctx).Execute()
+
+Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns `{ unlocksAt, cooldownDays }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StakingUnstake(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StakingUnstake``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StakingUnstake`: CreateWeb3StakingUnstakeResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StakingUnstake`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StakingUnstakeRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3StakingUnstakeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StoreWallet
+
+> CreateWeb3StoreWalletResponse CreateWeb3StoreWallet(ctx).Execute()
+
+Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StoreWallet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StoreWallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StoreWallet`: CreateWeb3StoreWalletResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StoreWallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StoreWalletRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3StoreWalletResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StoreWalletChallenge
+
+> CreateWeb3WalletChallengeResponse CreateWeb3StoreWalletChallenge(ctx).Execute()
+
+Start adding a selling wallet to the store: the message the wallet signs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StoreWalletChallenge(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StoreWalletChallenge``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StoreWalletChallenge`: CreateWeb3WalletChallengeResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StoreWalletChallenge`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StoreWalletChallengeRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3WalletChallengeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StoreWalletImport
+
+> CreateWeb3WalletImportResponse CreateWeb3StoreWalletImport(ctx, walletId).Execute()
+
+Add picked NFTs (`tokens: [{ chain, contract, tokenId }]`) from a store wallet to inventory.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StoreWalletImport(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StoreWalletImport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StoreWalletImport`: CreateWeb3WalletImportResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StoreWalletImport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StoreWalletImportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWeb3WalletImportResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StoreWalletSync
+
+> CreateWeb3StoreWalletSyncResponse CreateWeb3StoreWalletSync(ctx, walletId).Execute()
+
+Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store's link auto-imports.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StoreWalletSync(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StoreWalletSync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StoreWalletSync`: CreateWeb3StoreWalletSyncResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StoreWalletSync`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StoreWalletSyncRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWeb3StoreWalletSyncResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3StoreWalletVerify
+
+> CreateWeb3StoreWalletResponse CreateWeb3StoreWalletVerify(ctx).Execute()
+
+Finish adding a selling wallet: verify its signature and link it to the store.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3StoreWalletVerify(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3StoreWalletVerify``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3StoreWalletVerify`: CreateWeb3StoreWalletResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3StoreWalletVerify`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3StoreWalletVerifyRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWeb3StoreWalletResponse**
 
 ### Authorization
 
@@ -2417,6 +2924,73 @@ Other parameters are passed through a pointer to a apiCreateWeb3WalletChallengeR
 ### Return type
 
 **CreateWeb3WalletChallengeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWeb3WalletImport
+
+> CreateWeb3WalletImportResponse CreateWeb3WalletImport(ctx, id).Execute()
+
+Add picked NFTs (`tokens`: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in `notInWallet`, never added.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.CreateWeb3WalletImport(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.CreateWeb3WalletImport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWeb3WalletImport`: CreateWeb3WalletImportResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.CreateWeb3WalletImport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWeb3WalletImportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWeb3WalletImportResponse**
 
 ### Authorization
 
@@ -2627,7 +3201,7 @@ Name | Type | Description  | Notes
 
 > OkResponse DeleteWeb3HolderPerk(ctx, id).Execute()
 
-Remove a holder perk. Returns `{ ok }`.
+DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns `{ ok }`.
 
 ### Example
 
@@ -2824,6 +3398,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteWeb3LaunchPerk
+
+> OkResponse DeleteWeb3LaunchPerk(ctx, id).Execute()
+
+Remove every collection perk of a launch. Returns `{ ok }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.DeleteWeb3LaunchPerk(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.DeleteWeb3LaunchPerk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWeb3LaunchPerk`: OkResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.DeleteWeb3LaunchPerk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWeb3LaunchPerkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteWeb3MarketplaceKey
 
 > DeleteWeb3MarketplaceKey(ctx, marketplace).Execute()
@@ -2866,6 +3507,71 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteWeb3MarketplaceKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteWeb3StoreWallet
+
+> DeleteWeb3StoreWallet(ctx, walletId).Execute()
+
+Stop the store selling from a wallet (the wallet and its other stores are unaffected).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.DeleteWeb3StoreWallet(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.DeleteWeb3StoreWallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWeb3StoreWalletRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -3015,6 +3721,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWeb3AuctionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWeb3Balance
+
+> GetWeb3BalanceResponse GetWeb3Balance(ctx).Execute()
+
+Every CBX you have, in one read, with the three balances kept apart.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3Balance(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3Balance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3Balance`: GetWeb3BalanceResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3Balance`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3BalanceRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWeb3BalanceResponse**
 
 ### Authorization
 
@@ -3952,6 +4718,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetWeb3LaunchStat
+
+> GetWeb3LaunchStatResponse GetWeb3LaunchStat(ctx, id).Execute()
+
+A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3LaunchStat(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3LaunchStat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3LaunchStat`: GetWeb3LaunchStatResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3LaunchStat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3LaunchStatRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWeb3LaunchStatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWeb3LaunchTool
 
 > GetWeb3LaunchToolResponse GetWeb3LaunchTool(ctx, id).Execute()
@@ -4540,6 +5373,191 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetWeb3Staking
+
+> GetWeb3StakingResponse GetWeb3Staking(ctx).Execute()
+
+Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3Staking(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3Staking``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3Staking`: GetWeb3StakingResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3Staking`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3StakingRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWeb3StakingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWeb3StoreWalletHolding
+
+> GetWeb3WalletHoldingResponse GetWeb3StoreWalletHolding(ctx, walletId).Execute()
+
+What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3StoreWalletHolding(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3StoreWalletHolding``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3StoreWalletHolding`: GetWeb3WalletHoldingResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3StoreWalletHolding`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3StoreWalletHoldingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWeb3WalletHoldingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWeb3StoreWalletNft
+
+> GetWeb3StoreWalletNftResponse GetWeb3StoreWalletNft(ctx).Execute()
+
+The store's Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3StoreWalletNft(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3StoreWalletNft``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3StoreWalletNft`: GetWeb3StoreWalletNftResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3StoreWalletNft`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3StoreWalletNftRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWeb3StoreWalletNftResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWeb3Token
 
 > GetWeb3TokenResponse GetWeb3Token(ctx, chain, contract, tokenId).Execute()
@@ -4599,6 +5617,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWeb3TokenResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWeb3WalletHolding
+
+> GetWeb3WalletHoldingResponse GetWeb3WalletHolding(ctx, id).Execute()
+
+What a linked wallet holds right now, each NFT marked `inInventory` or not. Reads the chain; writes nothing.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.GetWeb3WalletHolding(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.GetWeb3WalletHolding``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWeb3WalletHolding`: GetWeb3WalletHoldingResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.GetWeb3WalletHolding`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWeb3WalletHoldingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWeb3WalletHoldingResponse**
 
 ### Authorization
 
@@ -5267,7 +6352,7 @@ Other parameters are passed through a pointer to a apiListWeb3DropsRequest struc
 
 > ListWeb3HolderPerksResponse ListWeb3HolderPerks(ctx).Execute()
 
-Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
 
 ### Example
 
@@ -5307,6 +6392,73 @@ Other parameters are passed through a pointer to a apiListWeb3HolderPerksRequest
 ### Return type
 
 **ListWeb3HolderPerksResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWeb3LaunchPerks
+
+> ListWeb3LaunchPerksResponse ListWeb3LaunchPerks(ctx, id).Execute()
+
+The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.ListWeb3LaunchPerks(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.ListWeb3LaunchPerks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWeb3LaunchPerks`: ListWeb3LaunchPerksResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.ListWeb3LaunchPerks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWeb3LaunchPerksRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWeb3LaunchPerksResponse**
 
 ### Authorization
 
@@ -5568,7 +6720,7 @@ Name | Type | Description  | Notes
 
 > ListWeb3OrdersResponse ListWeb3Orders(ctx).Execute()
 
-Your orders in the Crossly book (listings and offers), any status.
+Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store's listings (offers always).
 
 ### Example
 
@@ -5970,6 +7122,122 @@ Other parameters are passed through a pointer to a apiListWeb3SearchTokensReques
 [[Back to README]](../README.md)
 
 
+## ListWeb3StoreWalletBalances
+
+> ListWeb3StoreWalletBalancesResponse ListWeb3StoreWalletBalances(ctx).Execute()
+
+The native-coin balance (SOL, ETH, POL, …) of each of the store's selling wallets, read on chain.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.ListWeb3StoreWalletBalances(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.ListWeb3StoreWalletBalances``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWeb3StoreWalletBalances`: ListWeb3StoreWalletBalancesResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.ListWeb3StoreWalletBalances`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWeb3StoreWalletBalancesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWeb3StoreWalletBalancesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWeb3StoreWallets
+
+> ListWeb3StoreWalletsResponse ListWeb3StoreWallets(ctx).Execute()
+
+List the store's selling wallets (X-Storefront-Id; default store when omitted).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.ListWeb3StoreWallets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.ListWeb3StoreWallets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWeb3StoreWallets`: ListWeb3StoreWalletsResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.ListWeb3StoreWallets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWeb3StoreWalletsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWeb3StoreWalletsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListWeb3Wallets
 
 > ListWeb3WalletsResponse ListWeb3Wallets(ctx).Execute()
@@ -6088,9 +7356,9 @@ Other parameters are passed through a pointer to a apiListWeb3WatchlistRequest s
 
 ## UpdateWeb3HolderPerk
 
-> ListWeb3HolderPerksItem UpdateWeb3HolderPerk(ctx).Execute()
+> UpdateWeb3HolderPerkResponse UpdateWeb3HolderPerk(ctx).Execute()
 
-Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
+DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
 
 ### Example
 
@@ -6113,7 +7381,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3HolderPerk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateWeb3HolderPerk`: ListWeb3HolderPerksItem
+    // response from `UpdateWeb3HolderPerk`: UpdateWeb3HolderPerkResponse
     fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3HolderPerk`: %v\n", resp)
 }
 ```
@@ -6129,7 +7397,74 @@ Other parameters are passed through a pointer to a apiUpdateWeb3HolderPerkReques
 
 ### Return type
 
-**ListWeb3HolderPerksItem**
+**UpdateWeb3HolderPerkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWeb3Launch
+
+> UpdateWeb3LaunchResponse UpdateWeb3Launch(ctx, id).Execute()
+
+Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.UpdateWeb3Launch(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3Launch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWeb3Launch`: UpdateWeb3LaunchResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3Launch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWeb3LaunchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWeb3LaunchResponse**
 
 ### Authorization
 
@@ -6211,6 +7546,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateWeb3LaunchPerk
+
+> ListWeb3LaunchPerksResponse UpdateWeb3LaunchPerk(ctx, id).Execute()
+
+Replace a launch’s collection perks: `{ perks: [{ config: { type, ... }, active }] }`, one per type; a type left out is removed.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.UpdateWeb3LaunchPerk(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3LaunchPerk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWeb3LaunchPerk`: ListWeb3LaunchPerksResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3LaunchPerk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWeb3LaunchPerkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWeb3LaunchPerksResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateWeb3MarketplaceKey
 
 > ListWeb3MarketplaceKeysItem UpdateWeb3MarketplaceKey(ctx, marketplace).Execute()
@@ -6264,6 +7666,207 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListWeb3MarketplaceKeysItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWeb3StoreWallet
+
+> UpdateWeb3StoreWalletResponse UpdateWeb3StoreWallet(ctx, walletId).Execute()
+
+Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.UpdateWeb3StoreWallet(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3StoreWallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWeb3StoreWallet`: UpdateWeb3StoreWalletResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3StoreWallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWeb3StoreWalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWeb3StoreWalletResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWeb3StoreWalletDefault
+
+> ListWeb3StoreWalletsResponse UpdateWeb3StoreWalletDefault(ctx, walletId).Execute()
+
+Make a linked wallet the store's default selling wallet on its network (EVM or Solana).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    walletId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.UpdateWeb3StoreWalletDefault(context.Background(), walletId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3StoreWalletDefault``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWeb3StoreWalletDefault`: ListWeb3StoreWalletsResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3StoreWalletDefault`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**walletId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWeb3StoreWalletDefaultRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWeb3StoreWalletsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWeb3Wallet
+
+> UpdateWeb3WalletResponse UpdateWeb3Wallet(ctx, id).Execute()
+
+Change a linked wallet: `autoImport` (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and `label`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.Web3Api.UpdateWeb3Wallet(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Web3Api.UpdateWeb3Wallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWeb3Wallet`: UpdateWeb3WalletResponse
+    fmt.Fprintf(os.Stdout, "Response from `Web3Api.UpdateWeb3Wallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWeb3WalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWeb3WalletResponse**
 
 ### Authorization
 

@@ -14,97 +14,6 @@ import (
 	"encoding/json"
 )
 
-// CreateGradingSubmissionResultResponse struct for CreateGradingSubmissionResultResponse
-type CreateGradingSubmissionResultResponse struct {
-	Submission ListGradingSubmissionsItem `json:"submission"`
-}
-
-// NewCreateGradingSubmissionResultResponse instantiates a new CreateGradingSubmissionResultResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateGradingSubmissionResultResponse(submission ListGradingSubmissionsItem) *CreateGradingSubmissionResultResponse {
-	this := CreateGradingSubmissionResultResponse{}
-	this.Submission = submission
-	return &this
-}
-
-// NewCreateGradingSubmissionResultResponseWithDefaults instantiates a new CreateGradingSubmissionResultResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateGradingSubmissionResultResponseWithDefaults() *CreateGradingSubmissionResultResponse {
-	this := CreateGradingSubmissionResultResponse{}
-	return &this
-}
-
-// GetSubmission returns the Submission field value
-func (o *CreateGradingSubmissionResultResponse) GetSubmission() ListGradingSubmissionsItem {
-	if o == nil {
-		var ret ListGradingSubmissionsItem
-		return ret
-	}
-
-	return o.Submission
-}
-
-// GetSubmissionOk returns a tuple with the Submission field value
-// and a boolean to check if the value has been set.
-func (o *CreateGradingSubmissionResultResponse) GetSubmissionOk() (*ListGradingSubmissionsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Submission, true
-}
-
-// SetSubmission sets field value
-func (o *CreateGradingSubmissionResultResponse) SetSubmission(v ListGradingSubmissionsItem) {
-	o.Submission = v
-}
-
-func (o CreateGradingSubmissionResultResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["submission"] = o.Submission
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateGradingSubmissionResultResponse struct {
-	value *CreateGradingSubmissionResultResponse
-	isSet bool
-}
-
-func (v NullableCreateGradingSubmissionResultResponse) Get() *CreateGradingSubmissionResultResponse {
-	return v.value
-}
-
-func (v *NullableCreateGradingSubmissionResultResponse) Set(val *CreateGradingSubmissionResultResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateGradingSubmissionResultResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateGradingSubmissionResultResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateGradingSubmissionResultResponse(val *CreateGradingSubmissionResultResponse) *NullableCreateGradingSubmissionResultResponse {
-	return &NullableCreateGradingSubmissionResultResponse{value: val, isSet: true}
-}
-
-func (v NullableCreateGradingSubmissionResultResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateGradingSubmissionResultResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // CreateGradingVerifyCertResponse struct for CreateGradingVerifyCertResponse
 type CreateGradingVerifyCertResponse struct {
 	GraderSlug *string `json:"graderSlug,omitempty"`
@@ -498,6 +407,336 @@ func (v NullableCreateGradingVerifyCertResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableCreateGradingVerifyCertResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGradingPriceBookResponse struct for GetGradingPriceBookResponse
+type GetGradingPriceBookResponse struct {
+	Graders []GetGradingPriceBookResponseGraders `json:"graders"`
+	// Always 0: Crossly adds nothing to the grader's price. Kept so older apps and SDKs that read it still work.
+	HandlingCents float32 `json:"handlingCents"`
+	Currency string `json:"currency"`
+}
+
+// NewGetGradingPriceBookResponse instantiates a new GetGradingPriceBookResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGradingPriceBookResponse(graders []GetGradingPriceBookResponseGraders, handlingCents float32, currency string) *GetGradingPriceBookResponse {
+	this := GetGradingPriceBookResponse{}
+	this.Graders = graders
+	this.HandlingCents = handlingCents
+	this.Currency = currency
+	return &this
+}
+
+// NewGetGradingPriceBookResponseWithDefaults instantiates a new GetGradingPriceBookResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGradingPriceBookResponseWithDefaults() *GetGradingPriceBookResponse {
+	this := GetGradingPriceBookResponse{}
+	return &this
+}
+
+// GetGraders returns the Graders field value
+func (o *GetGradingPriceBookResponse) GetGraders() []GetGradingPriceBookResponseGraders {
+	if o == nil {
+		var ret []GetGradingPriceBookResponseGraders
+		return ret
+	}
+
+	return o.Graders
+}
+
+// GetGradersOk returns a tuple with the Graders field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponse) GetGradersOk() ([]GetGradingPriceBookResponseGraders, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Graders, true
+}
+
+// SetGraders sets field value
+func (o *GetGradingPriceBookResponse) SetGraders(v []GetGradingPriceBookResponseGraders) {
+	o.Graders = v
+}
+
+// GetHandlingCents returns the HandlingCents field value
+func (o *GetGradingPriceBookResponse) GetHandlingCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.HandlingCents
+}
+
+// GetHandlingCentsOk returns a tuple with the HandlingCents field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponse) GetHandlingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HandlingCents, true
+}
+
+// SetHandlingCents sets field value
+func (o *GetGradingPriceBookResponse) SetHandlingCents(v float32) {
+	o.HandlingCents = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *GetGradingPriceBookResponse) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponse) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *GetGradingPriceBookResponse) SetCurrency(v string) {
+	o.Currency = v
+}
+
+func (o GetGradingPriceBookResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["graders"] = o.Graders
+	}
+	if true {
+		toSerialize["handlingCents"] = o.HandlingCents
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGradingPriceBookResponse struct {
+	value *GetGradingPriceBookResponse
+	isSet bool
+}
+
+func (v NullableGetGradingPriceBookResponse) Get() *GetGradingPriceBookResponse {
+	return v.value
+}
+
+func (v *NullableGetGradingPriceBookResponse) Set(val *GetGradingPriceBookResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGradingPriceBookResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGradingPriceBookResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGradingPriceBookResponse(val *GetGradingPriceBookResponse) *NullableGetGradingPriceBookResponse {
+	return &NullableGetGradingPriceBookResponse{value: val, isSet: true}
+}
+
+func (v NullableGetGradingPriceBookResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGradingPriceBookResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGradingPriceBookResponseGraders struct for GetGradingPriceBookResponseGraders
+type GetGradingPriceBookResponseGraders struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+	// Cheapest first.
+	Tiers []map[string]interface{} `json:"tiers"`
+	// The add-ons this grader takes right now (priced ones only).
+	AddOns []map[string]interface{} `json:"addOns"`
+}
+
+// NewGetGradingPriceBookResponseGraders instantiates a new GetGradingPriceBookResponseGraders object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGradingPriceBookResponseGraders(slug string, name string, tiers []map[string]interface{}, addOns []map[string]interface{}) *GetGradingPriceBookResponseGraders {
+	this := GetGradingPriceBookResponseGraders{}
+	this.Slug = slug
+	this.Name = name
+	this.Tiers = tiers
+	this.AddOns = addOns
+	return &this
+}
+
+// NewGetGradingPriceBookResponseGradersWithDefaults instantiates a new GetGradingPriceBookResponseGraders object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGradingPriceBookResponseGradersWithDefaults() *GetGradingPriceBookResponseGraders {
+	this := GetGradingPriceBookResponseGraders{}
+	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *GetGradingPriceBookResponseGraders) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponseGraders) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *GetGradingPriceBookResponseGraders) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetName returns the Name field value
+func (o *GetGradingPriceBookResponseGraders) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponseGraders) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetGradingPriceBookResponseGraders) SetName(v string) {
+	o.Name = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *GetGradingPriceBookResponseGraders) GetTiers() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponseGraders) GetTiersOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetGradingPriceBookResponseGraders) SetTiers(v []map[string]interface{}) {
+	o.Tiers = v
+}
+
+// GetAddOns returns the AddOns field value
+func (o *GetGradingPriceBookResponseGraders) GetAddOns() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.AddOns
+}
+
+// GetAddOnsOk returns a tuple with the AddOns field value
+// and a boolean to check if the value has been set.
+func (o *GetGradingPriceBookResponseGraders) GetAddOnsOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AddOns, true
+}
+
+// SetAddOns sets field value
+func (o *GetGradingPriceBookResponseGraders) SetAddOns(v []map[string]interface{}) {
+	o.AddOns = v
+}
+
+func (o GetGradingPriceBookResponseGraders) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if true {
+		toSerialize["addOns"] = o.AddOns
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGradingPriceBookResponseGraders struct {
+	value *GetGradingPriceBookResponseGraders
+	isSet bool
+}
+
+func (v NullableGetGradingPriceBookResponseGraders) Get() *GetGradingPriceBookResponseGraders {
+	return v.value
+}
+
+func (v *NullableGetGradingPriceBookResponseGraders) Set(val *GetGradingPriceBookResponseGraders) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGradingPriceBookResponseGraders) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGradingPriceBookResponseGraders) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGradingPriceBookResponseGraders(val *GetGradingPriceBookResponseGraders) *NullableGetGradingPriceBookResponseGraders {
+	return &NullableGetGradingPriceBookResponseGraders{value: val, isSet: true}
+}
+
+func (v NullableGetGradingPriceBookResponseGraders) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGradingPriceBookResponseGraders) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -2328,6 +2567,8 @@ func (v *NullableListGradingRunsResponse) UnmarshalJSON(src []byte) error {
 type ListGradingSubmissionsItem struct {
 	Id string `json:"id"`
 	Mode string `json:"mode"`
+	// The grading order (submission through Crossly) this card is in.
+	OrderId NullableString `json:"orderId,omitempty"`
 	RunId NullableString `json:"runId,omitempty"`
 	RunCutoffAt NullableString `json:"runCutoffAt,omitempty"`
 	RunStatus NullableString `json:"runStatus,omitempty"`
@@ -2347,7 +2588,7 @@ type ListGradingSubmissionsItem struct {
 	InboundTracking NullableString `json:"inboundTracking,omitempty"`
 	ReturnTracking NullableString `json:"returnTracking,omitempty"`
 	PrescreenNote NullableString `json:"prescreenNote,omitempty"`
-	Grading NullableListGradingSubmissionsItemGrading `json:"grading,omitempty"`
+	Grading NullableCreateBulkBatchItemResponseGrading `json:"grading,omitempty"`
 	CertVerified bool `json:"certVerified"`
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
@@ -2431,6 +2672,48 @@ func (o *ListGradingSubmissionsItem) GetModeOk() (*string, bool) {
 // SetMode sets field value
 func (o *ListGradingSubmissionsItem) SetMode(v string) {
 	o.Mode = v
+}
+
+// GetOrderId returns the OrderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGradingSubmissionsItem) GetOrderId() string {
+	if o == nil || o.OrderId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrderId.Get()
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGradingSubmissionsItem) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OrderId.Get(), o.OrderId.IsSet()
+}
+
+// HasOrderId returns a boolean if a field has been set.
+func (o *ListGradingSubmissionsItem) HasOrderId() bool {
+	if o != nil && o.OrderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderId gets a reference to the given NullableString and assigns it to the OrderId field.
+func (o *ListGradingSubmissionsItem) SetOrderId(v string) {
+	o.OrderId.Set(&v)
+}
+// SetOrderIdNil sets the value for OrderId to be an explicit nil
+func (o *ListGradingSubmissionsItem) SetOrderIdNil() {
+	o.OrderId.Set(nil)
+}
+
+// UnsetOrderId ensures that no value is present for OrderId, not even an explicit nil
+func (o *ListGradingSubmissionsItem) UnsetOrderId() {
+	o.OrderId.Unset()
 }
 
 // GetRunId returns the RunId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3052,9 +3335,9 @@ func (o *ListGradingSubmissionsItem) UnsetPrescreenNote() {
 }
 
 // GetGrading returns the Grading field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListGradingSubmissionsItem) GetGrading() ListGradingSubmissionsItemGrading {
+func (o *ListGradingSubmissionsItem) GetGrading() CreateBulkBatchItemResponseGrading {
 	if o == nil || o.Grading.Get() == nil {
-		var ret ListGradingSubmissionsItemGrading
+		var ret CreateBulkBatchItemResponseGrading
 		return ret
 	}
 	return *o.Grading.Get()
@@ -3063,7 +3346,7 @@ func (o *ListGradingSubmissionsItem) GetGrading() ListGradingSubmissionsItemGrad
 // GetGradingOk returns a tuple with the Grading field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListGradingSubmissionsItem) GetGradingOk() (*ListGradingSubmissionsItemGrading, bool) {
+func (o *ListGradingSubmissionsItem) GetGradingOk() (*CreateBulkBatchItemResponseGrading, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -3079,8 +3362,8 @@ func (o *ListGradingSubmissionsItem) HasGrading() bool {
 	return false
 }
 
-// SetGrading gets a reference to the given NullableListGradingSubmissionsItemGrading and assigns it to the Grading field.
-func (o *ListGradingSubmissionsItem) SetGrading(v ListGradingSubmissionsItemGrading) {
+// SetGrading gets a reference to the given NullableCreateBulkBatchItemResponseGrading and assigns it to the Grading field.
+func (o *ListGradingSubmissionsItem) SetGrading(v CreateBulkBatchItemResponseGrading) {
 	o.Grading.Set(&v)
 }
 // SetGradingNil sets the value for Grading to be an explicit nil
@@ -3172,6 +3455,9 @@ func (o ListGradingSubmissionsItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["mode"] = o.Mode
+	}
+	if o.OrderId.IsSet() {
+		toSerialize["orderId"] = o.OrderId.Get()
 	}
 	if o.RunId.IsSet() {
 		toSerialize["runId"] = o.RunId.Get()
@@ -3277,342 +3563,6 @@ func (v NullableListGradingSubmissionsItem) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListGradingSubmissionsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListGradingSubmissionsItemGrading struct for ListGradingSubmissionsItemGrading
-type ListGradingSubmissionsItemGrading struct {
-	GraderSlug string `json:"graderSlug"`
-	// As the grader writes it: '10', '9.8', 'MS-65'.
-	Grade string `json:"grade"`
-	Qualifier NullableString `json:"qualifier,omitempty"`
-	// Second axis on a `dual` scale — WATA's seal grade.
-	SealGrade NullableString `json:"sealGrade,omitempty"`
-	CertNumber NullableString `json:"certNumber,omitempty"`
-	// Derived. Never assign by hand — call `gradeKey()`.
-	GradeKey string `json:"gradeKey"`
-	VerifiedAt NullableString `json:"verifiedAt,omitempty"`
-}
-
-// NewListGradingSubmissionsItemGrading instantiates a new ListGradingSubmissionsItemGrading object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListGradingSubmissionsItemGrading(graderSlug string, grade string, gradeKey string) *ListGradingSubmissionsItemGrading {
-	this := ListGradingSubmissionsItemGrading{}
-	this.GraderSlug = graderSlug
-	this.Grade = grade
-	this.GradeKey = gradeKey
-	return &this
-}
-
-// NewListGradingSubmissionsItemGradingWithDefaults instantiates a new ListGradingSubmissionsItemGrading object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListGradingSubmissionsItemGradingWithDefaults() *ListGradingSubmissionsItemGrading {
-	this := ListGradingSubmissionsItemGrading{}
-	return &this
-}
-
-// GetGraderSlug returns the GraderSlug field value
-func (o *ListGradingSubmissionsItemGrading) GetGraderSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.GraderSlug
-}
-
-// GetGraderSlugOk returns a tuple with the GraderSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListGradingSubmissionsItemGrading) GetGraderSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.GraderSlug, true
-}
-
-// SetGraderSlug sets field value
-func (o *ListGradingSubmissionsItemGrading) SetGraderSlug(v string) {
-	o.GraderSlug = v
-}
-
-// GetGrade returns the Grade field value
-func (o *ListGradingSubmissionsItemGrading) GetGrade() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Grade
-}
-
-// GetGradeOk returns a tuple with the Grade field value
-// and a boolean to check if the value has been set.
-func (o *ListGradingSubmissionsItemGrading) GetGradeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Grade, true
-}
-
-// SetGrade sets field value
-func (o *ListGradingSubmissionsItemGrading) SetGrade(v string) {
-	o.Grade = v
-}
-
-// GetQualifier returns the Qualifier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListGradingSubmissionsItemGrading) GetQualifier() string {
-	if o == nil || o.Qualifier.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Qualifier.Get()
-}
-
-// GetQualifierOk returns a tuple with the Qualifier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListGradingSubmissionsItemGrading) GetQualifierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Qualifier.Get(), o.Qualifier.IsSet()
-}
-
-// HasQualifier returns a boolean if a field has been set.
-func (o *ListGradingSubmissionsItemGrading) HasQualifier() bool {
-	if o != nil && o.Qualifier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQualifier gets a reference to the given NullableString and assigns it to the Qualifier field.
-func (o *ListGradingSubmissionsItemGrading) SetQualifier(v string) {
-	o.Qualifier.Set(&v)
-}
-// SetQualifierNil sets the value for Qualifier to be an explicit nil
-func (o *ListGradingSubmissionsItemGrading) SetQualifierNil() {
-	o.Qualifier.Set(nil)
-}
-
-// UnsetQualifier ensures that no value is present for Qualifier, not even an explicit nil
-func (o *ListGradingSubmissionsItemGrading) UnsetQualifier() {
-	o.Qualifier.Unset()
-}
-
-// GetSealGrade returns the SealGrade field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListGradingSubmissionsItemGrading) GetSealGrade() string {
-	if o == nil || o.SealGrade.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SealGrade.Get()
-}
-
-// GetSealGradeOk returns a tuple with the SealGrade field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListGradingSubmissionsItemGrading) GetSealGradeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SealGrade.Get(), o.SealGrade.IsSet()
-}
-
-// HasSealGrade returns a boolean if a field has been set.
-func (o *ListGradingSubmissionsItemGrading) HasSealGrade() bool {
-	if o != nil && o.SealGrade.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSealGrade gets a reference to the given NullableString and assigns it to the SealGrade field.
-func (o *ListGradingSubmissionsItemGrading) SetSealGrade(v string) {
-	o.SealGrade.Set(&v)
-}
-// SetSealGradeNil sets the value for SealGrade to be an explicit nil
-func (o *ListGradingSubmissionsItemGrading) SetSealGradeNil() {
-	o.SealGrade.Set(nil)
-}
-
-// UnsetSealGrade ensures that no value is present for SealGrade, not even an explicit nil
-func (o *ListGradingSubmissionsItemGrading) UnsetSealGrade() {
-	o.SealGrade.Unset()
-}
-
-// GetCertNumber returns the CertNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListGradingSubmissionsItemGrading) GetCertNumber() string {
-	if o == nil || o.CertNumber.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CertNumber.Get()
-}
-
-// GetCertNumberOk returns a tuple with the CertNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListGradingSubmissionsItemGrading) GetCertNumberOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CertNumber.Get(), o.CertNumber.IsSet()
-}
-
-// HasCertNumber returns a boolean if a field has been set.
-func (o *ListGradingSubmissionsItemGrading) HasCertNumber() bool {
-	if o != nil && o.CertNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertNumber gets a reference to the given NullableString and assigns it to the CertNumber field.
-func (o *ListGradingSubmissionsItemGrading) SetCertNumber(v string) {
-	o.CertNumber.Set(&v)
-}
-// SetCertNumberNil sets the value for CertNumber to be an explicit nil
-func (o *ListGradingSubmissionsItemGrading) SetCertNumberNil() {
-	o.CertNumber.Set(nil)
-}
-
-// UnsetCertNumber ensures that no value is present for CertNumber, not even an explicit nil
-func (o *ListGradingSubmissionsItemGrading) UnsetCertNumber() {
-	o.CertNumber.Unset()
-}
-
-// GetGradeKey returns the GradeKey field value
-func (o *ListGradingSubmissionsItemGrading) GetGradeKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.GradeKey
-}
-
-// GetGradeKeyOk returns a tuple with the GradeKey field value
-// and a boolean to check if the value has been set.
-func (o *ListGradingSubmissionsItemGrading) GetGradeKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.GradeKey, true
-}
-
-// SetGradeKey sets field value
-func (o *ListGradingSubmissionsItemGrading) SetGradeKey(v string) {
-	o.GradeKey = v
-}
-
-// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListGradingSubmissionsItemGrading) GetVerifiedAt() string {
-	if o == nil || o.VerifiedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VerifiedAt.Get()
-}
-
-// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListGradingSubmissionsItemGrading) GetVerifiedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VerifiedAt.Get(), o.VerifiedAt.IsSet()
-}
-
-// HasVerifiedAt returns a boolean if a field has been set.
-func (o *ListGradingSubmissionsItemGrading) HasVerifiedAt() bool {
-	if o != nil && o.VerifiedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVerifiedAt gets a reference to the given NullableString and assigns it to the VerifiedAt field.
-func (o *ListGradingSubmissionsItemGrading) SetVerifiedAt(v string) {
-	o.VerifiedAt.Set(&v)
-}
-// SetVerifiedAtNil sets the value for VerifiedAt to be an explicit nil
-func (o *ListGradingSubmissionsItemGrading) SetVerifiedAtNil() {
-	o.VerifiedAt.Set(nil)
-}
-
-// UnsetVerifiedAt ensures that no value is present for VerifiedAt, not even an explicit nil
-func (o *ListGradingSubmissionsItemGrading) UnsetVerifiedAt() {
-	o.VerifiedAt.Unset()
-}
-
-func (o ListGradingSubmissionsItemGrading) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["graderSlug"] = o.GraderSlug
-	}
-	if true {
-		toSerialize["grade"] = o.Grade
-	}
-	if o.Qualifier.IsSet() {
-		toSerialize["qualifier"] = o.Qualifier.Get()
-	}
-	if o.SealGrade.IsSet() {
-		toSerialize["sealGrade"] = o.SealGrade.Get()
-	}
-	if o.CertNumber.IsSet() {
-		toSerialize["certNumber"] = o.CertNumber.Get()
-	}
-	if true {
-		toSerialize["gradeKey"] = o.GradeKey
-	}
-	if o.VerifiedAt.IsSet() {
-		toSerialize["verifiedAt"] = o.VerifiedAt.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListGradingSubmissionsItemGrading struct {
-	value *ListGradingSubmissionsItemGrading
-	isSet bool
-}
-
-func (v NullableListGradingSubmissionsItemGrading) Get() *ListGradingSubmissionsItemGrading {
-	return v.value
-}
-
-func (v *NullableListGradingSubmissionsItemGrading) Set(val *ListGradingSubmissionsItemGrading) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListGradingSubmissionsItemGrading) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListGradingSubmissionsItemGrading) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListGradingSubmissionsItemGrading(val *ListGradingSubmissionsItemGrading) *NullableListGradingSubmissionsItemGrading {
-	return &NullableListGradingSubmissionsItemGrading{value: val, isSet: true}
-}
-
-func (v NullableListGradingSubmissionsItemGrading) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListGradingSubmissionsItemGrading) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

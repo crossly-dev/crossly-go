@@ -107,8 +107,8 @@ func (v *NullableCreateBuyerBreakSpotHoldResponse) UnmarshalJSON(src []byte) err
 
 // CreateBuyerBreakSpotHoldResponseData struct for CreateBuyerBreakSpotHoldResponseData
 type CreateBuyerBreakSpotHoldResponseData struct {
-	Slug NullableString `json:"slug,omitempty"`
 	HeldUntil string `json:"heldUntil"`
+	Slug NullableString `json:"slug,omitempty"`
 }
 
 // NewCreateBuyerBreakSpotHoldResponseData instantiates a new CreateBuyerBreakSpotHoldResponseData object
@@ -127,6 +127,30 @@ func NewCreateBuyerBreakSpotHoldResponseData(heldUntil string) *CreateBuyerBreak
 func NewCreateBuyerBreakSpotHoldResponseDataWithDefaults() *CreateBuyerBreakSpotHoldResponseData {
 	this := CreateBuyerBreakSpotHoldResponseData{}
 	return &this
+}
+
+// GetHeldUntil returns the HeldUntil field value
+func (o *CreateBuyerBreakSpotHoldResponseData) GetHeldUntil() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HeldUntil
+}
+
+// GetHeldUntilOk returns a tuple with the HeldUntil field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerBreakSpotHoldResponseData) GetHeldUntilOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HeldUntil, true
+}
+
+// SetHeldUntil sets field value
+func (o *CreateBuyerBreakSpotHoldResponseData) SetHeldUntil(v string) {
+	o.HeldUntil = v
 }
 
 // GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -171,37 +195,13 @@ func (o *CreateBuyerBreakSpotHoldResponseData) UnsetSlug() {
 	o.Slug.Unset()
 }
 
-// GetHeldUntil returns the HeldUntil field value
-func (o *CreateBuyerBreakSpotHoldResponseData) GetHeldUntil() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.HeldUntil
-}
-
-// GetHeldUntilOk returns a tuple with the HeldUntil field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerBreakSpotHoldResponseData) GetHeldUntilOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.HeldUntil, true
-}
-
-// SetHeldUntil sets field value
-func (o *CreateBuyerBreakSpotHoldResponseData) SetHeldUntil(v string) {
-	o.HeldUntil = v
-}
-
 func (o CreateBuyerBreakSpotHoldResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Slug.IsSet() {
-		toSerialize["slug"] = o.Slug.Get()
-	}
 	if true {
 		toSerialize["heldUntil"] = o.HeldUntil
+	}
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -353,39 +353,39 @@ func (v *NullableGetBuyerBreakResponse) UnmarshalJSON(src []byte) error {
 // GetBuyerBreakResponseData struct for GetBuyerBreakResponseData
 type GetBuyerBreakResponseData struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Status string `json:"status"`
-	AssignedAt NullableString `json:"assignedAt,omitempty"`
 	Title string `json:"title"`
-	Seller GetBuyerBreakResponseDataSeller `json:"seller"`
+	Product NullableString `json:"product,omitempty"`
+	Format string `json:"format"`
+	Status string `json:"status"`
 	Slug NullableString `json:"slug,omitempty"`
 	PriceCents float32 `json:"priceCents"`
-	Format string `json:"format"`
 	StreamId NullableString `json:"streamId,omitempty"`
-	Seed NullableString `json:"seed,omitempty"`
-	Product NullableString `json:"product,omitempty"`
-	SeedCommit string `json:"seedCommit"`
+	Seller GetBuyerBreakResponseDataSeller `json:"seller"`
 	Spots []GetBuyerBreakResponseDataSpots `json:"spots"`
 	SpotsLeft float32 `json:"spotsLeft"`
+	SeedCommit string `json:"seedCommit"`
+	Seed NullableString `json:"seed,omitempty"`
 	Draw []GetBuyerBreakResponseDataDraw `json:"draw,omitempty"`
+	CreatedAt string `json:"createdAt"`
+	AssignedAt NullableString `json:"assignedAt,omitempty"`
 }
 
 // NewGetBuyerBreakResponseData instantiates a new GetBuyerBreakResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerBreakResponseData(id string, createdAt string, status string, title string, seller GetBuyerBreakResponseDataSeller, priceCents float32, format string, seedCommit string, spots []GetBuyerBreakResponseDataSpots, spotsLeft float32) *GetBuyerBreakResponseData {
+func NewGetBuyerBreakResponseData(id string, title string, format string, status string, priceCents float32, seller GetBuyerBreakResponseDataSeller, spots []GetBuyerBreakResponseDataSpots, spotsLeft float32, seedCommit string, createdAt string) *GetBuyerBreakResponseData {
 	this := GetBuyerBreakResponseData{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Status = status
 	this.Title = title
-	this.Seller = seller
-	this.PriceCents = priceCents
 	this.Format = format
-	this.SeedCommit = seedCommit
+	this.Status = status
+	this.PriceCents = priceCents
+	this.Seller = seller
 	this.Spots = spots
 	this.SpotsLeft = spotsLeft
+	this.SeedCommit = seedCommit
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -421,96 +421,6 @@ func (o *GetBuyerBreakResponseData) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetBuyerBreakResponseData) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseData) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *GetBuyerBreakResponseData) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetStatus returns the Status field value
-func (o *GetBuyerBreakResponseData) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseData) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetBuyerBreakResponseData) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetAssignedAt returns the AssignedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseData) GetAssignedAt() string {
-	if o == nil || o.AssignedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AssignedAt.Get()
-}
-
-// GetAssignedAtOk returns a tuple with the AssignedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseData) GetAssignedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AssignedAt.Get(), o.AssignedAt.IsSet()
-}
-
-// HasAssignedAt returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseData) HasAssignedAt() bool {
-	if o != nil && o.AssignedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAssignedAt gets a reference to the given NullableString and assigns it to the AssignedAt field.
-func (o *GetBuyerBreakResponseData) SetAssignedAt(v string) {
-	o.AssignedAt.Set(&v)
-}
-// SetAssignedAtNil sets the value for AssignedAt to be an explicit nil
-func (o *GetBuyerBreakResponseData) SetAssignedAtNil() {
-	o.AssignedAt.Set(nil)
-}
-
-// UnsetAssignedAt ensures that no value is present for AssignedAt, not even an explicit nil
-func (o *GetBuyerBreakResponseData) UnsetAssignedAt() {
-	o.AssignedAt.Unset()
-}
-
 // GetTitle returns the Title field value
 func (o *GetBuyerBreakResponseData) GetTitle() string {
 	if o == nil {
@@ -535,28 +445,94 @@ func (o *GetBuyerBreakResponseData) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetSeller returns the Seller field value
-func (o *GetBuyerBreakResponseData) GetSeller() GetBuyerBreakResponseDataSeller {
-	if o == nil {
-		var ret GetBuyerBreakResponseDataSeller
+// GetProduct returns the Product field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseData) GetProduct() string {
+	if o == nil || o.Product.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Seller
+	return *o.Product.Get()
 }
 
-// GetSellerOk returns a tuple with the Seller field value
+// GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseData) GetSellerOk() (*GetBuyerBreakResponseDataSeller, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseData) GetProductOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Seller, true
+	return o.Product.Get(), o.Product.IsSet()
 }
 
-// SetSeller sets field value
-func (o *GetBuyerBreakResponseData) SetSeller(v GetBuyerBreakResponseDataSeller) {
-	o.Seller = v
+// HasProduct returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseData) HasProduct() bool {
+	if o != nil && o.Product.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProduct gets a reference to the given NullableString and assigns it to the Product field.
+func (o *GetBuyerBreakResponseData) SetProduct(v string) {
+	o.Product.Set(&v)
+}
+// SetProductNil sets the value for Product to be an explicit nil
+func (o *GetBuyerBreakResponseData) SetProductNil() {
+	o.Product.Set(nil)
+}
+
+// UnsetProduct ensures that no value is present for Product, not even an explicit nil
+func (o *GetBuyerBreakResponseData) UnsetProduct() {
+	o.Product.Unset()
+}
+
+// GetFormat returns the Format field value
+func (o *GetBuyerBreakResponseData) GetFormat() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerBreakResponseData) GetFormatOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Format, true
+}
+
+// SetFormat sets field value
+func (o *GetBuyerBreakResponseData) SetFormat(v string) {
+	o.Format = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetBuyerBreakResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerBreakResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetBuyerBreakResponseData) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -625,30 +601,6 @@ func (o *GetBuyerBreakResponseData) SetPriceCents(v float32) {
 	o.PriceCents = v
 }
 
-// GetFormat returns the Format field value
-func (o *GetBuyerBreakResponseData) GetFormat() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Format
-}
-
-// GetFormatOk returns a tuple with the Format field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseData) GetFormatOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Format, true
-}
-
-// SetFormat sets field value
-func (o *GetBuyerBreakResponseData) SetFormat(v string) {
-	o.Format = v
-}
-
 // GetStreamId returns the StreamId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerBreakResponseData) GetStreamId() string {
 	if o == nil || o.StreamId.Get() == nil {
@@ -691,112 +643,28 @@ func (o *GetBuyerBreakResponseData) UnsetStreamId() {
 	o.StreamId.Unset()
 }
 
-// GetSeed returns the Seed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseData) GetSeed() string {
-	if o == nil || o.Seed.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Seed.Get()
-}
-
-// GetSeedOk returns a tuple with the Seed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseData) GetSeedOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Seed.Get(), o.Seed.IsSet()
-}
-
-// HasSeed returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseData) HasSeed() bool {
-	if o != nil && o.Seed.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSeed gets a reference to the given NullableString and assigns it to the Seed field.
-func (o *GetBuyerBreakResponseData) SetSeed(v string) {
-	o.Seed.Set(&v)
-}
-// SetSeedNil sets the value for Seed to be an explicit nil
-func (o *GetBuyerBreakResponseData) SetSeedNil() {
-	o.Seed.Set(nil)
-}
-
-// UnsetSeed ensures that no value is present for Seed, not even an explicit nil
-func (o *GetBuyerBreakResponseData) UnsetSeed() {
-	o.Seed.Unset()
-}
-
-// GetProduct returns the Product field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseData) GetProduct() string {
-	if o == nil || o.Product.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Product.Get()
-}
-
-// GetProductOk returns a tuple with the Product field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseData) GetProductOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Product.Get(), o.Product.IsSet()
-}
-
-// HasProduct returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseData) HasProduct() bool {
-	if o != nil && o.Product.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProduct gets a reference to the given NullableString and assigns it to the Product field.
-func (o *GetBuyerBreakResponseData) SetProduct(v string) {
-	o.Product.Set(&v)
-}
-// SetProductNil sets the value for Product to be an explicit nil
-func (o *GetBuyerBreakResponseData) SetProductNil() {
-	o.Product.Set(nil)
-}
-
-// UnsetProduct ensures that no value is present for Product, not even an explicit nil
-func (o *GetBuyerBreakResponseData) UnsetProduct() {
-	o.Product.Unset()
-}
-
-// GetSeedCommit returns the SeedCommit field value
-func (o *GetBuyerBreakResponseData) GetSeedCommit() string {
+// GetSeller returns the Seller field value
+func (o *GetBuyerBreakResponseData) GetSeller() GetBuyerBreakResponseDataSeller {
 	if o == nil {
-		var ret string
+		var ret GetBuyerBreakResponseDataSeller
 		return ret
 	}
 
-	return o.SeedCommit
+	return o.Seller
 }
 
-// GetSeedCommitOk returns a tuple with the SeedCommit field value
+// GetSellerOk returns a tuple with the Seller field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseData) GetSeedCommitOk() (*string, bool) {
+func (o *GetBuyerBreakResponseData) GetSellerOk() (*GetBuyerBreakResponseDataSeller, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SeedCommit, true
+	return &o.Seller, true
 }
 
-// SetSeedCommit sets field value
-func (o *GetBuyerBreakResponseData) SetSeedCommit(v string) {
-	o.SeedCommit = v
+// SetSeller sets field value
+func (o *GetBuyerBreakResponseData) SetSeller(v GetBuyerBreakResponseDataSeller) {
+	o.Seller = v
 }
 
 // GetSpots returns the Spots field value
@@ -847,6 +715,72 @@ func (o *GetBuyerBreakResponseData) SetSpotsLeft(v float32) {
 	o.SpotsLeft = v
 }
 
+// GetSeedCommit returns the SeedCommit field value
+func (o *GetBuyerBreakResponseData) GetSeedCommit() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SeedCommit
+}
+
+// GetSeedCommitOk returns a tuple with the SeedCommit field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerBreakResponseData) GetSeedCommitOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SeedCommit, true
+}
+
+// SetSeedCommit sets field value
+func (o *GetBuyerBreakResponseData) SetSeedCommit(v string) {
+	o.SeedCommit = v
+}
+
+// GetSeed returns the Seed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseData) GetSeed() string {
+	if o == nil || o.Seed.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Seed.Get()
+}
+
+// GetSeedOk returns a tuple with the Seed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseData) GetSeedOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Seed.Get(), o.Seed.IsSet()
+}
+
+// HasSeed returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseData) HasSeed() bool {
+	if o != nil && o.Seed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSeed gets a reference to the given NullableString and assigns it to the Seed field.
+func (o *GetBuyerBreakResponseData) SetSeed(v string) {
+	o.Seed.Set(&v)
+}
+// SetSeedNil sets the value for Seed to be an explicit nil
+func (o *GetBuyerBreakResponseData) SetSeedNil() {
+	o.Seed.Set(nil)
+}
+
+// UnsetSeed ensures that no value is present for Seed, not even an explicit nil
+func (o *GetBuyerBreakResponseData) UnsetSeed() {
+	o.Seed.Unset()
+}
+
 // GetDraw returns the Draw field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerBreakResponseData) GetDraw() []GetBuyerBreakResponseDataDraw {
 	if o == nil  {
@@ -880,25 +814,88 @@ func (o *GetBuyerBreakResponseData) SetDraw(v []GetBuyerBreakResponseDataDraw) {
 	o.Draw = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetBuyerBreakResponseData) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerBreakResponseData) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetBuyerBreakResponseData) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetAssignedAt returns the AssignedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseData) GetAssignedAt() string {
+	if o == nil || o.AssignedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AssignedAt.Get()
+}
+
+// GetAssignedAtOk returns a tuple with the AssignedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseData) GetAssignedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AssignedAt.Get(), o.AssignedAt.IsSet()
+}
+
+// HasAssignedAt returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseData) HasAssignedAt() bool {
+	if o != nil && o.AssignedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAssignedAt gets a reference to the given NullableString and assigns it to the AssignedAt field.
+func (o *GetBuyerBreakResponseData) SetAssignedAt(v string) {
+	o.AssignedAt.Set(&v)
+}
+// SetAssignedAtNil sets the value for AssignedAt to be an explicit nil
+func (o *GetBuyerBreakResponseData) SetAssignedAtNil() {
+	o.AssignedAt.Set(nil)
+}
+
+// UnsetAssignedAt ensures that no value is present for AssignedAt, not even an explicit nil
+func (o *GetBuyerBreakResponseData) UnsetAssignedAt() {
+	o.AssignedAt.Unset()
+}
+
 func (o GetBuyerBreakResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["title"] = o.Title
+	}
+	if o.Product.IsSet() {
+		toSerialize["product"] = o.Product.Get()
+	}
+	if true {
+		toSerialize["format"] = o.Format
 	}
 	if true {
 		toSerialize["status"] = o.Status
-	}
-	if o.AssignedAt.IsSet() {
-		toSerialize["assignedAt"] = o.AssignedAt.Get()
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["seller"] = o.Seller
 	}
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
@@ -906,20 +903,11 @@ func (o GetBuyerBreakResponseData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
 	}
-	if true {
-		toSerialize["format"] = o.Format
-	}
 	if o.StreamId.IsSet() {
 		toSerialize["streamId"] = o.StreamId.Get()
 	}
-	if o.Seed.IsSet() {
-		toSerialize["seed"] = o.Seed.Get()
-	}
-	if o.Product.IsSet() {
-		toSerialize["product"] = o.Product.Get()
-	}
 	if true {
-		toSerialize["seedCommit"] = o.SeedCommit
+		toSerialize["seller"] = o.Seller
 	}
 	if true {
 		toSerialize["spots"] = o.Spots
@@ -927,8 +915,20 @@ func (o GetBuyerBreakResponseData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["spotsLeft"] = o.SpotsLeft
 	}
+	if true {
+		toSerialize["seedCommit"] = o.SeedCommit
+	}
+	if o.Seed.IsSet() {
+		toSerialize["seed"] = o.Seed.Get()
+	}
 	if o.Draw != nil {
 		toSerialize["draw"] = o.Draw
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if o.AssignedAt.IsSet() {
+		toSerialize["assignedAt"] = o.AssignedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -971,18 +971,18 @@ func (v *NullableGetBuyerBreakResponseData) UnmarshalJSON(src []byte) error {
 
 // GetBuyerBreakResponseDataDraw struct for GetBuyerBreakResponseDataDraw
 type GetBuyerBreakResponseDataDraw struct {
-	Position float32 `json:"position"`
 	Entry float32 `json:"entry"`
+	Position float32 `json:"position"`
 }
 
 // NewGetBuyerBreakResponseDataDraw instantiates a new GetBuyerBreakResponseDataDraw object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerBreakResponseDataDraw(position float32, entry float32) *GetBuyerBreakResponseDataDraw {
+func NewGetBuyerBreakResponseDataDraw(entry float32, position float32) *GetBuyerBreakResponseDataDraw {
 	this := GetBuyerBreakResponseDataDraw{}
-	this.Position = position
 	this.Entry = entry
+	this.Position = position
 	return &this
 }
 
@@ -992,30 +992,6 @@ func NewGetBuyerBreakResponseDataDraw(position float32, entry float32) *GetBuyer
 func NewGetBuyerBreakResponseDataDrawWithDefaults() *GetBuyerBreakResponseDataDraw {
 	this := GetBuyerBreakResponseDataDraw{}
 	return &this
-}
-
-// GetPosition returns the Position field value
-func (o *GetBuyerBreakResponseDataDraw) GetPosition() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Position
-}
-
-// GetPositionOk returns a tuple with the Position field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseDataDraw) GetPositionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Position, true
-}
-
-// SetPosition sets field value
-func (o *GetBuyerBreakResponseDataDraw) SetPosition(v float32) {
-	o.Position = v
 }
 
 // GetEntry returns the Entry field value
@@ -1042,13 +1018,37 @@ func (o *GetBuyerBreakResponseDataDraw) SetEntry(v float32) {
 	o.Entry = v
 }
 
+// GetPosition returns the Position field value
+func (o *GetBuyerBreakResponseDataDraw) GetPosition() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Position
+}
+
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerBreakResponseDataDraw) GetPositionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Position, true
+}
+
+// SetPosition sets field value
+func (o *GetBuyerBreakResponseDataDraw) SetPosition(v float32) {
+	o.Position = v
+}
+
 func (o GetBuyerBreakResponseDataDraw) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["position"] = o.Position
+		toSerialize["entry"] = o.Entry
 	}
 	if true {
-		toSerialize["entry"] = o.Entry
+		toSerialize["position"] = o.Position
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1091,8 +1091,8 @@ func (v *NullableGetBuyerBreakResponseDataDraw) UnmarshalJSON(src []byte) error 
 
 // GetBuyerBreakResponseDataSeller struct for GetBuyerBreakResponseDataSeller
 type GetBuyerBreakResponseDataSeller struct {
-	DisplayName NullableString `json:"displayName,omitempty"`
 	Username NullableString `json:"username,omitempty"`
+	DisplayName NullableString `json:"displayName,omitempty"`
 }
 
 // NewGetBuyerBreakResponseDataSeller instantiates a new GetBuyerBreakResponseDataSeller object
@@ -1110,48 +1110,6 @@ func NewGetBuyerBreakResponseDataSeller() *GetBuyerBreakResponseDataSeller {
 func NewGetBuyerBreakResponseDataSellerWithDefaults() *GetBuyerBreakResponseDataSeller {
 	this := GetBuyerBreakResponseDataSeller{}
 	return &this
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseDataSeller) GetDisplayName() string {
-	if o == nil || o.DisplayName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.DisplayName.Get()
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseDataSeller) GetDisplayNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.DisplayName.Get(), o.DisplayName.IsSet()
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseDataSeller) HasDisplayName() bool {
-	if o != nil && o.DisplayName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given NullableString and assigns it to the DisplayName field.
-func (o *GetBuyerBreakResponseDataSeller) SetDisplayName(v string) {
-	o.DisplayName.Set(&v)
-}
-// SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-func (o *GetBuyerBreakResponseDataSeller) SetDisplayNameNil() {
-	o.DisplayName.Set(nil)
-}
-
-// UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-func (o *GetBuyerBreakResponseDataSeller) UnsetDisplayName() {
-	o.DisplayName.Unset()
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1196,13 +1154,55 @@ func (o *GetBuyerBreakResponseDataSeller) UnsetUsername() {
 	o.Username.Unset()
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseDataSeller) GetDisplayName() string {
+	if o == nil || o.DisplayName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName.Get()
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseDataSeller) GetDisplayNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DisplayName.Get(), o.DisplayName.IsSet()
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseDataSeller) HasDisplayName() bool {
+	if o != nil && o.DisplayName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given NullableString and assigns it to the DisplayName field.
+func (o *GetBuyerBreakResponseDataSeller) SetDisplayName(v string) {
+	o.DisplayName.Set(&v)
+}
+// SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+func (o *GetBuyerBreakResponseDataSeller) SetDisplayNameNil() {
+	o.DisplayName.Set(nil)
+}
+
+// UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+func (o *GetBuyerBreakResponseDataSeller) UnsetDisplayName() {
+	o.DisplayName.Unset()
+}
+
 func (o GetBuyerBreakResponseDataSeller) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DisplayName.IsSet() {
-		toSerialize["displayName"] = o.DisplayName.Get()
-	}
 	if o.Username.IsSet() {
 		toSerialize["username"] = o.Username.Get()
+	}
+	if o.DisplayName.IsSet() {
+		toSerialize["displayName"] = o.DisplayName.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1246,26 +1246,26 @@ func (v *NullableGetBuyerBreakResponseDataSeller) UnmarshalJSON(src []byte) erro
 // GetBuyerBreakResponseDataSpots struct for GetBuyerBreakResponseDataSpots
 type GetBuyerBreakResponseDataSpots struct {
 	Id string `json:"id"`
-	Label string `json:"label"`
 	Position float32 `json:"position"`
-	HeldUntil NullableString `json:"heldUntil,omitempty"`
-	Hits NullableString `json:"hits,omitempty"`
-	Buyer NullableString `json:"buyer,omitempty"`
+	Label string `json:"label"`
 	Taken bool `json:"taken"`
 	Mine bool `json:"mine"`
 	HeldByMe bool `json:"heldByMe"`
 	HeldByOther bool `json:"heldByOther"`
+	HeldUntil NullableString `json:"heldUntil,omitempty"`
+	Buyer NullableString `json:"buyer,omitempty"`
+	Hits NullableString `json:"hits,omitempty"`
 }
 
 // NewGetBuyerBreakResponseDataSpots instantiates a new GetBuyerBreakResponseDataSpots object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerBreakResponseDataSpots(id string, label string, position float32, taken bool, mine bool, heldByMe bool, heldByOther bool) *GetBuyerBreakResponseDataSpots {
+func NewGetBuyerBreakResponseDataSpots(id string, position float32, label string, taken bool, mine bool, heldByMe bool, heldByOther bool) *GetBuyerBreakResponseDataSpots {
 	this := GetBuyerBreakResponseDataSpots{}
 	this.Id = id
-	this.Label = label
 	this.Position = position
+	this.Label = label
 	this.Taken = taken
 	this.Mine = mine
 	this.HeldByMe = heldByMe
@@ -1305,30 +1305,6 @@ func (o *GetBuyerBreakResponseDataSpots) SetId(v string) {
 	o.Id = v
 }
 
-// GetLabel returns the Label field value
-func (o *GetBuyerBreakResponseDataSpots) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerBreakResponseDataSpots) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerBreakResponseDataSpots) SetLabel(v string) {
-	o.Label = v
-}
-
 // GetPosition returns the Position field value
 func (o *GetBuyerBreakResponseDataSpots) GetPosition() float32 {
 	if o == nil {
@@ -1353,130 +1329,28 @@ func (o *GetBuyerBreakResponseDataSpots) SetPosition(v float32) {
 	o.Position = v
 }
 
-// GetHeldUntil returns the HeldUntil field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseDataSpots) GetHeldUntil() string {
-	if o == nil || o.HeldUntil.Get() == nil {
+// GetLabel returns the Label field value
+func (o *GetBuyerBreakResponseDataSpots) GetLabel() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.HeldUntil.Get()
+
+	return o.Label
 }
 
-// GetHeldUntilOk returns a tuple with the HeldUntil field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseDataSpots) GetHeldUntilOk() (*string, bool) {
+func (o *GetBuyerBreakResponseDataSpots) GetLabelOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.HeldUntil.Get(), o.HeldUntil.IsSet()
+	return &o.Label, true
 }
 
-// HasHeldUntil returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseDataSpots) HasHeldUntil() bool {
-	if o != nil && o.HeldUntil.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHeldUntil gets a reference to the given NullableString and assigns it to the HeldUntil field.
-func (o *GetBuyerBreakResponseDataSpots) SetHeldUntil(v string) {
-	o.HeldUntil.Set(&v)
-}
-// SetHeldUntilNil sets the value for HeldUntil to be an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) SetHeldUntilNil() {
-	o.HeldUntil.Set(nil)
-}
-
-// UnsetHeldUntil ensures that no value is present for HeldUntil, not even an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) UnsetHeldUntil() {
-	o.HeldUntil.Unset()
-}
-
-// GetHits returns the Hits field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseDataSpots) GetHits() string {
-	if o == nil || o.Hits.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Hits.Get()
-}
-
-// GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseDataSpots) GetHitsOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Hits.Get(), o.Hits.IsSet()
-}
-
-// HasHits returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseDataSpots) HasHits() bool {
-	if o != nil && o.Hits.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHits gets a reference to the given NullableString and assigns it to the Hits field.
-func (o *GetBuyerBreakResponseDataSpots) SetHits(v string) {
-	o.Hits.Set(&v)
-}
-// SetHitsNil sets the value for Hits to be an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) SetHitsNil() {
-	o.Hits.Set(nil)
-}
-
-// UnsetHits ensures that no value is present for Hits, not even an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) UnsetHits() {
-	o.Hits.Unset()
-}
-
-// GetBuyer returns the Buyer field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerBreakResponseDataSpots) GetBuyer() string {
-	if o == nil || o.Buyer.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Buyer.Get()
-}
-
-// GetBuyerOk returns a tuple with the Buyer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerBreakResponseDataSpots) GetBuyerOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Buyer.Get(), o.Buyer.IsSet()
-}
-
-// HasBuyer returns a boolean if a field has been set.
-func (o *GetBuyerBreakResponseDataSpots) HasBuyer() bool {
-	if o != nil && o.Buyer.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBuyer gets a reference to the given NullableString and assigns it to the Buyer field.
-func (o *GetBuyerBreakResponseDataSpots) SetBuyer(v string) {
-	o.Buyer.Set(&v)
-}
-// SetBuyerNil sets the value for Buyer to be an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) SetBuyerNil() {
-	o.Buyer.Set(nil)
-}
-
-// UnsetBuyer ensures that no value is present for Buyer, not even an explicit nil
-func (o *GetBuyerBreakResponseDataSpots) UnsetBuyer() {
-	o.Buyer.Unset()
+// SetLabel sets field value
+func (o *GetBuyerBreakResponseDataSpots) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetTaken returns the Taken field value
@@ -1575,25 +1449,142 @@ func (o *GetBuyerBreakResponseDataSpots) SetHeldByOther(v bool) {
 	o.HeldByOther = v
 }
 
+// GetHeldUntil returns the HeldUntil field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseDataSpots) GetHeldUntil() string {
+	if o == nil || o.HeldUntil.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HeldUntil.Get()
+}
+
+// GetHeldUntilOk returns a tuple with the HeldUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseDataSpots) GetHeldUntilOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HeldUntil.Get(), o.HeldUntil.IsSet()
+}
+
+// HasHeldUntil returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseDataSpots) HasHeldUntil() bool {
+	if o != nil && o.HeldUntil.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHeldUntil gets a reference to the given NullableString and assigns it to the HeldUntil field.
+func (o *GetBuyerBreakResponseDataSpots) SetHeldUntil(v string) {
+	o.HeldUntil.Set(&v)
+}
+// SetHeldUntilNil sets the value for HeldUntil to be an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) SetHeldUntilNil() {
+	o.HeldUntil.Set(nil)
+}
+
+// UnsetHeldUntil ensures that no value is present for HeldUntil, not even an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) UnsetHeldUntil() {
+	o.HeldUntil.Unset()
+}
+
+// GetBuyer returns the Buyer field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseDataSpots) GetBuyer() string {
+	if o == nil || o.Buyer.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Buyer.Get()
+}
+
+// GetBuyerOk returns a tuple with the Buyer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseDataSpots) GetBuyerOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Buyer.Get(), o.Buyer.IsSet()
+}
+
+// HasBuyer returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseDataSpots) HasBuyer() bool {
+	if o != nil && o.Buyer.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyer gets a reference to the given NullableString and assigns it to the Buyer field.
+func (o *GetBuyerBreakResponseDataSpots) SetBuyer(v string) {
+	o.Buyer.Set(&v)
+}
+// SetBuyerNil sets the value for Buyer to be an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) SetBuyerNil() {
+	o.Buyer.Set(nil)
+}
+
+// UnsetBuyer ensures that no value is present for Buyer, not even an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) UnsetBuyer() {
+	o.Buyer.Unset()
+}
+
+// GetHits returns the Hits field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerBreakResponseDataSpots) GetHits() string {
+	if o == nil || o.Hits.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Hits.Get()
+}
+
+// GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerBreakResponseDataSpots) GetHitsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Hits.Get(), o.Hits.IsSet()
+}
+
+// HasHits returns a boolean if a field has been set.
+func (o *GetBuyerBreakResponseDataSpots) HasHits() bool {
+	if o != nil && o.Hits.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHits gets a reference to the given NullableString and assigns it to the Hits field.
+func (o *GetBuyerBreakResponseDataSpots) SetHits(v string) {
+	o.Hits.Set(&v)
+}
+// SetHitsNil sets the value for Hits to be an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) SetHitsNil() {
+	o.Hits.Set(nil)
+}
+
+// UnsetHits ensures that no value is present for Hits, not even an explicit nil
+func (o *GetBuyerBreakResponseDataSpots) UnsetHits() {
+	o.Hits.Unset()
+}
+
 func (o GetBuyerBreakResponseDataSpots) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
 		toSerialize["position"] = o.Position
 	}
-	if o.HeldUntil.IsSet() {
-		toSerialize["heldUntil"] = o.HeldUntil.Get()
-	}
-	if o.Hits.IsSet() {
-		toSerialize["hits"] = o.Hits.Get()
-	}
-	if o.Buyer.IsSet() {
-		toSerialize["buyer"] = o.Buyer.Get()
+	if true {
+		toSerialize["label"] = o.Label
 	}
 	if true {
 		toSerialize["taken"] = o.Taken
@@ -1606,6 +1597,15 @@ func (o GetBuyerBreakResponseDataSpots) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["heldByOther"] = o.HeldByOther
+	}
+	if o.HeldUntil.IsSet() {
+		toSerialize["heldUntil"] = o.HeldUntil.Get()
+	}
+	if o.Buyer.IsSet() {
+		toSerialize["buyer"] = o.Buyer.Get()
+	}
+	if o.Hits.IsSet() {
+		toSerialize["hits"] = o.Hits.Get()
 	}
 	return json.Marshal(toSerialize)
 }

@@ -29,6 +29,7 @@ type GetHomeResponse struct {
 	Layout []GetHomeResponseLayout `json:"layout"`
 	Guestbook []GetHomeResponseGuestbook `json:"guestbook"`
 	GiftShelf NullableGetHomeResponseGiftShelf `json:"giftShelf,omitempty"`
+	PullsShelf NullableGetHomeResponsePullsShelf `json:"pullsShelf,omitempty"`
 	// The owner's earned pins, rarest first, when a pin case stands here (pin-case.ts).
 	PinCase []GetHomeResponsePinCase `json:"pinCase,omitempty"`
 	VaultWall NullableGetHomeResponseVaultWall `json:"vaultWall,omitempty"`
@@ -374,6 +375,48 @@ func (o *GetHomeResponse) UnsetGiftShelf() {
 	o.GiftShelf.Unset()
 }
 
+// GetPullsShelf returns the PullsShelf field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetHomeResponse) GetPullsShelf() GetHomeResponsePullsShelf {
+	if o == nil || o.PullsShelf.Get() == nil {
+		var ret GetHomeResponsePullsShelf
+		return ret
+	}
+	return *o.PullsShelf.Get()
+}
+
+// GetPullsShelfOk returns a tuple with the PullsShelf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetHomeResponse) GetPullsShelfOk() (*GetHomeResponsePullsShelf, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PullsShelf.Get(), o.PullsShelf.IsSet()
+}
+
+// HasPullsShelf returns a boolean if a field has been set.
+func (o *GetHomeResponse) HasPullsShelf() bool {
+	if o != nil && o.PullsShelf.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPullsShelf gets a reference to the given NullableGetHomeResponsePullsShelf and assigns it to the PullsShelf field.
+func (o *GetHomeResponse) SetPullsShelf(v GetHomeResponsePullsShelf) {
+	o.PullsShelf.Set(&v)
+}
+// SetPullsShelfNil sets the value for PullsShelf to be an explicit nil
+func (o *GetHomeResponse) SetPullsShelfNil() {
+	o.PullsShelf.Set(nil)
+}
+
+// UnsetPullsShelf ensures that no value is present for PullsShelf, not even an explicit nil
+func (o *GetHomeResponse) UnsetPullsShelf() {
+	o.PullsShelf.Unset()
+}
+
 // GetPinCase returns the PinCase field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetHomeResponse) GetPinCase() []GetHomeResponsePinCase {
 	if o == nil  {
@@ -576,6 +619,9 @@ func (o GetHomeResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.GiftShelf.IsSet() {
 		toSerialize["giftShelf"] = o.GiftShelf.Get()
+	}
+	if o.PullsShelf.IsSet() {
+		toSerialize["pullsShelf"] = o.PullsShelf.Get()
 	}
 	if o.PinCase != nil {
 		toSerialize["pinCase"] = o.PinCase
@@ -1627,6 +1673,8 @@ type GetHomeResponseLayout struct {
 	Slot NullableFloat32 `json:"slot,omitempty"`
 	// A set wall: which set it shows, \"category/brand/model\" (HOME_SET_KEY). Absent: the owner's most complete.
 	Set NullableString `json:"set,omitempty"`
+	// A furniture piece's colour (HOME_TINTS key): its fabric and finish take it. Absent: as made.
+	Tint NullableString `json:"tint,omitempty"`
 	Item NullableGetHomeResponseLayoutItem `json:"item,omitempty"`
 }
 
@@ -1873,6 +1921,48 @@ func (o *GetHomeResponseLayout) UnsetSet() {
 	o.Set.Unset()
 }
 
+// GetTint returns the Tint field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetHomeResponseLayout) GetTint() string {
+	if o == nil || o.Tint.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Tint.Get()
+}
+
+// GetTintOk returns a tuple with the Tint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetHomeResponseLayout) GetTintOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tint.Get(), o.Tint.IsSet()
+}
+
+// HasTint returns a boolean if a field has been set.
+func (o *GetHomeResponseLayout) HasTint() bool {
+	if o != nil && o.Tint.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTint gets a reference to the given NullableString and assigns it to the Tint field.
+func (o *GetHomeResponseLayout) SetTint(v string) {
+	o.Tint.Set(&v)
+}
+// SetTintNil sets the value for Tint to be an explicit nil
+func (o *GetHomeResponseLayout) SetTintNil() {
+	o.Tint.Set(nil)
+}
+
+// UnsetTint ensures that no value is present for Tint, not even an explicit nil
+func (o *GetHomeResponseLayout) UnsetTint() {
+	o.Tint.Unset()
+}
+
 // GetItem returns the Item field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetHomeResponseLayout) GetItem() GetHomeResponseLayoutItem {
 	if o == nil || o.Item.Get() == nil {
@@ -1938,6 +2028,9 @@ func (o GetHomeResponseLayout) MarshalJSON() ([]byte, error) {
 	if o.Set.IsSet() {
 		toSerialize["set"] = o.Set.Get()
 	}
+	if o.Tint.IsSet() {
+		toSerialize["tint"] = o.Tint.Get()
+	}
 	if o.Item.IsSet() {
 		toSerialize["item"] = o.Item.Get()
 	}
@@ -1998,10 +2091,12 @@ type GetHomeResponseLayoutItem struct {
 	Found NullableString `json:"found,omitempty"`
 	// The thing ITSELF as a 3D object in a case or on a shelf (shared listing-space.ts): never a flat photo. Not for NFTs.
 	Object NullableString `json:"object,omitempty"`
-	// A `vault` ref: the unit's market (a book key), so a click opens /shop/vault/markets/<market>.
+	// A `vault` ref: the unit's market (a book key), so a click opens /trading/<market>.
 	Market NullableString `json:"market,omitempty"`
 	// A `vault` ref, to its OWNER only: visitors may see it (vm_home_display.visitors).
 	Visitors NullableBool `json:"visitors,omitempty"`
+	// The owner's open Trade Block post for this same product (trade-posts.ts): \"Offer a trade\" opens it.
+	TradePostId NullableString `json:"tradePostId,omitempty"`
 }
 
 // NewGetHomeResponseLayoutItem instantiates a new GetHomeResponseLayoutItem object
@@ -2466,6 +2561,48 @@ func (o *GetHomeResponseLayoutItem) UnsetVisitors() {
 	o.Visitors.Unset()
 }
 
+// GetTradePostId returns the TradePostId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetHomeResponseLayoutItem) GetTradePostId() string {
+	if o == nil || o.TradePostId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TradePostId.Get()
+}
+
+// GetTradePostIdOk returns a tuple with the TradePostId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetHomeResponseLayoutItem) GetTradePostIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TradePostId.Get(), o.TradePostId.IsSet()
+}
+
+// HasTradePostId returns a boolean if a field has been set.
+func (o *GetHomeResponseLayoutItem) HasTradePostId() bool {
+	if o != nil && o.TradePostId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTradePostId gets a reference to the given NullableString and assigns it to the TradePostId field.
+func (o *GetHomeResponseLayoutItem) SetTradePostId(v string) {
+	o.TradePostId.Set(&v)
+}
+// SetTradePostIdNil sets the value for TradePostId to be an explicit nil
+func (o *GetHomeResponseLayoutItem) SetTradePostIdNil() {
+	o.TradePostId.Set(nil)
+}
+
+// UnsetTradePostId ensures that no value is present for TradePostId, not even an explicit nil
+func (o *GetHomeResponseLayoutItem) UnsetTradePostId() {
+	o.TradePostId.Unset()
+}
+
 func (o GetHomeResponseLayoutItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2500,6 +2637,9 @@ func (o GetHomeResponseLayoutItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Visitors.IsSet() {
 		toSerialize["visitors"] = o.Visitors.Get()
+	}
+	if o.TradePostId.IsSet() {
+		toSerialize["tradePostId"] = o.TradePostId.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2805,6 +2945,338 @@ func (v NullableGetHomeResponsePinCase) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetHomeResponsePinCase) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetHomeResponsePullsShelf The owner's newest pulls (won lots, break hits) on their pulls shelf, when one stands here (pulls-shelf.ts).
+type GetHomeResponsePullsShelf struct {
+	Items []GetHomeResponsePullsShelfItems `json:"items"`
+}
+
+// NewGetHomeResponsePullsShelf instantiates a new GetHomeResponsePullsShelf object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetHomeResponsePullsShelf(items []GetHomeResponsePullsShelfItems) *GetHomeResponsePullsShelf {
+	this := GetHomeResponsePullsShelf{}
+	this.Items = items
+	return &this
+}
+
+// NewGetHomeResponsePullsShelfWithDefaults instantiates a new GetHomeResponsePullsShelf object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetHomeResponsePullsShelfWithDefaults() *GetHomeResponsePullsShelf {
+	this := GetHomeResponsePullsShelf{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *GetHomeResponsePullsShelf) GetItems() []GetHomeResponsePullsShelfItems {
+	if o == nil {
+		var ret []GetHomeResponsePullsShelfItems
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *GetHomeResponsePullsShelf) GetItemsOk() ([]GetHomeResponsePullsShelfItems, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *GetHomeResponsePullsShelf) SetItems(v []GetHomeResponsePullsShelfItems) {
+	o.Items = v
+}
+
+func (o GetHomeResponsePullsShelf) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["items"] = o.Items
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetHomeResponsePullsShelf struct {
+	value *GetHomeResponsePullsShelf
+	isSet bool
+}
+
+func (v NullableGetHomeResponsePullsShelf) Get() *GetHomeResponsePullsShelf {
+	return v.value
+}
+
+func (v *NullableGetHomeResponsePullsShelf) Set(val *GetHomeResponsePullsShelf) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetHomeResponsePullsShelf) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetHomeResponsePullsShelf) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetHomeResponsePullsShelf(val *GetHomeResponsePullsShelf) *NullableGetHomeResponsePullsShelf {
+	return &NullableGetHomeResponsePullsShelf{value: val, isSet: true}
+}
+
+func (v NullableGetHomeResponsePullsShelf) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetHomeResponsePullsShelf) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetHomeResponsePullsShelfItems struct for GetHomeResponsePullsShelfItems
+type GetHomeResponsePullsShelfItems struct {
+	Kind string `json:"kind"`
+	Title string `json:"title"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	At string `json:"at"`
+	From NullableString `json:"from,omitempty"`
+}
+
+// NewGetHomeResponsePullsShelfItems instantiates a new GetHomeResponsePullsShelfItems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetHomeResponsePullsShelfItems(kind string, title string, at string) *GetHomeResponsePullsShelfItems {
+	this := GetHomeResponsePullsShelfItems{}
+	this.Kind = kind
+	this.Title = title
+	this.At = at
+	return &this
+}
+
+// NewGetHomeResponsePullsShelfItemsWithDefaults instantiates a new GetHomeResponsePullsShelfItems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetHomeResponsePullsShelfItemsWithDefaults() *GetHomeResponsePullsShelfItems {
+	this := GetHomeResponsePullsShelfItems{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetHomeResponsePullsShelfItems) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetHomeResponsePullsShelfItems) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetHomeResponsePullsShelfItems) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetHomeResponsePullsShelfItems) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetHomeResponsePullsShelfItems) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetHomeResponsePullsShelfItems) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetHomeResponsePullsShelfItems) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetHomeResponsePullsShelfItems) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetHomeResponsePullsShelfItems) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetHomeResponsePullsShelfItems) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetHomeResponsePullsShelfItems) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetHomeResponsePullsShelfItems) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetAt returns the At field value
+func (o *GetHomeResponsePullsShelfItems) GetAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.At
+}
+
+// GetAtOk returns a tuple with the At field value
+// and a boolean to check if the value has been set.
+func (o *GetHomeResponsePullsShelfItems) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.At, true
+}
+
+// SetAt sets field value
+func (o *GetHomeResponsePullsShelfItems) SetAt(v string) {
+	o.At = v
+}
+
+// GetFrom returns the From field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetHomeResponsePullsShelfItems) GetFrom() string {
+	if o == nil || o.From.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.From.Get()
+}
+
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetHomeResponsePullsShelfItems) GetFromOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.From.Get(), o.From.IsSet()
+}
+
+// HasFrom returns a boolean if a field has been set.
+func (o *GetHomeResponsePullsShelfItems) HasFrom() bool {
+	if o != nil && o.From.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given NullableString and assigns it to the From field.
+func (o *GetHomeResponsePullsShelfItems) SetFrom(v string) {
+	o.From.Set(&v)
+}
+// SetFromNil sets the value for From to be an explicit nil
+func (o *GetHomeResponsePullsShelfItems) SetFromNil() {
+	o.From.Set(nil)
+}
+
+// UnsetFrom ensures that no value is present for From, not even an explicit nil
+func (o *GetHomeResponsePullsShelfItems) UnsetFrom() {
+	o.From.Unset()
+}
+
+func (o GetHomeResponsePullsShelfItems) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["at"] = o.At
+	}
+	if o.From.IsSet() {
+		toSerialize["from"] = o.From.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetHomeResponsePullsShelfItems struct {
+	value *GetHomeResponsePullsShelfItems
+	isSet bool
+}
+
+func (v NullableGetHomeResponsePullsShelfItems) Get() *GetHomeResponsePullsShelfItems {
+	return v.value
+}
+
+func (v *NullableGetHomeResponsePullsShelfItems) Set(val *GetHomeResponsePullsShelfItems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetHomeResponsePullsShelfItems) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetHomeResponsePullsShelfItems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetHomeResponsePullsShelfItems(val *GetHomeResponsePullsShelfItems) *NullableGetHomeResponsePullsShelfItems {
+	return &NullableGetHomeResponsePullsShelfItems{value: val, isSet: true}
+}
+
+func (v NullableGetHomeResponsePullsShelfItems) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetHomeResponsePullsShelfItems) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -4004,7 +4476,7 @@ type GetHomeResponseVaultWallUnits struct {
 	Label NullableString `json:"label,omitempty"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
 	Units float32 `json:"units"`
-	// The book key, for a click through to its market (/shop/vault/markets/<bookKey>).
+	// The book key, for a click through to its market (/trading/<bookKey>).
 	BookKey NullableString `json:"bookKey,omitempty"`
 	// One unit's mark, cents -- only when the viewer may see values (else absent).
 	MarkCents NullableFloat32 `json:"markCents,omitempty"`

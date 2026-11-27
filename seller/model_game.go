@@ -14,6 +14,4110 @@ import (
 	"encoding/json"
 )
 
+// CreateGamePackBreakPickResponse struct for CreateGamePackBreakPickResponse
+type CreateGamePackBreakPickResponse struct {
+	Data CreateGamePackBreakPickResponseData `json:"data"`
+}
+
+// NewCreateGamePackBreakPickResponse instantiates a new CreateGamePackBreakPickResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakPickResponse(data CreateGamePackBreakPickResponseData) *CreateGamePackBreakPickResponse {
+	this := CreateGamePackBreakPickResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreateGamePackBreakPickResponseWithDefaults instantiates a new CreateGamePackBreakPickResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakPickResponseWithDefaults() *CreateGamePackBreakPickResponse {
+	this := CreateGamePackBreakPickResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreateGamePackBreakPickResponse) GetData() CreateGamePackBreakPickResponseData {
+	if o == nil {
+		var ret CreateGamePackBreakPickResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponse) GetDataOk() (*CreateGamePackBreakPickResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreateGamePackBreakPickResponse) SetData(v CreateGamePackBreakPickResponseData) {
+	o.Data = v
+}
+
+func (o CreateGamePackBreakPickResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakPickResponse struct {
+	value *CreateGamePackBreakPickResponse
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakPickResponse) Get() *CreateGamePackBreakPickResponse {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakPickResponse) Set(val *CreateGamePackBreakPickResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakPickResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakPickResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakPickResponse(val *CreateGamePackBreakPickResponse) *NullableCreateGamePackBreakPickResponse {
+	return &NullableCreateGamePackBreakPickResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakPickResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakPickResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakPickResponseData struct for CreateGamePackBreakPickResponseData
+type CreateGamePackBreakPickResponseData struct {
+	Id string `json:"id"`
+	Picked float32 `json:"picked"`
+	Won bool `json:"won"`
+	Pulls []CreateGamePackBreakPickResponseDataPulls `json:"pulls"`
+	Coupon NullableCreateGamePackBreakPickResponseDataCoupon `json:"coupon,omitempty"`
+}
+
+// NewCreateGamePackBreakPickResponseData instantiates a new CreateGamePackBreakPickResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakPickResponseData(id string, picked float32, won bool, pulls []CreateGamePackBreakPickResponseDataPulls) *CreateGamePackBreakPickResponseData {
+	this := CreateGamePackBreakPickResponseData{}
+	this.Id = id
+	this.Picked = picked
+	this.Won = won
+	this.Pulls = pulls
+	return &this
+}
+
+// NewCreateGamePackBreakPickResponseDataWithDefaults instantiates a new CreateGamePackBreakPickResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakPickResponseDataWithDefaults() *CreateGamePackBreakPickResponseData {
+	this := CreateGamePackBreakPickResponseData{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateGamePackBreakPickResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateGamePackBreakPickResponseData) SetId(v string) {
+	o.Id = v
+}
+
+// GetPicked returns the Picked field value
+func (o *CreateGamePackBreakPickResponseData) GetPicked() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Picked
+}
+
+// GetPickedOk returns a tuple with the Picked field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseData) GetPickedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Picked, true
+}
+
+// SetPicked sets field value
+func (o *CreateGamePackBreakPickResponseData) SetPicked(v float32) {
+	o.Picked = v
+}
+
+// GetWon returns the Won field value
+func (o *CreateGamePackBreakPickResponseData) GetWon() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Won
+}
+
+// GetWonOk returns a tuple with the Won field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseData) GetWonOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Won, true
+}
+
+// SetWon sets field value
+func (o *CreateGamePackBreakPickResponseData) SetWon(v bool) {
+	o.Won = v
+}
+
+// GetPulls returns the Pulls field value
+func (o *CreateGamePackBreakPickResponseData) GetPulls() []CreateGamePackBreakPickResponseDataPulls {
+	if o == nil {
+		var ret []CreateGamePackBreakPickResponseDataPulls
+		return ret
+	}
+
+	return o.Pulls
+}
+
+// GetPullsOk returns a tuple with the Pulls field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseData) GetPullsOk() ([]CreateGamePackBreakPickResponseDataPulls, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Pulls, true
+}
+
+// SetPulls sets field value
+func (o *CreateGamePackBreakPickResponseData) SetPulls(v []CreateGamePackBreakPickResponseDataPulls) {
+	o.Pulls = v
+}
+
+// GetCoupon returns the Coupon field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateGamePackBreakPickResponseData) GetCoupon() CreateGamePackBreakPickResponseDataCoupon {
+	if o == nil || o.Coupon.Get() == nil {
+		var ret CreateGamePackBreakPickResponseDataCoupon
+		return ret
+	}
+	return *o.Coupon.Get()
+}
+
+// GetCouponOk returns a tuple with the Coupon field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateGamePackBreakPickResponseData) GetCouponOk() (*CreateGamePackBreakPickResponseDataCoupon, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Coupon.Get(), o.Coupon.IsSet()
+}
+
+// HasCoupon returns a boolean if a field has been set.
+func (o *CreateGamePackBreakPickResponseData) HasCoupon() bool {
+	if o != nil && o.Coupon.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoupon gets a reference to the given NullableCreateGamePackBreakPickResponseDataCoupon and assigns it to the Coupon field.
+func (o *CreateGamePackBreakPickResponseData) SetCoupon(v CreateGamePackBreakPickResponseDataCoupon) {
+	o.Coupon.Set(&v)
+}
+// SetCouponNil sets the value for Coupon to be an explicit nil
+func (o *CreateGamePackBreakPickResponseData) SetCouponNil() {
+	o.Coupon.Set(nil)
+}
+
+// UnsetCoupon ensures that no value is present for Coupon, not even an explicit nil
+func (o *CreateGamePackBreakPickResponseData) UnsetCoupon() {
+	o.Coupon.Unset()
+}
+
+func (o CreateGamePackBreakPickResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["picked"] = o.Picked
+	}
+	if true {
+		toSerialize["won"] = o.Won
+	}
+	if true {
+		toSerialize["pulls"] = o.Pulls
+	}
+	if o.Coupon.IsSet() {
+		toSerialize["coupon"] = o.Coupon.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakPickResponseData struct {
+	value *CreateGamePackBreakPickResponseData
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakPickResponseData) Get() *CreateGamePackBreakPickResponseData {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakPickResponseData) Set(val *CreateGamePackBreakPickResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakPickResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakPickResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakPickResponseData(val *CreateGamePackBreakPickResponseData) *NullableCreateGamePackBreakPickResponseData {
+	return &NullableCreateGamePackBreakPickResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakPickResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakPickResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakPickResponseDataCoupon The coupon this win earned (null on a loss, or past the daily coupon).
+type CreateGamePackBreakPickResponseDataCoupon struct {
+	Id string `json:"id"`
+	Game string `json:"game"`
+	ValueCents float32 `json:"valueCents"`
+	Status string `json:"status"`
+	EarnedAt float32 `json:"earnedAt"`
+	ExpiresAt float32 `json:"expiresAt"`
+	// Bucks it paid, once redeemed.
+	PaidCents NullableFloat32 `json:"paidCents,omitempty"`
+}
+
+// NewCreateGamePackBreakPickResponseDataCoupon instantiates a new CreateGamePackBreakPickResponseDataCoupon object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakPickResponseDataCoupon(id string, game string, valueCents float32, status string, earnedAt float32, expiresAt float32) *CreateGamePackBreakPickResponseDataCoupon {
+	this := CreateGamePackBreakPickResponseDataCoupon{}
+	this.Id = id
+	this.Game = game
+	this.ValueCents = valueCents
+	this.Status = status
+	this.EarnedAt = earnedAt
+	this.ExpiresAt = expiresAt
+	return &this
+}
+
+// NewCreateGamePackBreakPickResponseDataCouponWithDefaults instantiates a new CreateGamePackBreakPickResponseDataCoupon object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakPickResponseDataCouponWithDefaults() *CreateGamePackBreakPickResponseDataCoupon {
+	this := CreateGamePackBreakPickResponseDataCoupon{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetId(v string) {
+	o.Id = v
+}
+
+// GetGame returns the Game field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetGame() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Game
+}
+
+// GetGameOk returns a tuple with the Game field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetGameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Game, true
+}
+
+// SetGame sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetGame(v string) {
+	o.Game = v
+}
+
+// GetValueCents returns the ValueCents field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetStatus returns the Status field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetEarnedAt returns the EarnedAt field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetEarnedAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.EarnedAt
+}
+
+// GetEarnedAtOk returns a tuple with the EarnedAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetEarnedAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EarnedAt, true
+}
+
+// SetEarnedAt sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetEarnedAt(v float32) {
+	o.EarnedAt = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetExpiresAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetExpiresAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetExpiresAt(v float32) {
+	o.ExpiresAt = v
+}
+
+// GetPaidCents returns the PaidCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetPaidCents() float32 {
+	if o == nil || o.PaidCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PaidCents.Get()
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateGamePackBreakPickResponseDataCoupon) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaidCents.Get(), o.PaidCents.IsSet()
+}
+
+// HasPaidCents returns a boolean if a field has been set.
+func (o *CreateGamePackBreakPickResponseDataCoupon) HasPaidCents() bool {
+	if o != nil && o.PaidCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaidCents gets a reference to the given NullableFloat32 and assigns it to the PaidCents field.
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetPaidCents(v float32) {
+	o.PaidCents.Set(&v)
+}
+// SetPaidCentsNil sets the value for PaidCents to be an explicit nil
+func (o *CreateGamePackBreakPickResponseDataCoupon) SetPaidCentsNil() {
+	o.PaidCents.Set(nil)
+}
+
+// UnsetPaidCents ensures that no value is present for PaidCents, not even an explicit nil
+func (o *CreateGamePackBreakPickResponseDataCoupon) UnsetPaidCents() {
+	o.PaidCents.Unset()
+}
+
+func (o CreateGamePackBreakPickResponseDataCoupon) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["game"] = o.Game
+	}
+	if true {
+		toSerialize["valueCents"] = o.ValueCents
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["earnedAt"] = o.EarnedAt
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	if o.PaidCents.IsSet() {
+		toSerialize["paidCents"] = o.PaidCents.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakPickResponseDataCoupon struct {
+	value *CreateGamePackBreakPickResponseDataCoupon
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataCoupon) Get() *CreateGamePackBreakPickResponseDataCoupon {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataCoupon) Set(val *CreateGamePackBreakPickResponseDataCoupon) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataCoupon) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataCoupon) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakPickResponseDataCoupon(val *CreateGamePackBreakPickResponseDataCoupon) *NullableCreateGamePackBreakPickResponseDataCoupon {
+	return &NullableCreateGamePackBreakPickResponseDataCoupon{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataCoupon) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataCoupon) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakPickResponseDataPulls struct for CreateGamePackBreakPickResponseDataPulls
+type CreateGamePackBreakPickResponseDataPulls struct {
+	// The lowest open ask when the pack was dealt, in cents.
+	AskCents float32 `json:"askCents"`
+	// The piece's market page.
+	Href string `json:"href"`
+	SkuId string `json:"skuId"`
+	Name string `json:"name"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Category string `json:"category"`
+}
+
+// NewCreateGamePackBreakPickResponseDataPulls instantiates a new CreateGamePackBreakPickResponseDataPulls object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakPickResponseDataPulls(askCents float32, href string, skuId string, name string, category string) *CreateGamePackBreakPickResponseDataPulls {
+	this := CreateGamePackBreakPickResponseDataPulls{}
+	this.AskCents = askCents
+	this.Href = href
+	this.SkuId = skuId
+	this.Name = name
+	this.Category = category
+	return &this
+}
+
+// NewCreateGamePackBreakPickResponseDataPullsWithDefaults instantiates a new CreateGamePackBreakPickResponseDataPulls object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakPickResponseDataPullsWithDefaults() *CreateGamePackBreakPickResponseDataPulls {
+	this := CreateGamePackBreakPickResponseDataPulls{}
+	return &this
+}
+
+// GetAskCents returns the AskCents field value
+func (o *CreateGamePackBreakPickResponseDataPulls) GetAskCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AskCents
+}
+
+// GetAskCentsOk returns a tuple with the AskCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) GetAskCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AskCents, true
+}
+
+// SetAskCents sets field value
+func (o *CreateGamePackBreakPickResponseDataPulls) SetAskCents(v float32) {
+	o.AskCents = v
+}
+
+// GetHref returns the Href field value
+func (o *CreateGamePackBreakPickResponseDataPulls) GetHref() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) GetHrefOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Href, true
+}
+
+// SetHref sets field value
+func (o *CreateGamePackBreakPickResponseDataPulls) SetHref(v string) {
+	o.Href = v
+}
+
+// GetSkuId returns the SkuId field value
+func (o *CreateGamePackBreakPickResponseDataPulls) GetSkuId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SkuId
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SkuId, true
+}
+
+// SetSkuId sets field value
+func (o *CreateGamePackBreakPickResponseDataPulls) SetSkuId(v string) {
+	o.SkuId = v
+}
+
+// GetName returns the Name field value
+func (o *CreateGamePackBreakPickResponseDataPulls) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateGamePackBreakPickResponseDataPulls) SetName(v string) {
+	o.Name = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateGamePackBreakPickResponseDataPulls) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateGamePackBreakPickResponseDataPulls) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *CreateGamePackBreakPickResponseDataPulls) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *CreateGamePackBreakPickResponseDataPulls) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *CreateGamePackBreakPickResponseDataPulls) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetCategory returns the Category field value
+func (o *CreateGamePackBreakPickResponseDataPulls) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakPickResponseDataPulls) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *CreateGamePackBreakPickResponseDataPulls) SetCategory(v string) {
+	o.Category = v
+}
+
+func (o CreateGamePackBreakPickResponseDataPulls) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["askCents"] = o.AskCents
+	}
+	if true {
+		toSerialize["href"] = o.Href
+	}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakPickResponseDataPulls struct {
+	value *CreateGamePackBreakPickResponseDataPulls
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataPulls) Get() *CreateGamePackBreakPickResponseDataPulls {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataPulls) Set(val *CreateGamePackBreakPickResponseDataPulls) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataPulls) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataPulls) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakPickResponseDataPulls(val *CreateGamePackBreakPickResponseDataPulls) *NullableCreateGamePackBreakPickResponseDataPulls {
+	return &NullableCreateGamePackBreakPickResponseDataPulls{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakPickResponseDataPulls) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakPickResponseDataPulls) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakResponse struct for CreateGamePackBreakResponse
+type CreateGamePackBreakResponse struct {
+	Data CreateGamePackBreakResponseData `json:"data"`
+}
+
+// NewCreateGamePackBreakResponse instantiates a new CreateGamePackBreakResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakResponse(data CreateGamePackBreakResponseData) *CreateGamePackBreakResponse {
+	this := CreateGamePackBreakResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreateGamePackBreakResponseWithDefaults instantiates a new CreateGamePackBreakResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakResponseWithDefaults() *CreateGamePackBreakResponse {
+	this := CreateGamePackBreakResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreateGamePackBreakResponse) GetData() CreateGamePackBreakResponseData {
+	if o == nil {
+		var ret CreateGamePackBreakResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponse) GetDataOk() (*CreateGamePackBreakResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreateGamePackBreakResponse) SetData(v CreateGamePackBreakResponseData) {
+	o.Data = v
+}
+
+func (o CreateGamePackBreakResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakResponse struct {
+	value *CreateGamePackBreakResponse
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakResponse) Get() *CreateGamePackBreakResponse {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakResponse) Set(val *CreateGamePackBreakResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakResponse(val *CreateGamePackBreakResponse) *NullableCreateGamePackBreakResponse {
+	return &NullableCreateGamePackBreakResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakResponseData struct for CreateGamePackBreakResponseData
+type CreateGamePackBreakResponseData struct {
+	Id string `json:"id"`
+	Pulls []CreateGamePackBreakResponseDataPulls `json:"pulls"`
+	ExpiresAt float32 `json:"expiresAt"`
+}
+
+// NewCreateGamePackBreakResponseData instantiates a new CreateGamePackBreakResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakResponseData(id string, pulls []CreateGamePackBreakResponseDataPulls, expiresAt float32) *CreateGamePackBreakResponseData {
+	this := CreateGamePackBreakResponseData{}
+	this.Id = id
+	this.Pulls = pulls
+	this.ExpiresAt = expiresAt
+	return &this
+}
+
+// NewCreateGamePackBreakResponseDataWithDefaults instantiates a new CreateGamePackBreakResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakResponseDataWithDefaults() *CreateGamePackBreakResponseData {
+	this := CreateGamePackBreakResponseData{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateGamePackBreakResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateGamePackBreakResponseData) SetId(v string) {
+	o.Id = v
+}
+
+// GetPulls returns the Pulls field value
+func (o *CreateGamePackBreakResponseData) GetPulls() []CreateGamePackBreakResponseDataPulls {
+	if o == nil {
+		var ret []CreateGamePackBreakResponseDataPulls
+		return ret
+	}
+
+	return o.Pulls
+}
+
+// GetPullsOk returns a tuple with the Pulls field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseData) GetPullsOk() ([]CreateGamePackBreakResponseDataPulls, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Pulls, true
+}
+
+// SetPulls sets field value
+func (o *CreateGamePackBreakResponseData) SetPulls(v []CreateGamePackBreakResponseDataPulls) {
+	o.Pulls = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *CreateGamePackBreakResponseData) GetExpiresAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseData) GetExpiresAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *CreateGamePackBreakResponseData) SetExpiresAt(v float32) {
+	o.ExpiresAt = v
+}
+
+func (o CreateGamePackBreakResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["pulls"] = o.Pulls
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakResponseData struct {
+	value *CreateGamePackBreakResponseData
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakResponseData) Get() *CreateGamePackBreakResponseData {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakResponseData) Set(val *CreateGamePackBreakResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakResponseData(val *CreateGamePackBreakResponseData) *NullableCreateGamePackBreakResponseData {
+	return &NullableCreateGamePackBreakResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateGamePackBreakResponseDataPulls struct for CreateGamePackBreakResponseDataPulls
+type CreateGamePackBreakResponseDataPulls struct {
+	SkuId string `json:"skuId"`
+	Name string `json:"name"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Category string `json:"category"`
+}
+
+// NewCreateGamePackBreakResponseDataPulls instantiates a new CreateGamePackBreakResponseDataPulls object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateGamePackBreakResponseDataPulls(skuId string, name string, category string) *CreateGamePackBreakResponseDataPulls {
+	this := CreateGamePackBreakResponseDataPulls{}
+	this.SkuId = skuId
+	this.Name = name
+	this.Category = category
+	return &this
+}
+
+// NewCreateGamePackBreakResponseDataPullsWithDefaults instantiates a new CreateGamePackBreakResponseDataPulls object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateGamePackBreakResponseDataPullsWithDefaults() *CreateGamePackBreakResponseDataPulls {
+	this := CreateGamePackBreakResponseDataPulls{}
+	return &this
+}
+
+// GetSkuId returns the SkuId field value
+func (o *CreateGamePackBreakResponseDataPulls) GetSkuId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SkuId
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseDataPulls) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SkuId, true
+}
+
+// SetSkuId sets field value
+func (o *CreateGamePackBreakResponseDataPulls) SetSkuId(v string) {
+	o.SkuId = v
+}
+
+// GetName returns the Name field value
+func (o *CreateGamePackBreakResponseDataPulls) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseDataPulls) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateGamePackBreakResponseDataPulls) SetName(v string) {
+	o.Name = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateGamePackBreakResponseDataPulls) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateGamePackBreakResponseDataPulls) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *CreateGamePackBreakResponseDataPulls) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *CreateGamePackBreakResponseDataPulls) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *CreateGamePackBreakResponseDataPulls) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *CreateGamePackBreakResponseDataPulls) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetCategory returns the Category field value
+func (o *CreateGamePackBreakResponseDataPulls) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *CreateGamePackBreakResponseDataPulls) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *CreateGamePackBreakResponseDataPulls) SetCategory(v string) {
+	o.Category = v
+}
+
+func (o CreateGamePackBreakResponseDataPulls) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateGamePackBreakResponseDataPulls struct {
+	value *CreateGamePackBreakResponseDataPulls
+	isSet bool
+}
+
+func (v NullableCreateGamePackBreakResponseDataPulls) Get() *CreateGamePackBreakResponseDataPulls {
+	return v.value
+}
+
+func (v *NullableCreateGamePackBreakResponseDataPulls) Set(val *CreateGamePackBreakResponseDataPulls) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateGamePackBreakResponseDataPulls) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateGamePackBreakResponseDataPulls) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateGamePackBreakResponseDataPulls(val *CreateGamePackBreakResponseDataPulls) *NullableCreateGamePackBreakResponseDataPulls {
+	return &NullableCreateGamePackBreakResponseDataPulls{value: val, isSet: true}
+}
+
+func (v NullableCreateGamePackBreakResponseDataPulls) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateGamePackBreakResponseDataPulls) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponse struct for GetGameEventSummaryResponse
+type GetGameEventSummaryResponse struct {
+	Data GetGameEventSummaryResponseData `json:"data"`
+}
+
+// NewGetGameEventSummaryResponse instantiates a new GetGameEventSummaryResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponse(data GetGameEventSummaryResponseData) *GetGameEventSummaryResponse {
+	this := GetGameEventSummaryResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetGameEventSummaryResponseWithDefaults instantiates a new GetGameEventSummaryResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseWithDefaults() *GetGameEventSummaryResponse {
+	this := GetGameEventSummaryResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetGameEventSummaryResponse) GetData() GetGameEventSummaryResponseData {
+	if o == nil {
+		var ret GetGameEventSummaryResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponse) GetDataOk() (*GetGameEventSummaryResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetGameEventSummaryResponse) SetData(v GetGameEventSummaryResponseData) {
+	o.Data = v
+}
+
+func (o GetGameEventSummaryResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponse struct {
+	value *GetGameEventSummaryResponse
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponse) Get() *GetGameEventSummaryResponse {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponse) Set(val *GetGameEventSummaryResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponse(val *GetGameEventSummaryResponse) *NullableGetGameEventSummaryResponse {
+	return &NullableGetGameEventSummaryResponse{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponseData struct for GetGameEventSummaryResponseData
+type GetGameEventSummaryResponseData struct {
+	Kind string `json:"kind"`
+	HuntId *string `json:"huntId,omitempty"`
+	Status string `json:"status"`
+	Place *GetGameEventSummaryResponseDataOneOfPlace `json:"place,omitempty"`
+	Coins *float32 `json:"coins,omitempty"`
+	Clues *float32 `json:"clues,omitempty"`
+	Players *float32 `json:"players,omitempty"`
+	Finishers *float32 `json:"finishers,omitempty"`
+	Winners []GetGameEventSummaryResponseDataOneOfWinners `json:"winners,omitempty"`
+	Rewards []GetGameEventSummaryResponseDataOneOfRewards `json:"rewards,omitempty"`
+	Rules *GetGameEventSummaryResponseDataOneOfRules `json:"rules,omitempty"`
+	// The Worlds app link that opens the builder for this hunt.
+	BuildLink *string `json:"buildLink,omitempty"`
+	BreakId *string `json:"breakId,omitempty"`
+	Live *bool `json:"live,omitempty"`
+	Spots *float32 `json:"spots,omitempty"`
+	SpotsSold *float32 `json:"spotsSold,omitempty"`
+	Hits *float32 `json:"hits,omitempty"`
+	Stage NullableNameSlug2 `json:"stage,omitempty"`
+}
+
+// NewGetGameEventSummaryResponseData instantiates a new GetGameEventSummaryResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponseData(kind string, status string) *GetGameEventSummaryResponseData {
+	this := GetGameEventSummaryResponseData{}
+	this.Kind = kind
+	this.Status = status
+	return &this
+}
+
+// NewGetGameEventSummaryResponseDataWithDefaults instantiates a new GetGameEventSummaryResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseDataWithDefaults() *GetGameEventSummaryResponseData {
+	this := GetGameEventSummaryResponseData{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameEventSummaryResponseData) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameEventSummaryResponseData) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetHuntId returns the HuntId field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetHuntId() string {
+	if o == nil || o.HuntId == nil {
+		var ret string
+		return ret
+	}
+	return *o.HuntId
+}
+
+// GetHuntIdOk returns a tuple with the HuntId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetHuntIdOk() (*string, bool) {
+	if o == nil || o.HuntId == nil {
+		return nil, false
+	}
+	return o.HuntId, true
+}
+
+// HasHuntId returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasHuntId() bool {
+	if o != nil && o.HuntId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHuntId gets a reference to the given string and assigns it to the HuntId field.
+func (o *GetGameEventSummaryResponseData) SetHuntId(v string) {
+	o.HuntId = &v
+}
+
+// GetStatus returns the Status field value
+func (o *GetGameEventSummaryResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetGameEventSummaryResponseData) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetPlace returns the Place field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetPlace() GetGameEventSummaryResponseDataOneOfPlace {
+	if o == nil || o.Place == nil {
+		var ret GetGameEventSummaryResponseDataOneOfPlace
+		return ret
+	}
+	return *o.Place
+}
+
+// GetPlaceOk returns a tuple with the Place field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetPlaceOk() (*GetGameEventSummaryResponseDataOneOfPlace, bool) {
+	if o == nil || o.Place == nil {
+		return nil, false
+	}
+	return o.Place, true
+}
+
+// HasPlace returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasPlace() bool {
+	if o != nil && o.Place != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlace gets a reference to the given GetGameEventSummaryResponseDataOneOfPlace and assigns it to the Place field.
+func (o *GetGameEventSummaryResponseData) SetPlace(v GetGameEventSummaryResponseDataOneOfPlace) {
+	o.Place = &v
+}
+
+// GetCoins returns the Coins field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetCoins() float32 {
+	if o == nil || o.Coins == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Coins
+}
+
+// GetCoinsOk returns a tuple with the Coins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetCoinsOk() (*float32, bool) {
+	if o == nil || o.Coins == nil {
+		return nil, false
+	}
+	return o.Coins, true
+}
+
+// HasCoins returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasCoins() bool {
+	if o != nil && o.Coins != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCoins gets a reference to the given float32 and assigns it to the Coins field.
+func (o *GetGameEventSummaryResponseData) SetCoins(v float32) {
+	o.Coins = &v
+}
+
+// GetClues returns the Clues field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetClues() float32 {
+	if o == nil || o.Clues == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Clues
+}
+
+// GetCluesOk returns a tuple with the Clues field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetCluesOk() (*float32, bool) {
+	if o == nil || o.Clues == nil {
+		return nil, false
+	}
+	return o.Clues, true
+}
+
+// HasClues returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasClues() bool {
+	if o != nil && o.Clues != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClues gets a reference to the given float32 and assigns it to the Clues field.
+func (o *GetGameEventSummaryResponseData) SetClues(v float32) {
+	o.Clues = &v
+}
+
+// GetPlayers returns the Players field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetPlayers() float32 {
+	if o == nil || o.Players == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Players
+}
+
+// GetPlayersOk returns a tuple with the Players field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetPlayersOk() (*float32, bool) {
+	if o == nil || o.Players == nil {
+		return nil, false
+	}
+	return o.Players, true
+}
+
+// HasPlayers returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasPlayers() bool {
+	if o != nil && o.Players != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlayers gets a reference to the given float32 and assigns it to the Players field.
+func (o *GetGameEventSummaryResponseData) SetPlayers(v float32) {
+	o.Players = &v
+}
+
+// GetFinishers returns the Finishers field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetFinishers() float32 {
+	if o == nil || o.Finishers == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Finishers
+}
+
+// GetFinishersOk returns a tuple with the Finishers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetFinishersOk() (*float32, bool) {
+	if o == nil || o.Finishers == nil {
+		return nil, false
+	}
+	return o.Finishers, true
+}
+
+// HasFinishers returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasFinishers() bool {
+	if o != nil && o.Finishers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFinishers gets a reference to the given float32 and assigns it to the Finishers field.
+func (o *GetGameEventSummaryResponseData) SetFinishers(v float32) {
+	o.Finishers = &v
+}
+
+// GetWinners returns the Winners field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetWinners() []GetGameEventSummaryResponseDataOneOfWinners {
+	if o == nil || o.Winners == nil {
+		var ret []GetGameEventSummaryResponseDataOneOfWinners
+		return ret
+	}
+	return o.Winners
+}
+
+// GetWinnersOk returns a tuple with the Winners field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetWinnersOk() ([]GetGameEventSummaryResponseDataOneOfWinners, bool) {
+	if o == nil || o.Winners == nil {
+		return nil, false
+	}
+	return o.Winners, true
+}
+
+// HasWinners returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasWinners() bool {
+	if o != nil && o.Winners != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWinners gets a reference to the given []GetGameEventSummaryResponseDataOneOfWinners and assigns it to the Winners field.
+func (o *GetGameEventSummaryResponseData) SetWinners(v []GetGameEventSummaryResponseDataOneOfWinners) {
+	o.Winners = v
+}
+
+// GetRewards returns the Rewards field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetRewards() []GetGameEventSummaryResponseDataOneOfRewards {
+	if o == nil || o.Rewards == nil {
+		var ret []GetGameEventSummaryResponseDataOneOfRewards
+		return ret
+	}
+	return o.Rewards
+}
+
+// GetRewardsOk returns a tuple with the Rewards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetRewardsOk() ([]GetGameEventSummaryResponseDataOneOfRewards, bool) {
+	if o == nil || o.Rewards == nil {
+		return nil, false
+	}
+	return o.Rewards, true
+}
+
+// HasRewards returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasRewards() bool {
+	if o != nil && o.Rewards != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewards gets a reference to the given []GetGameEventSummaryResponseDataOneOfRewards and assigns it to the Rewards field.
+func (o *GetGameEventSummaryResponseData) SetRewards(v []GetGameEventSummaryResponseDataOneOfRewards) {
+	o.Rewards = v
+}
+
+// GetRules returns the Rules field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetRules() GetGameEventSummaryResponseDataOneOfRules {
+	if o == nil || o.Rules == nil {
+		var ret GetGameEventSummaryResponseDataOneOfRules
+		return ret
+	}
+	return *o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetRulesOk() (*GetGameEventSummaryResponseDataOneOfRules, bool) {
+	if o == nil || o.Rules == nil {
+		return nil, false
+	}
+	return o.Rules, true
+}
+
+// HasRules returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasRules() bool {
+	if o != nil && o.Rules != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRules gets a reference to the given GetGameEventSummaryResponseDataOneOfRules and assigns it to the Rules field.
+func (o *GetGameEventSummaryResponseData) SetRules(v GetGameEventSummaryResponseDataOneOfRules) {
+	o.Rules = &v
+}
+
+// GetBuildLink returns the BuildLink field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetBuildLink() string {
+	if o == nil || o.BuildLink == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuildLink
+}
+
+// GetBuildLinkOk returns a tuple with the BuildLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetBuildLinkOk() (*string, bool) {
+	if o == nil || o.BuildLink == nil {
+		return nil, false
+	}
+	return o.BuildLink, true
+}
+
+// HasBuildLink returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasBuildLink() bool {
+	if o != nil && o.BuildLink != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBuildLink gets a reference to the given string and assigns it to the BuildLink field.
+func (o *GetGameEventSummaryResponseData) SetBuildLink(v string) {
+	o.BuildLink = &v
+}
+
+// GetBreakId returns the BreakId field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetBreakId() string {
+	if o == nil || o.BreakId == nil {
+		var ret string
+		return ret
+	}
+	return *o.BreakId
+}
+
+// GetBreakIdOk returns a tuple with the BreakId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetBreakIdOk() (*string, bool) {
+	if o == nil || o.BreakId == nil {
+		return nil, false
+	}
+	return o.BreakId, true
+}
+
+// HasBreakId returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasBreakId() bool {
+	if o != nil && o.BreakId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBreakId gets a reference to the given string and assigns it to the BreakId field.
+func (o *GetGameEventSummaryResponseData) SetBreakId(v string) {
+	o.BreakId = &v
+}
+
+// GetLive returns the Live field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetLive() bool {
+	if o == nil || o.Live == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Live
+}
+
+// GetLiveOk returns a tuple with the Live field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetLiveOk() (*bool, bool) {
+	if o == nil || o.Live == nil {
+		return nil, false
+	}
+	return o.Live, true
+}
+
+// HasLive returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasLive() bool {
+	if o != nil && o.Live != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLive gets a reference to the given bool and assigns it to the Live field.
+func (o *GetGameEventSummaryResponseData) SetLive(v bool) {
+	o.Live = &v
+}
+
+// GetSpots returns the Spots field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetSpots() float32 {
+	if o == nil || o.Spots == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Spots
+}
+
+// GetSpotsOk returns a tuple with the Spots field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetSpotsOk() (*float32, bool) {
+	if o == nil || o.Spots == nil {
+		return nil, false
+	}
+	return o.Spots, true
+}
+
+// HasSpots returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasSpots() bool {
+	if o != nil && o.Spots != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpots gets a reference to the given float32 and assigns it to the Spots field.
+func (o *GetGameEventSummaryResponseData) SetSpots(v float32) {
+	o.Spots = &v
+}
+
+// GetSpotsSold returns the SpotsSold field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetSpotsSold() float32 {
+	if o == nil || o.SpotsSold == nil {
+		var ret float32
+		return ret
+	}
+	return *o.SpotsSold
+}
+
+// GetSpotsSoldOk returns a tuple with the SpotsSold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetSpotsSoldOk() (*float32, bool) {
+	if o == nil || o.SpotsSold == nil {
+		return nil, false
+	}
+	return o.SpotsSold, true
+}
+
+// HasSpotsSold returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasSpotsSold() bool {
+	if o != nil && o.SpotsSold != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSpotsSold gets a reference to the given float32 and assigns it to the SpotsSold field.
+func (o *GetGameEventSummaryResponseData) SetSpotsSold(v float32) {
+	o.SpotsSold = &v
+}
+
+// GetHits returns the Hits field value if set, zero value otherwise.
+func (o *GetGameEventSummaryResponseData) GetHits() float32 {
+	if o == nil || o.Hits == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Hits
+}
+
+// GetHitsOk returns a tuple with the Hits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseData) GetHitsOk() (*float32, bool) {
+	if o == nil || o.Hits == nil {
+		return nil, false
+	}
+	return o.Hits, true
+}
+
+// HasHits returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasHits() bool {
+	if o != nil && o.Hits != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHits gets a reference to the given float32 and assigns it to the Hits field.
+func (o *GetGameEventSummaryResponseData) SetHits(v float32) {
+	o.Hits = &v
+}
+
+// GetStage returns the Stage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetGameEventSummaryResponseData) GetStage() NameSlug2 {
+	if o == nil || o.Stage.Get() == nil {
+		var ret NameSlug2
+		return ret
+	}
+	return *o.Stage.Get()
+}
+
+// GetStageOk returns a tuple with the Stage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetGameEventSummaryResponseData) GetStageOk() (*NameSlug2, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Stage.Get(), o.Stage.IsSet()
+}
+
+// HasStage returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseData) HasStage() bool {
+	if o != nil && o.Stage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStage gets a reference to the given NullableNameSlug2 and assigns it to the Stage field.
+func (o *GetGameEventSummaryResponseData) SetStage(v NameSlug2) {
+	o.Stage.Set(&v)
+}
+// SetStageNil sets the value for Stage to be an explicit nil
+func (o *GetGameEventSummaryResponseData) SetStageNil() {
+	o.Stage.Set(nil)
+}
+
+// UnsetStage ensures that no value is present for Stage, not even an explicit nil
+func (o *GetGameEventSummaryResponseData) UnsetStage() {
+	o.Stage.Unset()
+}
+
+func (o GetGameEventSummaryResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if o.HuntId != nil {
+		toSerialize["huntId"] = o.HuntId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Place != nil {
+		toSerialize["place"] = o.Place
+	}
+	if o.Coins != nil {
+		toSerialize["coins"] = o.Coins
+	}
+	if o.Clues != nil {
+		toSerialize["clues"] = o.Clues
+	}
+	if o.Players != nil {
+		toSerialize["players"] = o.Players
+	}
+	if o.Finishers != nil {
+		toSerialize["finishers"] = o.Finishers
+	}
+	if o.Winners != nil {
+		toSerialize["winners"] = o.Winners
+	}
+	if o.Rewards != nil {
+		toSerialize["rewards"] = o.Rewards
+	}
+	if o.Rules != nil {
+		toSerialize["rules"] = o.Rules
+	}
+	if o.BuildLink != nil {
+		toSerialize["buildLink"] = o.BuildLink
+	}
+	if o.BreakId != nil {
+		toSerialize["breakId"] = o.BreakId
+	}
+	if o.Live != nil {
+		toSerialize["live"] = o.Live
+	}
+	if o.Spots != nil {
+		toSerialize["spots"] = o.Spots
+	}
+	if o.SpotsSold != nil {
+		toSerialize["spotsSold"] = o.SpotsSold
+	}
+	if o.Hits != nil {
+		toSerialize["hits"] = o.Hits
+	}
+	if o.Stage.IsSet() {
+		toSerialize["stage"] = o.Stage.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponseData struct {
+	value *GetGameEventSummaryResponseData
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponseData) Get() *GetGameEventSummaryResponseData {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponseData) Set(val *GetGameEventSummaryResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponseData(val *GetGameEventSummaryResponseData) *NullableGetGameEventSummaryResponseData {
+	return &NullableGetGameEventSummaryResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponseDataOneOfPlace struct for GetGameEventSummaryResponseDataOneOfPlace
+type GetGameEventSummaryResponseDataOneOfPlace struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	Slug NullableString `json:"slug,omitempty"`
+}
+
+// NewGetGameEventSummaryResponseDataOneOfPlace instantiates a new GetGameEventSummaryResponseDataOneOfPlace object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponseDataOneOfPlace(kind string, name string) *GetGameEventSummaryResponseDataOneOfPlace {
+	this := GetGameEventSummaryResponseDataOneOfPlace{}
+	this.Kind = kind
+	this.Name = name
+	return &this
+}
+
+// NewGetGameEventSummaryResponseDataOneOfPlaceWithDefaults instantiates a new GetGameEventSummaryResponseDataOneOfPlace object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseDataOneOfPlaceWithDefaults() *GetGameEventSummaryResponseDataOneOfPlace {
+	this := GetGameEventSummaryResponseDataOneOfPlace{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameEventSummaryResponseDataOneOfPlace) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetName returns the Name field value
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetGameEventSummaryResponseDataOneOfPlace) SetName(v string) {
+	o.Name = v
+}
+
+// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetSlug() string {
+	if o == nil || o.Slug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug.Get()
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetGameEventSummaryResponseDataOneOfPlace) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Slug.Get(), o.Slug.IsSet()
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseDataOneOfPlace) HasSlug() bool {
+	if o != nil && o.Slug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
+func (o *GetGameEventSummaryResponseDataOneOfPlace) SetSlug(v string) {
+	o.Slug.Set(&v)
+}
+// SetSlugNil sets the value for Slug to be an explicit nil
+func (o *GetGameEventSummaryResponseDataOneOfPlace) SetSlugNil() {
+	o.Slug.Set(nil)
+}
+
+// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
+func (o *GetGameEventSummaryResponseDataOneOfPlace) UnsetSlug() {
+	o.Slug.Unset()
+}
+
+func (o GetGameEventSummaryResponseDataOneOfPlace) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponseDataOneOfPlace struct {
+	value *GetGameEventSummaryResponseDataOneOfPlace
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfPlace) Get() *GetGameEventSummaryResponseDataOneOfPlace {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfPlace) Set(val *GetGameEventSummaryResponseDataOneOfPlace) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfPlace) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfPlace) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponseDataOneOfPlace(val *GetGameEventSummaryResponseDataOneOfPlace) *NullableGetGameEventSummaryResponseDataOneOfPlace {
+	return &NullableGetGameEventSummaryResponseDataOneOfPlace{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfPlace) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfPlace) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponseDataOneOfRewards struct for GetGameEventSummaryResponseDataOneOfRewards
+type GetGameEventSummaryResponseDataOneOfRewards struct {
+	Kind string `json:"kind"`
+	Paid float32 `json:"paid"`
+	Failed float32 `json:"failed"`
+}
+
+// NewGetGameEventSummaryResponseDataOneOfRewards instantiates a new GetGameEventSummaryResponseDataOneOfRewards object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponseDataOneOfRewards(kind string, paid float32, failed float32) *GetGameEventSummaryResponseDataOneOfRewards {
+	this := GetGameEventSummaryResponseDataOneOfRewards{}
+	this.Kind = kind
+	this.Paid = paid
+	this.Failed = failed
+	return &this
+}
+
+// NewGetGameEventSummaryResponseDataOneOfRewardsWithDefaults instantiates a new GetGameEventSummaryResponseDataOneOfRewards object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseDataOneOfRewardsWithDefaults() *GetGameEventSummaryResponseDataOneOfRewards {
+	this := GetGameEventSummaryResponseDataOneOfRewards{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetPaid returns the Paid field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetPaid() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetPaidOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) SetPaid(v float32) {
+	o.Paid = v
+}
+
+// GetFailed returns the Failed field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetFailed() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Failed
+}
+
+// GetFailedOk returns a tuple with the Failed field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRewards) GetFailedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Failed, true
+}
+
+// SetFailed sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRewards) SetFailed(v float32) {
+	o.Failed = v
+}
+
+func (o GetGameEventSummaryResponseDataOneOfRewards) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	if true {
+		toSerialize["failed"] = o.Failed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponseDataOneOfRewards struct {
+	value *GetGameEventSummaryResponseDataOneOfRewards
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRewards) Get() *GetGameEventSummaryResponseDataOneOfRewards {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRewards) Set(val *GetGameEventSummaryResponseDataOneOfRewards) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRewards) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRewards) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponseDataOneOfRewards(val *GetGameEventSummaryResponseDataOneOfRewards) *NullableGetGameEventSummaryResponseDataOneOfRewards {
+	return &NullableGetGameEventSummaryResponseDataOneOfRewards{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRewards) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRewards) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponseDataOneOfRules struct for GetGameEventSummaryResponseDataOneOfRules
+type GetGameEventSummaryResponseDataOneOfRules struct {
+	Days float32 `json:"days"`
+	TimeLimitMinutes NullableFloat32 `json:"timeLimitMinutes,omitempty"`
+	Hints bool `json:"hints"`
+	Winners float32 `json:"winners"`
+	Ordered bool `json:"ordered"`
+}
+
+// NewGetGameEventSummaryResponseDataOneOfRules instantiates a new GetGameEventSummaryResponseDataOneOfRules object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponseDataOneOfRules(days float32, hints bool, winners float32, ordered bool) *GetGameEventSummaryResponseDataOneOfRules {
+	this := GetGameEventSummaryResponseDataOneOfRules{}
+	this.Days = days
+	this.Hints = hints
+	this.Winners = winners
+	this.Ordered = ordered
+	return &this
+}
+
+// NewGetGameEventSummaryResponseDataOneOfRulesWithDefaults instantiates a new GetGameEventSummaryResponseDataOneOfRules object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseDataOneOfRulesWithDefaults() *GetGameEventSummaryResponseDataOneOfRules {
+	this := GetGameEventSummaryResponseDataOneOfRules{}
+	return &this
+}
+
+// GetDays returns the Days field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Days
+}
+
+// GetDaysOk returns a tuple with the Days field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Days, true
+}
+
+// SetDays sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetDays(v float32) {
+	o.Days = v
+}
+
+// GetTimeLimitMinutes returns the TimeLimitMinutes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetTimeLimitMinutes() float32 {
+	if o == nil || o.TimeLimitMinutes.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.TimeLimitMinutes.Get()
+}
+
+// GetTimeLimitMinutesOk returns a tuple with the TimeLimitMinutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetTimeLimitMinutesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TimeLimitMinutes.Get(), o.TimeLimitMinutes.IsSet()
+}
+
+// HasTimeLimitMinutes returns a boolean if a field has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRules) HasTimeLimitMinutes() bool {
+	if o != nil && o.TimeLimitMinutes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeLimitMinutes gets a reference to the given NullableFloat32 and assigns it to the TimeLimitMinutes field.
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetTimeLimitMinutes(v float32) {
+	o.TimeLimitMinutes.Set(&v)
+}
+// SetTimeLimitMinutesNil sets the value for TimeLimitMinutes to be an explicit nil
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetTimeLimitMinutesNil() {
+	o.TimeLimitMinutes.Set(nil)
+}
+
+// UnsetTimeLimitMinutes ensures that no value is present for TimeLimitMinutes, not even an explicit nil
+func (o *GetGameEventSummaryResponseDataOneOfRules) UnsetTimeLimitMinutes() {
+	o.TimeLimitMinutes.Unset()
+}
+
+// GetHints returns the Hints field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetHints() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Hints
+}
+
+// GetHintsOk returns a tuple with the Hints field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetHintsOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Hints, true
+}
+
+// SetHints sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetHints(v bool) {
+	o.Hints = v
+}
+
+// GetWinners returns the Winners field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetWinners() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Winners
+}
+
+// GetWinnersOk returns a tuple with the Winners field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetWinnersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Winners, true
+}
+
+// SetWinners sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetWinners(v float32) {
+	o.Winners = v
+}
+
+// GetOrdered returns the Ordered field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetOrdered() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Ordered
+}
+
+// GetOrderedOk returns a tuple with the Ordered field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfRules) GetOrderedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Ordered, true
+}
+
+// SetOrdered sets field value
+func (o *GetGameEventSummaryResponseDataOneOfRules) SetOrdered(v bool) {
+	o.Ordered = v
+}
+
+func (o GetGameEventSummaryResponseDataOneOfRules) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["days"] = o.Days
+	}
+	if o.TimeLimitMinutes.IsSet() {
+		toSerialize["timeLimitMinutes"] = o.TimeLimitMinutes.Get()
+	}
+	if true {
+		toSerialize["hints"] = o.Hints
+	}
+	if true {
+		toSerialize["winners"] = o.Winners
+	}
+	if true {
+		toSerialize["ordered"] = o.Ordered
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponseDataOneOfRules struct {
+	value *GetGameEventSummaryResponseDataOneOfRules
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRules) Get() *GetGameEventSummaryResponseDataOneOfRules {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRules) Set(val *GetGameEventSummaryResponseDataOneOfRules) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRules) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRules) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponseDataOneOfRules(val *GetGameEventSummaryResponseDataOneOfRules) *NullableGetGameEventSummaryResponseDataOneOfRules {
+	return &NullableGetGameEventSummaryResponseDataOneOfRules{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfRules) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfRules) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameEventSummaryResponseDataOneOfWinners struct for GetGameEventSummaryResponseDataOneOfWinners
+type GetGameEventSummaryResponseDataOneOfWinners struct {
+	Place float32 `json:"place"`
+	Name string `json:"name"`
+	FinishedAt string `json:"finishedAt"`
+}
+
+// NewGetGameEventSummaryResponseDataOneOfWinners instantiates a new GetGameEventSummaryResponseDataOneOfWinners object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameEventSummaryResponseDataOneOfWinners(place float32, name string, finishedAt string) *GetGameEventSummaryResponseDataOneOfWinners {
+	this := GetGameEventSummaryResponseDataOneOfWinners{}
+	this.Place = place
+	this.Name = name
+	this.FinishedAt = finishedAt
+	return &this
+}
+
+// NewGetGameEventSummaryResponseDataOneOfWinnersWithDefaults instantiates a new GetGameEventSummaryResponseDataOneOfWinners object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameEventSummaryResponseDataOneOfWinnersWithDefaults() *GetGameEventSummaryResponseDataOneOfWinners {
+	this := GetGameEventSummaryResponseDataOneOfWinners{}
+	return &this
+}
+
+// GetPlace returns the Place field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetPlace() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Place
+}
+
+// GetPlaceOk returns a tuple with the Place field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetPlaceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Place, true
+}
+
+// SetPlace sets field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) SetPlace(v float32) {
+	o.Place = v
+}
+
+// GetName returns the Name field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) SetName(v string) {
+	o.Name = v
+}
+
+// GetFinishedAt returns the FinishedAt field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetFinishedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FinishedAt
+}
+
+// GetFinishedAtOk returns a tuple with the FinishedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetGameEventSummaryResponseDataOneOfWinners) GetFinishedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FinishedAt, true
+}
+
+// SetFinishedAt sets field value
+func (o *GetGameEventSummaryResponseDataOneOfWinners) SetFinishedAt(v string) {
+	o.FinishedAt = v
+}
+
+func (o GetGameEventSummaryResponseDataOneOfWinners) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["place"] = o.Place
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["finishedAt"] = o.FinishedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameEventSummaryResponseDataOneOfWinners struct {
+	value *GetGameEventSummaryResponseDataOneOfWinners
+	isSet bool
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfWinners) Get() *GetGameEventSummaryResponseDataOneOfWinners {
+	return v.value
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfWinners) Set(val *GetGameEventSummaryResponseDataOneOfWinners) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfWinners) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfWinners) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameEventSummaryResponseDataOneOfWinners(val *GetGameEventSummaryResponseDataOneOfWinners) *NullableGetGameEventSummaryResponseDataOneOfWinners {
+	return &NullableGetGameEventSummaryResponseDataOneOfWinners{value: val, isSet: true}
+}
+
+func (v NullableGetGameEventSummaryResponseDataOneOfWinners) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameEventSummaryResponseDataOneOfWinners) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponse struct for GetGameHuntBuildResponse
+type GetGameHuntBuildResponse struct {
+	Data GetGameHuntBuildResponseData `json:"data"`
+}
+
+// NewGetGameHuntBuildResponse instantiates a new GetGameHuntBuildResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponse(data GetGameHuntBuildResponseData) *GetGameHuntBuildResponse {
+	this := GetGameHuntBuildResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetGameHuntBuildResponseWithDefaults instantiates a new GetGameHuntBuildResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseWithDefaults() *GetGameHuntBuildResponse {
+	this := GetGameHuntBuildResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetGameHuntBuildResponse) GetData() GetGameHuntBuildResponseData {
+	if o == nil {
+		var ret GetGameHuntBuildResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponse) GetDataOk() (*GetGameHuntBuildResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetGameHuntBuildResponse) SetData(v GetGameHuntBuildResponseData) {
+	o.Data = v
+}
+
+func (o GetGameHuntBuildResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponse struct {
+	value *GetGameHuntBuildResponse
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponse) Get() *GetGameHuntBuildResponse {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponse) Set(val *GetGameHuntBuildResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponse(val *GetGameHuntBuildResponse) *NullableGetGameHuntBuildResponse {
+	return &NullableGetGameHuntBuildResponse{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseData struct for GetGameHuntBuildResponseData
+type GetGameHuntBuildResponseData struct {
+	HuntId string `json:"huntId"`
+	Title string `json:"title"`
+	Status string `json:"status"`
+	Place GetGameHuntBuildResponseDataPlace `json:"place"`
+	Rules GetGameEventSummaryResponseDataOneOfRules `json:"rules"`
+	Rewards []GetGameHuntBuildResponseDataRewardsItem `json:"rewards"`
+	Doc GetGameHuntBuildResponseDataDoc `json:"doc"`
+	// What stops publishing right now (empty when it can go live).
+	Problems []GetGameHuntBuildResponseDataProblemsItem `json:"problems"`
+	BuildLink string `json:"buildLink"`
+}
+
+// NewGetGameHuntBuildResponseData instantiates a new GetGameHuntBuildResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseData(huntId string, title string, status string, place GetGameHuntBuildResponseDataPlace, rules GetGameEventSummaryResponseDataOneOfRules, rewards []GetGameHuntBuildResponseDataRewardsItem, doc GetGameHuntBuildResponseDataDoc, problems []GetGameHuntBuildResponseDataProblemsItem, buildLink string) *GetGameHuntBuildResponseData {
+	this := GetGameHuntBuildResponseData{}
+	this.HuntId = huntId
+	this.Title = title
+	this.Status = status
+	this.Place = place
+	this.Rules = rules
+	this.Rewards = rewards
+	this.Doc = doc
+	this.Problems = problems
+	this.BuildLink = buildLink
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataWithDefaults instantiates a new GetGameHuntBuildResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataWithDefaults() *GetGameHuntBuildResponseData {
+	this := GetGameHuntBuildResponseData{}
+	return &this
+}
+
+// GetHuntId returns the HuntId field value
+func (o *GetGameHuntBuildResponseData) GetHuntId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HuntId
+}
+
+// GetHuntIdOk returns a tuple with the HuntId field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetHuntIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HuntId, true
+}
+
+// SetHuntId sets field value
+func (o *GetGameHuntBuildResponseData) SetHuntId(v string) {
+	o.HuntId = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetGameHuntBuildResponseData) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetGameHuntBuildResponseData) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetGameHuntBuildResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetGameHuntBuildResponseData) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetPlace returns the Place field value
+func (o *GetGameHuntBuildResponseData) GetPlace() GetGameHuntBuildResponseDataPlace {
+	if o == nil {
+		var ret GetGameHuntBuildResponseDataPlace
+		return ret
+	}
+
+	return o.Place
+}
+
+// GetPlaceOk returns a tuple with the Place field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetPlaceOk() (*GetGameHuntBuildResponseDataPlace, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Place, true
+}
+
+// SetPlace sets field value
+func (o *GetGameHuntBuildResponseData) SetPlace(v GetGameHuntBuildResponseDataPlace) {
+	o.Place = v
+}
+
+// GetRules returns the Rules field value
+func (o *GetGameHuntBuildResponseData) GetRules() GetGameEventSummaryResponseDataOneOfRules {
+	if o == nil {
+		var ret GetGameEventSummaryResponseDataOneOfRules
+		return ret
+	}
+
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetRulesOk() (*GetGameEventSummaryResponseDataOneOfRules, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rules, true
+}
+
+// SetRules sets field value
+func (o *GetGameHuntBuildResponseData) SetRules(v GetGameEventSummaryResponseDataOneOfRules) {
+	o.Rules = v
+}
+
+// GetRewards returns the Rewards field value
+func (o *GetGameHuntBuildResponseData) GetRewards() []GetGameHuntBuildResponseDataRewardsItem {
+	if o == nil {
+		var ret []GetGameHuntBuildResponseDataRewardsItem
+		return ret
+	}
+
+	return o.Rewards
+}
+
+// GetRewardsOk returns a tuple with the Rewards field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetRewardsOk() ([]GetGameHuntBuildResponseDataRewardsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rewards, true
+}
+
+// SetRewards sets field value
+func (o *GetGameHuntBuildResponseData) SetRewards(v []GetGameHuntBuildResponseDataRewardsItem) {
+	o.Rewards = v
+}
+
+// GetDoc returns the Doc field value
+func (o *GetGameHuntBuildResponseData) GetDoc() GetGameHuntBuildResponseDataDoc {
+	if o == nil {
+		var ret GetGameHuntBuildResponseDataDoc
+		return ret
+	}
+
+	return o.Doc
+}
+
+// GetDocOk returns a tuple with the Doc field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetDocOk() (*GetGameHuntBuildResponseDataDoc, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Doc, true
+}
+
+// SetDoc sets field value
+func (o *GetGameHuntBuildResponseData) SetDoc(v GetGameHuntBuildResponseDataDoc) {
+	o.Doc = v
+}
+
+// GetProblems returns the Problems field value
+func (o *GetGameHuntBuildResponseData) GetProblems() []GetGameHuntBuildResponseDataProblemsItem {
+	if o == nil {
+		var ret []GetGameHuntBuildResponseDataProblemsItem
+		return ret
+	}
+
+	return o.Problems
+}
+
+// GetProblemsOk returns a tuple with the Problems field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetProblemsOk() ([]GetGameHuntBuildResponseDataProblemsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Problems, true
+}
+
+// SetProblems sets field value
+func (o *GetGameHuntBuildResponseData) SetProblems(v []GetGameHuntBuildResponseDataProblemsItem) {
+	o.Problems = v
+}
+
+// GetBuildLink returns the BuildLink field value
+func (o *GetGameHuntBuildResponseData) GetBuildLink() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BuildLink
+}
+
+// GetBuildLinkOk returns a tuple with the BuildLink field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseData) GetBuildLinkOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BuildLink, true
+}
+
+// SetBuildLink sets field value
+func (o *GetGameHuntBuildResponseData) SetBuildLink(v string) {
+	o.BuildLink = v
+}
+
+func (o GetGameHuntBuildResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["huntId"] = o.HuntId
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["place"] = o.Place
+	}
+	if true {
+		toSerialize["rules"] = o.Rules
+	}
+	if true {
+		toSerialize["rewards"] = o.Rewards
+	}
+	if true {
+		toSerialize["doc"] = o.Doc
+	}
+	if true {
+		toSerialize["problems"] = o.Problems
+	}
+	if true {
+		toSerialize["buildLink"] = o.BuildLink
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseData struct {
+	value *GetGameHuntBuildResponseData
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseData) Get() *GetGameHuntBuildResponseData {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseData) Set(val *GetGameHuntBuildResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseData(val *GetGameHuntBuildResponseData) *NullableGetGameHuntBuildResponseData {
+	return &NullableGetGameHuntBuildResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseDataDoc struct for GetGameHuntBuildResponseDataDoc
+type GetGameHuntBuildResponseDataDoc struct {
+	Target string `json:"target"`
+	// Optimistic concurrency: the version the builder loaded (game_hunts.build_version).
+	Version string `json:"version"`
+	Objects []GetGameHuntBuildResponseDataDocObjects `json:"objects"`
+}
+
+// NewGetGameHuntBuildResponseDataDoc instantiates a new GetGameHuntBuildResponseDataDoc object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseDataDoc(target string, version string, objects []GetGameHuntBuildResponseDataDocObjects) *GetGameHuntBuildResponseDataDoc {
+	this := GetGameHuntBuildResponseDataDoc{}
+	this.Target = target
+	this.Version = version
+	this.Objects = objects
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataDocWithDefaults instantiates a new GetGameHuntBuildResponseDataDoc object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataDocWithDefaults() *GetGameHuntBuildResponseDataDoc {
+	this := GetGameHuntBuildResponseDataDoc{}
+	return &this
+}
+
+// GetTarget returns the Target field value
+func (o *GetGameHuntBuildResponseDataDoc) GetTarget() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDoc) GetTargetOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
+// SetTarget sets field value
+func (o *GetGameHuntBuildResponseDataDoc) SetTarget(v string) {
+	o.Target = v
+}
+
+// GetVersion returns the Version field value
+func (o *GetGameHuntBuildResponseDataDoc) GetVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDoc) GetVersionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetGameHuntBuildResponseDataDoc) SetVersion(v string) {
+	o.Version = v
+}
+
+// GetObjects returns the Objects field value
+func (o *GetGameHuntBuildResponseDataDoc) GetObjects() []GetGameHuntBuildResponseDataDocObjects {
+	if o == nil {
+		var ret []GetGameHuntBuildResponseDataDocObjects
+		return ret
+	}
+
+	return o.Objects
+}
+
+// GetObjectsOk returns a tuple with the Objects field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDoc) GetObjectsOk() ([]GetGameHuntBuildResponseDataDocObjects, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Objects, true
+}
+
+// SetObjects sets field value
+func (o *GetGameHuntBuildResponseDataDoc) SetObjects(v []GetGameHuntBuildResponseDataDocObjects) {
+	o.Objects = v
+}
+
+func (o GetGameHuntBuildResponseDataDoc) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["objects"] = o.Objects
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseDataDoc struct {
+	value *GetGameHuntBuildResponseDataDoc
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseDataDoc) Get() *GetGameHuntBuildResponseDataDoc {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDoc) Set(val *GetGameHuntBuildResponseDataDoc) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseDataDoc) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDoc) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseDataDoc(val *GetGameHuntBuildResponseDataDoc) *NullableGetGameHuntBuildResponseDataDoc {
+	return &NullableGetGameHuntBuildResponseDataDoc{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseDataDoc) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDoc) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseDataDocObjects struct for GetGameHuntBuildResponseDataDocObjects
+type GetGameHuntBuildResponseDataDocObjects struct {
+	Id string `json:"id"`
+	Kind string `json:"kind"`
+	Position []float32 `json:"position"`
+	RotationY float32 `json:"rotationY"`
+	Props map[string]interface{} `json:"props"`
+}
+
+// NewGetGameHuntBuildResponseDataDocObjects instantiates a new GetGameHuntBuildResponseDataDocObjects object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseDataDocObjects(id string, kind string, position []float32, rotationY float32, props map[string]interface{}) *GetGameHuntBuildResponseDataDocObjects {
+	this := GetGameHuntBuildResponseDataDocObjects{}
+	this.Id = id
+	this.Kind = kind
+	this.Position = position
+	this.RotationY = rotationY
+	this.Props = props
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataDocObjectsWithDefaults instantiates a new GetGameHuntBuildResponseDataDocObjects object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataDocObjectsWithDefaults() *GetGameHuntBuildResponseDataDocObjects {
+	this := GetGameHuntBuildResponseDataDocObjects{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetGameHuntBuildResponseDataDocObjects) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDocObjects) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetGameHuntBuildResponseDataDocObjects) SetId(v string) {
+	o.Id = v
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameHuntBuildResponseDataDocObjects) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDocObjects) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameHuntBuildResponseDataDocObjects) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetPosition returns the Position field value
+func (o *GetGameHuntBuildResponseDataDocObjects) GetPosition() []float32 {
+	if o == nil {
+		var ret []float32
+		return ret
+	}
+
+	return o.Position
+}
+
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDocObjects) GetPositionOk() ([]float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Position, true
+}
+
+// SetPosition sets field value
+func (o *GetGameHuntBuildResponseDataDocObjects) SetPosition(v []float32) {
+	o.Position = v
+}
+
+// GetRotationY returns the RotationY field value
+func (o *GetGameHuntBuildResponseDataDocObjects) GetRotationY() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RotationY
+}
+
+// GetRotationYOk returns a tuple with the RotationY field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDocObjects) GetRotationYOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RotationY, true
+}
+
+// SetRotationY sets field value
+func (o *GetGameHuntBuildResponseDataDocObjects) SetRotationY(v float32) {
+	o.RotationY = v
+}
+
+// GetProps returns the Props field value
+func (o *GetGameHuntBuildResponseDataDocObjects) GetProps() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Props
+}
+
+// GetPropsOk returns a tuple with the Props field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataDocObjects) GetPropsOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Props, true
+}
+
+// SetProps sets field value
+func (o *GetGameHuntBuildResponseDataDocObjects) SetProps(v map[string]interface{}) {
+	o.Props = v
+}
+
+func (o GetGameHuntBuildResponseDataDocObjects) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["position"] = o.Position
+	}
+	if true {
+		toSerialize["rotationY"] = o.RotationY
+	}
+	if true {
+		toSerialize["props"] = o.Props
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseDataDocObjects struct {
+	value *GetGameHuntBuildResponseDataDocObjects
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseDataDocObjects) Get() *GetGameHuntBuildResponseDataDocObjects {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDocObjects) Set(val *GetGameHuntBuildResponseDataDocObjects) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseDataDocObjects) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDocObjects) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseDataDocObjects(val *GetGameHuntBuildResponseDataDocObjects) *NullableGetGameHuntBuildResponseDataDocObjects {
+	return &NullableGetGameHuntBuildResponseDataDocObjects{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseDataDocObjects) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseDataDocObjects) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseDataPlace struct for GetGameHuntBuildResponseDataPlace
+type GetGameHuntBuildResponseDataPlace struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	Slug NullableString `json:"slug,omitempty"`
+	SceneId string `json:"sceneId"`
+}
+
+// NewGetGameHuntBuildResponseDataPlace instantiates a new GetGameHuntBuildResponseDataPlace object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseDataPlace(kind string, name string, sceneId string) *GetGameHuntBuildResponseDataPlace {
+	this := GetGameHuntBuildResponseDataPlace{}
+	this.Kind = kind
+	this.Name = name
+	this.SceneId = sceneId
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataPlaceWithDefaults instantiates a new GetGameHuntBuildResponseDataPlace object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataPlaceWithDefaults() *GetGameHuntBuildResponseDataPlace {
+	this := GetGameHuntBuildResponseDataPlace{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameHuntBuildResponseDataPlace) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataPlace) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameHuntBuildResponseDataPlace) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetName returns the Name field value
+func (o *GetGameHuntBuildResponseDataPlace) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataPlace) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetGameHuntBuildResponseDataPlace) SetName(v string) {
+	o.Name = v
+}
+
+// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetGameHuntBuildResponseDataPlace) GetSlug() string {
+	if o == nil || o.Slug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug.Get()
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetGameHuntBuildResponseDataPlace) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Slug.Get(), o.Slug.IsSet()
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataPlace) HasSlug() bool {
+	if o != nil && o.Slug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
+func (o *GetGameHuntBuildResponseDataPlace) SetSlug(v string) {
+	o.Slug.Set(&v)
+}
+// SetSlugNil sets the value for Slug to be an explicit nil
+func (o *GetGameHuntBuildResponseDataPlace) SetSlugNil() {
+	o.Slug.Set(nil)
+}
+
+// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
+func (o *GetGameHuntBuildResponseDataPlace) UnsetSlug() {
+	o.Slug.Unset()
+}
+
+// GetSceneId returns the SceneId field value
+func (o *GetGameHuntBuildResponseDataPlace) GetSceneId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SceneId
+}
+
+// GetSceneIdOk returns a tuple with the SceneId field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataPlace) GetSceneIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SceneId, true
+}
+
+// SetSceneId sets field value
+func (o *GetGameHuntBuildResponseDataPlace) SetSceneId(v string) {
+	o.SceneId = v
+}
+
+func (o GetGameHuntBuildResponseDataPlace) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
+	}
+	if true {
+		toSerialize["sceneId"] = o.SceneId
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseDataPlace struct {
+	value *GetGameHuntBuildResponseDataPlace
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseDataPlace) Get() *GetGameHuntBuildResponseDataPlace {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseDataPlace) Set(val *GetGameHuntBuildResponseDataPlace) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseDataPlace) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseDataPlace) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseDataPlace(val *GetGameHuntBuildResponseDataPlace) *NullableGetGameHuntBuildResponseDataPlace {
+	return &NullableGetGameHuntBuildResponseDataPlace{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseDataPlace) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseDataPlace) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseDataProblemsItem struct for GetGameHuntBuildResponseDataProblemsItem
+type GetGameHuntBuildResponseDataProblemsItem struct {
+	ObjectId interface{} `json:"objectId,omitempty"`
+	Message string `json:"message"`
+}
+
+// NewGetGameHuntBuildResponseDataProblemsItem instantiates a new GetGameHuntBuildResponseDataProblemsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseDataProblemsItem(message string) *GetGameHuntBuildResponseDataProblemsItem {
+	this := GetGameHuntBuildResponseDataProblemsItem{}
+	this.Message = message
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataProblemsItemWithDefaults instantiates a new GetGameHuntBuildResponseDataProblemsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataProblemsItemWithDefaults() *GetGameHuntBuildResponseDataProblemsItem {
+	this := GetGameHuntBuildResponseDataProblemsItem{}
+	return &this
+}
+
+// GetObjectId returns the ObjectId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetGameHuntBuildResponseDataProblemsItem) GetObjectId() interface{} {
+	if o == nil  {
+		var ret interface{}
+		return ret
+	}
+	return o.ObjectId
+}
+
+// GetObjectIdOk returns a tuple with the ObjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetGameHuntBuildResponseDataProblemsItem) GetObjectIdOk() (*interface{}, bool) {
+	if o == nil || o.ObjectId == nil {
+		return nil, false
+	}
+	return &o.ObjectId, true
+}
+
+// HasObjectId returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataProblemsItem) HasObjectId() bool {
+	if o != nil && o.ObjectId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetObjectId gets a reference to the given interface{} and assigns it to the ObjectId field.
+func (o *GetGameHuntBuildResponseDataProblemsItem) SetObjectId(v interface{}) {
+	o.ObjectId = v
+}
+
+// GetMessage returns the Message field value
+func (o *GetGameHuntBuildResponseDataProblemsItem) GetMessage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataProblemsItem) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GetGameHuntBuildResponseDataProblemsItem) SetMessage(v string) {
+	o.Message = v
+}
+
+func (o GetGameHuntBuildResponseDataProblemsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ObjectId != nil {
+		toSerialize["objectId"] = o.ObjectId
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseDataProblemsItem struct {
+	value *GetGameHuntBuildResponseDataProblemsItem
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseDataProblemsItem) Get() *GetGameHuntBuildResponseDataProblemsItem {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseDataProblemsItem) Set(val *GetGameHuntBuildResponseDataProblemsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseDataProblemsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseDataProblemsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseDataProblemsItem(val *GetGameHuntBuildResponseDataProblemsItem) *NullableGetGameHuntBuildResponseDataProblemsItem {
+	return &NullableGetGameHuntBuildResponseDataProblemsItem{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseDataProblemsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseDataProblemsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetGameHuntBuildResponseDataRewardsItem struct for GetGameHuntBuildResponseDataRewardsItem
+type GetGameHuntBuildResponseDataRewardsItem struct {
+	Kind string `json:"kind"`
+	DiscountCodeId *string `json:"discountCodeId,omitempty"`
+	CentsEach *float32 `json:"centsEach,omitempty"`
+	CosmeticId *string `json:"cosmeticId,omitempty"`
+	PointsEach *float32 `json:"pointsEach,omitempty"`
+}
+
+// NewGetGameHuntBuildResponseDataRewardsItem instantiates a new GetGameHuntBuildResponseDataRewardsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetGameHuntBuildResponseDataRewardsItem(kind string) *GetGameHuntBuildResponseDataRewardsItem {
+	this := GetGameHuntBuildResponseDataRewardsItem{}
+	this.Kind = kind
+	return &this
+}
+
+// NewGetGameHuntBuildResponseDataRewardsItemWithDefaults instantiates a new GetGameHuntBuildResponseDataRewardsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGameHuntBuildResponseDataRewardsItemWithDefaults() *GetGameHuntBuildResponseDataRewardsItem {
+	this := GetGameHuntBuildResponseDataRewardsItem{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetGameHuntBuildResponseDataRewardsItem) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetDiscountCodeId returns the DiscountCodeId field value if set, zero value otherwise.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetDiscountCodeId() string {
+	if o == nil || o.DiscountCodeId == nil {
+		var ret string
+		return ret
+	}
+	return *o.DiscountCodeId
+}
+
+// GetDiscountCodeIdOk returns a tuple with the DiscountCodeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetDiscountCodeIdOk() (*string, bool) {
+	if o == nil || o.DiscountCodeId == nil {
+		return nil, false
+	}
+	return o.DiscountCodeId, true
+}
+
+// HasDiscountCodeId returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) HasDiscountCodeId() bool {
+	if o != nil && o.DiscountCodeId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountCodeId gets a reference to the given string and assigns it to the DiscountCodeId field.
+func (o *GetGameHuntBuildResponseDataRewardsItem) SetDiscountCodeId(v string) {
+	o.DiscountCodeId = &v
+}
+
+// GetCentsEach returns the CentsEach field value if set, zero value otherwise.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetCentsEach() float32 {
+	if o == nil || o.CentsEach == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CentsEach
+}
+
+// GetCentsEachOk returns a tuple with the CentsEach field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetCentsEachOk() (*float32, bool) {
+	if o == nil || o.CentsEach == nil {
+		return nil, false
+	}
+	return o.CentsEach, true
+}
+
+// HasCentsEach returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) HasCentsEach() bool {
+	if o != nil && o.CentsEach != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCentsEach gets a reference to the given float32 and assigns it to the CentsEach field.
+func (o *GetGameHuntBuildResponseDataRewardsItem) SetCentsEach(v float32) {
+	o.CentsEach = &v
+}
+
+// GetCosmeticId returns the CosmeticId field value if set, zero value otherwise.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetCosmeticId() string {
+	if o == nil || o.CosmeticId == nil {
+		var ret string
+		return ret
+	}
+	return *o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetCosmeticIdOk() (*string, bool) {
+	if o == nil || o.CosmeticId == nil {
+		return nil, false
+	}
+	return o.CosmeticId, true
+}
+
+// HasCosmeticId returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) HasCosmeticId() bool {
+	if o != nil && o.CosmeticId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCosmeticId gets a reference to the given string and assigns it to the CosmeticId field.
+func (o *GetGameHuntBuildResponseDataRewardsItem) SetCosmeticId(v string) {
+	o.CosmeticId = &v
+}
+
+// GetPointsEach returns the PointsEach field value if set, zero value otherwise.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetPointsEach() float32 {
+	if o == nil || o.PointsEach == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PointsEach
+}
+
+// GetPointsEachOk returns a tuple with the PointsEach field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) GetPointsEachOk() (*float32, bool) {
+	if o == nil || o.PointsEach == nil {
+		return nil, false
+	}
+	return o.PointsEach, true
+}
+
+// HasPointsEach returns a boolean if a field has been set.
+func (o *GetGameHuntBuildResponseDataRewardsItem) HasPointsEach() bool {
+	if o != nil && o.PointsEach != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPointsEach gets a reference to the given float32 and assigns it to the PointsEach field.
+func (o *GetGameHuntBuildResponseDataRewardsItem) SetPointsEach(v float32) {
+	o.PointsEach = &v
+}
+
+func (o GetGameHuntBuildResponseDataRewardsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if o.DiscountCodeId != nil {
+		toSerialize["discountCodeId"] = o.DiscountCodeId
+	}
+	if o.CentsEach != nil {
+		toSerialize["centsEach"] = o.CentsEach
+	}
+	if o.CosmeticId != nil {
+		toSerialize["cosmeticId"] = o.CosmeticId
+	}
+	if o.PointsEach != nil {
+		toSerialize["pointsEach"] = o.PointsEach
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetGameHuntBuildResponseDataRewardsItem struct {
+	value *GetGameHuntBuildResponseDataRewardsItem
+	isSet bool
+}
+
+func (v NullableGetGameHuntBuildResponseDataRewardsItem) Get() *GetGameHuntBuildResponseDataRewardsItem {
+	return v.value
+}
+
+func (v *NullableGetGameHuntBuildResponseDataRewardsItem) Set(val *GetGameHuntBuildResponseDataRewardsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetGameHuntBuildResponseDataRewardsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetGameHuntBuildResponseDataRewardsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetGameHuntBuildResponseDataRewardsItem(val *GetGameHuntBuildResponseDataRewardsItem) *NullableGetGameHuntBuildResponseDataRewardsItem {
+	return &NullableGetGameHuntBuildResponseDataRewardsItem{value: val, isSet: true}
+}
+
+func (v NullableGetGameHuntBuildResponseDataRewardsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetGameHuntBuildResponseDataRewardsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetGameLeaderboardResponse struct for GetGameLeaderboardResponse
 type GetGameLeaderboardResponse struct {
 	Data GetGameLeaderboardResponseData `json:"data"`
@@ -470,8 +4574,10 @@ type ListGameBreakUpcomingItem struct {
 	Status string `json:"status"`
 	// Scheduled start (ISO), and whether the seller is breaking right now.
 	StartsAt NullableString `json:"startsAt,omitempty"`
+	// When the viewer gets in (ISO): the start, or earlier for a loyalty member with the seller's `live_early_entry` perk. Null with no start. Optional: a board read without a viewer leaves it at the start.
+	DoorsOpenAt NullableString `json:"doorsOpenAt,omitempty"`
 	Live bool `json:"live"`
-	Shop SlugName `json:"shop"`
+	Shop NameSlug `json:"shop"`
 	// The listing the spots are bought through, on crossly.net. Never a world checkout.
 	BuyUrl NullableString `json:"buyUrl,omitempty"`
 	SpotsLeft float32 `json:"spotsLeft"`
@@ -483,7 +4589,7 @@ type ListGameBreakUpcomingItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListGameBreakUpcomingItem(breakId string, title string, status string, live bool, shop SlugName, spotsLeft float32, spots []ListGameBreakUpcomingItemSpots, hits []ListGameBreakUpcomingItemHits) *ListGameBreakUpcomingItem {
+func NewListGameBreakUpcomingItem(breakId string, title string, status string, live bool, shop NameSlug, spotsLeft float32, spots []ListGameBreakUpcomingItemSpots, hits []ListGameBreakUpcomingItemHits) *ListGameBreakUpcomingItem {
 	this := ListGameBreakUpcomingItem{}
 	this.BreakId = breakId
 	this.Title = title
@@ -660,6 +4766,48 @@ func (o *ListGameBreakUpcomingItem) UnsetStartsAt() {
 	o.StartsAt.Unset()
 }
 
+// GetDoorsOpenAt returns the DoorsOpenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameBreakUpcomingItem) GetDoorsOpenAt() string {
+	if o == nil || o.DoorsOpenAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DoorsOpenAt.Get()
+}
+
+// GetDoorsOpenAtOk returns a tuple with the DoorsOpenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameBreakUpcomingItem) GetDoorsOpenAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DoorsOpenAt.Get(), o.DoorsOpenAt.IsSet()
+}
+
+// HasDoorsOpenAt returns a boolean if a field has been set.
+func (o *ListGameBreakUpcomingItem) HasDoorsOpenAt() bool {
+	if o != nil && o.DoorsOpenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDoorsOpenAt gets a reference to the given NullableString and assigns it to the DoorsOpenAt field.
+func (o *ListGameBreakUpcomingItem) SetDoorsOpenAt(v string) {
+	o.DoorsOpenAt.Set(&v)
+}
+// SetDoorsOpenAtNil sets the value for DoorsOpenAt to be an explicit nil
+func (o *ListGameBreakUpcomingItem) SetDoorsOpenAtNil() {
+	o.DoorsOpenAt.Set(nil)
+}
+
+// UnsetDoorsOpenAt ensures that no value is present for DoorsOpenAt, not even an explicit nil
+func (o *ListGameBreakUpcomingItem) UnsetDoorsOpenAt() {
+	o.DoorsOpenAt.Unset()
+}
+
 // GetLive returns the Live field value
 func (o *ListGameBreakUpcomingItem) GetLive() bool {
 	if o == nil {
@@ -685,9 +4833,9 @@ func (o *ListGameBreakUpcomingItem) SetLive(v bool) {
 }
 
 // GetShop returns the Shop field value
-func (o *ListGameBreakUpcomingItem) GetShop() SlugName {
+func (o *ListGameBreakUpcomingItem) GetShop() NameSlug {
 	if o == nil {
-		var ret SlugName
+		var ret NameSlug
 		return ret
 	}
 
@@ -696,7 +4844,7 @@ func (o *ListGameBreakUpcomingItem) GetShop() SlugName {
 
 // GetShopOk returns a tuple with the Shop field value
 // and a boolean to check if the value has been set.
-func (o *ListGameBreakUpcomingItem) GetShopOk() (*SlugName, bool) {
+func (o *ListGameBreakUpcomingItem) GetShopOk() (*NameSlug, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -704,7 +4852,7 @@ func (o *ListGameBreakUpcomingItem) GetShopOk() (*SlugName, bool) {
 }
 
 // SetShop sets field value
-func (o *ListGameBreakUpcomingItem) SetShop(v SlugName) {
+func (o *ListGameBreakUpcomingItem) SetShop(v NameSlug) {
 	o.Shop = v
 }
 
@@ -838,6 +4986,9 @@ func (o ListGameBreakUpcomingItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.StartsAt.IsSet() {
 		toSerialize["startsAt"] = o.StartsAt.Get()
+	}
+	if o.DoorsOpenAt.IsSet() {
+		toSerialize["doorsOpenAt"] = o.DoorsOpenAt.Get()
 	}
 	if true {
 		toSerialize["live"] = o.Live
@@ -1584,24 +5735,1265 @@ func (v *NullableListGameBreakUpcomingResponse) UnmarshalJSON(src []byte) error 
 	return json.Unmarshal(src, &v.value)
 }
 
+// ListGameCouponsItem struct for ListGameCouponsItem
+type ListGameCouponsItem struct {
+	Id string `json:"id"`
+	Game string `json:"game"`
+	ValueCents float32 `json:"valueCents"`
+	Status string `json:"status"`
+	EarnedAt float32 `json:"earnedAt"`
+	ExpiresAt float32 `json:"expiresAt"`
+	// Bucks it paid, once redeemed.
+	PaidCents NullableFloat32 `json:"paidCents,omitempty"`
+}
+
+// NewListGameCouponsItem instantiates a new ListGameCouponsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameCouponsItem(id string, game string, valueCents float32, status string, earnedAt float32, expiresAt float32) *ListGameCouponsItem {
+	this := ListGameCouponsItem{}
+	this.Id = id
+	this.Game = game
+	this.ValueCents = valueCents
+	this.Status = status
+	this.EarnedAt = earnedAt
+	this.ExpiresAt = expiresAt
+	return &this
+}
+
+// NewListGameCouponsItemWithDefaults instantiates a new ListGameCouponsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameCouponsItemWithDefaults() *ListGameCouponsItem {
+	this := ListGameCouponsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListGameCouponsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListGameCouponsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetGame returns the Game field value
+func (o *ListGameCouponsItem) GetGame() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Game
+}
+
+// GetGameOk returns a tuple with the Game field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetGameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Game, true
+}
+
+// SetGame sets field value
+func (o *ListGameCouponsItem) SetGame(v string) {
+	o.Game = v
+}
+
+// GetValueCents returns the ValueCents field value
+func (o *ListGameCouponsItem) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *ListGameCouponsItem) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListGameCouponsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListGameCouponsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetEarnedAt returns the EarnedAt field value
+func (o *ListGameCouponsItem) GetEarnedAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.EarnedAt
+}
+
+// GetEarnedAtOk returns a tuple with the EarnedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetEarnedAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EarnedAt, true
+}
+
+// SetEarnedAt sets field value
+func (o *ListGameCouponsItem) SetEarnedAt(v float32) {
+	o.EarnedAt = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *ListGameCouponsItem) GetExpiresAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsItem) GetExpiresAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *ListGameCouponsItem) SetExpiresAt(v float32) {
+	o.ExpiresAt = v
+}
+
+// GetPaidCents returns the PaidCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameCouponsItem) GetPaidCents() float32 {
+	if o == nil || o.PaidCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PaidCents.Get()
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameCouponsItem) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaidCents.Get(), o.PaidCents.IsSet()
+}
+
+// HasPaidCents returns a boolean if a field has been set.
+func (o *ListGameCouponsItem) HasPaidCents() bool {
+	if o != nil && o.PaidCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaidCents gets a reference to the given NullableFloat32 and assigns it to the PaidCents field.
+func (o *ListGameCouponsItem) SetPaidCents(v float32) {
+	o.PaidCents.Set(&v)
+}
+// SetPaidCentsNil sets the value for PaidCents to be an explicit nil
+func (o *ListGameCouponsItem) SetPaidCentsNil() {
+	o.PaidCents.Set(nil)
+}
+
+// UnsetPaidCents ensures that no value is present for PaidCents, not even an explicit nil
+func (o *ListGameCouponsItem) UnsetPaidCents() {
+	o.PaidCents.Unset()
+}
+
+func (o ListGameCouponsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["game"] = o.Game
+	}
+	if true {
+		toSerialize["valueCents"] = o.ValueCents
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["earnedAt"] = o.EarnedAt
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	if o.PaidCents.IsSet() {
+		toSerialize["paidCents"] = o.PaidCents.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameCouponsItem struct {
+	value *ListGameCouponsItem
+	isSet bool
+}
+
+func (v NullableListGameCouponsItem) Get() *ListGameCouponsItem {
+	return v.value
+}
+
+func (v *NullableListGameCouponsItem) Set(val *ListGameCouponsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameCouponsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameCouponsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameCouponsItem(val *ListGameCouponsItem) *NullableListGameCouponsItem {
+	return &NullableListGameCouponsItem{value: val, isSet: true}
+}
+
+func (v NullableListGameCouponsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameCouponsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListGameCouponsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListGameCouponsResponse struct {
+	// The rows.
+	Data []ListGameCouponsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListGameCouponsResponse instantiates a new ListGameCouponsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameCouponsResponse(data []ListGameCouponsItem) *ListGameCouponsResponse {
+	this := ListGameCouponsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListGameCouponsResponseWithDefaults instantiates a new ListGameCouponsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameCouponsResponseWithDefaults() *ListGameCouponsResponse {
+	this := ListGameCouponsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListGameCouponsResponse) GetData() []ListGameCouponsItem {
+	if o == nil {
+		var ret []ListGameCouponsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsResponse) GetDataOk() ([]ListGameCouponsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListGameCouponsResponse) SetData(v []ListGameCouponsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListGameCouponsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListGameCouponsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListGameCouponsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListGameCouponsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListGameCouponsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListGameCouponsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListGameCouponsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListGameCouponsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameCouponsResponse struct {
+	value *ListGameCouponsResponse
+	isSet bool
+}
+
+func (v NullableListGameCouponsResponse) Get() *ListGameCouponsResponse {
+	return v.value
+}
+
+func (v *NullableListGameCouponsResponse) Set(val *ListGameCouponsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameCouponsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameCouponsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameCouponsResponse(val *ListGameCouponsResponse) *NullableListGameCouponsResponse {
+	return &NullableListGameCouponsResponse{value: val, isSet: true}
+}
+
+func (v NullableListGameCouponsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameCouponsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListGameHuntMineItem struct for ListGameHuntMineItem
+type ListGameHuntMineItem struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	PlaceSlug string `json:"placeSlug"`
+	StallBookingId NullableString `json:"stallBookingId,omitempty"`
+	Code NullableString `json:"code,omitempty"`
+	EventId NullableString `json:"eventId,omitempty"`
+	EndsAt string `json:"endsAt"`
+	EndedAt NullableString `json:"endedAt,omitempty"`
+	Live bool `json:"live"`
+	Draft bool `json:"draft"`
+	Tokens []ListGameHuntMineItemTokens `json:"tokens"`
+	Finishers float32 `json:"finishers"`
+}
+
+// NewListGameHuntMineItem instantiates a new ListGameHuntMineItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameHuntMineItem(id string, title string, placeSlug string, endsAt string, live bool, draft bool, tokens []ListGameHuntMineItemTokens, finishers float32) *ListGameHuntMineItem {
+	this := ListGameHuntMineItem{}
+	this.Id = id
+	this.Title = title
+	this.PlaceSlug = placeSlug
+	this.EndsAt = endsAt
+	this.Live = live
+	this.Draft = draft
+	this.Tokens = tokens
+	this.Finishers = finishers
+	return &this
+}
+
+// NewListGameHuntMineItemWithDefaults instantiates a new ListGameHuntMineItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameHuntMineItemWithDefaults() *ListGameHuntMineItem {
+	this := ListGameHuntMineItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListGameHuntMineItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListGameHuntMineItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListGameHuntMineItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListGameHuntMineItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetPlaceSlug returns the PlaceSlug field value
+func (o *ListGameHuntMineItem) GetPlaceSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlaceSlug
+}
+
+// GetPlaceSlugOk returns a tuple with the PlaceSlug field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetPlaceSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlaceSlug, true
+}
+
+// SetPlaceSlug sets field value
+func (o *ListGameHuntMineItem) SetPlaceSlug(v string) {
+	o.PlaceSlug = v
+}
+
+// GetStallBookingId returns the StallBookingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntMineItem) GetStallBookingId() string {
+	if o == nil || o.StallBookingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StallBookingId.Get()
+}
+
+// GetStallBookingIdOk returns a tuple with the StallBookingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntMineItem) GetStallBookingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StallBookingId.Get(), o.StallBookingId.IsSet()
+}
+
+// HasStallBookingId returns a boolean if a field has been set.
+func (o *ListGameHuntMineItem) HasStallBookingId() bool {
+	if o != nil && o.StallBookingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStallBookingId gets a reference to the given NullableString and assigns it to the StallBookingId field.
+func (o *ListGameHuntMineItem) SetStallBookingId(v string) {
+	o.StallBookingId.Set(&v)
+}
+// SetStallBookingIdNil sets the value for StallBookingId to be an explicit nil
+func (o *ListGameHuntMineItem) SetStallBookingIdNil() {
+	o.StallBookingId.Set(nil)
+}
+
+// UnsetStallBookingId ensures that no value is present for StallBookingId, not even an explicit nil
+func (o *ListGameHuntMineItem) UnsetStallBookingId() {
+	o.StallBookingId.Unset()
+}
+
+// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntMineItem) GetCode() string {
+	if o == nil || o.Code.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Code.Get()
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntMineItem) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Code.Get(), o.Code.IsSet()
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *ListGameHuntMineItem) HasCode() bool {
+	if o != nil && o.Code.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given NullableString and assigns it to the Code field.
+func (o *ListGameHuntMineItem) SetCode(v string) {
+	o.Code.Set(&v)
+}
+// SetCodeNil sets the value for Code to be an explicit nil
+func (o *ListGameHuntMineItem) SetCodeNil() {
+	o.Code.Set(nil)
+}
+
+// UnsetCode ensures that no value is present for Code, not even an explicit nil
+func (o *ListGameHuntMineItem) UnsetCode() {
+	o.Code.Unset()
+}
+
+// GetEventId returns the EventId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntMineItem) GetEventId() string {
+	if o == nil || o.EventId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EventId.Get()
+}
+
+// GetEventIdOk returns a tuple with the EventId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntMineItem) GetEventIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EventId.Get(), o.EventId.IsSet()
+}
+
+// HasEventId returns a boolean if a field has been set.
+func (o *ListGameHuntMineItem) HasEventId() bool {
+	if o != nil && o.EventId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEventId gets a reference to the given NullableString and assigns it to the EventId field.
+func (o *ListGameHuntMineItem) SetEventId(v string) {
+	o.EventId.Set(&v)
+}
+// SetEventIdNil sets the value for EventId to be an explicit nil
+func (o *ListGameHuntMineItem) SetEventIdNil() {
+	o.EventId.Set(nil)
+}
+
+// UnsetEventId ensures that no value is present for EventId, not even an explicit nil
+func (o *ListGameHuntMineItem) UnsetEventId() {
+	o.EventId.Unset()
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *ListGameHuntMineItem) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *ListGameHuntMineItem) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntMineItem) GetEndedAt() string {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntMineItem) GetEndedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *ListGameHuntMineItem) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableString and assigns it to the EndedAt field.
+func (o *ListGameHuntMineItem) SetEndedAt(v string) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *ListGameHuntMineItem) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *ListGameHuntMineItem) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetLive returns the Live field value
+func (o *ListGameHuntMineItem) GetLive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Live
+}
+
+// GetLiveOk returns a tuple with the Live field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetLiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Live, true
+}
+
+// SetLive sets field value
+func (o *ListGameHuntMineItem) SetLive(v bool) {
+	o.Live = v
+}
+
+// GetDraft returns the Draft field value
+func (o *ListGameHuntMineItem) GetDraft() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Draft
+}
+
+// GetDraftOk returns a tuple with the Draft field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetDraftOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Draft, true
+}
+
+// SetDraft sets field value
+func (o *ListGameHuntMineItem) SetDraft(v bool) {
+	o.Draft = v
+}
+
+// GetTokens returns the Tokens field value
+func (o *ListGameHuntMineItem) GetTokens() []ListGameHuntMineItemTokens {
+	if o == nil {
+		var ret []ListGameHuntMineItemTokens
+		return ret
+	}
+
+	return o.Tokens
+}
+
+// GetTokensOk returns a tuple with the Tokens field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetTokensOk() ([]ListGameHuntMineItemTokens, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tokens, true
+}
+
+// SetTokens sets field value
+func (o *ListGameHuntMineItem) SetTokens(v []ListGameHuntMineItemTokens) {
+	o.Tokens = v
+}
+
+// GetFinishers returns the Finishers field value
+func (o *ListGameHuntMineItem) GetFinishers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Finishers
+}
+
+// GetFinishersOk returns a tuple with the Finishers field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItem) GetFinishersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Finishers, true
+}
+
+// SetFinishers sets field value
+func (o *ListGameHuntMineItem) SetFinishers(v float32) {
+	o.Finishers = v
+}
+
+func (o ListGameHuntMineItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["placeSlug"] = o.PlaceSlug
+	}
+	if o.StallBookingId.IsSet() {
+		toSerialize["stallBookingId"] = o.StallBookingId.Get()
+	}
+	if o.Code.IsSet() {
+		toSerialize["code"] = o.Code.Get()
+	}
+	if o.EventId.IsSet() {
+		toSerialize["eventId"] = o.EventId.Get()
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if true {
+		toSerialize["live"] = o.Live
+	}
+	if true {
+		toSerialize["draft"] = o.Draft
+	}
+	if true {
+		toSerialize["tokens"] = o.Tokens
+	}
+	if true {
+		toSerialize["finishers"] = o.Finishers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameHuntMineItem struct {
+	value *ListGameHuntMineItem
+	isSet bool
+}
+
+func (v NullableListGameHuntMineItem) Get() *ListGameHuntMineItem {
+	return v.value
+}
+
+func (v *NullableListGameHuntMineItem) Set(val *ListGameHuntMineItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameHuntMineItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameHuntMineItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameHuntMineItem(val *ListGameHuntMineItem) *NullableListGameHuntMineItem {
+	return &NullableListGameHuntMineItem{value: val, isSet: true}
+}
+
+func (v NullableListGameHuntMineItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameHuntMineItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListGameHuntMineItemTokens struct for ListGameHuntMineItemTokens
+type ListGameHuntMineItemTokens struct {
+	Id string `json:"id"`
+	X float32 `json:"x"`
+	Z float32 `json:"z"`
+}
+
+// NewListGameHuntMineItemTokens instantiates a new ListGameHuntMineItemTokens object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameHuntMineItemTokens(id string, x float32, z float32) *ListGameHuntMineItemTokens {
+	this := ListGameHuntMineItemTokens{}
+	this.Id = id
+	this.X = x
+	this.Z = z
+	return &this
+}
+
+// NewListGameHuntMineItemTokensWithDefaults instantiates a new ListGameHuntMineItemTokens object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameHuntMineItemTokensWithDefaults() *ListGameHuntMineItemTokens {
+	this := ListGameHuntMineItemTokens{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListGameHuntMineItemTokens) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItemTokens) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListGameHuntMineItemTokens) SetId(v string) {
+	o.Id = v
+}
+
+// GetX returns the X field value
+func (o *ListGameHuntMineItemTokens) GetX() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.X
+}
+
+// GetXOk returns a tuple with the X field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItemTokens) GetXOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.X, true
+}
+
+// SetX sets field value
+func (o *ListGameHuntMineItemTokens) SetX(v float32) {
+	o.X = v
+}
+
+// GetZ returns the Z field value
+func (o *ListGameHuntMineItemTokens) GetZ() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Z
+}
+
+// GetZOk returns a tuple with the Z field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineItemTokens) GetZOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Z, true
+}
+
+// SetZ sets field value
+func (o *ListGameHuntMineItemTokens) SetZ(v float32) {
+	o.Z = v
+}
+
+func (o ListGameHuntMineItemTokens) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["x"] = o.X
+	}
+	if true {
+		toSerialize["z"] = o.Z
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameHuntMineItemTokens struct {
+	value *ListGameHuntMineItemTokens
+	isSet bool
+}
+
+func (v NullableListGameHuntMineItemTokens) Get() *ListGameHuntMineItemTokens {
+	return v.value
+}
+
+func (v *NullableListGameHuntMineItemTokens) Set(val *ListGameHuntMineItemTokens) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameHuntMineItemTokens) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameHuntMineItemTokens) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameHuntMineItemTokens(val *ListGameHuntMineItemTokens) *NullableListGameHuntMineItemTokens {
+	return &NullableListGameHuntMineItemTokens{value: val, isSet: true}
+}
+
+func (v NullableListGameHuntMineItemTokens) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameHuntMineItemTokens) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListGameHuntMineResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListGameHuntMineResponse struct {
+	// The rows.
+	Data []ListGameHuntMineItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListGameHuntMineResponse instantiates a new ListGameHuntMineResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameHuntMineResponse(data []ListGameHuntMineItem) *ListGameHuntMineResponse {
+	this := ListGameHuntMineResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListGameHuntMineResponseWithDefaults instantiates a new ListGameHuntMineResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameHuntMineResponseWithDefaults() *ListGameHuntMineResponse {
+	this := ListGameHuntMineResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListGameHuntMineResponse) GetData() []ListGameHuntMineItem {
+	if o == nil {
+		var ret []ListGameHuntMineItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineResponse) GetDataOk() ([]ListGameHuntMineItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListGameHuntMineResponse) SetData(v []ListGameHuntMineItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListGameHuntMineResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListGameHuntMineResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListGameHuntMineResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListGameHuntMineResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntMineResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListGameHuntMineResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListGameHuntMineResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListGameHuntMineResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameHuntMineResponse struct {
+	value *ListGameHuntMineResponse
+	isSet bool
+}
+
+func (v NullableListGameHuntMineResponse) Get() *ListGameHuntMineResponse {
+	return v.value
+}
+
+func (v *NullableListGameHuntMineResponse) Set(val *ListGameHuntMineResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameHuntMineResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameHuntMineResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameHuntMineResponse(val *ListGameHuntMineResponse) *NullableListGameHuntMineResponse {
+	return &NullableListGameHuntMineResponse{value: val, isSet: true}
+}
+
+func (v NullableListGameHuntMineResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameHuntMineResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListGameHuntsItem struct for ListGameHuntsItem
 type ListGameHuntsItem struct {
 	Id string `json:"id"`
 	Title string `json:"title"`
-	Shop SlugName `json:"shop"`
+	Shop NameSlug `json:"shop"`
 	Stall NullableListGameHuntsItemStall `json:"stall,omitempty"`
 	Tokens float32 `json:"tokens"`
 	// \"10% off\" / \"$5 off\": what finishing it unlocks, never the code itself.
 	Reward string `json:"reward"`
 	EndsAt string `json:"endsAt"`
 	Finishers float32 `json:"finishers"`
+	Rules NullableListGameHuntsItemRules `json:"rules,omitempty"`
 }
 
 // NewListGameHuntsItem instantiates a new ListGameHuntsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListGameHuntsItem(id string, title string, shop SlugName, tokens float32, reward string, endsAt string, finishers float32) *ListGameHuntsItem {
+func NewListGameHuntsItem(id string, title string, shop NameSlug, tokens float32, reward string, endsAt string, finishers float32) *ListGameHuntsItem {
 	this := ListGameHuntsItem{}
 	this.Id = id
 	this.Title = title
@@ -1670,9 +7062,9 @@ func (o *ListGameHuntsItem) SetTitle(v string) {
 }
 
 // GetShop returns the Shop field value
-func (o *ListGameHuntsItem) GetShop() SlugName {
+func (o *ListGameHuntsItem) GetShop() NameSlug {
 	if o == nil {
-		var ret SlugName
+		var ret NameSlug
 		return ret
 	}
 
@@ -1681,7 +7073,7 @@ func (o *ListGameHuntsItem) GetShop() SlugName {
 
 // GetShopOk returns a tuple with the Shop field value
 // and a boolean to check if the value has been set.
-func (o *ListGameHuntsItem) GetShopOk() (*SlugName, bool) {
+func (o *ListGameHuntsItem) GetShopOk() (*NameSlug, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1689,7 +7081,7 @@ func (o *ListGameHuntsItem) GetShopOk() (*SlugName, bool) {
 }
 
 // SetShop sets field value
-func (o *ListGameHuntsItem) SetShop(v SlugName) {
+func (o *ListGameHuntsItem) SetShop(v NameSlug) {
 	o.Shop = v
 }
 
@@ -1831,6 +7223,48 @@ func (o *ListGameHuntsItem) SetFinishers(v float32) {
 	o.Finishers = v
 }
 
+// GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntsItem) GetRules() ListGameHuntsItemRules {
+	if o == nil || o.Rules.Get() == nil {
+		var ret ListGameHuntsItemRules
+		return ret
+	}
+	return *o.Rules.Get()
+}
+
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntsItem) GetRulesOk() (*ListGameHuntsItemRules, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rules.Get(), o.Rules.IsSet()
+}
+
+// HasRules returns a boolean if a field has been set.
+func (o *ListGameHuntsItem) HasRules() bool {
+	if o != nil && o.Rules.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRules gets a reference to the given NullableListGameHuntsItemRules and assigns it to the Rules field.
+func (o *ListGameHuntsItem) SetRules(v ListGameHuntsItemRules) {
+	o.Rules.Set(&v)
+}
+// SetRulesNil sets the value for Rules to be an explicit nil
+func (o *ListGameHuntsItem) SetRulesNil() {
+	o.Rules.Set(nil)
+}
+
+// UnsetRules ensures that no value is present for Rules, not even an explicit nil
+func (o *ListGameHuntsItem) UnsetRules() {
+	o.Rules.Unset()
+}
+
 func (o ListGameHuntsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1856,6 +7290,9 @@ func (o ListGameHuntsItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["finishers"] = o.Finishers
+	}
+	if o.Rules.IsSet() {
+		toSerialize["rules"] = o.Rules.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1892,6 +7329,230 @@ func (v NullableListGameHuntsItem) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListGameHuntsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListGameHuntsItemRules A hunt built in the world (hunt-config.ts): its rules as a player needs them. Absent on older hunts.
+type ListGameHuntsItemRules struct {
+	Ordered bool `json:"ordered"`
+	Hints bool `json:"hints"`
+	TimeLimitMinutes NullableFloat32 `json:"timeLimitMinutes,omitempty"`
+	Winners float32 `json:"winners"`
+	WinnersLeft float32 `json:"winnersLeft"`
+}
+
+// NewListGameHuntsItemRules instantiates a new ListGameHuntsItemRules object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListGameHuntsItemRules(ordered bool, hints bool, winners float32, winnersLeft float32) *ListGameHuntsItemRules {
+	this := ListGameHuntsItemRules{}
+	this.Ordered = ordered
+	this.Hints = hints
+	this.Winners = winners
+	this.WinnersLeft = winnersLeft
+	return &this
+}
+
+// NewListGameHuntsItemRulesWithDefaults instantiates a new ListGameHuntsItemRules object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListGameHuntsItemRulesWithDefaults() *ListGameHuntsItemRules {
+	this := ListGameHuntsItemRules{}
+	return &this
+}
+
+// GetOrdered returns the Ordered field value
+func (o *ListGameHuntsItemRules) GetOrdered() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Ordered
+}
+
+// GetOrderedOk returns a tuple with the Ordered field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntsItemRules) GetOrderedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Ordered, true
+}
+
+// SetOrdered sets field value
+func (o *ListGameHuntsItemRules) SetOrdered(v bool) {
+	o.Ordered = v
+}
+
+// GetHints returns the Hints field value
+func (o *ListGameHuntsItemRules) GetHints() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Hints
+}
+
+// GetHintsOk returns a tuple with the Hints field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntsItemRules) GetHintsOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Hints, true
+}
+
+// SetHints sets field value
+func (o *ListGameHuntsItemRules) SetHints(v bool) {
+	o.Hints = v
+}
+
+// GetTimeLimitMinutes returns the TimeLimitMinutes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListGameHuntsItemRules) GetTimeLimitMinutes() float32 {
+	if o == nil || o.TimeLimitMinutes.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.TimeLimitMinutes.Get()
+}
+
+// GetTimeLimitMinutesOk returns a tuple with the TimeLimitMinutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListGameHuntsItemRules) GetTimeLimitMinutesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TimeLimitMinutes.Get(), o.TimeLimitMinutes.IsSet()
+}
+
+// HasTimeLimitMinutes returns a boolean if a field has been set.
+func (o *ListGameHuntsItemRules) HasTimeLimitMinutes() bool {
+	if o != nil && o.TimeLimitMinutes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeLimitMinutes gets a reference to the given NullableFloat32 and assigns it to the TimeLimitMinutes field.
+func (o *ListGameHuntsItemRules) SetTimeLimitMinutes(v float32) {
+	o.TimeLimitMinutes.Set(&v)
+}
+// SetTimeLimitMinutesNil sets the value for TimeLimitMinutes to be an explicit nil
+func (o *ListGameHuntsItemRules) SetTimeLimitMinutesNil() {
+	o.TimeLimitMinutes.Set(nil)
+}
+
+// UnsetTimeLimitMinutes ensures that no value is present for TimeLimitMinutes, not even an explicit nil
+func (o *ListGameHuntsItemRules) UnsetTimeLimitMinutes() {
+	o.TimeLimitMinutes.Unset()
+}
+
+// GetWinners returns the Winners field value
+func (o *ListGameHuntsItemRules) GetWinners() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Winners
+}
+
+// GetWinnersOk returns a tuple with the Winners field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntsItemRules) GetWinnersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Winners, true
+}
+
+// SetWinners sets field value
+func (o *ListGameHuntsItemRules) SetWinners(v float32) {
+	o.Winners = v
+}
+
+// GetWinnersLeft returns the WinnersLeft field value
+func (o *ListGameHuntsItemRules) GetWinnersLeft() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WinnersLeft
+}
+
+// GetWinnersLeftOk returns a tuple with the WinnersLeft field value
+// and a boolean to check if the value has been set.
+func (o *ListGameHuntsItemRules) GetWinnersLeftOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WinnersLeft, true
+}
+
+// SetWinnersLeft sets field value
+func (o *ListGameHuntsItemRules) SetWinnersLeft(v float32) {
+	o.WinnersLeft = v
+}
+
+func (o ListGameHuntsItemRules) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ordered"] = o.Ordered
+	}
+	if true {
+		toSerialize["hints"] = o.Hints
+	}
+	if o.TimeLimitMinutes.IsSet() {
+		toSerialize["timeLimitMinutes"] = o.TimeLimitMinutes.Get()
+	}
+	if true {
+		toSerialize["winners"] = o.Winners
+	}
+	if true {
+		toSerialize["winnersLeft"] = o.WinnersLeft
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListGameHuntsItemRules struct {
+	value *ListGameHuntsItemRules
+	isSet bool
+}
+
+func (v NullableListGameHuntsItemRules) Get() *ListGameHuntsItemRules {
+	return v.value
+}
+
+func (v *NullableListGameHuntsItemRules) Set(val *ListGameHuntsItemRules) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListGameHuntsItemRules) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListGameHuntsItemRules) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListGameHuntsItemRules(val *ListGameHuntsItemRules) *NullableListGameHuntsItemRules {
+	return &NullableListGameHuntsItemRules{value: val, isSet: true}
+}
+
+func (v NullableListGameHuntsItemRules) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListGameHuntsItemRules) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

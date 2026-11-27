@@ -15,6 +15,2166 @@ import (
 	"time"
 )
 
+// GetWeb3CollectionInsightResponseHolders EVM: top wallets and how holdings spread (migration 0466); null on Solana or before a refresh.
+type GetWeb3CollectionInsightResponseHolders struct {
+	Owners float32 `json:"owners"`
+	// The 25 wallets holding the most tokens.
+	Top []GetWeb3CollectionInsightResponseHoldersTop `json:"top"`
+	// How many wallets hold 1, 2–3, 4–10, 11–50 and 51+ tokens.
+	Distribution []GetWeb3CollectionInsightResponseHoldersDistribution `json:"distribution"`
+}
+
+// NewGetWeb3CollectionInsightResponseHolders instantiates a new GetWeb3CollectionInsightResponseHolders object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseHolders(owners float32, top []GetWeb3CollectionInsightResponseHoldersTop, distribution []GetWeb3CollectionInsightResponseHoldersDistribution) *GetWeb3CollectionInsightResponseHolders {
+	this := GetWeb3CollectionInsightResponseHolders{}
+	this.Owners = owners
+	this.Top = top
+	this.Distribution = distribution
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseHoldersWithDefaults instantiates a new GetWeb3CollectionInsightResponseHolders object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseHoldersWithDefaults() *GetWeb3CollectionInsightResponseHolders {
+	this := GetWeb3CollectionInsightResponseHolders{}
+	return &this
+}
+
+// GetOwners returns the Owners field value
+func (o *GetWeb3CollectionInsightResponseHolders) GetOwners() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Owners
+}
+
+// GetOwnersOk returns a tuple with the Owners field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHolders) GetOwnersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Owners, true
+}
+
+// SetOwners sets field value
+func (o *GetWeb3CollectionInsightResponseHolders) SetOwners(v float32) {
+	o.Owners = v
+}
+
+// GetTop returns the Top field value
+func (o *GetWeb3CollectionInsightResponseHolders) GetTop() []GetWeb3CollectionInsightResponseHoldersTop {
+	if o == nil {
+		var ret []GetWeb3CollectionInsightResponseHoldersTop
+		return ret
+	}
+
+	return o.Top
+}
+
+// GetTopOk returns a tuple with the Top field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHolders) GetTopOk() ([]GetWeb3CollectionInsightResponseHoldersTop, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Top, true
+}
+
+// SetTop sets field value
+func (o *GetWeb3CollectionInsightResponseHolders) SetTop(v []GetWeb3CollectionInsightResponseHoldersTop) {
+	o.Top = v
+}
+
+// GetDistribution returns the Distribution field value
+func (o *GetWeb3CollectionInsightResponseHolders) GetDistribution() []GetWeb3CollectionInsightResponseHoldersDistribution {
+	if o == nil {
+		var ret []GetWeb3CollectionInsightResponseHoldersDistribution
+		return ret
+	}
+
+	return o.Distribution
+}
+
+// GetDistributionOk returns a tuple with the Distribution field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHolders) GetDistributionOk() ([]GetWeb3CollectionInsightResponseHoldersDistribution, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Distribution, true
+}
+
+// SetDistribution sets field value
+func (o *GetWeb3CollectionInsightResponseHolders) SetDistribution(v []GetWeb3CollectionInsightResponseHoldersDistribution) {
+	o.Distribution = v
+}
+
+func (o GetWeb3CollectionInsightResponseHolders) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["owners"] = o.Owners
+	}
+	if true {
+		toSerialize["top"] = o.Top
+	}
+	if true {
+		toSerialize["distribution"] = o.Distribution
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseHolders struct {
+	value *GetWeb3CollectionInsightResponseHolders
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHolders) Get() *GetWeb3CollectionInsightResponseHolders {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHolders) Set(val *GetWeb3CollectionInsightResponseHolders) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHolders) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHolders) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseHolders(val *GetWeb3CollectionInsightResponseHolders) *NullableGetWeb3CollectionInsightResponseHolders {
+	return &NullableGetWeb3CollectionInsightResponseHolders{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHolders) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHolders) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionInsightResponseHoldersDistribution struct for GetWeb3CollectionInsightResponseHoldersDistribution
+type GetWeb3CollectionInsightResponseHoldersDistribution struct {
+	Bucket string `json:"bucket"`
+	Wallets float32 `json:"wallets"`
+}
+
+// NewGetWeb3CollectionInsightResponseHoldersDistribution instantiates a new GetWeb3CollectionInsightResponseHoldersDistribution object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseHoldersDistribution(bucket string, wallets float32) *GetWeb3CollectionInsightResponseHoldersDistribution {
+	this := GetWeb3CollectionInsightResponseHoldersDistribution{}
+	this.Bucket = bucket
+	this.Wallets = wallets
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseHoldersDistributionWithDefaults instantiates a new GetWeb3CollectionInsightResponseHoldersDistribution object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseHoldersDistributionWithDefaults() *GetWeb3CollectionInsightResponseHoldersDistribution {
+	this := GetWeb3CollectionInsightResponseHoldersDistribution{}
+	return &this
+}
+
+// GetBucket returns the Bucket field value
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) GetBucket() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Bucket
+}
+
+// GetBucketOk returns a tuple with the Bucket field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) GetBucketOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Bucket, true
+}
+
+// SetBucket sets field value
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) SetBucket(v string) {
+	o.Bucket = v
+}
+
+// GetWallets returns the Wallets field value
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) GetWallets() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Wallets
+}
+
+// GetWalletsOk returns a tuple with the Wallets field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) GetWalletsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Wallets, true
+}
+
+// SetWallets sets field value
+func (o *GetWeb3CollectionInsightResponseHoldersDistribution) SetWallets(v float32) {
+	o.Wallets = v
+}
+
+func (o GetWeb3CollectionInsightResponseHoldersDistribution) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bucket"] = o.Bucket
+	}
+	if true {
+		toSerialize["wallets"] = o.Wallets
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseHoldersDistribution struct {
+	value *GetWeb3CollectionInsightResponseHoldersDistribution
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersDistribution) Get() *GetWeb3CollectionInsightResponseHoldersDistribution {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersDistribution) Set(val *GetWeb3CollectionInsightResponseHoldersDistribution) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersDistribution) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersDistribution) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseHoldersDistribution(val *GetWeb3CollectionInsightResponseHoldersDistribution) *NullableGetWeb3CollectionInsightResponseHoldersDistribution {
+	return &NullableGetWeb3CollectionInsightResponseHoldersDistribution{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersDistribution) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersDistribution) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionInsightResponseHoldersTop struct for GetWeb3CollectionInsightResponseHoldersTop
+type GetWeb3CollectionInsightResponseHoldersTop struct {
+	Address string `json:"address"`
+	Tokens float32 `json:"tokens"`
+}
+
+// NewGetWeb3CollectionInsightResponseHoldersTop instantiates a new GetWeb3CollectionInsightResponseHoldersTop object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseHoldersTop(address string, tokens float32) *GetWeb3CollectionInsightResponseHoldersTop {
+	this := GetWeb3CollectionInsightResponseHoldersTop{}
+	this.Address = address
+	this.Tokens = tokens
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseHoldersTopWithDefaults instantiates a new GetWeb3CollectionInsightResponseHoldersTop object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseHoldersTopWithDefaults() *GetWeb3CollectionInsightResponseHoldersTop {
+	this := GetWeb3CollectionInsightResponseHoldersTop{}
+	return &this
+}
+
+// GetAddress returns the Address field value
+func (o *GetWeb3CollectionInsightResponseHoldersTop) GetAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHoldersTop) GetAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Address, true
+}
+
+// SetAddress sets field value
+func (o *GetWeb3CollectionInsightResponseHoldersTop) SetAddress(v string) {
+	o.Address = v
+}
+
+// GetTokens returns the Tokens field value
+func (o *GetWeb3CollectionInsightResponseHoldersTop) GetTokens() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Tokens
+}
+
+// GetTokensOk returns a tuple with the Tokens field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseHoldersTop) GetTokensOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tokens, true
+}
+
+// SetTokens sets field value
+func (o *GetWeb3CollectionInsightResponseHoldersTop) SetTokens(v float32) {
+	o.Tokens = v
+}
+
+func (o GetWeb3CollectionInsightResponseHoldersTop) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["address"] = o.Address
+	}
+	if true {
+		toSerialize["tokens"] = o.Tokens
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseHoldersTop struct {
+	value *GetWeb3CollectionInsightResponseHoldersTop
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersTop) Get() *GetWeb3CollectionInsightResponseHoldersTop {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersTop) Set(val *GetWeb3CollectionInsightResponseHoldersTop) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersTop) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersTop) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseHoldersTop(val *GetWeb3CollectionInsightResponseHoldersTop) *NullableGetWeb3CollectionInsightResponseHoldersTop {
+	return &NullableGetWeb3CollectionInsightResponseHoldersTop{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseHoldersTop) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseHoldersTop) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionInsightResponseStats struct for GetWeb3CollectionInsightResponseStats
+type GetWeb3CollectionInsightResponseStats struct {
+	Sales30d float32 `json:"sales30d"`
+	Volume30dWei string `json:"volume30dWei"`
+	AvgSale30dWei NullableString `json:"avgSale30dWei,omitempty"`
+	LastSale NullableGetWeb3CollectionInsightResponseStatsLastSale `json:"lastSale,omitempty"`
+}
+
+// NewGetWeb3CollectionInsightResponseStats instantiates a new GetWeb3CollectionInsightResponseStats object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseStats(sales30d float32, volume30dWei string) *GetWeb3CollectionInsightResponseStats {
+	this := GetWeb3CollectionInsightResponseStats{}
+	this.Sales30d = sales30d
+	this.Volume30dWei = volume30dWei
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseStatsWithDefaults instantiates a new GetWeb3CollectionInsightResponseStats object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseStatsWithDefaults() *GetWeb3CollectionInsightResponseStats {
+	this := GetWeb3CollectionInsightResponseStats{}
+	return &this
+}
+
+// GetSales30d returns the Sales30d field value
+func (o *GetWeb3CollectionInsightResponseStats) GetSales30d() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Sales30d
+}
+
+// GetSales30dOk returns a tuple with the Sales30d field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseStats) GetSales30dOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sales30d, true
+}
+
+// SetSales30d sets field value
+func (o *GetWeb3CollectionInsightResponseStats) SetSales30d(v float32) {
+	o.Sales30d = v
+}
+
+// GetVolume30dWei returns the Volume30dWei field value
+func (o *GetWeb3CollectionInsightResponseStats) GetVolume30dWei() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Volume30dWei
+}
+
+// GetVolume30dWeiOk returns a tuple with the Volume30dWei field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseStats) GetVolume30dWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Volume30dWei, true
+}
+
+// SetVolume30dWei sets field value
+func (o *GetWeb3CollectionInsightResponseStats) SetVolume30dWei(v string) {
+	o.Volume30dWei = v
+}
+
+// GetAvgSale30dWei returns the AvgSale30dWei field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseStats) GetAvgSale30dWei() string {
+	if o == nil || o.AvgSale30dWei.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AvgSale30dWei.Get()
+}
+
+// GetAvgSale30dWeiOk returns a tuple with the AvgSale30dWei field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseStats) GetAvgSale30dWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AvgSale30dWei.Get(), o.AvgSale30dWei.IsSet()
+}
+
+// HasAvgSale30dWei returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseStats) HasAvgSale30dWei() bool {
+	if o != nil && o.AvgSale30dWei.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgSale30dWei gets a reference to the given NullableString and assigns it to the AvgSale30dWei field.
+func (o *GetWeb3CollectionInsightResponseStats) SetAvgSale30dWei(v string) {
+	o.AvgSale30dWei.Set(&v)
+}
+// SetAvgSale30dWeiNil sets the value for AvgSale30dWei to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseStats) SetAvgSale30dWeiNil() {
+	o.AvgSale30dWei.Set(nil)
+}
+
+// UnsetAvgSale30dWei ensures that no value is present for AvgSale30dWei, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseStats) UnsetAvgSale30dWei() {
+	o.AvgSale30dWei.Unset()
+}
+
+// GetLastSale returns the LastSale field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseStats) GetLastSale() GetWeb3CollectionInsightResponseStatsLastSale {
+	if o == nil || o.LastSale.Get() == nil {
+		var ret GetWeb3CollectionInsightResponseStatsLastSale
+		return ret
+	}
+	return *o.LastSale.Get()
+}
+
+// GetLastSaleOk returns a tuple with the LastSale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseStats) GetLastSaleOk() (*GetWeb3CollectionInsightResponseStatsLastSale, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastSale.Get(), o.LastSale.IsSet()
+}
+
+// HasLastSale returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseStats) HasLastSale() bool {
+	if o != nil && o.LastSale.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastSale gets a reference to the given NullableGetWeb3CollectionInsightResponseStatsLastSale and assigns it to the LastSale field.
+func (o *GetWeb3CollectionInsightResponseStats) SetLastSale(v GetWeb3CollectionInsightResponseStatsLastSale) {
+	o.LastSale.Set(&v)
+}
+// SetLastSaleNil sets the value for LastSale to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseStats) SetLastSaleNil() {
+	o.LastSale.Set(nil)
+}
+
+// UnsetLastSale ensures that no value is present for LastSale, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseStats) UnsetLastSale() {
+	o.LastSale.Unset()
+}
+
+func (o GetWeb3CollectionInsightResponseStats) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sales30d"] = o.Sales30d
+	}
+	if true {
+		toSerialize["volume30dWei"] = o.Volume30dWei
+	}
+	if o.AvgSale30dWei.IsSet() {
+		toSerialize["avgSale30dWei"] = o.AvgSale30dWei.Get()
+	}
+	if o.LastSale.IsSet() {
+		toSerialize["lastSale"] = o.LastSale.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseStats struct {
+	value *GetWeb3CollectionInsightResponseStats
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStats) Get() *GetWeb3CollectionInsightResponseStats {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStats) Set(val *GetWeb3CollectionInsightResponseStats) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStats) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStats) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseStats(val *GetWeb3CollectionInsightResponseStats) *NullableGetWeb3CollectionInsightResponseStats {
+	return &NullableGetWeb3CollectionInsightResponseStats{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStats) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStats) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionInsightResponseStatsLastSale struct for GetWeb3CollectionInsightResponseStatsLastSale
+type GetWeb3CollectionInsightResponseStatsLastSale struct {
+	PriceWei string `json:"priceWei"`
+	At NullableString `json:"at,omitempty"`
+	TokenId string `json:"tokenId"`
+}
+
+// NewGetWeb3CollectionInsightResponseStatsLastSale instantiates a new GetWeb3CollectionInsightResponseStatsLastSale object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseStatsLastSale(priceWei string, tokenId string) *GetWeb3CollectionInsightResponseStatsLastSale {
+	this := GetWeb3CollectionInsightResponseStatsLastSale{}
+	this.PriceWei = priceWei
+	this.TokenId = tokenId
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseStatsLastSaleWithDefaults instantiates a new GetWeb3CollectionInsightResponseStatsLastSale object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseStatsLastSaleWithDefaults() *GetWeb3CollectionInsightResponseStatsLastSale {
+	this := GetWeb3CollectionInsightResponseStatsLastSale{}
+	return &this
+}
+
+// GetPriceWei returns the PriceWei field value
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetPriceWei() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PriceWei
+}
+
+// GetPriceWeiOk returns a tuple with the PriceWei field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetPriceWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceWei, true
+}
+
+// SetPriceWei sets field value
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) SetPriceWei(v string) {
+	o.PriceWei = v
+}
+
+// GetAt returns the At field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetAt() string {
+	if o == nil || o.At.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.At.Get()
+}
+
+// GetAtOk returns a tuple with the At field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.At.Get(), o.At.IsSet()
+}
+
+// HasAt returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) HasAt() bool {
+	if o != nil && o.At.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAt gets a reference to the given NullableString and assigns it to the At field.
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) SetAt(v string) {
+	o.At.Set(&v)
+}
+// SetAtNil sets the value for At to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) SetAtNil() {
+	o.At.Set(nil)
+}
+
+// UnsetAt ensures that no value is present for At, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) UnsetAt() {
+	o.At.Unset()
+}
+
+// GetTokenId returns the TokenId field value
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetTokenId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TokenId
+}
+
+// GetTokenIdOk returns a tuple with the TokenId field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) GetTokenIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TokenId, true
+}
+
+// SetTokenId sets field value
+func (o *GetWeb3CollectionInsightResponseStatsLastSale) SetTokenId(v string) {
+	o.TokenId = v
+}
+
+func (o GetWeb3CollectionInsightResponseStatsLastSale) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["priceWei"] = o.PriceWei
+	}
+	if o.At.IsSet() {
+		toSerialize["at"] = o.At.Get()
+	}
+	if true {
+		toSerialize["tokenId"] = o.TokenId
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseStatsLastSale struct {
+	value *GetWeb3CollectionInsightResponseStatsLastSale
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStatsLastSale) Get() *GetWeb3CollectionInsightResponseStatsLastSale {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStatsLastSale) Set(val *GetWeb3CollectionInsightResponseStatsLastSale) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStatsLastSale) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStatsLastSale) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseStatsLastSale(val *GetWeb3CollectionInsightResponseStatsLastSale) *NullableGetWeb3CollectionInsightResponseStatsLastSale {
+	return &NullableGetWeb3CollectionInsightResponseStatsLastSale{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseStatsLastSale) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseStatsLastSale) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionInsightResponseTransfers struct for GetWeb3CollectionInsightResponseTransfers
+type GetWeb3CollectionInsightResponseTransfers struct {
+	Kind string `json:"kind"`
+	TokenId string `json:"tokenId"`
+	From string `json:"from"`
+	To string `json:"to"`
+	TxHash string `json:"txHash"`
+	At NullableString `json:"at,omitempty"`
+	// Wei (EVM) or lamports (Solana), for a sale or listing.
+	PriceWei NullableString `json:"priceWei,omitempty"`
+	Marketplace NullableString `json:"marketplace,omitempty"`
+}
+
+// NewGetWeb3CollectionInsightResponseTransfers instantiates a new GetWeb3CollectionInsightResponseTransfers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionInsightResponseTransfers(kind string, tokenId string, from string, to string, txHash string) *GetWeb3CollectionInsightResponseTransfers {
+	this := GetWeb3CollectionInsightResponseTransfers{}
+	this.Kind = kind
+	this.TokenId = tokenId
+	this.From = from
+	this.To = to
+	this.TxHash = txHash
+	return &this
+}
+
+// NewGetWeb3CollectionInsightResponseTransfersWithDefaults instantiates a new GetWeb3CollectionInsightResponseTransfers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionInsightResponseTransfersWithDefaults() *GetWeb3CollectionInsightResponseTransfers {
+	this := GetWeb3CollectionInsightResponseTransfers{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetWeb3CollectionInsightResponseTransfers) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetWeb3CollectionInsightResponseTransfers) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetTokenId returns the TokenId field value
+func (o *GetWeb3CollectionInsightResponseTransfers) GetTokenId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TokenId
+}
+
+// GetTokenIdOk returns a tuple with the TokenId field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) GetTokenIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TokenId, true
+}
+
+// SetTokenId sets field value
+func (o *GetWeb3CollectionInsightResponseTransfers) SetTokenId(v string) {
+	o.TokenId = v
+}
+
+// GetFrom returns the From field value
+func (o *GetWeb3CollectionInsightResponseTransfers) GetFrom() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.From
+}
+
+// GetFromOk returns a tuple with the From field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) GetFromOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.From, true
+}
+
+// SetFrom sets field value
+func (o *GetWeb3CollectionInsightResponseTransfers) SetFrom(v string) {
+	o.From = v
+}
+
+// GetTo returns the To field value
+func (o *GetWeb3CollectionInsightResponseTransfers) GetTo() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.To
+}
+
+// GetToOk returns a tuple with the To field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) GetToOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.To, true
+}
+
+// SetTo sets field value
+func (o *GetWeb3CollectionInsightResponseTransfers) SetTo(v string) {
+	o.To = v
+}
+
+// GetTxHash returns the TxHash field value
+func (o *GetWeb3CollectionInsightResponseTransfers) GetTxHash() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TxHash
+}
+
+// GetTxHashOk returns a tuple with the TxHash field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) GetTxHashOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TxHash, true
+}
+
+// SetTxHash sets field value
+func (o *GetWeb3CollectionInsightResponseTransfers) SetTxHash(v string) {
+	o.TxHash = v
+}
+
+// GetAt returns the At field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseTransfers) GetAt() string {
+	if o == nil || o.At.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.At.Get()
+}
+
+// GetAtOk returns a tuple with the At field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseTransfers) GetAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.At.Get(), o.At.IsSet()
+}
+
+// HasAt returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) HasAt() bool {
+	if o != nil && o.At.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAt gets a reference to the given NullableString and assigns it to the At field.
+func (o *GetWeb3CollectionInsightResponseTransfers) SetAt(v string) {
+	o.At.Set(&v)
+}
+// SetAtNil sets the value for At to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) SetAtNil() {
+	o.At.Set(nil)
+}
+
+// UnsetAt ensures that no value is present for At, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) UnsetAt() {
+	o.At.Unset()
+}
+
+// GetPriceWei returns the PriceWei field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseTransfers) GetPriceWei() string {
+	if o == nil || o.PriceWei.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PriceWei.Get()
+}
+
+// GetPriceWeiOk returns a tuple with the PriceWei field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseTransfers) GetPriceWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PriceWei.Get(), o.PriceWei.IsSet()
+}
+
+// HasPriceWei returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) HasPriceWei() bool {
+	if o != nil && o.PriceWei.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceWei gets a reference to the given NullableString and assigns it to the PriceWei field.
+func (o *GetWeb3CollectionInsightResponseTransfers) SetPriceWei(v string) {
+	o.PriceWei.Set(&v)
+}
+// SetPriceWeiNil sets the value for PriceWei to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) SetPriceWeiNil() {
+	o.PriceWei.Set(nil)
+}
+
+// UnsetPriceWei ensures that no value is present for PriceWei, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) UnsetPriceWei() {
+	o.PriceWei.Unset()
+}
+
+// GetMarketplace returns the Marketplace field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionInsightResponseTransfers) GetMarketplace() string {
+	if o == nil || o.Marketplace.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Marketplace.Get()
+}
+
+// GetMarketplaceOk returns a tuple with the Marketplace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionInsightResponseTransfers) GetMarketplaceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Marketplace.Get(), o.Marketplace.IsSet()
+}
+
+// HasMarketplace returns a boolean if a field has been set.
+func (o *GetWeb3CollectionInsightResponseTransfers) HasMarketplace() bool {
+	if o != nil && o.Marketplace.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketplace gets a reference to the given NullableString and assigns it to the Marketplace field.
+func (o *GetWeb3CollectionInsightResponseTransfers) SetMarketplace(v string) {
+	o.Marketplace.Set(&v)
+}
+// SetMarketplaceNil sets the value for Marketplace to be an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) SetMarketplaceNil() {
+	o.Marketplace.Set(nil)
+}
+
+// UnsetMarketplace ensures that no value is present for Marketplace, not even an explicit nil
+func (o *GetWeb3CollectionInsightResponseTransfers) UnsetMarketplace() {
+	o.Marketplace.Unset()
+}
+
+func (o GetWeb3CollectionInsightResponseTransfers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["tokenId"] = o.TokenId
+	}
+	if true {
+		toSerialize["from"] = o.From
+	}
+	if true {
+		toSerialize["to"] = o.To
+	}
+	if true {
+		toSerialize["txHash"] = o.TxHash
+	}
+	if o.At.IsSet() {
+		toSerialize["at"] = o.At.Get()
+	}
+	if o.PriceWei.IsSet() {
+		toSerialize["priceWei"] = o.PriceWei.Get()
+	}
+	if o.Marketplace.IsSet() {
+		toSerialize["marketplace"] = o.Marketplace.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionInsightResponseTransfers struct {
+	value *GetWeb3CollectionInsightResponseTransfers
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionInsightResponseTransfers) Get() *GetWeb3CollectionInsightResponseTransfers {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseTransfers) Set(val *GetWeb3CollectionInsightResponseTransfers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionInsightResponseTransfers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseTransfers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionInsightResponseTransfers(val *GetWeb3CollectionInsightResponseTransfers) *NullableGetWeb3CollectionInsightResponseTransfers {
+	return &NullableGetWeb3CollectionInsightResponseTransfers{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionInsightResponseTransfers) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionInsightResponseTransfers) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionItemResponse struct for GetWeb3CollectionItemResponse
+type GetWeb3CollectionItemResponse struct {
+	Items []GetWeb3CollectionItemResponseItems `json:"items"`
+	// Matching tokens in the whole collection; null when served from a provider page.
+	Total NullableFloat32 `json:"total,omitempty"`
+	NextOffset NullableFloat32 `json:"nextOffset,omitempty"`
+	Indexed GetWeb3CollectionItemResponseIndexed `json:"indexed"`
+	// Provider paging, only while the collection is not indexed yet.
+	PageKey NullableString `json:"pageKey,omitempty"`
+}
+
+// NewGetWeb3CollectionItemResponse instantiates a new GetWeb3CollectionItemResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionItemResponse(items []GetWeb3CollectionItemResponseItems, indexed GetWeb3CollectionItemResponseIndexed) *GetWeb3CollectionItemResponse {
+	this := GetWeb3CollectionItemResponse{}
+	this.Items = items
+	this.Indexed = indexed
+	return &this
+}
+
+// NewGetWeb3CollectionItemResponseWithDefaults instantiates a new GetWeb3CollectionItemResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionItemResponseWithDefaults() *GetWeb3CollectionItemResponse {
+	this := GetWeb3CollectionItemResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *GetWeb3CollectionItemResponse) GetItems() []GetWeb3CollectionItemResponseItems {
+	if o == nil {
+		var ret []GetWeb3CollectionItemResponseItems
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponse) GetItemsOk() ([]GetWeb3CollectionItemResponseItems, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *GetWeb3CollectionItemResponse) SetItems(v []GetWeb3CollectionItemResponseItems) {
+	o.Items = v
+}
+
+// GetTotal returns the Total field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponse) GetTotal() float32 {
+	if o == nil || o.Total.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Total.Get()
+}
+
+// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponse) GetTotalOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Total.Get(), o.Total.IsSet()
+}
+
+// HasTotal returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponse) HasTotal() bool {
+	if o != nil && o.Total.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTotal gets a reference to the given NullableFloat32 and assigns it to the Total field.
+func (o *GetWeb3CollectionItemResponse) SetTotal(v float32) {
+	o.Total.Set(&v)
+}
+// SetTotalNil sets the value for Total to be an explicit nil
+func (o *GetWeb3CollectionItemResponse) SetTotalNil() {
+	o.Total.Set(nil)
+}
+
+// UnsetTotal ensures that no value is present for Total, not even an explicit nil
+func (o *GetWeb3CollectionItemResponse) UnsetTotal() {
+	o.Total.Unset()
+}
+
+// GetNextOffset returns the NextOffset field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponse) GetNextOffset() float32 {
+	if o == nil || o.NextOffset.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.NextOffset.Get()
+}
+
+// GetNextOffsetOk returns a tuple with the NextOffset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponse) GetNextOffsetOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NextOffset.Get(), o.NextOffset.IsSet()
+}
+
+// HasNextOffset returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponse) HasNextOffset() bool {
+	if o != nil && o.NextOffset.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextOffset gets a reference to the given NullableFloat32 and assigns it to the NextOffset field.
+func (o *GetWeb3CollectionItemResponse) SetNextOffset(v float32) {
+	o.NextOffset.Set(&v)
+}
+// SetNextOffsetNil sets the value for NextOffset to be an explicit nil
+func (o *GetWeb3CollectionItemResponse) SetNextOffsetNil() {
+	o.NextOffset.Set(nil)
+}
+
+// UnsetNextOffset ensures that no value is present for NextOffset, not even an explicit nil
+func (o *GetWeb3CollectionItemResponse) UnsetNextOffset() {
+	o.NextOffset.Unset()
+}
+
+// GetIndexed returns the Indexed field value
+func (o *GetWeb3CollectionItemResponse) GetIndexed() GetWeb3CollectionItemResponseIndexed {
+	if o == nil {
+		var ret GetWeb3CollectionItemResponseIndexed
+		return ret
+	}
+
+	return o.Indexed
+}
+
+// GetIndexedOk returns a tuple with the Indexed field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponse) GetIndexedOk() (*GetWeb3CollectionItemResponseIndexed, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Indexed, true
+}
+
+// SetIndexed sets field value
+func (o *GetWeb3CollectionItemResponse) SetIndexed(v GetWeb3CollectionItemResponseIndexed) {
+	o.Indexed = v
+}
+
+// GetPageKey returns the PageKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponse) GetPageKey() string {
+	if o == nil || o.PageKey.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PageKey.Get()
+}
+
+// GetPageKeyOk returns a tuple with the PageKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponse) GetPageKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PageKey.Get(), o.PageKey.IsSet()
+}
+
+// HasPageKey returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponse) HasPageKey() bool {
+	if o != nil && o.PageKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPageKey gets a reference to the given NullableString and assigns it to the PageKey field.
+func (o *GetWeb3CollectionItemResponse) SetPageKey(v string) {
+	o.PageKey.Set(&v)
+}
+// SetPageKeyNil sets the value for PageKey to be an explicit nil
+func (o *GetWeb3CollectionItemResponse) SetPageKeyNil() {
+	o.PageKey.Set(nil)
+}
+
+// UnsetPageKey ensures that no value is present for PageKey, not even an explicit nil
+func (o *GetWeb3CollectionItemResponse) UnsetPageKey() {
+	o.PageKey.Unset()
+}
+
+func (o GetWeb3CollectionItemResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["items"] = o.Items
+	}
+	if o.Total.IsSet() {
+		toSerialize["total"] = o.Total.Get()
+	}
+	if o.NextOffset.IsSet() {
+		toSerialize["nextOffset"] = o.NextOffset.Get()
+	}
+	if true {
+		toSerialize["indexed"] = o.Indexed
+	}
+	if o.PageKey.IsSet() {
+		toSerialize["pageKey"] = o.PageKey.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionItemResponse struct {
+	value *GetWeb3CollectionItemResponse
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionItemResponse) Get() *GetWeb3CollectionItemResponse {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionItemResponse) Set(val *GetWeb3CollectionItemResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionItemResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionItemResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionItemResponse(val *GetWeb3CollectionItemResponse) *NullableGetWeb3CollectionItemResponse {
+	return &NullableGetWeb3CollectionItemResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionItemResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionItemResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionItemResponseIndexed struct for GetWeb3CollectionItemResponseIndexed
+type GetWeb3CollectionItemResponseIndexed struct {
+	Status string `json:"status"`
+	Count float32 `json:"count"`
+}
+
+// NewGetWeb3CollectionItemResponseIndexed instantiates a new GetWeb3CollectionItemResponseIndexed object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionItemResponseIndexed(status string, count float32) *GetWeb3CollectionItemResponseIndexed {
+	this := GetWeb3CollectionItemResponseIndexed{}
+	this.Status = status
+	this.Count = count
+	return &this
+}
+
+// NewGetWeb3CollectionItemResponseIndexedWithDefaults instantiates a new GetWeb3CollectionItemResponseIndexed object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionItemResponseIndexedWithDefaults() *GetWeb3CollectionItemResponseIndexed {
+	this := GetWeb3CollectionItemResponseIndexed{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetWeb3CollectionItemResponseIndexed) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseIndexed) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWeb3CollectionItemResponseIndexed) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetCount returns the Count field value
+func (o *GetWeb3CollectionItemResponseIndexed) GetCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseIndexed) GetCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *GetWeb3CollectionItemResponseIndexed) SetCount(v float32) {
+	o.Count = v
+}
+
+func (o GetWeb3CollectionItemResponseIndexed) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["count"] = o.Count
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionItemResponseIndexed struct {
+	value *GetWeb3CollectionItemResponseIndexed
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionItemResponseIndexed) Get() *GetWeb3CollectionItemResponseIndexed {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionItemResponseIndexed) Set(val *GetWeb3CollectionItemResponseIndexed) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionItemResponseIndexed) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionItemResponseIndexed) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionItemResponseIndexed(val *GetWeb3CollectionItemResponseIndexed) *NullableGetWeb3CollectionItemResponseIndexed {
+	return &NullableGetWeb3CollectionItemResponseIndexed{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionItemResponseIndexed) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionItemResponseIndexed) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionItemResponseItems struct for GetWeb3CollectionItemResponseItems
+type GetWeb3CollectionItemResponseItems struct {
+	TokenId string `json:"tokenId"`
+	Name NullableString `json:"name,omitempty"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	ThumbUrl NullableString `json:"thumbUrl,omitempty"`
+	Traits []map[string]interface{} `json:"traits"`
+	Listing NullableGetWeb3CollectionItemResponseItemsListing `json:"listing,omitempty"`
+	RarityRank NullableFloat32 `json:"rarityRank,omitempty"`
+}
+
+// NewGetWeb3CollectionItemResponseItems instantiates a new GetWeb3CollectionItemResponseItems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionItemResponseItems(tokenId string, traits []map[string]interface{}) *GetWeb3CollectionItemResponseItems {
+	this := GetWeb3CollectionItemResponseItems{}
+	this.TokenId = tokenId
+	this.Traits = traits
+	return &this
+}
+
+// NewGetWeb3CollectionItemResponseItemsWithDefaults instantiates a new GetWeb3CollectionItemResponseItems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionItemResponseItemsWithDefaults() *GetWeb3CollectionItemResponseItems {
+	this := GetWeb3CollectionItemResponseItems{}
+	return &this
+}
+
+// GetTokenId returns the TokenId field value
+func (o *GetWeb3CollectionItemResponseItems) GetTokenId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TokenId
+}
+
+// GetTokenIdOk returns a tuple with the TokenId field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseItems) GetTokenIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TokenId, true
+}
+
+// SetTokenId sets field value
+func (o *GetWeb3CollectionItemResponseItems) SetTokenId(v string) {
+	o.TokenId = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponseItems) GetName() string {
+	if o == nil || o.Name.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponseItems) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponseItems) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *GetWeb3CollectionItemResponseItems) SetName(v string) {
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponseItems) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponseItems) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponseItems) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetWeb3CollectionItemResponseItems) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetThumbUrl returns the ThumbUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponseItems) GetThumbUrl() string {
+	if o == nil || o.ThumbUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ThumbUrl.Get()
+}
+
+// GetThumbUrlOk returns a tuple with the ThumbUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponseItems) GetThumbUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ThumbUrl.Get(), o.ThumbUrl.IsSet()
+}
+
+// HasThumbUrl returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponseItems) HasThumbUrl() bool {
+	if o != nil && o.ThumbUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThumbUrl gets a reference to the given NullableString and assigns it to the ThumbUrl field.
+func (o *GetWeb3CollectionItemResponseItems) SetThumbUrl(v string) {
+	o.ThumbUrl.Set(&v)
+}
+// SetThumbUrlNil sets the value for ThumbUrl to be an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) SetThumbUrlNil() {
+	o.ThumbUrl.Set(nil)
+}
+
+// UnsetThumbUrl ensures that no value is present for ThumbUrl, not even an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) UnsetThumbUrl() {
+	o.ThumbUrl.Unset()
+}
+
+// GetTraits returns the Traits field value
+func (o *GetWeb3CollectionItemResponseItems) GetTraits() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Traits
+}
+
+// GetTraitsOk returns a tuple with the Traits field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseItems) GetTraitsOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Traits, true
+}
+
+// SetTraits sets field value
+func (o *GetWeb3CollectionItemResponseItems) SetTraits(v []map[string]interface{}) {
+	o.Traits = v
+}
+
+// GetListing returns the Listing field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponseItems) GetListing() GetWeb3CollectionItemResponseItemsListing {
+	if o == nil || o.Listing.Get() == nil {
+		var ret GetWeb3CollectionItemResponseItemsListing
+		return ret
+	}
+	return *o.Listing.Get()
+}
+
+// GetListingOk returns a tuple with the Listing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponseItems) GetListingOk() (*GetWeb3CollectionItemResponseItemsListing, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Listing.Get(), o.Listing.IsSet()
+}
+
+// HasListing returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponseItems) HasListing() bool {
+	if o != nil && o.Listing.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListing gets a reference to the given NullableGetWeb3CollectionItemResponseItemsListing and assigns it to the Listing field.
+func (o *GetWeb3CollectionItemResponseItems) SetListing(v GetWeb3CollectionItemResponseItemsListing) {
+	o.Listing.Set(&v)
+}
+// SetListingNil sets the value for Listing to be an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) SetListingNil() {
+	o.Listing.Set(nil)
+}
+
+// UnsetListing ensures that no value is present for Listing, not even an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) UnsetListing() {
+	o.Listing.Unset()
+}
+
+// GetRarityRank returns the RarityRank field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionItemResponseItems) GetRarityRank() float32 {
+	if o == nil || o.RarityRank.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.RarityRank.Get()
+}
+
+// GetRarityRankOk returns a tuple with the RarityRank field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionItemResponseItems) GetRarityRankOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RarityRank.Get(), o.RarityRank.IsSet()
+}
+
+// HasRarityRank returns a boolean if a field has been set.
+func (o *GetWeb3CollectionItemResponseItems) HasRarityRank() bool {
+	if o != nil && o.RarityRank.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRarityRank gets a reference to the given NullableFloat32 and assigns it to the RarityRank field.
+func (o *GetWeb3CollectionItemResponseItems) SetRarityRank(v float32) {
+	o.RarityRank.Set(&v)
+}
+// SetRarityRankNil sets the value for RarityRank to be an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) SetRarityRankNil() {
+	o.RarityRank.Set(nil)
+}
+
+// UnsetRarityRank ensures that no value is present for RarityRank, not even an explicit nil
+func (o *GetWeb3CollectionItemResponseItems) UnsetRarityRank() {
+	o.RarityRank.Unset()
+}
+
+func (o GetWeb3CollectionItemResponseItems) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["tokenId"] = o.TokenId
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.ThumbUrl.IsSet() {
+		toSerialize["thumbUrl"] = o.ThumbUrl.Get()
+	}
+	if true {
+		toSerialize["traits"] = o.Traits
+	}
+	if o.Listing.IsSet() {
+		toSerialize["listing"] = o.Listing.Get()
+	}
+	if o.RarityRank.IsSet() {
+		toSerialize["rarityRank"] = o.RarityRank.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionItemResponseItems struct {
+	value *GetWeb3CollectionItemResponseItems
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionItemResponseItems) Get() *GetWeb3CollectionItemResponseItems {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItems) Set(val *GetWeb3CollectionItemResponseItems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionItemResponseItems) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionItemResponseItems(val *GetWeb3CollectionItemResponseItems) *NullableGetWeb3CollectionItemResponseItems {
+	return &NullableGetWeb3CollectionItemResponseItems{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionItemResponseItems) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItems) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionItemResponseItemsListing struct for GetWeb3CollectionItemResponseItemsListing
+type GetWeb3CollectionItemResponseItemsListing struct {
+	OrderHash string `json:"orderHash"`
+	PriceWei string `json:"priceWei"`
+}
+
+// NewGetWeb3CollectionItemResponseItemsListing instantiates a new GetWeb3CollectionItemResponseItemsListing object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionItemResponseItemsListing(orderHash string, priceWei string) *GetWeb3CollectionItemResponseItemsListing {
+	this := GetWeb3CollectionItemResponseItemsListing{}
+	this.OrderHash = orderHash
+	this.PriceWei = priceWei
+	return &this
+}
+
+// NewGetWeb3CollectionItemResponseItemsListingWithDefaults instantiates a new GetWeb3CollectionItemResponseItemsListing object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionItemResponseItemsListingWithDefaults() *GetWeb3CollectionItemResponseItemsListing {
+	this := GetWeb3CollectionItemResponseItemsListing{}
+	return &this
+}
+
+// GetOrderHash returns the OrderHash field value
+func (o *GetWeb3CollectionItemResponseItemsListing) GetOrderHash() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderHash
+}
+
+// GetOrderHashOk returns a tuple with the OrderHash field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseItemsListing) GetOrderHashOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderHash, true
+}
+
+// SetOrderHash sets field value
+func (o *GetWeb3CollectionItemResponseItemsListing) SetOrderHash(v string) {
+	o.OrderHash = v
+}
+
+// GetPriceWei returns the PriceWei field value
+func (o *GetWeb3CollectionItemResponseItemsListing) GetPriceWei() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PriceWei
+}
+
+// GetPriceWeiOk returns a tuple with the PriceWei field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionItemResponseItemsListing) GetPriceWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceWei, true
+}
+
+// SetPriceWei sets field value
+func (o *GetWeb3CollectionItemResponseItemsListing) SetPriceWei(v string) {
+	o.PriceWei = v
+}
+
+func (o GetWeb3CollectionItemResponseItemsListing) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["orderHash"] = o.OrderHash
+	}
+	if true {
+		toSerialize["priceWei"] = o.PriceWei
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionItemResponseItemsListing struct {
+	value *GetWeb3CollectionItemResponseItemsListing
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionItemResponseItemsListing) Get() *GetWeb3CollectionItemResponseItemsListing {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItemsListing) Set(val *GetWeb3CollectionItemResponseItemsListing) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionItemResponseItemsListing) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItemsListing) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionItemResponseItemsListing(val *GetWeb3CollectionItemResponseItemsListing) *NullableGetWeb3CollectionItemResponseItemsListing {
+	return &NullableGetWeb3CollectionItemResponseItemsListing{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionItemResponseItemsListing) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionItemResponseItemsListing) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3CollectionResponse struct for GetWeb3CollectionResponse
+type GetWeb3CollectionResponse struct {
+	Chain string `json:"chain"`
+	Contract string `json:"contract"`
+	Collection NullableGetWeb3CollectionResponseCollection `json:"collection,omitempty"`
+	Stats GetWeb3CollectionResponseStats `json:"stats"`
+}
+
+// NewGetWeb3CollectionResponse instantiates a new GetWeb3CollectionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3CollectionResponse(chain string, contract string, stats GetWeb3CollectionResponseStats) *GetWeb3CollectionResponse {
+	this := GetWeb3CollectionResponse{}
+	this.Chain = chain
+	this.Contract = contract
+	this.Stats = stats
+	return &this
+}
+
+// NewGetWeb3CollectionResponseWithDefaults instantiates a new GetWeb3CollectionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3CollectionResponseWithDefaults() *GetWeb3CollectionResponse {
+	this := GetWeb3CollectionResponse{}
+	return &this
+}
+
+// GetChain returns the Chain field value
+func (o *GetWeb3CollectionResponse) GetChain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Chain
+}
+
+// GetChainOk returns a tuple with the Chain field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionResponse) GetChainOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Chain, true
+}
+
+// SetChain sets field value
+func (o *GetWeb3CollectionResponse) SetChain(v string) {
+	o.Chain = v
+}
+
+// GetContract returns the Contract field value
+func (o *GetWeb3CollectionResponse) GetContract() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Contract
+}
+
+// GetContractOk returns a tuple with the Contract field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionResponse) GetContractOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Contract, true
+}
+
+// SetContract sets field value
+func (o *GetWeb3CollectionResponse) SetContract(v string) {
+	o.Contract = v
+}
+
+// GetCollection returns the Collection field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionResponse) GetCollection() GetWeb3CollectionResponseCollection {
+	if o == nil || o.Collection.Get() == nil {
+		var ret GetWeb3CollectionResponseCollection
+		return ret
+	}
+	return *o.Collection.Get()
+}
+
+// GetCollectionOk returns a tuple with the Collection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionResponse) GetCollectionOk() (*GetWeb3CollectionResponseCollection, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Collection.Get(), o.Collection.IsSet()
+}
+
+// HasCollection returns a boolean if a field has been set.
+func (o *GetWeb3CollectionResponse) HasCollection() bool {
+	if o != nil && o.Collection.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCollection gets a reference to the given NullableGetWeb3CollectionResponseCollection and assigns it to the Collection field.
+func (o *GetWeb3CollectionResponse) SetCollection(v GetWeb3CollectionResponseCollection) {
+	o.Collection.Set(&v)
+}
+// SetCollectionNil sets the value for Collection to be an explicit nil
+func (o *GetWeb3CollectionResponse) SetCollectionNil() {
+	o.Collection.Set(nil)
+}
+
+// UnsetCollection ensures that no value is present for Collection, not even an explicit nil
+func (o *GetWeb3CollectionResponse) UnsetCollection() {
+	o.Collection.Unset()
+}
+
+// GetStats returns the Stats field value
+func (o *GetWeb3CollectionResponse) GetStats() GetWeb3CollectionResponseStats {
+	if o == nil {
+		var ret GetWeb3CollectionResponseStats
+		return ret
+	}
+
+	return o.Stats
+}
+
+// GetStatsOk returns a tuple with the Stats field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionResponse) GetStatsOk() (*GetWeb3CollectionResponseStats, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Stats, true
+}
+
+// SetStats sets field value
+func (o *GetWeb3CollectionResponse) SetStats(v GetWeb3CollectionResponseStats) {
+	o.Stats = v
+}
+
+func (o GetWeb3CollectionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["chain"] = o.Chain
+	}
+	if true {
+		toSerialize["contract"] = o.Contract
+	}
+	if o.Collection.IsSet() {
+		toSerialize["collection"] = o.Collection.Get()
+	}
+	if true {
+		toSerialize["stats"] = o.Stats
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3CollectionResponse struct {
+	value *GetWeb3CollectionResponse
+	isSet bool
+}
+
+func (v NullableGetWeb3CollectionResponse) Get() *GetWeb3CollectionResponse {
+	return v.value
+}
+
+func (v *NullableGetWeb3CollectionResponse) Set(val *GetWeb3CollectionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3CollectionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3CollectionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3CollectionResponse(val *GetWeb3CollectionResponse) *NullableGetWeb3CollectionResponse {
+	return &NullableGetWeb3CollectionResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3CollectionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3CollectionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetWeb3CollectionResponseCollection struct for GetWeb3CollectionResponseCollection
 type GetWeb3CollectionResponseCollection struct {
 	Symbol NullableString `json:"symbol,omitempty"`
@@ -22,20 +2182,20 @@ type GetWeb3CollectionResponseCollection struct {
 	Description NullableString `json:"description,omitempty"`
 	Category NullableString `json:"category,omitempty"`
 	Slug NullableString `json:"slug,omitempty"`
-	HiddenAt NullableTime `json:"hiddenAt,omitempty"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Verified bool `json:"verified"`
+	HiddenAt NullableTime `json:"hiddenAt,omitempty"`
 	RefreshedAt time.Time `json:"refreshedAt"`
 	ExternalUrl NullableString `json:"externalUrl,omitempty"`
 	Chain string `json:"chain"`
 	Contract string `json:"contract"`
-	FirstSeenAt time.Time `json:"firstSeenAt"`
 	TokenType NullableString `json:"tokenType,omitempty"`
 	TotalSupply NullableString `json:"totalSupply,omitempty"`
 	FeaturedRank NullableFloat32 `json:"featuredRank,omitempty"`
+	FirstSeenAt time.Time `json:"firstSeenAt"`
 	BannerUrl NullableString `json:"bannerUrl,omitempty"`
 	Twitter NullableString `json:"twitter,omitempty"`
 	Discord NullableString `json:"discord,omitempty"`
-	Verified bool `json:"verified"`
 	DeployedBlock NullableFloat32 `json:"deployedBlock,omitempty"`
 	Collectors float32 `json:"collectors"`
 	IndexedAt NullableTime `json:"indexedAt,omitempty"`
@@ -53,13 +2213,13 @@ type GetWeb3CollectionResponseCollection struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetWeb3CollectionResponseCollection(refreshedAt time.Time, chain string, contract string, firstSeenAt time.Time, verified bool, collectors float32) *GetWeb3CollectionResponseCollection {
+func NewGetWeb3CollectionResponseCollection(verified bool, refreshedAt time.Time, chain string, contract string, firstSeenAt time.Time, collectors float32) *GetWeb3CollectionResponseCollection {
 	this := GetWeb3CollectionResponseCollection{}
+	this.Verified = verified
 	this.RefreshedAt = refreshedAt
 	this.Chain = chain
 	this.Contract = contract
 	this.FirstSeenAt = firstSeenAt
-	this.Verified = verified
 	this.Collectors = collectors
 	return &this
 }
@@ -282,48 +2442,6 @@ func (o *GetWeb3CollectionResponseCollection) UnsetSlug() {
 	o.Slug.Unset()
 }
 
-// GetHiddenAt returns the HiddenAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3CollectionResponseCollection) GetHiddenAt() time.Time {
-	if o == nil || o.HiddenAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.HiddenAt.Get()
-}
-
-// GetHiddenAtOk returns a tuple with the HiddenAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3CollectionResponseCollection) GetHiddenAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.HiddenAt.Get(), o.HiddenAt.IsSet()
-}
-
-// HasHiddenAt returns a boolean if a field has been set.
-func (o *GetWeb3CollectionResponseCollection) HasHiddenAt() bool {
-	if o != nil && o.HiddenAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHiddenAt gets a reference to the given NullableTime and assigns it to the HiddenAt field.
-func (o *GetWeb3CollectionResponseCollection) SetHiddenAt(v time.Time) {
-	o.HiddenAt.Set(&v)
-}
-// SetHiddenAtNil sets the value for HiddenAt to be an explicit nil
-func (o *GetWeb3CollectionResponseCollection) SetHiddenAtNil() {
-	o.HiddenAt.Set(nil)
-}
-
-// UnsetHiddenAt ensures that no value is present for HiddenAt, not even an explicit nil
-func (o *GetWeb3CollectionResponseCollection) UnsetHiddenAt() {
-	o.HiddenAt.Unset()
-}
-
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetWeb3CollectionResponseCollection) GetImageUrl() string {
 	if o == nil || o.ImageUrl.Get() == nil {
@@ -364,6 +2482,72 @@ func (o *GetWeb3CollectionResponseCollection) SetImageUrlNil() {
 // UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
 func (o *GetWeb3CollectionResponseCollection) UnsetImageUrl() {
 	o.ImageUrl.Unset()
+}
+
+// GetVerified returns the Verified field value
+func (o *GetWeb3CollectionResponseCollection) GetVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Verified
+}
+
+// GetVerifiedOk returns a tuple with the Verified field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionResponseCollection) GetVerifiedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Verified, true
+}
+
+// SetVerified sets field value
+func (o *GetWeb3CollectionResponseCollection) SetVerified(v bool) {
+	o.Verified = v
+}
+
+// GetHiddenAt returns the HiddenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3CollectionResponseCollection) GetHiddenAt() time.Time {
+	if o == nil || o.HiddenAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.HiddenAt.Get()
+}
+
+// GetHiddenAtOk returns a tuple with the HiddenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3CollectionResponseCollection) GetHiddenAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HiddenAt.Get(), o.HiddenAt.IsSet()
+}
+
+// HasHiddenAt returns a boolean if a field has been set.
+func (o *GetWeb3CollectionResponseCollection) HasHiddenAt() bool {
+	if o != nil && o.HiddenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHiddenAt gets a reference to the given NullableTime and assigns it to the HiddenAt field.
+func (o *GetWeb3CollectionResponseCollection) SetHiddenAt(v time.Time) {
+	o.HiddenAt.Set(&v)
+}
+// SetHiddenAtNil sets the value for HiddenAt to be an explicit nil
+func (o *GetWeb3CollectionResponseCollection) SetHiddenAtNil() {
+	o.HiddenAt.Set(nil)
+}
+
+// UnsetHiddenAt ensures that no value is present for HiddenAt, not even an explicit nil
+func (o *GetWeb3CollectionResponseCollection) UnsetHiddenAt() {
+	o.HiddenAt.Unset()
 }
 
 // GetRefreshedAt returns the RefreshedAt field value
@@ -478,30 +2662,6 @@ func (o *GetWeb3CollectionResponseCollection) GetContractOk() (*string, bool) {
 // SetContract sets field value
 func (o *GetWeb3CollectionResponseCollection) SetContract(v string) {
 	o.Contract = v
-}
-
-// GetFirstSeenAt returns the FirstSeenAt field value
-func (o *GetWeb3CollectionResponseCollection) GetFirstSeenAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.FirstSeenAt
-}
-
-// GetFirstSeenAtOk returns a tuple with the FirstSeenAt field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CollectionResponseCollection) GetFirstSeenAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.FirstSeenAt, true
-}
-
-// SetFirstSeenAt sets field value
-func (o *GetWeb3CollectionResponseCollection) SetFirstSeenAt(v time.Time) {
-	o.FirstSeenAt = v
 }
 
 // GetTokenType returns the TokenType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -630,6 +2790,30 @@ func (o *GetWeb3CollectionResponseCollection) UnsetFeaturedRank() {
 	o.FeaturedRank.Unset()
 }
 
+// GetFirstSeenAt returns the FirstSeenAt field value
+func (o *GetWeb3CollectionResponseCollection) GetFirstSeenAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.FirstSeenAt
+}
+
+// GetFirstSeenAtOk returns a tuple with the FirstSeenAt field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3CollectionResponseCollection) GetFirstSeenAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FirstSeenAt, true
+}
+
+// SetFirstSeenAt sets field value
+func (o *GetWeb3CollectionResponseCollection) SetFirstSeenAt(v time.Time) {
+	o.FirstSeenAt = v
+}
+
 // GetBannerUrl returns the BannerUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetWeb3CollectionResponseCollection) GetBannerUrl() string {
 	if o == nil || o.BannerUrl.Get() == nil {
@@ -754,30 +2938,6 @@ func (o *GetWeb3CollectionResponseCollection) SetDiscordNil() {
 // UnsetDiscord ensures that no value is present for Discord, not even an explicit nil
 func (o *GetWeb3CollectionResponseCollection) UnsetDiscord() {
 	o.Discord.Unset()
-}
-
-// GetVerified returns the Verified field value
-func (o *GetWeb3CollectionResponseCollection) GetVerified() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Verified
-}
-
-// GetVerifiedOk returns a tuple with the Verified field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CollectionResponseCollection) GetVerifiedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Verified, true
-}
-
-// SetVerified sets field value
-func (o *GetWeb3CollectionResponseCollection) SetVerified(v bool) {
-	o.Verified = v
 }
 
 // GetDeployedBlock returns the DeployedBlock field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1241,11 +3401,14 @@ func (o GetWeb3CollectionResponseCollection) MarshalJSON() ([]byte, error) {
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
 	}
-	if o.HiddenAt.IsSet() {
-		toSerialize["hiddenAt"] = o.HiddenAt.Get()
-	}
 	if o.ImageUrl.IsSet() {
 		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["verified"] = o.Verified
+	}
+	if o.HiddenAt.IsSet() {
+		toSerialize["hiddenAt"] = o.HiddenAt.Get()
 	}
 	if true {
 		toSerialize["refreshedAt"] = o.RefreshedAt
@@ -1259,9 +3422,6 @@ func (o GetWeb3CollectionResponseCollection) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["contract"] = o.Contract
 	}
-	if true {
-		toSerialize["firstSeenAt"] = o.FirstSeenAt
-	}
 	if o.TokenType.IsSet() {
 		toSerialize["tokenType"] = o.TokenType.Get()
 	}
@@ -1271,6 +3431,9 @@ func (o GetWeb3CollectionResponseCollection) MarshalJSON() ([]byte, error) {
 	if o.FeaturedRank.IsSet() {
 		toSerialize["featuredRank"] = o.FeaturedRank.Get()
 	}
+	if true {
+		toSerialize["firstSeenAt"] = o.FirstSeenAt
+	}
 	if o.BannerUrl.IsSet() {
 		toSerialize["bannerUrl"] = o.BannerUrl.Get()
 	}
@@ -1279,9 +3442,6 @@ func (o GetWeb3CollectionResponseCollection) MarshalJSON() ([]byte, error) {
 	}
 	if o.Discord.IsSet() {
 		toSerialize["discord"] = o.Discord.Get()
-	}
-	if true {
-		toSerialize["verified"] = o.Verified
 	}
 	if o.DeployedBlock.IsSet() {
 		toSerialize["deployedBlock"] = o.DeployedBlock.Get()
@@ -2550,17 +4710,17 @@ type GetWeb3CreatorResponse struct {
 	RoyaltyBps NullableFloat32 `json:"royaltyBps,omitempty"`
 	RoyaltyEstimateWei string `json:"royaltyEstimateWei"`
 	Sales GetWeb3CreatorResponseSales `json:"sales"`
-	Daily []GetWeb3CreatorResponseDaily `json:"daily"`
-	Recent []GetWeb3CreatorResponseRecent `json:"recent"`
+	Daily []GetCreatorCollectionResponseDataDashboardDaily `json:"daily"`
+	Recent []GetCreatorCollectionResponseDataDashboardRecent `json:"recent"`
 	Holders NullableGetWeb3CreatorResponseHolders `json:"holders,omitempty"`
-	Mint NullableGetWeb3CreatorResponseMint `json:"mint,omitempty"`
+	Mint NullableGetCreatorCollectionResponseDataDashboardMint `json:"mint,omitempty"`
 }
 
 // NewGetWeb3CreatorResponse instantiates a new GetWeb3CreatorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetWeb3CreatorResponse(chain string, contract string, currency string, royaltyEstimateWei string, sales GetWeb3CreatorResponseSales, daily []GetWeb3CreatorResponseDaily, recent []GetWeb3CreatorResponseRecent) *GetWeb3CreatorResponse {
+func NewGetWeb3CreatorResponse(chain string, contract string, currency string, royaltyEstimateWei string, sales GetWeb3CreatorResponseSales, daily []GetCreatorCollectionResponseDataDashboardDaily, recent []GetCreatorCollectionResponseDataDashboardRecent) *GetWeb3CreatorResponse {
 	this := GetWeb3CreatorResponse{}
 	this.Chain = chain
 	this.Contract = contract
@@ -2785,9 +4945,9 @@ func (o *GetWeb3CreatorResponse) SetSales(v GetWeb3CreatorResponseSales) {
 }
 
 // GetDaily returns the Daily field value
-func (o *GetWeb3CreatorResponse) GetDaily() []GetWeb3CreatorResponseDaily {
+func (o *GetWeb3CreatorResponse) GetDaily() []GetCreatorCollectionResponseDataDashboardDaily {
 	if o == nil {
-		var ret []GetWeb3CreatorResponseDaily
+		var ret []GetCreatorCollectionResponseDataDashboardDaily
 		return ret
 	}
 
@@ -2796,7 +4956,7 @@ func (o *GetWeb3CreatorResponse) GetDaily() []GetWeb3CreatorResponseDaily {
 
 // GetDailyOk returns a tuple with the Daily field value
 // and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponse) GetDailyOk() ([]GetWeb3CreatorResponseDaily, bool) {
+func (o *GetWeb3CreatorResponse) GetDailyOk() ([]GetCreatorCollectionResponseDataDashboardDaily, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2804,14 +4964,14 @@ func (o *GetWeb3CreatorResponse) GetDailyOk() ([]GetWeb3CreatorResponseDaily, bo
 }
 
 // SetDaily sets field value
-func (o *GetWeb3CreatorResponse) SetDaily(v []GetWeb3CreatorResponseDaily) {
+func (o *GetWeb3CreatorResponse) SetDaily(v []GetCreatorCollectionResponseDataDashboardDaily) {
 	o.Daily = v
 }
 
 // GetRecent returns the Recent field value
-func (o *GetWeb3CreatorResponse) GetRecent() []GetWeb3CreatorResponseRecent {
+func (o *GetWeb3CreatorResponse) GetRecent() []GetCreatorCollectionResponseDataDashboardRecent {
 	if o == nil {
-		var ret []GetWeb3CreatorResponseRecent
+		var ret []GetCreatorCollectionResponseDataDashboardRecent
 		return ret
 	}
 
@@ -2820,7 +4980,7 @@ func (o *GetWeb3CreatorResponse) GetRecent() []GetWeb3CreatorResponseRecent {
 
 // GetRecentOk returns a tuple with the Recent field value
 // and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponse) GetRecentOk() ([]GetWeb3CreatorResponseRecent, bool) {
+func (o *GetWeb3CreatorResponse) GetRecentOk() ([]GetCreatorCollectionResponseDataDashboardRecent, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2828,7 +4988,7 @@ func (o *GetWeb3CreatorResponse) GetRecentOk() ([]GetWeb3CreatorResponseRecent, 
 }
 
 // SetRecent sets field value
-func (o *GetWeb3CreatorResponse) SetRecent(v []GetWeb3CreatorResponseRecent) {
+func (o *GetWeb3CreatorResponse) SetRecent(v []GetCreatorCollectionResponseDataDashboardRecent) {
 	o.Recent = v
 }
 
@@ -2875,9 +5035,9 @@ func (o *GetWeb3CreatorResponse) UnsetHolders() {
 }
 
 // GetMint returns the Mint field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3CreatorResponse) GetMint() GetWeb3CreatorResponseMint {
+func (o *GetWeb3CreatorResponse) GetMint() GetCreatorCollectionResponseDataDashboardMint {
 	if o == nil || o.Mint.Get() == nil {
-		var ret GetWeb3CreatorResponseMint
+		var ret GetCreatorCollectionResponseDataDashboardMint
 		return ret
 	}
 	return *o.Mint.Get()
@@ -2886,7 +5046,7 @@ func (o *GetWeb3CreatorResponse) GetMint() GetWeb3CreatorResponseMint {
 // GetMintOk returns a tuple with the Mint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3CreatorResponse) GetMintOk() (*GetWeb3CreatorResponseMint, bool) {
+func (o *GetWeb3CreatorResponse) GetMintOk() (*GetCreatorCollectionResponseDataDashboardMint, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2902,8 +5062,8 @@ func (o *GetWeb3CreatorResponse) HasMint() bool {
 	return false
 }
 
-// SetMint gets a reference to the given NullableGetWeb3CreatorResponseMint and assigns it to the Mint field.
-func (o *GetWeb3CreatorResponse) SetMint(v GetWeb3CreatorResponseMint) {
+// SetMint gets a reference to the given NullableGetCreatorCollectionResponseDataDashboardMint and assigns it to the Mint field.
+func (o *GetWeb3CreatorResponse) SetMint(v GetCreatorCollectionResponseDataDashboardMint) {
 	o.Mint.Set(&v)
 }
 // SetMintNil sets the value for Mint to be an explicit nil
@@ -2986,155 +5146,6 @@ func (v NullableGetWeb3CreatorResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetWeb3CreatorResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3CreatorResponseDaily struct for GetWeb3CreatorResponseDaily
-type GetWeb3CreatorResponseDaily struct {
-	Day string `json:"day"`
-	Sales float32 `json:"sales"`
-	VolumeWei string `json:"volumeWei"`
-}
-
-// NewGetWeb3CreatorResponseDaily instantiates a new GetWeb3CreatorResponseDaily object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3CreatorResponseDaily(day string, sales float32, volumeWei string) *GetWeb3CreatorResponseDaily {
-	this := GetWeb3CreatorResponseDaily{}
-	this.Day = day
-	this.Sales = sales
-	this.VolumeWei = volumeWei
-	return &this
-}
-
-// NewGetWeb3CreatorResponseDailyWithDefaults instantiates a new GetWeb3CreatorResponseDaily object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3CreatorResponseDailyWithDefaults() *GetWeb3CreatorResponseDaily {
-	this := GetWeb3CreatorResponseDaily{}
-	return &this
-}
-
-// GetDay returns the Day field value
-func (o *GetWeb3CreatorResponseDaily) GetDay() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Day
-}
-
-// GetDayOk returns a tuple with the Day field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseDaily) GetDayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Day, true
-}
-
-// SetDay sets field value
-func (o *GetWeb3CreatorResponseDaily) SetDay(v string) {
-	o.Day = v
-}
-
-// GetSales returns the Sales field value
-func (o *GetWeb3CreatorResponseDaily) GetSales() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Sales
-}
-
-// GetSalesOk returns a tuple with the Sales field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseDaily) GetSalesOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Sales, true
-}
-
-// SetSales sets field value
-func (o *GetWeb3CreatorResponseDaily) SetSales(v float32) {
-	o.Sales = v
-}
-
-// GetVolumeWei returns the VolumeWei field value
-func (o *GetWeb3CreatorResponseDaily) GetVolumeWei() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.VolumeWei
-}
-
-// GetVolumeWeiOk returns a tuple with the VolumeWei field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseDaily) GetVolumeWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.VolumeWei, true
-}
-
-// SetVolumeWei sets field value
-func (o *GetWeb3CreatorResponseDaily) SetVolumeWei(v string) {
-	o.VolumeWei = v
-}
-
-func (o GetWeb3CreatorResponseDaily) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["day"] = o.Day
-	}
-	if true {
-		toSerialize["sales"] = o.Sales
-	}
-	if true {
-		toSerialize["volumeWei"] = o.VolumeWei
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3CreatorResponseDaily struct {
-	value *GetWeb3CreatorResponseDaily
-	isSet bool
-}
-
-func (v NullableGetWeb3CreatorResponseDaily) Get() *GetWeb3CreatorResponseDaily {
-	return v.value
-}
-
-func (v *NullableGetWeb3CreatorResponseDaily) Set(val *GetWeb3CreatorResponseDaily) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3CreatorResponseDaily) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3CreatorResponseDaily) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3CreatorResponseDaily(val *GetWeb3CreatorResponseDaily) *NullableGetWeb3CreatorResponseDaily {
-	return &NullableGetWeb3CreatorResponseDaily{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3CreatorResponseDaily) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3CreatorResponseDaily) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -3272,471 +5283,6 @@ func (v NullableGetWeb3CreatorResponseHolders) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetWeb3CreatorResponseHolders) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3CreatorResponseMint struct for GetWeb3CreatorResponseMint
-type GetWeb3CreatorResponseMint struct {
-	Minted float32 `json:"minted"`
-	MaxSupply float32 `json:"maxSupply"`
-	RevenueWei string `json:"revenueWei"`
-	WithdrawableWei string `json:"withdrawableWei"`
-	PlatformBps float32 `json:"platformBps"`
-}
-
-// NewGetWeb3CreatorResponseMint instantiates a new GetWeb3CreatorResponseMint object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3CreatorResponseMint(minted float32, maxSupply float32, revenueWei string, withdrawableWei string, platformBps float32) *GetWeb3CreatorResponseMint {
-	this := GetWeb3CreatorResponseMint{}
-	this.Minted = minted
-	this.MaxSupply = maxSupply
-	this.RevenueWei = revenueWei
-	this.WithdrawableWei = withdrawableWei
-	this.PlatformBps = platformBps
-	return &this
-}
-
-// NewGetWeb3CreatorResponseMintWithDefaults instantiates a new GetWeb3CreatorResponseMint object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3CreatorResponseMintWithDefaults() *GetWeb3CreatorResponseMint {
-	this := GetWeb3CreatorResponseMint{}
-	return &this
-}
-
-// GetMinted returns the Minted field value
-func (o *GetWeb3CreatorResponseMint) GetMinted() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Minted
-}
-
-// GetMintedOk returns a tuple with the Minted field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseMint) GetMintedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Minted, true
-}
-
-// SetMinted sets field value
-func (o *GetWeb3CreatorResponseMint) SetMinted(v float32) {
-	o.Minted = v
-}
-
-// GetMaxSupply returns the MaxSupply field value
-func (o *GetWeb3CreatorResponseMint) GetMaxSupply() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MaxSupply
-}
-
-// GetMaxSupplyOk returns a tuple with the MaxSupply field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseMint) GetMaxSupplyOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MaxSupply, true
-}
-
-// SetMaxSupply sets field value
-func (o *GetWeb3CreatorResponseMint) SetMaxSupply(v float32) {
-	o.MaxSupply = v
-}
-
-// GetRevenueWei returns the RevenueWei field value
-func (o *GetWeb3CreatorResponseMint) GetRevenueWei() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RevenueWei
-}
-
-// GetRevenueWeiOk returns a tuple with the RevenueWei field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseMint) GetRevenueWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RevenueWei, true
-}
-
-// SetRevenueWei sets field value
-func (o *GetWeb3CreatorResponseMint) SetRevenueWei(v string) {
-	o.RevenueWei = v
-}
-
-// GetWithdrawableWei returns the WithdrawableWei field value
-func (o *GetWeb3CreatorResponseMint) GetWithdrawableWei() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.WithdrawableWei
-}
-
-// GetWithdrawableWeiOk returns a tuple with the WithdrawableWei field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseMint) GetWithdrawableWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.WithdrawableWei, true
-}
-
-// SetWithdrawableWei sets field value
-func (o *GetWeb3CreatorResponseMint) SetWithdrawableWei(v string) {
-	o.WithdrawableWei = v
-}
-
-// GetPlatformBps returns the PlatformBps field value
-func (o *GetWeb3CreatorResponseMint) GetPlatformBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PlatformBps
-}
-
-// GetPlatformBpsOk returns a tuple with the PlatformBps field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseMint) GetPlatformBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PlatformBps, true
-}
-
-// SetPlatformBps sets field value
-func (o *GetWeb3CreatorResponseMint) SetPlatformBps(v float32) {
-	o.PlatformBps = v
-}
-
-func (o GetWeb3CreatorResponseMint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["minted"] = o.Minted
-	}
-	if true {
-		toSerialize["maxSupply"] = o.MaxSupply
-	}
-	if true {
-		toSerialize["revenueWei"] = o.RevenueWei
-	}
-	if true {
-		toSerialize["withdrawableWei"] = o.WithdrawableWei
-	}
-	if true {
-		toSerialize["platformBps"] = o.PlatformBps
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3CreatorResponseMint struct {
-	value *GetWeb3CreatorResponseMint
-	isSet bool
-}
-
-func (v NullableGetWeb3CreatorResponseMint) Get() *GetWeb3CreatorResponseMint {
-	return v.value
-}
-
-func (v *NullableGetWeb3CreatorResponseMint) Set(val *GetWeb3CreatorResponseMint) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3CreatorResponseMint) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3CreatorResponseMint) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3CreatorResponseMint(val *GetWeb3CreatorResponseMint) *NullableGetWeb3CreatorResponseMint {
-	return &NullableGetWeb3CreatorResponseMint{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3CreatorResponseMint) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3CreatorResponseMint) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3CreatorResponseRecent struct for GetWeb3CreatorResponseRecent
-type GetWeb3CreatorResponseRecent struct {
-	TokenId NullableString `json:"tokenId,omitempty"`
-	PriceWei NullableString `json:"priceWei,omitempty"`
-	Marketplace string `json:"marketplace"`
-	At string `json:"at"`
-	TxHash NullableString `json:"txHash,omitempty"`
-}
-
-// NewGetWeb3CreatorResponseRecent instantiates a new GetWeb3CreatorResponseRecent object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3CreatorResponseRecent(marketplace string, at string) *GetWeb3CreatorResponseRecent {
-	this := GetWeb3CreatorResponseRecent{}
-	this.Marketplace = marketplace
-	this.At = at
-	return &this
-}
-
-// NewGetWeb3CreatorResponseRecentWithDefaults instantiates a new GetWeb3CreatorResponseRecent object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3CreatorResponseRecentWithDefaults() *GetWeb3CreatorResponseRecent {
-	this := GetWeb3CreatorResponseRecent{}
-	return &this
-}
-
-// GetTokenId returns the TokenId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3CreatorResponseRecent) GetTokenId() string {
-	if o == nil || o.TokenId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TokenId.Get()
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3CreatorResponseRecent) GetTokenIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TokenId.Get(), o.TokenId.IsSet()
-}
-
-// HasTokenId returns a boolean if a field has been set.
-func (o *GetWeb3CreatorResponseRecent) HasTokenId() bool {
-	if o != nil && o.TokenId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTokenId gets a reference to the given NullableString and assigns it to the TokenId field.
-func (o *GetWeb3CreatorResponseRecent) SetTokenId(v string) {
-	o.TokenId.Set(&v)
-}
-// SetTokenIdNil sets the value for TokenId to be an explicit nil
-func (o *GetWeb3CreatorResponseRecent) SetTokenIdNil() {
-	o.TokenId.Set(nil)
-}
-
-// UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
-func (o *GetWeb3CreatorResponseRecent) UnsetTokenId() {
-	o.TokenId.Unset()
-}
-
-// GetPriceWei returns the PriceWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3CreatorResponseRecent) GetPriceWei() string {
-	if o == nil || o.PriceWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PriceWei.Get()
-}
-
-// GetPriceWeiOk returns a tuple with the PriceWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3CreatorResponseRecent) GetPriceWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PriceWei.Get(), o.PriceWei.IsSet()
-}
-
-// HasPriceWei returns a boolean if a field has been set.
-func (o *GetWeb3CreatorResponseRecent) HasPriceWei() bool {
-	if o != nil && o.PriceWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPriceWei gets a reference to the given NullableString and assigns it to the PriceWei field.
-func (o *GetWeb3CreatorResponseRecent) SetPriceWei(v string) {
-	o.PriceWei.Set(&v)
-}
-// SetPriceWeiNil sets the value for PriceWei to be an explicit nil
-func (o *GetWeb3CreatorResponseRecent) SetPriceWeiNil() {
-	o.PriceWei.Set(nil)
-}
-
-// UnsetPriceWei ensures that no value is present for PriceWei, not even an explicit nil
-func (o *GetWeb3CreatorResponseRecent) UnsetPriceWei() {
-	o.PriceWei.Unset()
-}
-
-// GetMarketplace returns the Marketplace field value
-func (o *GetWeb3CreatorResponseRecent) GetMarketplace() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Marketplace
-}
-
-// GetMarketplaceOk returns a tuple with the Marketplace field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseRecent) GetMarketplaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Marketplace, true
-}
-
-// SetMarketplace sets field value
-func (o *GetWeb3CreatorResponseRecent) SetMarketplace(v string) {
-	o.Marketplace = v
-}
-
-// GetAt returns the At field value
-func (o *GetWeb3CreatorResponseRecent) GetAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3CreatorResponseRecent) GetAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *GetWeb3CreatorResponseRecent) SetAt(v string) {
-	o.At = v
-}
-
-// GetTxHash returns the TxHash field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3CreatorResponseRecent) GetTxHash() string {
-	if o == nil || o.TxHash.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TxHash.Get()
-}
-
-// GetTxHashOk returns a tuple with the TxHash field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3CreatorResponseRecent) GetTxHashOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TxHash.Get(), o.TxHash.IsSet()
-}
-
-// HasTxHash returns a boolean if a field has been set.
-func (o *GetWeb3CreatorResponseRecent) HasTxHash() bool {
-	if o != nil && o.TxHash.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTxHash gets a reference to the given NullableString and assigns it to the TxHash field.
-func (o *GetWeb3CreatorResponseRecent) SetTxHash(v string) {
-	o.TxHash.Set(&v)
-}
-// SetTxHashNil sets the value for TxHash to be an explicit nil
-func (o *GetWeb3CreatorResponseRecent) SetTxHashNil() {
-	o.TxHash.Set(nil)
-}
-
-// UnsetTxHash ensures that no value is present for TxHash, not even an explicit nil
-func (o *GetWeb3CreatorResponseRecent) UnsetTxHash() {
-	o.TxHash.Unset()
-}
-
-func (o GetWeb3CreatorResponseRecent) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.TokenId.IsSet() {
-		toSerialize["tokenId"] = o.TokenId.Get()
-	}
-	if o.PriceWei.IsSet() {
-		toSerialize["priceWei"] = o.PriceWei.Get()
-	}
-	if true {
-		toSerialize["marketplace"] = o.Marketplace
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	if o.TxHash.IsSet() {
-		toSerialize["txHash"] = o.TxHash.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3CreatorResponseRecent struct {
-	value *GetWeb3CreatorResponseRecent
-	isSet bool
-}
-
-func (v NullableGetWeb3CreatorResponseRecent) Get() *GetWeb3CreatorResponseRecent {
-	return v.value
-}
-
-func (v *NullableGetWeb3CreatorResponseRecent) Set(val *GetWeb3CreatorResponseRecent) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3CreatorResponseRecent) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3CreatorResponseRecent) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3CreatorResponseRecent(val *GetWeb3CreatorResponseRecent) *NullableGetWeb3CreatorResponseRecent {
-	return &NullableGetWeb3CreatorResponseRecent{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3CreatorResponseRecent) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3CreatorResponseRecent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -7631,8 +9177,1350 @@ func (v *NullableGetWeb3LaunchDeployTxResponse) UnmarshalJSON(src []byte) error 
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetWeb3LaunchStatResponse struct for GetWeb3LaunchStatResponse
+type GetWeb3LaunchStatResponse struct {
+	Data GetWeb3LaunchStatResponseData `json:"data"`
+}
+
+// NewGetWeb3LaunchStatResponse instantiates a new GetWeb3LaunchStatResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3LaunchStatResponse(data GetWeb3LaunchStatResponseData) *GetWeb3LaunchStatResponse {
+	this := GetWeb3LaunchStatResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetWeb3LaunchStatResponseWithDefaults instantiates a new GetWeb3LaunchStatResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3LaunchStatResponseWithDefaults() *GetWeb3LaunchStatResponse {
+	this := GetWeb3LaunchStatResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetWeb3LaunchStatResponse) GetData() GetWeb3LaunchStatResponseData {
+	if o == nil {
+		var ret GetWeb3LaunchStatResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponse) GetDataOk() (*GetWeb3LaunchStatResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetWeb3LaunchStatResponse) SetData(v GetWeb3LaunchStatResponseData) {
+	o.Data = v
+}
+
+func (o GetWeb3LaunchStatResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3LaunchStatResponse struct {
+	value *GetWeb3LaunchStatResponse
+	isSet bool
+}
+
+func (v NullableGetWeb3LaunchStatResponse) Get() *GetWeb3LaunchStatResponse {
+	return v.value
+}
+
+func (v *NullableGetWeb3LaunchStatResponse) Set(val *GetWeb3LaunchStatResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3LaunchStatResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3LaunchStatResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3LaunchStatResponse(val *GetWeb3LaunchStatResponse) *NullableGetWeb3LaunchStatResponse {
+	return &NullableGetWeb3LaunchStatResponse{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3LaunchStatResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3LaunchStatResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3LaunchStatResponseData struct for GetWeb3LaunchStatResponseData
+type GetWeb3LaunchStatResponseData struct {
+	Launch GetWeb3LaunchStatResponseDataLaunch `json:"launch"`
+	Timeline []GetCreatorCollectionResponseDataLaunchStatsTimeline `json:"timeline"`
+	Proceeds GetCreatorCollectionResponseDataLaunchStatsProceeds `json:"proceeds"`
+	ProgressPct float32 `json:"progressPct"`
+	AllowlistCount float32 `json:"allowlistCount"`
+	ArtCount float32 `json:"artCount"`
+	Airdropped float32 `json:"airdropped"`
+	RecentMints []GetCreatorCollectionResponseDataLaunchStatsRecentMints `json:"recentMints"`
+}
+
+// NewGetWeb3LaunchStatResponseData instantiates a new GetWeb3LaunchStatResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3LaunchStatResponseData(launch GetWeb3LaunchStatResponseDataLaunch, timeline []GetCreatorCollectionResponseDataLaunchStatsTimeline, proceeds GetCreatorCollectionResponseDataLaunchStatsProceeds, progressPct float32, allowlistCount float32, artCount float32, airdropped float32, recentMints []GetCreatorCollectionResponseDataLaunchStatsRecentMints) *GetWeb3LaunchStatResponseData {
+	this := GetWeb3LaunchStatResponseData{}
+	this.Launch = launch
+	this.Timeline = timeline
+	this.Proceeds = proceeds
+	this.ProgressPct = progressPct
+	this.AllowlistCount = allowlistCount
+	this.ArtCount = artCount
+	this.Airdropped = airdropped
+	this.RecentMints = recentMints
+	return &this
+}
+
+// NewGetWeb3LaunchStatResponseDataWithDefaults instantiates a new GetWeb3LaunchStatResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3LaunchStatResponseDataWithDefaults() *GetWeb3LaunchStatResponseData {
+	this := GetWeb3LaunchStatResponseData{}
+	return &this
+}
+
+// GetLaunch returns the Launch field value
+func (o *GetWeb3LaunchStatResponseData) GetLaunch() GetWeb3LaunchStatResponseDataLaunch {
+	if o == nil {
+		var ret GetWeb3LaunchStatResponseDataLaunch
+		return ret
+	}
+
+	return o.Launch
+}
+
+// GetLaunchOk returns a tuple with the Launch field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetLaunchOk() (*GetWeb3LaunchStatResponseDataLaunch, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Launch, true
+}
+
+// SetLaunch sets field value
+func (o *GetWeb3LaunchStatResponseData) SetLaunch(v GetWeb3LaunchStatResponseDataLaunch) {
+	o.Launch = v
+}
+
+// GetTimeline returns the Timeline field value
+func (o *GetWeb3LaunchStatResponseData) GetTimeline() []GetCreatorCollectionResponseDataLaunchStatsTimeline {
+	if o == nil {
+		var ret []GetCreatorCollectionResponseDataLaunchStatsTimeline
+		return ret
+	}
+
+	return o.Timeline
+}
+
+// GetTimelineOk returns a tuple with the Timeline field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetTimelineOk() ([]GetCreatorCollectionResponseDataLaunchStatsTimeline, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Timeline, true
+}
+
+// SetTimeline sets field value
+func (o *GetWeb3LaunchStatResponseData) SetTimeline(v []GetCreatorCollectionResponseDataLaunchStatsTimeline) {
+	o.Timeline = v
+}
+
+// GetProceeds returns the Proceeds field value
+func (o *GetWeb3LaunchStatResponseData) GetProceeds() GetCreatorCollectionResponseDataLaunchStatsProceeds {
+	if o == nil {
+		var ret GetCreatorCollectionResponseDataLaunchStatsProceeds
+		return ret
+	}
+
+	return o.Proceeds
+}
+
+// GetProceedsOk returns a tuple with the Proceeds field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetProceedsOk() (*GetCreatorCollectionResponseDataLaunchStatsProceeds, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Proceeds, true
+}
+
+// SetProceeds sets field value
+func (o *GetWeb3LaunchStatResponseData) SetProceeds(v GetCreatorCollectionResponseDataLaunchStatsProceeds) {
+	o.Proceeds = v
+}
+
+// GetProgressPct returns the ProgressPct field value
+func (o *GetWeb3LaunchStatResponseData) GetProgressPct() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ProgressPct
+}
+
+// GetProgressPctOk returns a tuple with the ProgressPct field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetProgressPctOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ProgressPct, true
+}
+
+// SetProgressPct sets field value
+func (o *GetWeb3LaunchStatResponseData) SetProgressPct(v float32) {
+	o.ProgressPct = v
+}
+
+// GetAllowlistCount returns the AllowlistCount field value
+func (o *GetWeb3LaunchStatResponseData) GetAllowlistCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AllowlistCount
+}
+
+// GetAllowlistCountOk returns a tuple with the AllowlistCount field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetAllowlistCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AllowlistCount, true
+}
+
+// SetAllowlistCount sets field value
+func (o *GetWeb3LaunchStatResponseData) SetAllowlistCount(v float32) {
+	o.AllowlistCount = v
+}
+
+// GetArtCount returns the ArtCount field value
+func (o *GetWeb3LaunchStatResponseData) GetArtCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ArtCount
+}
+
+// GetArtCountOk returns a tuple with the ArtCount field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetArtCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ArtCount, true
+}
+
+// SetArtCount sets field value
+func (o *GetWeb3LaunchStatResponseData) SetArtCount(v float32) {
+	o.ArtCount = v
+}
+
+// GetAirdropped returns the Airdropped field value
+func (o *GetWeb3LaunchStatResponseData) GetAirdropped() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Airdropped
+}
+
+// GetAirdroppedOk returns a tuple with the Airdropped field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetAirdroppedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Airdropped, true
+}
+
+// SetAirdropped sets field value
+func (o *GetWeb3LaunchStatResponseData) SetAirdropped(v float32) {
+	o.Airdropped = v
+}
+
+// GetRecentMints returns the RecentMints field value
+func (o *GetWeb3LaunchStatResponseData) GetRecentMints() []GetCreatorCollectionResponseDataLaunchStatsRecentMints {
+	if o == nil {
+		var ret []GetCreatorCollectionResponseDataLaunchStatsRecentMints
+		return ret
+	}
+
+	return o.RecentMints
+}
+
+// GetRecentMintsOk returns a tuple with the RecentMints field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseData) GetRecentMintsOk() ([]GetCreatorCollectionResponseDataLaunchStatsRecentMints, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RecentMints, true
+}
+
+// SetRecentMints sets field value
+func (o *GetWeb3LaunchStatResponseData) SetRecentMints(v []GetCreatorCollectionResponseDataLaunchStatsRecentMints) {
+	o.RecentMints = v
+}
+
+func (o GetWeb3LaunchStatResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["launch"] = o.Launch
+	}
+	if true {
+		toSerialize["timeline"] = o.Timeline
+	}
+	if true {
+		toSerialize["proceeds"] = o.Proceeds
+	}
+	if true {
+		toSerialize["progressPct"] = o.ProgressPct
+	}
+	if true {
+		toSerialize["allowlistCount"] = o.AllowlistCount
+	}
+	if true {
+		toSerialize["artCount"] = o.ArtCount
+	}
+	if true {
+		toSerialize["airdropped"] = o.Airdropped
+	}
+	if true {
+		toSerialize["recentMints"] = o.RecentMints
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3LaunchStatResponseData struct {
+	value *GetWeb3LaunchStatResponseData
+	isSet bool
+}
+
+func (v NullableGetWeb3LaunchStatResponseData) Get() *GetWeb3LaunchStatResponseData {
+	return v.value
+}
+
+func (v *NullableGetWeb3LaunchStatResponseData) Set(val *GetWeb3LaunchStatResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3LaunchStatResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3LaunchStatResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3LaunchStatResponseData(val *GetWeb3LaunchStatResponseData) *NullableGetWeb3LaunchStatResponseData {
+	return &NullableGetWeb3LaunchStatResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3LaunchStatResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3LaunchStatResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3LaunchStatResponseDataLaunch struct for GetWeb3LaunchStatResponseDataLaunch
+type GetWeb3LaunchStatResponseDataLaunch struct {
+	Id string `json:"id"`
+	Chain string `json:"chain"`
+	Contract NullableString `json:"contract,omitempty"`
+	Status string `json:"status"`
+	Name string `json:"name"`
+	Symbol string `json:"symbol"`
+	Description NullableString `json:"description,omitempty"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	MaxSupply float32 `json:"maxSupply"`
+	Minted float32 `json:"minted"`
+	PriceWei string `json:"priceWei"`
+	HolderStart NullableString `json:"holderStart,omitempty"`
+	PublicStart string `json:"publicStart"`
+	EndTime NullableString `json:"endTime,omitempty"`
+	HolderGate NullableContractName `json:"holderGate,omitempty"`
+	MaxPerWallet float32 `json:"maxPerWallet"`
+	RoyaltyBps float32 `json:"royaltyBps"`
+	PlatformBps float32 `json:"platformBps"`
+	Phase string `json:"phase"`
+	Creator NameObject `json:"creator"`
+	// Card checkout (Crossmint) is set up and the collection is verified there.
+	Card bool `json:"card"`
+	// The creator set an early-phase allowlist (check a wallet with /launch/:id/allowlist/:address).
+	Allowlist bool `json:"allowlist"`
+	// Per-token art has been revealed.
+	Revealed bool `json:"revealed"`
+	// Creator Studio (migration 1163): the card set this collection takes on chain, and the creations it mints.
+	CardSetId NullableString `json:"cardSetId,omitempty"`
+	CreationRefs []string `json:"creationRefs,omitempty"`
+	// Migration 1178 (R-studio-15): what holding a token gets you, decided at mint (shared/creator/holder-perks).
+	HolderPerks []interface{} `json:"holderPerks,omitempty"`
+}
+
+// NewGetWeb3LaunchStatResponseDataLaunch instantiates a new GetWeb3LaunchStatResponseDataLaunch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3LaunchStatResponseDataLaunch(id string, chain string, status string, name string, symbol string, maxSupply float32, minted float32, priceWei string, publicStart string, maxPerWallet float32, royaltyBps float32, platformBps float32, phase string, creator NameObject, card bool, allowlist bool, revealed bool) *GetWeb3LaunchStatResponseDataLaunch {
+	this := GetWeb3LaunchStatResponseDataLaunch{}
+	this.Id = id
+	this.Chain = chain
+	this.Status = status
+	this.Name = name
+	this.Symbol = symbol
+	this.MaxSupply = maxSupply
+	this.Minted = minted
+	this.PriceWei = priceWei
+	this.PublicStart = publicStart
+	this.MaxPerWallet = maxPerWallet
+	this.RoyaltyBps = royaltyBps
+	this.PlatformBps = platformBps
+	this.Phase = phase
+	this.Creator = creator
+	this.Card = card
+	this.Allowlist = allowlist
+	this.Revealed = revealed
+	return &this
+}
+
+// NewGetWeb3LaunchStatResponseDataLaunchWithDefaults instantiates a new GetWeb3LaunchStatResponseDataLaunch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3LaunchStatResponseDataLaunchWithDefaults() *GetWeb3LaunchStatResponseDataLaunch {
+	this := GetWeb3LaunchStatResponseDataLaunch{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetId(v string) {
+	o.Id = v
+}
+
+// GetChain returns the Chain field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetChain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Chain
+}
+
+// GetChainOk returns a tuple with the Chain field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetChainOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Chain, true
+}
+
+// SetChain sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetChain(v string) {
+	o.Chain = v
+}
+
+// GetContract returns the Contract field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetContract() string {
+	if o == nil || o.Contract.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Contract.Get()
+}
+
+// GetContractOk returns a tuple with the Contract field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetContractOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Contract.Get(), o.Contract.IsSet()
+}
+
+// HasContract returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasContract() bool {
+	if o != nil && o.Contract.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContract gets a reference to the given NullableString and assigns it to the Contract field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetContract(v string) {
+	o.Contract.Set(&v)
+}
+// SetContractNil sets the value for Contract to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetContractNil() {
+	o.Contract.Set(nil)
+}
+
+// UnsetContract ensures that no value is present for Contract, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetContract() {
+	o.Contract.Unset()
+}
+
+// GetStatus returns the Status field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetName returns the Name field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetName(v string) {
+	o.Name = v
+}
+
+// GetSymbol returns the Symbol field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetSymbol() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Symbol
+}
+
+// GetSymbolOk returns a tuple with the Symbol field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetSymbolOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Symbol, true
+}
+
+// SetSymbol sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetSymbol(v string) {
+	o.Symbol = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetMaxSupply returns the MaxSupply field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMaxSupply() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaxSupply
+}
+
+// GetMaxSupplyOk returns a tuple with the MaxSupply field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMaxSupplyOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxSupply, true
+}
+
+// SetMaxSupply sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetMaxSupply(v float32) {
+	o.MaxSupply = v
+}
+
+// GetMinted returns the Minted field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMinted() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Minted
+}
+
+// GetMintedOk returns a tuple with the Minted field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMintedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Minted, true
+}
+
+// SetMinted sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetMinted(v float32) {
+	o.Minted = v
+}
+
+// GetPriceWei returns the PriceWei field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPriceWei() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PriceWei
+}
+
+// GetPriceWeiOk returns a tuple with the PriceWei field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPriceWeiOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceWei, true
+}
+
+// SetPriceWei sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetPriceWei(v string) {
+	o.PriceWei = v
+}
+
+// GetHolderStart returns the HolderStart field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderStart() string {
+	if o == nil || o.HolderStart.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HolderStart.Get()
+}
+
+// GetHolderStartOk returns a tuple with the HolderStart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderStartOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HolderStart.Get(), o.HolderStart.IsSet()
+}
+
+// HasHolderStart returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasHolderStart() bool {
+	if o != nil && o.HolderStart.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHolderStart gets a reference to the given NullableString and assigns it to the HolderStart field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetHolderStart(v string) {
+	o.HolderStart.Set(&v)
+}
+// SetHolderStartNil sets the value for HolderStart to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetHolderStartNil() {
+	o.HolderStart.Set(nil)
+}
+
+// UnsetHolderStart ensures that no value is present for HolderStart, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetHolderStart() {
+	o.HolderStart.Unset()
+}
+
+// GetPublicStart returns the PublicStart field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPublicStart() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PublicStart
+}
+
+// GetPublicStartOk returns a tuple with the PublicStart field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPublicStartOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PublicStart, true
+}
+
+// SetPublicStart sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetPublicStart(v string) {
+	o.PublicStart = v
+}
+
+// GetEndTime returns the EndTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetEndTime() string {
+	if o == nil || o.EndTime.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndTime.Get()
+}
+
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetEndTimeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndTime.Get(), o.EndTime.IsSet()
+}
+
+// HasEndTime returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasEndTime() bool {
+	if o != nil && o.EndTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndTime gets a reference to the given NullableString and assigns it to the EndTime field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetEndTime(v string) {
+	o.EndTime.Set(&v)
+}
+// SetEndTimeNil sets the value for EndTime to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetEndTimeNil() {
+	o.EndTime.Set(nil)
+}
+
+// UnsetEndTime ensures that no value is present for EndTime, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetEndTime() {
+	o.EndTime.Unset()
+}
+
+// GetHolderGate returns the HolderGate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderGate() ContractName {
+	if o == nil || o.HolderGate.Get() == nil {
+		var ret ContractName
+		return ret
+	}
+	return *o.HolderGate.Get()
+}
+
+// GetHolderGateOk returns a tuple with the HolderGate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderGateOk() (*ContractName, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HolderGate.Get(), o.HolderGate.IsSet()
+}
+
+// HasHolderGate returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasHolderGate() bool {
+	if o != nil && o.HolderGate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHolderGate gets a reference to the given NullableContractName and assigns it to the HolderGate field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetHolderGate(v ContractName) {
+	o.HolderGate.Set(&v)
+}
+// SetHolderGateNil sets the value for HolderGate to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetHolderGateNil() {
+	o.HolderGate.Set(nil)
+}
+
+// UnsetHolderGate ensures that no value is present for HolderGate, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetHolderGate() {
+	o.HolderGate.Unset()
+}
+
+// GetMaxPerWallet returns the MaxPerWallet field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMaxPerWallet() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaxPerWallet
+}
+
+// GetMaxPerWalletOk returns a tuple with the MaxPerWallet field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetMaxPerWalletOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxPerWallet, true
+}
+
+// SetMaxPerWallet sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetMaxPerWallet(v float32) {
+	o.MaxPerWallet = v
+}
+
+// GetRoyaltyBps returns the RoyaltyBps field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetRoyaltyBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RoyaltyBps
+}
+
+// GetRoyaltyBpsOk returns a tuple with the RoyaltyBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetRoyaltyBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RoyaltyBps, true
+}
+
+// SetRoyaltyBps sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetRoyaltyBps(v float32) {
+	o.RoyaltyBps = v
+}
+
+// GetPlatformBps returns the PlatformBps field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPlatformBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PlatformBps
+}
+
+// GetPlatformBpsOk returns a tuple with the PlatformBps field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPlatformBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlatformBps, true
+}
+
+// SetPlatformBps sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetPlatformBps(v float32) {
+	o.PlatformBps = v
+}
+
+// GetPhase returns the Phase field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPhase() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Phase
+}
+
+// GetPhaseOk returns a tuple with the Phase field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetPhaseOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Phase, true
+}
+
+// SetPhase sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetPhase(v string) {
+	o.Phase = v
+}
+
+// GetCreator returns the Creator field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCreator() NameObject {
+	if o == nil {
+		var ret NameObject
+		return ret
+	}
+
+	return o.Creator
+}
+
+// GetCreatorOk returns a tuple with the Creator field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCreatorOk() (*NameObject, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Creator, true
+}
+
+// SetCreator sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetCreator(v NameObject) {
+	o.Creator = v
+}
+
+// GetCard returns the Card field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCard() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Card
+}
+
+// GetCardOk returns a tuple with the Card field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCardOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Card, true
+}
+
+// SetCard sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetCard(v bool) {
+	o.Card = v
+}
+
+// GetAllowlist returns the Allowlist field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetAllowlist() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Allowlist
+}
+
+// GetAllowlistOk returns a tuple with the Allowlist field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetAllowlistOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Allowlist, true
+}
+
+// SetAllowlist sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetAllowlist(v bool) {
+	o.Allowlist = v
+}
+
+// GetRevealed returns the Revealed field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetRevealed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Revealed
+}
+
+// GetRevealedOk returns a tuple with the Revealed field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetRevealedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Revealed, true
+}
+
+// SetRevealed sets field value
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetRevealed(v bool) {
+	o.Revealed = v
+}
+
+// GetCardSetId returns the CardSetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCardSetId() string {
+	if o == nil || o.CardSetId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CardSetId.Get()
+}
+
+// GetCardSetIdOk returns a tuple with the CardSetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCardSetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CardSetId.Get(), o.CardSetId.IsSet()
+}
+
+// HasCardSetId returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasCardSetId() bool {
+	if o != nil && o.CardSetId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCardSetId gets a reference to the given NullableString and assigns it to the CardSetId field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetCardSetId(v string) {
+	o.CardSetId.Set(&v)
+}
+// SetCardSetIdNil sets the value for CardSetId to be an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetCardSetIdNil() {
+	o.CardSetId.Set(nil)
+}
+
+// UnsetCardSetId ensures that no value is present for CardSetId, not even an explicit nil
+func (o *GetWeb3LaunchStatResponseDataLaunch) UnsetCardSetId() {
+	o.CardSetId.Unset()
+}
+
+// GetCreationRefs returns the CreationRefs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCreationRefs() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.CreationRefs
+}
+
+// GetCreationRefsOk returns a tuple with the CreationRefs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetCreationRefsOk() ([]string, bool) {
+	if o == nil || o.CreationRefs == nil {
+		return nil, false
+	}
+	return o.CreationRefs, true
+}
+
+// HasCreationRefs returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasCreationRefs() bool {
+	if o != nil && o.CreationRefs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreationRefs gets a reference to the given []string and assigns it to the CreationRefs field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetCreationRefs(v []string) {
+	o.CreationRefs = v
+}
+
+// GetHolderPerks returns the HolderPerks field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderPerks() []interface{} {
+	if o == nil  {
+		var ret []interface{}
+		return ret
+	}
+	return o.HolderPerks
+}
+
+// GetHolderPerksOk returns a tuple with the HolderPerks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetWeb3LaunchStatResponseDataLaunch) GetHolderPerksOk() ([]interface{}, bool) {
+	if o == nil || o.HolderPerks == nil {
+		return nil, false
+	}
+	return o.HolderPerks, true
+}
+
+// HasHolderPerks returns a boolean if a field has been set.
+func (o *GetWeb3LaunchStatResponseDataLaunch) HasHolderPerks() bool {
+	if o != nil && o.HolderPerks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHolderPerks gets a reference to the given []interface{} and assigns it to the HolderPerks field.
+func (o *GetWeb3LaunchStatResponseDataLaunch) SetHolderPerks(v []interface{}) {
+	o.HolderPerks = v
+}
+
+func (o GetWeb3LaunchStatResponseDataLaunch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["chain"] = o.Chain
+	}
+	if o.Contract.IsSet() {
+		toSerialize["contract"] = o.Contract.Get()
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["symbol"] = o.Symbol
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["maxSupply"] = o.MaxSupply
+	}
+	if true {
+		toSerialize["minted"] = o.Minted
+	}
+	if true {
+		toSerialize["priceWei"] = o.PriceWei
+	}
+	if o.HolderStart.IsSet() {
+		toSerialize["holderStart"] = o.HolderStart.Get()
+	}
+	if true {
+		toSerialize["publicStart"] = o.PublicStart
+	}
+	if o.EndTime.IsSet() {
+		toSerialize["endTime"] = o.EndTime.Get()
+	}
+	if o.HolderGate.IsSet() {
+		toSerialize["holderGate"] = o.HolderGate.Get()
+	}
+	if true {
+		toSerialize["maxPerWallet"] = o.MaxPerWallet
+	}
+	if true {
+		toSerialize["royaltyBps"] = o.RoyaltyBps
+	}
+	if true {
+		toSerialize["platformBps"] = o.PlatformBps
+	}
+	if true {
+		toSerialize["phase"] = o.Phase
+	}
+	if true {
+		toSerialize["creator"] = o.Creator
+	}
+	if true {
+		toSerialize["card"] = o.Card
+	}
+	if true {
+		toSerialize["allowlist"] = o.Allowlist
+	}
+	if true {
+		toSerialize["revealed"] = o.Revealed
+	}
+	if o.CardSetId.IsSet() {
+		toSerialize["cardSetId"] = o.CardSetId.Get()
+	}
+	if o.CreationRefs != nil {
+		toSerialize["creationRefs"] = o.CreationRefs
+	}
+	if o.HolderPerks != nil {
+		toSerialize["holderPerks"] = o.HolderPerks
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3LaunchStatResponseDataLaunch struct {
+	value *GetWeb3LaunchStatResponseDataLaunch
+	isSet bool
+}
+
+func (v NullableGetWeb3LaunchStatResponseDataLaunch) Get() *GetWeb3LaunchStatResponseDataLaunch {
+	return v.value
+}
+
+func (v *NullableGetWeb3LaunchStatResponseDataLaunch) Set(val *GetWeb3LaunchStatResponseDataLaunch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3LaunchStatResponseDataLaunch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3LaunchStatResponseDataLaunch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3LaunchStatResponseDataLaunch(val *GetWeb3LaunchStatResponseDataLaunch) *NullableGetWeb3LaunchStatResponseDataLaunch {
+	return &NullableGetWeb3LaunchStatResponseDataLaunch{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3LaunchStatResponseDataLaunch) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3LaunchStatResponseDataLaunch) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetWeb3LaunchToolResponse struct for GetWeb3LaunchToolResponse
 type GetWeb3LaunchToolResponse struct {
+	Royalties GetWeb3LaunchToolResponseRoyalties `json:"royalties"`
 	Allowlist GetWeb3LaunchToolResponseAllowlist `json:"allowlist"`
 	Art GetWeb3LaunchToolResponseArt `json:"art"`
 	Supply GetWeb3LaunchToolResponseSupply `json:"supply"`
@@ -7642,8 +10530,9 @@ type GetWeb3LaunchToolResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetWeb3LaunchToolResponse(allowlist GetWeb3LaunchToolResponseAllowlist, art GetWeb3LaunchToolResponseArt, supply GetWeb3LaunchToolResponseSupply) *GetWeb3LaunchToolResponse {
+func NewGetWeb3LaunchToolResponse(royalties GetWeb3LaunchToolResponseRoyalties, allowlist GetWeb3LaunchToolResponseAllowlist, art GetWeb3LaunchToolResponseArt, supply GetWeb3LaunchToolResponseSupply) *GetWeb3LaunchToolResponse {
 	this := GetWeb3LaunchToolResponse{}
+	this.Royalties = royalties
 	this.Allowlist = allowlist
 	this.Art = art
 	this.Supply = supply
@@ -7656,6 +10545,30 @@ func NewGetWeb3LaunchToolResponse(allowlist GetWeb3LaunchToolResponseAllowlist, 
 func NewGetWeb3LaunchToolResponseWithDefaults() *GetWeb3LaunchToolResponse {
 	this := GetWeb3LaunchToolResponse{}
 	return &this
+}
+
+// GetRoyalties returns the Royalties field value
+func (o *GetWeb3LaunchToolResponse) GetRoyalties() GetWeb3LaunchToolResponseRoyalties {
+	if o == nil {
+		var ret GetWeb3LaunchToolResponseRoyalties
+		return ret
+	}
+
+	return o.Royalties
+}
+
+// GetRoyaltiesOk returns a tuple with the Royalties field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchToolResponse) GetRoyaltiesOk() (*GetWeb3LaunchToolResponseRoyalties, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Royalties, true
+}
+
+// SetRoyalties sets field value
+func (o *GetWeb3LaunchToolResponse) SetRoyalties(v GetWeb3LaunchToolResponseRoyalties) {
+	o.Royalties = v
 }
 
 // GetAllowlist returns the Allowlist field value
@@ -7732,6 +10645,9 @@ func (o *GetWeb3LaunchToolResponse) SetSupply(v GetWeb3LaunchToolResponseSupply)
 
 func (o GetWeb3LaunchToolResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["royalties"] = o.Royalties
+	}
 	if true {
 		toSerialize["allowlist"] = o.Allowlist
 	}
@@ -8154,6 +11070,155 @@ func (v NullableGetWeb3LaunchToolResponseArt) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetWeb3LaunchToolResponseArt) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetWeb3LaunchToolResponseRoyalties struct for GetWeb3LaunchToolResponseRoyalties
+type GetWeb3LaunchToolResponseRoyalties struct {
+	Bps float32 `json:"bps"`
+	Receiver string `json:"receiver"`
+	FromDefault bool `json:"fromDefault"`
+}
+
+// NewGetWeb3LaunchToolResponseRoyalties instantiates a new GetWeb3LaunchToolResponseRoyalties object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetWeb3LaunchToolResponseRoyalties(bps float32, receiver string, fromDefault bool) *GetWeb3LaunchToolResponseRoyalties {
+	this := GetWeb3LaunchToolResponseRoyalties{}
+	this.Bps = bps
+	this.Receiver = receiver
+	this.FromDefault = fromDefault
+	return &this
+}
+
+// NewGetWeb3LaunchToolResponseRoyaltiesWithDefaults instantiates a new GetWeb3LaunchToolResponseRoyalties object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetWeb3LaunchToolResponseRoyaltiesWithDefaults() *GetWeb3LaunchToolResponseRoyalties {
+	this := GetWeb3LaunchToolResponseRoyalties{}
+	return &this
+}
+
+// GetBps returns the Bps field value
+func (o *GetWeb3LaunchToolResponseRoyalties) GetBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Bps
+}
+
+// GetBpsOk returns a tuple with the Bps field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchToolResponseRoyalties) GetBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Bps, true
+}
+
+// SetBps sets field value
+func (o *GetWeb3LaunchToolResponseRoyalties) SetBps(v float32) {
+	o.Bps = v
+}
+
+// GetReceiver returns the Receiver field value
+func (o *GetWeb3LaunchToolResponseRoyalties) GetReceiver() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Receiver
+}
+
+// GetReceiverOk returns a tuple with the Receiver field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchToolResponseRoyalties) GetReceiverOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Receiver, true
+}
+
+// SetReceiver sets field value
+func (o *GetWeb3LaunchToolResponseRoyalties) SetReceiver(v string) {
+	o.Receiver = v
+}
+
+// GetFromDefault returns the FromDefault field value
+func (o *GetWeb3LaunchToolResponseRoyalties) GetFromDefault() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.FromDefault
+}
+
+// GetFromDefaultOk returns a tuple with the FromDefault field value
+// and a boolean to check if the value has been set.
+func (o *GetWeb3LaunchToolResponseRoyalties) GetFromDefaultOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FromDefault, true
+}
+
+// SetFromDefault sets field value
+func (o *GetWeb3LaunchToolResponseRoyalties) SetFromDefault(v bool) {
+	o.FromDefault = v
+}
+
+func (o GetWeb3LaunchToolResponseRoyalties) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bps"] = o.Bps
+	}
+	if true {
+		toSerialize["receiver"] = o.Receiver
+	}
+	if true {
+		toSerialize["fromDefault"] = o.FromDefault
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetWeb3LaunchToolResponseRoyalties struct {
+	value *GetWeb3LaunchToolResponseRoyalties
+	isSet bool
+}
+
+func (v NullableGetWeb3LaunchToolResponseRoyalties) Get() *GetWeb3LaunchToolResponseRoyalties {
+	return v.value
+}
+
+func (v *NullableGetWeb3LaunchToolResponseRoyalties) Set(val *GetWeb3LaunchToolResponseRoyalties) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetWeb3LaunchToolResponseRoyalties) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetWeb3LaunchToolResponseRoyalties) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetWeb3LaunchToolResponseRoyalties(val *GetWeb3LaunchToolResponseRoyalties) *NullableGetWeb3LaunchToolResponseRoyalties {
+	return &NullableGetWeb3LaunchToolResponseRoyalties{value: val, isSet: true}
+}
+
+func (v NullableGetWeb3LaunchToolResponseRoyalties) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetWeb3LaunchToolResponseRoyalties) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -9583,3334 +12648,6 @@ func (v NullableGetWeb3Phygital2Response) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetWeb3Phygital2Response) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3Phygital2ResponseLinked struct for GetWeb3Phygital2ResponseLinked
-type GetWeb3Phygital2ResponseLinked struct {
-	Id string `json:"id"`
-	Chain string `json:"chain"`
-	Contract string `json:"contract"`
-	TokenId string `json:"tokenId"`
-	Title string `json:"title"`
-	Description NullableString `json:"description,omitempty"`
-	Status string `json:"status"`
-	CreatedAt string `json:"createdAt"`
-	Item NullableCreateWeb3PhygitalResponsePhygitalItem `json:"item,omitempty"`
-	Redemption NullableCreateWeb3PhygitalResponsePhygitalRedemption `json:"redemption,omitempty"`
-	ShipTo NullableGetWeb3Phygital2ResponseLinkedShipTo `json:"shipTo,omitempty"`
-}
-
-// NewGetWeb3Phygital2ResponseLinked instantiates a new GetWeb3Phygital2ResponseLinked object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3Phygital2ResponseLinked(id string, chain string, contract string, tokenId string, title string, status string, createdAt string) *GetWeb3Phygital2ResponseLinked {
-	this := GetWeb3Phygital2ResponseLinked{}
-	this.Id = id
-	this.Chain = chain
-	this.Contract = contract
-	this.TokenId = tokenId
-	this.Title = title
-	this.Status = status
-	this.CreatedAt = createdAt
-	return &this
-}
-
-// NewGetWeb3Phygital2ResponseLinkedWithDefaults instantiates a new GetWeb3Phygital2ResponseLinked object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3Phygital2ResponseLinkedWithDefaults() *GetWeb3Phygital2ResponseLinked {
-	this := GetWeb3Phygital2ResponseLinked{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetWeb3Phygital2ResponseLinked) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetId(v string) {
-	o.Id = v
-}
-
-// GetChain returns the Chain field value
-func (o *GetWeb3Phygital2ResponseLinked) GetChain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Chain
-}
-
-// GetChainOk returns a tuple with the Chain field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetChainOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Chain, true
-}
-
-// SetChain sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetChain(v string) {
-	o.Chain = v
-}
-
-// GetContract returns the Contract field value
-func (o *GetWeb3Phygital2ResponseLinked) GetContract() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Contract
-}
-
-// GetContractOk returns a tuple with the Contract field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetContractOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Contract, true
-}
-
-// SetContract sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetContract(v string) {
-	o.Contract = v
-}
-
-// GetTokenId returns the TokenId field value
-func (o *GetWeb3Phygital2ResponseLinked) GetTokenId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TokenId
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetTokenIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TokenId, true
-}
-
-// SetTokenId sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetTokenId(v string) {
-	o.TokenId = v
-}
-
-// GetTitle returns the Title field value
-func (o *GetWeb3Phygital2ResponseLinked) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinked) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinked) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinked) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *GetWeb3Phygital2ResponseLinked) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetStatus returns the Status field value
-func (o *GetWeb3Phygital2ResponseLinked) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetWeb3Phygital2ResponseLinked) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinked) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *GetWeb3Phygital2ResponseLinked) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetItem returns the Item field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinked) GetItem() CreateWeb3PhygitalResponsePhygitalItem {
-	if o == nil || o.Item.Get() == nil {
-		var ret CreateWeb3PhygitalResponsePhygitalItem
-		return ret
-	}
-	return *o.Item.Get()
-}
-
-// GetItemOk returns a tuple with the Item field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinked) GetItemOk() (*CreateWeb3PhygitalResponsePhygitalItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Item.Get(), o.Item.IsSet()
-}
-
-// HasItem returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinked) HasItem() bool {
-	if o != nil && o.Item.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetItem gets a reference to the given NullableCreateWeb3PhygitalResponsePhygitalItem and assigns it to the Item field.
-func (o *GetWeb3Phygital2ResponseLinked) SetItem(v CreateWeb3PhygitalResponsePhygitalItem) {
-	o.Item.Set(&v)
-}
-// SetItemNil sets the value for Item to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) SetItemNil() {
-	o.Item.Set(nil)
-}
-
-// UnsetItem ensures that no value is present for Item, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) UnsetItem() {
-	o.Item.Unset()
-}
-
-// GetRedemption returns the Redemption field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinked) GetRedemption() CreateWeb3PhygitalResponsePhygitalRedemption {
-	if o == nil || o.Redemption.Get() == nil {
-		var ret CreateWeb3PhygitalResponsePhygitalRedemption
-		return ret
-	}
-	return *o.Redemption.Get()
-}
-
-// GetRedemptionOk returns a tuple with the Redemption field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinked) GetRedemptionOk() (*CreateWeb3PhygitalResponsePhygitalRedemption, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Redemption.Get(), o.Redemption.IsSet()
-}
-
-// HasRedemption returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinked) HasRedemption() bool {
-	if o != nil && o.Redemption.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRedemption gets a reference to the given NullableCreateWeb3PhygitalResponsePhygitalRedemption and assigns it to the Redemption field.
-func (o *GetWeb3Phygital2ResponseLinked) SetRedemption(v CreateWeb3PhygitalResponsePhygitalRedemption) {
-	o.Redemption.Set(&v)
-}
-// SetRedemptionNil sets the value for Redemption to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) SetRedemptionNil() {
-	o.Redemption.Set(nil)
-}
-
-// UnsetRedemption ensures that no value is present for Redemption, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) UnsetRedemption() {
-	o.Redemption.Unset()
-}
-
-// GetShipTo returns the ShipTo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinked) GetShipTo() GetWeb3Phygital2ResponseLinkedShipTo {
-	if o == nil || o.ShipTo.Get() == nil {
-		var ret GetWeb3Phygital2ResponseLinkedShipTo
-		return ret
-	}
-	return *o.ShipTo.Get()
-}
-
-// GetShipToOk returns a tuple with the ShipTo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinked) GetShipToOk() (*GetWeb3Phygital2ResponseLinkedShipTo, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ShipTo.Get(), o.ShipTo.IsSet()
-}
-
-// HasShipTo returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinked) HasShipTo() bool {
-	if o != nil && o.ShipTo.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetShipTo gets a reference to the given NullableGetWeb3Phygital2ResponseLinkedShipTo and assigns it to the ShipTo field.
-func (o *GetWeb3Phygital2ResponseLinked) SetShipTo(v GetWeb3Phygital2ResponseLinkedShipTo) {
-	o.ShipTo.Set(&v)
-}
-// SetShipToNil sets the value for ShipTo to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) SetShipToNil() {
-	o.ShipTo.Set(nil)
-}
-
-// UnsetShipTo ensures that no value is present for ShipTo, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinked) UnsetShipTo() {
-	o.ShipTo.Unset()
-}
-
-func (o GetWeb3Phygital2ResponseLinked) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract"] = o.Contract
-	}
-	if true {
-		toSerialize["tokenId"] = o.TokenId
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.Item.IsSet() {
-		toSerialize["item"] = o.Item.Get()
-	}
-	if o.Redemption.IsSet() {
-		toSerialize["redemption"] = o.Redemption.Get()
-	}
-	if o.ShipTo.IsSet() {
-		toSerialize["shipTo"] = o.ShipTo.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3Phygital2ResponseLinked struct {
-	value *GetWeb3Phygital2ResponseLinked
-	isSet bool
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinked) Get() *GetWeb3Phygital2ResponseLinked {
-	return v.value
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinked) Set(val *GetWeb3Phygital2ResponseLinked) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinked) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinked) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3Phygital2ResponseLinked(val *GetWeb3Phygital2ResponseLinked) *NullableGetWeb3Phygital2ResponseLinked {
-	return &NullableGetWeb3Phygital2ResponseLinked{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinked) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinked) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3Phygital2ResponseLinkedShipTo struct for GetWeb3Phygital2ResponseLinkedShipTo
-type GetWeb3Phygital2ResponseLinkedShipTo struct {
-	Name string `json:"name"`
-	Line1 string `json:"line1"`
-	Line2 NullableString `json:"line2,omitempty"`
-	City string `json:"city"`
-	Region NullableString `json:"region,omitempty"`
-	PostalCode string `json:"postalCode"`
-	Country string `json:"country"`
-	Phone NullableString `json:"phone,omitempty"`
-}
-
-// NewGetWeb3Phygital2ResponseLinkedShipTo instantiates a new GetWeb3Phygital2ResponseLinkedShipTo object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3Phygital2ResponseLinkedShipTo(name string, line1 string, city string, postalCode string, country string) *GetWeb3Phygital2ResponseLinkedShipTo {
-	this := GetWeb3Phygital2ResponseLinkedShipTo{}
-	this.Name = name
-	this.Line1 = line1
-	this.City = city
-	this.PostalCode = postalCode
-	this.Country = country
-	return &this
-}
-
-// NewGetWeb3Phygital2ResponseLinkedShipToWithDefaults instantiates a new GetWeb3Phygital2ResponseLinkedShipTo object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3Phygital2ResponseLinkedShipToWithDefaults() *GetWeb3Phygital2ResponseLinkedShipTo {
-	this := GetWeb3Phygital2ResponseLinkedShipTo{}
-	return &this
-}
-
-// GetName returns the Name field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetName(v string) {
-	o.Name = v
-}
-
-// GetLine1 returns the Line1 field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetLine1() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Line1
-}
-
-// GetLine1Ok returns a tuple with the Line1 field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetLine1Ok() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Line1, true
-}
-
-// SetLine1 sets field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetLine1(v string) {
-	o.Line1 = v
-}
-
-// GetLine2 returns the Line2 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetLine2() string {
-	if o == nil || o.Line2.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Line2.Get()
-}
-
-// GetLine2Ok returns a tuple with the Line2 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetLine2Ok() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Line2.Get(), o.Line2.IsSet()
-}
-
-// HasLine2 returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) HasLine2() bool {
-	if o != nil && o.Line2.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLine2 gets a reference to the given NullableString and assigns it to the Line2 field.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetLine2(v string) {
-	o.Line2.Set(&v)
-}
-// SetLine2Nil sets the value for Line2 to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetLine2Nil() {
-	o.Line2.Set(nil)
-}
-
-// UnsetLine2 ensures that no value is present for Line2, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) UnsetLine2() {
-	o.Line2.Unset()
-}
-
-// GetCity returns the City field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetCity() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.City
-}
-
-// GetCityOk returns a tuple with the City field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetCityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.City, true
-}
-
-// SetCity sets field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetCity(v string) {
-	o.City = v
-}
-
-// GetRegion returns the Region field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetRegion() string {
-	if o == nil || o.Region.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Region.Get()
-}
-
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetRegionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Region.Get(), o.Region.IsSet()
-}
-
-// HasRegion returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) HasRegion() bool {
-	if o != nil && o.Region.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRegion gets a reference to the given NullableString and assigns it to the Region field.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetRegion(v string) {
-	o.Region.Set(&v)
-}
-// SetRegionNil sets the value for Region to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetRegionNil() {
-	o.Region.Set(nil)
-}
-
-// UnsetRegion ensures that no value is present for Region, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) UnsetRegion() {
-	o.Region.Unset()
-}
-
-// GetPostalCode returns the PostalCode field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetPostalCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PostalCode
-}
-
-// GetPostalCodeOk returns a tuple with the PostalCode field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetPostalCodeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PostalCode, true
-}
-
-// SetPostalCode sets field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetPostalCode(v string) {
-	o.PostalCode = v
-}
-
-// GetCountry returns the Country field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetCountry() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Country
-}
-
-// GetCountryOk returns a tuple with the Country field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetCountryOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Country, true
-}
-
-// SetCountry sets field value
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetCountry(v string) {
-	o.Country = v
-}
-
-// GetPhone returns the Phone field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetPhone() string {
-	if o == nil || o.Phone.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Phone.Get()
-}
-
-// GetPhoneOk returns a tuple with the Phone field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) GetPhoneOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Phone.Get(), o.Phone.IsSet()
-}
-
-// HasPhone returns a boolean if a field has been set.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) HasPhone() bool {
-	if o != nil && o.Phone.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPhone gets a reference to the given NullableString and assigns it to the Phone field.
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetPhone(v string) {
-	o.Phone.Set(&v)
-}
-// SetPhoneNil sets the value for Phone to be an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) SetPhoneNil() {
-	o.Phone.Set(nil)
-}
-
-// UnsetPhone ensures that no value is present for Phone, not even an explicit nil
-func (o *GetWeb3Phygital2ResponseLinkedShipTo) UnsetPhone() {
-	o.Phone.Unset()
-}
-
-func (o GetWeb3Phygital2ResponseLinkedShipTo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["line1"] = o.Line1
-	}
-	if o.Line2.IsSet() {
-		toSerialize["line2"] = o.Line2.Get()
-	}
-	if true {
-		toSerialize["city"] = o.City
-	}
-	if o.Region.IsSet() {
-		toSerialize["region"] = o.Region.Get()
-	}
-	if true {
-		toSerialize["postalCode"] = o.PostalCode
-	}
-	if true {
-		toSerialize["country"] = o.Country
-	}
-	if o.Phone.IsSet() {
-		toSerialize["phone"] = o.Phone.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3Phygital2ResponseLinkedShipTo struct {
-	value *GetWeb3Phygital2ResponseLinkedShipTo
-	isSet bool
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinkedShipTo) Get() *GetWeb3Phygital2ResponseLinkedShipTo {
-	return v.value
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinkedShipTo) Set(val *GetWeb3Phygital2ResponseLinkedShipTo) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinkedShipTo) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinkedShipTo) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3Phygital2ResponseLinkedShipTo(val *GetWeb3Phygital2ResponseLinkedShipTo) *NullableGetWeb3Phygital2ResponseLinkedShipTo {
-	return &NullableGetWeb3Phygital2ResponseLinkedShipTo{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3Phygital2ResponseLinkedShipTo) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3Phygital2ResponseLinkedShipTo) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PhygitalResponse struct for GetWeb3PhygitalResponse
-type GetWeb3PhygitalResponse struct {
-	Phygital NullableGetWeb3PhygitalResponsePhygital `json:"phygital,omitempty"`
-}
-
-// NewGetWeb3PhygitalResponse instantiates a new GetWeb3PhygitalResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PhygitalResponse() *GetWeb3PhygitalResponse {
-	this := GetWeb3PhygitalResponse{}
-	return &this
-}
-
-// NewGetWeb3PhygitalResponseWithDefaults instantiates a new GetWeb3PhygitalResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PhygitalResponseWithDefaults() *GetWeb3PhygitalResponse {
-	this := GetWeb3PhygitalResponse{}
-	return &this
-}
-
-// GetPhygital returns the Phygital field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PhygitalResponse) GetPhygital() GetWeb3PhygitalResponsePhygital {
-	if o == nil || o.Phygital.Get() == nil {
-		var ret GetWeb3PhygitalResponsePhygital
-		return ret
-	}
-	return *o.Phygital.Get()
-}
-
-// GetPhygitalOk returns a tuple with the Phygital field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PhygitalResponse) GetPhygitalOk() (*GetWeb3PhygitalResponsePhygital, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Phygital.Get(), o.Phygital.IsSet()
-}
-
-// HasPhygital returns a boolean if a field has been set.
-func (o *GetWeb3PhygitalResponse) HasPhygital() bool {
-	if o != nil && o.Phygital.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPhygital gets a reference to the given NullableGetWeb3PhygitalResponsePhygital and assigns it to the Phygital field.
-func (o *GetWeb3PhygitalResponse) SetPhygital(v GetWeb3PhygitalResponsePhygital) {
-	o.Phygital.Set(&v)
-}
-// SetPhygitalNil sets the value for Phygital to be an explicit nil
-func (o *GetWeb3PhygitalResponse) SetPhygitalNil() {
-	o.Phygital.Set(nil)
-}
-
-// UnsetPhygital ensures that no value is present for Phygital, not even an explicit nil
-func (o *GetWeb3PhygitalResponse) UnsetPhygital() {
-	o.Phygital.Unset()
-}
-
-func (o GetWeb3PhygitalResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Phygital.IsSet() {
-		toSerialize["phygital"] = o.Phygital.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PhygitalResponse struct {
-	value *GetWeb3PhygitalResponse
-	isSet bool
-}
-
-func (v NullableGetWeb3PhygitalResponse) Get() *GetWeb3PhygitalResponse {
-	return v.value
-}
-
-func (v *NullableGetWeb3PhygitalResponse) Set(val *GetWeb3PhygitalResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PhygitalResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PhygitalResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PhygitalResponse(val *GetWeb3PhygitalResponse) *NullableGetWeb3PhygitalResponse {
-	return &NullableGetWeb3PhygitalResponse{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PhygitalResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PhygitalResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PhygitalResponsePhygital struct for GetWeb3PhygitalResponsePhygital
-type GetWeb3PhygitalResponsePhygital struct {
-	Id string `json:"id"`
-	Chain string `json:"chain"`
-	Contract string `json:"contract"`
-	TokenId string `json:"tokenId"`
-	Title string `json:"title"`
-	Description NullableString `json:"description,omitempty"`
-	Status string `json:"status"`
-	CreatedAt string `json:"createdAt"`
-	Item NullableCreateWeb3PhygitalResponsePhygitalItem `json:"item,omitempty"`
-	Redemption NullableCreateWeb3PhygitalResponsePhygitalRedemption `json:"redemption,omitempty"`
-}
-
-// NewGetWeb3PhygitalResponsePhygital instantiates a new GetWeb3PhygitalResponsePhygital object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PhygitalResponsePhygital(id string, chain string, contract string, tokenId string, title string, status string, createdAt string) *GetWeb3PhygitalResponsePhygital {
-	this := GetWeb3PhygitalResponsePhygital{}
-	this.Id = id
-	this.Chain = chain
-	this.Contract = contract
-	this.TokenId = tokenId
-	this.Title = title
-	this.Status = status
-	this.CreatedAt = createdAt
-	return &this
-}
-
-// NewGetWeb3PhygitalResponsePhygitalWithDefaults instantiates a new GetWeb3PhygitalResponsePhygital object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PhygitalResponsePhygitalWithDefaults() *GetWeb3PhygitalResponsePhygital {
-	this := GetWeb3PhygitalResponsePhygital{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetWeb3PhygitalResponsePhygital) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetId(v string) {
-	o.Id = v
-}
-
-// GetChain returns the Chain field value
-func (o *GetWeb3PhygitalResponsePhygital) GetChain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Chain
-}
-
-// GetChainOk returns a tuple with the Chain field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetChainOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Chain, true
-}
-
-// SetChain sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetChain(v string) {
-	o.Chain = v
-}
-
-// GetContract returns the Contract field value
-func (o *GetWeb3PhygitalResponsePhygital) GetContract() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Contract
-}
-
-// GetContractOk returns a tuple with the Contract field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetContractOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Contract, true
-}
-
-// SetContract sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetContract(v string) {
-	o.Contract = v
-}
-
-// GetTokenId returns the TokenId field value
-func (o *GetWeb3PhygitalResponsePhygital) GetTokenId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TokenId
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetTokenIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TokenId, true
-}
-
-// SetTokenId sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetTokenId(v string) {
-	o.TokenId = v
-}
-
-// GetTitle returns the Title field value
-func (o *GetWeb3PhygitalResponsePhygital) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PhygitalResponsePhygital) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PhygitalResponsePhygital) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *GetWeb3PhygitalResponsePhygital) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *GetWeb3PhygitalResponsePhygital) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetStatus returns the Status field value
-func (o *GetWeb3PhygitalResponsePhygital) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetWeb3PhygitalResponsePhygital) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PhygitalResponsePhygital) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *GetWeb3PhygitalResponsePhygital) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetItem returns the Item field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PhygitalResponsePhygital) GetItem() CreateWeb3PhygitalResponsePhygitalItem {
-	if o == nil || o.Item.Get() == nil {
-		var ret CreateWeb3PhygitalResponsePhygitalItem
-		return ret
-	}
-	return *o.Item.Get()
-}
-
-// GetItemOk returns a tuple with the Item field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PhygitalResponsePhygital) GetItemOk() (*CreateWeb3PhygitalResponsePhygitalItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Item.Get(), o.Item.IsSet()
-}
-
-// HasItem returns a boolean if a field has been set.
-func (o *GetWeb3PhygitalResponsePhygital) HasItem() bool {
-	if o != nil && o.Item.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetItem gets a reference to the given NullableCreateWeb3PhygitalResponsePhygitalItem and assigns it to the Item field.
-func (o *GetWeb3PhygitalResponsePhygital) SetItem(v CreateWeb3PhygitalResponsePhygitalItem) {
-	o.Item.Set(&v)
-}
-// SetItemNil sets the value for Item to be an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) SetItemNil() {
-	o.Item.Set(nil)
-}
-
-// UnsetItem ensures that no value is present for Item, not even an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) UnsetItem() {
-	o.Item.Unset()
-}
-
-// GetRedemption returns the Redemption field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PhygitalResponsePhygital) GetRedemption() CreateWeb3PhygitalResponsePhygitalRedemption {
-	if o == nil || o.Redemption.Get() == nil {
-		var ret CreateWeb3PhygitalResponsePhygitalRedemption
-		return ret
-	}
-	return *o.Redemption.Get()
-}
-
-// GetRedemptionOk returns a tuple with the Redemption field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PhygitalResponsePhygital) GetRedemptionOk() (*CreateWeb3PhygitalResponsePhygitalRedemption, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Redemption.Get(), o.Redemption.IsSet()
-}
-
-// HasRedemption returns a boolean if a field has been set.
-func (o *GetWeb3PhygitalResponsePhygital) HasRedemption() bool {
-	if o != nil && o.Redemption.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRedemption gets a reference to the given NullableCreateWeb3PhygitalResponsePhygitalRedemption and assigns it to the Redemption field.
-func (o *GetWeb3PhygitalResponsePhygital) SetRedemption(v CreateWeb3PhygitalResponsePhygitalRedemption) {
-	o.Redemption.Set(&v)
-}
-// SetRedemptionNil sets the value for Redemption to be an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) SetRedemptionNil() {
-	o.Redemption.Set(nil)
-}
-
-// UnsetRedemption ensures that no value is present for Redemption, not even an explicit nil
-func (o *GetWeb3PhygitalResponsePhygital) UnsetRedemption() {
-	o.Redemption.Unset()
-}
-
-func (o GetWeb3PhygitalResponsePhygital) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract"] = o.Contract
-	}
-	if true {
-		toSerialize["tokenId"] = o.TokenId
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.Item.IsSet() {
-		toSerialize["item"] = o.Item.Get()
-	}
-	if o.Redemption.IsSet() {
-		toSerialize["redemption"] = o.Redemption.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PhygitalResponsePhygital struct {
-	value *GetWeb3PhygitalResponsePhygital
-	isSet bool
-}
-
-func (v NullableGetWeb3PhygitalResponsePhygital) Get() *GetWeb3PhygitalResponsePhygital {
-	return v.value
-}
-
-func (v *NullableGetWeb3PhygitalResponsePhygital) Set(val *GetWeb3PhygitalResponsePhygital) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PhygitalResponsePhygital) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PhygitalResponsePhygital) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PhygitalResponsePhygital(val *GetWeb3PhygitalResponsePhygital) *NullableGetWeb3PhygitalResponsePhygital {
-	return &NullableGetWeb3PhygitalResponsePhygital{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PhygitalResponsePhygital) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PhygitalResponsePhygital) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PortfolioResponse struct for GetWeb3PortfolioResponse
-type GetWeb3PortfolioResponse struct {
-	Totals GetWeb3PortfolioResponseTotals `json:"totals"`
-	Holdings []GetWeb3PortfolioResponseHoldings `json:"holdings"`
-	Realized []GetWeb3PortfolioResponseRealized `json:"realized"`
-}
-
-// NewGetWeb3PortfolioResponse instantiates a new GetWeb3PortfolioResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PortfolioResponse(totals GetWeb3PortfolioResponseTotals, holdings []GetWeb3PortfolioResponseHoldings, realized []GetWeb3PortfolioResponseRealized) *GetWeb3PortfolioResponse {
-	this := GetWeb3PortfolioResponse{}
-	this.Totals = totals
-	this.Holdings = holdings
-	this.Realized = realized
-	return &this
-}
-
-// NewGetWeb3PortfolioResponseWithDefaults instantiates a new GetWeb3PortfolioResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PortfolioResponseWithDefaults() *GetWeb3PortfolioResponse {
-	this := GetWeb3PortfolioResponse{}
-	return &this
-}
-
-// GetTotals returns the Totals field value
-func (o *GetWeb3PortfolioResponse) GetTotals() GetWeb3PortfolioResponseTotals {
-	if o == nil {
-		var ret GetWeb3PortfolioResponseTotals
-		return ret
-	}
-
-	return o.Totals
-}
-
-// GetTotalsOk returns a tuple with the Totals field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponse) GetTotalsOk() (*GetWeb3PortfolioResponseTotals, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Totals, true
-}
-
-// SetTotals sets field value
-func (o *GetWeb3PortfolioResponse) SetTotals(v GetWeb3PortfolioResponseTotals) {
-	o.Totals = v
-}
-
-// GetHoldings returns the Holdings field value
-func (o *GetWeb3PortfolioResponse) GetHoldings() []GetWeb3PortfolioResponseHoldings {
-	if o == nil {
-		var ret []GetWeb3PortfolioResponseHoldings
-		return ret
-	}
-
-	return o.Holdings
-}
-
-// GetHoldingsOk returns a tuple with the Holdings field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponse) GetHoldingsOk() ([]GetWeb3PortfolioResponseHoldings, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Holdings, true
-}
-
-// SetHoldings sets field value
-func (o *GetWeb3PortfolioResponse) SetHoldings(v []GetWeb3PortfolioResponseHoldings) {
-	o.Holdings = v
-}
-
-// GetRealized returns the Realized field value
-func (o *GetWeb3PortfolioResponse) GetRealized() []GetWeb3PortfolioResponseRealized {
-	if o == nil {
-		var ret []GetWeb3PortfolioResponseRealized
-		return ret
-	}
-
-	return o.Realized
-}
-
-// GetRealizedOk returns a tuple with the Realized field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponse) GetRealizedOk() ([]GetWeb3PortfolioResponseRealized, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Realized, true
-}
-
-// SetRealized sets field value
-func (o *GetWeb3PortfolioResponse) SetRealized(v []GetWeb3PortfolioResponseRealized) {
-	o.Realized = v
-}
-
-func (o GetWeb3PortfolioResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["totals"] = o.Totals
-	}
-	if true {
-		toSerialize["holdings"] = o.Holdings
-	}
-	if true {
-		toSerialize["realized"] = o.Realized
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PortfolioResponse struct {
-	value *GetWeb3PortfolioResponse
-	isSet bool
-}
-
-func (v NullableGetWeb3PortfolioResponse) Get() *GetWeb3PortfolioResponse {
-	return v.value
-}
-
-func (v *NullableGetWeb3PortfolioResponse) Set(val *GetWeb3PortfolioResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PortfolioResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PortfolioResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PortfolioResponse(val *GetWeb3PortfolioResponse) *NullableGetWeb3PortfolioResponse {
-	return &NullableGetWeb3PortfolioResponse{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PortfolioResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PortfolioResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PortfolioResponseHoldings struct for GetWeb3PortfolioResponseHoldings
-type GetWeb3PortfolioResponseHoldings struct {
-	Chain string `json:"chain"`
-	Contract string `json:"contract"`
-	TokenId string `json:"tokenId"`
-	Name NullableString `json:"name,omitempty"`
-	CollectionName NullableString `json:"collectionName,omitempty"`
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	ValueWei NullableString `json:"valueWei,omitempty"`
-	ValuedBy NullableString `json:"valuedBy,omitempty"`
-	ValueUsd NullableFloat32 `json:"valueUsd,omitempty"`
-	CostWei NullableString `json:"costWei,omitempty"`
-	CostUsd NullableFloat32 `json:"costUsd,omitempty"`
-	AcquiredAt NullableString `json:"acquiredAt,omitempty"`
-}
-
-// NewGetWeb3PortfolioResponseHoldings instantiates a new GetWeb3PortfolioResponseHoldings object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PortfolioResponseHoldings(chain string, contract string, tokenId string) *GetWeb3PortfolioResponseHoldings {
-	this := GetWeb3PortfolioResponseHoldings{}
-	this.Chain = chain
-	this.Contract = contract
-	this.TokenId = tokenId
-	return &this
-}
-
-// NewGetWeb3PortfolioResponseHoldingsWithDefaults instantiates a new GetWeb3PortfolioResponseHoldings object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PortfolioResponseHoldingsWithDefaults() *GetWeb3PortfolioResponseHoldings {
-	this := GetWeb3PortfolioResponseHoldings{}
-	return &this
-}
-
-// GetChain returns the Chain field value
-func (o *GetWeb3PortfolioResponseHoldings) GetChain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Chain
-}
-
-// GetChainOk returns a tuple with the Chain field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseHoldings) GetChainOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Chain, true
-}
-
-// SetChain sets field value
-func (o *GetWeb3PortfolioResponseHoldings) SetChain(v string) {
-	o.Chain = v
-}
-
-// GetContract returns the Contract field value
-func (o *GetWeb3PortfolioResponseHoldings) GetContract() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Contract
-}
-
-// GetContractOk returns a tuple with the Contract field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseHoldings) GetContractOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Contract, true
-}
-
-// SetContract sets field value
-func (o *GetWeb3PortfolioResponseHoldings) SetContract(v string) {
-	o.Contract = v
-}
-
-// GetTokenId returns the TokenId field value
-func (o *GetWeb3PortfolioResponseHoldings) GetTokenId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TokenId
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseHoldings) GetTokenIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TokenId, true
-}
-
-// SetTokenId sets field value
-func (o *GetWeb3PortfolioResponseHoldings) SetTokenId(v string) {
-	o.TokenId = v
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetName() string {
-	if o == nil || o.Name.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *GetWeb3PortfolioResponseHoldings) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetCollectionName returns the CollectionName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetCollectionName() string {
-	if o == nil || o.CollectionName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CollectionName.Get()
-}
-
-// GetCollectionNameOk returns a tuple with the CollectionName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetCollectionNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CollectionName.Get(), o.CollectionName.IsSet()
-}
-
-// HasCollectionName returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasCollectionName() bool {
-	if o != nil && o.CollectionName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCollectionName gets a reference to the given NullableString and assigns it to the CollectionName field.
-func (o *GetWeb3PortfolioResponseHoldings) SetCollectionName(v string) {
-	o.CollectionName.Set(&v)
-}
-// SetCollectionNameNil sets the value for CollectionName to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetCollectionNameNil() {
-	o.CollectionName.Set(nil)
-}
-
-// UnsetCollectionName ensures that no value is present for CollectionName, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetCollectionName() {
-	o.CollectionName.Unset()
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImageUrl.Get()
-}
-
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetImageUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
-}
-
-// HasImageUrl returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *GetWeb3PortfolioResponseHoldings) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetImageUrl() {
-	o.ImageUrl.Unset()
-}
-
-// GetValueWei returns the ValueWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetValueWei() string {
-	if o == nil || o.ValueWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ValueWei.Get()
-}
-
-// GetValueWeiOk returns a tuple with the ValueWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetValueWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ValueWei.Get(), o.ValueWei.IsSet()
-}
-
-// HasValueWei returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasValueWei() bool {
-	if o != nil && o.ValueWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValueWei gets a reference to the given NullableString and assigns it to the ValueWei field.
-func (o *GetWeb3PortfolioResponseHoldings) SetValueWei(v string) {
-	o.ValueWei.Set(&v)
-}
-// SetValueWeiNil sets the value for ValueWei to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetValueWeiNil() {
-	o.ValueWei.Set(nil)
-}
-
-// UnsetValueWei ensures that no value is present for ValueWei, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetValueWei() {
-	o.ValueWei.Unset()
-}
-
-// GetValuedBy returns the ValuedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetValuedBy() string {
-	if o == nil || o.ValuedBy.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ValuedBy.Get()
-}
-
-// GetValuedByOk returns a tuple with the ValuedBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetValuedByOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ValuedBy.Get(), o.ValuedBy.IsSet()
-}
-
-// HasValuedBy returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasValuedBy() bool {
-	if o != nil && o.ValuedBy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValuedBy gets a reference to the given NullableString and assigns it to the ValuedBy field.
-func (o *GetWeb3PortfolioResponseHoldings) SetValuedBy(v string) {
-	o.ValuedBy.Set(&v)
-}
-// SetValuedByNil sets the value for ValuedBy to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetValuedByNil() {
-	o.ValuedBy.Set(nil)
-}
-
-// UnsetValuedBy ensures that no value is present for ValuedBy, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetValuedBy() {
-	o.ValuedBy.Unset()
-}
-
-// GetValueUsd returns the ValueUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetValueUsd() float32 {
-	if o == nil || o.ValueUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ValueUsd.Get()
-}
-
-// GetValueUsdOk returns a tuple with the ValueUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetValueUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ValueUsd.Get(), o.ValueUsd.IsSet()
-}
-
-// HasValueUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasValueUsd() bool {
-	if o != nil && o.ValueUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValueUsd gets a reference to the given NullableFloat32 and assigns it to the ValueUsd field.
-func (o *GetWeb3PortfolioResponseHoldings) SetValueUsd(v float32) {
-	o.ValueUsd.Set(&v)
-}
-// SetValueUsdNil sets the value for ValueUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetValueUsdNil() {
-	o.ValueUsd.Set(nil)
-}
-
-// UnsetValueUsd ensures that no value is present for ValueUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetValueUsd() {
-	o.ValueUsd.Unset()
-}
-
-// GetCostWei returns the CostWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetCostWei() string {
-	if o == nil || o.CostWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CostWei.Get()
-}
-
-// GetCostWeiOk returns a tuple with the CostWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetCostWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CostWei.Get(), o.CostWei.IsSet()
-}
-
-// HasCostWei returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasCostWei() bool {
-	if o != nil && o.CostWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCostWei gets a reference to the given NullableString and assigns it to the CostWei field.
-func (o *GetWeb3PortfolioResponseHoldings) SetCostWei(v string) {
-	o.CostWei.Set(&v)
-}
-// SetCostWeiNil sets the value for CostWei to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetCostWeiNil() {
-	o.CostWei.Set(nil)
-}
-
-// UnsetCostWei ensures that no value is present for CostWei, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetCostWei() {
-	o.CostWei.Unset()
-}
-
-// GetCostUsd returns the CostUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetCostUsd() float32 {
-	if o == nil || o.CostUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CostUsd.Get()
-}
-
-// GetCostUsdOk returns a tuple with the CostUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetCostUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CostUsd.Get(), o.CostUsd.IsSet()
-}
-
-// HasCostUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasCostUsd() bool {
-	if o != nil && o.CostUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCostUsd gets a reference to the given NullableFloat32 and assigns it to the CostUsd field.
-func (o *GetWeb3PortfolioResponseHoldings) SetCostUsd(v float32) {
-	o.CostUsd.Set(&v)
-}
-// SetCostUsdNil sets the value for CostUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetCostUsdNil() {
-	o.CostUsd.Set(nil)
-}
-
-// UnsetCostUsd ensures that no value is present for CostUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetCostUsd() {
-	o.CostUsd.Unset()
-}
-
-// GetAcquiredAt returns the AcquiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseHoldings) GetAcquiredAt() string {
-	if o == nil || o.AcquiredAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AcquiredAt.Get()
-}
-
-// GetAcquiredAtOk returns a tuple with the AcquiredAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseHoldings) GetAcquiredAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AcquiredAt.Get(), o.AcquiredAt.IsSet()
-}
-
-// HasAcquiredAt returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseHoldings) HasAcquiredAt() bool {
-	if o != nil && o.AcquiredAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAcquiredAt gets a reference to the given NullableString and assigns it to the AcquiredAt field.
-func (o *GetWeb3PortfolioResponseHoldings) SetAcquiredAt(v string) {
-	o.AcquiredAt.Set(&v)
-}
-// SetAcquiredAtNil sets the value for AcquiredAt to be an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) SetAcquiredAtNil() {
-	o.AcquiredAt.Set(nil)
-}
-
-// UnsetAcquiredAt ensures that no value is present for AcquiredAt, not even an explicit nil
-func (o *GetWeb3PortfolioResponseHoldings) UnsetAcquiredAt() {
-	o.AcquiredAt.Unset()
-}
-
-func (o GetWeb3PortfolioResponseHoldings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract"] = o.Contract
-	}
-	if true {
-		toSerialize["tokenId"] = o.TokenId
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
-	if o.CollectionName.IsSet() {
-		toSerialize["collectionName"] = o.CollectionName.Get()
-	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
-	}
-	if o.ValueWei.IsSet() {
-		toSerialize["valueWei"] = o.ValueWei.Get()
-	}
-	if o.ValuedBy.IsSet() {
-		toSerialize["valuedBy"] = o.ValuedBy.Get()
-	}
-	if o.ValueUsd.IsSet() {
-		toSerialize["valueUsd"] = o.ValueUsd.Get()
-	}
-	if o.CostWei.IsSet() {
-		toSerialize["costWei"] = o.CostWei.Get()
-	}
-	if o.CostUsd.IsSet() {
-		toSerialize["costUsd"] = o.CostUsd.Get()
-	}
-	if o.AcquiredAt.IsSet() {
-		toSerialize["acquiredAt"] = o.AcquiredAt.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PortfolioResponseHoldings struct {
-	value *GetWeb3PortfolioResponseHoldings
-	isSet bool
-}
-
-func (v NullableGetWeb3PortfolioResponseHoldings) Get() *GetWeb3PortfolioResponseHoldings {
-	return v.value
-}
-
-func (v *NullableGetWeb3PortfolioResponseHoldings) Set(val *GetWeb3PortfolioResponseHoldings) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PortfolioResponseHoldings) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PortfolioResponseHoldings) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PortfolioResponseHoldings(val *GetWeb3PortfolioResponseHoldings) *NullableGetWeb3PortfolioResponseHoldings {
-	return &NullableGetWeb3PortfolioResponseHoldings{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PortfolioResponseHoldings) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PortfolioResponseHoldings) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PortfolioResponseRealized struct for GetWeb3PortfolioResponseRealized
-type GetWeb3PortfolioResponseRealized struct {
-	Chain string `json:"chain"`
-	Contract string `json:"contract"`
-	TokenId string `json:"tokenId"`
-	Name NullableString `json:"name,omitempty"`
-	SoldAt string `json:"soldAt"`
-	Marketplace string `json:"marketplace"`
-	ProceedsWei NullableString `json:"proceedsWei,omitempty"`
-	CostWei NullableString `json:"costWei,omitempty"`
-	AcquiredAt NullableString `json:"acquiredAt,omitempty"`
-	GainWei NullableString `json:"gainWei,omitempty"`
-	ProceedsUsd NullableFloat32 `json:"proceedsUsd,omitempty"`
-	CostUsd NullableFloat32 `json:"costUsd,omitempty"`
-	GainUsd NullableFloat32 `json:"gainUsd,omitempty"`
-	TxHash NullableString `json:"txHash,omitempty"`
-}
-
-// NewGetWeb3PortfolioResponseRealized instantiates a new GetWeb3PortfolioResponseRealized object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PortfolioResponseRealized(chain string, contract string, tokenId string, soldAt string, marketplace string) *GetWeb3PortfolioResponseRealized {
-	this := GetWeb3PortfolioResponseRealized{}
-	this.Chain = chain
-	this.Contract = contract
-	this.TokenId = tokenId
-	this.SoldAt = soldAt
-	this.Marketplace = marketplace
-	return &this
-}
-
-// NewGetWeb3PortfolioResponseRealizedWithDefaults instantiates a new GetWeb3PortfolioResponseRealized object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PortfolioResponseRealizedWithDefaults() *GetWeb3PortfolioResponseRealized {
-	this := GetWeb3PortfolioResponseRealized{}
-	return &this
-}
-
-// GetChain returns the Chain field value
-func (o *GetWeb3PortfolioResponseRealized) GetChain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Chain
-}
-
-// GetChainOk returns a tuple with the Chain field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseRealized) GetChainOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Chain, true
-}
-
-// SetChain sets field value
-func (o *GetWeb3PortfolioResponseRealized) SetChain(v string) {
-	o.Chain = v
-}
-
-// GetContract returns the Contract field value
-func (o *GetWeb3PortfolioResponseRealized) GetContract() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Contract
-}
-
-// GetContractOk returns a tuple with the Contract field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseRealized) GetContractOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Contract, true
-}
-
-// SetContract sets field value
-func (o *GetWeb3PortfolioResponseRealized) SetContract(v string) {
-	o.Contract = v
-}
-
-// GetTokenId returns the TokenId field value
-func (o *GetWeb3PortfolioResponseRealized) GetTokenId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TokenId
-}
-
-// GetTokenIdOk returns a tuple with the TokenId field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseRealized) GetTokenIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TokenId, true
-}
-
-// SetTokenId sets field value
-func (o *GetWeb3PortfolioResponseRealized) SetTokenId(v string) {
-	o.TokenId = v
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetName() string {
-	if o == nil || o.Name.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *GetWeb3PortfolioResponseRealized) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetSoldAt returns the SoldAt field value
-func (o *GetWeb3PortfolioResponseRealized) GetSoldAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SoldAt
-}
-
-// GetSoldAtOk returns a tuple with the SoldAt field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseRealized) GetSoldAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SoldAt, true
-}
-
-// SetSoldAt sets field value
-func (o *GetWeb3PortfolioResponseRealized) SetSoldAt(v string) {
-	o.SoldAt = v
-}
-
-// GetMarketplace returns the Marketplace field value
-func (o *GetWeb3PortfolioResponseRealized) GetMarketplace() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Marketplace
-}
-
-// GetMarketplaceOk returns a tuple with the Marketplace field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseRealized) GetMarketplaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Marketplace, true
-}
-
-// SetMarketplace sets field value
-func (o *GetWeb3PortfolioResponseRealized) SetMarketplace(v string) {
-	o.Marketplace = v
-}
-
-// GetProceedsWei returns the ProceedsWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetProceedsWei() string {
-	if o == nil || o.ProceedsWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ProceedsWei.Get()
-}
-
-// GetProceedsWeiOk returns a tuple with the ProceedsWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetProceedsWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ProceedsWei.Get(), o.ProceedsWei.IsSet()
-}
-
-// HasProceedsWei returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasProceedsWei() bool {
-	if o != nil && o.ProceedsWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProceedsWei gets a reference to the given NullableString and assigns it to the ProceedsWei field.
-func (o *GetWeb3PortfolioResponseRealized) SetProceedsWei(v string) {
-	o.ProceedsWei.Set(&v)
-}
-// SetProceedsWeiNil sets the value for ProceedsWei to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetProceedsWeiNil() {
-	o.ProceedsWei.Set(nil)
-}
-
-// UnsetProceedsWei ensures that no value is present for ProceedsWei, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetProceedsWei() {
-	o.ProceedsWei.Unset()
-}
-
-// GetCostWei returns the CostWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetCostWei() string {
-	if o == nil || o.CostWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CostWei.Get()
-}
-
-// GetCostWeiOk returns a tuple with the CostWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetCostWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CostWei.Get(), o.CostWei.IsSet()
-}
-
-// HasCostWei returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasCostWei() bool {
-	if o != nil && o.CostWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCostWei gets a reference to the given NullableString and assigns it to the CostWei field.
-func (o *GetWeb3PortfolioResponseRealized) SetCostWei(v string) {
-	o.CostWei.Set(&v)
-}
-// SetCostWeiNil sets the value for CostWei to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetCostWeiNil() {
-	o.CostWei.Set(nil)
-}
-
-// UnsetCostWei ensures that no value is present for CostWei, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetCostWei() {
-	o.CostWei.Unset()
-}
-
-// GetAcquiredAt returns the AcquiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetAcquiredAt() string {
-	if o == nil || o.AcquiredAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AcquiredAt.Get()
-}
-
-// GetAcquiredAtOk returns a tuple with the AcquiredAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetAcquiredAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AcquiredAt.Get(), o.AcquiredAt.IsSet()
-}
-
-// HasAcquiredAt returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasAcquiredAt() bool {
-	if o != nil && o.AcquiredAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAcquiredAt gets a reference to the given NullableString and assigns it to the AcquiredAt field.
-func (o *GetWeb3PortfolioResponseRealized) SetAcquiredAt(v string) {
-	o.AcquiredAt.Set(&v)
-}
-// SetAcquiredAtNil sets the value for AcquiredAt to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetAcquiredAtNil() {
-	o.AcquiredAt.Set(nil)
-}
-
-// UnsetAcquiredAt ensures that no value is present for AcquiredAt, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetAcquiredAt() {
-	o.AcquiredAt.Unset()
-}
-
-// GetGainWei returns the GainWei field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetGainWei() string {
-	if o == nil || o.GainWei.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GainWei.Get()
-}
-
-// GetGainWeiOk returns a tuple with the GainWei field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetGainWeiOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GainWei.Get(), o.GainWei.IsSet()
-}
-
-// HasGainWei returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasGainWei() bool {
-	if o != nil && o.GainWei.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGainWei gets a reference to the given NullableString and assigns it to the GainWei field.
-func (o *GetWeb3PortfolioResponseRealized) SetGainWei(v string) {
-	o.GainWei.Set(&v)
-}
-// SetGainWeiNil sets the value for GainWei to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetGainWeiNil() {
-	o.GainWei.Set(nil)
-}
-
-// UnsetGainWei ensures that no value is present for GainWei, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetGainWei() {
-	o.GainWei.Unset()
-}
-
-// GetProceedsUsd returns the ProceedsUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetProceedsUsd() float32 {
-	if o == nil || o.ProceedsUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ProceedsUsd.Get()
-}
-
-// GetProceedsUsdOk returns a tuple with the ProceedsUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetProceedsUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ProceedsUsd.Get(), o.ProceedsUsd.IsSet()
-}
-
-// HasProceedsUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasProceedsUsd() bool {
-	if o != nil && o.ProceedsUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProceedsUsd gets a reference to the given NullableFloat32 and assigns it to the ProceedsUsd field.
-func (o *GetWeb3PortfolioResponseRealized) SetProceedsUsd(v float32) {
-	o.ProceedsUsd.Set(&v)
-}
-// SetProceedsUsdNil sets the value for ProceedsUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetProceedsUsdNil() {
-	o.ProceedsUsd.Set(nil)
-}
-
-// UnsetProceedsUsd ensures that no value is present for ProceedsUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetProceedsUsd() {
-	o.ProceedsUsd.Unset()
-}
-
-// GetCostUsd returns the CostUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetCostUsd() float32 {
-	if o == nil || o.CostUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CostUsd.Get()
-}
-
-// GetCostUsdOk returns a tuple with the CostUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetCostUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CostUsd.Get(), o.CostUsd.IsSet()
-}
-
-// HasCostUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasCostUsd() bool {
-	if o != nil && o.CostUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCostUsd gets a reference to the given NullableFloat32 and assigns it to the CostUsd field.
-func (o *GetWeb3PortfolioResponseRealized) SetCostUsd(v float32) {
-	o.CostUsd.Set(&v)
-}
-// SetCostUsdNil sets the value for CostUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetCostUsdNil() {
-	o.CostUsd.Set(nil)
-}
-
-// UnsetCostUsd ensures that no value is present for CostUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetCostUsd() {
-	o.CostUsd.Unset()
-}
-
-// GetGainUsd returns the GainUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetGainUsd() float32 {
-	if o == nil || o.GainUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.GainUsd.Get()
-}
-
-// GetGainUsdOk returns a tuple with the GainUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetGainUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GainUsd.Get(), o.GainUsd.IsSet()
-}
-
-// HasGainUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasGainUsd() bool {
-	if o != nil && o.GainUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGainUsd gets a reference to the given NullableFloat32 and assigns it to the GainUsd field.
-func (o *GetWeb3PortfolioResponseRealized) SetGainUsd(v float32) {
-	o.GainUsd.Set(&v)
-}
-// SetGainUsdNil sets the value for GainUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetGainUsdNil() {
-	o.GainUsd.Set(nil)
-}
-
-// UnsetGainUsd ensures that no value is present for GainUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetGainUsd() {
-	o.GainUsd.Unset()
-}
-
-// GetTxHash returns the TxHash field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseRealized) GetTxHash() string {
-	if o == nil || o.TxHash.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TxHash.Get()
-}
-
-// GetTxHashOk returns a tuple with the TxHash field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseRealized) GetTxHashOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TxHash.Get(), o.TxHash.IsSet()
-}
-
-// HasTxHash returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseRealized) HasTxHash() bool {
-	if o != nil && o.TxHash.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTxHash gets a reference to the given NullableString and assigns it to the TxHash field.
-func (o *GetWeb3PortfolioResponseRealized) SetTxHash(v string) {
-	o.TxHash.Set(&v)
-}
-// SetTxHashNil sets the value for TxHash to be an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) SetTxHashNil() {
-	o.TxHash.Set(nil)
-}
-
-// UnsetTxHash ensures that no value is present for TxHash, not even an explicit nil
-func (o *GetWeb3PortfolioResponseRealized) UnsetTxHash() {
-	o.TxHash.Unset()
-}
-
-func (o GetWeb3PortfolioResponseRealized) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract"] = o.Contract
-	}
-	if true {
-		toSerialize["tokenId"] = o.TokenId
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
-	if true {
-		toSerialize["soldAt"] = o.SoldAt
-	}
-	if true {
-		toSerialize["marketplace"] = o.Marketplace
-	}
-	if o.ProceedsWei.IsSet() {
-		toSerialize["proceedsWei"] = o.ProceedsWei.Get()
-	}
-	if o.CostWei.IsSet() {
-		toSerialize["costWei"] = o.CostWei.Get()
-	}
-	if o.AcquiredAt.IsSet() {
-		toSerialize["acquiredAt"] = o.AcquiredAt.Get()
-	}
-	if o.GainWei.IsSet() {
-		toSerialize["gainWei"] = o.GainWei.Get()
-	}
-	if o.ProceedsUsd.IsSet() {
-		toSerialize["proceedsUsd"] = o.ProceedsUsd.Get()
-	}
-	if o.CostUsd.IsSet() {
-		toSerialize["costUsd"] = o.CostUsd.Get()
-	}
-	if o.GainUsd.IsSet() {
-		toSerialize["gainUsd"] = o.GainUsd.Get()
-	}
-	if o.TxHash.IsSet() {
-		toSerialize["txHash"] = o.TxHash.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PortfolioResponseRealized struct {
-	value *GetWeb3PortfolioResponseRealized
-	isSet bool
-}
-
-func (v NullableGetWeb3PortfolioResponseRealized) Get() *GetWeb3PortfolioResponseRealized {
-	return v.value
-}
-
-func (v *NullableGetWeb3PortfolioResponseRealized) Set(val *GetWeb3PortfolioResponseRealized) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PortfolioResponseRealized) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PortfolioResponseRealized) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PortfolioResponseRealized(val *GetWeb3PortfolioResponseRealized) *NullableGetWeb3PortfolioResponseRealized {
-	return &NullableGetWeb3PortfolioResponseRealized{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PortfolioResponseRealized) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PortfolioResponseRealized) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PortfolioResponseTotals struct for GetWeb3PortfolioResponseTotals
-type GetWeb3PortfolioResponseTotals struct {
-	ValueUsd NullableFloat32 `json:"valueUsd,omitempty"`
-	CostUsd NullableFloat32 `json:"costUsd,omitempty"`
-	UnrealizedUsd NullableFloat32 `json:"unrealizedUsd,omitempty"`
-	RealizedUsd NullableFloat32 `json:"realizedUsd,omitempty"`
-	Holdings float32 `json:"holdings"`
-	Valued float32 `json:"valued"`
-}
-
-// NewGetWeb3PortfolioResponseTotals instantiates a new GetWeb3PortfolioResponseTotals object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PortfolioResponseTotals(holdings float32, valued float32) *GetWeb3PortfolioResponseTotals {
-	this := GetWeb3PortfolioResponseTotals{}
-	this.Holdings = holdings
-	this.Valued = valued
-	return &this
-}
-
-// NewGetWeb3PortfolioResponseTotalsWithDefaults instantiates a new GetWeb3PortfolioResponseTotals object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PortfolioResponseTotalsWithDefaults() *GetWeb3PortfolioResponseTotals {
-	this := GetWeb3PortfolioResponseTotals{}
-	return &this
-}
-
-// GetValueUsd returns the ValueUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseTotals) GetValueUsd() float32 {
-	if o == nil || o.ValueUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ValueUsd.Get()
-}
-
-// GetValueUsdOk returns a tuple with the ValueUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseTotals) GetValueUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ValueUsd.Get(), o.ValueUsd.IsSet()
-}
-
-// HasValueUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseTotals) HasValueUsd() bool {
-	if o != nil && o.ValueUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValueUsd gets a reference to the given NullableFloat32 and assigns it to the ValueUsd field.
-func (o *GetWeb3PortfolioResponseTotals) SetValueUsd(v float32) {
-	o.ValueUsd.Set(&v)
-}
-// SetValueUsdNil sets the value for ValueUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) SetValueUsdNil() {
-	o.ValueUsd.Set(nil)
-}
-
-// UnsetValueUsd ensures that no value is present for ValueUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) UnsetValueUsd() {
-	o.ValueUsd.Unset()
-}
-
-// GetCostUsd returns the CostUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseTotals) GetCostUsd() float32 {
-	if o == nil || o.CostUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CostUsd.Get()
-}
-
-// GetCostUsdOk returns a tuple with the CostUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseTotals) GetCostUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CostUsd.Get(), o.CostUsd.IsSet()
-}
-
-// HasCostUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseTotals) HasCostUsd() bool {
-	if o != nil && o.CostUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCostUsd gets a reference to the given NullableFloat32 and assigns it to the CostUsd field.
-func (o *GetWeb3PortfolioResponseTotals) SetCostUsd(v float32) {
-	o.CostUsd.Set(&v)
-}
-// SetCostUsdNil sets the value for CostUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) SetCostUsdNil() {
-	o.CostUsd.Set(nil)
-}
-
-// UnsetCostUsd ensures that no value is present for CostUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) UnsetCostUsd() {
-	o.CostUsd.Unset()
-}
-
-// GetUnrealizedUsd returns the UnrealizedUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseTotals) GetUnrealizedUsd() float32 {
-	if o == nil || o.UnrealizedUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.UnrealizedUsd.Get()
-}
-
-// GetUnrealizedUsdOk returns a tuple with the UnrealizedUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseTotals) GetUnrealizedUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.UnrealizedUsd.Get(), o.UnrealizedUsd.IsSet()
-}
-
-// HasUnrealizedUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseTotals) HasUnrealizedUsd() bool {
-	if o != nil && o.UnrealizedUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUnrealizedUsd gets a reference to the given NullableFloat32 and assigns it to the UnrealizedUsd field.
-func (o *GetWeb3PortfolioResponseTotals) SetUnrealizedUsd(v float32) {
-	o.UnrealizedUsd.Set(&v)
-}
-// SetUnrealizedUsdNil sets the value for UnrealizedUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) SetUnrealizedUsdNil() {
-	o.UnrealizedUsd.Set(nil)
-}
-
-// UnsetUnrealizedUsd ensures that no value is present for UnrealizedUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) UnsetUnrealizedUsd() {
-	o.UnrealizedUsd.Unset()
-}
-
-// GetRealizedUsd returns the RealizedUsd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetWeb3PortfolioResponseTotals) GetRealizedUsd() float32 {
-	if o == nil || o.RealizedUsd.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.RealizedUsd.Get()
-}
-
-// GetRealizedUsdOk returns a tuple with the RealizedUsd field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetWeb3PortfolioResponseTotals) GetRealizedUsdOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RealizedUsd.Get(), o.RealizedUsd.IsSet()
-}
-
-// HasRealizedUsd returns a boolean if a field has been set.
-func (o *GetWeb3PortfolioResponseTotals) HasRealizedUsd() bool {
-	if o != nil && o.RealizedUsd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRealizedUsd gets a reference to the given NullableFloat32 and assigns it to the RealizedUsd field.
-func (o *GetWeb3PortfolioResponseTotals) SetRealizedUsd(v float32) {
-	o.RealizedUsd.Set(&v)
-}
-// SetRealizedUsdNil sets the value for RealizedUsd to be an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) SetRealizedUsdNil() {
-	o.RealizedUsd.Set(nil)
-}
-
-// UnsetRealizedUsd ensures that no value is present for RealizedUsd, not even an explicit nil
-func (o *GetWeb3PortfolioResponseTotals) UnsetRealizedUsd() {
-	o.RealizedUsd.Unset()
-}
-
-// GetHoldings returns the Holdings field value
-func (o *GetWeb3PortfolioResponseTotals) GetHoldings() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Holdings
-}
-
-// GetHoldingsOk returns a tuple with the Holdings field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseTotals) GetHoldingsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Holdings, true
-}
-
-// SetHoldings sets field value
-func (o *GetWeb3PortfolioResponseTotals) SetHoldings(v float32) {
-	o.Holdings = v
-}
-
-// GetValued returns the Valued field value
-func (o *GetWeb3PortfolioResponseTotals) GetValued() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Valued
-}
-
-// GetValuedOk returns a tuple with the Valued field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioResponseTotals) GetValuedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Valued, true
-}
-
-// SetValued sets field value
-func (o *GetWeb3PortfolioResponseTotals) SetValued(v float32) {
-	o.Valued = v
-}
-
-func (o GetWeb3PortfolioResponseTotals) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ValueUsd.IsSet() {
-		toSerialize["valueUsd"] = o.ValueUsd.Get()
-	}
-	if o.CostUsd.IsSet() {
-		toSerialize["costUsd"] = o.CostUsd.Get()
-	}
-	if o.UnrealizedUsd.IsSet() {
-		toSerialize["unrealizedUsd"] = o.UnrealizedUsd.Get()
-	}
-	if o.RealizedUsd.IsSet() {
-		toSerialize["realizedUsd"] = o.RealizedUsd.Get()
-	}
-	if true {
-		toSerialize["holdings"] = o.Holdings
-	}
-	if true {
-		toSerialize["valued"] = o.Valued
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PortfolioResponseTotals struct {
-	value *GetWeb3PortfolioResponseTotals
-	isSet bool
-}
-
-func (v NullableGetWeb3PortfolioResponseTotals) Get() *GetWeb3PortfolioResponseTotals {
-	return v.value
-}
-
-func (v *NullableGetWeb3PortfolioResponseTotals) Set(val *GetWeb3PortfolioResponseTotals) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PortfolioResponseTotals) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PortfolioResponseTotals) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PortfolioResponseTotals(val *GetWeb3PortfolioResponseTotals) *NullableGetWeb3PortfolioResponseTotals {
-	return &NullableGetWeb3PortfolioResponseTotals{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PortfolioResponseTotals) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PortfolioResponseTotals) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3PortfolioTaxResponse struct for GetWeb3PortfolioTaxResponse
-type GetWeb3PortfolioTaxResponse struct {
-	Year float32 `json:"year"`
-	Filename string `json:"filename"`
-	Csv string `json:"csv"`
-}
-
-// NewGetWeb3PortfolioTaxResponse instantiates a new GetWeb3PortfolioTaxResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3PortfolioTaxResponse(year float32, filename string, csv string) *GetWeb3PortfolioTaxResponse {
-	this := GetWeb3PortfolioTaxResponse{}
-	this.Year = year
-	this.Filename = filename
-	this.Csv = csv
-	return &this
-}
-
-// NewGetWeb3PortfolioTaxResponseWithDefaults instantiates a new GetWeb3PortfolioTaxResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3PortfolioTaxResponseWithDefaults() *GetWeb3PortfolioTaxResponse {
-	this := GetWeb3PortfolioTaxResponse{}
-	return &this
-}
-
-// GetYear returns the Year field value
-func (o *GetWeb3PortfolioTaxResponse) GetYear() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Year
-}
-
-// GetYearOk returns a tuple with the Year field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioTaxResponse) GetYearOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Year, true
-}
-
-// SetYear sets field value
-func (o *GetWeb3PortfolioTaxResponse) SetYear(v float32) {
-	o.Year = v
-}
-
-// GetFilename returns the Filename field value
-func (o *GetWeb3PortfolioTaxResponse) GetFilename() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Filename
-}
-
-// GetFilenameOk returns a tuple with the Filename field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioTaxResponse) GetFilenameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Filename, true
-}
-
-// SetFilename sets field value
-func (o *GetWeb3PortfolioTaxResponse) SetFilename(v string) {
-	o.Filename = v
-}
-
-// GetCsv returns the Csv field value
-func (o *GetWeb3PortfolioTaxResponse) GetCsv() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Csv
-}
-
-// GetCsvOk returns a tuple with the Csv field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3PortfolioTaxResponse) GetCsvOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Csv, true
-}
-
-// SetCsv sets field value
-func (o *GetWeb3PortfolioTaxResponse) SetCsv(v string) {
-	o.Csv = v
-}
-
-func (o GetWeb3PortfolioTaxResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["year"] = o.Year
-	}
-	if true {
-		toSerialize["filename"] = o.Filename
-	}
-	if true {
-		toSerialize["csv"] = o.Csv
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3PortfolioTaxResponse struct {
-	value *GetWeb3PortfolioTaxResponse
-	isSet bool
-}
-
-func (v NullableGetWeb3PortfolioTaxResponse) Get() *GetWeb3PortfolioTaxResponse {
-	return v.value
-}
-
-func (v *NullableGetWeb3PortfolioTaxResponse) Set(val *GetWeb3PortfolioTaxResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3PortfolioTaxResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3PortfolioTaxResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3PortfolioTaxResponse(val *GetWeb3PortfolioTaxResponse) *NullableGetWeb3PortfolioTaxResponse {
-	return &NullableGetWeb3PortfolioTaxResponse{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3PortfolioTaxResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3PortfolioTaxResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetWeb3ProfileResponse struct for GetWeb3ProfileResponse
-type GetWeb3ProfileResponse struct {
-	Address string `json:"address"`
-	Family string `json:"family"`
-	// Linked to a Crossly account (never says which).
-	OnCrossly bool `json:"onCrossly"`
-	Nfts []GetWeb3ProfileResponseNfts `json:"nfts"`
-	Listings []GetWeb3ProfileResponseListings `json:"listings"`
-	Activity []ListWeb3ActivityItem `json:"activity"`
-}
-
-// NewGetWeb3ProfileResponse instantiates a new GetWeb3ProfileResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetWeb3ProfileResponse(address string, family string, onCrossly bool, nfts []GetWeb3ProfileResponseNfts, listings []GetWeb3ProfileResponseListings, activity []ListWeb3ActivityItem) *GetWeb3ProfileResponse {
-	this := GetWeb3ProfileResponse{}
-	this.Address = address
-	this.Family = family
-	this.OnCrossly = onCrossly
-	this.Nfts = nfts
-	this.Listings = listings
-	this.Activity = activity
-	return &this
-}
-
-// NewGetWeb3ProfileResponseWithDefaults instantiates a new GetWeb3ProfileResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetWeb3ProfileResponseWithDefaults() *GetWeb3ProfileResponse {
-	this := GetWeb3ProfileResponse{}
-	return &this
-}
-
-// GetAddress returns the Address field value
-func (o *GetWeb3ProfileResponse) GetAddress() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Address
-}
-
-// GetAddressOk returns a tuple with the Address field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetAddressOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Address, true
-}
-
-// SetAddress sets field value
-func (o *GetWeb3ProfileResponse) SetAddress(v string) {
-	o.Address = v
-}
-
-// GetFamily returns the Family field value
-func (o *GetWeb3ProfileResponse) GetFamily() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Family
-}
-
-// GetFamilyOk returns a tuple with the Family field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetFamilyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Family, true
-}
-
-// SetFamily sets field value
-func (o *GetWeb3ProfileResponse) SetFamily(v string) {
-	o.Family = v
-}
-
-// GetOnCrossly returns the OnCrossly field value
-func (o *GetWeb3ProfileResponse) GetOnCrossly() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.OnCrossly
-}
-
-// GetOnCrosslyOk returns a tuple with the OnCrossly field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetOnCrosslyOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OnCrossly, true
-}
-
-// SetOnCrossly sets field value
-func (o *GetWeb3ProfileResponse) SetOnCrossly(v bool) {
-	o.OnCrossly = v
-}
-
-// GetNfts returns the Nfts field value
-func (o *GetWeb3ProfileResponse) GetNfts() []GetWeb3ProfileResponseNfts {
-	if o == nil {
-		var ret []GetWeb3ProfileResponseNfts
-		return ret
-	}
-
-	return o.Nfts
-}
-
-// GetNftsOk returns a tuple with the Nfts field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetNftsOk() ([]GetWeb3ProfileResponseNfts, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Nfts, true
-}
-
-// SetNfts sets field value
-func (o *GetWeb3ProfileResponse) SetNfts(v []GetWeb3ProfileResponseNfts) {
-	o.Nfts = v
-}
-
-// GetListings returns the Listings field value
-func (o *GetWeb3ProfileResponse) GetListings() []GetWeb3ProfileResponseListings {
-	if o == nil {
-		var ret []GetWeb3ProfileResponseListings
-		return ret
-	}
-
-	return o.Listings
-}
-
-// GetListingsOk returns a tuple with the Listings field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetListingsOk() ([]GetWeb3ProfileResponseListings, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Listings, true
-}
-
-// SetListings sets field value
-func (o *GetWeb3ProfileResponse) SetListings(v []GetWeb3ProfileResponseListings) {
-	o.Listings = v
-}
-
-// GetActivity returns the Activity field value
-func (o *GetWeb3ProfileResponse) GetActivity() []ListWeb3ActivityItem {
-	if o == nil {
-		var ret []ListWeb3ActivityItem
-		return ret
-	}
-
-	return o.Activity
-}
-
-// GetActivityOk returns a tuple with the Activity field value
-// and a boolean to check if the value has been set.
-func (o *GetWeb3ProfileResponse) GetActivityOk() ([]ListWeb3ActivityItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Activity, true
-}
-
-// SetActivity sets field value
-func (o *GetWeb3ProfileResponse) SetActivity(v []ListWeb3ActivityItem) {
-	o.Activity = v
-}
-
-func (o GetWeb3ProfileResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address"] = o.Address
-	}
-	if true {
-		toSerialize["family"] = o.Family
-	}
-	if true {
-		toSerialize["onCrossly"] = o.OnCrossly
-	}
-	if true {
-		toSerialize["nfts"] = o.Nfts
-	}
-	if true {
-		toSerialize["listings"] = o.Listings
-	}
-	if true {
-		toSerialize["activity"] = o.Activity
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetWeb3ProfileResponse struct {
-	value *GetWeb3ProfileResponse
-	isSet bool
-}
-
-func (v NullableGetWeb3ProfileResponse) Get() *GetWeb3ProfileResponse {
-	return v.value
-}
-
-func (v *NullableGetWeb3ProfileResponse) Set(val *GetWeb3ProfileResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetWeb3ProfileResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetWeb3ProfileResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetWeb3ProfileResponse(val *GetWeb3ProfileResponse) *NullableGetWeb3ProfileResponse {
-	return &NullableGetWeb3ProfileResponse{value: val, isSet: true}
-}
-
-func (v NullableGetWeb3ProfileResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetWeb3ProfileResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

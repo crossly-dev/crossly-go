@@ -13,7 +13,2320 @@ package crossly
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
+
+// GetSpatialPropertyResponseData struct for GetSpatialPropertyResponseData
+type GetSpatialPropertyResponseData struct {
+	Enabled bool `json:"enabled"`
+	Deeds []GetSpatialPropertyResponseDataDeeds `json:"deeds"`
+	Tenancies []GetSpatialPropertyResponseDataTenancies `json:"tenancies"`
+}
+
+// NewGetSpatialPropertyResponseData instantiates a new GetSpatialPropertyResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPropertyResponseData(enabled bool, deeds []GetSpatialPropertyResponseDataDeeds, tenancies []GetSpatialPropertyResponseDataTenancies) *GetSpatialPropertyResponseData {
+	this := GetSpatialPropertyResponseData{}
+	this.Enabled = enabled
+	this.Deeds = deeds
+	this.Tenancies = tenancies
+	return &this
+}
+
+// NewGetSpatialPropertyResponseDataWithDefaults instantiates a new GetSpatialPropertyResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPropertyResponseDataWithDefaults() *GetSpatialPropertyResponseData {
+	this := GetSpatialPropertyResponseData{}
+	return &this
+}
+
+// GetEnabled returns the Enabled field value
+func (o *GetSpatialPropertyResponseData) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseData) GetEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *GetSpatialPropertyResponseData) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetDeeds returns the Deeds field value
+func (o *GetSpatialPropertyResponseData) GetDeeds() []GetSpatialPropertyResponseDataDeeds {
+	if o == nil {
+		var ret []GetSpatialPropertyResponseDataDeeds
+		return ret
+	}
+
+	return o.Deeds
+}
+
+// GetDeedsOk returns a tuple with the Deeds field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseData) GetDeedsOk() ([]GetSpatialPropertyResponseDataDeeds, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Deeds, true
+}
+
+// SetDeeds sets field value
+func (o *GetSpatialPropertyResponseData) SetDeeds(v []GetSpatialPropertyResponseDataDeeds) {
+	o.Deeds = v
+}
+
+// GetTenancies returns the Tenancies field value
+func (o *GetSpatialPropertyResponseData) GetTenancies() []GetSpatialPropertyResponseDataTenancies {
+	if o == nil {
+		var ret []GetSpatialPropertyResponseDataTenancies
+		return ret
+	}
+
+	return o.Tenancies
+}
+
+// GetTenanciesOk returns a tuple with the Tenancies field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseData) GetTenanciesOk() ([]GetSpatialPropertyResponseDataTenancies, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tenancies, true
+}
+
+// SetTenancies sets field value
+func (o *GetSpatialPropertyResponseData) SetTenancies(v []GetSpatialPropertyResponseDataTenancies) {
+	o.Tenancies = v
+}
+
+func (o GetSpatialPropertyResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["deeds"] = o.Deeds
+	}
+	if true {
+		toSerialize["tenancies"] = o.Tenancies
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPropertyResponseData struct {
+	value *GetSpatialPropertyResponseData
+	isSet bool
+}
+
+func (v NullableGetSpatialPropertyResponseData) Get() *GetSpatialPropertyResponseData {
+	return v.value
+}
+
+func (v *NullableGetSpatialPropertyResponseData) Set(val *GetSpatialPropertyResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPropertyResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPropertyResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPropertyResponseData(val *GetSpatialPropertyResponseData) *NullableGetSpatialPropertyResponseData {
+	return &NullableGetSpatialPropertyResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPropertyResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPropertyResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetSpatialPropertyResponseDataDeeds struct for GetSpatialPropertyResponseDataDeeds
+type GetSpatialPropertyResponseDataDeeds struct {
+	Id string `json:"id"`
+	PlotId string `json:"plotId"`
+	Address string `json:"address"`
+	Label string `json:"label"`
+	PriceCents float32 `json:"priceCents"`
+	MaintenanceWeeklyCents float32 `json:"maintenanceWeeklyCents"`
+	PaidThrough string `json:"paidThrough"`
+	Status string `json:"status"`
+	Occupied bool `json:"occupied"`
+	Lease NullableGetSpatialPropertyResponseDataDeedsLease `json:"lease,omitempty"`
+	Listing NullableGetSpatialPropertyResponseDataDeedsListing `json:"listing,omitempty"`
+}
+
+// NewGetSpatialPropertyResponseDataDeeds instantiates a new GetSpatialPropertyResponseDataDeeds object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPropertyResponseDataDeeds(id string, plotId string, address string, label string, priceCents float32, maintenanceWeeklyCents float32, paidThrough string, status string, occupied bool) *GetSpatialPropertyResponseDataDeeds {
+	this := GetSpatialPropertyResponseDataDeeds{}
+	this.Id = id
+	this.PlotId = plotId
+	this.Address = address
+	this.Label = label
+	this.PriceCents = priceCents
+	this.MaintenanceWeeklyCents = maintenanceWeeklyCents
+	this.PaidThrough = paidThrough
+	this.Status = status
+	this.Occupied = occupied
+	return &this
+}
+
+// NewGetSpatialPropertyResponseDataDeedsWithDefaults instantiates a new GetSpatialPropertyResponseDataDeeds object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPropertyResponseDataDeedsWithDefaults() *GetSpatialPropertyResponseDataDeeds {
+	this := GetSpatialPropertyResponseDataDeeds{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetId(v string) {
+	o.Id = v
+}
+
+// GetPlotId returns the PlotId field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetPlotId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlotId
+}
+
+// GetPlotIdOk returns a tuple with the PlotId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetPlotIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlotId, true
+}
+
+// SetPlotId sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetPlotId(v string) {
+	o.PlotId = v
+}
+
+// GetAddress returns the Address field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Address, true
+}
+
+// SetAddress sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetAddress(v string) {
+	o.Address = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetPriceCents returns the PriceCents field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+// GetMaintenanceWeeklyCents returns the MaintenanceWeeklyCents field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetMaintenanceWeeklyCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaintenanceWeeklyCents
+}
+
+// GetMaintenanceWeeklyCentsOk returns a tuple with the MaintenanceWeeklyCents field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetMaintenanceWeeklyCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaintenanceWeeklyCents, true
+}
+
+// SetMaintenanceWeeklyCents sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetMaintenanceWeeklyCents(v float32) {
+	o.MaintenanceWeeklyCents = v
+}
+
+// GetPaidThrough returns the PaidThrough field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetPaidThrough() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PaidThrough
+}
+
+// GetPaidThroughOk returns a tuple with the PaidThrough field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetPaidThroughOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaidThrough, true
+}
+
+// SetPaidThrough sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetPaidThrough(v string) {
+	o.PaidThrough = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetOccupied returns the Occupied field value
+func (o *GetSpatialPropertyResponseDataDeeds) GetOccupied() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Occupied
+}
+
+// GetOccupiedOk returns a tuple with the Occupied field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) GetOccupiedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Occupied, true
+}
+
+// SetOccupied sets field value
+func (o *GetSpatialPropertyResponseDataDeeds) SetOccupied(v bool) {
+	o.Occupied = v
+}
+
+// GetLease returns the Lease field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeeds) GetLease() GetSpatialPropertyResponseDataDeedsLease {
+	if o == nil || o.Lease.Get() == nil {
+		var ret GetSpatialPropertyResponseDataDeedsLease
+		return ret
+	}
+	return *o.Lease.Get()
+}
+
+// GetLeaseOk returns a tuple with the Lease field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeeds) GetLeaseOk() (*GetSpatialPropertyResponseDataDeedsLease, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Lease.Get(), o.Lease.IsSet()
+}
+
+// HasLease returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) HasLease() bool {
+	if o != nil && o.Lease.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLease gets a reference to the given NullableGetSpatialPropertyResponseDataDeedsLease and assigns it to the Lease field.
+func (o *GetSpatialPropertyResponseDataDeeds) SetLease(v GetSpatialPropertyResponseDataDeedsLease) {
+	o.Lease.Set(&v)
+}
+// SetLeaseNil sets the value for Lease to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeeds) SetLeaseNil() {
+	o.Lease.Set(nil)
+}
+
+// UnsetLease ensures that no value is present for Lease, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeeds) UnsetLease() {
+	o.Lease.Unset()
+}
+
+// GetListing returns the Listing field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeeds) GetListing() GetSpatialPropertyResponseDataDeedsListing {
+	if o == nil || o.Listing.Get() == nil {
+		var ret GetSpatialPropertyResponseDataDeedsListing
+		return ret
+	}
+	return *o.Listing.Get()
+}
+
+// GetListingOk returns a tuple with the Listing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeeds) GetListingOk() (*GetSpatialPropertyResponseDataDeedsListing, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Listing.Get(), o.Listing.IsSet()
+}
+
+// HasListing returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeeds) HasListing() bool {
+	if o != nil && o.Listing.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListing gets a reference to the given NullableGetSpatialPropertyResponseDataDeedsListing and assigns it to the Listing field.
+func (o *GetSpatialPropertyResponseDataDeeds) SetListing(v GetSpatialPropertyResponseDataDeedsListing) {
+	o.Listing.Set(&v)
+}
+// SetListingNil sets the value for Listing to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeeds) SetListingNil() {
+	o.Listing.Set(nil)
+}
+
+// UnsetListing ensures that no value is present for Listing, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeeds) UnsetListing() {
+	o.Listing.Unset()
+}
+
+func (o GetSpatialPropertyResponseDataDeeds) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["plotId"] = o.PlotId
+	}
+	if true {
+		toSerialize["address"] = o.Address
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["maintenanceWeeklyCents"] = o.MaintenanceWeeklyCents
+	}
+	if true {
+		toSerialize["paidThrough"] = o.PaidThrough
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["occupied"] = o.Occupied
+	}
+	if o.Lease.IsSet() {
+		toSerialize["lease"] = o.Lease.Get()
+	}
+	if o.Listing.IsSet() {
+		toSerialize["listing"] = o.Listing.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPropertyResponseDataDeeds struct {
+	value *GetSpatialPropertyResponseDataDeeds
+	isSet bool
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeeds) Get() *GetSpatialPropertyResponseDataDeeds {
+	return v.value
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeeds) Set(val *GetSpatialPropertyResponseDataDeeds) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeeds) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeeds) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPropertyResponseDataDeeds(val *GetSpatialPropertyResponseDataDeeds) *NullableGetSpatialPropertyResponseDataDeeds {
+	return &NullableGetSpatialPropertyResponseDataDeeds{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeeds) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeeds) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetSpatialPropertyResponseDataDeedsLease struct for GetSpatialPropertyResponseDataDeedsLease
+type GetSpatialPropertyResponseDataDeedsLease struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	Status string `json:"status"`
+	OwnerUserId string `json:"ownerUserId"`
+	EndedAt NullableTime `json:"endedAt,omitempty"`
+	Rail NullableString `json:"rail,omitempty"`
+	PlotId string `json:"plotId"`
+	PaidThrough NullableTime `json:"paidThrough,omitempty"`
+	DeedId string `json:"deedId"`
+	TenantUserId NullableString `json:"tenantUserId,omitempty"`
+	TenantSceneId NullableString `json:"tenantSceneId,omitempty"`
+	RentWeeklyCents float32 `json:"rentWeeklyCents"`
+	TermsFrozenAt NullableTime `json:"termsFrozenAt,omitempty"`
+	EndReason NullableString `json:"endReason,omitempty"`
+	Autopay bool `json:"autopay"`
+	Address NullableString `json:"address,omitempty"`
+	Label NullableString `json:"label,omitempty"`
+	TenantName NullableString `json:"tenantName,omitempty"`
+}
+
+// NewGetSpatialPropertyResponseDataDeedsLease instantiates a new GetSpatialPropertyResponseDataDeedsLease object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPropertyResponseDataDeedsLease(id string, createdAt time.Time, status string, ownerUserId string, plotId string, deedId string, rentWeeklyCents float32, autopay bool) *GetSpatialPropertyResponseDataDeedsLease {
+	this := GetSpatialPropertyResponseDataDeedsLease{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.Status = status
+	this.OwnerUserId = ownerUserId
+	this.PlotId = plotId
+	this.DeedId = deedId
+	this.RentWeeklyCents = rentWeeklyCents
+	this.Autopay = autopay
+	return &this
+}
+
+// NewGetSpatialPropertyResponseDataDeedsLeaseWithDefaults instantiates a new GetSpatialPropertyResponseDataDeedsLease object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPropertyResponseDataDeedsLeaseWithDefaults() *GetSpatialPropertyResponseDataDeedsLease {
+	this := GetSpatialPropertyResponseDataDeedsLease{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetOwnerUserId returns the OwnerUserId field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetOwnerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OwnerUserId
+}
+
+// GetOwnerUserIdOk returns a tuple with the OwnerUserId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetOwnerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OwnerUserId, true
+}
+
+// SetOwnerUserId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetOwnerUserId(v string) {
+	o.OwnerUserId = v
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetEndedAt() time.Time {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetEndedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableTime and assigns it to the EndedAt field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetEndedAt(v time.Time) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetRail returns the Rail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetRail() string {
+	if o == nil || o.Rail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Rail.Get()
+}
+
+// GetRailOk returns a tuple with the Rail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rail.Get(), o.Rail.IsSet()
+}
+
+// HasRail returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasRail() bool {
+	if o != nil && o.Rail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRail gets a reference to the given NullableString and assigns it to the Rail field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetRail(v string) {
+	o.Rail.Set(&v)
+}
+// SetRailNil sets the value for Rail to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetRailNil() {
+	o.Rail.Set(nil)
+}
+
+// UnsetRail ensures that no value is present for Rail, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetRail() {
+	o.Rail.Unset()
+}
+
+// GetPlotId returns the PlotId field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetPlotId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlotId
+}
+
+// GetPlotIdOk returns a tuple with the PlotId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetPlotIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlotId, true
+}
+
+// SetPlotId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetPlotId(v string) {
+	o.PlotId = v
+}
+
+// GetPaidThrough returns the PaidThrough field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetPaidThrough() time.Time {
+	if o == nil || o.PaidThrough.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PaidThrough.Get()
+}
+
+// GetPaidThroughOk returns a tuple with the PaidThrough field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetPaidThroughOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaidThrough.Get(), o.PaidThrough.IsSet()
+}
+
+// HasPaidThrough returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasPaidThrough() bool {
+	if o != nil && o.PaidThrough.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaidThrough gets a reference to the given NullableTime and assigns it to the PaidThrough field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetPaidThrough(v time.Time) {
+	o.PaidThrough.Set(&v)
+}
+// SetPaidThroughNil sets the value for PaidThrough to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetPaidThroughNil() {
+	o.PaidThrough.Set(nil)
+}
+
+// UnsetPaidThrough ensures that no value is present for PaidThrough, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetPaidThrough() {
+	o.PaidThrough.Unset()
+}
+
+// GetDeedId returns the DeedId field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetDeedId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeedId
+}
+
+// GetDeedIdOk returns a tuple with the DeedId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetDeedIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DeedId, true
+}
+
+// SetDeedId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetDeedId(v string) {
+	o.DeedId = v
+}
+
+// GetTenantUserId returns the TenantUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantUserId() string {
+	if o == nil || o.TenantUserId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantUserId.Get()
+}
+
+// GetTenantUserIdOk returns a tuple with the TenantUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantUserId.Get(), o.TenantUserId.IsSet()
+}
+
+// HasTenantUserId returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasTenantUserId() bool {
+	if o != nil && o.TenantUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantUserId gets a reference to the given NullableString and assigns it to the TenantUserId field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantUserId(v string) {
+	o.TenantUserId.Set(&v)
+}
+// SetTenantUserIdNil sets the value for TenantUserId to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantUserIdNil() {
+	o.TenantUserId.Set(nil)
+}
+
+// UnsetTenantUserId ensures that no value is present for TenantUserId, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetTenantUserId() {
+	o.TenantUserId.Unset()
+}
+
+// GetTenantSceneId returns the TenantSceneId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantSceneId() string {
+	if o == nil || o.TenantSceneId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantSceneId.Get()
+}
+
+// GetTenantSceneIdOk returns a tuple with the TenantSceneId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantSceneIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantSceneId.Get(), o.TenantSceneId.IsSet()
+}
+
+// HasTenantSceneId returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasTenantSceneId() bool {
+	if o != nil && o.TenantSceneId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantSceneId gets a reference to the given NullableString and assigns it to the TenantSceneId field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantSceneId(v string) {
+	o.TenantSceneId.Set(&v)
+}
+// SetTenantSceneIdNil sets the value for TenantSceneId to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantSceneIdNil() {
+	o.TenantSceneId.Set(nil)
+}
+
+// UnsetTenantSceneId ensures that no value is present for TenantSceneId, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetTenantSceneId() {
+	o.TenantSceneId.Unset()
+}
+
+// GetRentWeeklyCents returns the RentWeeklyCents field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetRentWeeklyCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RentWeeklyCents
+}
+
+// GetRentWeeklyCentsOk returns a tuple with the RentWeeklyCents field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetRentWeeklyCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RentWeeklyCents, true
+}
+
+// SetRentWeeklyCents sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetRentWeeklyCents(v float32) {
+	o.RentWeeklyCents = v
+}
+
+// GetTermsFrozenAt returns the TermsFrozenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTermsFrozenAt() time.Time {
+	if o == nil || o.TermsFrozenAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TermsFrozenAt.Get()
+}
+
+// GetTermsFrozenAtOk returns a tuple with the TermsFrozenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTermsFrozenAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TermsFrozenAt.Get(), o.TermsFrozenAt.IsSet()
+}
+
+// HasTermsFrozenAt returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasTermsFrozenAt() bool {
+	if o != nil && o.TermsFrozenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTermsFrozenAt gets a reference to the given NullableTime and assigns it to the TermsFrozenAt field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTermsFrozenAt(v time.Time) {
+	o.TermsFrozenAt.Set(&v)
+}
+// SetTermsFrozenAtNil sets the value for TermsFrozenAt to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTermsFrozenAtNil() {
+	o.TermsFrozenAt.Set(nil)
+}
+
+// UnsetTermsFrozenAt ensures that no value is present for TermsFrozenAt, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetTermsFrozenAt() {
+	o.TermsFrozenAt.Unset()
+}
+
+// GetEndReason returns the EndReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetEndReason() string {
+	if o == nil || o.EndReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndReason.Get()
+}
+
+// GetEndReasonOk returns a tuple with the EndReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetEndReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndReason.Get(), o.EndReason.IsSet()
+}
+
+// HasEndReason returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasEndReason() bool {
+	if o != nil && o.EndReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndReason gets a reference to the given NullableString and assigns it to the EndReason field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetEndReason(v string) {
+	o.EndReason.Set(&v)
+}
+// SetEndReasonNil sets the value for EndReason to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetEndReasonNil() {
+	o.EndReason.Set(nil)
+}
+
+// UnsetEndReason ensures that no value is present for EndReason, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetEndReason() {
+	o.EndReason.Unset()
+}
+
+// GetAutopay returns the Autopay field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetAutopay() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Autopay
+}
+
+// GetAutopayOk returns a tuple with the Autopay field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetAutopayOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Autopay, true
+}
+
+// SetAutopay sets field value
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetAutopay(v bool) {
+	o.Autopay = v
+}
+
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetAddress() string {
+	if o == nil || o.Address.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Address.Get()
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Address.Get(), o.Address.IsSet()
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableString and assigns it to the Address field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetAddress(v string) {
+	o.Address.Set(&v)
+}
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetAddressNil() {
+	o.Address.Set(nil)
+}
+
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetAddress() {
+	o.Address.Unset()
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetLabel() string {
+	if o == nil || o.Label.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label.Get()
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Label.Get(), o.Label.IsSet()
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasLabel() bool {
+	if o != nil && o.Label.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given NullableString and assigns it to the Label field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetLabel(v string) {
+	o.Label.Set(&v)
+}
+// SetLabelNil sets the value for Label to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetLabelNil() {
+	o.Label.Set(nil)
+}
+
+// UnsetLabel ensures that no value is present for Label, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetLabel() {
+	o.Label.Unset()
+}
+
+// GetTenantName returns the TenantName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantName() string {
+	if o == nil || o.TenantName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantName.Get()
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataDeedsLease) GetTenantNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantName.Get(), o.TenantName.IsSet()
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataDeedsLease) HasTenantName() bool {
+	if o != nil && o.TenantName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName gets a reference to the given NullableString and assigns it to the TenantName field.
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantName(v string) {
+	o.TenantName.Set(&v)
+}
+// SetTenantNameNil sets the value for TenantName to be an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) SetTenantNameNil() {
+	o.TenantName.Set(nil)
+}
+
+// UnsetTenantName ensures that no value is present for TenantName, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataDeedsLease) UnsetTenantName() {
+	o.TenantName.Unset()
+}
+
+func (o GetSpatialPropertyResponseDataDeedsLease) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["ownerUserId"] = o.OwnerUserId
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if o.Rail.IsSet() {
+		toSerialize["rail"] = o.Rail.Get()
+	}
+	if true {
+		toSerialize["plotId"] = o.PlotId
+	}
+	if o.PaidThrough.IsSet() {
+		toSerialize["paidThrough"] = o.PaidThrough.Get()
+	}
+	if true {
+		toSerialize["deedId"] = o.DeedId
+	}
+	if o.TenantUserId.IsSet() {
+		toSerialize["tenantUserId"] = o.TenantUserId.Get()
+	}
+	if o.TenantSceneId.IsSet() {
+		toSerialize["tenantSceneId"] = o.TenantSceneId.Get()
+	}
+	if true {
+		toSerialize["rentWeeklyCents"] = o.RentWeeklyCents
+	}
+	if o.TermsFrozenAt.IsSet() {
+		toSerialize["termsFrozenAt"] = o.TermsFrozenAt.Get()
+	}
+	if o.EndReason.IsSet() {
+		toSerialize["endReason"] = o.EndReason.Get()
+	}
+	if true {
+		toSerialize["autopay"] = o.Autopay
+	}
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
+	}
+	if o.Label.IsSet() {
+		toSerialize["label"] = o.Label.Get()
+	}
+	if o.TenantName.IsSet() {
+		toSerialize["tenantName"] = o.TenantName.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPropertyResponseDataDeedsLease struct {
+	value *GetSpatialPropertyResponseDataDeedsLease
+	isSet bool
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsLease) Get() *GetSpatialPropertyResponseDataDeedsLease {
+	return v.value
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsLease) Set(val *GetSpatialPropertyResponseDataDeedsLease) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsLease) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsLease) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPropertyResponseDataDeedsLease(val *GetSpatialPropertyResponseDataDeedsLease) *NullableGetSpatialPropertyResponseDataDeedsLease {
+	return &NullableGetSpatialPropertyResponseDataDeedsLease{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsLease) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsLease) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetSpatialPropertyResponseDataDeedsListing struct for GetSpatialPropertyResponseDataDeedsListing
+type GetSpatialPropertyResponseDataDeedsListing struct {
+	Id string `json:"id"`
+	DeedId string `json:"deedId"`
+	PriceCents float32 `json:"priceCents"`
+}
+
+// NewGetSpatialPropertyResponseDataDeedsListing instantiates a new GetSpatialPropertyResponseDataDeedsListing object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPropertyResponseDataDeedsListing(id string, deedId string, priceCents float32) *GetSpatialPropertyResponseDataDeedsListing {
+	this := GetSpatialPropertyResponseDataDeedsListing{}
+	this.Id = id
+	this.DeedId = deedId
+	this.PriceCents = priceCents
+	return &this
+}
+
+// NewGetSpatialPropertyResponseDataDeedsListingWithDefaults instantiates a new GetSpatialPropertyResponseDataDeedsListing object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPropertyResponseDataDeedsListingWithDefaults() *GetSpatialPropertyResponseDataDeedsListing {
+	this := GetSpatialPropertyResponseDataDeedsListing{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) SetId(v string) {
+	o.Id = v
+}
+
+// GetDeedId returns the DeedId field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetDeedId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeedId
+}
+
+// GetDeedIdOk returns a tuple with the DeedId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetDeedIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DeedId, true
+}
+
+// SetDeedId sets field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) SetDeedId(v string) {
+	o.DeedId = v
+}
+
+// GetPriceCents returns the PriceCents field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataDeedsListing) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *GetSpatialPropertyResponseDataDeedsListing) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+func (o GetSpatialPropertyResponseDataDeedsListing) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["deedId"] = o.DeedId
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPropertyResponseDataDeedsListing struct {
+	value *GetSpatialPropertyResponseDataDeedsListing
+	isSet bool
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsListing) Get() *GetSpatialPropertyResponseDataDeedsListing {
+	return v.value
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsListing) Set(val *GetSpatialPropertyResponseDataDeedsListing) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsListing) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsListing) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPropertyResponseDataDeedsListing(val *GetSpatialPropertyResponseDataDeedsListing) *NullableGetSpatialPropertyResponseDataDeedsListing {
+	return &NullableGetSpatialPropertyResponseDataDeedsListing{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPropertyResponseDataDeedsListing) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPropertyResponseDataDeedsListing) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetSpatialPropertyResponseDataTenancies struct for GetSpatialPropertyResponseDataTenancies
+type GetSpatialPropertyResponseDataTenancies struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	Status string `json:"status"`
+	OwnerUserId string `json:"ownerUserId"`
+	EndedAt NullableTime `json:"endedAt,omitempty"`
+	Rail NullableString `json:"rail,omitempty"`
+	PlotId string `json:"plotId"`
+	PaidThrough NullableTime `json:"paidThrough,omitempty"`
+	DeedId string `json:"deedId"`
+	TenantUserId NullableString `json:"tenantUserId,omitempty"`
+	TenantSceneId NullableString `json:"tenantSceneId,omitempty"`
+	RentWeeklyCents float32 `json:"rentWeeklyCents"`
+	TermsFrozenAt NullableTime `json:"termsFrozenAt,omitempty"`
+	EndReason NullableString `json:"endReason,omitempty"`
+	Autopay bool `json:"autopay"`
+	Address NullableString `json:"address,omitempty"`
+	Label NullableString `json:"label,omitempty"`
+	TenantName NullableString `json:"tenantName,omitempty"`
+}
+
+// NewGetSpatialPropertyResponseDataTenancies instantiates a new GetSpatialPropertyResponseDataTenancies object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPropertyResponseDataTenancies(id string, createdAt time.Time, status string, ownerUserId string, plotId string, deedId string, rentWeeklyCents float32, autopay bool) *GetSpatialPropertyResponseDataTenancies {
+	this := GetSpatialPropertyResponseDataTenancies{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.Status = status
+	this.OwnerUserId = ownerUserId
+	this.PlotId = plotId
+	this.DeedId = deedId
+	this.RentWeeklyCents = rentWeeklyCents
+	this.Autopay = autopay
+	return &this
+}
+
+// NewGetSpatialPropertyResponseDataTenanciesWithDefaults instantiates a new GetSpatialPropertyResponseDataTenancies object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPropertyResponseDataTenanciesWithDefaults() *GetSpatialPropertyResponseDataTenancies {
+	this := GetSpatialPropertyResponseDataTenancies{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetOwnerUserId returns the OwnerUserId field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetOwnerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OwnerUserId
+}
+
+// GetOwnerUserIdOk returns a tuple with the OwnerUserId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetOwnerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OwnerUserId, true
+}
+
+// SetOwnerUserId sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetOwnerUserId(v string) {
+	o.OwnerUserId = v
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetEndedAt() time.Time {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetEndedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableTime and assigns it to the EndedAt field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetEndedAt(v time.Time) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetRail returns the Rail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetRail() string {
+	if o == nil || o.Rail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Rail.Get()
+}
+
+// GetRailOk returns a tuple with the Rail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rail.Get(), o.Rail.IsSet()
+}
+
+// HasRail returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasRail() bool {
+	if o != nil && o.Rail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRail gets a reference to the given NullableString and assigns it to the Rail field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetRail(v string) {
+	o.Rail.Set(&v)
+}
+// SetRailNil sets the value for Rail to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetRailNil() {
+	o.Rail.Set(nil)
+}
+
+// UnsetRail ensures that no value is present for Rail, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetRail() {
+	o.Rail.Unset()
+}
+
+// GetPlotId returns the PlotId field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetPlotId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlotId
+}
+
+// GetPlotIdOk returns a tuple with the PlotId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetPlotIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlotId, true
+}
+
+// SetPlotId sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetPlotId(v string) {
+	o.PlotId = v
+}
+
+// GetPaidThrough returns the PaidThrough field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetPaidThrough() time.Time {
+	if o == nil || o.PaidThrough.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PaidThrough.Get()
+}
+
+// GetPaidThroughOk returns a tuple with the PaidThrough field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetPaidThroughOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaidThrough.Get(), o.PaidThrough.IsSet()
+}
+
+// HasPaidThrough returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasPaidThrough() bool {
+	if o != nil && o.PaidThrough.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaidThrough gets a reference to the given NullableTime and assigns it to the PaidThrough field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetPaidThrough(v time.Time) {
+	o.PaidThrough.Set(&v)
+}
+// SetPaidThroughNil sets the value for PaidThrough to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetPaidThroughNil() {
+	o.PaidThrough.Set(nil)
+}
+
+// UnsetPaidThrough ensures that no value is present for PaidThrough, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetPaidThrough() {
+	o.PaidThrough.Unset()
+}
+
+// GetDeedId returns the DeedId field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetDeedId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeedId
+}
+
+// GetDeedIdOk returns a tuple with the DeedId field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetDeedIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DeedId, true
+}
+
+// SetDeedId sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetDeedId(v string) {
+	o.DeedId = v
+}
+
+// GetTenantUserId returns the TenantUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantUserId() string {
+	if o == nil || o.TenantUserId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantUserId.Get()
+}
+
+// GetTenantUserIdOk returns a tuple with the TenantUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantUserId.Get(), o.TenantUserId.IsSet()
+}
+
+// HasTenantUserId returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasTenantUserId() bool {
+	if o != nil && o.TenantUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantUserId gets a reference to the given NullableString and assigns it to the TenantUserId field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantUserId(v string) {
+	o.TenantUserId.Set(&v)
+}
+// SetTenantUserIdNil sets the value for TenantUserId to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantUserIdNil() {
+	o.TenantUserId.Set(nil)
+}
+
+// UnsetTenantUserId ensures that no value is present for TenantUserId, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetTenantUserId() {
+	o.TenantUserId.Unset()
+}
+
+// GetTenantSceneId returns the TenantSceneId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantSceneId() string {
+	if o == nil || o.TenantSceneId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantSceneId.Get()
+}
+
+// GetTenantSceneIdOk returns a tuple with the TenantSceneId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantSceneIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantSceneId.Get(), o.TenantSceneId.IsSet()
+}
+
+// HasTenantSceneId returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasTenantSceneId() bool {
+	if o != nil && o.TenantSceneId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantSceneId gets a reference to the given NullableString and assigns it to the TenantSceneId field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantSceneId(v string) {
+	o.TenantSceneId.Set(&v)
+}
+// SetTenantSceneIdNil sets the value for TenantSceneId to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantSceneIdNil() {
+	o.TenantSceneId.Set(nil)
+}
+
+// UnsetTenantSceneId ensures that no value is present for TenantSceneId, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetTenantSceneId() {
+	o.TenantSceneId.Unset()
+}
+
+// GetRentWeeklyCents returns the RentWeeklyCents field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetRentWeeklyCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RentWeeklyCents
+}
+
+// GetRentWeeklyCentsOk returns a tuple with the RentWeeklyCents field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetRentWeeklyCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RentWeeklyCents, true
+}
+
+// SetRentWeeklyCents sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetRentWeeklyCents(v float32) {
+	o.RentWeeklyCents = v
+}
+
+// GetTermsFrozenAt returns the TermsFrozenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetTermsFrozenAt() time.Time {
+	if o == nil || o.TermsFrozenAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TermsFrozenAt.Get()
+}
+
+// GetTermsFrozenAtOk returns a tuple with the TermsFrozenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetTermsFrozenAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TermsFrozenAt.Get(), o.TermsFrozenAt.IsSet()
+}
+
+// HasTermsFrozenAt returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasTermsFrozenAt() bool {
+	if o != nil && o.TermsFrozenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTermsFrozenAt gets a reference to the given NullableTime and assigns it to the TermsFrozenAt field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetTermsFrozenAt(v time.Time) {
+	o.TermsFrozenAt.Set(&v)
+}
+// SetTermsFrozenAtNil sets the value for TermsFrozenAt to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetTermsFrozenAtNil() {
+	o.TermsFrozenAt.Set(nil)
+}
+
+// UnsetTermsFrozenAt ensures that no value is present for TermsFrozenAt, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetTermsFrozenAt() {
+	o.TermsFrozenAt.Unset()
+}
+
+// GetEndReason returns the EndReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetEndReason() string {
+	if o == nil || o.EndReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndReason.Get()
+}
+
+// GetEndReasonOk returns a tuple with the EndReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetEndReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndReason.Get(), o.EndReason.IsSet()
+}
+
+// HasEndReason returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasEndReason() bool {
+	if o != nil && o.EndReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndReason gets a reference to the given NullableString and assigns it to the EndReason field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetEndReason(v string) {
+	o.EndReason.Set(&v)
+}
+// SetEndReasonNil sets the value for EndReason to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetEndReasonNil() {
+	o.EndReason.Set(nil)
+}
+
+// UnsetEndReason ensures that no value is present for EndReason, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetEndReason() {
+	o.EndReason.Unset()
+}
+
+// GetAutopay returns the Autopay field value
+func (o *GetSpatialPropertyResponseDataTenancies) GetAutopay() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Autopay
+}
+
+// GetAutopayOk returns a tuple with the Autopay field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) GetAutopayOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Autopay, true
+}
+
+// SetAutopay sets field value
+func (o *GetSpatialPropertyResponseDataTenancies) SetAutopay(v bool) {
+	o.Autopay = v
+}
+
+// GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetAddress() string {
+	if o == nil || o.Address.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Address.Get()
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Address.Get(), o.Address.IsSet()
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasAddress() bool {
+	if o != nil && o.Address.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given NullableString and assigns it to the Address field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetAddress(v string) {
+	o.Address.Set(&v)
+}
+// SetAddressNil sets the value for Address to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetAddressNil() {
+	o.Address.Set(nil)
+}
+
+// UnsetAddress ensures that no value is present for Address, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetAddress() {
+	o.Address.Unset()
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetLabel() string {
+	if o == nil || o.Label.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label.Get()
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Label.Get(), o.Label.IsSet()
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasLabel() bool {
+	if o != nil && o.Label.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given NullableString and assigns it to the Label field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetLabel(v string) {
+	o.Label.Set(&v)
+}
+// SetLabelNil sets the value for Label to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetLabelNil() {
+	o.Label.Set(nil)
+}
+
+// UnsetLabel ensures that no value is present for Label, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetLabel() {
+	o.Label.Unset()
+}
+
+// GetTenantName returns the TenantName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantName() string {
+	if o == nil || o.TenantName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TenantName.Get()
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetSpatialPropertyResponseDataTenancies) GetTenantNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TenantName.Get(), o.TenantName.IsSet()
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (o *GetSpatialPropertyResponseDataTenancies) HasTenantName() bool {
+	if o != nil && o.TenantName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName gets a reference to the given NullableString and assigns it to the TenantName field.
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantName(v string) {
+	o.TenantName.Set(&v)
+}
+// SetTenantNameNil sets the value for TenantName to be an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) SetTenantNameNil() {
+	o.TenantName.Set(nil)
+}
+
+// UnsetTenantName ensures that no value is present for TenantName, not even an explicit nil
+func (o *GetSpatialPropertyResponseDataTenancies) UnsetTenantName() {
+	o.TenantName.Unset()
+}
+
+func (o GetSpatialPropertyResponseDataTenancies) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["ownerUserId"] = o.OwnerUserId
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if o.Rail.IsSet() {
+		toSerialize["rail"] = o.Rail.Get()
+	}
+	if true {
+		toSerialize["plotId"] = o.PlotId
+	}
+	if o.PaidThrough.IsSet() {
+		toSerialize["paidThrough"] = o.PaidThrough.Get()
+	}
+	if true {
+		toSerialize["deedId"] = o.DeedId
+	}
+	if o.TenantUserId.IsSet() {
+		toSerialize["tenantUserId"] = o.TenantUserId.Get()
+	}
+	if o.TenantSceneId.IsSet() {
+		toSerialize["tenantSceneId"] = o.TenantSceneId.Get()
+	}
+	if true {
+		toSerialize["rentWeeklyCents"] = o.RentWeeklyCents
+	}
+	if o.TermsFrozenAt.IsSet() {
+		toSerialize["termsFrozenAt"] = o.TermsFrozenAt.Get()
+	}
+	if o.EndReason.IsSet() {
+		toSerialize["endReason"] = o.EndReason.Get()
+	}
+	if true {
+		toSerialize["autopay"] = o.Autopay
+	}
+	if o.Address.IsSet() {
+		toSerialize["address"] = o.Address.Get()
+	}
+	if o.Label.IsSet() {
+		toSerialize["label"] = o.Label.Get()
+	}
+	if o.TenantName.IsSet() {
+		toSerialize["tenantName"] = o.TenantName.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPropertyResponseDataTenancies struct {
+	value *GetSpatialPropertyResponseDataTenancies
+	isSet bool
+}
+
+func (v NullableGetSpatialPropertyResponseDataTenancies) Get() *GetSpatialPropertyResponseDataTenancies {
+	return v.value
+}
+
+func (v *NullableGetSpatialPropertyResponseDataTenancies) Set(val *GetSpatialPropertyResponseDataTenancies) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPropertyResponseDataTenancies) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPropertyResponseDataTenancies) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPropertyResponseDataTenancies(val *GetSpatialPropertyResponseDataTenancies) *NullableGetSpatialPropertyResponseDataTenancies {
+	return &NullableGetSpatialPropertyResponseDataTenancies{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPropertyResponseDataTenancies) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPropertyResponseDataTenancies) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetSpatialPublicResponse struct for GetSpatialPublicResponse
+type GetSpatialPublicResponse struct {
+	Data GetSpatialPublicResponseData `json:"data"`
+}
+
+// NewGetSpatialPublicResponse instantiates a new GetSpatialPublicResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetSpatialPublicResponse(data GetSpatialPublicResponseData) *GetSpatialPublicResponse {
+	this := GetSpatialPublicResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetSpatialPublicResponseWithDefaults instantiates a new GetSpatialPublicResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetSpatialPublicResponseWithDefaults() *GetSpatialPublicResponse {
+	this := GetSpatialPublicResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetSpatialPublicResponse) GetData() GetSpatialPublicResponseData {
+	if o == nil {
+		var ret GetSpatialPublicResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetSpatialPublicResponse) GetDataOk() (*GetSpatialPublicResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetSpatialPublicResponse) SetData(v GetSpatialPublicResponseData) {
+	o.Data = v
+}
+
+func (o GetSpatialPublicResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetSpatialPublicResponse struct {
+	value *GetSpatialPublicResponse
+	isSet bool
+}
+
+func (v NullableGetSpatialPublicResponse) Get() *GetSpatialPublicResponse {
+	return v.value
+}
+
+func (v *NullableGetSpatialPublicResponse) Set(val *GetSpatialPublicResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetSpatialPublicResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetSpatialPublicResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetSpatialPublicResponse(val *GetSpatialPublicResponse) *NullableGetSpatialPublicResponse {
+	return &NullableGetSpatialPublicResponse{value: val, isSet: true}
+}
+
+func (v NullableGetSpatialPublicResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetSpatialPublicResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
 
 // GetSpatialPublicResponseData struct for GetSpatialPublicResponseData
 type GetSpatialPublicResponseData struct {
@@ -1377,44 +3690,44 @@ type GetSpatialPublicResponseDataProfileDefaultGroupByItem string
 // List of GetSpatialPublicResponseDataProfileDefaultGroupByItem
 const (
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_brand GetSpatialPublicResponseDataProfileDefaultGroupByItem = "brand"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_label GetSpatialPublicResponseDataProfileDefaultGroupByItem = "label"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_status GetSpatialPublicResponseDataProfileDefaultGroupByItem = "status"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_age GetSpatialPublicResponseDataProfileDefaultGroupByItem = "age"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_condition GetSpatialPublicResponseDataProfileDefaultGroupByItem = "condition"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_size GetSpatialPublicResponseDataProfileDefaultGroupByItem = "size"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_status GetSpatialPublicResponseDataProfileDefaultGroupByItem = "status"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_label GetSpatialPublicResponseDataProfileDefaultGroupByItem = "label"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_title GetSpatialPublicResponseDataProfileDefaultGroupByItem = "title"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_valueOption GetSpatialPublicResponseDataProfileDefaultGroupByItem = "value"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_set GetSpatialPublicResponseDataProfileDefaultGroupByItem = "set"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_team GetSpatialPublicResponseDataProfileDefaultGroupByItem = "team"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_year GetSpatialPublicResponseDataProfileDefaultGroupByItem = "year"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_grade GetSpatialPublicResponseDataProfileDefaultGroupByItem = "grade"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_game GetSpatialPublicResponseDataProfileDefaultGroupByItem = "game"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_set GetSpatialPublicResponseDataProfileDefaultGroupByItem = "set"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_franchise GetSpatialPublicResponseDataProfileDefaultGroupByItem = "franchise"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_team GetSpatialPublicResponseDataProfileDefaultGroupByItem = "team"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_era GetSpatialPublicResponseDataProfileDefaultGroupByItem = "era"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_genre GetSpatialPublicResponseDataProfileDefaultGroupByItem = "genre"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_colour GetSpatialPublicResponseDataProfileDefaultGroupByItem = "colour"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_age GetSpatialPublicResponseDataProfileDefaultGroupByItem = "age"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTGROUPBYITEM_exhibitor GetSpatialPublicResponseDataProfileDefaultGroupByItem = "exhibitor"
 )
 
 // All allowed values of GetSpatialPublicResponseDataProfileDefaultGroupByItem enum
 var AllowedGetSpatialPublicResponseDataProfileDefaultGroupByItemEnumValues = []GetSpatialPublicResponseDataProfileDefaultGroupByItem{
 	"brand",
+	"label",
+	"status",
+	"age",
 	"condition",
 	"size",
-	"status",
-	"label",
 	"title",
 	"value",
+	"set",
+	"team",
 	"year",
 	"grade",
 	"game",
-	"set",
 	"franchise",
-	"team",
 	"era",
 	"genre",
 	"colour",
-	"age",
 	"exhibitor",
 }
 
@@ -1503,44 +3816,44 @@ type GetSpatialPublicResponseDataProfileDefaultSortByItem string
 // List of GetSpatialPublicResponseDataProfileDefaultSortByItem
 const (
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_brand GetSpatialPublicResponseDataProfileDefaultSortByItem = "brand"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_label GetSpatialPublicResponseDataProfileDefaultSortByItem = "label"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_status GetSpatialPublicResponseDataProfileDefaultSortByItem = "status"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_age GetSpatialPublicResponseDataProfileDefaultSortByItem = "age"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_condition GetSpatialPublicResponseDataProfileDefaultSortByItem = "condition"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_size GetSpatialPublicResponseDataProfileDefaultSortByItem = "size"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_status GetSpatialPublicResponseDataProfileDefaultSortByItem = "status"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_label GetSpatialPublicResponseDataProfileDefaultSortByItem = "label"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_title GetSpatialPublicResponseDataProfileDefaultSortByItem = "title"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_valueOption GetSpatialPublicResponseDataProfileDefaultSortByItem = "value"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_set GetSpatialPublicResponseDataProfileDefaultSortByItem = "set"
+	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_team GetSpatialPublicResponseDataProfileDefaultSortByItem = "team"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_year GetSpatialPublicResponseDataProfileDefaultSortByItem = "year"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_grade GetSpatialPublicResponseDataProfileDefaultSortByItem = "grade"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_game GetSpatialPublicResponseDataProfileDefaultSortByItem = "game"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_set GetSpatialPublicResponseDataProfileDefaultSortByItem = "set"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_franchise GetSpatialPublicResponseDataProfileDefaultSortByItem = "franchise"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_team GetSpatialPublicResponseDataProfileDefaultSortByItem = "team"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_era GetSpatialPublicResponseDataProfileDefaultSortByItem = "era"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_genre GetSpatialPublicResponseDataProfileDefaultSortByItem = "genre"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_colour GetSpatialPublicResponseDataProfileDefaultSortByItem = "colour"
-	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_age GetSpatialPublicResponseDataProfileDefaultSortByItem = "age"
 	GETSPATIALPUBLICRESPONSEDATAPROFILEDEFAULTSORTBYITEM_exhibitor GetSpatialPublicResponseDataProfileDefaultSortByItem = "exhibitor"
 )
 
 // All allowed values of GetSpatialPublicResponseDataProfileDefaultSortByItem enum
 var AllowedGetSpatialPublicResponseDataProfileDefaultSortByItemEnumValues = []GetSpatialPublicResponseDataProfileDefaultSortByItem{
 	"brand",
+	"label",
+	"status",
+	"age",
 	"condition",
 	"size",
-	"status",
-	"label",
 	"title",
 	"value",
+	"set",
+	"team",
 	"year",
 	"grade",
 	"game",
-	"set",
 	"franchise",
-	"team",
 	"era",
 	"genre",
 	"colour",
-	"age",
 	"exhibitor",
 }
 
@@ -8985,8 +11298,6 @@ type GetSpatialShopNeighbourhoodResponseData struct {
 	Shop interface{} `json:"shop"`
 	Home interface{} `json:"home,omitempty"`
 	Suggested NullableString `json:"suggested,omitempty"`
-	CanMove bool `json:"canMove"`
-	Move interface{} `json:"move,omitempty"`
 	Options []ListNeighbourhoodsItem `json:"options"`
 }
 
@@ -8994,10 +11305,9 @@ type GetSpatialShopNeighbourhoodResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetSpatialShopNeighbourhoodResponseData(shop interface{}, canMove bool, options []ListNeighbourhoodsItem) *GetSpatialShopNeighbourhoodResponseData {
+func NewGetSpatialShopNeighbourhoodResponseData(shop interface{}, options []ListNeighbourhoodsItem) *GetSpatialShopNeighbourhoodResponseData {
 	this := GetSpatialShopNeighbourhoodResponseData{}
 	this.Shop = shop
-	this.CanMove = canMove
 	this.Options = options
 	return &this
 }
@@ -9111,63 +11421,6 @@ func (o *GetSpatialShopNeighbourhoodResponseData) UnsetSuggested() {
 	o.Suggested.Unset()
 }
 
-// GetCanMove returns the CanMove field value
-func (o *GetSpatialShopNeighbourhoodResponseData) GetCanMove() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.CanMove
-}
-
-// GetCanMoveOk returns a tuple with the CanMove field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialShopNeighbourhoodResponseData) GetCanMoveOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CanMove, true
-}
-
-// SetCanMove sets field value
-func (o *GetSpatialShopNeighbourhoodResponseData) SetCanMove(v bool) {
-	o.CanMove = v
-}
-
-// GetMove returns the Move field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopNeighbourhoodResponseData) GetMove() interface{} {
-	if o == nil  {
-		var ret interface{}
-		return ret
-	}
-	return o.Move
-}
-
-// GetMoveOk returns a tuple with the Move field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopNeighbourhoodResponseData) GetMoveOk() (*interface{}, bool) {
-	if o == nil || o.Move == nil {
-		return nil, false
-	}
-	return &o.Move, true
-}
-
-// HasMove returns a boolean if a field has been set.
-func (o *GetSpatialShopNeighbourhoodResponseData) HasMove() bool {
-	if o != nil && o.Move != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMove gets a reference to the given interface{} and assigns it to the Move field.
-func (o *GetSpatialShopNeighbourhoodResponseData) SetMove(v interface{}) {
-	o.Move = v
-}
-
 // GetOptions returns the Options field value
 func (o *GetSpatialShopNeighbourhoodResponseData) GetOptions() []ListNeighbourhoodsItem {
 	if o == nil {
@@ -9202,12 +11455,6 @@ func (o GetSpatialShopNeighbourhoodResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Suggested.IsSet() {
 		toSerialize["suggested"] = o.Suggested.Get()
-	}
-	if true {
-		toSerialize["canMove"] = o.CanMove
-	}
-	if o.Move != nil {
-		toSerialize["move"] = o.Move
 	}
 	if true {
 		toSerialize["options"] = o.Options
@@ -9454,282 +11701,6 @@ func (v NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Home) MarshalJSON()
 }
 
 func (v *NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Home) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialShopNeighbourhoodResponseDataOneOf1Move struct for GetSpatialShopNeighbourhoodResponseDataOneOf1Move
-type GetSpatialShopNeighbourhoodResponseDataOneOf1Move struct {
-	Slug string `json:"slug"`
-	From NullableString `json:"from,omitempty"`
-	// Set when the SELLER moved: their one move is spent.
-	SellerMovedAt NullableString `json:"sellerMovedAt,omitempty"`
-	OpsMovedAt NullableString `json:"opsMovedAt,omitempty"`
-	OpsBy NullableString `json:"opsBy,omitempty"`
-}
-
-// NewGetSpatialShopNeighbourhoodResponseDataOneOf1Move instantiates a new GetSpatialShopNeighbourhoodResponseDataOneOf1Move object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialShopNeighbourhoodResponseDataOneOf1Move(slug string) *GetSpatialShopNeighbourhoodResponseDataOneOf1Move {
-	this := GetSpatialShopNeighbourhoodResponseDataOneOf1Move{}
-	this.Slug = slug
-	return &this
-}
-
-// NewGetSpatialShopNeighbourhoodResponseDataOneOf1MoveWithDefaults instantiates a new GetSpatialShopNeighbourhoodResponseDataOneOf1Move object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialShopNeighbourhoodResponseDataOneOf1MoveWithDefaults() *GetSpatialShopNeighbourhoodResponseDataOneOf1Move {
-	this := GetSpatialShopNeighbourhoodResponseDataOneOf1Move{}
-	return &this
-}
-
-// GetSlug returns the Slug field value
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetSlug(v string) {
-	o.Slug = v
-}
-
-// GetFrom returns the From field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetFrom() string {
-	if o == nil || o.From.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.From.Get()
-}
-
-// GetFromOk returns a tuple with the From field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetFromOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.From.Get(), o.From.IsSet()
-}
-
-// HasFrom returns a boolean if a field has been set.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) HasFrom() bool {
-	if o != nil && o.From.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFrom gets a reference to the given NullableString and assigns it to the From field.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetFrom(v string) {
-	o.From.Set(&v)
-}
-// SetFromNil sets the value for From to be an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetFromNil() {
-	o.From.Set(nil)
-}
-
-// UnsetFrom ensures that no value is present for From, not even an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) UnsetFrom() {
-	o.From.Unset()
-}
-
-// GetSellerMovedAt returns the SellerMovedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetSellerMovedAt() string {
-	if o == nil || o.SellerMovedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerMovedAt.Get()
-}
-
-// GetSellerMovedAtOk returns a tuple with the SellerMovedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetSellerMovedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerMovedAt.Get(), o.SellerMovedAt.IsSet()
-}
-
-// HasSellerMovedAt returns a boolean if a field has been set.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) HasSellerMovedAt() bool {
-	if o != nil && o.SellerMovedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerMovedAt gets a reference to the given NullableString and assigns it to the SellerMovedAt field.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetSellerMovedAt(v string) {
-	o.SellerMovedAt.Set(&v)
-}
-// SetSellerMovedAtNil sets the value for SellerMovedAt to be an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetSellerMovedAtNil() {
-	o.SellerMovedAt.Set(nil)
-}
-
-// UnsetSellerMovedAt ensures that no value is present for SellerMovedAt, not even an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) UnsetSellerMovedAt() {
-	o.SellerMovedAt.Unset()
-}
-
-// GetOpsMovedAt returns the OpsMovedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetOpsMovedAt() string {
-	if o == nil || o.OpsMovedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OpsMovedAt.Get()
-}
-
-// GetOpsMovedAtOk returns a tuple with the OpsMovedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetOpsMovedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OpsMovedAt.Get(), o.OpsMovedAt.IsSet()
-}
-
-// HasOpsMovedAt returns a boolean if a field has been set.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) HasOpsMovedAt() bool {
-	if o != nil && o.OpsMovedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOpsMovedAt gets a reference to the given NullableString and assigns it to the OpsMovedAt field.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetOpsMovedAt(v string) {
-	o.OpsMovedAt.Set(&v)
-}
-// SetOpsMovedAtNil sets the value for OpsMovedAt to be an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetOpsMovedAtNil() {
-	o.OpsMovedAt.Set(nil)
-}
-
-// UnsetOpsMovedAt ensures that no value is present for OpsMovedAt, not even an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) UnsetOpsMovedAt() {
-	o.OpsMovedAt.Unset()
-}
-
-// GetOpsBy returns the OpsBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetOpsBy() string {
-	if o == nil || o.OpsBy.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OpsBy.Get()
-}
-
-// GetOpsByOk returns a tuple with the OpsBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) GetOpsByOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OpsBy.Get(), o.OpsBy.IsSet()
-}
-
-// HasOpsBy returns a boolean if a field has been set.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) HasOpsBy() bool {
-	if o != nil && o.OpsBy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOpsBy gets a reference to the given NullableString and assigns it to the OpsBy field.
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetOpsBy(v string) {
-	o.OpsBy.Set(&v)
-}
-// SetOpsByNil sets the value for OpsBy to be an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) SetOpsByNil() {
-	o.OpsBy.Set(nil)
-}
-
-// UnsetOpsBy ensures that no value is present for OpsBy, not even an explicit nil
-func (o *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) UnsetOpsBy() {
-	o.OpsBy.Unset()
-}
-
-func (o GetSpatialShopNeighbourhoodResponseDataOneOf1Move) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if o.From.IsSet() {
-		toSerialize["from"] = o.From.Get()
-	}
-	if o.SellerMovedAt.IsSet() {
-		toSerialize["sellerMovedAt"] = o.SellerMovedAt.Get()
-	}
-	if o.OpsMovedAt.IsSet() {
-		toSerialize["opsMovedAt"] = o.OpsMovedAt.Get()
-	}
-	if o.OpsBy.IsSet() {
-		toSerialize["opsBy"] = o.OpsBy.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move struct {
-	value *GetSpatialShopNeighbourhoodResponseDataOneOf1Move
-	isSet bool
-}
-
-func (v NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) Get() *GetSpatialShopNeighbourhoodResponseDataOneOf1Move {
-	return v.value
-}
-
-func (v *NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) Set(val *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move(val *GetSpatialShopNeighbourhoodResponseDataOneOf1Move) *NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move {
-	return &NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialShopNeighbourhoodResponseDataOneOf1Move) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -10123,1798 +12094,6 @@ func (v NullableGetSpatialShopStaffResponseData) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetSpatialShopStaffResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialShopStaffResponseDataOneOf1Staff struct for GetSpatialShopStaffResponseDataOneOf1Staff
-type GetSpatialShopStaffResponseDataOneOf1Staff struct {
-	Pending bool `json:"pending"`
-	AcceptedAt NullableString `json:"acceptedAt,omitempty"`
-	WagePaidThrough NullableString `json:"wagePaidThrough,omitempty"`
-	GrantId string `json:"grantId"`
-	UserId NullableString `json:"userId,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	WageWeeklyCents NullableFloat32 `json:"wageWeeklyCents,omitempty"`
-}
-
-// NewGetSpatialShopStaffResponseDataOneOf1Staff instantiates a new GetSpatialShopStaffResponseDataOneOf1Staff object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialShopStaffResponseDataOneOf1Staff(pending bool, grantId string) *GetSpatialShopStaffResponseDataOneOf1Staff {
-	this := GetSpatialShopStaffResponseDataOneOf1Staff{}
-	this.Pending = pending
-	this.GrantId = grantId
-	return &this
-}
-
-// NewGetSpatialShopStaffResponseDataOneOf1StaffWithDefaults instantiates a new GetSpatialShopStaffResponseDataOneOf1Staff object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialShopStaffResponseDataOneOf1StaffWithDefaults() *GetSpatialShopStaffResponseDataOneOf1Staff {
-	this := GetSpatialShopStaffResponseDataOneOf1Staff{}
-	return &this
-}
-
-// GetPending returns the Pending field value
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetPending() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Pending
-}
-
-// GetPendingOk returns a tuple with the Pending field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetPendingOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Pending, true
-}
-
-// SetPending sets field value
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetPending(v bool) {
-	o.Pending = v
-}
-
-// GetAcceptedAt returns the AcceptedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetAcceptedAt() string {
-	if o == nil || o.AcceptedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AcceptedAt.Get()
-}
-
-// GetAcceptedAtOk returns a tuple with the AcceptedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetAcceptedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AcceptedAt.Get(), o.AcceptedAt.IsSet()
-}
-
-// HasAcceptedAt returns a boolean if a field has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) HasAcceptedAt() bool {
-	if o != nil && o.AcceptedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAcceptedAt gets a reference to the given NullableString and assigns it to the AcceptedAt field.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetAcceptedAt(v string) {
-	o.AcceptedAt.Set(&v)
-}
-// SetAcceptedAtNil sets the value for AcceptedAt to be an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetAcceptedAtNil() {
-	o.AcceptedAt.Set(nil)
-}
-
-// UnsetAcceptedAt ensures that no value is present for AcceptedAt, not even an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) UnsetAcceptedAt() {
-	o.AcceptedAt.Unset()
-}
-
-// GetWagePaidThrough returns the WagePaidThrough field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetWagePaidThrough() string {
-	if o == nil || o.WagePaidThrough.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.WagePaidThrough.Get()
-}
-
-// GetWagePaidThroughOk returns a tuple with the WagePaidThrough field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetWagePaidThroughOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.WagePaidThrough.Get(), o.WagePaidThrough.IsSet()
-}
-
-// HasWagePaidThrough returns a boolean if a field has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) HasWagePaidThrough() bool {
-	if o != nil && o.WagePaidThrough.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWagePaidThrough gets a reference to the given NullableString and assigns it to the WagePaidThrough field.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetWagePaidThrough(v string) {
-	o.WagePaidThrough.Set(&v)
-}
-// SetWagePaidThroughNil sets the value for WagePaidThrough to be an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetWagePaidThroughNil() {
-	o.WagePaidThrough.Set(nil)
-}
-
-// UnsetWagePaidThrough ensures that no value is present for WagePaidThrough, not even an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) UnsetWagePaidThrough() {
-	o.WagePaidThrough.Unset()
-}
-
-// GetGrantId returns the GrantId field value
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetGrantId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.GrantId
-}
-
-// GetGrantIdOk returns a tuple with the GrantId field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetGrantIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.GrantId, true
-}
-
-// SetGrantId sets field value
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetGrantId(v string) {
-	o.GrantId = v
-}
-
-// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetUserId() string {
-	if o == nil || o.UserId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.UserId.Get()
-}
-
-// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.UserId.Get(), o.UserId.IsSet()
-}
-
-// HasUserId returns a boolean if a field has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) HasUserId() bool {
-	if o != nil && o.UserId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetUserId(v string) {
-	o.UserId.Set(&v)
-}
-// SetUserIdNil sets the value for UserId to be an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetUserIdNil() {
-	o.UserId.Set(nil)
-}
-
-// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) UnsetUserId() {
-	o.UserId.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetName() string {
-	if o == nil || o.Name.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetWageWeeklyCents returns the WageWeeklyCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetWageWeeklyCents() float32 {
-	if o == nil || o.WageWeeklyCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.WageWeeklyCents.Get()
-}
-
-// GetWageWeeklyCentsOk returns a tuple with the WageWeeklyCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) GetWageWeeklyCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.WageWeeklyCents.Get(), o.WageWeeklyCents.IsSet()
-}
-
-// HasWageWeeklyCents returns a boolean if a field has been set.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) HasWageWeeklyCents() bool {
-	if o != nil && o.WageWeeklyCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWageWeeklyCents gets a reference to the given NullableFloat32 and assigns it to the WageWeeklyCents field.
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetWageWeeklyCents(v float32) {
-	o.WageWeeklyCents.Set(&v)
-}
-// SetWageWeeklyCentsNil sets the value for WageWeeklyCents to be an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) SetWageWeeklyCentsNil() {
-	o.WageWeeklyCents.Set(nil)
-}
-
-// UnsetWageWeeklyCents ensures that no value is present for WageWeeklyCents, not even an explicit nil
-func (o *GetSpatialShopStaffResponseDataOneOf1Staff) UnsetWageWeeklyCents() {
-	o.WageWeeklyCents.Unset()
-}
-
-func (o GetSpatialShopStaffResponseDataOneOf1Staff) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["pending"] = o.Pending
-	}
-	if o.AcceptedAt.IsSet() {
-		toSerialize["acceptedAt"] = o.AcceptedAt.Get()
-	}
-	if o.WagePaidThrough.IsSet() {
-		toSerialize["wagePaidThrough"] = o.WagePaidThrough.Get()
-	}
-	if true {
-		toSerialize["grantId"] = o.GrantId
-	}
-	if o.UserId.IsSet() {
-		toSerialize["userId"] = o.UserId.Get()
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
-	if o.WageWeeklyCents.IsSet() {
-		toSerialize["wageWeeklyCents"] = o.WageWeeklyCents.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialShopStaffResponseDataOneOf1Staff struct {
-	value *GetSpatialShopStaffResponseDataOneOf1Staff
-	isSet bool
-}
-
-func (v NullableGetSpatialShopStaffResponseDataOneOf1Staff) Get() *GetSpatialShopStaffResponseDataOneOf1Staff {
-	return v.value
-}
-
-func (v *NullableGetSpatialShopStaffResponseDataOneOf1Staff) Set(val *GetSpatialShopStaffResponseDataOneOf1Staff) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialShopStaffResponseDataOneOf1Staff) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialShopStaffResponseDataOneOf1Staff) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialShopStaffResponseDataOneOf1Staff(val *GetSpatialShopStaffResponseDataOneOf1Staff) *NullableGetSpatialShopStaffResponseDataOneOf1Staff {
-	return &NullableGetSpatialShopStaffResponseDataOneOf1Staff{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialShopStaffResponseDataOneOf1Staff) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialShopStaffResponseDataOneOf1Staff) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialSpaceResponse struct for GetSpatialSpaceResponse
-type GetSpatialSpaceResponse struct {
-	Data GetSpatialSpaceResponseData `json:"data"`
-}
-
-// NewGetSpatialSpaceResponse instantiates a new GetSpatialSpaceResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialSpaceResponse(data GetSpatialSpaceResponseData) *GetSpatialSpaceResponse {
-	this := GetSpatialSpaceResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewGetSpatialSpaceResponseWithDefaults instantiates a new GetSpatialSpaceResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialSpaceResponseWithDefaults() *GetSpatialSpaceResponse {
-	this := GetSpatialSpaceResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *GetSpatialSpaceResponse) GetData() GetSpatialSpaceResponseData {
-	if o == nil {
-		var ret GetSpatialSpaceResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponse) GetDataOk() (*GetSpatialSpaceResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *GetSpatialSpaceResponse) SetData(v GetSpatialSpaceResponseData) {
-	o.Data = v
-}
-
-func (o GetSpatialSpaceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialSpaceResponse struct {
-	value *GetSpatialSpaceResponse
-	isSet bool
-}
-
-func (v NullableGetSpatialSpaceResponse) Get() *GetSpatialSpaceResponse {
-	return v.value
-}
-
-func (v *NullableGetSpatialSpaceResponse) Set(val *GetSpatialSpaceResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialSpaceResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialSpaceResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialSpaceResponse(val *GetSpatialSpaceResponse) *NullableGetSpatialSpaceResponse {
-	return &NullableGetSpatialSpaceResponse{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialSpaceResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialSpaceResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialSpaceResponseData struct for GetSpatialSpaceResponseData
-type GetSpatialSpaceResponseData struct {
-	Spaces []GetSpatialSpaceResponseDataSpaces `json:"spaces"`
-	WarehouseUnits []GetSpatialSpaceResponseDataWarehouseUnits `json:"warehouseUnits"`
-}
-
-// NewGetSpatialSpaceResponseData instantiates a new GetSpatialSpaceResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialSpaceResponseData(spaces []GetSpatialSpaceResponseDataSpaces, warehouseUnits []GetSpatialSpaceResponseDataWarehouseUnits) *GetSpatialSpaceResponseData {
-	this := GetSpatialSpaceResponseData{}
-	this.Spaces = spaces
-	this.WarehouseUnits = warehouseUnits
-	return &this
-}
-
-// NewGetSpatialSpaceResponseDataWithDefaults instantiates a new GetSpatialSpaceResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialSpaceResponseDataWithDefaults() *GetSpatialSpaceResponseData {
-	this := GetSpatialSpaceResponseData{}
-	return &this
-}
-
-// GetSpaces returns the Spaces field value
-func (o *GetSpatialSpaceResponseData) GetSpaces() []GetSpatialSpaceResponseDataSpaces {
-	if o == nil {
-		var ret []GetSpatialSpaceResponseDataSpaces
-		return ret
-	}
-
-	return o.Spaces
-}
-
-// GetSpacesOk returns a tuple with the Spaces field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseData) GetSpacesOk() ([]GetSpatialSpaceResponseDataSpaces, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Spaces, true
-}
-
-// SetSpaces sets field value
-func (o *GetSpatialSpaceResponseData) SetSpaces(v []GetSpatialSpaceResponseDataSpaces) {
-	o.Spaces = v
-}
-
-// GetWarehouseUnits returns the WarehouseUnits field value
-func (o *GetSpatialSpaceResponseData) GetWarehouseUnits() []GetSpatialSpaceResponseDataWarehouseUnits {
-	if o == nil {
-		var ret []GetSpatialSpaceResponseDataWarehouseUnits
-		return ret
-	}
-
-	return o.WarehouseUnits
-}
-
-// GetWarehouseUnitsOk returns a tuple with the WarehouseUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseData) GetWarehouseUnitsOk() ([]GetSpatialSpaceResponseDataWarehouseUnits, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.WarehouseUnits, true
-}
-
-// SetWarehouseUnits sets field value
-func (o *GetSpatialSpaceResponseData) SetWarehouseUnits(v []GetSpatialSpaceResponseDataWarehouseUnits) {
-	o.WarehouseUnits = v
-}
-
-func (o GetSpatialSpaceResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["spaces"] = o.Spaces
-	}
-	if true {
-		toSerialize["warehouseUnits"] = o.WarehouseUnits
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialSpaceResponseData struct {
-	value *GetSpatialSpaceResponseData
-	isSet bool
-}
-
-func (v NullableGetSpatialSpaceResponseData) Get() *GetSpatialSpaceResponseData {
-	return v.value
-}
-
-func (v *NullableGetSpatialSpaceResponseData) Set(val *GetSpatialSpaceResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialSpaceResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialSpaceResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialSpaceResponseData(val *GetSpatialSpaceResponseData) *NullableGetSpatialSpaceResponseData {
-	return &NullableGetSpatialSpaceResponseData{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialSpaceResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialSpaceResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialSpaceResponseDataSpaces struct for GetSpatialSpaceResponseDataSpaces
-type GetSpatialSpaceResponseDataSpaces struct {
-	CategorySlug string `json:"categorySlug"`
-	Label string `json:"label"`
-	Tagline string `json:"tagline"`
-	Presentation string `json:"presentation"`
-	ItemModel NullableString `json:"itemModel,omitempty"`
-	Containers []map[string]interface{} `json:"containers"`
-	ItemSize GetSpatialPublicResponseDataProfileItemSize `json:"itemSize"`
-	Facets []GetSpatialSpaceResponseDataSpacesFacetsItem `json:"facets"`
-	GradedVariant NullableString `json:"gradedVariant,omitempty"`
-}
-
-// NewGetSpatialSpaceResponseDataSpaces instantiates a new GetSpatialSpaceResponseDataSpaces object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialSpaceResponseDataSpaces(categorySlug string, label string, tagline string, presentation string, containers []map[string]interface{}, itemSize GetSpatialPublicResponseDataProfileItemSize, facets []GetSpatialSpaceResponseDataSpacesFacetsItem) *GetSpatialSpaceResponseDataSpaces {
-	this := GetSpatialSpaceResponseDataSpaces{}
-	this.CategorySlug = categorySlug
-	this.Label = label
-	this.Tagline = tagline
-	this.Presentation = presentation
-	this.Containers = containers
-	this.ItemSize = itemSize
-	this.Facets = facets
-	return &this
-}
-
-// NewGetSpatialSpaceResponseDataSpacesWithDefaults instantiates a new GetSpatialSpaceResponseDataSpaces object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialSpaceResponseDataSpacesWithDefaults() *GetSpatialSpaceResponseDataSpaces {
-	this := GetSpatialSpaceResponseDataSpaces{}
-	return &this
-}
-
-// GetCategorySlug returns the CategorySlug field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetCategorySlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CategorySlug
-}
-
-// GetCategorySlugOk returns a tuple with the CategorySlug field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetCategorySlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CategorySlug, true
-}
-
-// SetCategorySlug sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetCategorySlug(v string) {
-	o.CategorySlug = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetLabel(v string) {
-	o.Label = v
-}
-
-// GetTagline returns the Tagline field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetTagline() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Tagline
-}
-
-// GetTaglineOk returns a tuple with the Tagline field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetTaglineOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Tagline, true
-}
-
-// SetTagline sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetTagline(v string) {
-	o.Tagline = v
-}
-
-// GetPresentation returns the Presentation field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetPresentation() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Presentation
-}
-
-// GetPresentationOk returns a tuple with the Presentation field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetPresentationOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Presentation, true
-}
-
-// SetPresentation sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetPresentation(v string) {
-	o.Presentation = v
-}
-
-// GetItemModel returns the ItemModel field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialSpaceResponseDataSpaces) GetItemModel() string {
-	if o == nil || o.ItemModel.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ItemModel.Get()
-}
-
-// GetItemModelOk returns a tuple with the ItemModel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialSpaceResponseDataSpaces) GetItemModelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ItemModel.Get(), o.ItemModel.IsSet()
-}
-
-// HasItemModel returns a boolean if a field has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) HasItemModel() bool {
-	if o != nil && o.ItemModel.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetItemModel gets a reference to the given NullableString and assigns it to the ItemModel field.
-func (o *GetSpatialSpaceResponseDataSpaces) SetItemModel(v string) {
-	o.ItemModel.Set(&v)
-}
-// SetItemModelNil sets the value for ItemModel to be an explicit nil
-func (o *GetSpatialSpaceResponseDataSpaces) SetItemModelNil() {
-	o.ItemModel.Set(nil)
-}
-
-// UnsetItemModel ensures that no value is present for ItemModel, not even an explicit nil
-func (o *GetSpatialSpaceResponseDataSpaces) UnsetItemModel() {
-	o.ItemModel.Unset()
-}
-
-// GetContainers returns the Containers field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetContainers() []map[string]interface{} {
-	if o == nil {
-		var ret []map[string]interface{}
-		return ret
-	}
-
-	return o.Containers
-}
-
-// GetContainersOk returns a tuple with the Containers field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetContainersOk() ([]map[string]interface{}, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Containers, true
-}
-
-// SetContainers sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetContainers(v []map[string]interface{}) {
-	o.Containers = v
-}
-
-// GetItemSize returns the ItemSize field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetItemSize() GetSpatialPublicResponseDataProfileItemSize {
-	if o == nil {
-		var ret GetSpatialPublicResponseDataProfileItemSize
-		return ret
-	}
-
-	return o.ItemSize
-}
-
-// GetItemSizeOk returns a tuple with the ItemSize field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetItemSizeOk() (*GetSpatialPublicResponseDataProfileItemSize, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ItemSize, true
-}
-
-// SetItemSize sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetItemSize(v GetSpatialPublicResponseDataProfileItemSize) {
-	o.ItemSize = v
-}
-
-// GetFacets returns the Facets field value
-func (o *GetSpatialSpaceResponseDataSpaces) GetFacets() []GetSpatialSpaceResponseDataSpacesFacetsItem {
-	if o == nil {
-		var ret []GetSpatialSpaceResponseDataSpacesFacetsItem
-		return ret
-	}
-
-	return o.Facets
-}
-
-// GetFacetsOk returns a tuple with the Facets field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) GetFacetsOk() ([]GetSpatialSpaceResponseDataSpacesFacetsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Facets, true
-}
-
-// SetFacets sets field value
-func (o *GetSpatialSpaceResponseDataSpaces) SetFacets(v []GetSpatialSpaceResponseDataSpacesFacetsItem) {
-	o.Facets = v
-}
-
-// GetGradedVariant returns the GradedVariant field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialSpaceResponseDataSpaces) GetGradedVariant() string {
-	if o == nil || o.GradedVariant.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GradedVariant.Get()
-}
-
-// GetGradedVariantOk returns a tuple with the GradedVariant field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialSpaceResponseDataSpaces) GetGradedVariantOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GradedVariant.Get(), o.GradedVariant.IsSet()
-}
-
-// HasGradedVariant returns a boolean if a field has been set.
-func (o *GetSpatialSpaceResponseDataSpaces) HasGradedVariant() bool {
-	if o != nil && o.GradedVariant.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGradedVariant gets a reference to the given NullableString and assigns it to the GradedVariant field.
-func (o *GetSpatialSpaceResponseDataSpaces) SetGradedVariant(v string) {
-	o.GradedVariant.Set(&v)
-}
-// SetGradedVariantNil sets the value for GradedVariant to be an explicit nil
-func (o *GetSpatialSpaceResponseDataSpaces) SetGradedVariantNil() {
-	o.GradedVariant.Set(nil)
-}
-
-// UnsetGradedVariant ensures that no value is present for GradedVariant, not even an explicit nil
-func (o *GetSpatialSpaceResponseDataSpaces) UnsetGradedVariant() {
-	o.GradedVariant.Unset()
-}
-
-func (o GetSpatialSpaceResponseDataSpaces) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["categorySlug"] = o.CategorySlug
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["tagline"] = o.Tagline
-	}
-	if true {
-		toSerialize["presentation"] = o.Presentation
-	}
-	if o.ItemModel.IsSet() {
-		toSerialize["itemModel"] = o.ItemModel.Get()
-	}
-	if true {
-		toSerialize["containers"] = o.Containers
-	}
-	if true {
-		toSerialize["itemSize"] = o.ItemSize
-	}
-	if true {
-		toSerialize["facets"] = o.Facets
-	}
-	if o.GradedVariant.IsSet() {
-		toSerialize["gradedVariant"] = o.GradedVariant.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialSpaceResponseDataSpaces struct {
-	value *GetSpatialSpaceResponseDataSpaces
-	isSet bool
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpaces) Get() *GetSpatialSpaceResponseDataSpaces {
-	return v.value
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpaces) Set(val *GetSpatialSpaceResponseDataSpaces) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpaces) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpaces) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialSpaceResponseDataSpaces(val *GetSpatialSpaceResponseDataSpaces) *NullableGetSpatialSpaceResponseDataSpaces {
-	return &NullableGetSpatialSpaceResponseDataSpaces{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpaces) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpaces) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialSpaceResponseDataSpacesFacetsItem the model 'GetSpatialSpaceResponseDataSpacesFacetsItem'
-type GetSpatialSpaceResponseDataSpacesFacetsItem string
-
-// List of GetSpatialSpaceResponseDataSpacesFacetsItem
-const (
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_brand GetSpatialSpaceResponseDataSpacesFacetsItem = "brand"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_condition GetSpatialSpaceResponseDataSpacesFacetsItem = "condition"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_size GetSpatialSpaceResponseDataSpacesFacetsItem = "size"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_status GetSpatialSpaceResponseDataSpacesFacetsItem = "status"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_label GetSpatialSpaceResponseDataSpacesFacetsItem = "label"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_title GetSpatialSpaceResponseDataSpacesFacetsItem = "title"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_valueOption GetSpatialSpaceResponseDataSpacesFacetsItem = "value"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_year GetSpatialSpaceResponseDataSpacesFacetsItem = "year"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_grade GetSpatialSpaceResponseDataSpacesFacetsItem = "grade"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_game GetSpatialSpaceResponseDataSpacesFacetsItem = "game"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_set GetSpatialSpaceResponseDataSpacesFacetsItem = "set"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_franchise GetSpatialSpaceResponseDataSpacesFacetsItem = "franchise"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_team GetSpatialSpaceResponseDataSpacesFacetsItem = "team"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_era GetSpatialSpaceResponseDataSpacesFacetsItem = "era"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_genre GetSpatialSpaceResponseDataSpacesFacetsItem = "genre"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_colour GetSpatialSpaceResponseDataSpacesFacetsItem = "colour"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_age GetSpatialSpaceResponseDataSpacesFacetsItem = "age"
-	GETSPATIALSPACERESPONSEDATASPACESFACETSITEM_exhibitor GetSpatialSpaceResponseDataSpacesFacetsItem = "exhibitor"
-)
-
-// All allowed values of GetSpatialSpaceResponseDataSpacesFacetsItem enum
-var AllowedGetSpatialSpaceResponseDataSpacesFacetsItemEnumValues = []GetSpatialSpaceResponseDataSpacesFacetsItem{
-	"brand",
-	"condition",
-	"size",
-	"status",
-	"label",
-	"title",
-	"value",
-	"year",
-	"grade",
-	"game",
-	"set",
-	"franchise",
-	"team",
-	"era",
-	"genre",
-	"colour",
-	"age",
-	"exhibitor",
-}
-
-func (v *GetSpatialSpaceResponseDataSpacesFacetsItem) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := GetSpatialSpaceResponseDataSpacesFacetsItem(value)
-	for _, existing := range AllowedGetSpatialSpaceResponseDataSpacesFacetsItemEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid GetSpatialSpaceResponseDataSpacesFacetsItem", value)
-}
-
-// NewGetSpatialSpaceResponseDataSpacesFacetsItemFromValue returns a pointer to a valid GetSpatialSpaceResponseDataSpacesFacetsItem
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetSpatialSpaceResponseDataSpacesFacetsItemFromValue(v string) (*GetSpatialSpaceResponseDataSpacesFacetsItem, error) {
-	ev := GetSpatialSpaceResponseDataSpacesFacetsItem(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for GetSpatialSpaceResponseDataSpacesFacetsItem: valid values are %v", v, AllowedGetSpatialSpaceResponseDataSpacesFacetsItemEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v GetSpatialSpaceResponseDataSpacesFacetsItem) IsValid() bool {
-	for _, existing := range AllowedGetSpatialSpaceResponseDataSpacesFacetsItemEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to GetSpatialSpaceResponseDataSpacesFacetsItem value
-func (v GetSpatialSpaceResponseDataSpacesFacetsItem) Ptr() *GetSpatialSpaceResponseDataSpacesFacetsItem {
-	return &v
-}
-
-type NullableGetSpatialSpaceResponseDataSpacesFacetsItem struct {
-	value *GetSpatialSpaceResponseDataSpacesFacetsItem
-	isSet bool
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpacesFacetsItem) Get() *GetSpatialSpaceResponseDataSpacesFacetsItem {
-	return v.value
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpacesFacetsItem) Set(val *GetSpatialSpaceResponseDataSpacesFacetsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpacesFacetsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpacesFacetsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialSpaceResponseDataSpacesFacetsItem(val *GetSpatialSpaceResponseDataSpacesFacetsItem) *NullableGetSpatialSpaceResponseDataSpacesFacetsItem {
-	return &NullableGetSpatialSpaceResponseDataSpacesFacetsItem{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialSpaceResponseDataSpacesFacetsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialSpaceResponseDataSpacesFacetsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialSpaceResponseDataWarehouseUnits struct for GetSpatialSpaceResponseDataWarehouseUnits
-type GetSpatialSpaceResponseDataWarehouseUnits struct {
-	Key string `json:"key"`
-	Label string `json:"label"`
-	Model string `json:"model"`
-	Size GetSpatialPublicResponseDataProfileItemSize `json:"size"`
-	// What this unit contributes to a location code. A rack contributes its number, a shelf its level. A zone contributes a letter.  `null` means the unit is scenery and adds nothing — a workbench or a door is part of the room without being part of an address.
-	SegmentKind NullableString `json:"segmentKind,omitempty"`
-	// How many children of the next level down it accepts.
-	Capacity float32 `json:"capacity"`
-}
-
-// NewGetSpatialSpaceResponseDataWarehouseUnits instantiates a new GetSpatialSpaceResponseDataWarehouseUnits object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialSpaceResponseDataWarehouseUnits(key string, label string, model string, size GetSpatialPublicResponseDataProfileItemSize, capacity float32) *GetSpatialSpaceResponseDataWarehouseUnits {
-	this := GetSpatialSpaceResponseDataWarehouseUnits{}
-	this.Key = key
-	this.Label = label
-	this.Model = model
-	this.Size = size
-	this.Capacity = capacity
-	return &this
-}
-
-// NewGetSpatialSpaceResponseDataWarehouseUnitsWithDefaults instantiates a new GetSpatialSpaceResponseDataWarehouseUnits object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialSpaceResponseDataWarehouseUnitsWithDefaults() *GetSpatialSpaceResponseDataWarehouseUnits {
-	this := GetSpatialSpaceResponseDataWarehouseUnits{}
-	return &this
-}
-
-// GetKey returns the Key field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Key, true
-}
-
-// SetKey sets field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetKey(v string) {
-	o.Key = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetLabel(v string) {
-	o.Label = v
-}
-
-// GetModel returns the Model field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetModel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Model
-}
-
-// GetModelOk returns a tuple with the Model field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetModelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Model, true
-}
-
-// SetModel sets field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetModel(v string) {
-	o.Model = v
-}
-
-// GetSize returns the Size field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetSize() GetSpatialPublicResponseDataProfileItemSize {
-	if o == nil {
-		var ret GetSpatialPublicResponseDataProfileItemSize
-		return ret
-	}
-
-	return o.Size
-}
-
-// GetSizeOk returns a tuple with the Size field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetSizeOk() (*GetSpatialPublicResponseDataProfileItemSize, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Size, true
-}
-
-// SetSize sets field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetSize(v GetSpatialPublicResponseDataProfileItemSize) {
-	o.Size = v
-}
-
-// GetSegmentKind returns the SegmentKind field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetSegmentKind() string {
-	if o == nil || o.SegmentKind.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SegmentKind.Get()
-}
-
-// GetSegmentKindOk returns a tuple with the SegmentKind field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetSegmentKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SegmentKind.Get(), o.SegmentKind.IsSet()
-}
-
-// HasSegmentKind returns a boolean if a field has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) HasSegmentKind() bool {
-	if o != nil && o.SegmentKind.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSegmentKind gets a reference to the given NullableString and assigns it to the SegmentKind field.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetSegmentKind(v string) {
-	o.SegmentKind.Set(&v)
-}
-// SetSegmentKindNil sets the value for SegmentKind to be an explicit nil
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetSegmentKindNil() {
-	o.SegmentKind.Set(nil)
-}
-
-// UnsetSegmentKind ensures that no value is present for SegmentKind, not even an explicit nil
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) UnsetSegmentKind() {
-	o.SegmentKind.Unset()
-}
-
-// GetCapacity returns the Capacity field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetCapacity() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Capacity
-}
-
-// GetCapacityOk returns a tuple with the Capacity field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) GetCapacityOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Capacity, true
-}
-
-// SetCapacity sets field value
-func (o *GetSpatialSpaceResponseDataWarehouseUnits) SetCapacity(v float32) {
-	o.Capacity = v
-}
-
-func (o GetSpatialSpaceResponseDataWarehouseUnits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["model"] = o.Model
-	}
-	if true {
-		toSerialize["size"] = o.Size
-	}
-	if o.SegmentKind.IsSet() {
-		toSerialize["segmentKind"] = o.SegmentKind.Get()
-	}
-	if true {
-		toSerialize["capacity"] = o.Capacity
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialSpaceResponseDataWarehouseUnits struct {
-	value *GetSpatialSpaceResponseDataWarehouseUnits
-	isSet bool
-}
-
-func (v NullableGetSpatialSpaceResponseDataWarehouseUnits) Get() *GetSpatialSpaceResponseDataWarehouseUnits {
-	return v.value
-}
-
-func (v *NullableGetSpatialSpaceResponseDataWarehouseUnits) Set(val *GetSpatialSpaceResponseDataWarehouseUnits) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialSpaceResponseDataWarehouseUnits) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialSpaceResponseDataWarehouseUnits) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialSpaceResponseDataWarehouseUnits(val *GetSpatialSpaceResponseDataWarehouseUnits) *NullableGetSpatialSpaceResponseDataWarehouseUnits {
-	return &NullableGetSpatialSpaceResponseDataWarehouseUnits{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialSpaceResponseDataWarehouseUnits) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialSpaceResponseDataWarehouseUnits) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialStreetAdmissionResponse struct for GetSpatialStreetAdmissionResponse
-type GetSpatialStreetAdmissionResponse struct {
-	Data GetSpatialStreetAdmissionResponseData `json:"data"`
-}
-
-// NewGetSpatialStreetAdmissionResponse instantiates a new GetSpatialStreetAdmissionResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialStreetAdmissionResponse(data GetSpatialStreetAdmissionResponseData) *GetSpatialStreetAdmissionResponse {
-	this := GetSpatialStreetAdmissionResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewGetSpatialStreetAdmissionResponseWithDefaults instantiates a new GetSpatialStreetAdmissionResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialStreetAdmissionResponseWithDefaults() *GetSpatialStreetAdmissionResponse {
-	this := GetSpatialStreetAdmissionResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *GetSpatialStreetAdmissionResponse) GetData() GetSpatialStreetAdmissionResponseData {
-	if o == nil {
-		var ret GetSpatialStreetAdmissionResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponse) GetDataOk() (*GetSpatialStreetAdmissionResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *GetSpatialStreetAdmissionResponse) SetData(v GetSpatialStreetAdmissionResponseData) {
-	o.Data = v
-}
-
-func (o GetSpatialStreetAdmissionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialStreetAdmissionResponse struct {
-	value *GetSpatialStreetAdmissionResponse
-	isSet bool
-}
-
-func (v NullableGetSpatialStreetAdmissionResponse) Get() *GetSpatialStreetAdmissionResponse {
-	return v.value
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponse) Set(val *GetSpatialStreetAdmissionResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialStreetAdmissionResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialStreetAdmissionResponse(val *GetSpatialStreetAdmissionResponse) *NullableGetSpatialStreetAdmissionResponse {
-	return &NullableGetSpatialStreetAdmissionResponse{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialStreetAdmissionResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialStreetAdmissionResponseData struct for GetSpatialStreetAdmissionResponseData
-type GetSpatialStreetAdmissionResponseData struct {
-	ToDecide []GetSpatialStreetAdmissionResponseDataToDecide `json:"toDecide"`
-	Sent []GetSpatialStreetAdmissionResponseDataToDecide `json:"sent"`
-}
-
-// NewGetSpatialStreetAdmissionResponseData instantiates a new GetSpatialStreetAdmissionResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialStreetAdmissionResponseData(toDecide []GetSpatialStreetAdmissionResponseDataToDecide, sent []GetSpatialStreetAdmissionResponseDataToDecide) *GetSpatialStreetAdmissionResponseData {
-	this := GetSpatialStreetAdmissionResponseData{}
-	this.ToDecide = toDecide
-	this.Sent = sent
-	return &this
-}
-
-// NewGetSpatialStreetAdmissionResponseDataWithDefaults instantiates a new GetSpatialStreetAdmissionResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialStreetAdmissionResponseDataWithDefaults() *GetSpatialStreetAdmissionResponseData {
-	this := GetSpatialStreetAdmissionResponseData{}
-	return &this
-}
-
-// GetToDecide returns the ToDecide field value
-func (o *GetSpatialStreetAdmissionResponseData) GetToDecide() []GetSpatialStreetAdmissionResponseDataToDecide {
-	if o == nil {
-		var ret []GetSpatialStreetAdmissionResponseDataToDecide
-		return ret
-	}
-
-	return o.ToDecide
-}
-
-// GetToDecideOk returns a tuple with the ToDecide field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseData) GetToDecideOk() ([]GetSpatialStreetAdmissionResponseDataToDecide, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ToDecide, true
-}
-
-// SetToDecide sets field value
-func (o *GetSpatialStreetAdmissionResponseData) SetToDecide(v []GetSpatialStreetAdmissionResponseDataToDecide) {
-	o.ToDecide = v
-}
-
-// GetSent returns the Sent field value
-func (o *GetSpatialStreetAdmissionResponseData) GetSent() []GetSpatialStreetAdmissionResponseDataToDecide {
-	if o == nil {
-		var ret []GetSpatialStreetAdmissionResponseDataToDecide
-		return ret
-	}
-
-	return o.Sent
-}
-
-// GetSentOk returns a tuple with the Sent field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseData) GetSentOk() ([]GetSpatialStreetAdmissionResponseDataToDecide, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Sent, true
-}
-
-// SetSent sets field value
-func (o *GetSpatialStreetAdmissionResponseData) SetSent(v []GetSpatialStreetAdmissionResponseDataToDecide) {
-	o.Sent = v
-}
-
-func (o GetSpatialStreetAdmissionResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["toDecide"] = o.ToDecide
-	}
-	if true {
-		toSerialize["sent"] = o.Sent
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialStreetAdmissionResponseData struct {
-	value *GetSpatialStreetAdmissionResponseData
-	isSet bool
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseData) Get() *GetSpatialStreetAdmissionResponseData {
-	return v.value
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseData) Set(val *GetSpatialStreetAdmissionResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialStreetAdmissionResponseData(val *GetSpatialStreetAdmissionResponseData) *NullableGetSpatialStreetAdmissionResponseData {
-	return &NullableGetSpatialStreetAdmissionResponseData{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetSpatialStreetAdmissionResponseDataToDecide struct for GetSpatialStreetAdmissionResponseDataToDecide
-type GetSpatialStreetAdmissionResponseDataToDecide struct {
-	Id string `json:"id"`
-	Kind string `json:"kind"`
-	Street string `json:"street"`
-	StreetName string `json:"streetName"`
-	ShopName string `json:"shopName"`
-	ShopSlug NullableString `json:"shopSlug,omitempty"`
-	CreatedAt string `json:"createdAt"`
-}
-
-// NewGetSpatialStreetAdmissionResponseDataToDecide instantiates a new GetSpatialStreetAdmissionResponseDataToDecide object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetSpatialStreetAdmissionResponseDataToDecide(id string, kind string, street string, streetName string, shopName string, createdAt string) *GetSpatialStreetAdmissionResponseDataToDecide {
-	this := GetSpatialStreetAdmissionResponseDataToDecide{}
-	this.Id = id
-	this.Kind = kind
-	this.Street = street
-	this.StreetName = streetName
-	this.ShopName = shopName
-	this.CreatedAt = createdAt
-	return &this
-}
-
-// NewGetSpatialStreetAdmissionResponseDataToDecideWithDefaults instantiates a new GetSpatialStreetAdmissionResponseDataToDecide object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetSpatialStreetAdmissionResponseDataToDecideWithDefaults() *GetSpatialStreetAdmissionResponseDataToDecide {
-	this := GetSpatialStreetAdmissionResponseDataToDecide{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetId(v string) {
-	o.Id = v
-}
-
-// GetKind returns the Kind field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetStreet returns the Street field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetStreet() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Street
-}
-
-// GetStreetOk returns a tuple with the Street field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetStreetOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Street, true
-}
-
-// SetStreet sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetStreet(v string) {
-	o.Street = v
-}
-
-// GetStreetName returns the StreetName field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetStreetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.StreetName
-}
-
-// GetStreetNameOk returns a tuple with the StreetName field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetStreetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.StreetName, true
-}
-
-// SetStreetName sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetStreetName(v string) {
-	o.StreetName = v
-}
-
-// GetShopName returns the ShopName field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetShopName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ShopName
-}
-
-// GetShopNameOk returns a tuple with the ShopName field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetShopNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ShopName, true
-}
-
-// SetShopName sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetShopName(v string) {
-	o.ShopName = v
-}
-
-// GetShopSlug returns the ShopSlug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetShopSlug() string {
-	if o == nil || o.ShopSlug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ShopSlug.Get()
-}
-
-// GetShopSlugOk returns a tuple with the ShopSlug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetShopSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ShopSlug.Get(), o.ShopSlug.IsSet()
-}
-
-// HasShopSlug returns a boolean if a field has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) HasShopSlug() bool {
-	if o != nil && o.ShopSlug.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetShopSlug gets a reference to the given NullableString and assigns it to the ShopSlug field.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetShopSlug(v string) {
-	o.ShopSlug.Set(&v)
-}
-// SetShopSlugNil sets the value for ShopSlug to be an explicit nil
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetShopSlugNil() {
-	o.ShopSlug.Set(nil)
-}
-
-// UnsetShopSlug ensures that no value is present for ShopSlug, not even an explicit nil
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) UnsetShopSlug() {
-	o.ShopSlug.Unset()
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *GetSpatialStreetAdmissionResponseDataToDecide) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-func (o GetSpatialStreetAdmissionResponseDataToDecide) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["street"] = o.Street
-	}
-	if true {
-		toSerialize["streetName"] = o.StreetName
-	}
-	if true {
-		toSerialize["shopName"] = o.ShopName
-	}
-	if o.ShopSlug.IsSet() {
-		toSerialize["shopSlug"] = o.ShopSlug.Get()
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetSpatialStreetAdmissionResponseDataToDecide struct {
-	value *GetSpatialStreetAdmissionResponseDataToDecide
-	isSet bool
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseDataToDecide) Get() *GetSpatialStreetAdmissionResponseDataToDecide {
-	return v.value
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseDataToDecide) Set(val *GetSpatialStreetAdmissionResponseDataToDecide) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseDataToDecide) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseDataToDecide) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetSpatialStreetAdmissionResponseDataToDecide(val *GetSpatialStreetAdmissionResponseDataToDecide) *NullableGetSpatialStreetAdmissionResponseDataToDecide {
-	return &NullableGetSpatialStreetAdmissionResponseDataToDecide{value: val, isSet: true}
-}
-
-func (v NullableGetSpatialStreetAdmissionResponseDataToDecide) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetSpatialStreetAdmissionResponseDataToDecide) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -108,19 +108,19 @@ func (v *NullableCreateBuyerOrderCancelResponse) UnmarshalJSON(src []byte) error
 
 // CreateBuyerOrderCancelResponseData struct for CreateBuyerOrderCancelResponseData
 type CreateBuyerOrderCancelResponseData struct {
+	Ok bool `json:"ok"`
 	// false only for an order paid entirely with credit, which has no card charge to refund.
 	Refunded bool `json:"refunded"`
-	Ok bool `json:"ok"`
 }
 
 // NewCreateBuyerOrderCancelResponseData instantiates a new CreateBuyerOrderCancelResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerOrderCancelResponseData(refunded bool, ok bool) *CreateBuyerOrderCancelResponseData {
+func NewCreateBuyerOrderCancelResponseData(ok bool, refunded bool) *CreateBuyerOrderCancelResponseData {
 	this := CreateBuyerOrderCancelResponseData{}
-	this.Refunded = refunded
 	this.Ok = ok
+	this.Refunded = refunded
 	return &this
 }
 
@@ -130,30 +130,6 @@ func NewCreateBuyerOrderCancelResponseData(refunded bool, ok bool) *CreateBuyerO
 func NewCreateBuyerOrderCancelResponseDataWithDefaults() *CreateBuyerOrderCancelResponseData {
 	this := CreateBuyerOrderCancelResponseData{}
 	return &this
-}
-
-// GetRefunded returns the Refunded field value
-func (o *CreateBuyerOrderCancelResponseData) GetRefunded() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Refunded
-}
-
-// GetRefundedOk returns a tuple with the Refunded field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerOrderCancelResponseData) GetRefundedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Refunded, true
-}
-
-// SetRefunded sets field value
-func (o *CreateBuyerOrderCancelResponseData) SetRefunded(v bool) {
-	o.Refunded = v
 }
 
 // GetOk returns the Ok field value
@@ -180,13 +156,37 @@ func (o *CreateBuyerOrderCancelResponseData) SetOk(v bool) {
 	o.Ok = v
 }
 
+// GetRefunded returns the Refunded field value
+func (o *CreateBuyerOrderCancelResponseData) GetRefunded() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Refunded
+}
+
+// GetRefundedOk returns a tuple with the Refunded field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerOrderCancelResponseData) GetRefundedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Refunded, true
+}
+
+// SetRefunded sets field value
+func (o *CreateBuyerOrderCancelResponseData) SetRefunded(v bool) {
+	o.Refunded = v
+}
+
 func (o CreateBuyerOrderCancelResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["refunded"] = o.Refunded
+		toSerialize["ok"] = o.Ok
 	}
 	if true {
-		toSerialize["ok"] = o.Ok
+		toSerialize["refunded"] = o.Refunded
 	}
 	return json.Marshal(toSerialize)
 }
@@ -680,8 +680,8 @@ type CreateBuyerOrderReceivedResponseData struct {
 	Ok bool `json:"ok"`
 	// Feedback can now be left on this order.
 	CanReview bool `json:"canReview"`
-	BuyerReceivedAt NullableString `json:"buyerReceivedAt,omitempty"`
 	AlreadyConfirmed NullableBool `json:"alreadyConfirmed,omitempty"`
+	BuyerReceivedAt NullableString `json:"buyerReceivedAt,omitempty"`
 }
 
 // NewCreateBuyerOrderReceivedResponseData instantiates a new CreateBuyerOrderReceivedResponseData object
@@ -751,48 +751,6 @@ func (o *CreateBuyerOrderReceivedResponseData) SetCanReview(v bool) {
 	o.CanReview = v
 }
 
-// GetBuyerReceivedAt returns the BuyerReceivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateBuyerOrderReceivedResponseData) GetBuyerReceivedAt() string {
-	if o == nil || o.BuyerReceivedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.BuyerReceivedAt.Get()
-}
-
-// GetBuyerReceivedAtOk returns a tuple with the BuyerReceivedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateBuyerOrderReceivedResponseData) GetBuyerReceivedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.BuyerReceivedAt.Get(), o.BuyerReceivedAt.IsSet()
-}
-
-// HasBuyerReceivedAt returns a boolean if a field has been set.
-func (o *CreateBuyerOrderReceivedResponseData) HasBuyerReceivedAt() bool {
-	if o != nil && o.BuyerReceivedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBuyerReceivedAt gets a reference to the given NullableString and assigns it to the BuyerReceivedAt field.
-func (o *CreateBuyerOrderReceivedResponseData) SetBuyerReceivedAt(v string) {
-	o.BuyerReceivedAt.Set(&v)
-}
-// SetBuyerReceivedAtNil sets the value for BuyerReceivedAt to be an explicit nil
-func (o *CreateBuyerOrderReceivedResponseData) SetBuyerReceivedAtNil() {
-	o.BuyerReceivedAt.Set(nil)
-}
-
-// UnsetBuyerReceivedAt ensures that no value is present for BuyerReceivedAt, not even an explicit nil
-func (o *CreateBuyerOrderReceivedResponseData) UnsetBuyerReceivedAt() {
-	o.BuyerReceivedAt.Unset()
-}
-
 // GetAlreadyConfirmed returns the AlreadyConfirmed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateBuyerOrderReceivedResponseData) GetAlreadyConfirmed() bool {
 	if o == nil || o.AlreadyConfirmed.Get() == nil {
@@ -835,6 +793,48 @@ func (o *CreateBuyerOrderReceivedResponseData) UnsetAlreadyConfirmed() {
 	o.AlreadyConfirmed.Unset()
 }
 
+// GetBuyerReceivedAt returns the BuyerReceivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateBuyerOrderReceivedResponseData) GetBuyerReceivedAt() string {
+	if o == nil || o.BuyerReceivedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerReceivedAt.Get()
+}
+
+// GetBuyerReceivedAtOk returns a tuple with the BuyerReceivedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateBuyerOrderReceivedResponseData) GetBuyerReceivedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerReceivedAt.Get(), o.BuyerReceivedAt.IsSet()
+}
+
+// HasBuyerReceivedAt returns a boolean if a field has been set.
+func (o *CreateBuyerOrderReceivedResponseData) HasBuyerReceivedAt() bool {
+	if o != nil && o.BuyerReceivedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerReceivedAt gets a reference to the given NullableString and assigns it to the BuyerReceivedAt field.
+func (o *CreateBuyerOrderReceivedResponseData) SetBuyerReceivedAt(v string) {
+	o.BuyerReceivedAt.Set(&v)
+}
+// SetBuyerReceivedAtNil sets the value for BuyerReceivedAt to be an explicit nil
+func (o *CreateBuyerOrderReceivedResponseData) SetBuyerReceivedAtNil() {
+	o.BuyerReceivedAt.Set(nil)
+}
+
+// UnsetBuyerReceivedAt ensures that no value is present for BuyerReceivedAt, not even an explicit nil
+func (o *CreateBuyerOrderReceivedResponseData) UnsetBuyerReceivedAt() {
+	o.BuyerReceivedAt.Unset()
+}
+
 func (o CreateBuyerOrderReceivedResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -843,11 +843,11 @@ func (o CreateBuyerOrderReceivedResponseData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["canReview"] = o.CanReview
 	}
-	if o.BuyerReceivedAt.IsSet() {
-		toSerialize["buyerReceivedAt"] = o.BuyerReceivedAt.Get()
-	}
 	if o.AlreadyConfirmed.IsSet() {
 		toSerialize["alreadyConfirmed"] = o.AlreadyConfirmed.Get()
+	}
+	if o.BuyerReceivedAt.IsSet() {
+		toSerialize["buyerReceivedAt"] = o.BuyerReceivedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2347,8 +2347,8 @@ func (v *NullableGetBuyerOrderPriceProtectionResponse) UnmarshalJSON(src []byte)
 
 // GetBuyerOrderPriceProtectionResponseData struct for GetBuyerOrderPriceProtectionResponseData
 type GetBuyerOrderPriceProtectionResponseData struct {
-	Active bool `json:"active"`
 	Until string `json:"until"`
+	Active bool `json:"active"`
 	CreditedCents float32 `json:"creditedCents"`
 }
 
@@ -2356,10 +2356,10 @@ type GetBuyerOrderPriceProtectionResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerOrderPriceProtectionResponseData(active bool, until string, creditedCents float32) *GetBuyerOrderPriceProtectionResponseData {
+func NewGetBuyerOrderPriceProtectionResponseData(until string, active bool, creditedCents float32) *GetBuyerOrderPriceProtectionResponseData {
 	this := GetBuyerOrderPriceProtectionResponseData{}
-	this.Active = active
 	this.Until = until
+	this.Active = active
 	this.CreditedCents = creditedCents
 	return &this
 }
@@ -2370,30 +2370,6 @@ func NewGetBuyerOrderPriceProtectionResponseData(active bool, until string, cred
 func NewGetBuyerOrderPriceProtectionResponseDataWithDefaults() *GetBuyerOrderPriceProtectionResponseData {
 	this := GetBuyerOrderPriceProtectionResponseData{}
 	return &this
-}
-
-// GetActive returns the Active field value
-func (o *GetBuyerOrderPriceProtectionResponseData) GetActive() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerOrderPriceProtectionResponseData) GetActiveOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Active, true
-}
-
-// SetActive sets field value
-func (o *GetBuyerOrderPriceProtectionResponseData) SetActive(v bool) {
-	o.Active = v
 }
 
 // GetUntil returns the Until field value
@@ -2418,6 +2394,30 @@ func (o *GetBuyerOrderPriceProtectionResponseData) GetUntilOk() (*string, bool) 
 // SetUntil sets field value
 func (o *GetBuyerOrderPriceProtectionResponseData) SetUntil(v string) {
 	o.Until = v
+}
+
+// GetActive returns the Active field value
+func (o *GetBuyerOrderPriceProtectionResponseData) GetActive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerOrderPriceProtectionResponseData) GetActiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Active, true
+}
+
+// SetActive sets field value
+func (o *GetBuyerOrderPriceProtectionResponseData) SetActive(v bool) {
+	o.Active = v
 }
 
 // GetCreditedCents returns the CreditedCents field value
@@ -2447,10 +2447,10 @@ func (o *GetBuyerOrderPriceProtectionResponseData) SetCreditedCents(v float32) {
 func (o GetBuyerOrderPriceProtectionResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["active"] = o.Active
+		toSerialize["until"] = o.Until
 	}
 	if true {
-		toSerialize["until"] = o.Until
+		toSerialize["active"] = o.Active
 	}
 	if true {
 		toSerialize["creditedCents"] = o.CreditedCents
@@ -2497,6 +2497,7 @@ func (v *NullableGetBuyerOrderPriceProtectionResponseData) UnmarshalJSON(src []b
 // ListBuyerOrdersItem struct for ListBuyerOrdersItem
 type ListBuyerOrdersItem struct {
 	Id string `json:"id"`
+	OrderNumber NullableString `json:"orderNumber,omitempty"`
 	Status string `json:"status"`
 	BuyerPaidCents float32 `json:"buyerPaidCents"`
 	CreatedAt time.Time `json:"createdAt"`
@@ -2545,6 +2546,48 @@ func (o *ListBuyerOrdersItem) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *ListBuyerOrdersItem) SetId(v string) {
 	o.Id = v
+}
+
+// GetOrderNumber returns the OrderNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerOrdersItem) GetOrderNumber() string {
+	if o == nil || o.OrderNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrderNumber.Get()
+}
+
+// GetOrderNumberOk returns a tuple with the OrderNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerOrdersItem) GetOrderNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OrderNumber.Get(), o.OrderNumber.IsSet()
+}
+
+// HasOrderNumber returns a boolean if a field has been set.
+func (o *ListBuyerOrdersItem) HasOrderNumber() bool {
+	if o != nil && o.OrderNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderNumber gets a reference to the given NullableString and assigns it to the OrderNumber field.
+func (o *ListBuyerOrdersItem) SetOrderNumber(v string) {
+	o.OrderNumber.Set(&v)
+}
+// SetOrderNumberNil sets the value for OrderNumber to be an explicit nil
+func (o *ListBuyerOrdersItem) SetOrderNumberNil() {
+	o.OrderNumber.Set(nil)
+}
+
+// UnsetOrderNumber ensures that no value is present for OrderNumber, not even an explicit nil
+func (o *ListBuyerOrdersItem) UnsetOrderNumber() {
+	o.OrderNumber.Unset()
 }
 
 // GetStatus returns the Status field value
@@ -2623,6 +2666,9 @@ func (o ListBuyerOrdersItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if o.OrderNumber.IsSet() {
+		toSerialize["orderNumber"] = o.OrderNumber.Get()
 	}
 	if true {
 		toSerialize["status"] = o.Status

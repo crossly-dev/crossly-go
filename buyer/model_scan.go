@@ -540,18 +540,18 @@ func (v *NullableCreateBuyerScanResponse) UnmarshalJSON(src []byte) error {
 
 // CreateBuyerScanResponseIdentifier struct for CreateBuyerScanResponseIdentifier
 type CreateBuyerScanResponseIdentifier struct {
-	Value string `json:"value"`
 	Ns string `json:"ns"`
+	Value string `json:"value"`
 }
 
 // NewCreateBuyerScanResponseIdentifier instantiates a new CreateBuyerScanResponseIdentifier object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerScanResponseIdentifier(value string, ns string) *CreateBuyerScanResponseIdentifier {
+func NewCreateBuyerScanResponseIdentifier(ns string, value string) *CreateBuyerScanResponseIdentifier {
 	this := CreateBuyerScanResponseIdentifier{}
-	this.Value = value
 	this.Ns = ns
+	this.Value = value
 	return &this
 }
 
@@ -561,30 +561,6 @@ func NewCreateBuyerScanResponseIdentifier(value string, ns string) *CreateBuyerS
 func NewCreateBuyerScanResponseIdentifierWithDefaults() *CreateBuyerScanResponseIdentifier {
 	this := CreateBuyerScanResponseIdentifier{}
 	return &this
-}
-
-// GetValue returns the Value field value
-func (o *CreateBuyerScanResponseIdentifier) GetValue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerScanResponseIdentifier) GetValueOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Value, true
-}
-
-// SetValue sets field value
-func (o *CreateBuyerScanResponseIdentifier) SetValue(v string) {
-	o.Value = v
 }
 
 // GetNs returns the Ns field value
@@ -611,13 +587,37 @@ func (o *CreateBuyerScanResponseIdentifier) SetNs(v string) {
 	o.Ns = v
 }
 
+// GetValue returns the Value field value
+func (o *CreateBuyerScanResponseIdentifier) GetValue() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerScanResponseIdentifier) GetValueOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *CreateBuyerScanResponseIdentifier) SetValue(v string) {
+	o.Value = v
+}
+
 func (o CreateBuyerScanResponseIdentifier) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["value"] = o.Value
+		toSerialize["ns"] = o.Ns
 	}
 	if true {
-		toSerialize["ns"] = o.Ns
+		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
 }

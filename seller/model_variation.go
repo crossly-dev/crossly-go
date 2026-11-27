@@ -14,6 +14,304 @@ import (
 	"encoding/json"
 )
 
+// CreateVariationGroupGenerateMatrixResponse struct for CreateVariationGroupGenerateMatrixResponse
+type CreateVariationGroupGenerateMatrixResponse struct {
+	Data CreateVariationGroupGenerateMatrixResponseData `json:"data"`
+}
+
+// NewCreateVariationGroupGenerateMatrixResponse instantiates a new CreateVariationGroupGenerateMatrixResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateVariationGroupGenerateMatrixResponse(data CreateVariationGroupGenerateMatrixResponseData) *CreateVariationGroupGenerateMatrixResponse {
+	this := CreateVariationGroupGenerateMatrixResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreateVariationGroupGenerateMatrixResponseWithDefaults instantiates a new CreateVariationGroupGenerateMatrixResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateVariationGroupGenerateMatrixResponseWithDefaults() *CreateVariationGroupGenerateMatrixResponse {
+	this := CreateVariationGroupGenerateMatrixResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreateVariationGroupGenerateMatrixResponse) GetData() CreateVariationGroupGenerateMatrixResponseData {
+	if o == nil {
+		var ret CreateVariationGroupGenerateMatrixResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponse) GetDataOk() (*CreateVariationGroupGenerateMatrixResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreateVariationGroupGenerateMatrixResponse) SetData(v CreateVariationGroupGenerateMatrixResponseData) {
+	o.Data = v
+}
+
+func (o CreateVariationGroupGenerateMatrixResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateVariationGroupGenerateMatrixResponse struct {
+	value *CreateVariationGroupGenerateMatrixResponse
+	isSet bool
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponse) Get() *CreateVariationGroupGenerateMatrixResponse {
+	return v.value
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponse) Set(val *CreateVariationGroupGenerateMatrixResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateVariationGroupGenerateMatrixResponse(val *CreateVariationGroupGenerateMatrixResponse) *NullableCreateVariationGroupGenerateMatrixResponse {
+	return &NullableCreateVariationGroupGenerateMatrixResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateVariationGroupGenerateMatrixResponseData struct for CreateVariationGroupGenerateMatrixResponseData
+type CreateVariationGroupGenerateMatrixResponseData struct {
+	Id string `json:"id"`
+	OptionListingIds []string `json:"optionListingIds"`
+	CreatedListingIds []string `json:"createdListingIds"`
+	Members []CreateVariationGroupResponseDataMembers `json:"members"`
+	Rollup CreateVariationGroupResponseDataRollup `json:"rollup"`
+}
+
+// NewCreateVariationGroupGenerateMatrixResponseData instantiates a new CreateVariationGroupGenerateMatrixResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateVariationGroupGenerateMatrixResponseData(id string, optionListingIds []string, createdListingIds []string, members []CreateVariationGroupResponseDataMembers, rollup CreateVariationGroupResponseDataRollup) *CreateVariationGroupGenerateMatrixResponseData {
+	this := CreateVariationGroupGenerateMatrixResponseData{}
+	this.Id = id
+	this.OptionListingIds = optionListingIds
+	this.CreatedListingIds = createdListingIds
+	this.Members = members
+	this.Rollup = rollup
+	return &this
+}
+
+// NewCreateVariationGroupGenerateMatrixResponseDataWithDefaults instantiates a new CreateVariationGroupGenerateMatrixResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateVariationGroupGenerateMatrixResponseDataWithDefaults() *CreateVariationGroupGenerateMatrixResponseData {
+	this := CreateVariationGroupGenerateMatrixResponseData{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) SetId(v string) {
+	o.Id = v
+}
+
+// GetOptionListingIds returns the OptionListingIds field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetOptionListingIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.OptionListingIds
+}
+
+// GetOptionListingIdsOk returns a tuple with the OptionListingIds field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetOptionListingIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OptionListingIds, true
+}
+
+// SetOptionListingIds sets field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) SetOptionListingIds(v []string) {
+	o.OptionListingIds = v
+}
+
+// GetCreatedListingIds returns the CreatedListingIds field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetCreatedListingIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.CreatedListingIds
+}
+
+// GetCreatedListingIdsOk returns a tuple with the CreatedListingIds field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetCreatedListingIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CreatedListingIds, true
+}
+
+// SetCreatedListingIds sets field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) SetCreatedListingIds(v []string) {
+	o.CreatedListingIds = v
+}
+
+// GetMembers returns the Members field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetMembers() []CreateVariationGroupResponseDataMembers {
+	if o == nil {
+		var ret []CreateVariationGroupResponseDataMembers
+		return ret
+	}
+
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetMembersOk() ([]CreateVariationGroupResponseDataMembers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// SetMembers sets field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) SetMembers(v []CreateVariationGroupResponseDataMembers) {
+	o.Members = v
+}
+
+// GetRollup returns the Rollup field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetRollup() CreateVariationGroupResponseDataRollup {
+	if o == nil {
+		var ret CreateVariationGroupResponseDataRollup
+		return ret
+	}
+
+	return o.Rollup
+}
+
+// GetRollupOk returns a tuple with the Rollup field value
+// and a boolean to check if the value has been set.
+func (o *CreateVariationGroupGenerateMatrixResponseData) GetRollupOk() (*CreateVariationGroupResponseDataRollup, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rollup, true
+}
+
+// SetRollup sets field value
+func (o *CreateVariationGroupGenerateMatrixResponseData) SetRollup(v CreateVariationGroupResponseDataRollup) {
+	o.Rollup = v
+}
+
+func (o CreateVariationGroupGenerateMatrixResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["optionListingIds"] = o.OptionListingIds
+	}
+	if true {
+		toSerialize["createdListingIds"] = o.CreatedListingIds
+	}
+	if true {
+		toSerialize["members"] = o.Members
+	}
+	if true {
+		toSerialize["rollup"] = o.Rollup
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateVariationGroupGenerateMatrixResponseData struct {
+	value *CreateVariationGroupGenerateMatrixResponseData
+	isSet bool
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponseData) Get() *CreateVariationGroupGenerateMatrixResponseData {
+	return v.value
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponseData) Set(val *CreateVariationGroupGenerateMatrixResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateVariationGroupGenerateMatrixResponseData(val *CreateVariationGroupGenerateMatrixResponseData) *NullableCreateVariationGroupGenerateMatrixResponseData {
+	return &NullableCreateVariationGroupGenerateMatrixResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreateVariationGroupGenerateMatrixResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateVariationGroupGenerateMatrixResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreateVariationGroupGenerateResponse struct for CreateVariationGroupGenerateResponse
 type CreateVariationGroupGenerateResponse struct {
 	Data CreateVariationGroupGenerateResponseData `json:"data"`
@@ -503,6 +801,14 @@ type CreateVariationGroupPublishResponseDataOutcomes struct {
 	ListingId NullableString `json:"listingId,omitempty"`
 	// Dispatcher job ids, on the separate path.
 	JobIds []string `json:"jobIds,omitempty"`
+	// Grouped: every option that went live, with its own id on the platform. publishGroupToPlatform records one platform_listings row per entry (variation-publish-members.ts), so a sale or delist acts on that option.
+	Members []map[string]interface{} `json:"members,omitempty"`
+	// Grouped: options that did not go live. Reported in `warnings`; the live ones are still recorded.
+	Failed []map[string]interface{} `json:"failed,omitempty"`
+	// Grouped: work that needs the option rows to exist (a POS stock base, markPosPushed), run right after they are recorded. Returns warnings for the seller; must not throw for one option.
+	AfterRecorded map[string]interface{} `json:"afterRecorded,omitempty"`
+	// The publisher tracks its options itself, not as platform_listings rows (Crossly: crossly_listing_variants with the member listing id, variation-publish-crossly.ts), so no `members` is not a gap.
+	OwnOptionRows NullableBool `json:"ownOptionRows,omitempty"`
 	Warnings []string `json:"warnings"`
 	Error NullableString `json:"error,omitempty"`
 }
@@ -675,6 +981,147 @@ func (o *CreateVariationGroupPublishResponseDataOutcomes) SetJobIds(v []string) 
 	o.JobIds = v
 }
 
+// GetMembers returns the Members field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetMembers() []map[string]interface{} {
+	if o == nil  {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetMembersOk() ([]map[string]interface{}, bool) {
+	if o == nil || o.Members == nil {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// HasMembers returns a boolean if a field has been set.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) HasMembers() bool {
+	if o != nil && o.Members != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMembers gets a reference to the given []map[string]interface{} and assigns it to the Members field.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) SetMembers(v []map[string]interface{}) {
+	o.Members = v
+}
+
+// GetFailed returns the Failed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetFailed() []map[string]interface{} {
+	if o == nil  {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.Failed
+}
+
+// GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetFailedOk() ([]map[string]interface{}, bool) {
+	if o == nil || o.Failed == nil {
+		return nil, false
+	}
+	return o.Failed, true
+}
+
+// HasFailed returns a boolean if a field has been set.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) HasFailed() bool {
+	if o != nil && o.Failed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFailed gets a reference to the given []map[string]interface{} and assigns it to the Failed field.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) SetFailed(v []map[string]interface{}) {
+	o.Failed = v
+}
+
+// GetAfterRecorded returns the AfterRecorded field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetAfterRecorded() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.AfterRecorded
+}
+
+// GetAfterRecordedOk returns a tuple with the AfterRecorded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetAfterRecordedOk() (map[string]interface{}, bool) {
+	if o == nil || o.AfterRecorded == nil {
+		return nil, false
+	}
+	return o.AfterRecorded, true
+}
+
+// HasAfterRecorded returns a boolean if a field has been set.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) HasAfterRecorded() bool {
+	if o != nil && o.AfterRecorded != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAfterRecorded gets a reference to the given map[string]interface{} and assigns it to the AfterRecorded field.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) SetAfterRecorded(v map[string]interface{}) {
+	o.AfterRecorded = v
+}
+
+// GetOwnOptionRows returns the OwnOptionRows field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetOwnOptionRows() bool {
+	if o == nil || o.OwnOptionRows.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.OwnOptionRows.Get()
+}
+
+// GetOwnOptionRowsOk returns a tuple with the OwnOptionRows field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVariationGroupPublishResponseDataOutcomes) GetOwnOptionRowsOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OwnOptionRows.Get(), o.OwnOptionRows.IsSet()
+}
+
+// HasOwnOptionRows returns a boolean if a field has been set.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) HasOwnOptionRows() bool {
+	if o != nil && o.OwnOptionRows.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnOptionRows gets a reference to the given NullableBool and assigns it to the OwnOptionRows field.
+func (o *CreateVariationGroupPublishResponseDataOutcomes) SetOwnOptionRows(v bool) {
+	o.OwnOptionRows.Set(&v)
+}
+// SetOwnOptionRowsNil sets the value for OwnOptionRows to be an explicit nil
+func (o *CreateVariationGroupPublishResponseDataOutcomes) SetOwnOptionRowsNil() {
+	o.OwnOptionRows.Set(nil)
+}
+
+// UnsetOwnOptionRows ensures that no value is present for OwnOptionRows, not even an explicit nil
+func (o *CreateVariationGroupPublishResponseDataOutcomes) UnsetOwnOptionRows() {
+	o.OwnOptionRows.Unset()
+}
+
 // GetWarnings returns the Warnings field value
 func (o *CreateVariationGroupPublishResponseDataOutcomes) GetWarnings() []string {
 	if o == nil {
@@ -757,6 +1204,18 @@ func (o CreateVariationGroupPublishResponseDataOutcomes) MarshalJSON() ([]byte, 
 	}
 	if o.JobIds != nil {
 		toSerialize["jobIds"] = o.JobIds
+	}
+	if o.Members != nil {
+		toSerialize["members"] = o.Members
+	}
+	if o.Failed != nil {
+		toSerialize["failed"] = o.Failed
+	}
+	if o.AfterRecorded != nil {
+		toSerialize["afterRecorded"] = o.AfterRecorded
+	}
+	if o.OwnOptionRows.IsSet() {
+		toSerialize["ownOptionRows"] = o.OwnOptionRows.Get()
 	}
 	if true {
 		toSerialize["warnings"] = o.Warnings
@@ -1047,6 +1506,8 @@ func (v *NullableCreateVariationGroupResponseData) UnmarshalJSON(src []byte) err
 type CreateVariationGroupResponseDataMembers struct {
 	ListingId string `json:"listingId"`
 	AxisValue NullableString `json:"axisValue,omitempty"`
+	// The member's value on every axis of a multi-axis group; null on a single-axis member.
+	Options map[string]interface{} `json:"options,omitempty"`
 	SortKey float32 `json:"sortKey"`
 	Title NullableString `json:"title,omitempty"`
 	Price NullableString `json:"price,omitempty"`
@@ -1141,6 +1602,39 @@ func (o *CreateVariationGroupResponseDataMembers) SetAxisValueNil() {
 // UnsetAxisValue ensures that no value is present for AxisValue, not even an explicit nil
 func (o *CreateVariationGroupResponseDataMembers) UnsetAxisValue() {
 	o.AxisValue.Unset()
+}
+
+// GetOptions returns the Options field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVariationGroupResponseDataMembers) GetOptions() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVariationGroupResponseDataMembers) GetOptionsOk() (map[string]interface{}, bool) {
+	if o == nil || o.Options == nil {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *CreateVariationGroupResponseDataMembers) HasOptions() bool {
+	if o != nil && o.Options != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
+func (o *CreateVariationGroupResponseDataMembers) SetOptions(v map[string]interface{}) {
+	o.Options = v
 }
 
 // GetSortKey returns the SortKey field value
@@ -1381,6 +1875,9 @@ func (o CreateVariationGroupResponseDataMembers) MarshalJSON() ([]byte, error) {
 	}
 	if o.AxisValue.IsSet() {
 		toSerialize["axisValue"] = o.AxisValue.Get()
+	}
+	if o.Options != nil {
+		toSerialize["options"] = o.Options
 	}
 	if true {
 		toSerialize["sortKey"] = o.SortKey

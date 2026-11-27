@@ -1909,7 +1909,7 @@ func (v *NullableListDropMineItemListings) UnmarshalJSON(src []byte) error {
 // ListDropMineItemSeller struct for ListDropMineItemSeller
 type ListDropMineItemSeller struct {
 	Name string `json:"name"`
-	Shop NullableNameSlug `json:"shop,omitempty"`
+	Shop NullableNameSlug2 `json:"shop,omitempty"`
 }
 
 // NewListDropMineItemSeller instantiates a new ListDropMineItemSeller object
@@ -1955,9 +1955,9 @@ func (o *ListDropMineItemSeller) SetName(v string) {
 }
 
 // GetShop returns the Shop field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListDropMineItemSeller) GetShop() NameSlug {
+func (o *ListDropMineItemSeller) GetShop() NameSlug2 {
 	if o == nil || o.Shop.Get() == nil {
-		var ret NameSlug
+		var ret NameSlug2
 		return ret
 	}
 	return *o.Shop.Get()
@@ -1966,7 +1966,7 @@ func (o *ListDropMineItemSeller) GetShop() NameSlug {
 // GetShopOk returns a tuple with the Shop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListDropMineItemSeller) GetShopOk() (*NameSlug, bool) {
+func (o *ListDropMineItemSeller) GetShopOk() (*NameSlug2, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1982,8 +1982,8 @@ func (o *ListDropMineItemSeller) HasShop() bool {
 	return false
 }
 
-// SetShop gets a reference to the given NullableNameSlug and assigns it to the Shop field.
-func (o *ListDropMineItemSeller) SetShop(v NameSlug) {
+// SetShop gets a reference to the given NullableNameSlug2 and assigns it to the Shop field.
+func (o *ListDropMineItemSeller) SetShop(v NameSlug2) {
 	o.Shop.Set(&v)
 }
 // SetShopNil sets the value for Shop to be an explicit nil

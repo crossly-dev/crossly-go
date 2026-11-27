@@ -457,8 +457,8 @@ func (v *NullableGetBuyerCaseResponse) UnmarshalJSON(src []byte) error {
 
 // GetBuyerCaseResponseData struct for GetBuyerCaseResponseData
 type GetBuyerCaseResponseData struct {
-	Messages []GetBuyerCaseResponseDataMessages `json:"messages"`
 	Case GetBuyerCaseResponseDataCase `json:"case"`
+	Messages []GetBuyerCaseResponseDataMessages `json:"messages"`
 	Purchase NullableGetBuyerCaseResponseDataPurchase `json:"purchase,omitempty"`
 	ReturnShipment NullableGetBuyerCaseResponseDataReturnShipment `json:"returnShipment,omitempty"`
 }
@@ -467,10 +467,10 @@ type GetBuyerCaseResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerCaseResponseData(messages []GetBuyerCaseResponseDataMessages, case_ GetBuyerCaseResponseDataCase) *GetBuyerCaseResponseData {
+func NewGetBuyerCaseResponseData(case_ GetBuyerCaseResponseDataCase, messages []GetBuyerCaseResponseDataMessages) *GetBuyerCaseResponseData {
 	this := GetBuyerCaseResponseData{}
-	this.Messages = messages
 	this.Case = case_
+	this.Messages = messages
 	return &this
 }
 
@@ -480,30 +480,6 @@ func NewGetBuyerCaseResponseData(messages []GetBuyerCaseResponseDataMessages, ca
 func NewGetBuyerCaseResponseDataWithDefaults() *GetBuyerCaseResponseData {
 	this := GetBuyerCaseResponseData{}
 	return &this
-}
-
-// GetMessages returns the Messages field value
-func (o *GetBuyerCaseResponseData) GetMessages() []GetBuyerCaseResponseDataMessages {
-	if o == nil {
-		var ret []GetBuyerCaseResponseDataMessages
-		return ret
-	}
-
-	return o.Messages
-}
-
-// GetMessagesOk returns a tuple with the Messages field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseData) GetMessagesOk() ([]GetBuyerCaseResponseDataMessages, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Messages, true
-}
-
-// SetMessages sets field value
-func (o *GetBuyerCaseResponseData) SetMessages(v []GetBuyerCaseResponseDataMessages) {
-	o.Messages = v
 }
 
 // GetCase returns the Case field value
@@ -528,6 +504,30 @@ func (o *GetBuyerCaseResponseData) GetCaseOk() (*GetBuyerCaseResponseDataCase, b
 // SetCase sets field value
 func (o *GetBuyerCaseResponseData) SetCase(v GetBuyerCaseResponseDataCase) {
 	o.Case = v
+}
+
+// GetMessages returns the Messages field value
+func (o *GetBuyerCaseResponseData) GetMessages() []GetBuyerCaseResponseDataMessages {
+	if o == nil {
+		var ret []GetBuyerCaseResponseDataMessages
+		return ret
+	}
+
+	return o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerCaseResponseData) GetMessagesOk() ([]GetBuyerCaseResponseDataMessages, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// SetMessages sets field value
+func (o *GetBuyerCaseResponseData) SetMessages(v []GetBuyerCaseResponseDataMessages) {
+	o.Messages = v
 }
 
 // GetPurchase returns the Purchase field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -617,10 +617,10 @@ func (o *GetBuyerCaseResponseData) UnsetReturnShipment() {
 func (o GetBuyerCaseResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["messages"] = o.Messages
+		toSerialize["case"] = o.Case
 	}
 	if true {
-		toSerialize["case"] = o.Case
+		toSerialize["messages"] = o.Messages
 	}
 	if o.Purchase.IsSet() {
 		toSerialize["purchase"] = o.Purchase.Get()
@@ -670,13 +670,12 @@ func (v *NullableGetBuyerCaseResponseData) UnmarshalJSON(src []byte) error {
 // GetBuyerCaseResponseDataCase struct for GetBuyerCaseResponseDataCase
 type GetBuyerCaseResponseDataCase struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	PurchaseId string `json:"purchaseId"`
+	SellerUserId string `json:"sellerUserId"`
 	Reason string `json:"reason"`
 	State string `json:"state"`
-	SellerUserId string `json:"sellerUserId"`
-	PurchaseId string `json:"purchaseId"`
-	ResolvedAt NullableString `json:"resolvedAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
+	UpdatedAt string `json:"updatedAt"`
 	BuyerNote NullableString `json:"buyerNote,omitempty"`
 	PhotoUrls []string `json:"photoUrls,omitempty"`
 	AwaitingParty NullableString `json:"awaitingParty,omitempty"`
@@ -684,21 +683,22 @@ type GetBuyerCaseResponseDataCase struct {
 	OfferedRefundCents NullableFloat32 `json:"offeredRefundCents,omitempty"`
 	ResolvedRefundCents NullableFloat32 `json:"resolvedRefundCents,omitempty"`
 	ResolvedDecision NullableString `json:"resolvedDecision,omitempty"`
+	ResolvedAt NullableString `json:"resolvedAt,omitempty"`
 }
 
 // NewGetBuyerCaseResponseDataCase instantiates a new GetBuyerCaseResponseDataCase object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerCaseResponseDataCase(id string, createdAt string, updatedAt string, reason string, state string, sellerUserId string, purchaseId string) *GetBuyerCaseResponseDataCase {
+func NewGetBuyerCaseResponseDataCase(id string, purchaseId string, sellerUserId string, reason string, state string, createdAt string, updatedAt string) *GetBuyerCaseResponseDataCase {
 	this := GetBuyerCaseResponseDataCase{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+	this.PurchaseId = purchaseId
+	this.SellerUserId = sellerUserId
 	this.Reason = reason
 	this.State = state
-	this.SellerUserId = sellerUserId
-	this.PurchaseId = purchaseId
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -734,52 +734,52 @@ func (o *GetBuyerCaseResponseDataCase) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetBuyerCaseResponseDataCase) GetCreatedAt() string {
+// GetPurchaseId returns the PurchaseId field value
+func (o *GetBuyerCaseResponseDataCase) GetPurchaseId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.PurchaseId
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataCase) GetCreatedAtOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataCase) GetPurchaseIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.PurchaseId, true
 }
 
-// SetCreatedAt sets field value
-func (o *GetBuyerCaseResponseDataCase) SetCreatedAt(v string) {
-	o.CreatedAt = v
+// SetPurchaseId sets field value
+func (o *GetBuyerCaseResponseDataCase) SetPurchaseId(v string) {
+	o.PurchaseId = v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *GetBuyerCaseResponseDataCase) GetUpdatedAt() string {
+// GetSellerUserId returns the SellerUserId field value
+func (o *GetBuyerCaseResponseDataCase) GetSellerUserId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UpdatedAt
+	return o.SellerUserId
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataCase) GetUpdatedAtOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataCase) GetSellerUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return &o.SellerUserId, true
 }
 
-// SetUpdatedAt sets field value
-func (o *GetBuyerCaseResponseDataCase) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+// SetSellerUserId sets field value
+func (o *GetBuyerCaseResponseDataCase) SetSellerUserId(v string) {
+	o.SellerUserId = v
 }
 
 // GetReason returns the Reason field value
@@ -830,94 +830,52 @@ func (o *GetBuyerCaseResponseDataCase) SetState(v string) {
 	o.State = v
 }
 
-// GetSellerUserId returns the SellerUserId field value
-func (o *GetBuyerCaseResponseDataCase) GetSellerUserId() string {
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetBuyerCaseResponseDataCase) GetCreatedAt() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SellerUserId
+	return o.CreatedAt
 }
 
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataCase) GetSellerUserIdOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataCase) GetCreatedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SellerUserId, true
+	return &o.CreatedAt, true
 }
 
-// SetSellerUserId sets field value
-func (o *GetBuyerCaseResponseDataCase) SetSellerUserId(v string) {
-	o.SellerUserId = v
+// SetCreatedAt sets field value
+func (o *GetBuyerCaseResponseDataCase) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
-// GetPurchaseId returns the PurchaseId field value
-func (o *GetBuyerCaseResponseDataCase) GetPurchaseId() string {
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *GetBuyerCaseResponseDataCase) GetUpdatedAt() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PurchaseId
+	return o.UpdatedAt
 }
 
-// GetPurchaseIdOk returns a tuple with the PurchaseId field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataCase) GetPurchaseIdOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataCase) GetUpdatedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.PurchaseId, true
+	return &o.UpdatedAt, true
 }
 
-// SetPurchaseId sets field value
-func (o *GetBuyerCaseResponseDataCase) SetPurchaseId(v string) {
-	o.PurchaseId = v
-}
-
-// GetResolvedAt returns the ResolvedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerCaseResponseDataCase) GetResolvedAt() string {
-	if o == nil || o.ResolvedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ResolvedAt.Get()
-}
-
-// GetResolvedAtOk returns a tuple with the ResolvedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerCaseResponseDataCase) GetResolvedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ResolvedAt.Get(), o.ResolvedAt.IsSet()
-}
-
-// HasResolvedAt returns a boolean if a field has been set.
-func (o *GetBuyerCaseResponseDataCase) HasResolvedAt() bool {
-	if o != nil && o.ResolvedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResolvedAt gets a reference to the given NullableString and assigns it to the ResolvedAt field.
-func (o *GetBuyerCaseResponseDataCase) SetResolvedAt(v string) {
-	o.ResolvedAt.Set(&v)
-}
-// SetResolvedAtNil sets the value for ResolvedAt to be an explicit nil
-func (o *GetBuyerCaseResponseDataCase) SetResolvedAtNil() {
-	o.ResolvedAt.Set(nil)
-}
-
-// UnsetResolvedAt ensures that no value is present for ResolvedAt, not even an explicit nil
-func (o *GetBuyerCaseResponseDataCase) UnsetResolvedAt() {
-	o.ResolvedAt.Unset()
+// SetUpdatedAt sets field value
+func (o *GetBuyerCaseResponseDataCase) SetUpdatedAt(v string) {
+	o.UpdatedAt = v
 }
 
 // GetBuyerNote returns the BuyerNote field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1205,16 +1163,58 @@ func (o *GetBuyerCaseResponseDataCase) UnsetResolvedDecision() {
 	o.ResolvedDecision.Unset()
 }
 
+// GetResolvedAt returns the ResolvedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerCaseResponseDataCase) GetResolvedAt() string {
+	if o == nil || o.ResolvedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ResolvedAt.Get()
+}
+
+// GetResolvedAtOk returns a tuple with the ResolvedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerCaseResponseDataCase) GetResolvedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ResolvedAt.Get(), o.ResolvedAt.IsSet()
+}
+
+// HasResolvedAt returns a boolean if a field has been set.
+func (o *GetBuyerCaseResponseDataCase) HasResolvedAt() bool {
+	if o != nil && o.ResolvedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResolvedAt gets a reference to the given NullableString and assigns it to the ResolvedAt field.
+func (o *GetBuyerCaseResponseDataCase) SetResolvedAt(v string) {
+	o.ResolvedAt.Set(&v)
+}
+// SetResolvedAtNil sets the value for ResolvedAt to be an explicit nil
+func (o *GetBuyerCaseResponseDataCase) SetResolvedAtNil() {
+	o.ResolvedAt.Set(nil)
+}
+
+// UnsetResolvedAt ensures that no value is present for ResolvedAt, not even an explicit nil
+func (o *GetBuyerCaseResponseDataCase) UnsetResolvedAt() {
+	o.ResolvedAt.Unset()
+}
+
 func (o GetBuyerCaseResponseDataCase) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["purchaseId"] = o.PurchaseId
 	}
 	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
+		toSerialize["sellerUserId"] = o.SellerUserId
 	}
 	if true {
 		toSerialize["reason"] = o.Reason
@@ -1223,13 +1223,10 @@ func (o GetBuyerCaseResponseDataCase) MarshalJSON() ([]byte, error) {
 		toSerialize["state"] = o.State
 	}
 	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if true {
-		toSerialize["purchaseId"] = o.PurchaseId
-	}
-	if o.ResolvedAt.IsSet() {
-		toSerialize["resolvedAt"] = o.ResolvedAt.Get()
+		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if o.BuyerNote.IsSet() {
 		toSerialize["buyerNote"] = o.BuyerNote.Get()
@@ -1251,6 +1248,9 @@ func (o GetBuyerCaseResponseDataCase) MarshalJSON() ([]byte, error) {
 	}
 	if o.ResolvedDecision.IsSet() {
 		toSerialize["resolvedDecision"] = o.ResolvedDecision.Get()
+	}
+	if o.ResolvedAt.IsSet() {
+		toSerialize["resolvedAt"] = o.ResolvedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1294,12 +1294,12 @@ func (v *NullableGetBuyerCaseResponseDataCase) UnmarshalJSON(src []byte) error {
 // GetBuyerCaseResponseDataMessages struct for GetBuyerCaseResponseDataMessages
 type GetBuyerCaseResponseDataMessages struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	// message | offer | decision | state_change.
-	Kind string `json:"kind"`
-	Body string `json:"body"`
 	// buyer | seller | ops | system.
 	AuthorRole string `json:"authorRole"`
+	Body string `json:"body"`
+	// message | offer | decision | state_change.
+	Kind string `json:"kind"`
+	CreatedAt string `json:"createdAt"`
 	AttachmentUrls []string `json:"attachmentUrls,omitempty"`
 }
 
@@ -1307,13 +1307,13 @@ type GetBuyerCaseResponseDataMessages struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerCaseResponseDataMessages(id string, createdAt string, kind string, body string, authorRole string) *GetBuyerCaseResponseDataMessages {
+func NewGetBuyerCaseResponseDataMessages(id string, authorRole string, body string, kind string, createdAt string) *GetBuyerCaseResponseDataMessages {
 	this := GetBuyerCaseResponseDataMessages{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Kind = kind
-	this.Body = body
 	this.AuthorRole = authorRole
+	this.Body = body
+	this.Kind = kind
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -1349,52 +1349,28 @@ func (o *GetBuyerCaseResponseDataMessages) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *GetBuyerCaseResponseDataMessages) GetCreatedAt() string {
+// GetAuthorRole returns the AuthorRole field value
+func (o *GetBuyerCaseResponseDataMessages) GetAuthorRole() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.AuthorRole
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetAuthorRoleOk returns a tuple with the AuthorRole field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataMessages) GetCreatedAtOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataMessages) GetAuthorRoleOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.AuthorRole, true
 }
 
-// SetCreatedAt sets field value
-func (o *GetBuyerCaseResponseDataMessages) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetKind returns the Kind field value
-func (o *GetBuyerCaseResponseDataMessages) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataMessages) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *GetBuyerCaseResponseDataMessages) SetKind(v string) {
-	o.Kind = v
+// SetAuthorRole sets field value
+func (o *GetBuyerCaseResponseDataMessages) SetAuthorRole(v string) {
+	o.AuthorRole = v
 }
 
 // GetBody returns the Body field value
@@ -1421,28 +1397,52 @@ func (o *GetBuyerCaseResponseDataMessages) SetBody(v string) {
 	o.Body = v
 }
 
-// GetAuthorRole returns the AuthorRole field value
-func (o *GetBuyerCaseResponseDataMessages) GetAuthorRole() string {
+// GetKind returns the Kind field value
+func (o *GetBuyerCaseResponseDataMessages) GetKind() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AuthorRole
+	return o.Kind
 }
 
-// GetAuthorRoleOk returns a tuple with the AuthorRole field value
+// GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataMessages) GetAuthorRoleOk() (*string, bool) {
+func (o *GetBuyerCaseResponseDataMessages) GetKindOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.AuthorRole, true
+	return &o.Kind, true
 }
 
-// SetAuthorRole sets field value
-func (o *GetBuyerCaseResponseDataMessages) SetAuthorRole(v string) {
-	o.AuthorRole = v
+// SetKind sets field value
+func (o *GetBuyerCaseResponseDataMessages) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetBuyerCaseResponseDataMessages) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerCaseResponseDataMessages) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetBuyerCaseResponseDataMessages) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 // GetAttachmentUrls returns the AttachmentUrls field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1484,16 +1484,16 @@ func (o GetBuyerCaseResponseDataMessages) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
+		toSerialize["authorRole"] = o.AuthorRole
 	}
 	if true {
 		toSerialize["body"] = o.Body
 	}
 	if true {
-		toSerialize["authorRole"] = o.AuthorRole
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if o.AttachmentUrls != nil {
 		toSerialize["attachmentUrls"] = o.AttachmentUrls
@@ -1540,8 +1540,8 @@ func (v *NullableGetBuyerCaseResponseDataMessages) UnmarshalJSON(src []byte) err
 // GetBuyerCaseResponseDataPurchase struct for GetBuyerCaseResponseDataPurchase
 type GetBuyerCaseResponseDataPurchase struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
 	BuyerPaidCents float32 `json:"buyerPaidCents"`
+	Status string `json:"status"`
 	RefundStatus NullableString `json:"refundStatus,omitempty"`
 	RefundAmountCents NullableFloat32 `json:"refundAmountCents,omitempty"`
 }
@@ -1550,11 +1550,11 @@ type GetBuyerCaseResponseDataPurchase struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerCaseResponseDataPurchase(id string, status string, buyerPaidCents float32) *GetBuyerCaseResponseDataPurchase {
+func NewGetBuyerCaseResponseDataPurchase(id string, buyerPaidCents float32, status string) *GetBuyerCaseResponseDataPurchase {
 	this := GetBuyerCaseResponseDataPurchase{}
 	this.Id = id
-	this.Status = status
 	this.BuyerPaidCents = buyerPaidCents
+	this.Status = status
 	return &this
 }
 
@@ -1590,30 +1590,6 @@ func (o *GetBuyerCaseResponseDataPurchase) SetId(v string) {
 	o.Id = v
 }
 
-// GetStatus returns the Status field value
-func (o *GetBuyerCaseResponseDataPurchase) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerCaseResponseDataPurchase) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetBuyerCaseResponseDataPurchase) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetBuyerPaidCents returns the BuyerPaidCents field value
 func (o *GetBuyerCaseResponseDataPurchase) GetBuyerPaidCents() float32 {
 	if o == nil {
@@ -1636,6 +1612,30 @@ func (o *GetBuyerCaseResponseDataPurchase) GetBuyerPaidCentsOk() (*float32, bool
 // SetBuyerPaidCents sets field value
 func (o *GetBuyerCaseResponseDataPurchase) SetBuyerPaidCents(v float32) {
 	o.BuyerPaidCents = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetBuyerCaseResponseDataPurchase) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerCaseResponseDataPurchase) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetBuyerCaseResponseDataPurchase) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetRefundStatus returns the RefundStatus field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1728,10 +1728,10 @@ func (o GetBuyerCaseResponseDataPurchase) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["buyerPaidCents"] = o.BuyerPaidCents
 	}
 	if true {
-		toSerialize["buyerPaidCents"] = o.BuyerPaidCents
+		toSerialize["status"] = o.Status
 	}
 	if o.RefundStatus.IsSet() {
 		toSerialize["refundStatus"] = o.RefundStatus.Get()
@@ -1781,13 +1781,13 @@ func (v *NullableGetBuyerCaseResponseDataPurchase) UnmarshalJSON(src []byte) err
 // GetBuyerCaseResponseDataReturnShipment struct for GetBuyerCaseResponseDataReturnShipment
 type GetBuyerCaseResponseDataReturnShipment struct {
 	TrackingCode string `json:"trackingCode"`
-	UpdatedAt NullableString `json:"updatedAt,omitempty"`
-	Status NullableString `json:"status,omitempty"`
 	Carrier NullableString `json:"carrier,omitempty"`
-	DeliveredAt NullableString `json:"deliveredAt,omitempty"`
-	LabelUrl NullableString `json:"labelUrl,omitempty"`
 	TrackingUrl NullableString `json:"trackingUrl,omitempty"`
+	LabelUrl NullableString `json:"labelUrl,omitempty"`
+	Status NullableString `json:"status,omitempty"`
 	StatusDetail NullableString `json:"statusDetail,omitempty"`
+	UpdatedAt NullableString `json:"updatedAt,omitempty"`
+	DeliveredAt NullableString `json:"deliveredAt,omitempty"`
 }
 
 // NewGetBuyerCaseResponseDataReturnShipment instantiates a new GetBuyerCaseResponseDataReturnShipment object
@@ -1832,90 +1832,6 @@ func (o *GetBuyerCaseResponseDataReturnShipment) SetTrackingCode(v string) {
 	o.TrackingCode = v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerCaseResponseDataReturnShipment) GetUpdatedAt() string {
-	if o == nil || o.UpdatedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.UpdatedAt.Get()
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerCaseResponseDataReturnShipment) GetUpdatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.UpdatedAt.Get(), o.UpdatedAt.IsSet()
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *GetBuyerCaseResponseDataReturnShipment) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given NullableString and assigns it to the UpdatedAt field.
-func (o *GetBuyerCaseResponseDataReturnShipment) SetUpdatedAt(v string) {
-	o.UpdatedAt.Set(&v)
-}
-// SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) SetUpdatedAtNil() {
-	o.UpdatedAt.Set(nil)
-}
-
-// UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) UnsetUpdatedAt() {
-	o.UpdatedAt.Unset()
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerCaseResponseDataReturnShipment) GetStatus() string {
-	if o == nil || o.Status.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Status.Get()
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerCaseResponseDataReturnShipment) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Status.Get(), o.Status.IsSet()
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *GetBuyerCaseResponseDataReturnShipment) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
-func (o *GetBuyerCaseResponseDataReturnShipment) SetStatus(v string) {
-	o.Status.Set(&v)
-}
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) UnsetStatus() {
-	o.Status.Unset()
-}
-
 // GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerCaseResponseDataReturnShipment) GetCarrier() string {
 	if o == nil || o.Carrier.Get() == nil {
@@ -1956,90 +1872,6 @@ func (o *GetBuyerCaseResponseDataReturnShipment) SetCarrierNil() {
 // UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
 func (o *GetBuyerCaseResponseDataReturnShipment) UnsetCarrier() {
 	o.Carrier.Unset()
-}
-
-// GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerCaseResponseDataReturnShipment) GetDeliveredAt() string {
-	if o == nil || o.DeliveredAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.DeliveredAt.Get()
-}
-
-// GetDeliveredAtOk returns a tuple with the DeliveredAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerCaseResponseDataReturnShipment) GetDeliveredAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.DeliveredAt.Get(), o.DeliveredAt.IsSet()
-}
-
-// HasDeliveredAt returns a boolean if a field has been set.
-func (o *GetBuyerCaseResponseDataReturnShipment) HasDeliveredAt() bool {
-	if o != nil && o.DeliveredAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeliveredAt gets a reference to the given NullableString and assigns it to the DeliveredAt field.
-func (o *GetBuyerCaseResponseDataReturnShipment) SetDeliveredAt(v string) {
-	o.DeliveredAt.Set(&v)
-}
-// SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) SetDeliveredAtNil() {
-	o.DeliveredAt.Set(nil)
-}
-
-// UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) UnsetDeliveredAt() {
-	o.DeliveredAt.Unset()
-}
-
-// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerCaseResponseDataReturnShipment) GetLabelUrl() string {
-	if o == nil || o.LabelUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LabelUrl.Get()
-}
-
-// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerCaseResponseDataReturnShipment) GetLabelUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
-}
-
-// HasLabelUrl returns a boolean if a field has been set.
-func (o *GetBuyerCaseResponseDataReturnShipment) HasLabelUrl() bool {
-	if o != nil && o.LabelUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
-func (o *GetBuyerCaseResponseDataReturnShipment) SetLabelUrl(v string) {
-	o.LabelUrl.Set(&v)
-}
-// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) SetLabelUrlNil() {
-	o.LabelUrl.Set(nil)
-}
-
-// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
-func (o *GetBuyerCaseResponseDataReturnShipment) UnsetLabelUrl() {
-	o.LabelUrl.Unset()
 }
 
 // GetTrackingUrl returns the TrackingUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2084,6 +1916,90 @@ func (o *GetBuyerCaseResponseDataReturnShipment) UnsetTrackingUrl() {
 	o.TrackingUrl.Unset()
 }
 
+// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerCaseResponseDataReturnShipment) GetLabelUrl() string {
+	if o == nil || o.LabelUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LabelUrl.Get()
+}
+
+// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerCaseResponseDataReturnShipment) GetLabelUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
+}
+
+// HasLabelUrl returns a boolean if a field has been set.
+func (o *GetBuyerCaseResponseDataReturnShipment) HasLabelUrl() bool {
+	if o != nil && o.LabelUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
+func (o *GetBuyerCaseResponseDataReturnShipment) SetLabelUrl(v string) {
+	o.LabelUrl.Set(&v)
+}
+// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) SetLabelUrlNil() {
+	o.LabelUrl.Set(nil)
+}
+
+// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) UnsetLabelUrl() {
+	o.LabelUrl.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerCaseResponseDataReturnShipment) GetStatus() string {
+	if o == nil || o.Status.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerCaseResponseDataReturnShipment) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *GetBuyerCaseResponseDataReturnShipment) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+func (o *GetBuyerCaseResponseDataReturnShipment) SetStatus(v string) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) UnsetStatus() {
+	o.Status.Unset()
+}
+
 // GetStatusDetail returns the StatusDetail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetBuyerCaseResponseDataReturnShipment) GetStatusDetail() string {
 	if o == nil || o.StatusDetail.Get() == nil {
@@ -2126,31 +2042,115 @@ func (o *GetBuyerCaseResponseDataReturnShipment) UnsetStatusDetail() {
 	o.StatusDetail.Unset()
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerCaseResponseDataReturnShipment) GetUpdatedAt() string {
+	if o == nil || o.UpdatedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt.Get()
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerCaseResponseDataReturnShipment) GetUpdatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.UpdatedAt.Get(), o.UpdatedAt.IsSet()
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *GetBuyerCaseResponseDataReturnShipment) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given NullableString and assigns it to the UpdatedAt field.
+func (o *GetBuyerCaseResponseDataReturnShipment) SetUpdatedAt(v string) {
+	o.UpdatedAt.Set(&v)
+}
+// SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) SetUpdatedAtNil() {
+	o.UpdatedAt.Set(nil)
+}
+
+// UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) UnsetUpdatedAt() {
+	o.UpdatedAt.Unset()
+}
+
+// GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerCaseResponseDataReturnShipment) GetDeliveredAt() string {
+	if o == nil || o.DeliveredAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveredAt.Get()
+}
+
+// GetDeliveredAtOk returns a tuple with the DeliveredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerCaseResponseDataReturnShipment) GetDeliveredAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveredAt.Get(), o.DeliveredAt.IsSet()
+}
+
+// HasDeliveredAt returns a boolean if a field has been set.
+func (o *GetBuyerCaseResponseDataReturnShipment) HasDeliveredAt() bool {
+	if o != nil && o.DeliveredAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveredAt gets a reference to the given NullableString and assigns it to the DeliveredAt field.
+func (o *GetBuyerCaseResponseDataReturnShipment) SetDeliveredAt(v string) {
+	o.DeliveredAt.Set(&v)
+}
+// SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) SetDeliveredAtNil() {
+	o.DeliveredAt.Set(nil)
+}
+
+// UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
+func (o *GetBuyerCaseResponseDataReturnShipment) UnsetDeliveredAt() {
+	o.DeliveredAt.Unset()
+}
+
 func (o GetBuyerCaseResponseDataReturnShipment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["trackingCode"] = o.TrackingCode
 	}
-	if o.UpdatedAt.IsSet() {
-		toSerialize["updatedAt"] = o.UpdatedAt.Get()
-	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
-	}
 	if o.Carrier.IsSet() {
 		toSerialize["carrier"] = o.Carrier.Get()
-	}
-	if o.DeliveredAt.IsSet() {
-		toSerialize["deliveredAt"] = o.DeliveredAt.Get()
-	}
-	if o.LabelUrl.IsSet() {
-		toSerialize["labelUrl"] = o.LabelUrl.Get()
 	}
 	if o.TrackingUrl.IsSet() {
 		toSerialize["trackingUrl"] = o.TrackingUrl.Get()
 	}
+	if o.LabelUrl.IsSet() {
+		toSerialize["labelUrl"] = o.LabelUrl.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
 	if o.StatusDetail.IsSet() {
 		toSerialize["statusDetail"] = o.StatusDetail.Get()
+	}
+	if o.UpdatedAt.IsSet() {
+		toSerialize["updatedAt"] = o.UpdatedAt.Get()
+	}
+	if o.DeliveredAt.IsSet() {
+		toSerialize["deliveredAt"] = o.DeliveredAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2194,30 +2194,30 @@ func (v *NullableGetBuyerCaseResponseDataReturnShipment) UnmarshalJSON(src []byt
 // ListBuyerCasesItem struct for ListBuyerCasesItem
 type ListBuyerCasesItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	PurchaseId string `json:"purchaseId"`
 	// inr, snad, counterfeit, damaged, wrong_item, other.
 	Reason string `json:"reason"`
 	State string `json:"state"`
+	CreatedAt string `json:"createdAt"`
+	UpdatedAt string `json:"updatedAt"`
 	// not_received | return | problem.
 	Kind string `json:"kind"`
-	PurchaseId string `json:"purchaseId"`
 	Closed bool `json:"closed"`
 	// The case is waiting on you.
 	YourTurn bool `json:"yourTurn"`
-	ResolvedAt NullableString `json:"resolvedAt,omitempty"`
-	// What you paid for the order, in cents.
-	BuyerPaidCents NullableFloat32 `json:"buyerPaidCents,omitempty"`
 	AwaitingParty NullableString `json:"awaitingParty,omitempty"`
 	EscalateAfter NullableString `json:"escalateAfter,omitempty"`
 	// A refund on the table, in cents.
 	OfferedRefundCents NullableFloat32 `json:"offeredRefundCents,omitempty"`
 	ResolvedRefundCents NullableFloat32 `json:"resolvedRefundCents,omitempty"`
+	ResolvedAt NullableString `json:"resolvedAt,omitempty"`
 	ReturnLabelUrl NullableString `json:"returnLabelUrl,omitempty"`
 	ReturnTrackingCode NullableString `json:"returnTrackingCode,omitempty"`
 	ReturnTrackingCarrier NullableString `json:"returnTrackingCarrier,omitempty"`
 	ReturnTrackingStatus NullableString `json:"returnTrackingStatus,omitempty"`
 	ReturnDeliveredAt NullableString `json:"returnDeliveredAt,omitempty"`
+	// What you paid for the order, in cents.
+	BuyerPaidCents NullableFloat32 `json:"buyerPaidCents,omitempty"`
 	ItemTitle NullableString `json:"itemTitle,omitempty"`
 	ItemThumbnail NullableString `json:"itemThumbnail,omitempty"`
 	SellerName NullableString `json:"sellerName,omitempty"`
@@ -2227,15 +2227,15 @@ type ListBuyerCasesItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerCasesItem(id string, createdAt string, updatedAt string, reason string, state string, kind string, purchaseId string, closed bool, yourTurn bool) *ListBuyerCasesItem {
+func NewListBuyerCasesItem(id string, purchaseId string, reason string, state string, createdAt string, updatedAt string, kind string, closed bool, yourTurn bool) *ListBuyerCasesItem {
 	this := ListBuyerCasesItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+	this.PurchaseId = purchaseId
 	this.Reason = reason
 	this.State = state
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
 	this.Kind = kind
-	this.PurchaseId = purchaseId
 	this.Closed = closed
 	this.YourTurn = yourTurn
 	return &this
@@ -2273,52 +2273,28 @@ func (o *ListBuyerCasesItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerCasesItem) GetCreatedAt() string {
+// GetPurchaseId returns the PurchaseId field value
+func (o *ListBuyerCasesItem) GetPurchaseId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.PurchaseId
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerCasesItem) GetCreatedAtOk() (*string, bool) {
+func (o *ListBuyerCasesItem) GetPurchaseIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.PurchaseId, true
 }
 
-// SetCreatedAt sets field value
-func (o *ListBuyerCasesItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *ListBuyerCasesItem) GetUpdatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerCasesItem) GetUpdatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *ListBuyerCasesItem) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+// SetPurchaseId sets field value
+func (o *ListBuyerCasesItem) SetPurchaseId(v string) {
+	o.PurchaseId = v
 }
 
 // GetReason returns the Reason field value
@@ -2369,6 +2345,54 @@ func (o *ListBuyerCasesItem) SetState(v string) {
 	o.State = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerCasesItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerCasesItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerCasesItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *ListBuyerCasesItem) GetUpdatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerCasesItem) GetUpdatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *ListBuyerCasesItem) SetUpdatedAt(v string) {
+	o.UpdatedAt = v
+}
+
 // GetKind returns the Kind field value
 func (o *ListBuyerCasesItem) GetKind() string {
 	if o == nil {
@@ -2391,30 +2415,6 @@ func (o *ListBuyerCasesItem) GetKindOk() (*string, bool) {
 // SetKind sets field value
 func (o *ListBuyerCasesItem) SetKind(v string) {
 	o.Kind = v
-}
-
-// GetPurchaseId returns the PurchaseId field value
-func (o *ListBuyerCasesItem) GetPurchaseId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PurchaseId
-}
-
-// GetPurchaseIdOk returns a tuple with the PurchaseId field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerCasesItem) GetPurchaseIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PurchaseId, true
-}
-
-// SetPurchaseId sets field value
-func (o *ListBuyerCasesItem) SetPurchaseId(v string) {
-	o.PurchaseId = v
 }
 
 // GetClosed returns the Closed field value
@@ -2463,90 +2463,6 @@ func (o *ListBuyerCasesItem) GetYourTurnOk() (*bool, bool) {
 // SetYourTurn sets field value
 func (o *ListBuyerCasesItem) SetYourTurn(v bool) {
 	o.YourTurn = v
-}
-
-// GetResolvedAt returns the ResolvedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerCasesItem) GetResolvedAt() string {
-	if o == nil || o.ResolvedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ResolvedAt.Get()
-}
-
-// GetResolvedAtOk returns a tuple with the ResolvedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerCasesItem) GetResolvedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ResolvedAt.Get(), o.ResolvedAt.IsSet()
-}
-
-// HasResolvedAt returns a boolean if a field has been set.
-func (o *ListBuyerCasesItem) HasResolvedAt() bool {
-	if o != nil && o.ResolvedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResolvedAt gets a reference to the given NullableString and assigns it to the ResolvedAt field.
-func (o *ListBuyerCasesItem) SetResolvedAt(v string) {
-	o.ResolvedAt.Set(&v)
-}
-// SetResolvedAtNil sets the value for ResolvedAt to be an explicit nil
-func (o *ListBuyerCasesItem) SetResolvedAtNil() {
-	o.ResolvedAt.Set(nil)
-}
-
-// UnsetResolvedAt ensures that no value is present for ResolvedAt, not even an explicit nil
-func (o *ListBuyerCasesItem) UnsetResolvedAt() {
-	o.ResolvedAt.Unset()
-}
-
-// GetBuyerPaidCents returns the BuyerPaidCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerCasesItem) GetBuyerPaidCents() float32 {
-	if o == nil || o.BuyerPaidCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.BuyerPaidCents.Get()
-}
-
-// GetBuyerPaidCentsOk returns a tuple with the BuyerPaidCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerCasesItem) GetBuyerPaidCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.BuyerPaidCents.Get(), o.BuyerPaidCents.IsSet()
-}
-
-// HasBuyerPaidCents returns a boolean if a field has been set.
-func (o *ListBuyerCasesItem) HasBuyerPaidCents() bool {
-	if o != nil && o.BuyerPaidCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBuyerPaidCents gets a reference to the given NullableFloat32 and assigns it to the BuyerPaidCents field.
-func (o *ListBuyerCasesItem) SetBuyerPaidCents(v float32) {
-	o.BuyerPaidCents.Set(&v)
-}
-// SetBuyerPaidCentsNil sets the value for BuyerPaidCents to be an explicit nil
-func (o *ListBuyerCasesItem) SetBuyerPaidCentsNil() {
-	o.BuyerPaidCents.Set(nil)
-}
-
-// UnsetBuyerPaidCents ensures that no value is present for BuyerPaidCents, not even an explicit nil
-func (o *ListBuyerCasesItem) UnsetBuyerPaidCents() {
-	o.BuyerPaidCents.Unset()
 }
 
 // GetAwaitingParty returns the AwaitingParty field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2715,6 +2631,48 @@ func (o *ListBuyerCasesItem) SetResolvedRefundCentsNil() {
 // UnsetResolvedRefundCents ensures that no value is present for ResolvedRefundCents, not even an explicit nil
 func (o *ListBuyerCasesItem) UnsetResolvedRefundCents() {
 	o.ResolvedRefundCents.Unset()
+}
+
+// GetResolvedAt returns the ResolvedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCasesItem) GetResolvedAt() string {
+	if o == nil || o.ResolvedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ResolvedAt.Get()
+}
+
+// GetResolvedAtOk returns a tuple with the ResolvedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCasesItem) GetResolvedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ResolvedAt.Get(), o.ResolvedAt.IsSet()
+}
+
+// HasResolvedAt returns a boolean if a field has been set.
+func (o *ListBuyerCasesItem) HasResolvedAt() bool {
+	if o != nil && o.ResolvedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResolvedAt gets a reference to the given NullableString and assigns it to the ResolvedAt field.
+func (o *ListBuyerCasesItem) SetResolvedAt(v string) {
+	o.ResolvedAt.Set(&v)
+}
+// SetResolvedAtNil sets the value for ResolvedAt to be an explicit nil
+func (o *ListBuyerCasesItem) SetResolvedAtNil() {
+	o.ResolvedAt.Set(nil)
+}
+
+// UnsetResolvedAt ensures that no value is present for ResolvedAt, not even an explicit nil
+func (o *ListBuyerCasesItem) UnsetResolvedAt() {
+	o.ResolvedAt.Unset()
 }
 
 // GetReturnLabelUrl returns the ReturnLabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2927,6 +2885,48 @@ func (o *ListBuyerCasesItem) UnsetReturnDeliveredAt() {
 	o.ReturnDeliveredAt.Unset()
 }
 
+// GetBuyerPaidCents returns the BuyerPaidCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCasesItem) GetBuyerPaidCents() float32 {
+	if o == nil || o.BuyerPaidCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.BuyerPaidCents.Get()
+}
+
+// GetBuyerPaidCentsOk returns a tuple with the BuyerPaidCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCasesItem) GetBuyerPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerPaidCents.Get(), o.BuyerPaidCents.IsSet()
+}
+
+// HasBuyerPaidCents returns a boolean if a field has been set.
+func (o *ListBuyerCasesItem) HasBuyerPaidCents() bool {
+	if o != nil && o.BuyerPaidCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerPaidCents gets a reference to the given NullableFloat32 and assigns it to the BuyerPaidCents field.
+func (o *ListBuyerCasesItem) SetBuyerPaidCents(v float32) {
+	o.BuyerPaidCents.Set(&v)
+}
+// SetBuyerPaidCentsNil sets the value for BuyerPaidCents to be an explicit nil
+func (o *ListBuyerCasesItem) SetBuyerPaidCentsNil() {
+	o.BuyerPaidCents.Set(nil)
+}
+
+// UnsetBuyerPaidCents ensures that no value is present for BuyerPaidCents, not even an explicit nil
+func (o *ListBuyerCasesItem) UnsetBuyerPaidCents() {
+	o.BuyerPaidCents.Unset()
+}
+
 // GetItemTitle returns the ItemTitle field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerCasesItem) GetItemTitle() string {
 	if o == nil || o.ItemTitle.Get() == nil {
@@ -3059,10 +3059,7 @@ func (o ListBuyerCasesItem) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
+		toSerialize["purchaseId"] = o.PurchaseId
 	}
 	if true {
 		toSerialize["reason"] = o.Reason
@@ -3071,22 +3068,19 @@ func (o ListBuyerCasesItem) MarshalJSON() ([]byte, error) {
 		toSerialize["state"] = o.State
 	}
 	if true {
-		toSerialize["kind"] = o.Kind
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if true {
-		toSerialize["purchaseId"] = o.PurchaseId
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
 	}
 	if true {
 		toSerialize["closed"] = o.Closed
 	}
 	if true {
 		toSerialize["yourTurn"] = o.YourTurn
-	}
-	if o.ResolvedAt.IsSet() {
-		toSerialize["resolvedAt"] = o.ResolvedAt.Get()
-	}
-	if o.BuyerPaidCents.IsSet() {
-		toSerialize["buyerPaidCents"] = o.BuyerPaidCents.Get()
 	}
 	if o.AwaitingParty.IsSet() {
 		toSerialize["awaitingParty"] = o.AwaitingParty.Get()
@@ -3099,6 +3093,9 @@ func (o ListBuyerCasesItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.ResolvedRefundCents.IsSet() {
 		toSerialize["resolvedRefundCents"] = o.ResolvedRefundCents.Get()
+	}
+	if o.ResolvedAt.IsSet() {
+		toSerialize["resolvedAt"] = o.ResolvedAt.Get()
 	}
 	if o.ReturnLabelUrl.IsSet() {
 		toSerialize["returnLabelUrl"] = o.ReturnLabelUrl.Get()
@@ -3114,6 +3111,9 @@ func (o ListBuyerCasesItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.ReturnDeliveredAt.IsSet() {
 		toSerialize["returnDeliveredAt"] = o.ReturnDeliveredAt.Get()
+	}
+	if o.BuyerPaidCents.IsSet() {
+		toSerialize["buyerPaidCents"] = o.BuyerPaidCents.Get()
 	}
 	if o.ItemTitle.IsSet() {
 		toSerialize["itemTitle"] = o.ItemTitle.Get()

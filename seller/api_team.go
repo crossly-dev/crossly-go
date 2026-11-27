@@ -38,7 +38,7 @@ func (r ApiCreateTeamAcceptRequest) Execute() (*CreateTeamAcceptResponse, *http.
 }
 
 /*
-CreateTeamAccept Accept a pending team invitation by raw token.
+CreateTeamAccept Accept a team invitation by the raw token from its link.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateTeamAcceptRequest
@@ -195,7 +195,7 @@ func (r ApiCreateTeamInviteRequest) Execute() (*CreateTeamInviteResponse, *http.
 }
 
 /*
-CreateTeamInvite Mint a team invitation; returns the one-time accept URL.
+CreateTeamInvite Issue a team invitation; returns the one-time accept URL (nothing is emailed).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateTeamInviteRequest

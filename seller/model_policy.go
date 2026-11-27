@@ -15,6 +15,445 @@ import (
 	"time"
 )
 
+// CreatePolicyPresetResponse struct for CreatePolicyPresetResponse
+type CreatePolicyPresetResponse struct {
+	Warnings []string `json:"warnings"`
+	Summary string `json:"summary"`
+	Incomplete bool `json:"incomplete"`
+	ListingCount float32 `json:"listingCount"`
+	Id string `json:"id"`
+	Name string `json:"name"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	UserId string `json:"userId"`
+	IsDefault bool `json:"isDefault"`
+	Kind string `json:"kind"`
+	Revision float32 `json:"revision"`
+	HasDomesticRules bool `json:"hasDomesticRules"`
+}
+
+// NewCreatePolicyPresetResponse instantiates a new CreatePolicyPresetResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePolicyPresetResponse(warnings []string, summary string, incomplete bool, listingCount float32, id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, kind string, revision float32, hasDomesticRules bool) *CreatePolicyPresetResponse {
+	this := CreatePolicyPresetResponse{}
+	this.Warnings = warnings
+	this.Summary = summary
+	this.Incomplete = incomplete
+	this.ListingCount = listingCount
+	this.Id = id
+	this.Name = name
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
+	this.UserId = userId
+	this.IsDefault = isDefault
+	this.Kind = kind
+	this.Revision = revision
+	this.HasDomesticRules = hasDomesticRules
+	return &this
+}
+
+// NewCreatePolicyPresetResponseWithDefaults instantiates a new CreatePolicyPresetResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePolicyPresetResponseWithDefaults() *CreatePolicyPresetResponse {
+	this := CreatePolicyPresetResponse{}
+	return &this
+}
+
+// GetWarnings returns the Warnings field value
+func (o *CreatePolicyPresetResponse) GetWarnings() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Warnings
+}
+
+// GetWarningsOk returns a tuple with the Warnings field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetWarningsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Warnings, true
+}
+
+// SetWarnings sets field value
+func (o *CreatePolicyPresetResponse) SetWarnings(v []string) {
+	o.Warnings = v
+}
+
+// GetSummary returns the Summary field value
+func (o *CreatePolicyPresetResponse) GetSummary() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetSummaryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Summary, true
+}
+
+// SetSummary sets field value
+func (o *CreatePolicyPresetResponse) SetSummary(v string) {
+	o.Summary = v
+}
+
+// GetIncomplete returns the Incomplete field value
+func (o *CreatePolicyPresetResponse) GetIncomplete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Incomplete
+}
+
+// GetIncompleteOk returns a tuple with the Incomplete field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetIncompleteOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Incomplete, true
+}
+
+// SetIncomplete sets field value
+func (o *CreatePolicyPresetResponse) SetIncomplete(v bool) {
+	o.Incomplete = v
+}
+
+// GetListingCount returns the ListingCount field value
+func (o *CreatePolicyPresetResponse) GetListingCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ListingCount
+}
+
+// GetListingCountOk returns a tuple with the ListingCount field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetListingCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingCount, true
+}
+
+// SetListingCount sets field value
+func (o *CreatePolicyPresetResponse) SetListingCount(v float32) {
+	o.ListingCount = v
+}
+
+// GetId returns the Id field value
+func (o *CreatePolicyPresetResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreatePolicyPresetResponse) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *CreatePolicyPresetResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CreatePolicyPresetResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *CreatePolicyPresetResponse) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *CreatePolicyPresetResponse) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *CreatePolicyPresetResponse) GetUpdatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *CreatePolicyPresetResponse) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *CreatePolicyPresetResponse) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *CreatePolicyPresetResponse) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetIsDefault returns the IsDefault field value
+func (o *CreatePolicyPresetResponse) GetIsDefault() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDefault
+}
+
+// GetIsDefaultOk returns a tuple with the IsDefault field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetIsDefaultOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsDefault, true
+}
+
+// SetIsDefault sets field value
+func (o *CreatePolicyPresetResponse) SetIsDefault(v bool) {
+	o.IsDefault = v
+}
+
+// GetKind returns the Kind field value
+func (o *CreatePolicyPresetResponse) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *CreatePolicyPresetResponse) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetRevision returns the Revision field value
+func (o *CreatePolicyPresetResponse) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetRevisionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *CreatePolicyPresetResponse) SetRevision(v float32) {
+	o.Revision = v
+}
+
+// GetHasDomesticRules returns the HasDomesticRules field value
+func (o *CreatePolicyPresetResponse) GetHasDomesticRules() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasDomesticRules
+}
+
+// GetHasDomesticRulesOk returns a tuple with the HasDomesticRules field value
+// and a boolean to check if the value has been set.
+func (o *CreatePolicyPresetResponse) GetHasDomesticRulesOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HasDomesticRules, true
+}
+
+// SetHasDomesticRules sets field value
+func (o *CreatePolicyPresetResponse) SetHasDomesticRules(v bool) {
+	o.HasDomesticRules = v
+}
+
+func (o CreatePolicyPresetResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["warnings"] = o.Warnings
+	}
+	if true {
+		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["incomplete"] = o.Incomplete
+	}
+	if true {
+		toSerialize["listingCount"] = o.ListingCount
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["isDefault"] = o.IsDefault
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["revision"] = o.Revision
+	}
+	if true {
+		toSerialize["hasDomesticRules"] = o.HasDomesticRules
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePolicyPresetResponse struct {
+	value *CreatePolicyPresetResponse
+	isSet bool
+}
+
+func (v NullableCreatePolicyPresetResponse) Get() *CreatePolicyPresetResponse {
+	return v.value
+}
+
+func (v *NullableCreatePolicyPresetResponse) Set(val *CreatePolicyPresetResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePolicyPresetResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePolicyPresetResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePolicyPresetResponse(val *CreatePolicyPresetResponse) *NullableCreatePolicyPresetResponse {
+	return &NullableCreatePolicyPresetResponse{value: val, isSet: true}
+}
+
+func (v NullableCreatePolicyPresetResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePolicyPresetResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreatePolicyReturnReceivedResponse struct for CreatePolicyReturnReceivedResponse
 type CreatePolicyReturnReceivedResponse struct {
 	Data CreatePolicyReturnReceivedResponseData `json:"data"`
@@ -197,8 +636,463 @@ func (v *NullableCreatePolicyReturnReceivedResponseData) UnmarshalJSON(src []byt
 	return json.Unmarshal(src, &v.value)
 }
 
+// DeletePolicyPresetResponse struct for DeletePolicyPresetResponse
+type DeletePolicyPresetResponse struct {
+	Ok bool `json:"ok"`
+	ReassignedListings float32 `json:"reassignedListings"`
+	PromotedId NullableString `json:"promotedId,omitempty"`
+}
+
+// NewDeletePolicyPresetResponse instantiates a new DeletePolicyPresetResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeletePolicyPresetResponse(ok bool, reassignedListings float32) *DeletePolicyPresetResponse {
+	this := DeletePolicyPresetResponse{}
+	this.Ok = ok
+	this.ReassignedListings = reassignedListings
+	return &this
+}
+
+// NewDeletePolicyPresetResponseWithDefaults instantiates a new DeletePolicyPresetResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeletePolicyPresetResponseWithDefaults() *DeletePolicyPresetResponse {
+	this := DeletePolicyPresetResponse{}
+	return &this
+}
+
+// GetOk returns the Ok field value
+func (o *DeletePolicyPresetResponse) GetOk() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Ok
+}
+
+// GetOkOk returns a tuple with the Ok field value
+// and a boolean to check if the value has been set.
+func (o *DeletePolicyPresetResponse) GetOkOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Ok, true
+}
+
+// SetOk sets field value
+func (o *DeletePolicyPresetResponse) SetOk(v bool) {
+	o.Ok = v
+}
+
+// GetReassignedListings returns the ReassignedListings field value
+func (o *DeletePolicyPresetResponse) GetReassignedListings() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ReassignedListings
+}
+
+// GetReassignedListingsOk returns a tuple with the ReassignedListings field value
+// and a boolean to check if the value has been set.
+func (o *DeletePolicyPresetResponse) GetReassignedListingsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ReassignedListings, true
+}
+
+// SetReassignedListings sets field value
+func (o *DeletePolicyPresetResponse) SetReassignedListings(v float32) {
+	o.ReassignedListings = v
+}
+
+// GetPromotedId returns the PromotedId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeletePolicyPresetResponse) GetPromotedId() string {
+	if o == nil || o.PromotedId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PromotedId.Get()
+}
+
+// GetPromotedIdOk returns a tuple with the PromotedId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeletePolicyPresetResponse) GetPromotedIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PromotedId.Get(), o.PromotedId.IsSet()
+}
+
+// HasPromotedId returns a boolean if a field has been set.
+func (o *DeletePolicyPresetResponse) HasPromotedId() bool {
+	if o != nil && o.PromotedId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPromotedId gets a reference to the given NullableString and assigns it to the PromotedId field.
+func (o *DeletePolicyPresetResponse) SetPromotedId(v string) {
+	o.PromotedId.Set(&v)
+}
+// SetPromotedIdNil sets the value for PromotedId to be an explicit nil
+func (o *DeletePolicyPresetResponse) SetPromotedIdNil() {
+	o.PromotedId.Set(nil)
+}
+
+// UnsetPromotedId ensures that no value is present for PromotedId, not even an explicit nil
+func (o *DeletePolicyPresetResponse) UnsetPromotedId() {
+	o.PromotedId.Unset()
+}
+
+func (o DeletePolicyPresetResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ok"] = o.Ok
+	}
+	if true {
+		toSerialize["reassignedListings"] = o.ReassignedListings
+	}
+	if o.PromotedId.IsSet() {
+		toSerialize["promotedId"] = o.PromotedId.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableDeletePolicyPresetResponse struct {
+	value *DeletePolicyPresetResponse
+	isSet bool
+}
+
+func (v NullableDeletePolicyPresetResponse) Get() *DeletePolicyPresetResponse {
+	return v.value
+}
+
+func (v *NullableDeletePolicyPresetResponse) Set(val *DeletePolicyPresetResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeletePolicyPresetResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeletePolicyPresetResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeletePolicyPresetResponse(val *DeletePolicyPresetResponse) *NullableDeletePolicyPresetResponse {
+	return &NullableDeletePolicyPresetResponse{value: val, isSet: true}
+}
+
+func (v NullableDeletePolicyPresetResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeletePolicyPresetResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPolicyResponse struct for GetPolicyResponse
+type GetPolicyResponse struct {
+	Shipping GetPolicyResponseShipping `json:"shipping"`
+	Return GetPolicyResponseShipping `json:"return"`
+	Payment GetPolicyResponseShipping `json:"payment"`
+}
+
+// NewGetPolicyResponse instantiates a new GetPolicyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPolicyResponse(shipping GetPolicyResponseShipping, return_ GetPolicyResponseShipping, payment GetPolicyResponseShipping) *GetPolicyResponse {
+	this := GetPolicyResponse{}
+	this.Shipping = shipping
+	this.Return = return_
+	this.Payment = payment
+	return &this
+}
+
+// NewGetPolicyResponseWithDefaults instantiates a new GetPolicyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPolicyResponseWithDefaults() *GetPolicyResponse {
+	this := GetPolicyResponse{}
+	return &this
+}
+
+// GetShipping returns the Shipping field value
+func (o *GetPolicyResponse) GetShipping() GetPolicyResponseShipping {
+	if o == nil {
+		var ret GetPolicyResponseShipping
+		return ret
+	}
+
+	return o.Shipping
+}
+
+// GetShippingOk returns a tuple with the Shipping field value
+// and a boolean to check if the value has been set.
+func (o *GetPolicyResponse) GetShippingOk() (*GetPolicyResponseShipping, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Shipping, true
+}
+
+// SetShipping sets field value
+func (o *GetPolicyResponse) SetShipping(v GetPolicyResponseShipping) {
+	o.Shipping = v
+}
+
+// GetReturn returns the Return field value
+func (o *GetPolicyResponse) GetReturn() GetPolicyResponseShipping {
+	if o == nil {
+		var ret GetPolicyResponseShipping
+		return ret
+	}
+
+	return o.Return
+}
+
+// GetReturnOk returns a tuple with the Return field value
+// and a boolean to check if the value has been set.
+func (o *GetPolicyResponse) GetReturnOk() (*GetPolicyResponseShipping, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Return, true
+}
+
+// SetReturn sets field value
+func (o *GetPolicyResponse) SetReturn(v GetPolicyResponseShipping) {
+	o.Return = v
+}
+
+// GetPayment returns the Payment field value
+func (o *GetPolicyResponse) GetPayment() GetPolicyResponseShipping {
+	if o == nil {
+		var ret GetPolicyResponseShipping
+		return ret
+	}
+
+	return o.Payment
+}
+
+// GetPaymentOk returns a tuple with the Payment field value
+// and a boolean to check if the value has been set.
+func (o *GetPolicyResponse) GetPaymentOk() (*GetPolicyResponseShipping, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Payment, true
+}
+
+// SetPayment sets field value
+func (o *GetPolicyResponse) SetPayment(v GetPolicyResponseShipping) {
+	o.Payment = v
+}
+
+func (o GetPolicyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["shipping"] = o.Shipping
+	}
+	if true {
+		toSerialize["return"] = o.Return
+	}
+	if true {
+		toSerialize["payment"] = o.Payment
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPolicyResponse struct {
+	value *GetPolicyResponse
+	isSet bool
+}
+
+func (v NullableGetPolicyResponse) Get() *GetPolicyResponse {
+	return v.value
+}
+
+func (v *NullableGetPolicyResponse) Set(val *GetPolicyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPolicyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPolicyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPolicyResponse(val *GetPolicyResponse) *NullableGetPolicyResponse {
+	return &NullableGetPolicyResponse{value: val, isSet: true}
+}
+
+func (v NullableGetPolicyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPolicyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPolicyResponseShipping struct for GetPolicyResponseShipping
+type GetPolicyResponseShipping struct {
+	DefaultPresetId NullableString `json:"defaultPresetId,omitempty"`
+	Presets []ListPolicyPresetsItem `json:"presets"`
+}
+
+// NewGetPolicyResponseShipping instantiates a new GetPolicyResponseShipping object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPolicyResponseShipping(presets []ListPolicyPresetsItem) *GetPolicyResponseShipping {
+	this := GetPolicyResponseShipping{}
+	this.Presets = presets
+	return &this
+}
+
+// NewGetPolicyResponseShippingWithDefaults instantiates a new GetPolicyResponseShipping object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPolicyResponseShippingWithDefaults() *GetPolicyResponseShipping {
+	this := GetPolicyResponseShipping{}
+	return &this
+}
+
+// GetDefaultPresetId returns the DefaultPresetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPolicyResponseShipping) GetDefaultPresetId() string {
+	if o == nil || o.DefaultPresetId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DefaultPresetId.Get()
+}
+
+// GetDefaultPresetIdOk returns a tuple with the DefaultPresetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPolicyResponseShipping) GetDefaultPresetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DefaultPresetId.Get(), o.DefaultPresetId.IsSet()
+}
+
+// HasDefaultPresetId returns a boolean if a field has been set.
+func (o *GetPolicyResponseShipping) HasDefaultPresetId() bool {
+	if o != nil && o.DefaultPresetId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultPresetId gets a reference to the given NullableString and assigns it to the DefaultPresetId field.
+func (o *GetPolicyResponseShipping) SetDefaultPresetId(v string) {
+	o.DefaultPresetId.Set(&v)
+}
+// SetDefaultPresetIdNil sets the value for DefaultPresetId to be an explicit nil
+func (o *GetPolicyResponseShipping) SetDefaultPresetIdNil() {
+	o.DefaultPresetId.Set(nil)
+}
+
+// UnsetDefaultPresetId ensures that no value is present for DefaultPresetId, not even an explicit nil
+func (o *GetPolicyResponseShipping) UnsetDefaultPresetId() {
+	o.DefaultPresetId.Unset()
+}
+
+// GetPresets returns the Presets field value
+func (o *GetPolicyResponseShipping) GetPresets() []ListPolicyPresetsItem {
+	if o == nil {
+		var ret []ListPolicyPresetsItem
+		return ret
+	}
+
+	return o.Presets
+}
+
+// GetPresetsOk returns a tuple with the Presets field value
+// and a boolean to check if the value has been set.
+func (o *GetPolicyResponseShipping) GetPresetsOk() ([]ListPolicyPresetsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Presets, true
+}
+
+// SetPresets sets field value
+func (o *GetPolicyResponseShipping) SetPresets(v []ListPolicyPresetsItem) {
+	o.Presets = v
+}
+
+func (o GetPolicyResponseShipping) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.DefaultPresetId.IsSet() {
+		toSerialize["defaultPresetId"] = o.DefaultPresetId.Get()
+	}
+	if true {
+		toSerialize["presets"] = o.Presets
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPolicyResponseShipping struct {
+	value *GetPolicyResponseShipping
+	isSet bool
+}
+
+func (v NullableGetPolicyResponseShipping) Get() *GetPolicyResponseShipping {
+	return v.value
+}
+
+func (v *NullableGetPolicyResponseShipping) Set(val *GetPolicyResponseShipping) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPolicyResponseShipping) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPolicyResponseShipping) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPolicyResponseShipping(val *GetPolicyResponseShipping) *NullableGetPolicyResponseShipping {
+	return &NullableGetPolicyResponseShipping{value: val, isSet: true}
+}
+
+func (v NullableGetPolicyResponseShipping) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPolicyResponseShipping) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListPolicyPresetsItem struct for ListPolicyPresetsItem
 type ListPolicyPresetsItem struct {
+	Summary string `json:"summary"`
+	Incomplete bool `json:"incomplete"`
+	ListingCount float32 `json:"listingCount"`
 	Id string `json:"id"`
 	Name string `json:"name"`
 	CreatedAt time.Time `json:"createdAt"`
@@ -206,14 +1100,19 @@ type ListPolicyPresetsItem struct {
 	UserId string `json:"userId"`
 	IsDefault bool `json:"isDefault"`
 	Kind string `json:"kind"`
+	Revision float32 `json:"revision"`
+	HasDomesticRules bool `json:"hasDomesticRules"`
 }
 
 // NewListPolicyPresetsItem instantiates a new ListPolicyPresetsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPolicyPresetsItem(id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, kind string) *ListPolicyPresetsItem {
+func NewListPolicyPresetsItem(summary string, incomplete bool, listingCount float32, id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, kind string, revision float32, hasDomesticRules bool) *ListPolicyPresetsItem {
 	this := ListPolicyPresetsItem{}
+	this.Summary = summary
+	this.Incomplete = incomplete
+	this.ListingCount = listingCount
 	this.Id = id
 	this.Name = name
 	this.CreatedAt = createdAt
@@ -221,6 +1120,8 @@ func NewListPolicyPresetsItem(id string, name string, createdAt time.Time, updat
 	this.UserId = userId
 	this.IsDefault = isDefault
 	this.Kind = kind
+	this.Revision = revision
+	this.HasDomesticRules = hasDomesticRules
 	return &this
 }
 
@@ -230,6 +1131,78 @@ func NewListPolicyPresetsItem(id string, name string, createdAt time.Time, updat
 func NewListPolicyPresetsItemWithDefaults() *ListPolicyPresetsItem {
 	this := ListPolicyPresetsItem{}
 	return &this
+}
+
+// GetSummary returns the Summary field value
+func (o *ListPolicyPresetsItem) GetSummary() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyPresetsItem) GetSummaryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Summary, true
+}
+
+// SetSummary sets field value
+func (o *ListPolicyPresetsItem) SetSummary(v string) {
+	o.Summary = v
+}
+
+// GetIncomplete returns the Incomplete field value
+func (o *ListPolicyPresetsItem) GetIncomplete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Incomplete
+}
+
+// GetIncompleteOk returns a tuple with the Incomplete field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyPresetsItem) GetIncompleteOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Incomplete, true
+}
+
+// SetIncomplete sets field value
+func (o *ListPolicyPresetsItem) SetIncomplete(v bool) {
+	o.Incomplete = v
+}
+
+// GetListingCount returns the ListingCount field value
+func (o *ListPolicyPresetsItem) GetListingCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ListingCount
+}
+
+// GetListingCountOk returns a tuple with the ListingCount field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyPresetsItem) GetListingCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingCount, true
+}
+
+// SetListingCount sets field value
+func (o *ListPolicyPresetsItem) SetListingCount(v float32) {
+	o.ListingCount = v
 }
 
 // GetId returns the Id field value
@@ -400,8 +1373,65 @@ func (o *ListPolicyPresetsItem) SetKind(v string) {
 	o.Kind = v
 }
 
+// GetRevision returns the Revision field value
+func (o *ListPolicyPresetsItem) GetRevision() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyPresetsItem) GetRevisionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *ListPolicyPresetsItem) SetRevision(v float32) {
+	o.Revision = v
+}
+
+// GetHasDomesticRules returns the HasDomesticRules field value
+func (o *ListPolicyPresetsItem) GetHasDomesticRules() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasDomesticRules
+}
+
+// GetHasDomesticRulesOk returns a tuple with the HasDomesticRules field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyPresetsItem) GetHasDomesticRulesOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HasDomesticRules, true
+}
+
+// SetHasDomesticRules sets field value
+func (o *ListPolicyPresetsItem) SetHasDomesticRules(v bool) {
+	o.HasDomesticRules = v
+}
+
 func (o ListPolicyPresetsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["incomplete"] = o.Incomplete
+	}
+	if true {
+		toSerialize["listingCount"] = o.ListingCount
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -422,6 +1452,12 @@ func (o ListPolicyPresetsItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["revision"] = o.Revision
+	}
+	if true {
+		toSerialize["hasDomesticRules"] = o.HasDomesticRules
 	}
 	return json.Marshal(toSerialize)
 }
@@ -633,20 +1669,20 @@ type ListPolicyReturnsItem struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	Status string `json:"status"`
-	Reason string `json:"reason"`
-	ReceivedAt NullableTime `json:"receivedAt,omitempty"`
 	Carrier NullableString `json:"carrier,omitempty"`
 	ShippedAt NullableTime `json:"shippedAt,omitempty"`
 	RefundedAt NullableTime `json:"refundedAt,omitempty"`
-	Fit NullableString `json:"fit,omitempty"`
-	SellerUserId string `json:"sellerUserId"`
 	BuyerUserId string `json:"buyerUserId"`
-	PurchaseId string `json:"purchaseId"`
+	Reason string `json:"reason"`
+	ReceivedAt NullableTime `json:"receivedAt,omitempty"`
 	LabelUrl NullableString `json:"labelUrl,omitempty"`
+	SellerUserId string `json:"sellerUserId"`
 	RefundStripeId NullableString `json:"refundStripeId,omitempty"`
+	PurchaseId string `json:"purchaseId"`
 	Note NullableString `json:"note,omitempty"`
 	FeeCents float32 `json:"feeCents"`
 	TrackingCode NullableString `json:"trackingCode,omitempty"`
+	Fit NullableString `json:"fit,omitempty"`
 	RefundCents float32 `json:"refundCents"`
 	PrepaidLabel bool `json:"prepaidLabel"`
 }
@@ -655,14 +1691,14 @@ type ListPolicyReturnsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListPolicyReturnsItem(id string, createdAt time.Time, status string, reason string, sellerUserId string, buyerUserId string, purchaseId string, feeCents float32, refundCents float32, prepaidLabel bool) *ListPolicyReturnsItem {
+func NewListPolicyReturnsItem(id string, createdAt time.Time, status string, buyerUserId string, reason string, sellerUserId string, purchaseId string, feeCents float32, refundCents float32, prepaidLabel bool) *ListPolicyReturnsItem {
 	this := ListPolicyReturnsItem{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.Status = status
+	this.BuyerUserId = buyerUserId
 	this.Reason = reason
 	this.SellerUserId = sellerUserId
-	this.BuyerUserId = buyerUserId
 	this.PurchaseId = purchaseId
 	this.FeeCents = feeCents
 	this.RefundCents = refundCents
@@ -792,72 +1828,6 @@ func (o *ListPolicyReturnsItem) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetReason returns the Reason field value
-func (o *ListPolicyReturnsItem) GetReason() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Reason
-}
-
-// GetReasonOk returns a tuple with the Reason field value
-// and a boolean to check if the value has been set.
-func (o *ListPolicyReturnsItem) GetReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Reason, true
-}
-
-// SetReason sets field value
-func (o *ListPolicyReturnsItem) SetReason(v string) {
-	o.Reason = v
-}
-
-// GetReceivedAt returns the ReceivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListPolicyReturnsItem) GetReceivedAt() time.Time {
-	if o == nil || o.ReceivedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ReceivedAt.Get()
-}
-
-// GetReceivedAtOk returns a tuple with the ReceivedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListPolicyReturnsItem) GetReceivedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReceivedAt.Get(), o.ReceivedAt.IsSet()
-}
-
-// HasReceivedAt returns a boolean if a field has been set.
-func (o *ListPolicyReturnsItem) HasReceivedAt() bool {
-	if o != nil && o.ReceivedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReceivedAt gets a reference to the given NullableTime and assigns it to the ReceivedAt field.
-func (o *ListPolicyReturnsItem) SetReceivedAt(v time.Time) {
-	o.ReceivedAt.Set(&v)
-}
-// SetReceivedAtNil sets the value for ReceivedAt to be an explicit nil
-func (o *ListPolicyReturnsItem) SetReceivedAtNil() {
-	o.ReceivedAt.Set(nil)
-}
-
-// UnsetReceivedAt ensures that no value is present for ReceivedAt, not even an explicit nil
-func (o *ListPolicyReturnsItem) UnsetReceivedAt() {
-	o.ReceivedAt.Unset()
-}
-
 // GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListPolicyReturnsItem) GetCarrier() string {
 	if o == nil || o.Carrier.Get() == nil {
@@ -984,72 +1954,6 @@ func (o *ListPolicyReturnsItem) UnsetRefundedAt() {
 	o.RefundedAt.Unset()
 }
 
-// GetFit returns the Fit field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListPolicyReturnsItem) GetFit() string {
-	if o == nil || o.Fit.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Fit.Get()
-}
-
-// GetFitOk returns a tuple with the Fit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListPolicyReturnsItem) GetFitOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Fit.Get(), o.Fit.IsSet()
-}
-
-// HasFit returns a boolean if a field has been set.
-func (o *ListPolicyReturnsItem) HasFit() bool {
-	if o != nil && o.Fit.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFit gets a reference to the given NullableString and assigns it to the Fit field.
-func (o *ListPolicyReturnsItem) SetFit(v string) {
-	o.Fit.Set(&v)
-}
-// SetFitNil sets the value for Fit to be an explicit nil
-func (o *ListPolicyReturnsItem) SetFitNil() {
-	o.Fit.Set(nil)
-}
-
-// UnsetFit ensures that no value is present for Fit, not even an explicit nil
-func (o *ListPolicyReturnsItem) UnsetFit() {
-	o.Fit.Unset()
-}
-
-// GetSellerUserId returns the SellerUserId field value
-func (o *ListPolicyReturnsItem) GetSellerUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SellerUserId
-}
-
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
-// and a boolean to check if the value has been set.
-func (o *ListPolicyReturnsItem) GetSellerUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SellerUserId, true
-}
-
-// SetSellerUserId sets field value
-func (o *ListPolicyReturnsItem) SetSellerUserId(v string) {
-	o.SellerUserId = v
-}
-
 // GetBuyerUserId returns the BuyerUserId field value
 func (o *ListPolicyReturnsItem) GetBuyerUserId() string {
 	if o == nil {
@@ -1074,28 +1978,70 @@ func (o *ListPolicyReturnsItem) SetBuyerUserId(v string) {
 	o.BuyerUserId = v
 }
 
-// GetPurchaseId returns the PurchaseId field value
-func (o *ListPolicyReturnsItem) GetPurchaseId() string {
+// GetReason returns the Reason field value
+func (o *ListPolicyReturnsItem) GetReason() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PurchaseId
+	return o.Reason
 }
 
-// GetPurchaseIdOk returns a tuple with the PurchaseId field value
+// GetReasonOk returns a tuple with the Reason field value
 // and a boolean to check if the value has been set.
-func (o *ListPolicyReturnsItem) GetPurchaseIdOk() (*string, bool) {
+func (o *ListPolicyReturnsItem) GetReasonOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.PurchaseId, true
+	return &o.Reason, true
 }
 
-// SetPurchaseId sets field value
-func (o *ListPolicyReturnsItem) SetPurchaseId(v string) {
-	o.PurchaseId = v
+// SetReason sets field value
+func (o *ListPolicyReturnsItem) SetReason(v string) {
+	o.Reason = v
+}
+
+// GetReceivedAt returns the ReceivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPolicyReturnsItem) GetReceivedAt() time.Time {
+	if o == nil || o.ReceivedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ReceivedAt.Get()
+}
+
+// GetReceivedAtOk returns a tuple with the ReceivedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPolicyReturnsItem) GetReceivedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReceivedAt.Get(), o.ReceivedAt.IsSet()
+}
+
+// HasReceivedAt returns a boolean if a field has been set.
+func (o *ListPolicyReturnsItem) HasReceivedAt() bool {
+	if o != nil && o.ReceivedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReceivedAt gets a reference to the given NullableTime and assigns it to the ReceivedAt field.
+func (o *ListPolicyReturnsItem) SetReceivedAt(v time.Time) {
+	o.ReceivedAt.Set(&v)
+}
+// SetReceivedAtNil sets the value for ReceivedAt to be an explicit nil
+func (o *ListPolicyReturnsItem) SetReceivedAtNil() {
+	o.ReceivedAt.Set(nil)
+}
+
+// UnsetReceivedAt ensures that no value is present for ReceivedAt, not even an explicit nil
+func (o *ListPolicyReturnsItem) UnsetReceivedAt() {
+	o.ReceivedAt.Unset()
 }
 
 // GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1140,6 +2086,30 @@ func (o *ListPolicyReturnsItem) UnsetLabelUrl() {
 	o.LabelUrl.Unset()
 }
 
+// GetSellerUserId returns the SellerUserId field value
+func (o *ListPolicyReturnsItem) GetSellerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerUserId
+}
+
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyReturnsItem) GetSellerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerUserId, true
+}
+
+// SetSellerUserId sets field value
+func (o *ListPolicyReturnsItem) SetSellerUserId(v string) {
+	o.SellerUserId = v
+}
+
 // GetRefundStripeId returns the RefundStripeId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListPolicyReturnsItem) GetRefundStripeId() string {
 	if o == nil || o.RefundStripeId.Get() == nil {
@@ -1180,6 +2150,30 @@ func (o *ListPolicyReturnsItem) SetRefundStripeIdNil() {
 // UnsetRefundStripeId ensures that no value is present for RefundStripeId, not even an explicit nil
 func (o *ListPolicyReturnsItem) UnsetRefundStripeId() {
 	o.RefundStripeId.Unset()
+}
+
+// GetPurchaseId returns the PurchaseId field value
+func (o *ListPolicyReturnsItem) GetPurchaseId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PurchaseId
+}
+
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value
+// and a boolean to check if the value has been set.
+func (o *ListPolicyReturnsItem) GetPurchaseIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PurchaseId, true
+}
+
+// SetPurchaseId sets field value
+func (o *ListPolicyReturnsItem) SetPurchaseId(v string) {
+	o.PurchaseId = v
 }
 
 // GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1290,6 +2284,48 @@ func (o *ListPolicyReturnsItem) UnsetTrackingCode() {
 	o.TrackingCode.Unset()
 }
 
+// GetFit returns the Fit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPolicyReturnsItem) GetFit() string {
+	if o == nil || o.Fit.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Fit.Get()
+}
+
+// GetFitOk returns a tuple with the Fit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPolicyReturnsItem) GetFitOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Fit.Get(), o.Fit.IsSet()
+}
+
+// HasFit returns a boolean if a field has been set.
+func (o *ListPolicyReturnsItem) HasFit() bool {
+	if o != nil && o.Fit.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFit gets a reference to the given NullableString and assigns it to the Fit field.
+func (o *ListPolicyReturnsItem) SetFit(v string) {
+	o.Fit.Set(&v)
+}
+// SetFitNil sets the value for Fit to be an explicit nil
+func (o *ListPolicyReturnsItem) SetFitNil() {
+	o.Fit.Set(nil)
+}
+
+// UnsetFit ensures that no value is present for Fit, not even an explicit nil
+func (o *ListPolicyReturnsItem) UnsetFit() {
+	o.Fit.Unset()
+}
+
 // GetRefundCents returns the RefundCents field value
 func (o *ListPolicyReturnsItem) GetRefundCents() float32 {
 	if o == nil {
@@ -1352,12 +2388,6 @@ func (o ListPolicyReturnsItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["status"] = o.Status
 	}
-	if true {
-		toSerialize["reason"] = o.Reason
-	}
-	if o.ReceivedAt.IsSet() {
-		toSerialize["receivedAt"] = o.ReceivedAt.Get()
-	}
 	if o.Carrier.IsSet() {
 		toSerialize["carrier"] = o.Carrier.Get()
 	}
@@ -1367,23 +2397,26 @@ func (o ListPolicyReturnsItem) MarshalJSON() ([]byte, error) {
 	if o.RefundedAt.IsSet() {
 		toSerialize["refundedAt"] = o.RefundedAt.Get()
 	}
-	if o.Fit.IsSet() {
-		toSerialize["fit"] = o.Fit.Get()
-	}
-	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
-	}
 	if true {
 		toSerialize["buyerUserId"] = o.BuyerUserId
 	}
 	if true {
-		toSerialize["purchaseId"] = o.PurchaseId
+		toSerialize["reason"] = o.Reason
+	}
+	if o.ReceivedAt.IsSet() {
+		toSerialize["receivedAt"] = o.ReceivedAt.Get()
 	}
 	if o.LabelUrl.IsSet() {
 		toSerialize["labelUrl"] = o.LabelUrl.Get()
 	}
+	if true {
+		toSerialize["sellerUserId"] = o.SellerUserId
+	}
 	if o.RefundStripeId.IsSet() {
 		toSerialize["refundStripeId"] = o.RefundStripeId.Get()
+	}
+	if true {
+		toSerialize["purchaseId"] = o.PurchaseId
 	}
 	if o.Note.IsSet() {
 		toSerialize["note"] = o.Note.Get()
@@ -1393,6 +2426,9 @@ func (o ListPolicyReturnsItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.TrackingCode.IsSet() {
 		toSerialize["trackingCode"] = o.TrackingCode.Get()
+	}
+	if o.Fit.IsSet() {
+		toSerialize["fit"] = o.Fit.Get()
 	}
 	if true {
 		toSerialize["refundCents"] = o.RefundCents

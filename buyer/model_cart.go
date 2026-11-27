@@ -18,6 +18,8 @@ import (
 type CreateBuyerCartItemRequest struct {
 	ListingSlug string `json:"listingSlug"`
 	Quantity *int32 `json:"quantity,omitempty"`
+	// The option (variants[].id) on a listing with options.
+	ListingVariantId *string `json:"listingVariantId,omitempty"`
 	// Where in Crossly World it was added, e.g. room:<publicSlug>.
 	Via *string `json:"via,omitempty"`
 }
@@ -100,6 +102,38 @@ func (o *CreateBuyerCartItemRequest) SetQuantity(v int32) {
 	o.Quantity = &v
 }
 
+// GetListingVariantId returns the ListingVariantId field value if set, zero value otherwise.
+func (o *CreateBuyerCartItemRequest) GetListingVariantId() string {
+	if o == nil || o.ListingVariantId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingVariantId
+}
+
+// GetListingVariantIdOk returns a tuple with the ListingVariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartItemRequest) GetListingVariantIdOk() (*string, bool) {
+	if o == nil || o.ListingVariantId == nil {
+		return nil, false
+	}
+	return o.ListingVariantId, true
+}
+
+// HasListingVariantId returns a boolean if a field has been set.
+func (o *CreateBuyerCartItemRequest) HasListingVariantId() bool {
+	if o != nil && o.ListingVariantId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetListingVariantId gets a reference to the given string and assigns it to the ListingVariantId field.
+func (o *CreateBuyerCartItemRequest) SetListingVariantId(v string) {
+	o.ListingVariantId = &v
+}
+
 // GetVia returns the Via field value if set, zero value otherwise.
 func (o *CreateBuyerCartItemRequest) GetVia() string {
 	if o == nil || o.Via == nil {
@@ -139,6 +173,9 @@ func (o CreateBuyerCartItemRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
+	}
+	if o.ListingVariantId != nil {
+		toSerialize["listingVariantId"] = o.ListingVariantId
 	}
 	if o.Via != nil {
 		toSerialize["via"] = o.Via
@@ -515,11 +552,11 @@ func (v *NullableCreateBuyerCartOptimizerResponse) UnmarshalJSON(src []byte) err
 
 // CreateBuyerCartOptimizerResponseData struct for CreateBuyerCartOptimizerResponseData
 type CreateBuyerCartOptimizerResponseData struct {
+	Lines []CreateBuyerCartOptimizerResponseDataLines `json:"lines"`
+	ItemsCents float32 `json:"itemsCents"`
 	ShippingCents float32 `json:"shippingCents"`
 	TotalCents float32 `json:"totalCents"`
-	Lines []CreateBuyerCartOptimizerResponseDataLines `json:"lines"`
 	Sellers float32 `json:"sellers"`
-	ItemsCents float32 `json:"itemsCents"`
 	Unmatched []string `json:"unmatched"`
 }
 
@@ -527,13 +564,13 @@ type CreateBuyerCartOptimizerResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerCartOptimizerResponseData(shippingCents float32, totalCents float32, lines []CreateBuyerCartOptimizerResponseDataLines, sellers float32, itemsCents float32, unmatched []string) *CreateBuyerCartOptimizerResponseData {
+func NewCreateBuyerCartOptimizerResponseData(lines []CreateBuyerCartOptimizerResponseDataLines, itemsCents float32, shippingCents float32, totalCents float32, sellers float32, unmatched []string) *CreateBuyerCartOptimizerResponseData {
 	this := CreateBuyerCartOptimizerResponseData{}
+	this.Lines = lines
+	this.ItemsCents = itemsCents
 	this.ShippingCents = shippingCents
 	this.TotalCents = totalCents
-	this.Lines = lines
 	this.Sellers = sellers
-	this.ItemsCents = itemsCents
 	this.Unmatched = unmatched
 	return &this
 }
@@ -544,6 +581,54 @@ func NewCreateBuyerCartOptimizerResponseData(shippingCents float32, totalCents f
 func NewCreateBuyerCartOptimizerResponseDataWithDefaults() *CreateBuyerCartOptimizerResponseData {
 	this := CreateBuyerCartOptimizerResponseData{}
 	return &this
+}
+
+// GetLines returns the Lines field value
+func (o *CreateBuyerCartOptimizerResponseData) GetLines() []CreateBuyerCartOptimizerResponseDataLines {
+	if o == nil {
+		var ret []CreateBuyerCartOptimizerResponseDataLines
+		return ret
+	}
+
+	return o.Lines
+}
+
+// GetLinesOk returns a tuple with the Lines field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartOptimizerResponseData) GetLinesOk() ([]CreateBuyerCartOptimizerResponseDataLines, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Lines, true
+}
+
+// SetLines sets field value
+func (o *CreateBuyerCartOptimizerResponseData) SetLines(v []CreateBuyerCartOptimizerResponseDataLines) {
+	o.Lines = v
+}
+
+// GetItemsCents returns the ItemsCents field value
+func (o *CreateBuyerCartOptimizerResponseData) GetItemsCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ItemsCents
+}
+
+// GetItemsCentsOk returns a tuple with the ItemsCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartOptimizerResponseData) GetItemsCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ItemsCents, true
+}
+
+// SetItemsCents sets field value
+func (o *CreateBuyerCartOptimizerResponseData) SetItemsCents(v float32) {
+	o.ItemsCents = v
 }
 
 // GetShippingCents returns the ShippingCents field value
@@ -594,30 +679,6 @@ func (o *CreateBuyerCartOptimizerResponseData) SetTotalCents(v float32) {
 	o.TotalCents = v
 }
 
-// GetLines returns the Lines field value
-func (o *CreateBuyerCartOptimizerResponseData) GetLines() []CreateBuyerCartOptimizerResponseDataLines {
-	if o == nil {
-		var ret []CreateBuyerCartOptimizerResponseDataLines
-		return ret
-	}
-
-	return o.Lines
-}
-
-// GetLinesOk returns a tuple with the Lines field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerCartOptimizerResponseData) GetLinesOk() ([]CreateBuyerCartOptimizerResponseDataLines, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Lines, true
-}
-
-// SetLines sets field value
-func (o *CreateBuyerCartOptimizerResponseData) SetLines(v []CreateBuyerCartOptimizerResponseDataLines) {
-	o.Lines = v
-}
-
 // GetSellers returns the Sellers field value
 func (o *CreateBuyerCartOptimizerResponseData) GetSellers() float32 {
 	if o == nil {
@@ -640,30 +701,6 @@ func (o *CreateBuyerCartOptimizerResponseData) GetSellersOk() (*float32, bool) {
 // SetSellers sets field value
 func (o *CreateBuyerCartOptimizerResponseData) SetSellers(v float32) {
 	o.Sellers = v
-}
-
-// GetItemsCents returns the ItemsCents field value
-func (o *CreateBuyerCartOptimizerResponseData) GetItemsCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ItemsCents
-}
-
-// GetItemsCentsOk returns a tuple with the ItemsCents field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerCartOptimizerResponseData) GetItemsCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ItemsCents, true
-}
-
-// SetItemsCents sets field value
-func (o *CreateBuyerCartOptimizerResponseData) SetItemsCents(v float32) {
-	o.ItemsCents = v
 }
 
 // GetUnmatched returns the Unmatched field value
@@ -693,19 +730,19 @@ func (o *CreateBuyerCartOptimizerResponseData) SetUnmatched(v []string) {
 func (o CreateBuyerCartOptimizerResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["lines"] = o.Lines
+	}
+	if true {
+		toSerialize["itemsCents"] = o.ItemsCents
+	}
+	if true {
 		toSerialize["shippingCents"] = o.ShippingCents
 	}
 	if true {
 		toSerialize["totalCents"] = o.TotalCents
 	}
 	if true {
-		toSerialize["lines"] = o.Lines
-	}
-	if true {
 		toSerialize["sellers"] = o.Sellers
-	}
-	if true {
-		toSerialize["itemsCents"] = o.ItemsCents
 	}
 	if true {
 		toSerialize["unmatched"] = o.Unmatched
@@ -917,18 +954,18 @@ func (v *NullableCreateBuyerCartOptimizerResponseDataLines) UnmarshalJSON(src []
 
 // CreateBuyerCartOptimizerResponseDataLinesLine struct for CreateBuyerCartOptimizerResponseDataLinesLine
 type CreateBuyerCartOptimizerResponseDataLinesLine struct {
-	Quantity float32 `json:"quantity"`
 	Query string `json:"query"`
+	Quantity float32 `json:"quantity"`
 }
 
 // NewCreateBuyerCartOptimizerResponseDataLinesLine instantiates a new CreateBuyerCartOptimizerResponseDataLinesLine object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerCartOptimizerResponseDataLinesLine(quantity float32, query string) *CreateBuyerCartOptimizerResponseDataLinesLine {
+func NewCreateBuyerCartOptimizerResponseDataLinesLine(query string, quantity float32) *CreateBuyerCartOptimizerResponseDataLinesLine {
 	this := CreateBuyerCartOptimizerResponseDataLinesLine{}
-	this.Quantity = quantity
 	this.Query = query
+	this.Quantity = quantity
 	return &this
 }
 
@@ -938,30 +975,6 @@ func NewCreateBuyerCartOptimizerResponseDataLinesLine(quantity float32, query st
 func NewCreateBuyerCartOptimizerResponseDataLinesLineWithDefaults() *CreateBuyerCartOptimizerResponseDataLinesLine {
 	this := CreateBuyerCartOptimizerResponseDataLinesLine{}
 	return &this
-}
-
-// GetQuantity returns the Quantity field value
-func (o *CreateBuyerCartOptimizerResponseDataLinesLine) GetQuantity() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Quantity
-}
-
-// GetQuantityOk returns a tuple with the Quantity field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerCartOptimizerResponseDataLinesLine) GetQuantityOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quantity, true
-}
-
-// SetQuantity sets field value
-func (o *CreateBuyerCartOptimizerResponseDataLinesLine) SetQuantity(v float32) {
-	o.Quantity = v
 }
 
 // GetQuery returns the Query field value
@@ -988,13 +1001,37 @@ func (o *CreateBuyerCartOptimizerResponseDataLinesLine) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetQuantity returns the Quantity field value
+func (o *CreateBuyerCartOptimizerResponseDataLinesLine) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartOptimizerResponseDataLinesLine) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *CreateBuyerCartOptimizerResponseDataLinesLine) SetQuantity(v float32) {
+	o.Quantity = v
+}
+
 func (o CreateBuyerCartOptimizerResponseDataLinesLine) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["quantity"] = o.Quantity
+		toSerialize["query"] = o.Query
 	}
 	if true {
-		toSerialize["query"] = o.Query
+		toSerialize["quantity"] = o.Quantity
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1037,9 +1074,9 @@ func (v *NullableCreateBuyerCartOptimizerResponseDataLinesLine) UnmarshalJSON(sr
 
 // CreateBuyerCartOptimizerResponseDataLinesPick struct for CreateBuyerCartOptimizerResponseDataLinesPick
 type CreateBuyerCartOptimizerResponseDataLinesPick struct {
+	Slug string `json:"slug"`
 	Title string `json:"title"`
 	SellerUserId string `json:"sellerUserId"`
-	Slug string `json:"slug"`
 	SellerName NullableString `json:"sellerName,omitempty"`
 	UnitCents float32 `json:"unitCents"`
 	ShipCents float32 `json:"shipCents"`
@@ -1049,11 +1086,11 @@ type CreateBuyerCartOptimizerResponseDataLinesPick struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerCartOptimizerResponseDataLinesPick(title string, sellerUserId string, slug string, unitCents float32, shipCents float32) *CreateBuyerCartOptimizerResponseDataLinesPick {
+func NewCreateBuyerCartOptimizerResponseDataLinesPick(slug string, title string, sellerUserId string, unitCents float32, shipCents float32) *CreateBuyerCartOptimizerResponseDataLinesPick {
 	this := CreateBuyerCartOptimizerResponseDataLinesPick{}
+	this.Slug = slug
 	this.Title = title
 	this.SellerUserId = sellerUserId
-	this.Slug = slug
 	this.UnitCents = unitCents
 	this.ShipCents = shipCents
 	return &this
@@ -1065,6 +1102,30 @@ func NewCreateBuyerCartOptimizerResponseDataLinesPick(title string, sellerUserId
 func NewCreateBuyerCartOptimizerResponseDataLinesPickWithDefaults() *CreateBuyerCartOptimizerResponseDataLinesPick {
 	this := CreateBuyerCartOptimizerResponseDataLinesPick{}
 	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *CreateBuyerCartOptimizerResponseDataLinesPick) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartOptimizerResponseDataLinesPick) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *CreateBuyerCartOptimizerResponseDataLinesPick) SetSlug(v string) {
+	o.Slug = v
 }
 
 // GetTitle returns the Title field value
@@ -1113,30 +1174,6 @@ func (o *CreateBuyerCartOptimizerResponseDataLinesPick) GetSellerUserIdOk() (*st
 // SetSellerUserId sets field value
 func (o *CreateBuyerCartOptimizerResponseDataLinesPick) SetSellerUserId(v string) {
 	o.SellerUserId = v
-}
-
-// GetSlug returns the Slug field value
-func (o *CreateBuyerCartOptimizerResponseDataLinesPick) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerCartOptimizerResponseDataLinesPick) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *CreateBuyerCartOptimizerResponseDataLinesPick) SetSlug(v string) {
-	o.Slug = v
 }
 
 // GetSellerName returns the SellerName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1232,13 +1269,13 @@ func (o *CreateBuyerCartOptimizerResponseDataLinesPick) SetShipCents(v float32) 
 func (o CreateBuyerCartOptimizerResponseDataLinesPick) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
 		toSerialize["title"] = o.Title
 	}
 	if true {
 		toSerialize["sellerUserId"] = o.SellerUserId
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
 	}
 	if o.SellerName.IsSet() {
 		toSerialize["sellerName"] = o.SellerName.Get()
@@ -1410,12 +1447,12 @@ func (v *NullableCreateBuyerCartQuoteResponse) UnmarshalJSON(src []byte) error {
 
 // CreateBuyerCartQuoteResponseData struct for CreateBuyerCartQuoteResponseData
 type CreateBuyerCartQuoteResponseData struct {
-	Currency string `json:"currency"`
 	Kind string `json:"kind"`
-	TaxCents float32 `json:"taxCents"`
-	ShippingCents float32 `json:"shippingCents"`
-	TotalCents float32 `json:"totalCents"`
 	ItemsTotalCents float32 `json:"itemsTotalCents"`
+	ShippingCents float32 `json:"shippingCents"`
+	TaxCents float32 `json:"taxCents"`
+	TotalCents float32 `json:"totalCents"`
+	Currency string `json:"currency"`
 	// Lines being collected in person, so a summary can name what ships free.
 	PickupCartItemIds []string `json:"pickupCartItemIds"`
 	// False means there is no saved delivery address, so `taxCents` is a floor rather than a final figure — not that tax is zero.
@@ -1436,14 +1473,14 @@ type CreateBuyerCartQuoteResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerCartQuoteResponseData(currency string, kind string, taxCents float32, shippingCents float32, totalCents float32, itemsTotalCents float32, pickupCartItemIds []string, taxComplete bool) *CreateBuyerCartQuoteResponseData {
+func NewCreateBuyerCartQuoteResponseData(kind string, itemsTotalCents float32, shippingCents float32, taxCents float32, totalCents float32, currency string, pickupCartItemIds []string, taxComplete bool) *CreateBuyerCartQuoteResponseData {
 	this := CreateBuyerCartQuoteResponseData{}
-	this.Currency = currency
 	this.Kind = kind
-	this.TaxCents = taxCents
-	this.ShippingCents = shippingCents
-	this.TotalCents = totalCents
 	this.ItemsTotalCents = itemsTotalCents
+	this.ShippingCents = shippingCents
+	this.TaxCents = taxCents
+	this.TotalCents = totalCents
+	this.Currency = currency
 	this.PickupCartItemIds = pickupCartItemIds
 	this.TaxComplete = taxComplete
 	return &this
@@ -1455,30 +1492,6 @@ func NewCreateBuyerCartQuoteResponseData(currency string, kind string, taxCents 
 func NewCreateBuyerCartQuoteResponseDataWithDefaults() *CreateBuyerCartQuoteResponseData {
 	this := CreateBuyerCartQuoteResponseData{}
 	return &this
-}
-
-// GetCurrency returns the Currency field value
-func (o *CreateBuyerCartQuoteResponseData) GetCurrency() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Currency
-}
-
-// GetCurrencyOk returns a tuple with the Currency field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerCartQuoteResponseData) GetCurrencyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Currency, true
-}
-
-// SetCurrency sets field value
-func (o *CreateBuyerCartQuoteResponseData) SetCurrency(v string) {
-	o.Currency = v
 }
 
 // GetKind returns the Kind field value
@@ -1505,28 +1518,28 @@ func (o *CreateBuyerCartQuoteResponseData) SetKind(v string) {
 	o.Kind = v
 }
 
-// GetTaxCents returns the TaxCents field value
-func (o *CreateBuyerCartQuoteResponseData) GetTaxCents() float32 {
+// GetItemsTotalCents returns the ItemsTotalCents field value
+func (o *CreateBuyerCartQuoteResponseData) GetItemsTotalCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.TaxCents
+	return o.ItemsTotalCents
 }
 
-// GetTaxCentsOk returns a tuple with the TaxCents field value
+// GetItemsTotalCentsOk returns a tuple with the ItemsTotalCents field value
 // and a boolean to check if the value has been set.
-func (o *CreateBuyerCartQuoteResponseData) GetTaxCentsOk() (*float32, bool) {
+func (o *CreateBuyerCartQuoteResponseData) GetItemsTotalCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.TaxCents, true
+	return &o.ItemsTotalCents, true
 }
 
-// SetTaxCents sets field value
-func (o *CreateBuyerCartQuoteResponseData) SetTaxCents(v float32) {
-	o.TaxCents = v
+// SetItemsTotalCents sets field value
+func (o *CreateBuyerCartQuoteResponseData) SetItemsTotalCents(v float32) {
+	o.ItemsTotalCents = v
 }
 
 // GetShippingCents returns the ShippingCents field value
@@ -1553,6 +1566,30 @@ func (o *CreateBuyerCartQuoteResponseData) SetShippingCents(v float32) {
 	o.ShippingCents = v
 }
 
+// GetTaxCents returns the TaxCents field value
+func (o *CreateBuyerCartQuoteResponseData) GetTaxCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TaxCents
+}
+
+// GetTaxCentsOk returns a tuple with the TaxCents field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerCartQuoteResponseData) GetTaxCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TaxCents, true
+}
+
+// SetTaxCents sets field value
+func (o *CreateBuyerCartQuoteResponseData) SetTaxCents(v float32) {
+	o.TaxCents = v
+}
+
 // GetTotalCents returns the TotalCents field value
 func (o *CreateBuyerCartQuoteResponseData) GetTotalCents() float32 {
 	if o == nil {
@@ -1577,28 +1614,28 @@ func (o *CreateBuyerCartQuoteResponseData) SetTotalCents(v float32) {
 	o.TotalCents = v
 }
 
-// GetItemsTotalCents returns the ItemsTotalCents field value
-func (o *CreateBuyerCartQuoteResponseData) GetItemsTotalCents() float32 {
+// GetCurrency returns the Currency field value
+func (o *CreateBuyerCartQuoteResponseData) GetCurrency() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.ItemsTotalCents
+	return o.Currency
 }
 
-// GetItemsTotalCentsOk returns a tuple with the ItemsTotalCents field value
+// GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
-func (o *CreateBuyerCartQuoteResponseData) GetItemsTotalCentsOk() (*float32, bool) {
+func (o *CreateBuyerCartQuoteResponseData) GetCurrencyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ItemsTotalCents, true
+	return &o.Currency, true
 }
 
-// SetItemsTotalCents sets field value
-func (o *CreateBuyerCartQuoteResponseData) SetItemsTotalCents(v float32) {
-	o.ItemsTotalCents = v
+// SetCurrency sets field value
+func (o *CreateBuyerCartQuoteResponseData) SetCurrency(v string) {
+	o.Currency = v
 }
 
 // GetPickupCartItemIds returns the PickupCartItemIds field value
@@ -1886,22 +1923,22 @@ func (o *CreateBuyerCartQuoteResponseData) UnsetShippingDestinationCountry() {
 func (o CreateBuyerCartQuoteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["currency"] = o.Currency
-	}
-	if true {
 		toSerialize["kind"] = o.Kind
 	}
 	if true {
-		toSerialize["taxCents"] = o.TaxCents
+		toSerialize["itemsTotalCents"] = o.ItemsTotalCents
 	}
 	if true {
 		toSerialize["shippingCents"] = o.ShippingCents
 	}
 	if true {
+		toSerialize["taxCents"] = o.TaxCents
+	}
+	if true {
 		toSerialize["totalCents"] = o.TotalCents
 	}
 	if true {
-		toSerialize["itemsTotalCents"] = o.ItemsTotalCents
+		toSerialize["currency"] = o.Currency
 	}
 	if true {
 		toSerialize["pickupCartItemIds"] = o.PickupCartItemIds
@@ -2064,6 +2101,7 @@ type ListBuyerCartItem struct {
 	PlatformListingId string `json:"platformListingId"`
 	Quantity float32 `json:"quantity"`
 	UnitPriceCents float32 `json:"unitPriceCents"`
+	ListingVariantId NullableString `json:"listingVariantId,omitempty"`
 	Slug NullableString `json:"slug,omitempty"`
 	Title NullableString `json:"title,omitempty"`
 	ListingStatus NullableString `json:"listingStatus,omitempty"`
@@ -2211,6 +2249,48 @@ func (o *ListBuyerCartItem) SetUnitPriceCents(v float32) {
 	o.UnitPriceCents = v
 }
 
+// GetListingVariantId returns the ListingVariantId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCartItem) GetListingVariantId() string {
+	if o == nil || o.ListingVariantId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingVariantId.Get()
+}
+
+// GetListingVariantIdOk returns a tuple with the ListingVariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCartItem) GetListingVariantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingVariantId.Get(), o.ListingVariantId.IsSet()
+}
+
+// HasListingVariantId returns a boolean if a field has been set.
+func (o *ListBuyerCartItem) HasListingVariantId() bool {
+	if o != nil && o.ListingVariantId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingVariantId gets a reference to the given NullableString and assigns it to the ListingVariantId field.
+func (o *ListBuyerCartItem) SetListingVariantId(v string) {
+	o.ListingVariantId.Set(&v)
+}
+// SetListingVariantIdNil sets the value for ListingVariantId to be an explicit nil
+func (o *ListBuyerCartItem) SetListingVariantIdNil() {
+	o.ListingVariantId.Set(nil)
+}
+
+// UnsetListingVariantId ensures that no value is present for ListingVariantId, not even an explicit nil
+func (o *ListBuyerCartItem) UnsetListingVariantId() {
+	o.ListingVariantId.Unset()
+}
+
 // GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerCartItem) GetSlug() string {
 	if o == nil || o.Slug.Get() == nil {
@@ -2353,6 +2433,9 @@ func (o ListBuyerCartItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["unitPriceCents"] = o.UnitPriceCents
+	}
+	if o.ListingVariantId.IsSet() {
+		toSerialize["listingVariantId"] = o.ListingVariantId.Get()
 	}
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
@@ -2570,35 +2653,41 @@ func (v *NullableListBuyerCartResponse) UnmarshalJSON(src []byte) error {
 // ListBuyerCartSavedItem struct for ListBuyerCartSavedItem
 type ListBuyerCartSavedItem struct {
 	Id string `json:"id"`
-	Quantity float32 `json:"quantity"`
-	Title string `json:"title"`
 	PlatformListingId string `json:"platformListingId"`
-	SellerUserId string `json:"sellerUserId"`
 	Slug string `json:"slug"`
+	Title string `json:"title"`
 	// The listing's price NOW, in cents — what moving it back would charge.
 	PriceCents float32 `json:"priceCents"`
+	Quantity float32 `json:"quantity"`
 	InStock bool `json:"inStock"`
 	AvailableQuantity float32 `json:"availableQuantity"`
+	SellerUserId string `json:"sellerUserId"`
 	SavedAt string `json:"savedAt"`
-	SellerDisplayName NullableString `json:"sellerDisplayName,omitempty"`
 	Thumbnail NullableString `json:"thumbnail,omitempty"`
+	SellerDisplayName NullableString `json:"sellerDisplayName,omitempty"`
+	// The option it was saved as (catalog `variants[].id`), restored on move-to-cart; null otherwise.
+	ListingVariantId NullableString `json:"listingVariantId,omitempty"`
+	// That option's label (\"M\").
+	VariantName NullableString `json:"variantName,omitempty"`
+	// The listing has options and this item names none: add it again with an option (move-to-cart refuses).
+	NeedsOption NullableBool `json:"needsOption,omitempty"`
 }
 
 // NewListBuyerCartSavedItem instantiates a new ListBuyerCartSavedItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerCartSavedItem(id string, quantity float32, title string, platformListingId string, sellerUserId string, slug string, priceCents float32, inStock bool, availableQuantity float32, savedAt string) *ListBuyerCartSavedItem {
+func NewListBuyerCartSavedItem(id string, platformListingId string, slug string, title string, priceCents float32, quantity float32, inStock bool, availableQuantity float32, sellerUserId string, savedAt string) *ListBuyerCartSavedItem {
 	this := ListBuyerCartSavedItem{}
 	this.Id = id
-	this.Quantity = quantity
-	this.Title = title
 	this.PlatformListingId = platformListingId
-	this.SellerUserId = sellerUserId
 	this.Slug = slug
+	this.Title = title
 	this.PriceCents = priceCents
+	this.Quantity = quantity
 	this.InStock = inStock
 	this.AvailableQuantity = availableQuantity
+	this.SellerUserId = sellerUserId
 	this.SavedAt = savedAt
 	return &this
 }
@@ -2635,54 +2724,6 @@ func (o *ListBuyerCartSavedItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetQuantity returns the Quantity field value
-func (o *ListBuyerCartSavedItem) GetQuantity() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Quantity
-}
-
-// GetQuantityOk returns a tuple with the Quantity field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerCartSavedItem) GetQuantityOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quantity, true
-}
-
-// SetQuantity sets field value
-func (o *ListBuyerCartSavedItem) SetQuantity(v float32) {
-	o.Quantity = v
-}
-
-// GetTitle returns the Title field value
-func (o *ListBuyerCartSavedItem) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerCartSavedItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListBuyerCartSavedItem) SetTitle(v string) {
-	o.Title = v
-}
-
 // GetPlatformListingId returns the PlatformListingId field value
 func (o *ListBuyerCartSavedItem) GetPlatformListingId() string {
 	if o == nil {
@@ -2705,30 +2746,6 @@ func (o *ListBuyerCartSavedItem) GetPlatformListingIdOk() (*string, bool) {
 // SetPlatformListingId sets field value
 func (o *ListBuyerCartSavedItem) SetPlatformListingId(v string) {
 	o.PlatformListingId = v
-}
-
-// GetSellerUserId returns the SellerUserId field value
-func (o *ListBuyerCartSavedItem) GetSellerUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SellerUserId
-}
-
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerCartSavedItem) GetSellerUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SellerUserId, true
-}
-
-// SetSellerUserId sets field value
-func (o *ListBuyerCartSavedItem) SetSellerUserId(v string) {
-	o.SellerUserId = v
 }
 
 // GetSlug returns the Slug field value
@@ -2755,6 +2772,30 @@ func (o *ListBuyerCartSavedItem) SetSlug(v string) {
 	o.Slug = v
 }
 
+// GetTitle returns the Title field value
+func (o *ListBuyerCartSavedItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerCartSavedItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListBuyerCartSavedItem) SetTitle(v string) {
+	o.Title = v
+}
+
 // GetPriceCents returns the PriceCents field value
 func (o *ListBuyerCartSavedItem) GetPriceCents() float32 {
 	if o == nil {
@@ -2777,6 +2818,30 @@ func (o *ListBuyerCartSavedItem) GetPriceCentsOk() (*float32, bool) {
 // SetPriceCents sets field value
 func (o *ListBuyerCartSavedItem) SetPriceCents(v float32) {
 	o.PriceCents = v
+}
+
+// GetQuantity returns the Quantity field value
+func (o *ListBuyerCartSavedItem) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerCartSavedItem) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *ListBuyerCartSavedItem) SetQuantity(v float32) {
+	o.Quantity = v
 }
 
 // GetInStock returns the InStock field value
@@ -2827,6 +2892,30 @@ func (o *ListBuyerCartSavedItem) SetAvailableQuantity(v float32) {
 	o.AvailableQuantity = v
 }
 
+// GetSellerUserId returns the SellerUserId field value
+func (o *ListBuyerCartSavedItem) GetSellerUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SellerUserId
+}
+
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerCartSavedItem) GetSellerUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SellerUserId, true
+}
+
+// SetSellerUserId sets field value
+func (o *ListBuyerCartSavedItem) SetSellerUserId(v string) {
+	o.SellerUserId = v
+}
+
 // GetSavedAt returns the SavedAt field value
 func (o *ListBuyerCartSavedItem) GetSavedAt() string {
 	if o == nil {
@@ -2849,48 +2938,6 @@ func (o *ListBuyerCartSavedItem) GetSavedAtOk() (*string, bool) {
 // SetSavedAt sets field value
 func (o *ListBuyerCartSavedItem) SetSavedAt(v string) {
 	o.SavedAt = v
-}
-
-// GetSellerDisplayName returns the SellerDisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerCartSavedItem) GetSellerDisplayName() string {
-	if o == nil || o.SellerDisplayName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerDisplayName.Get()
-}
-
-// GetSellerDisplayNameOk returns a tuple with the SellerDisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerCartSavedItem) GetSellerDisplayNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerDisplayName.Get(), o.SellerDisplayName.IsSet()
-}
-
-// HasSellerDisplayName returns a boolean if a field has been set.
-func (o *ListBuyerCartSavedItem) HasSellerDisplayName() bool {
-	if o != nil && o.SellerDisplayName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerDisplayName gets a reference to the given NullableString and assigns it to the SellerDisplayName field.
-func (o *ListBuyerCartSavedItem) SetSellerDisplayName(v string) {
-	o.SellerDisplayName.Set(&v)
-}
-// SetSellerDisplayNameNil sets the value for SellerDisplayName to be an explicit nil
-func (o *ListBuyerCartSavedItem) SetSellerDisplayNameNil() {
-	o.SellerDisplayName.Set(nil)
-}
-
-// UnsetSellerDisplayName ensures that no value is present for SellerDisplayName, not even an explicit nil
-func (o *ListBuyerCartSavedItem) UnsetSellerDisplayName() {
-	o.SellerDisplayName.Unset()
 }
 
 // GetThumbnail returns the Thumbnail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2935,28 +2982,193 @@ func (o *ListBuyerCartSavedItem) UnsetThumbnail() {
 	o.Thumbnail.Unset()
 }
 
+// GetSellerDisplayName returns the SellerDisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCartSavedItem) GetSellerDisplayName() string {
+	if o == nil || o.SellerDisplayName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerDisplayName.Get()
+}
+
+// GetSellerDisplayNameOk returns a tuple with the SellerDisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCartSavedItem) GetSellerDisplayNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerDisplayName.Get(), o.SellerDisplayName.IsSet()
+}
+
+// HasSellerDisplayName returns a boolean if a field has been set.
+func (o *ListBuyerCartSavedItem) HasSellerDisplayName() bool {
+	if o != nil && o.SellerDisplayName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerDisplayName gets a reference to the given NullableString and assigns it to the SellerDisplayName field.
+func (o *ListBuyerCartSavedItem) SetSellerDisplayName(v string) {
+	o.SellerDisplayName.Set(&v)
+}
+// SetSellerDisplayNameNil sets the value for SellerDisplayName to be an explicit nil
+func (o *ListBuyerCartSavedItem) SetSellerDisplayNameNil() {
+	o.SellerDisplayName.Set(nil)
+}
+
+// UnsetSellerDisplayName ensures that no value is present for SellerDisplayName, not even an explicit nil
+func (o *ListBuyerCartSavedItem) UnsetSellerDisplayName() {
+	o.SellerDisplayName.Unset()
+}
+
+// GetListingVariantId returns the ListingVariantId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCartSavedItem) GetListingVariantId() string {
+	if o == nil || o.ListingVariantId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingVariantId.Get()
+}
+
+// GetListingVariantIdOk returns a tuple with the ListingVariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCartSavedItem) GetListingVariantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingVariantId.Get(), o.ListingVariantId.IsSet()
+}
+
+// HasListingVariantId returns a boolean if a field has been set.
+func (o *ListBuyerCartSavedItem) HasListingVariantId() bool {
+	if o != nil && o.ListingVariantId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingVariantId gets a reference to the given NullableString and assigns it to the ListingVariantId field.
+func (o *ListBuyerCartSavedItem) SetListingVariantId(v string) {
+	o.ListingVariantId.Set(&v)
+}
+// SetListingVariantIdNil sets the value for ListingVariantId to be an explicit nil
+func (o *ListBuyerCartSavedItem) SetListingVariantIdNil() {
+	o.ListingVariantId.Set(nil)
+}
+
+// UnsetListingVariantId ensures that no value is present for ListingVariantId, not even an explicit nil
+func (o *ListBuyerCartSavedItem) UnsetListingVariantId() {
+	o.ListingVariantId.Unset()
+}
+
+// GetVariantName returns the VariantName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCartSavedItem) GetVariantName() string {
+	if o == nil || o.VariantName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VariantName.Get()
+}
+
+// GetVariantNameOk returns a tuple with the VariantName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCartSavedItem) GetVariantNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VariantName.Get(), o.VariantName.IsSet()
+}
+
+// HasVariantName returns a boolean if a field has been set.
+func (o *ListBuyerCartSavedItem) HasVariantName() bool {
+	if o != nil && o.VariantName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVariantName gets a reference to the given NullableString and assigns it to the VariantName field.
+func (o *ListBuyerCartSavedItem) SetVariantName(v string) {
+	o.VariantName.Set(&v)
+}
+// SetVariantNameNil sets the value for VariantName to be an explicit nil
+func (o *ListBuyerCartSavedItem) SetVariantNameNil() {
+	o.VariantName.Set(nil)
+}
+
+// UnsetVariantName ensures that no value is present for VariantName, not even an explicit nil
+func (o *ListBuyerCartSavedItem) UnsetVariantName() {
+	o.VariantName.Unset()
+}
+
+// GetNeedsOption returns the NeedsOption field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerCartSavedItem) GetNeedsOption() bool {
+	if o == nil || o.NeedsOption.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NeedsOption.Get()
+}
+
+// GetNeedsOptionOk returns a tuple with the NeedsOption field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerCartSavedItem) GetNeedsOptionOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NeedsOption.Get(), o.NeedsOption.IsSet()
+}
+
+// HasNeedsOption returns a boolean if a field has been set.
+func (o *ListBuyerCartSavedItem) HasNeedsOption() bool {
+	if o != nil && o.NeedsOption.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNeedsOption gets a reference to the given NullableBool and assigns it to the NeedsOption field.
+func (o *ListBuyerCartSavedItem) SetNeedsOption(v bool) {
+	o.NeedsOption.Set(&v)
+}
+// SetNeedsOptionNil sets the value for NeedsOption to be an explicit nil
+func (o *ListBuyerCartSavedItem) SetNeedsOptionNil() {
+	o.NeedsOption.Set(nil)
+}
+
+// UnsetNeedsOption ensures that no value is present for NeedsOption, not even an explicit nil
+func (o *ListBuyerCartSavedItem) UnsetNeedsOption() {
+	o.NeedsOption.Unset()
+}
+
 func (o ListBuyerCartSavedItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["quantity"] = o.Quantity
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
 		toSerialize["platformListingId"] = o.PlatformListingId
-	}
-	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
 	}
 	if true {
 		toSerialize["slug"] = o.Slug
 	}
 	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
 		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
 	}
 	if true {
 		toSerialize["inStock"] = o.InStock
@@ -2965,13 +3177,25 @@ func (o ListBuyerCartSavedItem) MarshalJSON() ([]byte, error) {
 		toSerialize["availableQuantity"] = o.AvailableQuantity
 	}
 	if true {
+		toSerialize["sellerUserId"] = o.SellerUserId
+	}
+	if true {
 		toSerialize["savedAt"] = o.SavedAt
+	}
+	if o.Thumbnail.IsSet() {
+		toSerialize["thumbnail"] = o.Thumbnail.Get()
 	}
 	if o.SellerDisplayName.IsSet() {
 		toSerialize["sellerDisplayName"] = o.SellerDisplayName.Get()
 	}
-	if o.Thumbnail.IsSet() {
-		toSerialize["thumbnail"] = o.Thumbnail.Get()
+	if o.ListingVariantId.IsSet() {
+		toSerialize["listingVariantId"] = o.ListingVariantId.Get()
+	}
+	if o.VariantName.IsSet() {
+		toSerialize["variantName"] = o.VariantName.Get()
+	}
+	if o.NeedsOption.IsSet() {
+		toSerialize["needsOption"] = o.NeedsOption.Get()
 	}
 	return json.Marshal(toSerialize)
 }

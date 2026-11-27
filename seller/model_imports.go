@@ -636,11 +636,10 @@ type ListImportsItem struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UserId string `json:"userId"`
-	Status string `json:"status"`
 	Platform string `json:"platform"`
+	Status string `json:"status"`
 	LastError NullableString `json:"lastError,omitempty"`
 	StartedAt NullableTime `json:"startedAt,omitempty"`
-	BatchId NullableString `json:"batchId,omitempty"`
 	FinishedAt NullableTime `json:"finishedAt,omitempty"`
 	Filters NullableListImportsItemFilters `json:"filters,omitempty"`
 	ImportMode string `json:"importMode"`
@@ -651,6 +650,7 @@ type ListImportsItem struct {
 	ImportedCount float32 `json:"importedCount"`
 	SkippedCount float32 `json:"skippedCount"`
 	ErrorCount float32 `json:"errorCount"`
+	BatchId NullableString `json:"batchId,omitempty"`
 	ListOnCrossly bool `json:"listOnCrossly"`
 	CrosslyListedAt NullableTime `json:"crosslyListedAt,omitempty"`
 }
@@ -659,13 +659,13 @@ type ListImportsItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListImportsItem(id string, createdAt time.Time, userId string, status string, platform string, importMode string, includeInactive bool, mergeIntoExistingListing bool, mergeIntoExistingInventory bool, totalCount float32, importedCount float32, skippedCount float32, errorCount float32, listOnCrossly bool) *ListImportsItem {
+func NewListImportsItem(id string, createdAt time.Time, userId string, platform string, status string, importMode string, includeInactive bool, mergeIntoExistingListing bool, mergeIntoExistingInventory bool, totalCount float32, importedCount float32, skippedCount float32, errorCount float32, listOnCrossly bool) *ListImportsItem {
 	this := ListImportsItem{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UserId = userId
-	this.Status = status
 	this.Platform = platform
+	this.Status = status
 	this.ImportMode = importMode
 	this.IncludeInactive = includeInactive
 	this.MergeIntoExistingListing = mergeIntoExistingListing
@@ -758,30 +758,6 @@ func (o *ListImportsItem) SetUserId(v string) {
 	o.UserId = v
 }
 
-// GetStatus returns the Status field value
-func (o *ListImportsItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListImportsItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListImportsItem) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetPlatform returns the Platform field value
 func (o *ListImportsItem) GetPlatform() string {
 	if o == nil {
@@ -804,6 +780,30 @@ func (o *ListImportsItem) GetPlatformOk() (*string, bool) {
 // SetPlatform sets field value
 func (o *ListImportsItem) SetPlatform(v string) {
 	o.Platform = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListImportsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListImportsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListImportsItem) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetLastError returns the LastError field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -888,48 +888,6 @@ func (o *ListImportsItem) SetStartedAtNil() {
 // UnsetStartedAt ensures that no value is present for StartedAt, not even an explicit nil
 func (o *ListImportsItem) UnsetStartedAt() {
 	o.StartedAt.Unset()
-}
-
-// GetBatchId returns the BatchId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListImportsItem) GetBatchId() string {
-	if o == nil || o.BatchId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.BatchId.Get()
-}
-
-// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListImportsItem) GetBatchIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.BatchId.Get(), o.BatchId.IsSet()
-}
-
-// HasBatchId returns a boolean if a field has been set.
-func (o *ListImportsItem) HasBatchId() bool {
-	if o != nil && o.BatchId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBatchId gets a reference to the given NullableString and assigns it to the BatchId field.
-func (o *ListImportsItem) SetBatchId(v string) {
-	o.BatchId.Set(&v)
-}
-// SetBatchIdNil sets the value for BatchId to be an explicit nil
-func (o *ListImportsItem) SetBatchIdNil() {
-	o.BatchId.Set(nil)
-}
-
-// UnsetBatchId ensures that no value is present for BatchId, not even an explicit nil
-func (o *ListImportsItem) UnsetBatchId() {
-	o.BatchId.Unset()
 }
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1208,6 +1166,48 @@ func (o *ListImportsItem) SetErrorCount(v float32) {
 	o.ErrorCount = v
 }
 
+// GetBatchId returns the BatchId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListImportsItem) GetBatchId() string {
+	if o == nil || o.BatchId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BatchId.Get()
+}
+
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListImportsItem) GetBatchIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BatchId.Get(), o.BatchId.IsSet()
+}
+
+// HasBatchId returns a boolean if a field has been set.
+func (o *ListImportsItem) HasBatchId() bool {
+	if o != nil && o.BatchId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchId gets a reference to the given NullableString and assigns it to the BatchId field.
+func (o *ListImportsItem) SetBatchId(v string) {
+	o.BatchId.Set(&v)
+}
+// SetBatchIdNil sets the value for BatchId to be an explicit nil
+func (o *ListImportsItem) SetBatchIdNil() {
+	o.BatchId.Set(nil)
+}
+
+// UnsetBatchId ensures that no value is present for BatchId, not even an explicit nil
+func (o *ListImportsItem) UnsetBatchId() {
+	o.BatchId.Unset()
+}
+
 // GetListOnCrossly returns the ListOnCrossly field value
 func (o *ListImportsItem) GetListOnCrossly() bool {
 	if o == nil {
@@ -1286,19 +1286,16 @@ func (o ListImportsItem) MarshalJSON() ([]byte, error) {
 		toSerialize["userId"] = o.UserId
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["platform"] = o.Platform
 	}
 	if true {
-		toSerialize["platform"] = o.Platform
+		toSerialize["status"] = o.Status
 	}
 	if o.LastError.IsSet() {
 		toSerialize["lastError"] = o.LastError.Get()
 	}
 	if o.StartedAt.IsSet() {
 		toSerialize["startedAt"] = o.StartedAt.Get()
-	}
-	if o.BatchId.IsSet() {
-		toSerialize["batchId"] = o.BatchId.Get()
 	}
 	if o.FinishedAt.IsSet() {
 		toSerialize["finishedAt"] = o.FinishedAt.Get()
@@ -1329,6 +1326,9 @@ func (o ListImportsItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["errorCount"] = o.ErrorCount
+	}
+	if o.BatchId.IsSet() {
+		toSerialize["batchId"] = o.BatchId.Get()
 	}
 	if true {
 		toSerialize["listOnCrossly"] = o.ListOnCrossly

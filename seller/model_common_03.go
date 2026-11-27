@@ -15,5962 +15,153 @@ import (
 	"time"
 )
 
-// ListSalesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListSalesResponse struct {
-	// The rows.
-	Data []ListSalesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// InCentsOutCents struct for InCentsOutCents
+type InCentsOutCents struct {
+	InCents float32 `json:"inCents"`
+	OutCents float32 `json:"outCents"`
 }
 
-// NewListSalesResponse instantiates a new ListSalesResponse object
+// NewInCentsOutCents instantiates a new InCentsOutCents object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListSalesResponse(data []ListSalesItem) *ListSalesResponse {
-	this := ListSalesResponse{}
-	this.Data = data
+func NewInCentsOutCents(inCents float32, outCents float32) *InCentsOutCents {
+	this := InCentsOutCents{}
+	this.InCents = inCents
+	this.OutCents = outCents
 	return &this
 }
 
-// NewListSalesResponseWithDefaults instantiates a new ListSalesResponse object
+// NewInCentsOutCentsWithDefaults instantiates a new InCentsOutCents object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListSalesResponseWithDefaults() *ListSalesResponse {
-	this := ListSalesResponse{}
+func NewInCentsOutCentsWithDefaults() *InCentsOutCents {
+	this := InCentsOutCents{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *ListSalesResponse) GetData() []ListSalesItem {
-	if o == nil {
-		var ret []ListSalesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListSalesResponse) GetDataOk() ([]ListSalesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListSalesResponse) SetData(v []ListSalesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListSalesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListSalesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListSalesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListSalesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListSalesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListSalesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListSalesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListSalesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListSalesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListSalesResponse struct {
-	value *ListSalesResponse
-	isSet bool
-}
-
-func (v NullableListSalesResponse) Get() *ListSalesResponse {
-	return v.value
-}
-
-func (v *NullableListSalesResponse) Set(val *ListSalesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListSalesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListSalesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListSalesResponse(val *ListSalesResponse) *NullableListSalesResponse {
-	return &NullableListSalesResponse{value: val, isSet: true}
-}
-
-func (v NullableListSalesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListSalesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListSavedViewsItem struct for ListSavedViewsItem
-type ListSavedViewsItem struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
-	UserId string `json:"userId"`
-	IsDefault bool `json:"isDefault"`
-	SortOrder float32 `json:"sortOrder"`
-	Resource string `json:"resource"`
-	ViewMode NullableString `json:"viewMode,omitempty"`
-}
-
-// NewListSavedViewsItem instantiates a new ListSavedViewsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListSavedViewsItem(id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, sortOrder float32, resource string) *ListSavedViewsItem {
-	this := ListSavedViewsItem{}
-	this.Id = id
-	this.Name = name
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.UserId = userId
-	this.IsDefault = isDefault
-	this.SortOrder = sortOrder
-	this.Resource = resource
-	return &this
-}
-
-// NewListSavedViewsItemWithDefaults instantiates a new ListSavedViewsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListSavedViewsItemWithDefaults() *ListSavedViewsItem {
-	this := ListSavedViewsItem{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListSavedViewsItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListSavedViewsItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *ListSavedViewsItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListSavedViewsItem) SetName(v string) {
-	o.Name = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListSavedViewsItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListSavedViewsItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *ListSavedViewsItem) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *ListSavedViewsItem) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
-}
-
-// GetUserId returns the UserId field value
-func (o *ListSavedViewsItem) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UserId, true
-}
-
-// SetUserId sets field value
-func (o *ListSavedViewsItem) SetUserId(v string) {
-	o.UserId = v
-}
-
-// GetIsDefault returns the IsDefault field value
-func (o *ListSavedViewsItem) GetIsDefault() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsDefault
-}
-
-// GetIsDefaultOk returns a tuple with the IsDefault field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetIsDefaultOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IsDefault, true
-}
-
-// SetIsDefault sets field value
-func (o *ListSavedViewsItem) SetIsDefault(v bool) {
-	o.IsDefault = v
-}
-
-// GetSortOrder returns the SortOrder field value
-func (o *ListSavedViewsItem) GetSortOrder() float32 {
+// GetInCents returns the InCents field value
+func (o *InCentsOutCents) GetInCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.SortOrder
+	return o.InCents
 }
 
-// GetSortOrderOk returns a tuple with the SortOrder field value
+// GetInCentsOk returns a tuple with the InCents field value
 // and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetSortOrderOk() (*float32, bool) {
+func (o *InCentsOutCents) GetInCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SortOrder, true
+	return &o.InCents, true
 }
 
-// SetSortOrder sets field value
-func (o *ListSavedViewsItem) SetSortOrder(v float32) {
-	o.SortOrder = v
+// SetInCents sets field value
+func (o *InCentsOutCents) SetInCents(v float32) {
+	o.InCents = v
 }
 
-// GetResource returns the Resource field value
-func (o *ListSavedViewsItem) GetResource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Resource
-}
-
-// GetResourceOk returns a tuple with the Resource field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsItem) GetResourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Resource, true
-}
-
-// SetResource sets field value
-func (o *ListSavedViewsItem) SetResource(v string) {
-	o.Resource = v
-}
-
-// GetViewMode returns the ViewMode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListSavedViewsItem) GetViewMode() string {
-	if o == nil || o.ViewMode.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ViewMode.Get()
-}
-
-// GetViewModeOk returns a tuple with the ViewMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListSavedViewsItem) GetViewModeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ViewMode.Get(), o.ViewMode.IsSet()
-}
-
-// HasViewMode returns a boolean if a field has been set.
-func (o *ListSavedViewsItem) HasViewMode() bool {
-	if o != nil && o.ViewMode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetViewMode gets a reference to the given NullableString and assigns it to the ViewMode field.
-func (o *ListSavedViewsItem) SetViewMode(v string) {
-	o.ViewMode.Set(&v)
-}
-// SetViewModeNil sets the value for ViewMode to be an explicit nil
-func (o *ListSavedViewsItem) SetViewModeNil() {
-	o.ViewMode.Set(nil)
-}
-
-// UnsetViewMode ensures that no value is present for ViewMode, not even an explicit nil
-func (o *ListSavedViewsItem) UnsetViewMode() {
-	o.ViewMode.Unset()
-}
-
-func (o ListSavedViewsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["isDefault"] = o.IsDefault
-	}
-	if true {
-		toSerialize["sortOrder"] = o.SortOrder
-	}
-	if true {
-		toSerialize["resource"] = o.Resource
-	}
-	if o.ViewMode.IsSet() {
-		toSerialize["viewMode"] = o.ViewMode.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListSavedViewsItem struct {
-	value *ListSavedViewsItem
-	isSet bool
-}
-
-func (v NullableListSavedViewsItem) Get() *ListSavedViewsItem {
-	return v.value
-}
-
-func (v *NullableListSavedViewsItem) Set(val *ListSavedViewsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListSavedViewsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListSavedViewsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListSavedViewsItem(val *ListSavedViewsItem) *NullableListSavedViewsItem {
-	return &NullableListSavedViewsItem{value: val, isSet: true}
-}
-
-func (v NullableListSavedViewsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListSavedViewsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListSavedViewsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListSavedViewsResponse struct {
-	// The rows.
-	Data []ListSavedViewsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListSavedViewsResponse instantiates a new ListSavedViewsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListSavedViewsResponse(data []ListSavedViewsItem) *ListSavedViewsResponse {
-	this := ListSavedViewsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListSavedViewsResponseWithDefaults instantiates a new ListSavedViewsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListSavedViewsResponseWithDefaults() *ListSavedViewsResponse {
-	this := ListSavedViewsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListSavedViewsResponse) GetData() []ListSavedViewsItem {
-	if o == nil {
-		var ret []ListSavedViewsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsResponse) GetDataOk() ([]ListSavedViewsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListSavedViewsResponse) SetData(v []ListSavedViewsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListSavedViewsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListSavedViewsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListSavedViewsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListSavedViewsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListSavedViewsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListSavedViewsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListSavedViewsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListSavedViewsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListSavedViewsResponse struct {
-	value *ListSavedViewsResponse
-	isSet bool
-}
-
-func (v NullableListSavedViewsResponse) Get() *ListSavedViewsResponse {
-	return v.value
-}
-
-func (v *NullableListSavedViewsResponse) Set(val *ListSavedViewsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListSavedViewsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListSavedViewsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListSavedViewsResponse(val *ListSavedViewsResponse) *NullableListSavedViewsResponse {
-	return &NullableListSavedViewsResponse{value: val, isSet: true}
-}
-
-func (v NullableListSavedViewsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListSavedViewsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListScanCapturesItem struct for ListScanCapturesItem
-type ListScanCapturesItem struct {
-	Id string `json:"id"`
-	Status string `json:"status"`
-	Archetype string `json:"archetype"`
-	Mode string `json:"mode"`
-	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
-	MarketSkuId NullableString `json:"marketSkuId,omitempty"`
-	VariantId NullableString `json:"variantId,omitempty"`
-	QualityScore NullableFloat32 `json:"qualityScore,omitempty"`
-	RejectReason NullableString `json:"rejectReason,omitempty"`
-	GenerationSkipped NullableString `json:"generationSkipped,omitempty"`
-	CreatedAt time.Time `json:"createdAt"`
-	CompletedAt NullableTime `json:"completedAt,omitempty"`
-}
-
-// NewListScanCapturesItem instantiates a new ListScanCapturesItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListScanCapturesItem(id string, status string, archetype string, mode string, createdAt time.Time) *ListScanCapturesItem {
-	this := ListScanCapturesItem{}
-	this.Id = id
-	this.Status = status
-	this.Archetype = archetype
-	this.Mode = mode
-	this.CreatedAt = createdAt
-	return &this
-}
-
-// NewListScanCapturesItemWithDefaults instantiates a new ListScanCapturesItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListScanCapturesItemWithDefaults() *ListScanCapturesItem {
-	this := ListScanCapturesItem{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListScanCapturesItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListScanCapturesItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetStatus returns the Status field value
-func (o *ListScanCapturesItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListScanCapturesItem) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetArchetype returns the Archetype field value
-func (o *ListScanCapturesItem) GetArchetype() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Archetype
-}
-
-// GetArchetypeOk returns a tuple with the Archetype field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesItem) GetArchetypeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Archetype, true
-}
-
-// SetArchetype sets field value
-func (o *ListScanCapturesItem) SetArchetype(v string) {
-	o.Archetype = v
-}
-
-// GetMode returns the Mode field value
-func (o *ListScanCapturesItem) GetMode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesItem) GetModeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Mode, true
-}
-
-// SetMode sets field value
-func (o *ListScanCapturesItem) SetMode(v string) {
-	o.Mode = v
-}
-
-// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetInventoryItemId() string {
-	if o == nil || o.InventoryItemId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.InventoryItemId.Get()
-}
-
-// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetInventoryItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
-}
-
-// HasInventoryItemId returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasInventoryItemId() bool {
-	if o != nil && o.InventoryItemId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
-func (o *ListScanCapturesItem) SetInventoryItemId(v string) {
-	o.InventoryItemId.Set(&v)
-}
-// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
-func (o *ListScanCapturesItem) SetInventoryItemIdNil() {
-	o.InventoryItemId.Set(nil)
-}
-
-// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetInventoryItemId() {
-	o.InventoryItemId.Unset()
-}
-
-// GetMarketSkuId returns the MarketSkuId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetMarketSkuId() string {
-	if o == nil || o.MarketSkuId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.MarketSkuId.Get()
-}
-
-// GetMarketSkuIdOk returns a tuple with the MarketSkuId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetMarketSkuIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.MarketSkuId.Get(), o.MarketSkuId.IsSet()
-}
-
-// HasMarketSkuId returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasMarketSkuId() bool {
-	if o != nil && o.MarketSkuId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMarketSkuId gets a reference to the given NullableString and assigns it to the MarketSkuId field.
-func (o *ListScanCapturesItem) SetMarketSkuId(v string) {
-	o.MarketSkuId.Set(&v)
-}
-// SetMarketSkuIdNil sets the value for MarketSkuId to be an explicit nil
-func (o *ListScanCapturesItem) SetMarketSkuIdNil() {
-	o.MarketSkuId.Set(nil)
-}
-
-// UnsetMarketSkuId ensures that no value is present for MarketSkuId, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetMarketSkuId() {
-	o.MarketSkuId.Unset()
-}
-
-// GetVariantId returns the VariantId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetVariantId() string {
-	if o == nil || o.VariantId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VariantId.Get()
-}
-
-// GetVariantIdOk returns a tuple with the VariantId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetVariantIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VariantId.Get(), o.VariantId.IsSet()
-}
-
-// HasVariantId returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasVariantId() bool {
-	if o != nil && o.VariantId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVariantId gets a reference to the given NullableString and assigns it to the VariantId field.
-func (o *ListScanCapturesItem) SetVariantId(v string) {
-	o.VariantId.Set(&v)
-}
-// SetVariantIdNil sets the value for VariantId to be an explicit nil
-func (o *ListScanCapturesItem) SetVariantIdNil() {
-	o.VariantId.Set(nil)
-}
-
-// UnsetVariantId ensures that no value is present for VariantId, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetVariantId() {
-	o.VariantId.Unset()
-}
-
-// GetQualityScore returns the QualityScore field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetQualityScore() float32 {
-	if o == nil || o.QualityScore.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.QualityScore.Get()
-}
-
-// GetQualityScoreOk returns a tuple with the QualityScore field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetQualityScoreOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.QualityScore.Get(), o.QualityScore.IsSet()
-}
-
-// HasQualityScore returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasQualityScore() bool {
-	if o != nil && o.QualityScore.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQualityScore gets a reference to the given NullableFloat32 and assigns it to the QualityScore field.
-func (o *ListScanCapturesItem) SetQualityScore(v float32) {
-	o.QualityScore.Set(&v)
-}
-// SetQualityScoreNil sets the value for QualityScore to be an explicit nil
-func (o *ListScanCapturesItem) SetQualityScoreNil() {
-	o.QualityScore.Set(nil)
-}
-
-// UnsetQualityScore ensures that no value is present for QualityScore, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetQualityScore() {
-	o.QualityScore.Unset()
-}
-
-// GetRejectReason returns the RejectReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetRejectReason() string {
-	if o == nil || o.RejectReason.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RejectReason.Get()
-}
-
-// GetRejectReasonOk returns a tuple with the RejectReason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetRejectReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RejectReason.Get(), o.RejectReason.IsSet()
-}
-
-// HasRejectReason returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasRejectReason() bool {
-	if o != nil && o.RejectReason.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRejectReason gets a reference to the given NullableString and assigns it to the RejectReason field.
-func (o *ListScanCapturesItem) SetRejectReason(v string) {
-	o.RejectReason.Set(&v)
-}
-// SetRejectReasonNil sets the value for RejectReason to be an explicit nil
-func (o *ListScanCapturesItem) SetRejectReasonNil() {
-	o.RejectReason.Set(nil)
-}
-
-// UnsetRejectReason ensures that no value is present for RejectReason, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetRejectReason() {
-	o.RejectReason.Unset()
-}
-
-// GetGenerationSkipped returns the GenerationSkipped field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetGenerationSkipped() string {
-	if o == nil || o.GenerationSkipped.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GenerationSkipped.Get()
-}
-
-// GetGenerationSkippedOk returns a tuple with the GenerationSkipped field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetGenerationSkippedOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GenerationSkipped.Get(), o.GenerationSkipped.IsSet()
-}
-
-// HasGenerationSkipped returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasGenerationSkipped() bool {
-	if o != nil && o.GenerationSkipped.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGenerationSkipped gets a reference to the given NullableString and assigns it to the GenerationSkipped field.
-func (o *ListScanCapturesItem) SetGenerationSkipped(v string) {
-	o.GenerationSkipped.Set(&v)
-}
-// SetGenerationSkippedNil sets the value for GenerationSkipped to be an explicit nil
-func (o *ListScanCapturesItem) SetGenerationSkippedNil() {
-	o.GenerationSkipped.Set(nil)
-}
-
-// UnsetGenerationSkipped ensures that no value is present for GenerationSkipped, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetGenerationSkipped() {
-	o.GenerationSkipped.Unset()
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListScanCapturesItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListScanCapturesItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetCompletedAt returns the CompletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanCapturesItem) GetCompletedAt() time.Time {
-	if o == nil || o.CompletedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CompletedAt.Get()
-}
-
-// GetCompletedAtOk returns a tuple with the CompletedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanCapturesItem) GetCompletedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CompletedAt.Get(), o.CompletedAt.IsSet()
-}
-
-// HasCompletedAt returns a boolean if a field has been set.
-func (o *ListScanCapturesItem) HasCompletedAt() bool {
-	if o != nil && o.CompletedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCompletedAt gets a reference to the given NullableTime and assigns it to the CompletedAt field.
-func (o *ListScanCapturesItem) SetCompletedAt(v time.Time) {
-	o.CompletedAt.Set(&v)
-}
-// SetCompletedAtNil sets the value for CompletedAt to be an explicit nil
-func (o *ListScanCapturesItem) SetCompletedAtNil() {
-	o.CompletedAt.Set(nil)
-}
-
-// UnsetCompletedAt ensures that no value is present for CompletedAt, not even an explicit nil
-func (o *ListScanCapturesItem) UnsetCompletedAt() {
-	o.CompletedAt.Unset()
-}
-
-func (o ListScanCapturesItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["archetype"] = o.Archetype
-	}
-	if true {
-		toSerialize["mode"] = o.Mode
-	}
-	if o.InventoryItemId.IsSet() {
-		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
-	}
-	if o.MarketSkuId.IsSet() {
-		toSerialize["marketSkuId"] = o.MarketSkuId.Get()
-	}
-	if o.VariantId.IsSet() {
-		toSerialize["variantId"] = o.VariantId.Get()
-	}
-	if o.QualityScore.IsSet() {
-		toSerialize["qualityScore"] = o.QualityScore.Get()
-	}
-	if o.RejectReason.IsSet() {
-		toSerialize["rejectReason"] = o.RejectReason.Get()
-	}
-	if o.GenerationSkipped.IsSet() {
-		toSerialize["generationSkipped"] = o.GenerationSkipped.Get()
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if o.CompletedAt.IsSet() {
-		toSerialize["completedAt"] = o.CompletedAt.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListScanCapturesItem struct {
-	value *ListScanCapturesItem
-	isSet bool
-}
-
-func (v NullableListScanCapturesItem) Get() *ListScanCapturesItem {
-	return v.value
-}
-
-func (v *NullableListScanCapturesItem) Set(val *ListScanCapturesItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListScanCapturesItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListScanCapturesItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListScanCapturesItem(val *ListScanCapturesItem) *NullableListScanCapturesItem {
-	return &NullableListScanCapturesItem{value: val, isSet: true}
-}
-
-func (v NullableListScanCapturesItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListScanCapturesItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListScanCapturesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListScanCapturesResponse struct {
-	// The rows.
-	Data []ListScanCapturesItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListScanCapturesResponse instantiates a new ListScanCapturesResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListScanCapturesResponse(data []ListScanCapturesItem) *ListScanCapturesResponse {
-	this := ListScanCapturesResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListScanCapturesResponseWithDefaults instantiates a new ListScanCapturesResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListScanCapturesResponseWithDefaults() *ListScanCapturesResponse {
-	this := ListScanCapturesResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListScanCapturesResponse) GetData() []ListScanCapturesItem {
-	if o == nil {
-		var ret []ListScanCapturesItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesResponse) GetDataOk() ([]ListScanCapturesItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListScanCapturesResponse) SetData(v []ListScanCapturesItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListScanCapturesResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListScanCapturesResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListScanCapturesResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListScanCapturesResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListScanCapturesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListScanCapturesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListScanCapturesResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListScanCapturesResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListScanCapturesResponse struct {
-	value *ListScanCapturesResponse
-	isSet bool
-}
-
-func (v NullableListScanCapturesResponse) Get() *ListScanCapturesResponse {
-	return v.value
-}
-
-func (v *NullableListScanCapturesResponse) Set(val *ListScanCapturesResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListScanCapturesResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListScanCapturesResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListScanCapturesResponse(val *ListScanCapturesResponse) *NullableListScanCapturesResponse {
-	return &NullableListScanCapturesResponse{value: val, isSet: true}
-}
-
-func (v NullableListScanCapturesResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListScanCapturesResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListScanModelsItem struct for ListScanModelsItem
-type ListScanModelsItem struct {
-	VariantId NullableString `json:"variantId,omitempty"`
-	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
-	ModelUrl NullableString `json:"modelUrl,omitempty"`
-	TextureUrl NullableString `json:"textureUrl,omitempty"`
-	Fidelity string `json:"fidelity"`
-	LongestEdgeMm NullableFloat32 `json:"longestEdgeMm,omitempty"`
-}
-
-// NewListScanModelsItem instantiates a new ListScanModelsItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListScanModelsItem(fidelity string) *ListScanModelsItem {
-	this := ListScanModelsItem{}
-	this.Fidelity = fidelity
-	return &this
-}
-
-// NewListScanModelsItemWithDefaults instantiates a new ListScanModelsItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListScanModelsItemWithDefaults() *ListScanModelsItem {
-	this := ListScanModelsItem{}
-	return &this
-}
-
-// GetVariantId returns the VariantId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanModelsItem) GetVariantId() string {
-	if o == nil || o.VariantId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VariantId.Get()
-}
-
-// GetVariantIdOk returns a tuple with the VariantId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanModelsItem) GetVariantIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VariantId.Get(), o.VariantId.IsSet()
-}
-
-// HasVariantId returns a boolean if a field has been set.
-func (o *ListScanModelsItem) HasVariantId() bool {
-	if o != nil && o.VariantId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVariantId gets a reference to the given NullableString and assigns it to the VariantId field.
-func (o *ListScanModelsItem) SetVariantId(v string) {
-	o.VariantId.Set(&v)
-}
-// SetVariantIdNil sets the value for VariantId to be an explicit nil
-func (o *ListScanModelsItem) SetVariantIdNil() {
-	o.VariantId.Set(nil)
-}
-
-// UnsetVariantId ensures that no value is present for VariantId, not even an explicit nil
-func (o *ListScanModelsItem) UnsetVariantId() {
-	o.VariantId.Unset()
-}
-
-// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanModelsItem) GetInventoryItemId() string {
-	if o == nil || o.InventoryItemId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.InventoryItemId.Get()
-}
-
-// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanModelsItem) GetInventoryItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
-}
-
-// HasInventoryItemId returns a boolean if a field has been set.
-func (o *ListScanModelsItem) HasInventoryItemId() bool {
-	if o != nil && o.InventoryItemId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
-func (o *ListScanModelsItem) SetInventoryItemId(v string) {
-	o.InventoryItemId.Set(&v)
-}
-// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
-func (o *ListScanModelsItem) SetInventoryItemIdNil() {
-	o.InventoryItemId.Set(nil)
-}
-
-// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
-func (o *ListScanModelsItem) UnsetInventoryItemId() {
-	o.InventoryItemId.Unset()
-}
-
-// GetModelUrl returns the ModelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanModelsItem) GetModelUrl() string {
-	if o == nil || o.ModelUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ModelUrl.Get()
-}
-
-// GetModelUrlOk returns a tuple with the ModelUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanModelsItem) GetModelUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ModelUrl.Get(), o.ModelUrl.IsSet()
-}
-
-// HasModelUrl returns a boolean if a field has been set.
-func (o *ListScanModelsItem) HasModelUrl() bool {
-	if o != nil && o.ModelUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetModelUrl gets a reference to the given NullableString and assigns it to the ModelUrl field.
-func (o *ListScanModelsItem) SetModelUrl(v string) {
-	o.ModelUrl.Set(&v)
-}
-// SetModelUrlNil sets the value for ModelUrl to be an explicit nil
-func (o *ListScanModelsItem) SetModelUrlNil() {
-	o.ModelUrl.Set(nil)
-}
-
-// UnsetModelUrl ensures that no value is present for ModelUrl, not even an explicit nil
-func (o *ListScanModelsItem) UnsetModelUrl() {
-	o.ModelUrl.Unset()
-}
-
-// GetTextureUrl returns the TextureUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanModelsItem) GetTextureUrl() string {
-	if o == nil || o.TextureUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TextureUrl.Get()
-}
-
-// GetTextureUrlOk returns a tuple with the TextureUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanModelsItem) GetTextureUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TextureUrl.Get(), o.TextureUrl.IsSet()
-}
-
-// HasTextureUrl returns a boolean if a field has been set.
-func (o *ListScanModelsItem) HasTextureUrl() bool {
-	if o != nil && o.TextureUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTextureUrl gets a reference to the given NullableString and assigns it to the TextureUrl field.
-func (o *ListScanModelsItem) SetTextureUrl(v string) {
-	o.TextureUrl.Set(&v)
-}
-// SetTextureUrlNil sets the value for TextureUrl to be an explicit nil
-func (o *ListScanModelsItem) SetTextureUrlNil() {
-	o.TextureUrl.Set(nil)
-}
-
-// UnsetTextureUrl ensures that no value is present for TextureUrl, not even an explicit nil
-func (o *ListScanModelsItem) UnsetTextureUrl() {
-	o.TextureUrl.Unset()
-}
-
-// GetFidelity returns the Fidelity field value
-func (o *ListScanModelsItem) GetFidelity() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Fidelity
-}
-
-// GetFidelityOk returns a tuple with the Fidelity field value
-// and a boolean to check if the value has been set.
-func (o *ListScanModelsItem) GetFidelityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Fidelity, true
-}
-
-// SetFidelity sets field value
-func (o *ListScanModelsItem) SetFidelity(v string) {
-	o.Fidelity = v
-}
-
-// GetLongestEdgeMm returns the LongestEdgeMm field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListScanModelsItem) GetLongestEdgeMm() float32 {
-	if o == nil || o.LongestEdgeMm.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.LongestEdgeMm.Get()
-}
-
-// GetLongestEdgeMmOk returns a tuple with the LongestEdgeMm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListScanModelsItem) GetLongestEdgeMmOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LongestEdgeMm.Get(), o.LongestEdgeMm.IsSet()
-}
-
-// HasLongestEdgeMm returns a boolean if a field has been set.
-func (o *ListScanModelsItem) HasLongestEdgeMm() bool {
-	if o != nil && o.LongestEdgeMm.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLongestEdgeMm gets a reference to the given NullableFloat32 and assigns it to the LongestEdgeMm field.
-func (o *ListScanModelsItem) SetLongestEdgeMm(v float32) {
-	o.LongestEdgeMm.Set(&v)
-}
-// SetLongestEdgeMmNil sets the value for LongestEdgeMm to be an explicit nil
-func (o *ListScanModelsItem) SetLongestEdgeMmNil() {
-	o.LongestEdgeMm.Set(nil)
-}
-
-// UnsetLongestEdgeMm ensures that no value is present for LongestEdgeMm, not even an explicit nil
-func (o *ListScanModelsItem) UnsetLongestEdgeMm() {
-	o.LongestEdgeMm.Unset()
-}
-
-func (o ListScanModelsItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.VariantId.IsSet() {
-		toSerialize["variantId"] = o.VariantId.Get()
-	}
-	if o.InventoryItemId.IsSet() {
-		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
-	}
-	if o.ModelUrl.IsSet() {
-		toSerialize["modelUrl"] = o.ModelUrl.Get()
-	}
-	if o.TextureUrl.IsSet() {
-		toSerialize["textureUrl"] = o.TextureUrl.Get()
-	}
-	if true {
-		toSerialize["fidelity"] = o.Fidelity
-	}
-	if o.LongestEdgeMm.IsSet() {
-		toSerialize["longestEdgeMm"] = o.LongestEdgeMm.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListScanModelsItem struct {
-	value *ListScanModelsItem
-	isSet bool
-}
-
-func (v NullableListScanModelsItem) Get() *ListScanModelsItem {
-	return v.value
-}
-
-func (v *NullableListScanModelsItem) Set(val *ListScanModelsItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListScanModelsItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListScanModelsItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListScanModelsItem(val *ListScanModelsItem) *NullableListScanModelsItem {
-	return &NullableListScanModelsItem{value: val, isSet: true}
-}
-
-func (v NullableListScanModelsItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListScanModelsItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListScanModelsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListScanModelsResponse struct {
-	// The rows.
-	Data []ListScanModelsItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListScanModelsResponse instantiates a new ListScanModelsResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListScanModelsResponse(data []ListScanModelsItem) *ListScanModelsResponse {
-	this := ListScanModelsResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListScanModelsResponseWithDefaults instantiates a new ListScanModelsResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListScanModelsResponseWithDefaults() *ListScanModelsResponse {
-	this := ListScanModelsResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListScanModelsResponse) GetData() []ListScanModelsItem {
-	if o == nil {
-		var ret []ListScanModelsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListScanModelsResponse) GetDataOk() ([]ListScanModelsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListScanModelsResponse) SetData(v []ListScanModelsItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListScanModelsResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListScanModelsResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListScanModelsResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListScanModelsResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListScanModelsResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListScanModelsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListScanModelsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListScanModelsResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListScanModelsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListScanModelsResponse struct {
-	value *ListScanModelsResponse
-	isSet bool
-}
-
-func (v NullableListScanModelsResponse) Get() *ListScanModelsResponse {
-	return v.value
-}
-
-func (v *NullableListScanModelsResponse) Set(val *ListScanModelsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListScanModelsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListScanModelsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListScanModelsResponse(val *ListScanModelsResponse) *NullableListScanModelsResponse {
-	return &NullableListScanModelsResponse{value: val, isSet: true}
-}
-
-func (v NullableListScanModelsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListScanModelsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ListWebhooksItem struct for ListWebhooksItem
-type ListWebhooksItem struct {
-	Id string `json:"id"`
-	Url string `json:"url"`
-	Events []string `json:"events"`
-	Description NullableString `json:"description,omitempty"`
-	Enabled bool `json:"enabled"`
-	LastDeliveryAt NullableTime `json:"lastDeliveryAt,omitempty"`
-	LastErrorAt NullableTime `json:"lastErrorAt,omitempty"`
-	LastError NullableString `json:"lastError,omitempty"`
-	ConsecutiveFailures float32 `json:"consecutiveFailures"`
-	CreatedAt time.Time `json:"createdAt"`
-}
-
-// NewListWebhooksItem instantiates a new ListWebhooksItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWebhooksItem(id string, url string, events []string, enabled bool, consecutiveFailures float32, createdAt time.Time) *ListWebhooksItem {
-	this := ListWebhooksItem{}
-	this.Id = id
-	this.Url = url
-	this.Events = events
-	this.Enabled = enabled
-	this.ConsecutiveFailures = consecutiveFailures
-	this.CreatedAt = createdAt
-	return &this
-}
-
-// NewListWebhooksItemWithDefaults instantiates a new ListWebhooksItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWebhooksItemWithDefaults() *ListWebhooksItem {
-	this := ListWebhooksItem{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *ListWebhooksItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ListWebhooksItem) SetId(v string) {
-	o.Id = v
-}
-
-// GetUrl returns the Url field value
-func (o *ListWebhooksItem) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *ListWebhooksItem) SetUrl(v string) {
-	o.Url = v
-}
-
-// GetEvents returns the Events field value
-func (o *ListWebhooksItem) GetEvents() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Events
-}
-
-// GetEventsOk returns a tuple with the Events field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetEventsOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Events, true
-}
-
-// SetEvents sets field value
-func (o *ListWebhooksItem) SetEvents(v []string) {
-	o.Events = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWebhooksItem) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWebhooksItem) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *ListWebhooksItem) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *ListWebhooksItem) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *ListWebhooksItem) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *ListWebhooksItem) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetEnabled returns the Enabled field value
-func (o *ListWebhooksItem) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetEnabledOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *ListWebhooksItem) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetLastDeliveryAt returns the LastDeliveryAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWebhooksItem) GetLastDeliveryAt() time.Time {
-	if o == nil || o.LastDeliveryAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastDeliveryAt.Get()
-}
-
-// GetLastDeliveryAtOk returns a tuple with the LastDeliveryAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWebhooksItem) GetLastDeliveryAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastDeliveryAt.Get(), o.LastDeliveryAt.IsSet()
-}
-
-// HasLastDeliveryAt returns a boolean if a field has been set.
-func (o *ListWebhooksItem) HasLastDeliveryAt() bool {
-	if o != nil && o.LastDeliveryAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastDeliveryAt gets a reference to the given NullableTime and assigns it to the LastDeliveryAt field.
-func (o *ListWebhooksItem) SetLastDeliveryAt(v time.Time) {
-	o.LastDeliveryAt.Set(&v)
-}
-// SetLastDeliveryAtNil sets the value for LastDeliveryAt to be an explicit nil
-func (o *ListWebhooksItem) SetLastDeliveryAtNil() {
-	o.LastDeliveryAt.Set(nil)
-}
-
-// UnsetLastDeliveryAt ensures that no value is present for LastDeliveryAt, not even an explicit nil
-func (o *ListWebhooksItem) UnsetLastDeliveryAt() {
-	o.LastDeliveryAt.Unset()
-}
-
-// GetLastErrorAt returns the LastErrorAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWebhooksItem) GetLastErrorAt() time.Time {
-	if o == nil || o.LastErrorAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastErrorAt.Get()
-}
-
-// GetLastErrorAtOk returns a tuple with the LastErrorAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWebhooksItem) GetLastErrorAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastErrorAt.Get(), o.LastErrorAt.IsSet()
-}
-
-// HasLastErrorAt returns a boolean if a field has been set.
-func (o *ListWebhooksItem) HasLastErrorAt() bool {
-	if o != nil && o.LastErrorAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastErrorAt gets a reference to the given NullableTime and assigns it to the LastErrorAt field.
-func (o *ListWebhooksItem) SetLastErrorAt(v time.Time) {
-	o.LastErrorAt.Set(&v)
-}
-// SetLastErrorAtNil sets the value for LastErrorAt to be an explicit nil
-func (o *ListWebhooksItem) SetLastErrorAtNil() {
-	o.LastErrorAt.Set(nil)
-}
-
-// UnsetLastErrorAt ensures that no value is present for LastErrorAt, not even an explicit nil
-func (o *ListWebhooksItem) UnsetLastErrorAt() {
-	o.LastErrorAt.Unset()
-}
-
-// GetLastError returns the LastError field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListWebhooksItem) GetLastError() string {
-	if o == nil || o.LastError.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LastError.Get()
-}
-
-// GetLastErrorOk returns a tuple with the LastError field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListWebhooksItem) GetLastErrorOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastError.Get(), o.LastError.IsSet()
-}
-
-// HasLastError returns a boolean if a field has been set.
-func (o *ListWebhooksItem) HasLastError() bool {
-	if o != nil && o.LastError.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastError gets a reference to the given NullableString and assigns it to the LastError field.
-func (o *ListWebhooksItem) SetLastError(v string) {
-	o.LastError.Set(&v)
-}
-// SetLastErrorNil sets the value for LastError to be an explicit nil
-func (o *ListWebhooksItem) SetLastErrorNil() {
-	o.LastError.Set(nil)
-}
-
-// UnsetLastError ensures that no value is present for LastError, not even an explicit nil
-func (o *ListWebhooksItem) UnsetLastError() {
-	o.LastError.Unset()
-}
-
-// GetConsecutiveFailures returns the ConsecutiveFailures field value
-func (o *ListWebhooksItem) GetConsecutiveFailures() float32 {
+// GetOutCents returns the OutCents field value
+func (o *InCentsOutCents) GetOutCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.ConsecutiveFailures
+	return o.OutCents
 }
 
-// GetConsecutiveFailuresOk returns a tuple with the ConsecutiveFailures field value
+// GetOutCentsOk returns a tuple with the OutCents field value
 // and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetConsecutiveFailuresOk() (*float32, bool) {
+func (o *InCentsOutCents) GetOutCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ConsecutiveFailures, true
+	return &o.OutCents, true
 }
 
-// SetConsecutiveFailures sets field value
-func (o *ListWebhooksItem) SetConsecutiveFailures(v float32) {
-	o.ConsecutiveFailures = v
+// SetOutCents sets field value
+func (o *InCentsOutCents) SetOutCents(v float32) {
+	o.OutCents = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListWebhooksItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListWebhooksItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-func (o ListWebhooksItem) MarshalJSON() ([]byte, error) {
+func (o InCentsOutCents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["id"] = o.Id
+		toSerialize["inCents"] = o.InCents
 	}
 	if true {
-		toSerialize["url"] = o.Url
-	}
-	if true {
-		toSerialize["events"] = o.Events
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if o.LastDeliveryAt.IsSet() {
-		toSerialize["lastDeliveryAt"] = o.LastDeliveryAt.Get()
-	}
-	if o.LastErrorAt.IsSet() {
-		toSerialize["lastErrorAt"] = o.LastErrorAt.Get()
-	}
-	if o.LastError.IsSet() {
-		toSerialize["lastError"] = o.LastError.Get()
-	}
-	if true {
-		toSerialize["consecutiveFailures"] = o.ConsecutiveFailures
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["outCents"] = o.OutCents
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListWebhooksItem struct {
-	value *ListWebhooksItem
+type NullableInCentsOutCents struct {
+	value *InCentsOutCents
 	isSet bool
 }
 
-func (v NullableListWebhooksItem) Get() *ListWebhooksItem {
+func (v NullableInCentsOutCents) Get() *InCentsOutCents {
 	return v.value
 }
 
-func (v *NullableListWebhooksItem) Set(val *ListWebhooksItem) {
+func (v *NullableInCentsOutCents) Set(val *InCentsOutCents) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWebhooksItem) IsSet() bool {
+func (v NullableInCentsOutCents) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWebhooksItem) Unset() {
+func (v *NullableInCentsOutCents) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWebhooksItem(val *ListWebhooksItem) *NullableListWebhooksItem {
-	return &NullableListWebhooksItem{value: val, isSet: true}
+func NewNullableInCentsOutCents(val *InCentsOutCents) *NullableInCentsOutCents {
+	return &NullableInCentsOutCents{value: val, isSet: true}
 }
 
-func (v NullableListWebhooksItem) MarshalJSON() ([]byte, error) {
+func (v NullableInCentsOutCents) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWebhooksItem) UnmarshalJSON(src []byte) error {
+func (v *NullableInCentsOutCents) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListWebhooksResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListWebhooksResponse struct {
-	// The rows.
-	Data []ListWebhooksItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
-}
-
-// NewListWebhooksResponse instantiates a new ListWebhooksResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewListWebhooksResponse(data []ListWebhooksItem) *ListWebhooksResponse {
-	this := ListWebhooksResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewListWebhooksResponseWithDefaults instantiates a new ListWebhooksResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewListWebhooksResponseWithDefaults() *ListWebhooksResponse {
-	this := ListWebhooksResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *ListWebhooksResponse) GetData() []ListWebhooksItem {
-	if o == nil {
-		var ret []ListWebhooksItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksResponse) GetDataOk() ([]ListWebhooksItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// SetData sets field value
-func (o *ListWebhooksResponse) SetData(v []ListWebhooksItem) {
-	o.Data = v
-}
-
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListWebhooksResponse) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
-		var ret Pagination
-		return ret
-	}
-	return *o.Pagination
-}
-
-// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksResponse) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
-		return nil, false
-	}
-	return o.Pagination, true
-}
-
-// HasPagination returns a boolean if a field has been set.
-func (o *ListWebhooksResponse) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListWebhooksResponse) SetPagination(v Pagination) {
-	o.Pagination = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListWebhooksResponse) GetMeta() map[string]map[string]interface{} {
-	if o == nil || o.Meta == nil {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListWebhooksResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListWebhooksResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListWebhooksResponse) SetMeta(v map[string]map[string]interface{}) {
-	o.Meta = v
-}
-
-func (o ListWebhooksResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	if o.Pagination != nil {
-		toSerialize["pagination"] = o.Pagination
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableListWebhooksResponse struct {
-	value *ListWebhooksResponse
-	isSet bool
-}
-
-func (v NullableListWebhooksResponse) Get() *ListWebhooksResponse {
-	return v.value
-}
-
-func (v *NullableListWebhooksResponse) Set(val *ListWebhooksResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListWebhooksResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListWebhooksResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListWebhooksResponse(val *ListWebhooksResponse) *NullableListWebhooksResponse {
-	return &NullableListWebhooksResponse{value: val, isSet: true}
-}
-
-func (v NullableListWebhooksResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListWebhooksResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// LowCentsHighCents struct for LowCentsHighCents
-type LowCentsHighCents struct {
-	LowCents float32 `json:"lowCents"`
-	HighCents float32 `json:"highCents"`
-}
-
-// NewLowCentsHighCents instantiates a new LowCentsHighCents object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLowCentsHighCents(lowCents float32, highCents float32) *LowCentsHighCents {
-	this := LowCentsHighCents{}
-	this.LowCents = lowCents
-	this.HighCents = highCents
-	return &this
-}
-
-// NewLowCentsHighCentsWithDefaults instantiates a new LowCentsHighCents object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewLowCentsHighCentsWithDefaults() *LowCentsHighCents {
-	this := LowCentsHighCents{}
-	return &this
-}
-
-// GetLowCents returns the LowCents field value
-func (o *LowCentsHighCents) GetLowCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.LowCents
-}
-
-// GetLowCentsOk returns a tuple with the LowCents field value
-// and a boolean to check if the value has been set.
-func (o *LowCentsHighCents) GetLowCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LowCents, true
-}
-
-// SetLowCents sets field value
-func (o *LowCentsHighCents) SetLowCents(v float32) {
-	o.LowCents = v
-}
-
-// GetHighCents returns the HighCents field value
-func (o *LowCentsHighCents) GetHighCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.HighCents
-}
-
-// GetHighCentsOk returns a tuple with the HighCents field value
-// and a boolean to check if the value has been set.
-func (o *LowCentsHighCents) GetHighCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.HighCents, true
-}
-
-// SetHighCents sets field value
-func (o *LowCentsHighCents) SetHighCents(v float32) {
-	o.HighCents = v
-}
-
-func (o LowCentsHighCents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["lowCents"] = o.LowCents
-	}
-	if true {
-		toSerialize["highCents"] = o.HighCents
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableLowCentsHighCents struct {
-	value *LowCentsHighCents
-	isSet bool
-}
-
-func (v NullableLowCentsHighCents) Get() *LowCentsHighCents {
-	return v.value
-}
-
-func (v *NullableLowCentsHighCents) Set(val *LowCentsHighCents) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLowCentsHighCents) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLowCentsHighCents) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLowCentsHighCents(val *LowCentsHighCents) *NullableLowCentsHighCents {
-	return &NullableLowCentsHighCents{value: val, isSet: true}
-}
-
-func (v NullableLowCentsHighCents) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLowCentsHighCents) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// MainSub struct for MainSub
-type MainSub struct {
-	Main NullableString `json:"main,omitempty"`
-	Sub NullableString `json:"sub,omitempty"`
-}
-
-// NewMainSub instantiates a new MainSub object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMainSub() *MainSub {
-	this := MainSub{}
-	return &this
-}
-
-// NewMainSubWithDefaults instantiates a new MainSub object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewMainSubWithDefaults() *MainSub {
-	this := MainSub{}
-	return &this
-}
-
-// GetMain returns the Main field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MainSub) GetMain() string {
-	if o == nil || o.Main.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Main.Get()
-}
-
-// GetMainOk returns a tuple with the Main field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MainSub) GetMainOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Main.Get(), o.Main.IsSet()
-}
-
-// HasMain returns a boolean if a field has been set.
-func (o *MainSub) HasMain() bool {
-	if o != nil && o.Main.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMain gets a reference to the given NullableString and assigns it to the Main field.
-func (o *MainSub) SetMain(v string) {
-	o.Main.Set(&v)
-}
-// SetMainNil sets the value for Main to be an explicit nil
-func (o *MainSub) SetMainNil() {
-	o.Main.Set(nil)
-}
-
-// UnsetMain ensures that no value is present for Main, not even an explicit nil
-func (o *MainSub) UnsetMain() {
-	o.Main.Unset()
-}
-
-// GetSub returns the Sub field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MainSub) GetSub() string {
-	if o == nil || o.Sub.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Sub.Get()
-}
-
-// GetSubOk returns a tuple with the Sub field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MainSub) GetSubOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Sub.Get(), o.Sub.IsSet()
-}
-
-// HasSub returns a boolean if a field has been set.
-func (o *MainSub) HasSub() bool {
-	if o != nil && o.Sub.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSub gets a reference to the given NullableString and assigns it to the Sub field.
-func (o *MainSub) SetSub(v string) {
-	o.Sub.Set(&v)
-}
-// SetSubNil sets the value for Sub to be an explicit nil
-func (o *MainSub) SetSubNil() {
-	o.Sub.Set(nil)
-}
-
-// UnsetSub ensures that no value is present for Sub, not even an explicit nil
-func (o *MainSub) UnsetSub() {
-	o.Sub.Unset()
-}
-
-func (o MainSub) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Main.IsSet() {
-		toSerialize["main"] = o.Main.Get()
-	}
-	if o.Sub.IsSet() {
-		toSerialize["sub"] = o.Sub.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableMainSub struct {
-	value *MainSub
-	isSet bool
-}
-
-func (v NullableMainSub) Get() *MainSub {
-	return v.value
-}
-
-func (v *NullableMainSub) Set(val *MainSub) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMainSub) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMainSub) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMainSub(val *MainSub) *NullableMainSub {
-	return &NullableMainSub{value: val, isSet: true}
-}
-
-func (v NullableMainSub) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMainSub) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// MakerTaker struct for MakerTaker
-type MakerTaker struct {
-	Maker float32 `json:"maker"`
-	Taker float32 `json:"taker"`
-}
-
-// NewMakerTaker instantiates a new MakerTaker object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMakerTaker(maker float32, taker float32) *MakerTaker {
-	this := MakerTaker{}
-	this.Maker = maker
-	this.Taker = taker
-	return &this
-}
-
-// NewMakerTakerWithDefaults instantiates a new MakerTaker object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewMakerTakerWithDefaults() *MakerTaker {
-	this := MakerTaker{}
-	return &this
-}
-
-// GetMaker returns the Maker field value
-func (o *MakerTaker) GetMaker() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Maker
-}
-
-// GetMakerOk returns a tuple with the Maker field value
-// and a boolean to check if the value has been set.
-func (o *MakerTaker) GetMakerOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Maker, true
-}
-
-// SetMaker sets field value
-func (o *MakerTaker) SetMaker(v float32) {
-	o.Maker = v
-}
-
-// GetTaker returns the Taker field value
-func (o *MakerTaker) GetTaker() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Taker
-}
-
-// GetTakerOk returns a tuple with the Taker field value
-// and a boolean to check if the value has been set.
-func (o *MakerTaker) GetTakerOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Taker, true
-}
-
-// SetTaker sets field value
-func (o *MakerTaker) SetTaker(v float32) {
-	o.Taker = v
-}
-
-func (o MakerTaker) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["maker"] = o.Maker
-	}
-	if true {
-		toSerialize["taker"] = o.Taker
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableMakerTaker struct {
-	value *MakerTaker
-	isSet bool
-}
-
-func (v NullableMakerTaker) Get() *MakerTaker {
-	return v.value
-}
-
-func (v *NullableMakerTaker) Set(val *MakerTaker) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMakerTaker) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMakerTaker) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMakerTaker(val *MakerTaker) *NullableMakerTaker {
-	return &NullableMakerTaker{value: val, isSet: true}
-}
-
-func (v NullableMakerTaker) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMakerTaker) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// NameSlug struct for NameSlug
-type NameSlug struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
-}
-
-// NewNameSlug instantiates a new NameSlug object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNameSlug(name string, slug string) *NameSlug {
-	this := NameSlug{}
-	this.Name = name
-	this.Slug = slug
-	return &this
-}
-
-// NewNameSlugWithDefaults instantiates a new NameSlug object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewNameSlugWithDefaults() *NameSlug {
-	this := NameSlug{}
-	return &this
-}
-
-// GetName returns the Name field value
-func (o *NameSlug) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *NameSlug) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *NameSlug) SetName(v string) {
-	o.Name = v
-}
-
-// GetSlug returns the Slug field value
-func (o *NameSlug) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *NameSlug) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *NameSlug) SetSlug(v string) {
-	o.Slug = v
-}
-
-func (o NameSlug) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableNameSlug struct {
-	value *NameSlug
-	isSet bool
-}
-
-func (v NullableNameSlug) Get() *NameSlug {
-	return v.value
-}
-
-func (v *NullableNameSlug) Set(val *NameSlug) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNameSlug) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNameSlug) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNameSlug(val *NameSlug) *NullableNameSlug {
-	return &NullableNameSlug{value: val, isSet: true}
-}
-
-func (v NullableNameSlug) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNameSlug) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// OkResponse struct for OkResponse
-type OkResponse struct {
-	Ok bool `json:"ok"`
-}
-
-// NewOkResponse instantiates a new OkResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOkResponse(ok bool) *OkResponse {
-	this := OkResponse{}
-	this.Ok = ok
-	return &this
-}
-
-// NewOkResponseWithDefaults instantiates a new OkResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewOkResponseWithDefaults() *OkResponse {
-	this := OkResponse{}
-	return &this
-}
-
-// GetOk returns the Ok field value
-func (o *OkResponse) GetOk() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Ok
-}
-
-// GetOkOk returns a tuple with the Ok field value
-// and a boolean to check if the value has been set.
-func (o *OkResponse) GetOkOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Ok, true
-}
-
-// SetOk sets field value
-func (o *OkResponse) SetOk(v bool) {
-	o.Ok = v
-}
-
-func (o OkResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ok"] = o.Ok
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableOkResponse struct {
-	value *OkResponse
-	isSet bool
-}
-
-func (v NullableOkResponse) Get() *OkResponse {
-	return v.value
-}
-
-func (v *NullableOkResponse) Set(val *OkResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOkResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOkResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOkResponse(val *OkResponse) *NullableOkResponse {
-	return &NullableOkResponse{value: val, isSet: true}
-}
-
-func (v NullableOkResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOkResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// OrderHashResponse struct for OrderHashResponse
-type OrderHashResponse struct {
-	OrderHash string `json:"orderHash"`
-}
-
-// NewOrderHashResponse instantiates a new OrderHashResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOrderHashResponse(orderHash string) *OrderHashResponse {
-	this := OrderHashResponse{}
-	this.OrderHash = orderHash
-	return &this
-}
-
-// NewOrderHashResponseWithDefaults instantiates a new OrderHashResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewOrderHashResponseWithDefaults() *OrderHashResponse {
-	this := OrderHashResponse{}
-	return &this
-}
-
-// GetOrderHash returns the OrderHash field value
-func (o *OrderHashResponse) GetOrderHash() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OrderHash
-}
-
-// GetOrderHashOk returns a tuple with the OrderHash field value
-// and a boolean to check if the value has been set.
-func (o *OrderHashResponse) GetOrderHashOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OrderHash, true
-}
-
-// SetOrderHash sets field value
-func (o *OrderHashResponse) SetOrderHash(v string) {
-	o.OrderHash = v
-}
-
-func (o OrderHashResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["orderHash"] = o.OrderHash
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableOrderHashResponse struct {
-	value *OrderHashResponse
-	isSet bool
-}
-
-func (v NullableOrderHashResponse) Get() *OrderHashResponse {
-	return v.value
-}
-
-func (v *NullableOrderHashResponse) Set(val *OrderHashResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrderHashResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrderHashResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrderHashResponse(val *OrderHashResponse) *NullableOrderHashResponse {
-	return &NullableOrderHashResponse{value: val, isSet: true}
-}
-
-func (v NullableOrderHashResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrderHashResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// Pagination Present only when the endpoint pages. Absent — not null — when it returns everything.
-type Pagination struct {
-	// 1-indexed page number.
-	Page int32 `json:"page"`
-	// Rows per page.
-	Limit int32 `json:"limit"`
-	// Total matching rows, when the endpoint counts them.
-	Total *int32 `json:"total,omitempty"`
-	// Derived from total and limit.
-	TotalPages *int32 `json:"totalPages,omitempty"`
-}
-
-// NewPagination instantiates a new Pagination object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPagination(page int32, limit int32) *Pagination {
-	this := Pagination{}
-	this.Page = page
-	this.Limit = limit
-	return &this
-}
-
-// NewPaginationWithDefaults instantiates a new Pagination object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewPaginationWithDefaults() *Pagination {
-	this := Pagination{}
-	return &this
-}
-
-// GetPage returns the Page field value
-func (o *Pagination) GetPage() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Page
-}
-
-// GetPageOk returns a tuple with the Page field value
-// and a boolean to check if the value has been set.
-func (o *Pagination) GetPageOk() (*int32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Page, true
-}
-
-// SetPage sets field value
-func (o *Pagination) SetPage(v int32) {
-	o.Page = v
-}
-
-// GetLimit returns the Limit field value
-func (o *Pagination) GetLimit() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Limit
-}
-
-// GetLimitOk returns a tuple with the Limit field value
-// and a boolean to check if the value has been set.
-func (o *Pagination) GetLimitOk() (*int32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Limit, true
-}
-
-// SetLimit sets field value
-func (o *Pagination) SetLimit(v int32) {
-	o.Limit = v
-}
-
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *Pagination) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Total
-}
-
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Pagination) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
-		return nil, false
-	}
-	return o.Total, true
-}
-
-// HasTotal returns a boolean if a field has been set.
-func (o *Pagination) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *Pagination) SetTotal(v int32) {
-	o.Total = &v
-}
-
-// GetTotalPages returns the TotalPages field value if set, zero value otherwise.
-func (o *Pagination) GetTotalPages() int32 {
-	if o == nil || o.TotalPages == nil {
-		var ret int32
-		return ret
-	}
-	return *o.TotalPages
-}
-
-// GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Pagination) GetTotalPagesOk() (*int32, bool) {
-	if o == nil || o.TotalPages == nil {
-		return nil, false
-	}
-	return o.TotalPages, true
-}
-
-// HasTotalPages returns a boolean if a field has been set.
-func (o *Pagination) HasTotalPages() bool {
-	if o != nil && o.TotalPages != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalPages gets a reference to the given int32 and assigns it to the TotalPages field.
-func (o *Pagination) SetTotalPages(v int32) {
-	o.TotalPages = &v
-}
-
-func (o Pagination) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["page"] = o.Page
-	}
-	if true {
-		toSerialize["limit"] = o.Limit
-	}
-	if o.Total != nil {
-		toSerialize["total"] = o.Total
-	}
-	if o.TotalPages != nil {
-		toSerialize["totalPages"] = o.TotalPages
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullablePagination struct {
-	value *Pagination
-	isSet bool
-}
-
-func (v NullablePagination) Get() *Pagination {
-	return v.value
-}
-
-func (v *NullablePagination) Set(val *Pagination) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePagination) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePagination) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePagination(val *Pagination) *NullablePagination {
-	return &NullablePagination{value: val, isSet: true}
-}
-
-func (v NullablePagination) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePagination) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// PassportResponse struct for PassportResponse
-type PassportResponse struct {
-	Data ListPassportsItem `json:"data"`
-}
-
-// NewPassportResponse instantiates a new PassportResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPassportResponse(data ListPassportsItem) *PassportResponse {
-	this := PassportResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewPassportResponseWithDefaults instantiates a new PassportResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewPassportResponseWithDefaults() *PassportResponse {
-	this := PassportResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *PassportResponse) GetData() ListPassportsItem {
-	if o == nil {
-		var ret ListPassportsItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *PassportResponse) GetDataOk() (*ListPassportsItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *PassportResponse) SetData(v ListPassportsItem) {
-	o.Data = v
-}
-
-func (o PassportResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullablePassportResponse struct {
-	value *PassportResponse
-	isSet bool
-}
-
-func (v NullablePassportResponse) Get() *PassportResponse {
-	return v.value
-}
-
-func (v *NullablePassportResponse) Set(val *PassportResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePassportResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePassportResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePassportResponse(val *PassportResponse) *NullablePassportResponse {
-	return &NullablePassportResponse{value: val, isSet: true}
-}
-
-func (v NullablePassportResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePassportResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// RentalResponse struct for RentalResponse
-type RentalResponse struct {
-	Data RentalResponseData `json:"data"`
-}
-
-// NewRentalResponse instantiates a new RentalResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRentalResponse(data RentalResponseData) *RentalResponse {
-	this := RentalResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewRentalResponseWithDefaults instantiates a new RentalResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewRentalResponseWithDefaults() *RentalResponse {
-	this := RentalResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *RentalResponse) GetData() RentalResponseData {
-	if o == nil {
-		var ret RentalResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponse) GetDataOk() (*RentalResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *RentalResponse) SetData(v RentalResponseData) {
-	o.Data = v
-}
-
-func (o RentalResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableRentalResponse struct {
-	value *RentalResponse
-	isSet bool
-}
-
-func (v NullableRentalResponse) Get() *RentalResponse {
-	return v.value
-}
-
-func (v *NullableRentalResponse) Set(val *RentalResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRentalResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRentalResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRentalResponse(val *RentalResponse) *NullableRentalResponse {
-	return &NullableRentalResponse{value: val, isSet: true}
-}
-
-func (v NullableRentalResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRentalResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// RentalResponseData struct for RentalResponseData
-type RentalResponseData struct {
-	Id string `json:"id"`
-	CreatedAt time.Time `json:"createdAt"`
-	Status string `json:"status"`
-	CancelledAt NullableTime `json:"cancelledAt,omitempty"`
-	PlatformListingId string `json:"platformListingId"`
-	ShippedAt NullableTime `json:"shippedAt,omitempty"`
-	SellerUserId string `json:"sellerUserId"`
-	StripePaymentIntentId NullableString `json:"stripePaymentIntentId,omitempty"`
-	CrosslyFeeCents float32 `json:"crosslyFeeCents"`
-	ShippingCents float32 `json:"shippingCents"`
-	ReturnLabelUrl NullableString `json:"returnLabelUrl,omitempty"`
-	ClosedAt NullableTime `json:"closedAt,omitempty"`
-	OutboundLabelUrl NullableString `json:"outboundLabelUrl,omitempty"`
-	DepositCents float32 `json:"depositCents"`
-	ClaimedAt NullableTime `json:"claimedAt,omitempty"`
-	ShipTo map[string]interface{} `json:"shipTo"`
-	OutboundTracking NullableString `json:"outboundTracking,omitempty"`
-	RenterUserId string `json:"renterUserId"`
-	StartDate string `json:"startDate"`
-	EndDate string `json:"endDate"`
-	Days float32 `json:"days"`
-	RentCents float32 `json:"rentCents"`
-	ShipFrom map[string]interface{} `json:"shipFrom,omitempty"`
-	ReturnTracking NullableString `json:"returnTracking,omitempty"`
-	ReturnedAt NullableTime `json:"returnedAt,omitempty"`
-	ClaimCents float32 `json:"claimCents"`
-	ClaimNote NullableString `json:"claimNote,omitempty"`
-	ClaimPhotos []string `json:"claimPhotos"`
-	ClaimDisputed bool `json:"claimDisputed"`
-	DepositRefundedCents float32 `json:"depositRefundedCents"`
-	ApprovalDueAt NullableTime `json:"approvalDueAt,omitempty"`
-	ConditionPhotosOut []string `json:"conditionPhotosOut"`
-	ConditionPhotosIn []string `json:"conditionPhotosIn"`
-}
-
-// NewRentalResponseData instantiates a new RentalResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRentalResponseData(id string, createdAt time.Time, status string, platformListingId string, sellerUserId string, crosslyFeeCents float32, shippingCents float32, depositCents float32, shipTo map[string]interface{}, renterUserId string, startDate string, endDate string, days float32, rentCents float32, claimCents float32, claimPhotos []string, claimDisputed bool, depositRefundedCents float32, conditionPhotosOut []string, conditionPhotosIn []string) *RentalResponseData {
-	this := RentalResponseData{}
-	this.Id = id
-	this.CreatedAt = createdAt
-	this.Status = status
-	this.PlatformListingId = platformListingId
-	this.SellerUserId = sellerUserId
-	this.CrosslyFeeCents = crosslyFeeCents
-	this.ShippingCents = shippingCents
-	this.DepositCents = depositCents
-	this.ShipTo = shipTo
-	this.RenterUserId = renterUserId
-	this.StartDate = startDate
-	this.EndDate = endDate
-	this.Days = days
-	this.RentCents = rentCents
-	this.ClaimCents = claimCents
-	this.ClaimPhotos = claimPhotos
-	this.ClaimDisputed = claimDisputed
-	this.DepositRefundedCents = depositRefundedCents
-	this.ConditionPhotosOut = conditionPhotosOut
-	this.ConditionPhotosIn = conditionPhotosIn
-	return &this
-}
-
-// NewRentalResponseDataWithDefaults instantiates a new RentalResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewRentalResponseDataWithDefaults() *RentalResponseData {
-	this := RentalResponseData{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *RentalResponseData) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *RentalResponseData) SetId(v string) {
-	o.Id = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *RentalResponseData) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *RentalResponseData) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetStatus returns the Status field value
-func (o *RentalResponseData) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *RentalResponseData) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetCancelledAt returns the CancelledAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetCancelledAt() time.Time {
-	if o == nil || o.CancelledAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CancelledAt.Get()
-}
-
-// GetCancelledAtOk returns a tuple with the CancelledAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetCancelledAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CancelledAt.Get(), o.CancelledAt.IsSet()
-}
-
-// HasCancelledAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasCancelledAt() bool {
-	if o != nil && o.CancelledAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCancelledAt gets a reference to the given NullableTime and assigns it to the CancelledAt field.
-func (o *RentalResponseData) SetCancelledAt(v time.Time) {
-	o.CancelledAt.Set(&v)
-}
-// SetCancelledAtNil sets the value for CancelledAt to be an explicit nil
-func (o *RentalResponseData) SetCancelledAtNil() {
-	o.CancelledAt.Set(nil)
-}
-
-// UnsetCancelledAt ensures that no value is present for CancelledAt, not even an explicit nil
-func (o *RentalResponseData) UnsetCancelledAt() {
-	o.CancelledAt.Unset()
-}
-
-// GetPlatformListingId returns the PlatformListingId field value
-func (o *RentalResponseData) GetPlatformListingId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PlatformListingId
-}
-
-// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetPlatformListingIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PlatformListingId, true
-}
-
-// SetPlatformListingId sets field value
-func (o *RentalResponseData) SetPlatformListingId(v string) {
-	o.PlatformListingId = v
-}
-
-// GetShippedAt returns the ShippedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetShippedAt() time.Time {
-	if o == nil || o.ShippedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ShippedAt.Get()
-}
-
-// GetShippedAtOk returns a tuple with the ShippedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetShippedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
-}
-
-// HasShippedAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasShippedAt() bool {
-	if o != nil && o.ShippedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetShippedAt gets a reference to the given NullableTime and assigns it to the ShippedAt field.
-func (o *RentalResponseData) SetShippedAt(v time.Time) {
-	o.ShippedAt.Set(&v)
-}
-// SetShippedAtNil sets the value for ShippedAt to be an explicit nil
-func (o *RentalResponseData) SetShippedAtNil() {
-	o.ShippedAt.Set(nil)
-}
-
-// UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
-func (o *RentalResponseData) UnsetShippedAt() {
-	o.ShippedAt.Unset()
-}
-
-// GetSellerUserId returns the SellerUserId field value
-func (o *RentalResponseData) GetSellerUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SellerUserId
-}
-
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetSellerUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SellerUserId, true
-}
-
-// SetSellerUserId sets field value
-func (o *RentalResponseData) SetSellerUserId(v string) {
-	o.SellerUserId = v
-}
-
-// GetStripePaymentIntentId returns the StripePaymentIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetStripePaymentIntentId() string {
-	if o == nil || o.StripePaymentIntentId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.StripePaymentIntentId.Get()
-}
-
-// GetStripePaymentIntentIdOk returns a tuple with the StripePaymentIntentId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetStripePaymentIntentIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.StripePaymentIntentId.Get(), o.StripePaymentIntentId.IsSet()
-}
-
-// HasStripePaymentIntentId returns a boolean if a field has been set.
-func (o *RentalResponseData) HasStripePaymentIntentId() bool {
-	if o != nil && o.StripePaymentIntentId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStripePaymentIntentId gets a reference to the given NullableString and assigns it to the StripePaymentIntentId field.
-func (o *RentalResponseData) SetStripePaymentIntentId(v string) {
-	o.StripePaymentIntentId.Set(&v)
-}
-// SetStripePaymentIntentIdNil sets the value for StripePaymentIntentId to be an explicit nil
-func (o *RentalResponseData) SetStripePaymentIntentIdNil() {
-	o.StripePaymentIntentId.Set(nil)
-}
-
-// UnsetStripePaymentIntentId ensures that no value is present for StripePaymentIntentId, not even an explicit nil
-func (o *RentalResponseData) UnsetStripePaymentIntentId() {
-	o.StripePaymentIntentId.Unset()
-}
-
-// GetCrosslyFeeCents returns the CrosslyFeeCents field value
-func (o *RentalResponseData) GetCrosslyFeeCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.CrosslyFeeCents
-}
-
-// GetCrosslyFeeCentsOk returns a tuple with the CrosslyFeeCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetCrosslyFeeCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CrosslyFeeCents, true
-}
-
-// SetCrosslyFeeCents sets field value
-func (o *RentalResponseData) SetCrosslyFeeCents(v float32) {
-	o.CrosslyFeeCents = v
-}
-
-// GetShippingCents returns the ShippingCents field value
-func (o *RentalResponseData) GetShippingCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ShippingCents
-}
-
-// GetShippingCentsOk returns a tuple with the ShippingCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetShippingCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ShippingCents, true
-}
-
-// SetShippingCents sets field value
-func (o *RentalResponseData) SetShippingCents(v float32) {
-	o.ShippingCents = v
-}
-
-// GetReturnLabelUrl returns the ReturnLabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetReturnLabelUrl() string {
-	if o == nil || o.ReturnLabelUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReturnLabelUrl.Get()
-}
-
-// GetReturnLabelUrlOk returns a tuple with the ReturnLabelUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetReturnLabelUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReturnLabelUrl.Get(), o.ReturnLabelUrl.IsSet()
-}
-
-// HasReturnLabelUrl returns a boolean if a field has been set.
-func (o *RentalResponseData) HasReturnLabelUrl() bool {
-	if o != nil && o.ReturnLabelUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReturnLabelUrl gets a reference to the given NullableString and assigns it to the ReturnLabelUrl field.
-func (o *RentalResponseData) SetReturnLabelUrl(v string) {
-	o.ReturnLabelUrl.Set(&v)
-}
-// SetReturnLabelUrlNil sets the value for ReturnLabelUrl to be an explicit nil
-func (o *RentalResponseData) SetReturnLabelUrlNil() {
-	o.ReturnLabelUrl.Set(nil)
-}
-
-// UnsetReturnLabelUrl ensures that no value is present for ReturnLabelUrl, not even an explicit nil
-func (o *RentalResponseData) UnsetReturnLabelUrl() {
-	o.ReturnLabelUrl.Unset()
-}
-
-// GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetClosedAt() time.Time {
-	if o == nil || o.ClosedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ClosedAt.Get()
-}
-
-// GetClosedAtOk returns a tuple with the ClosedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetClosedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ClosedAt.Get(), o.ClosedAt.IsSet()
-}
-
-// HasClosedAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasClosedAt() bool {
-	if o != nil && o.ClosedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClosedAt gets a reference to the given NullableTime and assigns it to the ClosedAt field.
-func (o *RentalResponseData) SetClosedAt(v time.Time) {
-	o.ClosedAt.Set(&v)
-}
-// SetClosedAtNil sets the value for ClosedAt to be an explicit nil
-func (o *RentalResponseData) SetClosedAtNil() {
-	o.ClosedAt.Set(nil)
-}
-
-// UnsetClosedAt ensures that no value is present for ClosedAt, not even an explicit nil
-func (o *RentalResponseData) UnsetClosedAt() {
-	o.ClosedAt.Unset()
-}
-
-// GetOutboundLabelUrl returns the OutboundLabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetOutboundLabelUrl() string {
-	if o == nil || o.OutboundLabelUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OutboundLabelUrl.Get()
-}
-
-// GetOutboundLabelUrlOk returns a tuple with the OutboundLabelUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetOutboundLabelUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OutboundLabelUrl.Get(), o.OutboundLabelUrl.IsSet()
-}
-
-// HasOutboundLabelUrl returns a boolean if a field has been set.
-func (o *RentalResponseData) HasOutboundLabelUrl() bool {
-	if o != nil && o.OutboundLabelUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOutboundLabelUrl gets a reference to the given NullableString and assigns it to the OutboundLabelUrl field.
-func (o *RentalResponseData) SetOutboundLabelUrl(v string) {
-	o.OutboundLabelUrl.Set(&v)
-}
-// SetOutboundLabelUrlNil sets the value for OutboundLabelUrl to be an explicit nil
-func (o *RentalResponseData) SetOutboundLabelUrlNil() {
-	o.OutboundLabelUrl.Set(nil)
-}
-
-// UnsetOutboundLabelUrl ensures that no value is present for OutboundLabelUrl, not even an explicit nil
-func (o *RentalResponseData) UnsetOutboundLabelUrl() {
-	o.OutboundLabelUrl.Unset()
-}
-
-// GetDepositCents returns the DepositCents field value
-func (o *RentalResponseData) GetDepositCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.DepositCents
-}
-
-// GetDepositCentsOk returns a tuple with the DepositCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetDepositCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DepositCents, true
-}
-
-// SetDepositCents sets field value
-func (o *RentalResponseData) SetDepositCents(v float32) {
-	o.DepositCents = v
-}
-
-// GetClaimedAt returns the ClaimedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetClaimedAt() time.Time {
-	if o == nil || o.ClaimedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ClaimedAt.Get()
-}
-
-// GetClaimedAtOk returns a tuple with the ClaimedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetClaimedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ClaimedAt.Get(), o.ClaimedAt.IsSet()
-}
-
-// HasClaimedAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasClaimedAt() bool {
-	if o != nil && o.ClaimedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClaimedAt gets a reference to the given NullableTime and assigns it to the ClaimedAt field.
-func (o *RentalResponseData) SetClaimedAt(v time.Time) {
-	o.ClaimedAt.Set(&v)
-}
-// SetClaimedAtNil sets the value for ClaimedAt to be an explicit nil
-func (o *RentalResponseData) SetClaimedAtNil() {
-	o.ClaimedAt.Set(nil)
-}
-
-// UnsetClaimedAt ensures that no value is present for ClaimedAt, not even an explicit nil
-func (o *RentalResponseData) UnsetClaimedAt() {
-	o.ClaimedAt.Unset()
-}
-
-// GetShipTo returns the ShipTo field value
-func (o *RentalResponseData) GetShipTo() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.ShipTo
-}
-
-// GetShipToOk returns a tuple with the ShipTo field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetShipToOk() (map[string]interface{}, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ShipTo, true
-}
-
-// SetShipTo sets field value
-func (o *RentalResponseData) SetShipTo(v map[string]interface{}) {
-	o.ShipTo = v
-}
-
-// GetOutboundTracking returns the OutboundTracking field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetOutboundTracking() string {
-	if o == nil || o.OutboundTracking.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OutboundTracking.Get()
-}
-
-// GetOutboundTrackingOk returns a tuple with the OutboundTracking field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetOutboundTrackingOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OutboundTracking.Get(), o.OutboundTracking.IsSet()
-}
-
-// HasOutboundTracking returns a boolean if a field has been set.
-func (o *RentalResponseData) HasOutboundTracking() bool {
-	if o != nil && o.OutboundTracking.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOutboundTracking gets a reference to the given NullableString and assigns it to the OutboundTracking field.
-func (o *RentalResponseData) SetOutboundTracking(v string) {
-	o.OutboundTracking.Set(&v)
-}
-// SetOutboundTrackingNil sets the value for OutboundTracking to be an explicit nil
-func (o *RentalResponseData) SetOutboundTrackingNil() {
-	o.OutboundTracking.Set(nil)
-}
-
-// UnsetOutboundTracking ensures that no value is present for OutboundTracking, not even an explicit nil
-func (o *RentalResponseData) UnsetOutboundTracking() {
-	o.OutboundTracking.Unset()
-}
-
-// GetRenterUserId returns the RenterUserId field value
-func (o *RentalResponseData) GetRenterUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RenterUserId
-}
-
-// GetRenterUserIdOk returns a tuple with the RenterUserId field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetRenterUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RenterUserId, true
-}
-
-// SetRenterUserId sets field value
-func (o *RentalResponseData) SetRenterUserId(v string) {
-	o.RenterUserId = v
-}
-
-// GetStartDate returns the StartDate field value
-func (o *RentalResponseData) GetStartDate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.StartDate
-}
-
-// GetStartDateOk returns a tuple with the StartDate field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetStartDateOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.StartDate, true
-}
-
-// SetStartDate sets field value
-func (o *RentalResponseData) SetStartDate(v string) {
-	o.StartDate = v
-}
-
-// GetEndDate returns the EndDate field value
-func (o *RentalResponseData) GetEndDate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndDate
-}
-
-// GetEndDateOk returns a tuple with the EndDate field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetEndDateOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EndDate, true
-}
-
-// SetEndDate sets field value
-func (o *RentalResponseData) SetEndDate(v string) {
-	o.EndDate = v
-}
-
-// GetDays returns the Days field value
-func (o *RentalResponseData) GetDays() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Days
-}
-
-// GetDaysOk returns a tuple with the Days field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetDaysOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Days, true
-}
-
-// SetDays sets field value
-func (o *RentalResponseData) SetDays(v float32) {
-	o.Days = v
-}
-
-// GetRentCents returns the RentCents field value
-func (o *RentalResponseData) GetRentCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RentCents
-}
-
-// GetRentCentsOk returns a tuple with the RentCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetRentCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RentCents, true
-}
-
-// SetRentCents sets field value
-func (o *RentalResponseData) SetRentCents(v float32) {
-	o.RentCents = v
-}
-
-// GetShipFrom returns the ShipFrom field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetShipFrom() map[string]interface{} {
-	if o == nil  {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.ShipFrom
-}
-
-// GetShipFromOk returns a tuple with the ShipFrom field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetShipFromOk() (map[string]interface{}, bool) {
-	if o == nil || o.ShipFrom == nil {
-		return nil, false
-	}
-	return o.ShipFrom, true
-}
-
-// HasShipFrom returns a boolean if a field has been set.
-func (o *RentalResponseData) HasShipFrom() bool {
-	if o != nil && o.ShipFrom != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetShipFrom gets a reference to the given map[string]interface{} and assigns it to the ShipFrom field.
-func (o *RentalResponseData) SetShipFrom(v map[string]interface{}) {
-	o.ShipFrom = v
-}
-
-// GetReturnTracking returns the ReturnTracking field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetReturnTracking() string {
-	if o == nil || o.ReturnTracking.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReturnTracking.Get()
-}
-
-// GetReturnTrackingOk returns a tuple with the ReturnTracking field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetReturnTrackingOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReturnTracking.Get(), o.ReturnTracking.IsSet()
-}
-
-// HasReturnTracking returns a boolean if a field has been set.
-func (o *RentalResponseData) HasReturnTracking() bool {
-	if o != nil && o.ReturnTracking.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReturnTracking gets a reference to the given NullableString and assigns it to the ReturnTracking field.
-func (o *RentalResponseData) SetReturnTracking(v string) {
-	o.ReturnTracking.Set(&v)
-}
-// SetReturnTrackingNil sets the value for ReturnTracking to be an explicit nil
-func (o *RentalResponseData) SetReturnTrackingNil() {
-	o.ReturnTracking.Set(nil)
-}
-
-// UnsetReturnTracking ensures that no value is present for ReturnTracking, not even an explicit nil
-func (o *RentalResponseData) UnsetReturnTracking() {
-	o.ReturnTracking.Unset()
-}
-
-// GetReturnedAt returns the ReturnedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetReturnedAt() time.Time {
-	if o == nil || o.ReturnedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ReturnedAt.Get()
-}
-
-// GetReturnedAtOk returns a tuple with the ReturnedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetReturnedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReturnedAt.Get(), o.ReturnedAt.IsSet()
-}
-
-// HasReturnedAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasReturnedAt() bool {
-	if o != nil && o.ReturnedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReturnedAt gets a reference to the given NullableTime and assigns it to the ReturnedAt field.
-func (o *RentalResponseData) SetReturnedAt(v time.Time) {
-	o.ReturnedAt.Set(&v)
-}
-// SetReturnedAtNil sets the value for ReturnedAt to be an explicit nil
-func (o *RentalResponseData) SetReturnedAtNil() {
-	o.ReturnedAt.Set(nil)
-}
-
-// UnsetReturnedAt ensures that no value is present for ReturnedAt, not even an explicit nil
-func (o *RentalResponseData) UnsetReturnedAt() {
-	o.ReturnedAt.Unset()
-}
-
-// GetClaimCents returns the ClaimCents field value
-func (o *RentalResponseData) GetClaimCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ClaimCents
-}
-
-// GetClaimCentsOk returns a tuple with the ClaimCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetClaimCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ClaimCents, true
-}
-
-// SetClaimCents sets field value
-func (o *RentalResponseData) SetClaimCents(v float32) {
-	o.ClaimCents = v
-}
-
-// GetClaimNote returns the ClaimNote field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetClaimNote() string {
-	if o == nil || o.ClaimNote.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ClaimNote.Get()
-}
-
-// GetClaimNoteOk returns a tuple with the ClaimNote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetClaimNoteOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ClaimNote.Get(), o.ClaimNote.IsSet()
-}
-
-// HasClaimNote returns a boolean if a field has been set.
-func (o *RentalResponseData) HasClaimNote() bool {
-	if o != nil && o.ClaimNote.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClaimNote gets a reference to the given NullableString and assigns it to the ClaimNote field.
-func (o *RentalResponseData) SetClaimNote(v string) {
-	o.ClaimNote.Set(&v)
-}
-// SetClaimNoteNil sets the value for ClaimNote to be an explicit nil
-func (o *RentalResponseData) SetClaimNoteNil() {
-	o.ClaimNote.Set(nil)
-}
-
-// UnsetClaimNote ensures that no value is present for ClaimNote, not even an explicit nil
-func (o *RentalResponseData) UnsetClaimNote() {
-	o.ClaimNote.Unset()
-}
-
-// GetClaimPhotos returns the ClaimPhotos field value
-func (o *RentalResponseData) GetClaimPhotos() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.ClaimPhotos
-}
-
-// GetClaimPhotosOk returns a tuple with the ClaimPhotos field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetClaimPhotosOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ClaimPhotos, true
-}
-
-// SetClaimPhotos sets field value
-func (o *RentalResponseData) SetClaimPhotos(v []string) {
-	o.ClaimPhotos = v
-}
-
-// GetClaimDisputed returns the ClaimDisputed field value
-func (o *RentalResponseData) GetClaimDisputed() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.ClaimDisputed
-}
-
-// GetClaimDisputedOk returns a tuple with the ClaimDisputed field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetClaimDisputedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ClaimDisputed, true
-}
-
-// SetClaimDisputed sets field value
-func (o *RentalResponseData) SetClaimDisputed(v bool) {
-	o.ClaimDisputed = v
-}
-
-// GetDepositRefundedCents returns the DepositRefundedCents field value
-func (o *RentalResponseData) GetDepositRefundedCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.DepositRefundedCents
-}
-
-// GetDepositRefundedCentsOk returns a tuple with the DepositRefundedCents field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetDepositRefundedCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DepositRefundedCents, true
-}
-
-// SetDepositRefundedCents sets field value
-func (o *RentalResponseData) SetDepositRefundedCents(v float32) {
-	o.DepositRefundedCents = v
-}
-
-// GetApprovalDueAt returns the ApprovalDueAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RentalResponseData) GetApprovalDueAt() time.Time {
-	if o == nil || o.ApprovalDueAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ApprovalDueAt.Get()
-}
-
-// GetApprovalDueAtOk returns a tuple with the ApprovalDueAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RentalResponseData) GetApprovalDueAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ApprovalDueAt.Get(), o.ApprovalDueAt.IsSet()
-}
-
-// HasApprovalDueAt returns a boolean if a field has been set.
-func (o *RentalResponseData) HasApprovalDueAt() bool {
-	if o != nil && o.ApprovalDueAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetApprovalDueAt gets a reference to the given NullableTime and assigns it to the ApprovalDueAt field.
-func (o *RentalResponseData) SetApprovalDueAt(v time.Time) {
-	o.ApprovalDueAt.Set(&v)
-}
-// SetApprovalDueAtNil sets the value for ApprovalDueAt to be an explicit nil
-func (o *RentalResponseData) SetApprovalDueAtNil() {
-	o.ApprovalDueAt.Set(nil)
-}
-
-// UnsetApprovalDueAt ensures that no value is present for ApprovalDueAt, not even an explicit nil
-func (o *RentalResponseData) UnsetApprovalDueAt() {
-	o.ApprovalDueAt.Unset()
-}
-
-// GetConditionPhotosOut returns the ConditionPhotosOut field value
-func (o *RentalResponseData) GetConditionPhotosOut() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.ConditionPhotosOut
-}
-
-// GetConditionPhotosOutOk returns a tuple with the ConditionPhotosOut field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetConditionPhotosOutOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConditionPhotosOut, true
-}
-
-// SetConditionPhotosOut sets field value
-func (o *RentalResponseData) SetConditionPhotosOut(v []string) {
-	o.ConditionPhotosOut = v
-}
-
-// GetConditionPhotosIn returns the ConditionPhotosIn field value
-func (o *RentalResponseData) GetConditionPhotosIn() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.ConditionPhotosIn
-}
-
-// GetConditionPhotosInOk returns a tuple with the ConditionPhotosIn field value
-// and a boolean to check if the value has been set.
-func (o *RentalResponseData) GetConditionPhotosInOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConditionPhotosIn, true
-}
-
-// SetConditionPhotosIn sets field value
-func (o *RentalResponseData) SetConditionPhotosIn(v []string) {
-	o.ConditionPhotosIn = v
-}
-
-func (o RentalResponseData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.CancelledAt.IsSet() {
-		toSerialize["cancelledAt"] = o.CancelledAt.Get()
-	}
-	if true {
-		toSerialize["platformListingId"] = o.PlatformListingId
-	}
-	if o.ShippedAt.IsSet() {
-		toSerialize["shippedAt"] = o.ShippedAt.Get()
-	}
-	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
-	}
-	if o.StripePaymentIntentId.IsSet() {
-		toSerialize["stripePaymentIntentId"] = o.StripePaymentIntentId.Get()
-	}
-	if true {
-		toSerialize["crosslyFeeCents"] = o.CrosslyFeeCents
-	}
-	if true {
-		toSerialize["shippingCents"] = o.ShippingCents
-	}
-	if o.ReturnLabelUrl.IsSet() {
-		toSerialize["returnLabelUrl"] = o.ReturnLabelUrl.Get()
-	}
-	if o.ClosedAt.IsSet() {
-		toSerialize["closedAt"] = o.ClosedAt.Get()
-	}
-	if o.OutboundLabelUrl.IsSet() {
-		toSerialize["outboundLabelUrl"] = o.OutboundLabelUrl.Get()
-	}
-	if true {
-		toSerialize["depositCents"] = o.DepositCents
-	}
-	if o.ClaimedAt.IsSet() {
-		toSerialize["claimedAt"] = o.ClaimedAt.Get()
-	}
-	if true {
-		toSerialize["shipTo"] = o.ShipTo
-	}
-	if o.OutboundTracking.IsSet() {
-		toSerialize["outboundTracking"] = o.OutboundTracking.Get()
-	}
-	if true {
-		toSerialize["renterUserId"] = o.RenterUserId
-	}
-	if true {
-		toSerialize["startDate"] = o.StartDate
-	}
-	if true {
-		toSerialize["endDate"] = o.EndDate
-	}
-	if true {
-		toSerialize["days"] = o.Days
-	}
-	if true {
-		toSerialize["rentCents"] = o.RentCents
-	}
-	if o.ShipFrom != nil {
-		toSerialize["shipFrom"] = o.ShipFrom
-	}
-	if o.ReturnTracking.IsSet() {
-		toSerialize["returnTracking"] = o.ReturnTracking.Get()
-	}
-	if o.ReturnedAt.IsSet() {
-		toSerialize["returnedAt"] = o.ReturnedAt.Get()
-	}
-	if true {
-		toSerialize["claimCents"] = o.ClaimCents
-	}
-	if o.ClaimNote.IsSet() {
-		toSerialize["claimNote"] = o.ClaimNote.Get()
-	}
-	if true {
-		toSerialize["claimPhotos"] = o.ClaimPhotos
-	}
-	if true {
-		toSerialize["claimDisputed"] = o.ClaimDisputed
-	}
-	if true {
-		toSerialize["depositRefundedCents"] = o.DepositRefundedCents
-	}
-	if o.ApprovalDueAt.IsSet() {
-		toSerialize["approvalDueAt"] = o.ApprovalDueAt.Get()
-	}
-	if true {
-		toSerialize["conditionPhotosOut"] = o.ConditionPhotosOut
-	}
-	if true {
-		toSerialize["conditionPhotosIn"] = o.ConditionPhotosIn
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableRentalResponseData struct {
-	value *RentalResponseData
-	isSet bool
-}
-
-func (v NullableRentalResponseData) Get() *RentalResponseData {
-	return v.value
-}
-
-func (v *NullableRentalResponseData) Set(val *RentalResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRentalResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRentalResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRentalResponseData(val *RentalResponseData) *NullableRentalResponseData {
-	return &NullableRentalResponseData{value: val, isSet: true}
-}
-
-func (v NullableRentalResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRentalResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SlugName struct for SlugName
-type SlugName struct {
-	Slug string `json:"slug"`
-	Name string `json:"name"`
-}
-
-// NewSlugName instantiates a new SlugName object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSlugName(slug string, name string) *SlugName {
-	this := SlugName{}
-	this.Slug = slug
-	this.Name = name
-	return &this
-}
-
-// NewSlugNameWithDefaults instantiates a new SlugName object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSlugNameWithDefaults() *SlugName {
-	this := SlugName{}
-	return &this
-}
-
-// GetSlug returns the Slug field value
-func (o *SlugName) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *SlugName) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *SlugName) SetSlug(v string) {
-	o.Slug = v
-}
-
-// GetName returns the Name field value
-func (o *SlugName) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *SlugName) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *SlugName) SetName(v string) {
-	o.Name = v
-}
-
-func (o SlugName) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSlugName struct {
-	value *SlugName
-	isSet bool
-}
-
-func (v NullableSlugName) Get() *SlugName {
-	return v.value
-}
-
-func (v *NullableSlugName) Set(val *SlugName) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSlugName) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSlugName) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSlugName(val *SlugName) *NullableSlugName {
-	return &NullableSlugName{value: val, isSet: true}
-}
-
-func (v NullableSlugName) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSlugName) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponse struct for SpatialSceneResponse
-type SpatialSceneResponse struct {
-	Data SpatialSceneResponseData `json:"data"`
-}
-
-// NewSpatialSceneResponse instantiates a new SpatialSceneResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpatialSceneResponse(data SpatialSceneResponseData) *SpatialSceneResponse {
-	this := SpatialSceneResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewSpatialSceneResponseWithDefaults instantiates a new SpatialSceneResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponseWithDefaults() *SpatialSceneResponse {
-	this := SpatialSceneResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *SpatialSceneResponse) GetData() SpatialSceneResponseData {
-	if o == nil {
-		var ret SpatialSceneResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse) GetDataOk() (*SpatialSceneResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *SpatialSceneResponse) SetData(v SpatialSceneResponseData) {
-	o.Data = v
-}
-
-func (o SpatialSceneResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialSceneResponse struct {
-	value *SpatialSceneResponse
-	isSet bool
-}
-
-func (v NullableSpatialSceneResponse) Get() *SpatialSceneResponse {
-	return v.value
-}
-
-func (v *NullableSpatialSceneResponse) Set(val *SpatialSceneResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialSceneResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialSceneResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialSceneResponse(val *SpatialSceneResponse) *NullableSpatialSceneResponse {
-	return &NullableSpatialSceneResponse{value: val, isSet: true}
-}
-
-func (v NullableSpatialSceneResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialSceneResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponse2 struct for SpatialSceneResponse2
-type SpatialSceneResponse2 struct {
-	Data SpatialSceneResponse2Data `json:"data"`
-}
-
-// NewSpatialSceneResponse2 instantiates a new SpatialSceneResponse2 object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpatialSceneResponse2(data SpatialSceneResponse2Data) *SpatialSceneResponse2 {
-	this := SpatialSceneResponse2{}
-	this.Data = data
-	return &this
-}
-
-// NewSpatialSceneResponse2WithDefaults instantiates a new SpatialSceneResponse2 object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponse2WithDefaults() *SpatialSceneResponse2 {
-	this := SpatialSceneResponse2{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *SpatialSceneResponse2) GetData() SpatialSceneResponse2Data {
-	if o == nil {
-		var ret SpatialSceneResponse2Data
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2) GetDataOk() (*SpatialSceneResponse2Data, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *SpatialSceneResponse2) SetData(v SpatialSceneResponse2Data) {
-	o.Data = v
-}
-
-func (o SpatialSceneResponse2) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialSceneResponse2 struct {
-	value *SpatialSceneResponse2
-	isSet bool
-}
-
-func (v NullableSpatialSceneResponse2) Get() *SpatialSceneResponse2 {
-	return v.value
-}
-
-func (v *NullableSpatialSceneResponse2) Set(val *SpatialSceneResponse2) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialSceneResponse2) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialSceneResponse2) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialSceneResponse2(val *SpatialSceneResponse2) *NullableSpatialSceneResponse2 {
-	return &NullableSpatialSceneResponse2{value: val, isSet: true}
-}
-
-func (v NullableSpatialSceneResponse2) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialSceneResponse2) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponse2Data struct for SpatialSceneResponse2Data
-type SpatialSceneResponse2Data struct {
-	Id string `json:"id"`
-	UserId string `json:"userId"`
-	// 'collection' | 'warehouse'  Same renderer, opposite contracts. A collection may be arranged for beauty; a warehouse must match the physical room or it is worse than no warehouse, because someone will walk to the wrong shelf.
-	Kind string `json:"kind"`
-	// NULL for warehouses and for the generic catch-all room.
-	CategorySlug NullableString `json:"categorySlug,omitempty"`
-	Name string `json:"name"`
-	// Public share handle. NULL until someone chooses to share.
-	PublicSlug NullableString `json:"publicSlug,omitempty"`
-	// 'private' | 'unlisted' | 'public'  Defaults CLOSED. A collection is the one surface in this product that routinely contains things which are not for sale and were never meant to be seen by anybody — that is most of what makes it a collection.
-	Visibility string `json:"visibility"`
-	Settings SpatialSceneResponse2DataSettings `json:"settings"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
-}
-
-// NewSpatialSceneResponse2Data instantiates a new SpatialSceneResponse2Data object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpatialSceneResponse2Data(id string, userId string, kind string, name string, visibility string, settings SpatialSceneResponse2DataSettings, createdAt time.Time, updatedAt time.Time) *SpatialSceneResponse2Data {
-	this := SpatialSceneResponse2Data{}
-	this.Id = id
-	this.UserId = userId
-	this.Kind = kind
-	this.Name = name
-	this.Visibility = visibility
-	this.Settings = settings
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	return &this
-}
-
-// NewSpatialSceneResponse2DataWithDefaults instantiates a new SpatialSceneResponse2Data object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponse2DataWithDefaults() *SpatialSceneResponse2Data {
-	this := SpatialSceneResponse2Data{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *SpatialSceneResponse2Data) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *SpatialSceneResponse2Data) SetId(v string) {
-	o.Id = v
-}
-
-// GetUserId returns the UserId field value
-func (o *SpatialSceneResponse2Data) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UserId, true
-}
-
-// SetUserId sets field value
-func (o *SpatialSceneResponse2Data) SetUserId(v string) {
-	o.UserId = v
-}
-
-// GetKind returns the Kind field value
-func (o *SpatialSceneResponse2Data) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *SpatialSceneResponse2Data) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetCategorySlug returns the CategorySlug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2Data) GetCategorySlug() string {
-	if o == nil || o.CategorySlug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.CategorySlug.Get()
-}
-
-// GetCategorySlugOk returns a tuple with the CategorySlug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2Data) GetCategorySlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CategorySlug.Get(), o.CategorySlug.IsSet()
-}
-
-// HasCategorySlug returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2Data) HasCategorySlug() bool {
-	if o != nil && o.CategorySlug.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCategorySlug gets a reference to the given NullableString and assigns it to the CategorySlug field.
-func (o *SpatialSceneResponse2Data) SetCategorySlug(v string) {
-	o.CategorySlug.Set(&v)
-}
-// SetCategorySlugNil sets the value for CategorySlug to be an explicit nil
-func (o *SpatialSceneResponse2Data) SetCategorySlugNil() {
-	o.CategorySlug.Set(nil)
-}
-
-// UnsetCategorySlug ensures that no value is present for CategorySlug, not even an explicit nil
-func (o *SpatialSceneResponse2Data) UnsetCategorySlug() {
-	o.CategorySlug.Unset()
-}
-
-// GetName returns the Name field value
-func (o *SpatialSceneResponse2Data) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *SpatialSceneResponse2Data) SetName(v string) {
-	o.Name = v
-}
-
-// GetPublicSlug returns the PublicSlug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2Data) GetPublicSlug() string {
-	if o == nil || o.PublicSlug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PublicSlug.Get()
-}
-
-// GetPublicSlugOk returns a tuple with the PublicSlug field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2Data) GetPublicSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PublicSlug.Get(), o.PublicSlug.IsSet()
-}
-
-// HasPublicSlug returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2Data) HasPublicSlug() bool {
-	if o != nil && o.PublicSlug.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPublicSlug gets a reference to the given NullableString and assigns it to the PublicSlug field.
-func (o *SpatialSceneResponse2Data) SetPublicSlug(v string) {
-	o.PublicSlug.Set(&v)
-}
-// SetPublicSlugNil sets the value for PublicSlug to be an explicit nil
-func (o *SpatialSceneResponse2Data) SetPublicSlugNil() {
-	o.PublicSlug.Set(nil)
-}
-
-// UnsetPublicSlug ensures that no value is present for PublicSlug, not even an explicit nil
-func (o *SpatialSceneResponse2Data) UnsetPublicSlug() {
-	o.PublicSlug.Unset()
-}
-
-// GetVisibility returns the Visibility field value
-func (o *SpatialSceneResponse2Data) GetVisibility() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Visibility
-}
-
-// GetVisibilityOk returns a tuple with the Visibility field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetVisibilityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Visibility, true
-}
-
-// SetVisibility sets field value
-func (o *SpatialSceneResponse2Data) SetVisibility(v string) {
-	o.Visibility = v
-}
-
-// GetSettings returns the Settings field value
-func (o *SpatialSceneResponse2Data) GetSettings() SpatialSceneResponse2DataSettings {
-	if o == nil {
-		var ret SpatialSceneResponse2DataSettings
-		return ret
-	}
-
-	return o.Settings
-}
-
-// GetSettingsOk returns a tuple with the Settings field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetSettingsOk() (*SpatialSceneResponse2DataSettings, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Settings, true
-}
-
-// SetSettings sets field value
-func (o *SpatialSceneResponse2Data) SetSettings(v SpatialSceneResponse2DataSettings) {
-	o.Settings = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *SpatialSceneResponse2Data) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *SpatialSceneResponse2Data) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *SpatialSceneResponse2Data) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponse2Data) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *SpatialSceneResponse2Data) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
-}
-
-func (o SpatialSceneResponse2Data) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if o.CategorySlug.IsSet() {
-		toSerialize["categorySlug"] = o.CategorySlug.Get()
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.PublicSlug.IsSet() {
-		toSerialize["publicSlug"] = o.PublicSlug.Get()
-	}
-	if true {
-		toSerialize["visibility"] = o.Visibility
-	}
-	if true {
-		toSerialize["settings"] = o.Settings
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialSceneResponse2Data struct {
-	value *SpatialSceneResponse2Data
-	isSet bool
-}
-
-func (v NullableSpatialSceneResponse2Data) Get() *SpatialSceneResponse2Data {
-	return v.value
-}
-
-func (v *NullableSpatialSceneResponse2Data) Set(val *SpatialSceneResponse2Data) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialSceneResponse2Data) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialSceneResponse2Data) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialSceneResponse2Data(val *SpatialSceneResponse2Data) *NullableSpatialSceneResponse2Data {
-	return &NullableSpatialSceneResponse2Data{value: val, isSet: true}
-}
-
-func (v NullableSpatialSceneResponse2Data) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialSceneResponse2Data) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponse2DataSettings struct for SpatialSceneResponse2DataSettings
-type SpatialSceneResponse2DataSettings struct {
-	GroupBy []string `json:"groupBy,omitempty"`
-	SortBy []string `json:"sortBy,omitempty"`
-	// Visual theme key — 'studio' | 'noir' | 'daylight' | 'vitrine'.
-	Theme NullableString `json:"theme,omitempty"`
-	Camera NullableSpatialSceneResponse2DataSettingsCamera `json:"camera,omitempty"`
-	// Overlay: 'none' | 'aging' | 'value' | 'status'. See the read service — this is the switch that turns a display into a decision.
-	Overlay NullableString `json:"overlay,omitempty"`
-}
-
-// NewSpatialSceneResponse2DataSettings instantiates a new SpatialSceneResponse2DataSettings object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpatialSceneResponse2DataSettings() *SpatialSceneResponse2DataSettings {
-	this := SpatialSceneResponse2DataSettings{}
-	return &this
-}
-
-// NewSpatialSceneResponse2DataSettingsWithDefaults instantiates a new SpatialSceneResponse2DataSettings object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponse2DataSettingsWithDefaults() *SpatialSceneResponse2DataSettings {
-	this := SpatialSceneResponse2DataSettings{}
-	return &this
-}
-
-// GetGroupBy returns the GroupBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettings) GetGroupBy() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.GroupBy
-}
-
-// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettings) GetGroupByOk() ([]string, bool) {
-	if o == nil || o.GroupBy == nil {
-		return nil, false
-	}
-	return o.GroupBy, true
-}
-
-// HasGroupBy returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettings) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
-func (o *SpatialSceneResponse2DataSettings) SetGroupBy(v []string) {
-	o.GroupBy = v
-}
-
-// GetSortBy returns the SortBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettings) GetSortBy() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.SortBy
-}
-
-// GetSortByOk returns a tuple with the SortBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettings) GetSortByOk() ([]string, bool) {
-	if o == nil || o.SortBy == nil {
-		return nil, false
-	}
-	return o.SortBy, true
-}
-
-// HasSortBy returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettings) HasSortBy() bool {
-	if o != nil && o.SortBy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSortBy gets a reference to the given []string and assigns it to the SortBy field.
-func (o *SpatialSceneResponse2DataSettings) SetSortBy(v []string) {
-	o.SortBy = v
-}
-
-// GetTheme returns the Theme field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettings) GetTheme() string {
-	if o == nil || o.Theme.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Theme.Get()
-}
-
-// GetThemeOk returns a tuple with the Theme field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettings) GetThemeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Theme.Get(), o.Theme.IsSet()
-}
-
-// HasTheme returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettings) HasTheme() bool {
-	if o != nil && o.Theme.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTheme gets a reference to the given NullableString and assigns it to the Theme field.
-func (o *SpatialSceneResponse2DataSettings) SetTheme(v string) {
-	o.Theme.Set(&v)
-}
-// SetThemeNil sets the value for Theme to be an explicit nil
-func (o *SpatialSceneResponse2DataSettings) SetThemeNil() {
-	o.Theme.Set(nil)
-}
-
-// UnsetTheme ensures that no value is present for Theme, not even an explicit nil
-func (o *SpatialSceneResponse2DataSettings) UnsetTheme() {
-	o.Theme.Unset()
-}
-
-// GetCamera returns the Camera field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettings) GetCamera() SpatialSceneResponse2DataSettingsCamera {
-	if o == nil || o.Camera.Get() == nil {
-		var ret SpatialSceneResponse2DataSettingsCamera
-		return ret
-	}
-	return *o.Camera.Get()
-}
-
-// GetCameraOk returns a tuple with the Camera field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettings) GetCameraOk() (*SpatialSceneResponse2DataSettingsCamera, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Camera.Get(), o.Camera.IsSet()
-}
-
-// HasCamera returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettings) HasCamera() bool {
-	if o != nil && o.Camera.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCamera gets a reference to the given NullableSpatialSceneResponse2DataSettingsCamera and assigns it to the Camera field.
-func (o *SpatialSceneResponse2DataSettings) SetCamera(v SpatialSceneResponse2DataSettingsCamera) {
-	o.Camera.Set(&v)
-}
-// SetCameraNil sets the value for Camera to be an explicit nil
-func (o *SpatialSceneResponse2DataSettings) SetCameraNil() {
-	o.Camera.Set(nil)
-}
-
-// UnsetCamera ensures that no value is present for Camera, not even an explicit nil
-func (o *SpatialSceneResponse2DataSettings) UnsetCamera() {
-	o.Camera.Unset()
-}
-
-// GetOverlay returns the Overlay field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettings) GetOverlay() string {
-	if o == nil || o.Overlay.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Overlay.Get()
-}
-
-// GetOverlayOk returns a tuple with the Overlay field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettings) GetOverlayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Overlay.Get(), o.Overlay.IsSet()
-}
-
-// HasOverlay returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettings) HasOverlay() bool {
-	if o != nil && o.Overlay.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOverlay gets a reference to the given NullableString and assigns it to the Overlay field.
-func (o *SpatialSceneResponse2DataSettings) SetOverlay(v string) {
-	o.Overlay.Set(&v)
-}
-// SetOverlayNil sets the value for Overlay to be an explicit nil
-func (o *SpatialSceneResponse2DataSettings) SetOverlayNil() {
-	o.Overlay.Set(nil)
-}
-
-// UnsetOverlay ensures that no value is present for Overlay, not even an explicit nil
-func (o *SpatialSceneResponse2DataSettings) UnsetOverlay() {
-	o.Overlay.Unset()
-}
-
-func (o SpatialSceneResponse2DataSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GroupBy != nil {
-		toSerialize["groupBy"] = o.GroupBy
-	}
-	if o.SortBy != nil {
-		toSerialize["sortBy"] = o.SortBy
-	}
-	if o.Theme.IsSet() {
-		toSerialize["theme"] = o.Theme.Get()
-	}
-	if o.Camera.IsSet() {
-		toSerialize["camera"] = o.Camera.Get()
-	}
-	if o.Overlay.IsSet() {
-		toSerialize["overlay"] = o.Overlay.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialSceneResponse2DataSettings struct {
-	value *SpatialSceneResponse2DataSettings
-	isSet bool
-}
-
-func (v NullableSpatialSceneResponse2DataSettings) Get() *SpatialSceneResponse2DataSettings {
-	return v.value
-}
-
-func (v *NullableSpatialSceneResponse2DataSettings) Set(val *SpatialSceneResponse2DataSettings) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialSceneResponse2DataSettings) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialSceneResponse2DataSettings) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialSceneResponse2DataSettings(val *SpatialSceneResponse2DataSettings) *NullableSpatialSceneResponse2DataSettings {
-	return &NullableSpatialSceneResponse2DataSettings{value: val, isSet: true}
-}
-
-func (v NullableSpatialSceneResponse2DataSettings) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialSceneResponse2DataSettings) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponse2DataSettingsCamera Last camera pose, metres + radians.
-type SpatialSceneResponse2DataSettingsCamera struct {
-	Position []float32 `json:"position,omitempty"`
-	Target []float32 `json:"target,omitempty"`
-}
-
-// NewSpatialSceneResponse2DataSettingsCamera instantiates a new SpatialSceneResponse2DataSettingsCamera object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSpatialSceneResponse2DataSettingsCamera() *SpatialSceneResponse2DataSettingsCamera {
-	this := SpatialSceneResponse2DataSettingsCamera{}
-	return &this
-}
-
-// NewSpatialSceneResponse2DataSettingsCameraWithDefaults instantiates a new SpatialSceneResponse2DataSettingsCamera object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponse2DataSettingsCameraWithDefaults() *SpatialSceneResponse2DataSettingsCamera {
-	this := SpatialSceneResponse2DataSettingsCamera{}
-	return &this
-}
-
-// GetPosition returns the Position field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettingsCamera) GetPosition() []float32 {
-	if o == nil  {
-		var ret []float32
-		return ret
-	}
-	return o.Position
-}
-
-// GetPositionOk returns a tuple with the Position field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettingsCamera) GetPositionOk() ([]float32, bool) {
-	if o == nil || o.Position == nil {
-		return nil, false
-	}
-	return o.Position, true
-}
-
-// HasPosition returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettingsCamera) HasPosition() bool {
-	if o != nil && o.Position != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPosition gets a reference to the given []float32 and assigns it to the Position field.
-func (o *SpatialSceneResponse2DataSettingsCamera) SetPosition(v []float32) {
-	o.Position = v
-}
-
-// GetTarget returns the Target field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponse2DataSettingsCamera) GetTarget() []float32 {
-	if o == nil  {
-		var ret []float32
-		return ret
-	}
-	return o.Target
-}
-
-// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponse2DataSettingsCamera) GetTargetOk() ([]float32, bool) {
-	if o == nil || o.Target == nil {
-		return nil, false
-	}
-	return o.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (o *SpatialSceneResponse2DataSettingsCamera) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTarget gets a reference to the given []float32 and assigns it to the Target field.
-func (o *SpatialSceneResponse2DataSettingsCamera) SetTarget(v []float32) {
-	o.Target = v
-}
-
-func (o SpatialSceneResponse2DataSettingsCamera) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Position != nil {
-		toSerialize["position"] = o.Position
-	}
-	if o.Target != nil {
-		toSerialize["target"] = o.Target
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialSceneResponse2DataSettingsCamera struct {
-	value *SpatialSceneResponse2DataSettingsCamera
-	isSet bool
-}
-
-func (v NullableSpatialSceneResponse2DataSettingsCamera) Get() *SpatialSceneResponse2DataSettingsCamera {
-	return v.value
-}
-
-func (v *NullableSpatialSceneResponse2DataSettingsCamera) Set(val *SpatialSceneResponse2DataSettingsCamera) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialSceneResponse2DataSettingsCamera) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialSceneResponse2DataSettingsCamera) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialSceneResponse2DataSettingsCamera(val *SpatialSceneResponse2DataSettingsCamera) *NullableSpatialSceneResponse2DataSettingsCamera {
-	return &NullableSpatialSceneResponse2DataSettingsCamera{value: val, isSet: true}
-}
-
-func (v NullableSpatialSceneResponse2DataSettingsCamera) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialSceneResponse2DataSettingsCamera) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// SpatialSceneResponseData struct for SpatialSceneResponseData
-type SpatialSceneResponseData struct {
-	Id string `json:"id"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+// InventoryItemIdReason struct for InventoryItemIdReason
+type InventoryItemIdReason struct {
 	InventoryItemId string `json:"inventoryItemId"`
-	SceneId string `json:"sceneId"`
-	InventoryUnitId NullableString `json:"inventoryUnitId,omitempty"`
-	NodeId string `json:"nodeId"`
-	SlotIndex float32 `json:"slotIndex"`
-	Pinned bool `json:"pinned"`
+	Reason string `json:"reason"`
 }
 
-// NewSpatialSceneResponseData instantiates a new SpatialSceneResponseData object
+// NewInventoryItemIdReason instantiates a new InventoryItemIdReason object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSpatialSceneResponseData(id string, createdAt time.Time, updatedAt time.Time, inventoryItemId string, sceneId string, nodeId string, slotIndex float32, pinned bool) *SpatialSceneResponseData {
-	this := SpatialSceneResponseData{}
-	this.Id = id
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+func NewInventoryItemIdReason(inventoryItemId string, reason string) *InventoryItemIdReason {
+	this := InventoryItemIdReason{}
 	this.InventoryItemId = inventoryItemId
-	this.SceneId = sceneId
-	this.NodeId = nodeId
-	this.SlotIndex = slotIndex
-	this.Pinned = pinned
+	this.Reason = reason
 	return &this
 }
 
-// NewSpatialSceneResponseDataWithDefaults instantiates a new SpatialSceneResponseData object
+// NewInventoryItemIdReasonWithDefaults instantiates a new InventoryItemIdReason object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSpatialSceneResponseDataWithDefaults() *SpatialSceneResponseData {
-	this := SpatialSceneResponseData{}
+func NewInventoryItemIdReasonWithDefaults() *InventoryItemIdReason {
+	this := InventoryItemIdReason{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *SpatialSceneResponseData) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *SpatialSceneResponseData) SetId(v string) {
-	o.Id = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *SpatialSceneResponseData) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *SpatialSceneResponseData) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *SpatialSceneResponseData) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *SpatialSceneResponseData) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
 }
 
 // GetInventoryItemId returns the InventoryItemId field value
-func (o *SpatialSceneResponseData) GetInventoryItemId() string {
+func (o *InventoryItemIdReason) GetInventoryItemId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -5981,7 +172,7 @@ func (o *SpatialSceneResponseData) GetInventoryItemId() string {
 
 // GetInventoryItemIdOk returns a tuple with the InventoryItemId field value
 // and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetInventoryItemIdOk() (*string, bool) {
+func (o *InventoryItemIdReason) GetInventoryItemIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -5989,1213 +180,886 @@ func (o *SpatialSceneResponseData) GetInventoryItemIdOk() (*string, bool) {
 }
 
 // SetInventoryItemId sets field value
-func (o *SpatialSceneResponseData) SetInventoryItemId(v string) {
+func (o *InventoryItemIdReason) SetInventoryItemId(v string) {
 	o.InventoryItemId = v
 }
 
-// GetSceneId returns the SceneId field value
-func (o *SpatialSceneResponseData) GetSceneId() string {
+// GetReason returns the Reason field value
+func (o *InventoryItemIdReason) GetReason() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SceneId
+	return o.Reason
 }
 
-// GetSceneIdOk returns a tuple with the SceneId field value
+// GetReasonOk returns a tuple with the Reason field value
 // and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetSceneIdOk() (*string, bool) {
+func (o *InventoryItemIdReason) GetReasonOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.SceneId, true
+	return &o.Reason, true
 }
 
-// SetSceneId sets field value
-func (o *SpatialSceneResponseData) SetSceneId(v string) {
-	o.SceneId = v
+// SetReason sets field value
+func (o *InventoryItemIdReason) SetReason(v string) {
+	o.Reason = v
 }
 
-// GetInventoryUnitId returns the InventoryUnitId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SpatialSceneResponseData) GetInventoryUnitId() string {
-	if o == nil || o.InventoryUnitId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.InventoryUnitId.Get()
-}
-
-// GetInventoryUnitIdOk returns a tuple with the InventoryUnitId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SpatialSceneResponseData) GetInventoryUnitIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.InventoryUnitId.Get(), o.InventoryUnitId.IsSet()
-}
-
-// HasInventoryUnitId returns a boolean if a field has been set.
-func (o *SpatialSceneResponseData) HasInventoryUnitId() bool {
-	if o != nil && o.InventoryUnitId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetInventoryUnitId gets a reference to the given NullableString and assigns it to the InventoryUnitId field.
-func (o *SpatialSceneResponseData) SetInventoryUnitId(v string) {
-	o.InventoryUnitId.Set(&v)
-}
-// SetInventoryUnitIdNil sets the value for InventoryUnitId to be an explicit nil
-func (o *SpatialSceneResponseData) SetInventoryUnitIdNil() {
-	o.InventoryUnitId.Set(nil)
-}
-
-// UnsetInventoryUnitId ensures that no value is present for InventoryUnitId, not even an explicit nil
-func (o *SpatialSceneResponseData) UnsetInventoryUnitId() {
-	o.InventoryUnitId.Unset()
-}
-
-// GetNodeId returns the NodeId field value
-func (o *SpatialSceneResponseData) GetNodeId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.NodeId
-}
-
-// GetNodeIdOk returns a tuple with the NodeId field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetNodeIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.NodeId, true
-}
-
-// SetNodeId sets field value
-func (o *SpatialSceneResponseData) SetNodeId(v string) {
-	o.NodeId = v
-}
-
-// GetSlotIndex returns the SlotIndex field value
-func (o *SpatialSceneResponseData) GetSlotIndex() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.SlotIndex
-}
-
-// GetSlotIndexOk returns a tuple with the SlotIndex field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetSlotIndexOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SlotIndex, true
-}
-
-// SetSlotIndex sets field value
-func (o *SpatialSceneResponseData) SetSlotIndex(v float32) {
-	o.SlotIndex = v
-}
-
-// GetPinned returns the Pinned field value
-func (o *SpatialSceneResponseData) GetPinned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Pinned
-}
-
-// GetPinnedOk returns a tuple with the Pinned field value
-// and a boolean to check if the value has been set.
-func (o *SpatialSceneResponseData) GetPinnedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Pinned, true
-}
-
-// SetPinned sets field value
-func (o *SpatialSceneResponseData) SetPinned(v bool) {
-	o.Pinned = v
-}
-
-func (o SpatialSceneResponseData) MarshalJSON() ([]byte, error) {
+func (o InventoryItemIdReason) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
 	if true {
 		toSerialize["inventoryItemId"] = o.InventoryItemId
 	}
 	if true {
-		toSerialize["sceneId"] = o.SceneId
-	}
-	if o.InventoryUnitId.IsSet() {
-		toSerialize["inventoryUnitId"] = o.InventoryUnitId.Get()
-	}
-	if true {
-		toSerialize["nodeId"] = o.NodeId
-	}
-	if true {
-		toSerialize["slotIndex"] = o.SlotIndex
-	}
-	if true {
-		toSerialize["pinned"] = o.Pinned
+		toSerialize["reason"] = o.Reason
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableSpatialSceneResponseData struct {
-	value *SpatialSceneResponseData
+type NullableInventoryItemIdReason struct {
+	value *InventoryItemIdReason
 	isSet bool
 }
 
-func (v NullableSpatialSceneResponseData) Get() *SpatialSceneResponseData {
+func (v NullableInventoryItemIdReason) Get() *InventoryItemIdReason {
 	return v.value
 }
 
-func (v *NullableSpatialSceneResponseData) Set(val *SpatialSceneResponseData) {
+func (v *NullableInventoryItemIdReason) Set(val *InventoryItemIdReason) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSpatialSceneResponseData) IsSet() bool {
+func (v NullableInventoryItemIdReason) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSpatialSceneResponseData) Unset() {
+func (v *NullableInventoryItemIdReason) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSpatialSceneResponseData(val *SpatialSceneResponseData) *NullableSpatialSceneResponseData {
-	return &NullableSpatialSceneResponseData{value: val, isSet: true}
+func NewNullableInventoryItemIdReason(val *InventoryItemIdReason) *NullableInventoryItemIdReason {
+	return &NullableInventoryItemIdReason{value: val, isSet: true}
 }
 
-func (v NullableSpatialSceneResponseData) MarshalJSON() ([]byte, error) {
+func (v NullableInventoryItemIdReason) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSpatialSceneResponseData) UnmarshalJSON(src []byte) error {
+func (v *NullableInventoryItemIdReason) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// SpatialStreetResponse struct for SpatialStreetResponse
-type SpatialStreetResponse struct {
-	Data ListSpatialStreetMineItem `json:"data"`
+// KindUrl struct for KindUrl
+type KindUrl struct {
+	Kind string `json:"kind"`
+	Url string `json:"url"`
 }
 
-// NewSpatialStreetResponse instantiates a new SpatialStreetResponse object
+// NewKindUrl instantiates a new KindUrl object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSpatialStreetResponse(data ListSpatialStreetMineItem) *SpatialStreetResponse {
-	this := SpatialStreetResponse{}
-	this.Data = data
+func NewKindUrl(kind string, url string) *KindUrl {
+	this := KindUrl{}
+	this.Kind = kind
+	this.Url = url
 	return &this
 }
 
-// NewSpatialStreetResponseWithDefaults instantiates a new SpatialStreetResponse object
+// NewKindUrlWithDefaults instantiates a new KindUrl object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSpatialStreetResponseWithDefaults() *SpatialStreetResponse {
-	this := SpatialStreetResponse{}
+func NewKindUrlWithDefaults() *KindUrl {
+	this := KindUrl{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *SpatialStreetResponse) GetData() ListSpatialStreetMineItem {
-	if o == nil {
-		var ret ListSpatialStreetMineItem
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *SpatialStreetResponse) GetDataOk() (*ListSpatialStreetMineItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *SpatialStreetResponse) SetData(v ListSpatialStreetMineItem) {
-	o.Data = v
-}
-
-func (o SpatialStreetResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSpatialStreetResponse struct {
-	value *SpatialStreetResponse
-	isSet bool
-}
-
-func (v NullableSpatialStreetResponse) Get() *SpatialStreetResponse {
-	return v.value
-}
-
-func (v *NullableSpatialStreetResponse) Set(val *SpatialStreetResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSpatialStreetResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSpatialStreetResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSpatialStreetResponse(val *SpatialStreetResponse) *NullableSpatialStreetResponse {
-	return &NullableSpatialStreetResponse{value: val, isSet: true}
-}
-
-func (v NullableSpatialStreetResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSpatialStreetResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// StatusResponse struct for StatusResponse
-type StatusResponse struct {
-	Status string `json:"status"`
-}
-
-// NewStatusResponse instantiates a new StatusResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewStatusResponse(status string) *StatusResponse {
-	this := StatusResponse{}
-	this.Status = status
-	return &this
-}
-
-// NewStatusResponseWithDefaults instantiates a new StatusResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewStatusResponseWithDefaults() *StatusResponse {
-	this := StatusResponse{}
-	return &this
-}
-
-// GetStatus returns the Status field value
-func (o *StatusResponse) GetStatus() string {
+// GetKind returns the Kind field value
+func (o *KindUrl) GetKind() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.Kind
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetStatusOk() (*string, bool) {
+func (o *KindUrl) GetKindOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.Kind, true
 }
 
-// SetStatus sets field value
-func (o *StatusResponse) SetStatus(v string) {
-	o.Status = v
+// SetKind sets field value
+func (o *KindUrl) SetKind(v string) {
+	o.Kind = v
 }
 
-func (o StatusResponse) MarshalJSON() ([]byte, error) {
+// GetUrl returns the Url field value
+func (o *KindUrl) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *KindUrl) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *KindUrl) SetUrl(v string) {
+	o.Url = v
+}
+
+func (o KindUrl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableStatusResponse struct {
-	value *StatusResponse
+type NullableKindUrl struct {
+	value *KindUrl
 	isSet bool
 }
 
-func (v NullableStatusResponse) Get() *StatusResponse {
+func (v NullableKindUrl) Get() *KindUrl {
 	return v.value
 }
 
-func (v *NullableStatusResponse) Set(val *StatusResponse) {
+func (v *NullableKindUrl) Set(val *KindUrl) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableStatusResponse) IsSet() bool {
+func (v NullableKindUrl) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableStatusResponse) Unset() {
+func (v *NullableKindUrl) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableStatusResponse(val *StatusResponse) *NullableStatusResponse {
-	return &NullableStatusResponse{value: val, isSet: true}
+func NewNullableKindUrl(val *KindUrl) *NullableKindUrl {
+	return &NullableKindUrl{value: val, isSet: true}
 }
 
-func (v NullableStatusResponse) MarshalJSON() ([]byte, error) {
+func (v NullableKindUrl) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableStatusResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableKindUrl) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// SuccessResponse struct for SuccessResponse
-type SuccessResponse struct {
-	Success bool `json:"success"`
+// LabelUrlTrackingCode struct for LabelUrlTrackingCode
+type LabelUrlTrackingCode struct {
+	LabelUrl string `json:"labelUrl"`
+	TrackingCode string `json:"trackingCode"`
 }
 
-// NewSuccessResponse instantiates a new SuccessResponse object
+// NewLabelUrlTrackingCode instantiates a new LabelUrlTrackingCode object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuccessResponse(success bool) *SuccessResponse {
-	this := SuccessResponse{}
-	this.Success = success
+func NewLabelUrlTrackingCode(labelUrl string, trackingCode string) *LabelUrlTrackingCode {
+	this := LabelUrlTrackingCode{}
+	this.LabelUrl = labelUrl
+	this.TrackingCode = trackingCode
 	return &this
 }
 
-// NewSuccessResponseWithDefaults instantiates a new SuccessResponse object
+// NewLabelUrlTrackingCodeWithDefaults instantiates a new LabelUrlTrackingCode object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSuccessResponseWithDefaults() *SuccessResponse {
-	this := SuccessResponse{}
+func NewLabelUrlTrackingCodeWithDefaults() *LabelUrlTrackingCode {
+	this := LabelUrlTrackingCode{}
 	return &this
 }
 
-// GetSuccess returns the Success field value
-func (o *SuccessResponse) GetSuccess() bool {
+// GetLabelUrl returns the LabelUrl field value
+func (o *LabelUrlTrackingCode) GetLabelUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LabelUrl
+}
+
+// GetLabelUrlOk returns a tuple with the LabelUrl field value
+// and a boolean to check if the value has been set.
+func (o *LabelUrlTrackingCode) GetLabelUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LabelUrl, true
+}
+
+// SetLabelUrl sets field value
+func (o *LabelUrlTrackingCode) SetLabelUrl(v string) {
+	o.LabelUrl = v
+}
+
+// GetTrackingCode returns the TrackingCode field value
+func (o *LabelUrlTrackingCode) GetTrackingCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TrackingCode
+}
+
+// GetTrackingCodeOk returns a tuple with the TrackingCode field value
+// and a boolean to check if the value has been set.
+func (o *LabelUrlTrackingCode) GetTrackingCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TrackingCode, true
+}
+
+// SetTrackingCode sets field value
+func (o *LabelUrlTrackingCode) SetTrackingCode(v string) {
+	o.TrackingCode = v
+}
+
+func (o LabelUrlTrackingCode) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["labelUrl"] = o.LabelUrl
+	}
+	if true {
+		toSerialize["trackingCode"] = o.TrackingCode
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableLabelUrlTrackingCode struct {
+	value *LabelUrlTrackingCode
+	isSet bool
+}
+
+func (v NullableLabelUrlTrackingCode) Get() *LabelUrlTrackingCode {
+	return v.value
+}
+
+func (v *NullableLabelUrlTrackingCode) Set(val *LabelUrlTrackingCode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLabelUrlTrackingCode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLabelUrlTrackingCode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLabelUrlTrackingCode(val *LabelUrlTrackingCode) *NullableLabelUrlTrackingCode {
+	return &NullableLabelUrlTrackingCode{value: val, isSet: true}
+}
+
+func (v NullableLabelUrlTrackingCode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLabelUrlTrackingCode) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// LineMessage struct for LineMessage
+type LineMessage struct {
+	// 1-based line in the source, when there is one.
+	Line NullableFloat32 `json:"line,omitempty"`
+	Message string `json:"message"`
+}
+
+// NewLineMessage instantiates a new LineMessage object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLineMessage(message string) *LineMessage {
+	this := LineMessage{}
+	this.Message = message
+	return &this
+}
+
+// NewLineMessageWithDefaults instantiates a new LineMessage object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLineMessageWithDefaults() *LineMessage {
+	this := LineMessage{}
+	return &this
+}
+
+// GetLine returns the Line field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LineMessage) GetLine() float32 {
+	if o == nil || o.Line.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Line.Get()
+}
+
+// GetLineOk returns a tuple with the Line field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LineMessage) GetLineOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Line.Get(), o.Line.IsSet()
+}
+
+// HasLine returns a boolean if a field has been set.
+func (o *LineMessage) HasLine() bool {
+	if o != nil && o.Line.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLine gets a reference to the given NullableFloat32 and assigns it to the Line field.
+func (o *LineMessage) SetLine(v float32) {
+	o.Line.Set(&v)
+}
+// SetLineNil sets the value for Line to be an explicit nil
+func (o *LineMessage) SetLineNil() {
+	o.Line.Set(nil)
+}
+
+// UnsetLine ensures that no value is present for Line, not even an explicit nil
+func (o *LineMessage) UnsetLine() {
+	o.Line.Unset()
+}
+
+// GetMessage returns the Message field value
+func (o *LineMessage) GetMessage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *LineMessage) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *LineMessage) SetMessage(v string) {
+	o.Message = v
+}
+
+func (o LineMessage) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Line.IsSet() {
+		toSerialize["line"] = o.Line.Get()
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableLineMessage struct {
+	value *LineMessage
+	isSet bool
+}
+
+func (v NullableLineMessage) Get() *LineMessage {
+	return v.value
+}
+
+func (v *NullableLineMessage) Set(val *LineMessage) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLineMessage) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLineMessage) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLineMessage(val *LineMessage) *NullableLineMessage {
+	return &NullableLineMessage{value: val, isSet: true}
+}
+
+func (v NullableLineMessage) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLineMessage) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListAuthSessionsItem struct for ListAuthSessionsItem
+type ListAuthSessionsItem struct {
+	IsCurrent bool `json:"isCurrent"`
+	Id string `json:"id"`
+	UserAgent NullableString `json:"userAgent,omitempty"`
+	IpAddress NullableString `json:"ipAddress,omitempty"`
+	IpCountry NullableString `json:"ipCountry,omitempty"`
+	CreatedAt NullableString `json:"createdAt,omitempty"`
+	LastUsedAt NullableString `json:"lastUsedAt,omitempty"`
+	ExpiresAt NullableString `json:"expiresAt,omitempty"`
+}
+
+// NewListAuthSessionsItem instantiates a new ListAuthSessionsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListAuthSessionsItem(isCurrent bool, id string) *ListAuthSessionsItem {
+	this := ListAuthSessionsItem{}
+	this.IsCurrent = isCurrent
+	this.Id = id
+	return &this
+}
+
+// NewListAuthSessionsItemWithDefaults instantiates a new ListAuthSessionsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListAuthSessionsItemWithDefaults() *ListAuthSessionsItem {
+	this := ListAuthSessionsItem{}
+	return &this
+}
+
+// GetIsCurrent returns the IsCurrent field value
+func (o *ListAuthSessionsItem) GetIsCurrent() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.Success
+	return o.IsCurrent
 }
 
-// GetSuccessOk returns a tuple with the Success field value
+// GetIsCurrentOk returns a tuple with the IsCurrent field value
 // and a boolean to check if the value has been set.
-func (o *SuccessResponse) GetSuccessOk() (*bool, bool) {
+func (o *ListAuthSessionsItem) GetIsCurrentOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Success, true
+	return &o.IsCurrent, true
 }
 
-// SetSuccess sets field value
-func (o *SuccessResponse) SetSuccess(v bool) {
-	o.Success = v
+// SetIsCurrent sets field value
+func (o *ListAuthSessionsItem) SetIsCurrent(v bool) {
+	o.IsCurrent = v
 }
 
-func (o SuccessResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["success"] = o.Success
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableSuccessResponse struct {
-	value *SuccessResponse
-	isSet bool
-}
-
-func (v NullableSuccessResponse) Get() *SuccessResponse {
-	return v.value
-}
-
-func (v *NullableSuccessResponse) Set(val *SuccessResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSuccessResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSuccessResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSuccessResponse(val *SuccessResponse) *NullableSuccessResponse {
-	return &NullableSuccessResponse{value: val, isSet: true}
-}
-
-func (v NullableSuccessResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSuccessResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// TermsVersionResponse struct for TermsVersionResponse
-type TermsVersionResponse struct {
-	TermsVersion string `json:"termsVersion"`
-}
-
-// NewTermsVersionResponse instantiates a new TermsVersionResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTermsVersionResponse(termsVersion string) *TermsVersionResponse {
-	this := TermsVersionResponse{}
-	this.TermsVersion = termsVersion
-	return &this
-}
-
-// NewTermsVersionResponseWithDefaults instantiates a new TermsVersionResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewTermsVersionResponseWithDefaults() *TermsVersionResponse {
-	this := TermsVersionResponse{}
-	return &this
-}
-
-// GetTermsVersion returns the TermsVersion field value
-func (o *TermsVersionResponse) GetTermsVersion() string {
+// GetId returns the Id field value
+func (o *ListAuthSessionsItem) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.TermsVersion
+	return o.Id
 }
 
-// GetTermsVersionOk returns a tuple with the TermsVersion field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TermsVersionResponse) GetTermsVersionOk() (*string, bool) {
+func (o *ListAuthSessionsItem) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.TermsVersion, true
+	return &o.Id, true
 }
 
-// SetTermsVersion sets field value
-func (o *TermsVersionResponse) SetTermsVersion(v string) {
-	o.TermsVersion = v
+// SetId sets field value
+func (o *ListAuthSessionsItem) SetId(v string) {
+	o.Id = v
 }
 
-func (o TermsVersionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["termsVersion"] = o.TermsVersion
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableTermsVersionResponse struct {
-	value *TermsVersionResponse
-	isSet bool
-}
-
-func (v NullableTermsVersionResponse) Get() *TermsVersionResponse {
-	return v.value
-}
-
-func (v *NullableTermsVersionResponse) Set(val *TermsVersionResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTermsVersionResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTermsVersionResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTermsVersionResponse(val *TermsVersionResponse) *NullableTermsVersionResponse {
-	return &NullableTermsVersionResponse{value: val, isSet: true}
-}
-
-func (v NullableTermsVersionResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTermsVersionResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// TxV0Object struct for TxV0Object
-type TxV0Object struct {
-	TxV0 string `json:"txV0"`
-}
-
-// NewTxV0Object instantiates a new TxV0Object object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTxV0Object(txV0 string) *TxV0Object {
-	this := TxV0Object{}
-	this.TxV0 = txV0
-	return &this
-}
-
-// NewTxV0ObjectWithDefaults instantiates a new TxV0Object object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewTxV0ObjectWithDefaults() *TxV0Object {
-	this := TxV0Object{}
-	return &this
-}
-
-// GetTxV0 returns the TxV0 field value
-func (o *TxV0Object) GetTxV0() string {
-	if o == nil {
+// GetUserAgent returns the UserAgent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetUserAgent() string {
+	if o == nil || o.UserAgent.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.TxV0
+	return *o.UserAgent.Get()
 }
 
-// GetTxV0Ok returns a tuple with the TxV0 field value
-// and a boolean to check if the value has been set.
-func (o *TxV0Object) GetTxV0Ok() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TxV0, true
-}
-
-// SetTxV0 sets field value
-func (o *TxV0Object) SetTxV0(v string) {
-	o.TxV0 = v
-}
-
-func (o TxV0Object) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["txV0"] = o.TxV0
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableTxV0Object struct {
-	value *TxV0Object
-	isSet bool
-}
-
-func (v NullableTxV0Object) Get() *TxV0Object {
-	return v.value
-}
-
-func (v *NullableTxV0Object) Set(val *TxV0Object) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTxV0Object) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTxV0Object) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTxV0Object(val *TxV0Object) *NullableTxV0Object {
-	return &NullableTxV0Object{value: val, isSet: true}
-}
-
-func (v NullableTxV0Object) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTxV0Object) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UnitsCents struct for UnitsCents
-type UnitsCents struct {
-	Units float32 `json:"units"`
-	Cents float32 `json:"cents"`
-}
-
-// NewUnitsCents instantiates a new UnitsCents object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUnitsCents(units float32, cents float32) *UnitsCents {
-	this := UnitsCents{}
-	this.Units = units
-	this.Cents = cents
-	return &this
-}
-
-// NewUnitsCentsWithDefaults instantiates a new UnitsCents object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUnitsCentsWithDefaults() *UnitsCents {
-	this := UnitsCents{}
-	return &this
-}
-
-// GetUnits returns the Units field value
-func (o *UnitsCents) GetUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Units
-}
-
-// GetUnitsOk returns a tuple with the Units field value
-// and a boolean to check if the value has been set.
-func (o *UnitsCents) GetUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Units, true
-}
-
-// SetUnits sets field value
-func (o *UnitsCents) SetUnits(v float32) {
-	o.Units = v
-}
-
-// GetCents returns the Cents field value
-func (o *UnitsCents) GetCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Cents
-}
-
-// GetCentsOk returns a tuple with the Cents field value
-// and a boolean to check if the value has been set.
-func (o *UnitsCents) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cents, true
-}
-
-// SetCents sets field value
-func (o *UnitsCents) SetCents(v float32) {
-	o.Cents = v
-}
-
-func (o UnitsCents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["units"] = o.Units
-	}
-	if true {
-		toSerialize["cents"] = o.Cents
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUnitsCents struct {
-	value *UnitsCents
-	isSet bool
-}
-
-func (v NullableUnitsCents) Get() *UnitsCents {
-	return v.value
-}
-
-func (v *NullableUnitsCents) Set(val *UnitsCents) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUnitsCents) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUnitsCents) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUnitsCents(val *UnitsCents) *NullableUnitsCents {
-	return &NullableUnitsCents{value: val, isSet: true}
-}
-
-func (v NullableUnitsCents) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUnitsCents) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateHotspotItem struct for UpdateHotspotItem
-type UpdateHotspotItem struct {
-	Available bool `json:"available"`
-	Label NullableString `json:"label,omitempty"`
-	Title NullableString `json:"title,omitempty"`
-	PlatformListingId string `json:"platformListingId"`
-	Slug NullableString `json:"slug,omitempty"`
-	PriceCents float32 `json:"priceCents"`
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	X float32 `json:"x"`
-	Y float32 `json:"y"`
-}
-
-// NewUpdateHotspotItem instantiates a new UpdateHotspotItem object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateHotspotItem(available bool, platformListingId string, priceCents float32, x float32, y float32) *UpdateHotspotItem {
-	this := UpdateHotspotItem{}
-	this.Available = available
-	this.PlatformListingId = platformListingId
-	this.PriceCents = priceCents
-	this.X = x
-	this.Y = y
-	return &this
-}
-
-// NewUpdateHotspotItemWithDefaults instantiates a new UpdateHotspotItem object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateHotspotItemWithDefaults() *UpdateHotspotItem {
-	this := UpdateHotspotItem{}
-	return &this
-}
-
-// GetAvailable returns the Available field value
-func (o *UpdateHotspotItem) GetAvailable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Available
-}
-
-// GetAvailableOk returns a tuple with the Available field value
-// and a boolean to check if the value has been set.
-func (o *UpdateHotspotItem) GetAvailableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Available, true
-}
-
-// SetAvailable sets field value
-func (o *UpdateHotspotItem) SetAvailable(v bool) {
-	o.Available = v
-}
-
-// GetLabel returns the Label field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateHotspotItem) GetLabel() string {
-	if o == nil || o.Label.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Label.Get()
-}
-
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetUserAgentOk returns a tuple with the UserAgent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateHotspotItem) GetLabelOk() (*string, bool) {
+func (o *ListAuthSessionsItem) GetUserAgentOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Label.Get(), o.Label.IsSet()
+	return o.UserAgent.Get(), o.UserAgent.IsSet()
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *UpdateHotspotItem) HasLabel() bool {
-	if o != nil && o.Label.IsSet() {
+// HasUserAgent returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasUserAgent() bool {
+	if o != nil && o.UserAgent.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLabel gets a reference to the given NullableString and assigns it to the Label field.
-func (o *UpdateHotspotItem) SetLabel(v string) {
-	o.Label.Set(&v)
+// SetUserAgent gets a reference to the given NullableString and assigns it to the UserAgent field.
+func (o *ListAuthSessionsItem) SetUserAgent(v string) {
+	o.UserAgent.Set(&v)
 }
-// SetLabelNil sets the value for Label to be an explicit nil
-func (o *UpdateHotspotItem) SetLabelNil() {
-	o.Label.Set(nil)
-}
-
-// UnsetLabel ensures that no value is present for Label, not even an explicit nil
-func (o *UpdateHotspotItem) UnsetLabel() {
-	o.Label.Unset()
+// SetUserAgentNil sets the value for UserAgent to be an explicit nil
+func (o *ListAuthSessionsItem) SetUserAgentNil() {
+	o.UserAgent.Set(nil)
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateHotspotItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+// UnsetUserAgent ensures that no value is present for UserAgent, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetUserAgent() {
+	o.UserAgent.Unset()
+}
+
+// GetIpAddress returns the IpAddress field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetIpAddress() string {
+	if o == nil || o.IpAddress.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Title.Get()
+	return *o.IpAddress.Get()
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// GetIpAddressOk returns a tuple with the IpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateHotspotItem) GetTitleOk() (*string, bool) {
+func (o *ListAuthSessionsItem) GetIpAddressOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Title.Get(), o.Title.IsSet()
+	return o.IpAddress.Get(), o.IpAddress.IsSet()
 }
 
-// HasTitle returns a boolean if a field has been set.
-func (o *UpdateHotspotItem) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
+// HasIpAddress returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasIpAddress() bool {
+	if o != nil && o.IpAddress.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *UpdateHotspotItem) SetTitle(v string) {
-	o.Title.Set(&v)
+// SetIpAddress gets a reference to the given NullableString and assigns it to the IpAddress field.
+func (o *ListAuthSessionsItem) SetIpAddress(v string) {
+	o.IpAddress.Set(&v)
 }
-// SetTitleNil sets the value for Title to be an explicit nil
-func (o *UpdateHotspotItem) SetTitleNil() {
-	o.Title.Set(nil)
-}
-
-// UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *UpdateHotspotItem) UnsetTitle() {
-	o.Title.Unset()
+// SetIpAddressNil sets the value for IpAddress to be an explicit nil
+func (o *ListAuthSessionsItem) SetIpAddressNil() {
+	o.IpAddress.Set(nil)
 }
 
-// GetPlatformListingId returns the PlatformListingId field value
-func (o *UpdateHotspotItem) GetPlatformListingId() string {
-	if o == nil {
+// UnsetIpAddress ensures that no value is present for IpAddress, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetIpAddress() {
+	o.IpAddress.Unset()
+}
+
+// GetIpCountry returns the IpCountry field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetIpCountry() string {
+	if o == nil || o.IpCountry.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.PlatformListingId
+	return *o.IpCountry.Get()
 }
 
-// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value
-// and a boolean to check if the value has been set.
-func (o *UpdateHotspotItem) GetPlatformListingIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PlatformListingId, true
-}
-
-// SetPlatformListingId sets field value
-func (o *UpdateHotspotItem) SetPlatformListingId(v string) {
-	o.PlatformListingId = v
-}
-
-// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateHotspotItem) GetSlug() string {
-	if o == nil || o.Slug.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Slug.Get()
-}
-
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// GetIpCountryOk returns a tuple with the IpCountry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateHotspotItem) GetSlugOk() (*string, bool) {
+func (o *ListAuthSessionsItem) GetIpCountryOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Slug.Get(), o.Slug.IsSet()
+	return o.IpCountry.Get(), o.IpCountry.IsSet()
 }
 
-// HasSlug returns a boolean if a field has been set.
-func (o *UpdateHotspotItem) HasSlug() bool {
-	if o != nil && o.Slug.IsSet() {
+// HasIpCountry returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasIpCountry() bool {
+	if o != nil && o.IpCountry.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
-func (o *UpdateHotspotItem) SetSlug(v string) {
-	o.Slug.Set(&v)
+// SetIpCountry gets a reference to the given NullableString and assigns it to the IpCountry field.
+func (o *ListAuthSessionsItem) SetIpCountry(v string) {
+	o.IpCountry.Set(&v)
 }
-// SetSlugNil sets the value for Slug to be an explicit nil
-func (o *UpdateHotspotItem) SetSlugNil() {
-	o.Slug.Set(nil)
-}
-
-// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
-func (o *UpdateHotspotItem) UnsetSlug() {
-	o.Slug.Unset()
+// SetIpCountryNil sets the value for IpCountry to be an explicit nil
+func (o *ListAuthSessionsItem) SetIpCountryNil() {
+	o.IpCountry.Set(nil)
 }
 
-// GetPriceCents returns the PriceCents field value
-func (o *UpdateHotspotItem) GetPriceCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PriceCents
+// UnsetIpCountry ensures that no value is present for IpCountry, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetIpCountry() {
+	o.IpCountry.Unset()
 }
 
-// GetPriceCentsOk returns a tuple with the PriceCents field value
-// and a boolean to check if the value has been set.
-func (o *UpdateHotspotItem) GetPriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceCents, true
-}
-
-// SetPriceCents sets field value
-func (o *UpdateHotspotItem) SetPriceCents(v float32) {
-	o.PriceCents = v
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateHotspotItem) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetCreatedAt() string {
+	if o == nil || o.CreatedAt.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ImageUrl.Get()
+	return *o.CreatedAt.Get()
 }
 
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateHotspotItem) GetImageUrlOk() (*string, bool) {
+func (o *ListAuthSessionsItem) GetCreatedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasImageUrl returns a boolean if a field has been set.
-func (o *UpdateHotspotItem) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *UpdateHotspotItem) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
+// SetCreatedAt gets a reference to the given NullableString and assigns it to the CreatedAt field.
+func (o *ListAuthSessionsItem) SetCreatedAt(v string) {
+	o.CreatedAt.Set(&v)
 }
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *UpdateHotspotItem) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *UpdateHotspotItem) UnsetImageUrl() {
-	o.ImageUrl.Unset()
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *ListAuthSessionsItem) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
 }
 
-// GetX returns the X field value
-func (o *UpdateHotspotItem) GetX() float32 {
-	if o == nil {
-		var ret float32
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
+}
+
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetLastUsedAt() string {
+	if o == nil || o.LastUsedAt.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.X
+	return *o.LastUsedAt.Get()
 }
 
-// GetXOk returns a tuple with the X field value
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateHotspotItem) GetXOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAuthSessionsItem) GetLastUsedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.X, true
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
 }
 
-// SetX sets field value
-func (o *UpdateHotspotItem) SetX(v float32) {
-	o.X = v
-}
-
-// GetY returns the Y field value
-func (o *UpdateHotspotItem) GetY() float32 {
-	if o == nil {
-		var ret float32
-		return ret
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
+		return true
 	}
 
-	return o.Y
+	return false
 }
 
-// GetYOk returns a tuple with the Y field value
+// SetLastUsedAt gets a reference to the given NullableString and assigns it to the LastUsedAt field.
+func (o *ListAuthSessionsItem) SetLastUsedAt(v string) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ListAuthSessionsItem) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAuthSessionsItem) GetExpiresAt() string {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateHotspotItem) GetYOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAuthSessionsItem) GetExpiresAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Y, true
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// SetY sets field value
-func (o *UpdateHotspotItem) SetY(v float32) {
-	o.Y = v
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *ListAuthSessionsItem) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-func (o UpdateHotspotItem) MarshalJSON() ([]byte, error) {
+// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
+func (o *ListAuthSessionsItem) SetExpiresAt(v string) {
+	o.ExpiresAt.Set(&v)
+}
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *ListAuthSessionsItem) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *ListAuthSessionsItem) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
+func (o ListAuthSessionsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["available"] = o.Available
-	}
-	if o.Label.IsSet() {
-		toSerialize["label"] = o.Label.Get()
-	}
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
+		toSerialize["isCurrent"] = o.IsCurrent
 	}
 	if true {
-		toSerialize["platformListingId"] = o.PlatformListingId
+		toSerialize["id"] = o.Id
 	}
-	if o.Slug.IsSet() {
-		toSerialize["slug"] = o.Slug.Get()
+	if o.UserAgent.IsSet() {
+		toSerialize["userAgent"] = o.UserAgent.Get()
 	}
-	if true {
-		toSerialize["priceCents"] = o.PriceCents
+	if o.IpAddress.IsSet() {
+		toSerialize["ipAddress"] = o.IpAddress.Get()
 	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	if o.IpCountry.IsSet() {
+		toSerialize["ipCountry"] = o.IpCountry.Get()
 	}
-	if true {
-		toSerialize["x"] = o.X
+	if o.CreatedAt.IsSet() {
+		toSerialize["createdAt"] = o.CreatedAt.Get()
 	}
-	if true {
-		toSerialize["y"] = o.Y
+	if o.LastUsedAt.IsSet() {
+		toSerialize["lastUsedAt"] = o.LastUsedAt.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expiresAt"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableUpdateHotspotItem struct {
-	value *UpdateHotspotItem
+type NullableListAuthSessionsItem struct {
+	value *ListAuthSessionsItem
 	isSet bool
 }
 
-func (v NullableUpdateHotspotItem) Get() *UpdateHotspotItem {
+func (v NullableListAuthSessionsItem) Get() *ListAuthSessionsItem {
 	return v.value
 }
 
-func (v *NullableUpdateHotspotItem) Set(val *UpdateHotspotItem) {
+func (v *NullableListAuthSessionsItem) Set(val *ListAuthSessionsItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateHotspotItem) IsSet() bool {
+func (v NullableListAuthSessionsItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateHotspotItem) Unset() {
+func (v *NullableListAuthSessionsItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateHotspotItem(val *UpdateHotspotItem) *NullableUpdateHotspotItem {
-	return &NullableUpdateHotspotItem{value: val, isSet: true}
+func NewNullableListAuthSessionsItem(val *ListAuthSessionsItem) *NullableListAuthSessionsItem {
+	return &NullableListAuthSessionsItem{value: val, isSet: true}
 }
 
-func (v NullableUpdateHotspotItem) MarshalJSON() ([]byte, error) {
+func (v NullableListAuthSessionsItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateHotspotItem) UnmarshalJSON(src []byte) error {
+func (v *NullableListAuthSessionsItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// UpdateHotspotResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type UpdateHotspotResponse struct {
+// ListAuthSessionsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListAuthSessionsResponse struct {
 	// The rows.
-	Data []UpdateHotspotItem `json:"data"`
+	Data []ListAuthSessionsItem `json:"data"`
 	Pagination *Pagination `json:"pagination,omitempty"`
 	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
 	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
 }
 
-// NewUpdateHotspotResponse instantiates a new UpdateHotspotResponse object
+// NewListAuthSessionsResponse instantiates a new ListAuthSessionsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateHotspotResponse(data []UpdateHotspotItem) *UpdateHotspotResponse {
-	this := UpdateHotspotResponse{}
+func NewListAuthSessionsResponse(data []ListAuthSessionsItem) *ListAuthSessionsResponse {
+	this := ListAuthSessionsResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewUpdateHotspotResponseWithDefaults instantiates a new UpdateHotspotResponse object
+// NewListAuthSessionsResponseWithDefaults instantiates a new ListAuthSessionsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateHotspotResponseWithDefaults() *UpdateHotspotResponse {
-	this := UpdateHotspotResponse{}
+func NewListAuthSessionsResponseWithDefaults() *ListAuthSessionsResponse {
+	this := ListAuthSessionsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *UpdateHotspotResponse) GetData() []UpdateHotspotItem {
+func (o *ListAuthSessionsResponse) GetData() []ListAuthSessionsItem {
 	if o == nil {
-		var ret []UpdateHotspotItem
+		var ret []ListAuthSessionsItem
 		return ret
 	}
 
@@ -7204,7 +1068,7 @@ func (o *UpdateHotspotResponse) GetData() []UpdateHotspotItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *UpdateHotspotResponse) GetDataOk() ([]UpdateHotspotItem, bool) {
+func (o *ListAuthSessionsResponse) GetDataOk() ([]ListAuthSessionsItem, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -7212,12 +1076,12 @@ func (o *UpdateHotspotResponse) GetDataOk() ([]UpdateHotspotItem, bool) {
 }
 
 // SetData sets field value
-func (o *UpdateHotspotResponse) SetData(v []UpdateHotspotItem) {
+func (o *ListAuthSessionsResponse) SetData(v []ListAuthSessionsItem) {
 	o.Data = v
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *UpdateHotspotResponse) GetPagination() Pagination {
+func (o *ListAuthSessionsResponse) GetPagination() Pagination {
 	if o == nil || o.Pagination == nil {
 		var ret Pagination
 		return ret
@@ -7227,7 +1091,7 @@ func (o *UpdateHotspotResponse) GetPagination() Pagination {
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateHotspotResponse) GetPaginationOk() (*Pagination, bool) {
+func (o *ListAuthSessionsResponse) GetPaginationOk() (*Pagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -7235,7 +1099,7 @@ func (o *UpdateHotspotResponse) GetPaginationOk() (*Pagination, bool) {
 }
 
 // HasPagination returns a boolean if a field has been set.
-func (o *UpdateHotspotResponse) HasPagination() bool {
+func (o *ListAuthSessionsResponse) HasPagination() bool {
 	if o != nil && o.Pagination != nil {
 		return true
 	}
@@ -7244,12 +1108,12 @@ func (o *UpdateHotspotResponse) HasPagination() bool {
 }
 
 // SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *UpdateHotspotResponse) SetPagination(v Pagination) {
+func (o *ListAuthSessionsResponse) SetPagination(v Pagination) {
 	o.Pagination = &v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *UpdateHotspotResponse) GetMeta() map[string]map[string]interface{} {
+func (o *ListAuthSessionsResponse) GetMeta() map[string]map[string]interface{} {
 	if o == nil || o.Meta == nil {
 		var ret map[string]map[string]interface{}
 		return ret
@@ -7259,7 +1123,7 @@ func (o *UpdateHotspotResponse) GetMeta() map[string]map[string]interface{} {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateHotspotResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+func (o *ListAuthSessionsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -7267,7 +1131,7 @@ func (o *UpdateHotspotResponse) GetMetaOk() (map[string]map[string]interface{}, 
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *UpdateHotspotResponse) HasMeta() bool {
+func (o *ListAuthSessionsResponse) HasMeta() bool {
 	if o != nil && o.Meta != nil {
 		return true
 	}
@@ -7276,11 +1140,11 @@ func (o *UpdateHotspotResponse) HasMeta() bool {
 }
 
 // SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *UpdateHotspotResponse) SetMeta(v map[string]map[string]interface{}) {
+func (o *ListAuthSessionsResponse) SetMeta(v map[string]map[string]interface{}) {
 	o.Meta = v
 }
 
-func (o UpdateHotspotResponse) MarshalJSON() ([]byte, error) {
+func (o ListAuthSessionsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
@@ -7294,69 +1158,751 @@ func (o UpdateHotspotResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUpdateHotspotResponse struct {
-	value *UpdateHotspotResponse
+type NullableListAuthSessionsResponse struct {
+	value *ListAuthSessionsResponse
 	isSet bool
 }
 
-func (v NullableUpdateHotspotResponse) Get() *UpdateHotspotResponse {
+func (v NullableListAuthSessionsResponse) Get() *ListAuthSessionsResponse {
 	return v.value
 }
 
-func (v *NullableUpdateHotspotResponse) Set(val *UpdateHotspotResponse) {
+func (v *NullableListAuthSessionsResponse) Set(val *ListAuthSessionsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateHotspotResponse) IsSet() bool {
+func (v NullableListAuthSessionsResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateHotspotResponse) Unset() {
+func (v *NullableListAuthSessionsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateHotspotResponse(val *UpdateHotspotResponse) *NullableUpdateHotspotResponse {
-	return &NullableUpdateHotspotResponse{value: val, isSet: true}
+func NewNullableListAuthSessionsResponse(val *ListAuthSessionsResponse) *NullableListAuthSessionsResponse {
+	return &NullableListAuthSessionsResponse{value: val, isSet: true}
 }
 
-func (v NullableUpdateHotspotResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListAuthSessionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateHotspotResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListAuthSessionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// UserIdName struct for UserIdName
-type UserIdName struct {
-	UserId string `json:"userId"`
-	Name string `json:"name"`
+// ListCompWatchlistRecentItem struct for ListCompWatchlistRecentItem
+type ListCompWatchlistRecentItem struct {
+	Id string `json:"id"`
+	Platform string `json:"platform"`
+	Title string `json:"title"`
+	Brand NullableString `json:"brand,omitempty"`
+	SoldPrice string `json:"sold_price"`
+	ImageUrl NullableString `json:"image_url,omitempty"`
+	ListingUrl NullableString `json:"listing_url,omitempty"`
+	ScrapedAt string `json:"scraped_at"`
+	SoldAtApprox NullableString `json:"sold_at_approx,omitempty"`
 }
 
-// NewUserIdName instantiates a new UserIdName object
+// NewListCompWatchlistRecentItem instantiates a new ListCompWatchlistRecentItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserIdName(userId string, name string) *UserIdName {
-	this := UserIdName{}
-	this.UserId = userId
-	this.Name = name
+func NewListCompWatchlistRecentItem(id string, platform string, title string, soldPrice string, scrapedAt string) *ListCompWatchlistRecentItem {
+	this := ListCompWatchlistRecentItem{}
+	this.Id = id
+	this.Platform = platform
+	this.Title = title
+	this.SoldPrice = soldPrice
+	this.ScrapedAt = scrapedAt
 	return &this
 }
 
-// NewUserIdNameWithDefaults instantiates a new UserIdName object
+// NewListCompWatchlistRecentItemWithDefaults instantiates a new ListCompWatchlistRecentItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUserIdNameWithDefaults() *UserIdName {
-	this := UserIdName{}
+func NewListCompWatchlistRecentItemWithDefaults() *ListCompWatchlistRecentItem {
+	this := ListCompWatchlistRecentItem{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListCompWatchlistRecentItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListCompWatchlistRecentItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListCompWatchlistRecentItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListCompWatchlistRecentItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListCompWatchlistRecentItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListCompWatchlistRecentItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetBrand returns the Brand field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistRecentItem) GetBrand() string {
+	if o == nil || o.Brand.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Brand.Get()
+}
+
+// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistRecentItem) GetBrandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Brand.Get(), o.Brand.IsSet()
+}
+
+// HasBrand returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentItem) HasBrand() bool {
+	if o != nil && o.Brand.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand gets a reference to the given NullableString and assigns it to the Brand field.
+func (o *ListCompWatchlistRecentItem) SetBrand(v string) {
+	o.Brand.Set(&v)
+}
+// SetBrandNil sets the value for Brand to be an explicit nil
+func (o *ListCompWatchlistRecentItem) SetBrandNil() {
+	o.Brand.Set(nil)
+}
+
+// UnsetBrand ensures that no value is present for Brand, not even an explicit nil
+func (o *ListCompWatchlistRecentItem) UnsetBrand() {
+	o.Brand.Unset()
+}
+
+// GetSoldPrice returns the SoldPrice field value
+func (o *ListCompWatchlistRecentItem) GetSoldPrice() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SoldPrice
+}
+
+// GetSoldPriceOk returns a tuple with the SoldPrice field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentItem) GetSoldPriceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SoldPrice, true
+}
+
+// SetSoldPrice sets field value
+func (o *ListCompWatchlistRecentItem) SetSoldPrice(v string) {
+	o.SoldPrice = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistRecentItem) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistRecentItem) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentItem) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *ListCompWatchlistRecentItem) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *ListCompWatchlistRecentItem) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *ListCompWatchlistRecentItem) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetListingUrl returns the ListingUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistRecentItem) GetListingUrl() string {
+	if o == nil || o.ListingUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingUrl.Get()
+}
+
+// GetListingUrlOk returns a tuple with the ListingUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistRecentItem) GetListingUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingUrl.Get(), o.ListingUrl.IsSet()
+}
+
+// HasListingUrl returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentItem) HasListingUrl() bool {
+	if o != nil && o.ListingUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingUrl gets a reference to the given NullableString and assigns it to the ListingUrl field.
+func (o *ListCompWatchlistRecentItem) SetListingUrl(v string) {
+	o.ListingUrl.Set(&v)
+}
+// SetListingUrlNil sets the value for ListingUrl to be an explicit nil
+func (o *ListCompWatchlistRecentItem) SetListingUrlNil() {
+	o.ListingUrl.Set(nil)
+}
+
+// UnsetListingUrl ensures that no value is present for ListingUrl, not even an explicit nil
+func (o *ListCompWatchlistRecentItem) UnsetListingUrl() {
+	o.ListingUrl.Unset()
+}
+
+// GetScrapedAt returns the ScrapedAt field value
+func (o *ListCompWatchlistRecentItem) GetScrapedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ScrapedAt
+}
+
+// GetScrapedAtOk returns a tuple with the ScrapedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentItem) GetScrapedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ScrapedAt, true
+}
+
+// SetScrapedAt sets field value
+func (o *ListCompWatchlistRecentItem) SetScrapedAt(v string) {
+	o.ScrapedAt = v
+}
+
+// GetSoldAtApprox returns the SoldAtApprox field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistRecentItem) GetSoldAtApprox() string {
+	if o == nil || o.SoldAtApprox.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SoldAtApprox.Get()
+}
+
+// GetSoldAtApproxOk returns a tuple with the SoldAtApprox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistRecentItem) GetSoldAtApproxOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SoldAtApprox.Get(), o.SoldAtApprox.IsSet()
+}
+
+// HasSoldAtApprox returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentItem) HasSoldAtApprox() bool {
+	if o != nil && o.SoldAtApprox.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSoldAtApprox gets a reference to the given NullableString and assigns it to the SoldAtApprox field.
+func (o *ListCompWatchlistRecentItem) SetSoldAtApprox(v string) {
+	o.SoldAtApprox.Set(&v)
+}
+// SetSoldAtApproxNil sets the value for SoldAtApprox to be an explicit nil
+func (o *ListCompWatchlistRecentItem) SetSoldAtApproxNil() {
+	o.SoldAtApprox.Set(nil)
+}
+
+// UnsetSoldAtApprox ensures that no value is present for SoldAtApprox, not even an explicit nil
+func (o *ListCompWatchlistRecentItem) UnsetSoldAtApprox() {
+	o.SoldAtApprox.Unset()
+}
+
+func (o ListCompWatchlistRecentItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Brand.IsSet() {
+		toSerialize["brand"] = o.Brand.Get()
+	}
+	if true {
+		toSerialize["sold_price"] = o.SoldPrice
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["image_url"] = o.ImageUrl.Get()
+	}
+	if o.ListingUrl.IsSet() {
+		toSerialize["listing_url"] = o.ListingUrl.Get()
+	}
+	if true {
+		toSerialize["scraped_at"] = o.ScrapedAt
+	}
+	if o.SoldAtApprox.IsSet() {
+		toSerialize["sold_at_approx"] = o.SoldAtApprox.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListCompWatchlistRecentItem struct {
+	value *ListCompWatchlistRecentItem
+	isSet bool
+}
+
+func (v NullableListCompWatchlistRecentItem) Get() *ListCompWatchlistRecentItem {
+	return v.value
+}
+
+func (v *NullableListCompWatchlistRecentItem) Set(val *ListCompWatchlistRecentItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListCompWatchlistRecentItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListCompWatchlistRecentItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListCompWatchlistRecentItem(val *ListCompWatchlistRecentItem) *NullableListCompWatchlistRecentItem {
+	return &NullableListCompWatchlistRecentItem{value: val, isSet: true}
+}
+
+func (v NullableListCompWatchlistRecentItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListCompWatchlistRecentItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListCompWatchlistRecentResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListCompWatchlistRecentResponse struct {
+	// The rows.
+	Data []ListCompWatchlistRecentItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListCompWatchlistRecentResponse instantiates a new ListCompWatchlistRecentResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListCompWatchlistRecentResponse(data []ListCompWatchlistRecentItem) *ListCompWatchlistRecentResponse {
+	this := ListCompWatchlistRecentResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListCompWatchlistRecentResponseWithDefaults instantiates a new ListCompWatchlistRecentResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListCompWatchlistRecentResponseWithDefaults() *ListCompWatchlistRecentResponse {
+	this := ListCompWatchlistRecentResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListCompWatchlistRecentResponse) GetData() []ListCompWatchlistRecentItem {
+	if o == nil {
+		var ret []ListCompWatchlistRecentItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentResponse) GetDataOk() ([]ListCompWatchlistRecentItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListCompWatchlistRecentResponse) SetData(v []ListCompWatchlistRecentItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListCompWatchlistRecentResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListCompWatchlistRecentResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListCompWatchlistRecentResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistRecentResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListCompWatchlistRecentResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListCompWatchlistRecentResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListCompWatchlistRecentResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListCompWatchlistRecentResponse struct {
+	value *ListCompWatchlistRecentResponse
+	isSet bool
+}
+
+func (v NullableListCompWatchlistRecentResponse) Get() *ListCompWatchlistRecentResponse {
+	return v.value
+}
+
+func (v *NullableListCompWatchlistRecentResponse) Set(val *ListCompWatchlistRecentResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListCompWatchlistRecentResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListCompWatchlistRecentResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListCompWatchlistRecentResponse(val *ListCompWatchlistRecentResponse) *NullableListCompWatchlistRecentResponse {
+	return &NullableListCompWatchlistRecentResponse{value: val, isSet: true}
+}
+
+func (v NullableListCompWatchlistRecentResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListCompWatchlistRecentResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListCompWatchlistsItem struct for ListCompWatchlistsItem
+type ListCompWatchlistsItem struct {
+	Id string `json:"id"`
+	Brand NullableString `json:"brand,omitempty"`
+	Name string `json:"name"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Platform NullableString `json:"platform,omitempty"`
+	Condition NullableString `json:"condition,omitempty"`
+	CategoryMain NullableString `json:"categoryMain,omitempty"`
+	MinPrice NullableString `json:"minPrice,omitempty"`
+	MaxPrice NullableString `json:"maxPrice,omitempty"`
+	LastMatchedAt NullableTime `json:"lastMatchedAt,omitempty"`
+	LastScrapedAt NullableTime `json:"lastScrapedAt,omitempty"`
+}
+
+// NewListCompWatchlistsItem instantiates a new ListCompWatchlistsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListCompWatchlistsItem(id string, name string, createdAt time.Time, userId string) *ListCompWatchlistsItem {
+	this := ListCompWatchlistsItem{}
+	this.Id = id
+	this.Name = name
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	return &this
+}
+
+// NewListCompWatchlistsItemWithDefaults instantiates a new ListCompWatchlistsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListCompWatchlistsItemWithDefaults() *ListCompWatchlistsItem {
+	this := ListCompWatchlistsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListCompWatchlistsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListCompWatchlistsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetBrand returns the Brand field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetBrand() string {
+	if o == nil || o.Brand.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Brand.Get()
+}
+
+// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetBrandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Brand.Get(), o.Brand.IsSet()
+}
+
+// HasBrand returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasBrand() bool {
+	if o != nil && o.Brand.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand gets a reference to the given NullableString and assigns it to the Brand field.
+func (o *ListCompWatchlistsItem) SetBrand(v string) {
+	o.Brand.Set(&v)
+}
+// SetBrandNil sets the value for Brand to be an explicit nil
+func (o *ListCompWatchlistsItem) SetBrandNil() {
+	o.Brand.Set(nil)
+}
+
+// UnsetBrand ensures that no value is present for Brand, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetBrand() {
+	o.Brand.Unset()
+}
+
+// GetName returns the Name field value
+func (o *ListCompWatchlistsItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListCompWatchlistsItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListCompWatchlistsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListCompWatchlistsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetUserId returns the UserId field value
-func (o *UserIdName) GetUserId() string {
+func (o *ListCompWatchlistsItem) GetUserId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -7367,7 +1913,7 @@ func (o *UserIdName) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *UserIdName) GetUserIdOk() (*string, bool) {
+func (o *ListCompWatchlistsItem) GetUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -7375,575 +1921,1326 @@ func (o *UserIdName) GetUserIdOk() (*string, bool) {
 }
 
 // SetUserId sets field value
-func (o *UserIdName) SetUserId(v string) {
+func (o *ListCompWatchlistsItem) SetUserId(v string) {
 	o.UserId = v
 }
 
-// GetName returns the Name field value
-func (o *UserIdName) GetName() string {
-	if o == nil {
+// GetPlatform returns the Platform field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetPlatform() string {
+	if o == nil || o.Platform.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *UserIdName) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *UserIdName) SetName(v string) {
-	o.Name = v
-}
-
-func (o UserIdName) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUserIdName struct {
-	value *UserIdName
-	isSet bool
-}
-
-func (v NullableUserIdName) Get() *UserIdName {
-	return v.value
-}
-
-func (v *NullableUserIdName) Set(val *UserIdName) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserIdName) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserIdName) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserIdName(val *UserIdName) *NullableUserIdName {
-	return &NullableUserIdName{value: val, isSet: true}
-}
-
-func (v NullableUserIdName) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserIdName) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// ValueConfidence struct for ValueConfidence
-type ValueConfidence struct {
-	Value string `json:"value"`
-	Confidence float32 `json:"confidence"`
-}
-
-// NewValueConfidence instantiates a new ValueConfidence object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewValueConfidence(value string, confidence float32) *ValueConfidence {
-	this := ValueConfidence{}
-	this.Value = value
-	this.Confidence = confidence
-	return &this
-}
-
-// NewValueConfidenceWithDefaults instantiates a new ValueConfidence object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewValueConfidenceWithDefaults() *ValueConfidence {
-	this := ValueConfidence{}
-	return &this
-}
-
-// GetValue returns the Value field value
-func (o *ValueConfidence) GetValue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value
-// and a boolean to check if the value has been set.
-func (o *ValueConfidence) GetValueOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Value, true
-}
-
-// SetValue sets field value
-func (o *ValueConfidence) SetValue(v string) {
-	o.Value = v
-}
-
-// GetConfidence returns the Confidence field value
-func (o *ValueConfidence) GetConfidence() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Confidence
-}
-
-// GetConfidenceOk returns a tuple with the Confidence field value
-// and a boolean to check if the value has been set.
-func (o *ValueConfidence) GetConfidenceOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Confidence, true
-}
-
-// SetConfidence sets field value
-func (o *ValueConfidence) SetConfidence(v float32) {
-	o.Confidence = v
-}
-
-func (o ValueConfidence) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["value"] = o.Value
-	}
-	if true {
-		toSerialize["confidence"] = o.Confidence
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableValueConfidence struct {
-	value *ValueConfidence
-	isSet bool
-}
-
-func (v NullableValueConfidence) Get() *ValueConfidence {
-	return v.value
-}
-
-func (v *NullableValueConfidence) Set(val *ValueConfidence) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableValueConfidence) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableValueConfidence) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableValueConfidence(val *ValueConfidence) *NullableValueConfidence {
-	return &NullableValueConfidence{value: val, isSet: true}
-}
-
-func (v NullableValueConfidence) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableValueConfidence) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// WorldHomeResponse struct for WorldHomeResponse
-type WorldHomeResponse struct {
-	Data GetHomeResponse `json:"data"`
-}
-
-// NewWorldHomeResponse instantiates a new WorldHomeResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewWorldHomeResponse(data GetHomeResponse) *WorldHomeResponse {
-	this := WorldHomeResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewWorldHomeResponseWithDefaults instantiates a new WorldHomeResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewWorldHomeResponseWithDefaults() *WorldHomeResponse {
-	this := WorldHomeResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *WorldHomeResponse) GetData() GetHomeResponse {
-	if o == nil {
-		var ret GetHomeResponse
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *WorldHomeResponse) GetDataOk() (*GetHomeResponse, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *WorldHomeResponse) SetData(v GetHomeResponse) {
-	o.Data = v
-}
-
-func (o WorldHomeResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableWorldHomeResponse struct {
-	value *WorldHomeResponse
-	isSet bool
-}
-
-func (v NullableWorldHomeResponse) Get() *WorldHomeResponse {
-	return v.value
-}
-
-func (v *NullableWorldHomeResponse) Set(val *WorldHomeResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWorldHomeResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWorldHomeResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWorldHomeResponse(val *WorldHomeResponse) *NullableWorldHomeResponse {
-	return &NullableWorldHomeResponse{value: val, isSet: true}
-}
-
-func (v NullableWorldHomeResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWorldHomeResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// WorldResponse struct for WorldResponse
-type WorldResponse struct {
-	Data WorldResponseData `json:"data"`
-}
-
-// NewWorldResponse instantiates a new WorldResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewWorldResponse(data WorldResponseData) *WorldResponse {
-	this := WorldResponse{}
-	this.Data = data
-	return &this
-}
-
-// NewWorldResponseWithDefaults instantiates a new WorldResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewWorldResponseWithDefaults() *WorldResponse {
-	this := WorldResponse{}
-	return &this
-}
-
-// GetData returns the Data field value
-func (o *WorldResponse) GetData() WorldResponseData {
-	if o == nil {
-		var ret WorldResponseData
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *WorldResponse) GetDataOk() (*WorldResponseData, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *WorldResponse) SetData(v WorldResponseData) {
-	o.Data = v
-}
-
-func (o WorldResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableWorldResponse struct {
-	value *WorldResponse
-	isSet bool
-}
-
-func (v NullableWorldResponse) Get() *WorldResponse {
-	return v.value
-}
-
-func (v *NullableWorldResponse) Set(val *WorldResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWorldResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWorldResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWorldResponse(val *WorldResponse) *NullableWorldResponse {
-	return &NullableWorldResponse{value: val, isSet: true}
-}
-
-func (v NullableWorldResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWorldResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// WorldResponseData struct for WorldResponseData
-type WorldResponseData struct {
-	Messages []WorldResponseDataMessages `json:"messages"`
-	Said NullableWorldResponseDataSaid `json:"said,omitempty"`
-}
-
-// NewWorldResponseData instantiates a new WorldResponseData object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewWorldResponseData(messages []WorldResponseDataMessages) *WorldResponseData {
-	this := WorldResponseData{}
-	this.Messages = messages
-	return &this
-}
-
-// NewWorldResponseDataWithDefaults instantiates a new WorldResponseData object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewWorldResponseDataWithDefaults() *WorldResponseData {
-	this := WorldResponseData{}
-	return &this
-}
-
-// GetMessages returns the Messages field value
-func (o *WorldResponseData) GetMessages() []WorldResponseDataMessages {
-	if o == nil {
-		var ret []WorldResponseDataMessages
-		return ret
-	}
-
-	return o.Messages
-}
-
-// GetMessagesOk returns a tuple with the Messages field value
-// and a boolean to check if the value has been set.
-func (o *WorldResponseData) GetMessagesOk() ([]WorldResponseDataMessages, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Messages, true
-}
-
-// SetMessages sets field value
-func (o *WorldResponseData) SetMessages(v []WorldResponseDataMessages) {
-	o.Messages = v
-}
-
-// GetSaid returns the Said field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WorldResponseData) GetSaid() WorldResponseDataSaid {
-	if o == nil || o.Said.Get() == nil {
-		var ret WorldResponseDataSaid
-		return ret
-	}
-	return *o.Said.Get()
+	return *o.Platform.Get()
 }
 
-// GetSaidOk returns a tuple with the Said field value if set, nil otherwise
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WorldResponseData) GetSaidOk() (*WorldResponseDataSaid, bool) {
+func (o *ListCompWatchlistsItem) GetPlatformOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Said.Get(), o.Said.IsSet()
+	return o.Platform.Get(), o.Platform.IsSet()
 }
 
-// HasSaid returns a boolean if a field has been set.
-func (o *WorldResponseData) HasSaid() bool {
-	if o != nil && o.Said.IsSet() {
+// HasPlatform returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasPlatform() bool {
+	if o != nil && o.Platform.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSaid gets a reference to the given NullableWorldResponseDataSaid and assigns it to the Said field.
-func (o *WorldResponseData) SetSaid(v WorldResponseDataSaid) {
-	o.Said.Set(&v)
+// SetPlatform gets a reference to the given NullableString and assigns it to the Platform field.
+func (o *ListCompWatchlistsItem) SetPlatform(v string) {
+	o.Platform.Set(&v)
 }
-// SetSaidNil sets the value for Said to be an explicit nil
-func (o *WorldResponseData) SetSaidNil() {
-	o.Said.Set(nil)
-}
-
-// UnsetSaid ensures that no value is present for Said, not even an explicit nil
-func (o *WorldResponseData) UnsetSaid() {
-	o.Said.Unset()
+// SetPlatformNil sets the value for Platform to be an explicit nil
+func (o *ListCompWatchlistsItem) SetPlatformNil() {
+	o.Platform.Set(nil)
 }
 
-func (o WorldResponseData) MarshalJSON() ([]byte, error) {
+// UnsetPlatform ensures that no value is present for Platform, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetPlatform() {
+	o.Platform.Unset()
+}
+
+// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetCondition() string {
+	if o == nil || o.Condition.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Condition.Get()
+}
+
+// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetConditionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Condition.Get(), o.Condition.IsSet()
+}
+
+// HasCondition returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasCondition() bool {
+	if o != nil && o.Condition.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCondition gets a reference to the given NullableString and assigns it to the Condition field.
+func (o *ListCompWatchlistsItem) SetCondition(v string) {
+	o.Condition.Set(&v)
+}
+// SetConditionNil sets the value for Condition to be an explicit nil
+func (o *ListCompWatchlistsItem) SetConditionNil() {
+	o.Condition.Set(nil)
+}
+
+// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetCondition() {
+	o.Condition.Unset()
+}
+
+// GetCategoryMain returns the CategoryMain field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetCategoryMain() string {
+	if o == nil || o.CategoryMain.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CategoryMain.Get()
+}
+
+// GetCategoryMainOk returns a tuple with the CategoryMain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetCategoryMainOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CategoryMain.Get(), o.CategoryMain.IsSet()
+}
+
+// HasCategoryMain returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasCategoryMain() bool {
+	if o != nil && o.CategoryMain.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCategoryMain gets a reference to the given NullableString and assigns it to the CategoryMain field.
+func (o *ListCompWatchlistsItem) SetCategoryMain(v string) {
+	o.CategoryMain.Set(&v)
+}
+// SetCategoryMainNil sets the value for CategoryMain to be an explicit nil
+func (o *ListCompWatchlistsItem) SetCategoryMainNil() {
+	o.CategoryMain.Set(nil)
+}
+
+// UnsetCategoryMain ensures that no value is present for CategoryMain, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetCategoryMain() {
+	o.CategoryMain.Unset()
+}
+
+// GetMinPrice returns the MinPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetMinPrice() string {
+	if o == nil || o.MinPrice.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MinPrice.Get()
+}
+
+// GetMinPriceOk returns a tuple with the MinPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetMinPriceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MinPrice.Get(), o.MinPrice.IsSet()
+}
+
+// HasMinPrice returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasMinPrice() bool {
+	if o != nil && o.MinPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMinPrice gets a reference to the given NullableString and assigns it to the MinPrice field.
+func (o *ListCompWatchlistsItem) SetMinPrice(v string) {
+	o.MinPrice.Set(&v)
+}
+// SetMinPriceNil sets the value for MinPrice to be an explicit nil
+func (o *ListCompWatchlistsItem) SetMinPriceNil() {
+	o.MinPrice.Set(nil)
+}
+
+// UnsetMinPrice ensures that no value is present for MinPrice, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetMinPrice() {
+	o.MinPrice.Unset()
+}
+
+// GetMaxPrice returns the MaxPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetMaxPrice() string {
+	if o == nil || o.MaxPrice.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MaxPrice.Get()
+}
+
+// GetMaxPriceOk returns a tuple with the MaxPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetMaxPriceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MaxPrice.Get(), o.MaxPrice.IsSet()
+}
+
+// HasMaxPrice returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasMaxPrice() bool {
+	if o != nil && o.MaxPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxPrice gets a reference to the given NullableString and assigns it to the MaxPrice field.
+func (o *ListCompWatchlistsItem) SetMaxPrice(v string) {
+	o.MaxPrice.Set(&v)
+}
+// SetMaxPriceNil sets the value for MaxPrice to be an explicit nil
+func (o *ListCompWatchlistsItem) SetMaxPriceNil() {
+	o.MaxPrice.Set(nil)
+}
+
+// UnsetMaxPrice ensures that no value is present for MaxPrice, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetMaxPrice() {
+	o.MaxPrice.Unset()
+}
+
+// GetLastMatchedAt returns the LastMatchedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetLastMatchedAt() time.Time {
+	if o == nil || o.LastMatchedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastMatchedAt.Get()
+}
+
+// GetLastMatchedAtOk returns a tuple with the LastMatchedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetLastMatchedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastMatchedAt.Get(), o.LastMatchedAt.IsSet()
+}
+
+// HasLastMatchedAt returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasLastMatchedAt() bool {
+	if o != nil && o.LastMatchedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastMatchedAt gets a reference to the given NullableTime and assigns it to the LastMatchedAt field.
+func (o *ListCompWatchlistsItem) SetLastMatchedAt(v time.Time) {
+	o.LastMatchedAt.Set(&v)
+}
+// SetLastMatchedAtNil sets the value for LastMatchedAt to be an explicit nil
+func (o *ListCompWatchlistsItem) SetLastMatchedAtNil() {
+	o.LastMatchedAt.Set(nil)
+}
+
+// UnsetLastMatchedAt ensures that no value is present for LastMatchedAt, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetLastMatchedAt() {
+	o.LastMatchedAt.Unset()
+}
+
+// GetLastScrapedAt returns the LastScrapedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListCompWatchlistsItem) GetLastScrapedAt() time.Time {
+	if o == nil || o.LastScrapedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastScrapedAt.Get()
+}
+
+// GetLastScrapedAtOk returns a tuple with the LastScrapedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListCompWatchlistsItem) GetLastScrapedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastScrapedAt.Get(), o.LastScrapedAt.IsSet()
+}
+
+// HasLastScrapedAt returns a boolean if a field has been set.
+func (o *ListCompWatchlistsItem) HasLastScrapedAt() bool {
+	if o != nil && o.LastScrapedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastScrapedAt gets a reference to the given NullableTime and assigns it to the LastScrapedAt field.
+func (o *ListCompWatchlistsItem) SetLastScrapedAt(v time.Time) {
+	o.LastScrapedAt.Set(&v)
+}
+// SetLastScrapedAtNil sets the value for LastScrapedAt to be an explicit nil
+func (o *ListCompWatchlistsItem) SetLastScrapedAtNil() {
+	o.LastScrapedAt.Set(nil)
+}
+
+// UnsetLastScrapedAt ensures that no value is present for LastScrapedAt, not even an explicit nil
+func (o *ListCompWatchlistsItem) UnsetLastScrapedAt() {
+	o.LastScrapedAt.Unset()
+}
+
+func (o ListCompWatchlistsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["messages"] = o.Messages
+		toSerialize["id"] = o.Id
 	}
-	if o.Said.IsSet() {
-		toSerialize["said"] = o.Said.Get()
+	if o.Brand.IsSet() {
+		toSerialize["brand"] = o.Brand.Get()
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.Platform.IsSet() {
+		toSerialize["platform"] = o.Platform.Get()
+	}
+	if o.Condition.IsSet() {
+		toSerialize["condition"] = o.Condition.Get()
+	}
+	if o.CategoryMain.IsSet() {
+		toSerialize["categoryMain"] = o.CategoryMain.Get()
+	}
+	if o.MinPrice.IsSet() {
+		toSerialize["minPrice"] = o.MinPrice.Get()
+	}
+	if o.MaxPrice.IsSet() {
+		toSerialize["maxPrice"] = o.MaxPrice.Get()
+	}
+	if o.LastMatchedAt.IsSet() {
+		toSerialize["lastMatchedAt"] = o.LastMatchedAt.Get()
+	}
+	if o.LastScrapedAt.IsSet() {
+		toSerialize["lastScrapedAt"] = o.LastScrapedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableWorldResponseData struct {
-	value *WorldResponseData
+type NullableListCompWatchlistsItem struct {
+	value *ListCompWatchlistsItem
 	isSet bool
 }
 
-func (v NullableWorldResponseData) Get() *WorldResponseData {
+func (v NullableListCompWatchlistsItem) Get() *ListCompWatchlistsItem {
 	return v.value
 }
 
-func (v *NullableWorldResponseData) Set(val *WorldResponseData) {
+func (v *NullableListCompWatchlistsItem) Set(val *ListCompWatchlistsItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWorldResponseData) IsSet() bool {
+func (v NullableListCompWatchlistsItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWorldResponseData) Unset() {
+func (v *NullableListCompWatchlistsItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWorldResponseData(val *WorldResponseData) *NullableWorldResponseData {
-	return &NullableWorldResponseData{value: val, isSet: true}
+func NewNullableListCompWatchlistsItem(val *ListCompWatchlistsItem) *NullableListCompWatchlistsItem {
+	return &NullableListCompWatchlistsItem{value: val, isSet: true}
 }
 
-func (v NullableWorldResponseData) MarshalJSON() ([]byte, error) {
+func (v NullableListCompWatchlistsItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWorldResponseData) UnmarshalJSON(src []byte) error {
+func (v *NullableListCompWatchlistsItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// WorldResponseDataMessages struct for WorldResponseDataMessages
-type WorldResponseDataMessages struct {
-	From string `json:"from"`
-	Name string `json:"name"`
-	Text string `json:"text"`
-	At float32 `json:"at"`
+// ListCompWatchlistsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListCompWatchlistsResponse struct {
+	// The rows.
+	Data []ListCompWatchlistsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
 }
 
-// NewWorldResponseDataMessages instantiates a new WorldResponseDataMessages object
+// NewListCompWatchlistsResponse instantiates a new ListCompWatchlistsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorldResponseDataMessages(from string, name string, text string, at float32) *WorldResponseDataMessages {
-	this := WorldResponseDataMessages{}
-	this.From = from
-	this.Name = name
-	this.Text = text
-	this.At = at
+func NewListCompWatchlistsResponse(data []ListCompWatchlistsItem) *ListCompWatchlistsResponse {
+	this := ListCompWatchlistsResponse{}
+	this.Data = data
 	return &this
 }
 
-// NewWorldResponseDataMessagesWithDefaults instantiates a new WorldResponseDataMessages object
+// NewListCompWatchlistsResponseWithDefaults instantiates a new ListCompWatchlistsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWorldResponseDataMessagesWithDefaults() *WorldResponseDataMessages {
-	this := WorldResponseDataMessages{}
+func NewListCompWatchlistsResponseWithDefaults() *ListCompWatchlistsResponse {
+	this := ListCompWatchlistsResponse{}
 	return &this
 }
 
-// GetFrom returns the From field value
-func (o *WorldResponseDataMessages) GetFrom() string {
+// GetData returns the Data field value
+func (o *ListCompWatchlistsResponse) GetData() []ListCompWatchlistsItem {
+	if o == nil {
+		var ret []ListCompWatchlistsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsResponse) GetDataOk() ([]ListCompWatchlistsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListCompWatchlistsResponse) SetData(v []ListCompWatchlistsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListCompWatchlistsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListCompWatchlistsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListCompWatchlistsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListCompWatchlistsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListCompWatchlistsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListCompWatchlistsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListCompWatchlistsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListCompWatchlistsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListCompWatchlistsResponse struct {
+	value *ListCompWatchlistsResponse
+	isSet bool
+}
+
+func (v NullableListCompWatchlistsResponse) Get() *ListCompWatchlistsResponse {
+	return v.value
+}
+
+func (v *NullableListCompWatchlistsResponse) Set(val *ListCompWatchlistsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListCompWatchlistsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListCompWatchlistsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListCompWatchlistsResponse(val *ListCompWatchlistsResponse) *NullableListCompWatchlistsResponse {
+	return &NullableListCompWatchlistsResponse{value: val, isSet: true}
+}
+
+func (v NullableListCompWatchlistsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListCompWatchlistsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListConnectedAppsItem struct for ListConnectedAppsItem
+type ListConnectedAppsItem struct {
+	GrantId string `json:"grantId"`
+	Scopes []string `json:"scopes"`
+	ConnectedAt time.Time `json:"connectedAt"`
+	LastUsedAt NullableTime `json:"lastUsedAt,omitempty"`
+	AppId string `json:"appId"`
+	AppName string `json:"appName"`
+	AppDescription NullableString `json:"appDescription,omitempty"`
+	HomepageUrl NullableString `json:"homepageUrl,omitempty"`
+	DeveloperName NullableString `json:"developerName,omitempty"`
+	DeveloperEmail string `json:"developerEmail"`
+	// The share of take-home THIS install agreed to (frozen at consent), not the app's current terms. Null = free.
+	RevShareBps NullableFloat32 `json:"revShareBps,omitempty"`
+}
+
+// NewListConnectedAppsItem instantiates a new ListConnectedAppsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListConnectedAppsItem(grantId string, scopes []string, connectedAt time.Time, appId string, appName string, developerEmail string) *ListConnectedAppsItem {
+	this := ListConnectedAppsItem{}
+	this.GrantId = grantId
+	this.Scopes = scopes
+	this.ConnectedAt = connectedAt
+	this.AppId = appId
+	this.AppName = appName
+	this.DeveloperEmail = developerEmail
+	return &this
+}
+
+// NewListConnectedAppsItemWithDefaults instantiates a new ListConnectedAppsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListConnectedAppsItemWithDefaults() *ListConnectedAppsItem {
+	this := ListConnectedAppsItem{}
+	return &this
+}
+
+// GetGrantId returns the GrantId field value
+func (o *ListConnectedAppsItem) GetGrantId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.From
+	return o.GrantId
 }
 
-// GetFromOk returns a tuple with the From field value
+// GetGrantIdOk returns a tuple with the GrantId field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataMessages) GetFromOk() (*string, bool) {
+func (o *ListConnectedAppsItem) GetGrantIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.From, true
+	return &o.GrantId, true
 }
 
-// SetFrom sets field value
-func (o *WorldResponseDataMessages) SetFrom(v string) {
-	o.From = v
+// SetGrantId sets field value
+func (o *ListConnectedAppsItem) SetGrantId(v string) {
+	o.GrantId = v
+}
+
+// GetScopes returns the Scopes field value
+func (o *ListConnectedAppsItem) GetScopes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Scopes
+}
+
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsItem) GetScopesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Scopes, true
+}
+
+// SetScopes sets field value
+func (o *ListConnectedAppsItem) SetScopes(v []string) {
+	o.Scopes = v
+}
+
+// GetConnectedAt returns the ConnectedAt field value
+func (o *ListConnectedAppsItem) GetConnectedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.ConnectedAt
+}
+
+// GetConnectedAtOk returns a tuple with the ConnectedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsItem) GetConnectedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConnectedAt, true
+}
+
+// SetConnectedAt sets field value
+func (o *ListConnectedAppsItem) SetConnectedAt(v time.Time) {
+	o.ConnectedAt = v
+}
+
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectedAppsItem) GetLastUsedAt() time.Time {
+	if o == nil || o.LastUsedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUsedAt.Get()
+}
+
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectedAppsItem) GetLastUsedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+}
+
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ListConnectedAppsItem) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUsedAt gets a reference to the given NullableTime and assigns it to the LastUsedAt field.
+func (o *ListConnectedAppsItem) SetLastUsedAt(v time.Time) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ListConnectedAppsItem) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ListConnectedAppsItem) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
+}
+
+// GetAppId returns the AppId field value
+func (o *ListConnectedAppsItem) GetAppId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AppId
+}
+
+// GetAppIdOk returns a tuple with the AppId field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsItem) GetAppIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AppId, true
+}
+
+// SetAppId sets field value
+func (o *ListConnectedAppsItem) SetAppId(v string) {
+	o.AppId = v
+}
+
+// GetAppName returns the AppName field value
+func (o *ListConnectedAppsItem) GetAppName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AppName
+}
+
+// GetAppNameOk returns a tuple with the AppName field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsItem) GetAppNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AppName, true
+}
+
+// SetAppName sets field value
+func (o *ListConnectedAppsItem) SetAppName(v string) {
+	o.AppName = v
+}
+
+// GetAppDescription returns the AppDescription field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectedAppsItem) GetAppDescription() string {
+	if o == nil || o.AppDescription.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AppDescription.Get()
+}
+
+// GetAppDescriptionOk returns a tuple with the AppDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectedAppsItem) GetAppDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AppDescription.Get(), o.AppDescription.IsSet()
+}
+
+// HasAppDescription returns a boolean if a field has been set.
+func (o *ListConnectedAppsItem) HasAppDescription() bool {
+	if o != nil && o.AppDescription.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAppDescription gets a reference to the given NullableString and assigns it to the AppDescription field.
+func (o *ListConnectedAppsItem) SetAppDescription(v string) {
+	o.AppDescription.Set(&v)
+}
+// SetAppDescriptionNil sets the value for AppDescription to be an explicit nil
+func (o *ListConnectedAppsItem) SetAppDescriptionNil() {
+	o.AppDescription.Set(nil)
+}
+
+// UnsetAppDescription ensures that no value is present for AppDescription, not even an explicit nil
+func (o *ListConnectedAppsItem) UnsetAppDescription() {
+	o.AppDescription.Unset()
+}
+
+// GetHomepageUrl returns the HomepageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectedAppsItem) GetHomepageUrl() string {
+	if o == nil || o.HomepageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.HomepageUrl.Get()
+}
+
+// GetHomepageUrlOk returns a tuple with the HomepageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectedAppsItem) GetHomepageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HomepageUrl.Get(), o.HomepageUrl.IsSet()
+}
+
+// HasHomepageUrl returns a boolean if a field has been set.
+func (o *ListConnectedAppsItem) HasHomepageUrl() bool {
+	if o != nil && o.HomepageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHomepageUrl gets a reference to the given NullableString and assigns it to the HomepageUrl field.
+func (o *ListConnectedAppsItem) SetHomepageUrl(v string) {
+	o.HomepageUrl.Set(&v)
+}
+// SetHomepageUrlNil sets the value for HomepageUrl to be an explicit nil
+func (o *ListConnectedAppsItem) SetHomepageUrlNil() {
+	o.HomepageUrl.Set(nil)
+}
+
+// UnsetHomepageUrl ensures that no value is present for HomepageUrl, not even an explicit nil
+func (o *ListConnectedAppsItem) UnsetHomepageUrl() {
+	o.HomepageUrl.Unset()
+}
+
+// GetDeveloperName returns the DeveloperName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectedAppsItem) GetDeveloperName() string {
+	if o == nil || o.DeveloperName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeveloperName.Get()
+}
+
+// GetDeveloperNameOk returns a tuple with the DeveloperName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectedAppsItem) GetDeveloperNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeveloperName.Get(), o.DeveloperName.IsSet()
+}
+
+// HasDeveloperName returns a boolean if a field has been set.
+func (o *ListConnectedAppsItem) HasDeveloperName() bool {
+	if o != nil && o.DeveloperName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeveloperName gets a reference to the given NullableString and assigns it to the DeveloperName field.
+func (o *ListConnectedAppsItem) SetDeveloperName(v string) {
+	o.DeveloperName.Set(&v)
+}
+// SetDeveloperNameNil sets the value for DeveloperName to be an explicit nil
+func (o *ListConnectedAppsItem) SetDeveloperNameNil() {
+	o.DeveloperName.Set(nil)
+}
+
+// UnsetDeveloperName ensures that no value is present for DeveloperName, not even an explicit nil
+func (o *ListConnectedAppsItem) UnsetDeveloperName() {
+	o.DeveloperName.Unset()
+}
+
+// GetDeveloperEmail returns the DeveloperEmail field value
+func (o *ListConnectedAppsItem) GetDeveloperEmail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeveloperEmail
+}
+
+// GetDeveloperEmailOk returns a tuple with the DeveloperEmail field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsItem) GetDeveloperEmailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DeveloperEmail, true
+}
+
+// SetDeveloperEmail sets field value
+func (o *ListConnectedAppsItem) SetDeveloperEmail(v string) {
+	o.DeveloperEmail = v
+}
+
+// GetRevShareBps returns the RevShareBps field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListConnectedAppsItem) GetRevShareBps() float32 {
+	if o == nil || o.RevShareBps.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.RevShareBps.Get()
+}
+
+// GetRevShareBpsOk returns a tuple with the RevShareBps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListConnectedAppsItem) GetRevShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RevShareBps.Get(), o.RevShareBps.IsSet()
+}
+
+// HasRevShareBps returns a boolean if a field has been set.
+func (o *ListConnectedAppsItem) HasRevShareBps() bool {
+	if o != nil && o.RevShareBps.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevShareBps gets a reference to the given NullableFloat32 and assigns it to the RevShareBps field.
+func (o *ListConnectedAppsItem) SetRevShareBps(v float32) {
+	o.RevShareBps.Set(&v)
+}
+// SetRevShareBpsNil sets the value for RevShareBps to be an explicit nil
+func (o *ListConnectedAppsItem) SetRevShareBpsNil() {
+	o.RevShareBps.Set(nil)
+}
+
+// UnsetRevShareBps ensures that no value is present for RevShareBps, not even an explicit nil
+func (o *ListConnectedAppsItem) UnsetRevShareBps() {
+	o.RevShareBps.Unset()
+}
+
+func (o ListConnectedAppsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["grantId"] = o.GrantId
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	if true {
+		toSerialize["connectedAt"] = o.ConnectedAt
+	}
+	if o.LastUsedAt.IsSet() {
+		toSerialize["lastUsedAt"] = o.LastUsedAt.Get()
+	}
+	if true {
+		toSerialize["appId"] = o.AppId
+	}
+	if true {
+		toSerialize["appName"] = o.AppName
+	}
+	if o.AppDescription.IsSet() {
+		toSerialize["appDescription"] = o.AppDescription.Get()
+	}
+	if o.HomepageUrl.IsSet() {
+		toSerialize["homepageUrl"] = o.HomepageUrl.Get()
+	}
+	if o.DeveloperName.IsSet() {
+		toSerialize["developerName"] = o.DeveloperName.Get()
+	}
+	if true {
+		toSerialize["developerEmail"] = o.DeveloperEmail
+	}
+	if o.RevShareBps.IsSet() {
+		toSerialize["revShareBps"] = o.RevShareBps.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListConnectedAppsItem struct {
+	value *ListConnectedAppsItem
+	isSet bool
+}
+
+func (v NullableListConnectedAppsItem) Get() *ListConnectedAppsItem {
+	return v.value
+}
+
+func (v *NullableListConnectedAppsItem) Set(val *ListConnectedAppsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListConnectedAppsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListConnectedAppsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListConnectedAppsItem(val *ListConnectedAppsItem) *NullableListConnectedAppsItem {
+	return &NullableListConnectedAppsItem{value: val, isSet: true}
+}
+
+func (v NullableListConnectedAppsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListConnectedAppsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListConnectedAppsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListConnectedAppsResponse struct {
+	// The rows.
+	Data []ListConnectedAppsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListConnectedAppsResponse instantiates a new ListConnectedAppsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListConnectedAppsResponse(data []ListConnectedAppsItem) *ListConnectedAppsResponse {
+	this := ListConnectedAppsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListConnectedAppsResponseWithDefaults instantiates a new ListConnectedAppsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListConnectedAppsResponseWithDefaults() *ListConnectedAppsResponse {
+	this := ListConnectedAppsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListConnectedAppsResponse) GetData() []ListConnectedAppsItem {
+	if o == nil {
+		var ret []ListConnectedAppsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsResponse) GetDataOk() ([]ListConnectedAppsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListConnectedAppsResponse) SetData(v []ListConnectedAppsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListConnectedAppsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListConnectedAppsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListConnectedAppsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListConnectedAppsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListConnectedAppsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListConnectedAppsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListConnectedAppsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListConnectedAppsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListConnectedAppsResponse struct {
+	value *ListConnectedAppsResponse
+	isSet bool
+}
+
+func (v NullableListConnectedAppsResponse) Get() *ListConnectedAppsResponse {
+	return v.value
+}
+
+func (v *NullableListConnectedAppsResponse) Set(val *ListConnectedAppsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListConnectedAppsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListConnectedAppsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListConnectedAppsResponse(val *ListConnectedAppsResponse) *NullableListConnectedAppsResponse {
+	return &NullableListConnectedAppsResponse{value: val, isSet: true}
+}
+
+func (v NullableListConnectedAppsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListConnectedAppsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListDevicesItem struct for ListDevicesItem
+type ListDevicesItem struct {
+	Capabilities []string `json:"capabilities"`
+	LastSeenAt NullableString `json:"lastSeenAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Os NullableString `json:"os,omitempty"`
+	Version NullableString `json:"version,omitempty"`
+}
+
+// NewListDevicesItem instantiates a new ListDevicesItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListDevicesItem(capabilities []string, createdAt string, id string, name string) *ListDevicesItem {
+	this := ListDevicesItem{}
+	this.Capabilities = capabilities
+	this.CreatedAt = createdAt
+	this.Id = id
+	this.Name = name
+	return &this
+}
+
+// NewListDevicesItemWithDefaults instantiates a new ListDevicesItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListDevicesItemWithDefaults() *ListDevicesItem {
+	this := ListDevicesItem{}
+	return &this
+}
+
+// GetCapabilities returns the Capabilities field value
+func (o *ListDevicesItem) GetCapabilities() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Capabilities
+}
+
+// GetCapabilitiesOk returns a tuple with the Capabilities field value
+// and a boolean to check if the value has been set.
+func (o *ListDevicesItem) GetCapabilitiesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Capabilities, true
+}
+
+// SetCapabilities sets field value
+func (o *ListDevicesItem) SetCapabilities(v []string) {
+	o.Capabilities = v
+}
+
+// GetLastSeenAt returns the LastSeenAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListDevicesItem) GetLastSeenAt() string {
+	if o == nil || o.LastSeenAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastSeenAt.Get()
+}
+
+// GetLastSeenAtOk returns a tuple with the LastSeenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListDevicesItem) GetLastSeenAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastSeenAt.Get(), o.LastSeenAt.IsSet()
+}
+
+// HasLastSeenAt returns a boolean if a field has been set.
+func (o *ListDevicesItem) HasLastSeenAt() bool {
+	if o != nil && o.LastSeenAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastSeenAt gets a reference to the given NullableString and assigns it to the LastSeenAt field.
+func (o *ListDevicesItem) SetLastSeenAt(v string) {
+	o.LastSeenAt.Set(&v)
+}
+// SetLastSeenAtNil sets the value for LastSeenAt to be an explicit nil
+func (o *ListDevicesItem) SetLastSeenAtNil() {
+	o.LastSeenAt.Set(nil)
+}
+
+// UnsetLastSeenAt ensures that no value is present for LastSeenAt, not even an explicit nil
+func (o *ListDevicesItem) UnsetLastSeenAt() {
+	o.LastSeenAt.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListDevicesItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListDevicesItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListDevicesItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetId returns the Id field value
+func (o *ListDevicesItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListDevicesItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListDevicesItem) SetId(v string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *WorldResponseDataMessages) GetName() string {
+func (o *ListDevicesItem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -7954,7 +3251,7 @@ func (o *WorldResponseDataMessages) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataMessages) GetNameOk() (*string, bool) {
+func (o *ListDevicesItem) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -7962,166 +3259,405 @@ func (o *WorldResponseDataMessages) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *WorldResponseDataMessages) SetName(v string) {
+func (o *ListDevicesItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetText returns the Text field value
-func (o *WorldResponseDataMessages) GetText() string {
-	if o == nil {
+// GetOs returns the Os field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListDevicesItem) GetOs() string {
+	if o == nil || o.Os.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Text
+	return *o.Os.Get()
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetOsOk returns a tuple with the Os field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataMessages) GetTextOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListDevicesItem) GetOsOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Text, true
+	return o.Os.Get(), o.Os.IsSet()
 }
 
-// SetText sets field value
-func (o *WorldResponseDataMessages) SetText(v string) {
-	o.Text = v
+// HasOs returns a boolean if a field has been set.
+func (o *ListDevicesItem) HasOs() bool {
+	if o != nil && o.Os.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetAt returns the At field value
-func (o *WorldResponseDataMessages) GetAt() float32 {
-	if o == nil {
-		var ret float32
+// SetOs gets a reference to the given NullableString and assigns it to the Os field.
+func (o *ListDevicesItem) SetOs(v string) {
+	o.Os.Set(&v)
+}
+// SetOsNil sets the value for Os to be an explicit nil
+func (o *ListDevicesItem) SetOsNil() {
+	o.Os.Set(nil)
+}
+
+// UnsetOs ensures that no value is present for Os, not even an explicit nil
+func (o *ListDevicesItem) UnsetOs() {
+	o.Os.Unset()
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListDevicesItem) GetVersion() string {
+	if o == nil || o.Version.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.At
+	return *o.Version.Get()
 }
 
-// GetAtOk returns a tuple with the At field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataMessages) GetAtOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListDevicesItem) GetVersionOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.At, true
+	return o.Version.Get(), o.Version.IsSet()
 }
 
-// SetAt sets field value
-func (o *WorldResponseDataMessages) SetAt(v float32) {
-	o.At = v
+// HasVersion returns a boolean if a field has been set.
+func (o *ListDevicesItem) HasVersion() bool {
+	if o != nil && o.Version.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-func (o WorldResponseDataMessages) MarshalJSON() ([]byte, error) {
+// SetVersion gets a reference to the given NullableString and assigns it to the Version field.
+func (o *ListDevicesItem) SetVersion(v string) {
+	o.Version.Set(&v)
+}
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *ListDevicesItem) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *ListDevicesItem) UnsetVersion() {
+	o.Version.Unset()
+}
+
+func (o ListDevicesItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["from"] = o.From
+		toSerialize["capabilities"] = o.Capabilities
+	}
+	if o.LastSeenAt.IsSet() {
+		toSerialize["lastSeenAt"] = o.LastSeenAt.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["text"] = o.Text
+	if o.Os.IsSet() {
+		toSerialize["os"] = o.Os.Get()
 	}
-	if true {
-		toSerialize["at"] = o.At
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableWorldResponseDataMessages struct {
-	value *WorldResponseDataMessages
+type NullableListDevicesItem struct {
+	value *ListDevicesItem
 	isSet bool
 }
 
-func (v NullableWorldResponseDataMessages) Get() *WorldResponseDataMessages {
+func (v NullableListDevicesItem) Get() *ListDevicesItem {
 	return v.value
 }
 
-func (v *NullableWorldResponseDataMessages) Set(val *WorldResponseDataMessages) {
+func (v *NullableListDevicesItem) Set(val *ListDevicesItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWorldResponseDataMessages) IsSet() bool {
+func (v NullableListDevicesItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWorldResponseDataMessages) Unset() {
+func (v *NullableListDevicesItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWorldResponseDataMessages(val *WorldResponseDataMessages) *NullableWorldResponseDataMessages {
-	return &NullableWorldResponseDataMessages{value: val, isSet: true}
+func NewNullableListDevicesItem(val *ListDevicesItem) *NullableListDevicesItem {
+	return &NullableListDevicesItem{value: val, isSet: true}
 }
 
-func (v NullableWorldResponseDataMessages) MarshalJSON() ([]byte, error) {
+func (v NullableListDevicesItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWorldResponseDataMessages) UnmarshalJSON(src []byte) error {
+func (v *NullableListDevicesItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// WorldResponseDataSaid struct for WorldResponseDataSaid
-type WorldResponseDataSaid struct {
-	From string `json:"from"`
-	Name string `json:"name"`
-	Text string `json:"text"`
-	At float32 `json:"at"`
+// ListDevicesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListDevicesResponse struct {
+	// The rows.
+	Data []ListDevicesItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
 }
 
-// NewWorldResponseDataSaid instantiates a new WorldResponseDataSaid object
+// NewListDevicesResponse instantiates a new ListDevicesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorldResponseDataSaid(from string, name string, text string, at float32) *WorldResponseDataSaid {
-	this := WorldResponseDataSaid{}
-	this.From = from
-	this.Name = name
-	this.Text = text
-	this.At = at
+func NewListDevicesResponse(data []ListDevicesItem) *ListDevicesResponse {
+	this := ListDevicesResponse{}
+	this.Data = data
 	return &this
 }
 
-// NewWorldResponseDataSaidWithDefaults instantiates a new WorldResponseDataSaid object
+// NewListDevicesResponseWithDefaults instantiates a new ListDevicesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWorldResponseDataSaidWithDefaults() *WorldResponseDataSaid {
-	this := WorldResponseDataSaid{}
+func NewListDevicesResponseWithDefaults() *ListDevicesResponse {
+	this := ListDevicesResponse{}
 	return &this
 }
 
-// GetFrom returns the From field value
-func (o *WorldResponseDataSaid) GetFrom() string {
+// GetData returns the Data field value
+func (o *ListDevicesResponse) GetData() []ListDevicesItem {
+	if o == nil {
+		var ret []ListDevicesItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListDevicesResponse) GetDataOk() ([]ListDevicesItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListDevicesResponse) SetData(v []ListDevicesItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListDevicesResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListDevicesResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListDevicesResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListDevicesResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListDevicesResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListDevicesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListDevicesResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListDevicesResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListDevicesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListDevicesResponse struct {
+	value *ListDevicesResponse
+	isSet bool
+}
+
+func (v NullableListDevicesResponse) Get() *ListDevicesResponse {
+	return v.value
+}
+
+func (v *NullableListDevicesResponse) Set(val *ListDevicesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListDevicesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListDevicesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListDevicesResponse(val *ListDevicesResponse) *NullableListDevicesResponse {
+	return &NullableListDevicesResponse{value: val, isSet: true}
+}
+
+func (v NullableListDevicesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListDevicesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListEmbedKeysItem struct for ListEmbedKeysItem
+type ListEmbedKeysItem struct {
+	Id string `json:"id"`
+	Key string `json:"key"`
+	Name string `json:"name"`
+	AllowedOrigins []string `json:"allowedOrigins"`
+	Environment string `json:"environment"`
+	LastUsedAt NullableTime `json:"lastUsedAt,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+// NewListEmbedKeysItem instantiates a new ListEmbedKeysItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListEmbedKeysItem(id string, key string, name string, allowedOrigins []string, environment string, createdAt time.Time) *ListEmbedKeysItem {
+	this := ListEmbedKeysItem{}
+	this.Id = id
+	this.Key = key
+	this.Name = name
+	this.AllowedOrigins = allowedOrigins
+	this.Environment = environment
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListEmbedKeysItemWithDefaults instantiates a new ListEmbedKeysItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListEmbedKeysItemWithDefaults() *ListEmbedKeysItem {
+	this := ListEmbedKeysItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListEmbedKeysItem) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.From
+	return o.Id
 }
 
-// GetFromOk returns a tuple with the From field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataSaid) GetFromOk() (*string, bool) {
+func (o *ListEmbedKeysItem) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.From, true
+	return &o.Id, true
 }
 
-// SetFrom sets field value
-func (o *WorldResponseDataSaid) SetFrom(v string) {
-	o.From = v
+// SetId sets field value
+func (o *ListEmbedKeysItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetKey returns the Key field value
+func (o *ListEmbedKeysItem) GetKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value
+// and a boolean to check if the value has been set.
+func (o *ListEmbedKeysItem) GetKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Key, true
+}
+
+// SetKey sets field value
+func (o *ListEmbedKeysItem) SetKey(v string) {
+	o.Key = v
 }
 
 // GetName returns the Name field value
-func (o *WorldResponseDataSaid) GetName() string {
+func (o *ListEmbedKeysItem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -8132,7 +3668,7 @@ func (o *WorldResponseDataSaid) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataSaid) GetNameOk() (*string, bool) {
+func (o *ListEmbedKeysItem) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -8140,107 +3676,9720 @@ func (o *WorldResponseDataSaid) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *WorldResponseDataSaid) SetName(v string) {
+func (o *ListEmbedKeysItem) SetName(v string) {
 	o.Name = v
 }
 
-// GetText returns the Text field value
-func (o *WorldResponseDataSaid) GetText() string {
+// GetAllowedOrigins returns the AllowedOrigins field value
+func (o *ListEmbedKeysItem) GetAllowedOrigins() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.AllowedOrigins
+}
+
+// GetAllowedOriginsOk returns a tuple with the AllowedOrigins field value
+// and a boolean to check if the value has been set.
+func (o *ListEmbedKeysItem) GetAllowedOriginsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AllowedOrigins, true
+}
+
+// SetAllowedOrigins sets field value
+func (o *ListEmbedKeysItem) SetAllowedOrigins(v []string) {
+	o.AllowedOrigins = v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *ListEmbedKeysItem) GetEnvironment() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Text
+	return o.Environment
 }
 
-// GetTextOk returns a tuple with the Text field value
+// GetEnvironmentOk returns a tuple with the Environment field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataSaid) GetTextOk() (*string, bool) {
+func (o *ListEmbedKeysItem) GetEnvironmentOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Text, true
+	return &o.Environment, true
 }
 
-// SetText sets field value
-func (o *WorldResponseDataSaid) SetText(v string) {
-	o.Text = v
+// SetEnvironment sets field value
+func (o *ListEmbedKeysItem) SetEnvironment(v string) {
+	o.Environment = v
 }
 
-// GetAt returns the At field value
-func (o *WorldResponseDataSaid) GetAt() float32 {
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListEmbedKeysItem) GetLastUsedAt() time.Time {
+	if o == nil || o.LastUsedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUsedAt.Get()
+}
+
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListEmbedKeysItem) GetLastUsedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+}
+
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ListEmbedKeysItem) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUsedAt gets a reference to the given NullableTime and assigns it to the LastUsedAt field.
+func (o *ListEmbedKeysItem) SetLastUsedAt(v time.Time) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ListEmbedKeysItem) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ListEmbedKeysItem) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListEmbedKeysItem) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret float32
+		var ret time.Time
 		return ret
 	}
 
-	return o.At
+	return o.CreatedAt
 }
 
-// GetAtOk returns a tuple with the At field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *WorldResponseDataSaid) GetAtOk() (*float32, bool) {
+func (o *ListEmbedKeysItem) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.At, true
+	return &o.CreatedAt, true
 }
 
-// SetAt sets field value
-func (o *WorldResponseDataSaid) SetAt(v float32) {
-	o.At = v
+// SetCreatedAt sets field value
+func (o *ListEmbedKeysItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
-func (o WorldResponseDataSaid) MarshalJSON() ([]byte, error) {
+func (o ListEmbedKeysItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["from"] = o.From
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["key"] = o.Key
 	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
-		toSerialize["text"] = o.Text
+		toSerialize["allowedOrigins"] = o.AllowedOrigins
 	}
 	if true {
-		toSerialize["at"] = o.At
+		toSerialize["environment"] = o.Environment
+	}
+	if o.LastUsedAt.IsSet() {
+		toSerialize["lastUsedAt"] = o.LastUsedAt.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableWorldResponseDataSaid struct {
-	value *WorldResponseDataSaid
+type NullableListEmbedKeysItem struct {
+	value *ListEmbedKeysItem
 	isSet bool
 }
 
-func (v NullableWorldResponseDataSaid) Get() *WorldResponseDataSaid {
+func (v NullableListEmbedKeysItem) Get() *ListEmbedKeysItem {
 	return v.value
 }
 
-func (v *NullableWorldResponseDataSaid) Set(val *WorldResponseDataSaid) {
+func (v *NullableListEmbedKeysItem) Set(val *ListEmbedKeysItem) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWorldResponseDataSaid) IsSet() bool {
+func (v NullableListEmbedKeysItem) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWorldResponseDataSaid) Unset() {
+func (v *NullableListEmbedKeysItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWorldResponseDataSaid(val *WorldResponseDataSaid) *NullableWorldResponseDataSaid {
-	return &NullableWorldResponseDataSaid{value: val, isSet: true}
+func NewNullableListEmbedKeysItem(val *ListEmbedKeysItem) *NullableListEmbedKeysItem {
+	return &NullableListEmbedKeysItem{value: val, isSet: true}
 }
 
-func (v NullableWorldResponseDataSaid) MarshalJSON() ([]byte, error) {
+func (v NullableListEmbedKeysItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWorldResponseDataSaid) UnmarshalJSON(src []byte) error {
+func (v *NullableListEmbedKeysItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListEmbedKeysResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListEmbedKeysResponse struct {
+	// The rows.
+	Data []ListEmbedKeysItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListEmbedKeysResponse instantiates a new ListEmbedKeysResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListEmbedKeysResponse(data []ListEmbedKeysItem) *ListEmbedKeysResponse {
+	this := ListEmbedKeysResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListEmbedKeysResponseWithDefaults instantiates a new ListEmbedKeysResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListEmbedKeysResponseWithDefaults() *ListEmbedKeysResponse {
+	this := ListEmbedKeysResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListEmbedKeysResponse) GetData() []ListEmbedKeysItem {
+	if o == nil {
+		var ret []ListEmbedKeysItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListEmbedKeysResponse) GetDataOk() ([]ListEmbedKeysItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListEmbedKeysResponse) SetData(v []ListEmbedKeysItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListEmbedKeysResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListEmbedKeysResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListEmbedKeysResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListEmbedKeysResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListEmbedKeysResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListEmbedKeysResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListEmbedKeysResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListEmbedKeysResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListEmbedKeysResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListEmbedKeysResponse struct {
+	value *ListEmbedKeysResponse
+	isSet bool
+}
+
+func (v NullableListEmbedKeysResponse) Get() *ListEmbedKeysResponse {
+	return v.value
+}
+
+func (v *NullableListEmbedKeysResponse) Set(val *ListEmbedKeysResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListEmbedKeysResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListEmbedKeysResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListEmbedKeysResponse(val *ListEmbedKeysResponse) *NullableListEmbedKeysResponse {
+	return &NullableListEmbedKeysResponse{value: val, isSet: true}
+}
+
+func (v NullableListEmbedKeysResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListEmbedKeysResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListFestivalsItem struct for ListFestivalsItem
+type ListFestivalsItem struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	Tagline NullableString `json:"tagline,omitempty"`
+	Decor string `json:"decor"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	CancelledAt NullableString `json:"cancelledAt,omitempty"`
+}
+
+// NewListFestivalsItem instantiates a new ListFestivalsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListFestivalsItem(id string, title string, decor string, startsAt string, endsAt string) *ListFestivalsItem {
+	this := ListFestivalsItem{}
+	this.Id = id
+	this.Title = title
+	this.Decor = decor
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	return &this
+}
+
+// NewListFestivalsItemWithDefaults instantiates a new ListFestivalsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListFestivalsItemWithDefaults() *ListFestivalsItem {
+	this := ListFestivalsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListFestivalsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListFestivalsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListFestivalsItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListFestivalsItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetTagline returns the Tagline field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListFestivalsItem) GetTagline() string {
+	if o == nil || o.Tagline.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Tagline.Get()
+}
+
+// GetTaglineOk returns a tuple with the Tagline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListFestivalsItem) GetTaglineOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tagline.Get(), o.Tagline.IsSet()
+}
+
+// HasTagline returns a boolean if a field has been set.
+func (o *ListFestivalsItem) HasTagline() bool {
+	if o != nil && o.Tagline.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTagline gets a reference to the given NullableString and assigns it to the Tagline field.
+func (o *ListFestivalsItem) SetTagline(v string) {
+	o.Tagline.Set(&v)
+}
+// SetTaglineNil sets the value for Tagline to be an explicit nil
+func (o *ListFestivalsItem) SetTaglineNil() {
+	o.Tagline.Set(nil)
+}
+
+// UnsetTagline ensures that no value is present for Tagline, not even an explicit nil
+func (o *ListFestivalsItem) UnsetTagline() {
+	o.Tagline.Unset()
+}
+
+// GetDecor returns the Decor field value
+func (o *ListFestivalsItem) GetDecor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Decor
+}
+
+// GetDecorOk returns a tuple with the Decor field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsItem) GetDecorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Decor, true
+}
+
+// SetDecor sets field value
+func (o *ListFestivalsItem) SetDecor(v string) {
+	o.Decor = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *ListFestivalsItem) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsItem) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *ListFestivalsItem) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *ListFestivalsItem) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsItem) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *ListFestivalsItem) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetCancelledAt returns the CancelledAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListFestivalsItem) GetCancelledAt() string {
+	if o == nil || o.CancelledAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CancelledAt.Get()
+}
+
+// GetCancelledAtOk returns a tuple with the CancelledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListFestivalsItem) GetCancelledAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CancelledAt.Get(), o.CancelledAt.IsSet()
+}
+
+// HasCancelledAt returns a boolean if a field has been set.
+func (o *ListFestivalsItem) HasCancelledAt() bool {
+	if o != nil && o.CancelledAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelledAt gets a reference to the given NullableString and assigns it to the CancelledAt field.
+func (o *ListFestivalsItem) SetCancelledAt(v string) {
+	o.CancelledAt.Set(&v)
+}
+// SetCancelledAtNil sets the value for CancelledAt to be an explicit nil
+func (o *ListFestivalsItem) SetCancelledAtNil() {
+	o.CancelledAt.Set(nil)
+}
+
+// UnsetCancelledAt ensures that no value is present for CancelledAt, not even an explicit nil
+func (o *ListFestivalsItem) UnsetCancelledAt() {
+	o.CancelledAt.Unset()
+}
+
+func (o ListFestivalsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Tagline.IsSet() {
+		toSerialize["tagline"] = o.Tagline.Get()
+	}
+	if true {
+		toSerialize["decor"] = o.Decor
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if o.CancelledAt.IsSet() {
+		toSerialize["cancelledAt"] = o.CancelledAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListFestivalsItem struct {
+	value *ListFestivalsItem
+	isSet bool
+}
+
+func (v NullableListFestivalsItem) Get() *ListFestivalsItem {
+	return v.value
+}
+
+func (v *NullableListFestivalsItem) Set(val *ListFestivalsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListFestivalsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListFestivalsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListFestivalsItem(val *ListFestivalsItem) *NullableListFestivalsItem {
+	return &NullableListFestivalsItem{value: val, isSet: true}
+}
+
+func (v NullableListFestivalsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListFestivalsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListFestivalsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListFestivalsResponse struct {
+	// The rows.
+	Data []ListFestivalsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListFestivalsResponse instantiates a new ListFestivalsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListFestivalsResponse(data []ListFestivalsItem) *ListFestivalsResponse {
+	this := ListFestivalsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListFestivalsResponseWithDefaults instantiates a new ListFestivalsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListFestivalsResponseWithDefaults() *ListFestivalsResponse {
+	this := ListFestivalsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListFestivalsResponse) GetData() []ListFestivalsItem {
+	if o == nil {
+		var ret []ListFestivalsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsResponse) GetDataOk() ([]ListFestivalsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListFestivalsResponse) SetData(v []ListFestivalsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListFestivalsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListFestivalsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListFestivalsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListFestivalsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListFestivalsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListFestivalsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListFestivalsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListFestivalsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListFestivalsResponse struct {
+	value *ListFestivalsResponse
+	isSet bool
+}
+
+func (v NullableListFestivalsResponse) Get() *ListFestivalsResponse {
+	return v.value
+}
+
+func (v *NullableListFestivalsResponse) Set(val *ListFestivalsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListFestivalsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListFestivalsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListFestivalsResponse(val *ListFestivalsResponse) *NullableListFestivalsResponse {
+	return &NullableListFestivalsResponse{value: val, isSet: true}
+}
+
+func (v NullableListFestivalsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListFestivalsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListInsightByPlatformItem struct for ListInsightByPlatformItem
+type ListInsightByPlatformItem struct {
+	Platform string `json:"platform"`
+	Sales float32 `json:"sales"`
+	GrossCents float32 `json:"gross_cents"`
+	AvgDaysToSale NullableFloat32 `json:"avg_days_to_sale,omitempty"`
+	AvgSaleCents NullableFloat32 `json:"avg_sale_cents,omitempty"`
+	NetCents float32 `json:"net_cents"`
+	NetProfitCents NullableFloat32 `json:"net_profit_cents,omitempty"`
+}
+
+// NewListInsightByPlatformItem instantiates a new ListInsightByPlatformItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInsightByPlatformItem(platform string, sales float32, grossCents float32, netCents float32) *ListInsightByPlatformItem {
+	this := ListInsightByPlatformItem{}
+	this.Platform = platform
+	this.Sales = sales
+	this.GrossCents = grossCents
+	this.NetCents = netCents
+	return &this
+}
+
+// NewListInsightByPlatformItemWithDefaults instantiates a new ListInsightByPlatformItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInsightByPlatformItemWithDefaults() *ListInsightByPlatformItem {
+	this := ListInsightByPlatformItem{}
+	return &this
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListInsightByPlatformItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListInsightByPlatformItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetSales returns the Sales field value
+func (o *ListInsightByPlatformItem) GetSales() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Sales
+}
+
+// GetSalesOk returns a tuple with the Sales field value
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformItem) GetSalesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sales, true
+}
+
+// SetSales sets field value
+func (o *ListInsightByPlatformItem) SetSales(v float32) {
+	o.Sales = v
+}
+
+// GetGrossCents returns the GrossCents field value
+func (o *ListInsightByPlatformItem) GetGrossCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.GrossCents
+}
+
+// GetGrossCentsOk returns a tuple with the GrossCents field value
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformItem) GetGrossCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.GrossCents, true
+}
+
+// SetGrossCents sets field value
+func (o *ListInsightByPlatformItem) SetGrossCents(v float32) {
+	o.GrossCents = v
+}
+
+// GetAvgDaysToSale returns the AvgDaysToSale field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInsightByPlatformItem) GetAvgDaysToSale() float32 {
+	if o == nil || o.AvgDaysToSale.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AvgDaysToSale.Get()
+}
+
+// GetAvgDaysToSaleOk returns a tuple with the AvgDaysToSale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInsightByPlatformItem) GetAvgDaysToSaleOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AvgDaysToSale.Get(), o.AvgDaysToSale.IsSet()
+}
+
+// HasAvgDaysToSale returns a boolean if a field has been set.
+func (o *ListInsightByPlatformItem) HasAvgDaysToSale() bool {
+	if o != nil && o.AvgDaysToSale.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgDaysToSale gets a reference to the given NullableFloat32 and assigns it to the AvgDaysToSale field.
+func (o *ListInsightByPlatformItem) SetAvgDaysToSale(v float32) {
+	o.AvgDaysToSale.Set(&v)
+}
+// SetAvgDaysToSaleNil sets the value for AvgDaysToSale to be an explicit nil
+func (o *ListInsightByPlatformItem) SetAvgDaysToSaleNil() {
+	o.AvgDaysToSale.Set(nil)
+}
+
+// UnsetAvgDaysToSale ensures that no value is present for AvgDaysToSale, not even an explicit nil
+func (o *ListInsightByPlatformItem) UnsetAvgDaysToSale() {
+	o.AvgDaysToSale.Unset()
+}
+
+// GetAvgSaleCents returns the AvgSaleCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInsightByPlatformItem) GetAvgSaleCents() float32 {
+	if o == nil || o.AvgSaleCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AvgSaleCents.Get()
+}
+
+// GetAvgSaleCentsOk returns a tuple with the AvgSaleCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInsightByPlatformItem) GetAvgSaleCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AvgSaleCents.Get(), o.AvgSaleCents.IsSet()
+}
+
+// HasAvgSaleCents returns a boolean if a field has been set.
+func (o *ListInsightByPlatformItem) HasAvgSaleCents() bool {
+	if o != nil && o.AvgSaleCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgSaleCents gets a reference to the given NullableFloat32 and assigns it to the AvgSaleCents field.
+func (o *ListInsightByPlatformItem) SetAvgSaleCents(v float32) {
+	o.AvgSaleCents.Set(&v)
+}
+// SetAvgSaleCentsNil sets the value for AvgSaleCents to be an explicit nil
+func (o *ListInsightByPlatformItem) SetAvgSaleCentsNil() {
+	o.AvgSaleCents.Set(nil)
+}
+
+// UnsetAvgSaleCents ensures that no value is present for AvgSaleCents, not even an explicit nil
+func (o *ListInsightByPlatformItem) UnsetAvgSaleCents() {
+	o.AvgSaleCents.Unset()
+}
+
+// GetNetCents returns the NetCents field value
+func (o *ListInsightByPlatformItem) GetNetCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetCents
+}
+
+// GetNetCentsOk returns a tuple with the NetCents field value
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformItem) GetNetCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NetCents, true
+}
+
+// SetNetCents sets field value
+func (o *ListInsightByPlatformItem) SetNetCents(v float32) {
+	o.NetCents = v
+}
+
+// GetNetProfitCents returns the NetProfitCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInsightByPlatformItem) GetNetProfitCents() float32 {
+	if o == nil || o.NetProfitCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.NetProfitCents.Get()
+}
+
+// GetNetProfitCentsOk returns a tuple with the NetProfitCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInsightByPlatformItem) GetNetProfitCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NetProfitCents.Get(), o.NetProfitCents.IsSet()
+}
+
+// HasNetProfitCents returns a boolean if a field has been set.
+func (o *ListInsightByPlatformItem) HasNetProfitCents() bool {
+	if o != nil && o.NetProfitCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNetProfitCents gets a reference to the given NullableFloat32 and assigns it to the NetProfitCents field.
+func (o *ListInsightByPlatformItem) SetNetProfitCents(v float32) {
+	o.NetProfitCents.Set(&v)
+}
+// SetNetProfitCentsNil sets the value for NetProfitCents to be an explicit nil
+func (o *ListInsightByPlatformItem) SetNetProfitCentsNil() {
+	o.NetProfitCents.Set(nil)
+}
+
+// UnsetNetProfitCents ensures that no value is present for NetProfitCents, not even an explicit nil
+func (o *ListInsightByPlatformItem) UnsetNetProfitCents() {
+	o.NetProfitCents.Unset()
+}
+
+func (o ListInsightByPlatformItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["sales"] = o.Sales
+	}
+	if true {
+		toSerialize["gross_cents"] = o.GrossCents
+	}
+	if o.AvgDaysToSale.IsSet() {
+		toSerialize["avg_days_to_sale"] = o.AvgDaysToSale.Get()
+	}
+	if o.AvgSaleCents.IsSet() {
+		toSerialize["avg_sale_cents"] = o.AvgSaleCents.Get()
+	}
+	if true {
+		toSerialize["net_cents"] = o.NetCents
+	}
+	if o.NetProfitCents.IsSet() {
+		toSerialize["net_profit_cents"] = o.NetProfitCents.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListInsightByPlatformItem struct {
+	value *ListInsightByPlatformItem
+	isSet bool
+}
+
+func (v NullableListInsightByPlatformItem) Get() *ListInsightByPlatformItem {
+	return v.value
+}
+
+func (v *NullableListInsightByPlatformItem) Set(val *ListInsightByPlatformItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInsightByPlatformItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInsightByPlatformItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInsightByPlatformItem(val *ListInsightByPlatformItem) *NullableListInsightByPlatformItem {
+	return &NullableListInsightByPlatformItem{value: val, isSet: true}
+}
+
+func (v NullableListInsightByPlatformItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInsightByPlatformItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListInsightByPlatformResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListInsightByPlatformResponse struct {
+	// The rows.
+	Data []ListInsightByPlatformItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListInsightByPlatformResponse instantiates a new ListInsightByPlatformResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInsightByPlatformResponse(data []ListInsightByPlatformItem) *ListInsightByPlatformResponse {
+	this := ListInsightByPlatformResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListInsightByPlatformResponseWithDefaults instantiates a new ListInsightByPlatformResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInsightByPlatformResponseWithDefaults() *ListInsightByPlatformResponse {
+	this := ListInsightByPlatformResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListInsightByPlatformResponse) GetData() []ListInsightByPlatformItem {
+	if o == nil {
+		var ret []ListInsightByPlatformItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformResponse) GetDataOk() ([]ListInsightByPlatformItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListInsightByPlatformResponse) SetData(v []ListInsightByPlatformItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListInsightByPlatformResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListInsightByPlatformResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListInsightByPlatformResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListInsightByPlatformResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInsightByPlatformResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListInsightByPlatformResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListInsightByPlatformResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListInsightByPlatformResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListInsightByPlatformResponse struct {
+	value *ListInsightByPlatformResponse
+	isSet bool
+}
+
+func (v NullableListInsightByPlatformResponse) Get() *ListInsightByPlatformResponse {
+	return v.value
+}
+
+func (v *NullableListInsightByPlatformResponse) Set(val *ListInsightByPlatformResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInsightByPlatformResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInsightByPlatformResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInsightByPlatformResponse(val *ListInsightByPlatformResponse) *NullableListInsightByPlatformResponse {
+	return &NullableListInsightByPlatformResponse{value: val, isSet: true}
+}
+
+func (v NullableListInsightByPlatformResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInsightByPlatformResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListJobAppraisalsItem struct for ListJobAppraisalsItem
+type ListJobAppraisalsItem struct {
+	Id string `json:"id"`
+	Category string `json:"category"`
+	Title string `json:"title"`
+	SkuId NullableString `json:"skuId,omitempty"`
+	Note NullableString `json:"note,omitempty"`
+	BountyCents float32 `json:"bountyCents"`
+	Rail string `json:"rail"`
+	Status string `json:"status"`
+	ClosesAt string `json:"closesAt"`
+	CreatedAt string `json:"createdAt"`
+	Answers float32 `json:"answers"`
+	Mine bool `json:"mine"`
+	// Answers: every one to the asker, your own to an appraiser.
+	AnswerList []ListJobAppraisalsItemAnswerList `json:"answerList"`
+}
+
+// NewListJobAppraisalsItem instantiates a new ListJobAppraisalsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListJobAppraisalsItem(id string, category string, title string, bountyCents float32, rail string, status string, closesAt string, createdAt string, answers float32, mine bool, answerList []ListJobAppraisalsItemAnswerList) *ListJobAppraisalsItem {
+	this := ListJobAppraisalsItem{}
+	this.Id = id
+	this.Category = category
+	this.Title = title
+	this.BountyCents = bountyCents
+	this.Rail = rail
+	this.Status = status
+	this.ClosesAt = closesAt
+	this.CreatedAt = createdAt
+	this.Answers = answers
+	this.Mine = mine
+	this.AnswerList = answerList
+	return &this
+}
+
+// NewListJobAppraisalsItemWithDefaults instantiates a new ListJobAppraisalsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListJobAppraisalsItemWithDefaults() *ListJobAppraisalsItem {
+	this := ListJobAppraisalsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListJobAppraisalsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListJobAppraisalsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCategory returns the Category field value
+func (o *ListJobAppraisalsItem) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *ListJobAppraisalsItem) SetCategory(v string) {
+	o.Category = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListJobAppraisalsItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListJobAppraisalsItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetSkuId returns the SkuId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListJobAppraisalsItem) GetSkuId() string {
+	if o == nil || o.SkuId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SkuId.Get()
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListJobAppraisalsItem) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SkuId.Get(), o.SkuId.IsSet()
+}
+
+// HasSkuId returns a boolean if a field has been set.
+func (o *ListJobAppraisalsItem) HasSkuId() bool {
+	if o != nil && o.SkuId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSkuId gets a reference to the given NullableString and assigns it to the SkuId field.
+func (o *ListJobAppraisalsItem) SetSkuId(v string) {
+	o.SkuId.Set(&v)
+}
+// SetSkuIdNil sets the value for SkuId to be an explicit nil
+func (o *ListJobAppraisalsItem) SetSkuIdNil() {
+	o.SkuId.Set(nil)
+}
+
+// UnsetSkuId ensures that no value is present for SkuId, not even an explicit nil
+func (o *ListJobAppraisalsItem) UnsetSkuId() {
+	o.SkuId.Unset()
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListJobAppraisalsItem) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListJobAppraisalsItem) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *ListJobAppraisalsItem) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *ListJobAppraisalsItem) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *ListJobAppraisalsItem) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *ListJobAppraisalsItem) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetBountyCents returns the BountyCents field value
+func (o *ListJobAppraisalsItem) GetBountyCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BountyCents
+}
+
+// GetBountyCentsOk returns a tuple with the BountyCents field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetBountyCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BountyCents, true
+}
+
+// SetBountyCents sets field value
+func (o *ListJobAppraisalsItem) SetBountyCents(v float32) {
+	o.BountyCents = v
+}
+
+// GetRail returns the Rail field value
+func (o *ListJobAppraisalsItem) GetRail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Rail
+}
+
+// GetRailOk returns a tuple with the Rail field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rail, true
+}
+
+// SetRail sets field value
+func (o *ListJobAppraisalsItem) SetRail(v string) {
+	o.Rail = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListJobAppraisalsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListJobAppraisalsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetClosesAt returns the ClosesAt field value
+func (o *ListJobAppraisalsItem) GetClosesAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ClosesAt
+}
+
+// GetClosesAtOk returns a tuple with the ClosesAt field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetClosesAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ClosesAt, true
+}
+
+// SetClosesAt sets field value
+func (o *ListJobAppraisalsItem) SetClosesAt(v string) {
+	o.ClosesAt = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListJobAppraisalsItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListJobAppraisalsItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetAnswers returns the Answers field value
+func (o *ListJobAppraisalsItem) GetAnswers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Answers
+}
+
+// GetAnswersOk returns a tuple with the Answers field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetAnswersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Answers, true
+}
+
+// SetAnswers sets field value
+func (o *ListJobAppraisalsItem) SetAnswers(v float32) {
+	o.Answers = v
+}
+
+// GetMine returns the Mine field value
+func (o *ListJobAppraisalsItem) GetMine() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mine
+}
+
+// GetMineOk returns a tuple with the Mine field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetMineOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mine, true
+}
+
+// SetMine sets field value
+func (o *ListJobAppraisalsItem) SetMine(v bool) {
+	o.Mine = v
+}
+
+// GetAnswerList returns the AnswerList field value
+func (o *ListJobAppraisalsItem) GetAnswerList() []ListJobAppraisalsItemAnswerList {
+	if o == nil {
+		var ret []ListJobAppraisalsItemAnswerList
+		return ret
+	}
+
+	return o.AnswerList
+}
+
+// GetAnswerListOk returns a tuple with the AnswerList field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItem) GetAnswerListOk() ([]ListJobAppraisalsItemAnswerList, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AnswerList, true
+}
+
+// SetAnswerList sets field value
+func (o *ListJobAppraisalsItem) SetAnswerList(v []ListJobAppraisalsItemAnswerList) {
+	o.AnswerList = v
+}
+
+func (o ListJobAppraisalsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.SkuId.IsSet() {
+		toSerialize["skuId"] = o.SkuId.Get()
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["bountyCents"] = o.BountyCents
+	}
+	if true {
+		toSerialize["rail"] = o.Rail
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["closesAt"] = o.ClosesAt
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["answers"] = o.Answers
+	}
+	if true {
+		toSerialize["mine"] = o.Mine
+	}
+	if true {
+		toSerialize["answerList"] = o.AnswerList
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListJobAppraisalsItem struct {
+	value *ListJobAppraisalsItem
+	isSet bool
+}
+
+func (v NullableListJobAppraisalsItem) Get() *ListJobAppraisalsItem {
+	return v.value
+}
+
+func (v *NullableListJobAppraisalsItem) Set(val *ListJobAppraisalsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListJobAppraisalsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListJobAppraisalsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListJobAppraisalsItem(val *ListJobAppraisalsItem) *NullableListJobAppraisalsItem {
+	return &NullableListJobAppraisalsItem{value: val, isSet: true}
+}
+
+func (v NullableListJobAppraisalsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListJobAppraisalsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListJobAppraisalsItemAnswerList struct for ListJobAppraisalsItemAnswerList
+type ListJobAppraisalsItemAnswerList struct {
+	Id string `json:"id"`
+	ValueCents float32 `json:"valueCents"`
+	Note NullableString `json:"note,omitempty"`
+	Accepted bool `json:"accepted"`
+	Paid bool `json:"paid"`
+	Yours bool `json:"yours"`
+}
+
+// NewListJobAppraisalsItemAnswerList instantiates a new ListJobAppraisalsItemAnswerList object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListJobAppraisalsItemAnswerList(id string, valueCents float32, accepted bool, paid bool, yours bool) *ListJobAppraisalsItemAnswerList {
+	this := ListJobAppraisalsItemAnswerList{}
+	this.Id = id
+	this.ValueCents = valueCents
+	this.Accepted = accepted
+	this.Paid = paid
+	this.Yours = yours
+	return &this
+}
+
+// NewListJobAppraisalsItemAnswerListWithDefaults instantiates a new ListJobAppraisalsItemAnswerList object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListJobAppraisalsItemAnswerListWithDefaults() *ListJobAppraisalsItemAnswerList {
+	this := ListJobAppraisalsItemAnswerList{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListJobAppraisalsItemAnswerList) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItemAnswerList) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListJobAppraisalsItemAnswerList) SetId(v string) {
+	o.Id = v
+}
+
+// GetValueCents returns the ValueCents field value
+func (o *ListJobAppraisalsItemAnswerList) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItemAnswerList) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *ListJobAppraisalsItemAnswerList) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListJobAppraisalsItemAnswerList) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListJobAppraisalsItemAnswerList) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *ListJobAppraisalsItemAnswerList) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *ListJobAppraisalsItemAnswerList) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *ListJobAppraisalsItemAnswerList) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *ListJobAppraisalsItemAnswerList) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetAccepted returns the Accepted field value
+func (o *ListJobAppraisalsItemAnswerList) GetAccepted() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Accepted
+}
+
+// GetAcceptedOk returns a tuple with the Accepted field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItemAnswerList) GetAcceptedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Accepted, true
+}
+
+// SetAccepted sets field value
+func (o *ListJobAppraisalsItemAnswerList) SetAccepted(v bool) {
+	o.Accepted = v
+}
+
+// GetPaid returns the Paid field value
+func (o *ListJobAppraisalsItemAnswerList) GetPaid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItemAnswerList) GetPaidOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *ListJobAppraisalsItemAnswerList) SetPaid(v bool) {
+	o.Paid = v
+}
+
+// GetYours returns the Yours field value
+func (o *ListJobAppraisalsItemAnswerList) GetYours() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Yours
+}
+
+// GetYoursOk returns a tuple with the Yours field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsItemAnswerList) GetYoursOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Yours, true
+}
+
+// SetYours sets field value
+func (o *ListJobAppraisalsItemAnswerList) SetYours(v bool) {
+	o.Yours = v
+}
+
+func (o ListJobAppraisalsItemAnswerList) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["valueCents"] = o.ValueCents
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["accepted"] = o.Accepted
+	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	if true {
+		toSerialize["yours"] = o.Yours
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListJobAppraisalsItemAnswerList struct {
+	value *ListJobAppraisalsItemAnswerList
+	isSet bool
+}
+
+func (v NullableListJobAppraisalsItemAnswerList) Get() *ListJobAppraisalsItemAnswerList {
+	return v.value
+}
+
+func (v *NullableListJobAppraisalsItemAnswerList) Set(val *ListJobAppraisalsItemAnswerList) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListJobAppraisalsItemAnswerList) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListJobAppraisalsItemAnswerList) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListJobAppraisalsItemAnswerList(val *ListJobAppraisalsItemAnswerList) *NullableListJobAppraisalsItemAnswerList {
+	return &NullableListJobAppraisalsItemAnswerList{value: val, isSet: true}
+}
+
+func (v NullableListJobAppraisalsItemAnswerList) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListJobAppraisalsItemAnswerList) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListJobAppraisalsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListJobAppraisalsResponse struct {
+	// The rows.
+	Data []ListJobAppraisalsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListJobAppraisalsResponse instantiates a new ListJobAppraisalsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListJobAppraisalsResponse(data []ListJobAppraisalsItem) *ListJobAppraisalsResponse {
+	this := ListJobAppraisalsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListJobAppraisalsResponseWithDefaults instantiates a new ListJobAppraisalsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListJobAppraisalsResponseWithDefaults() *ListJobAppraisalsResponse {
+	this := ListJobAppraisalsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListJobAppraisalsResponse) GetData() []ListJobAppraisalsItem {
+	if o == nil {
+		var ret []ListJobAppraisalsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsResponse) GetDataOk() ([]ListJobAppraisalsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListJobAppraisalsResponse) SetData(v []ListJobAppraisalsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListJobAppraisalsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListJobAppraisalsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListJobAppraisalsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListJobAppraisalsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListJobAppraisalsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListJobAppraisalsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListJobAppraisalsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListJobAppraisalsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListJobAppraisalsResponse struct {
+	value *ListJobAppraisalsResponse
+	isSet bool
+}
+
+func (v NullableListJobAppraisalsResponse) Get() *ListJobAppraisalsResponse {
+	return v.value
+}
+
+func (v *NullableListJobAppraisalsResponse) Set(val *ListJobAppraisalsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListJobAppraisalsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListJobAppraisalsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListJobAppraisalsResponse(val *ListJobAppraisalsResponse) *NullableListJobAppraisalsResponse {
+	return &NullableListJobAppraisalsResponse{value: val, isSet: true}
+}
+
+func (v NullableListJobAppraisalsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListJobAppraisalsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListJobShiftsItem struct for ListJobShiftsItem
+type ListJobShiftsItem struct {
+	Id string `json:"id"`
+	Role string `json:"role"`
+	Title string `json:"title"`
+	Place NameSlug `json:"place"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	PayCents float32 `json:"payCents"`
+	Rail string `json:"rail"`
+	Status string `json:"status"`
+	// Seconds the server has seen the worker in the place, and how many count it as worked.
+	PresentSeconds float32 `json:"presentSeconds"`
+	RequiredSeconds float32 `json:"requiredSeconds"`
+	ClaimedByYou bool `json:"claimedByYou"`
+	PostedByYou bool `json:"postedByYou"`
+	Worker NullableString `json:"worker,omitempty"`
+	Paid bool `json:"paid"`
+}
+
+// NewListJobShiftsItem instantiates a new ListJobShiftsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListJobShiftsItem(id string, role string, title string, place NameSlug, startsAt string, endsAt string, payCents float32, rail string, status string, presentSeconds float32, requiredSeconds float32, claimedByYou bool, postedByYou bool, paid bool) *ListJobShiftsItem {
+	this := ListJobShiftsItem{}
+	this.Id = id
+	this.Role = role
+	this.Title = title
+	this.Place = place
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	this.PayCents = payCents
+	this.Rail = rail
+	this.Status = status
+	this.PresentSeconds = presentSeconds
+	this.RequiredSeconds = requiredSeconds
+	this.ClaimedByYou = claimedByYou
+	this.PostedByYou = postedByYou
+	this.Paid = paid
+	return &this
+}
+
+// NewListJobShiftsItemWithDefaults instantiates a new ListJobShiftsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListJobShiftsItemWithDefaults() *ListJobShiftsItem {
+	this := ListJobShiftsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListJobShiftsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListJobShiftsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetRole returns the Role field value
+func (o *ListJobShiftsItem) GetRole() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Role
+}
+
+// GetRoleOk returns a tuple with the Role field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetRoleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Role, true
+}
+
+// SetRole sets field value
+func (o *ListJobShiftsItem) SetRole(v string) {
+	o.Role = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListJobShiftsItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListJobShiftsItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetPlace returns the Place field value
+func (o *ListJobShiftsItem) GetPlace() NameSlug {
+	if o == nil {
+		var ret NameSlug
+		return ret
+	}
+
+	return o.Place
+}
+
+// GetPlaceOk returns a tuple with the Place field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetPlaceOk() (*NameSlug, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Place, true
+}
+
+// SetPlace sets field value
+func (o *ListJobShiftsItem) SetPlace(v NameSlug) {
+	o.Place = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *ListJobShiftsItem) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *ListJobShiftsItem) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *ListJobShiftsItem) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *ListJobShiftsItem) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetPayCents returns the PayCents field value
+func (o *ListJobShiftsItem) GetPayCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PayCents
+}
+
+// GetPayCentsOk returns a tuple with the PayCents field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetPayCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayCents, true
+}
+
+// SetPayCents sets field value
+func (o *ListJobShiftsItem) SetPayCents(v float32) {
+	o.PayCents = v
+}
+
+// GetRail returns the Rail field value
+func (o *ListJobShiftsItem) GetRail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Rail
+}
+
+// GetRailOk returns a tuple with the Rail field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetRailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rail, true
+}
+
+// SetRail sets field value
+func (o *ListJobShiftsItem) SetRail(v string) {
+	o.Rail = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListJobShiftsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListJobShiftsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetPresentSeconds returns the PresentSeconds field value
+func (o *ListJobShiftsItem) GetPresentSeconds() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PresentSeconds
+}
+
+// GetPresentSecondsOk returns a tuple with the PresentSeconds field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetPresentSecondsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PresentSeconds, true
+}
+
+// SetPresentSeconds sets field value
+func (o *ListJobShiftsItem) SetPresentSeconds(v float32) {
+	o.PresentSeconds = v
+}
+
+// GetRequiredSeconds returns the RequiredSeconds field value
+func (o *ListJobShiftsItem) GetRequiredSeconds() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RequiredSeconds
+}
+
+// GetRequiredSecondsOk returns a tuple with the RequiredSeconds field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetRequiredSecondsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RequiredSeconds, true
+}
+
+// SetRequiredSeconds sets field value
+func (o *ListJobShiftsItem) SetRequiredSeconds(v float32) {
+	o.RequiredSeconds = v
+}
+
+// GetClaimedByYou returns the ClaimedByYou field value
+func (o *ListJobShiftsItem) GetClaimedByYou() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ClaimedByYou
+}
+
+// GetClaimedByYouOk returns a tuple with the ClaimedByYou field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetClaimedByYouOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ClaimedByYou, true
+}
+
+// SetClaimedByYou sets field value
+func (o *ListJobShiftsItem) SetClaimedByYou(v bool) {
+	o.ClaimedByYou = v
+}
+
+// GetPostedByYou returns the PostedByYou field value
+func (o *ListJobShiftsItem) GetPostedByYou() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PostedByYou
+}
+
+// GetPostedByYouOk returns a tuple with the PostedByYou field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetPostedByYouOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PostedByYou, true
+}
+
+// SetPostedByYou sets field value
+func (o *ListJobShiftsItem) SetPostedByYou(v bool) {
+	o.PostedByYou = v
+}
+
+// GetWorker returns the Worker field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListJobShiftsItem) GetWorker() string {
+	if o == nil || o.Worker.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Worker.Get()
+}
+
+// GetWorkerOk returns a tuple with the Worker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListJobShiftsItem) GetWorkerOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Worker.Get(), o.Worker.IsSet()
+}
+
+// HasWorker returns a boolean if a field has been set.
+func (o *ListJobShiftsItem) HasWorker() bool {
+	if o != nil && o.Worker.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWorker gets a reference to the given NullableString and assigns it to the Worker field.
+func (o *ListJobShiftsItem) SetWorker(v string) {
+	o.Worker.Set(&v)
+}
+// SetWorkerNil sets the value for Worker to be an explicit nil
+func (o *ListJobShiftsItem) SetWorkerNil() {
+	o.Worker.Set(nil)
+}
+
+// UnsetWorker ensures that no value is present for Worker, not even an explicit nil
+func (o *ListJobShiftsItem) UnsetWorker() {
+	o.Worker.Unset()
+}
+
+// GetPaid returns the Paid field value
+func (o *ListJobShiftsItem) GetPaid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsItem) GetPaidOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *ListJobShiftsItem) SetPaid(v bool) {
+	o.Paid = v
+}
+
+func (o ListJobShiftsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["role"] = o.Role
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["place"] = o.Place
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if true {
+		toSerialize["payCents"] = o.PayCents
+	}
+	if true {
+		toSerialize["rail"] = o.Rail
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["presentSeconds"] = o.PresentSeconds
+	}
+	if true {
+		toSerialize["requiredSeconds"] = o.RequiredSeconds
+	}
+	if true {
+		toSerialize["claimedByYou"] = o.ClaimedByYou
+	}
+	if true {
+		toSerialize["postedByYou"] = o.PostedByYou
+	}
+	if o.Worker.IsSet() {
+		toSerialize["worker"] = o.Worker.Get()
+	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListJobShiftsItem struct {
+	value *ListJobShiftsItem
+	isSet bool
+}
+
+func (v NullableListJobShiftsItem) Get() *ListJobShiftsItem {
+	return v.value
+}
+
+func (v *NullableListJobShiftsItem) Set(val *ListJobShiftsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListJobShiftsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListJobShiftsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListJobShiftsItem(val *ListJobShiftsItem) *NullableListJobShiftsItem {
+	return &NullableListJobShiftsItem{value: val, isSet: true}
+}
+
+func (v NullableListJobShiftsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListJobShiftsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListJobShiftsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListJobShiftsResponse struct {
+	// The rows.
+	Data []ListJobShiftsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListJobShiftsResponse instantiates a new ListJobShiftsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListJobShiftsResponse(data []ListJobShiftsItem) *ListJobShiftsResponse {
+	this := ListJobShiftsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListJobShiftsResponseWithDefaults instantiates a new ListJobShiftsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListJobShiftsResponseWithDefaults() *ListJobShiftsResponse {
+	this := ListJobShiftsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListJobShiftsResponse) GetData() []ListJobShiftsItem {
+	if o == nil {
+		var ret []ListJobShiftsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsResponse) GetDataOk() ([]ListJobShiftsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListJobShiftsResponse) SetData(v []ListJobShiftsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListJobShiftsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListJobShiftsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListJobShiftsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListJobShiftsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListJobShiftsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListJobShiftsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListJobShiftsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListJobShiftsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListJobShiftsResponse struct {
+	value *ListJobShiftsResponse
+	isSet bool
+}
+
+func (v NullableListJobShiftsResponse) Get() *ListJobShiftsResponse {
+	return v.value
+}
+
+func (v *NullableListJobShiftsResponse) Set(val *ListJobShiftsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListJobShiftsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListJobShiftsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListJobShiftsResponse(val *ListJobShiftsResponse) *NullableListJobShiftsResponse {
+	return &NullableListJobShiftsResponse{value: val, isSet: true}
+}
+
+func (v NullableListJobShiftsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListJobShiftsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListLayawaysItem struct for ListLayawaysItem
+type ListLayawaysItem struct {
+	Id string `json:"id"`
+	PurchaseId string `json:"purchaseId"`
+	Status string `json:"status"`
+	Title string `json:"title"`
+	Slug NullableString `json:"slug,omitempty"`
+	ImageUrl string `json:"imageUrl"`
+	PriceCents float32 `json:"priceCents"`
+	DepositCents float32 `json:"depositCents"`
+	PaidCents float32 `json:"paidCents"`
+	RemainingCents float32 `json:"remainingCents"`
+	NextDueAt NullableString `json:"nextDueAt,omitempty"`
+	FinalDueAt string `json:"finalDueAt"`
+	LastError NullableString `json:"lastError,omitempty"`
+	CancelFeeCents float32 `json:"cancelFeeCents"`
+	PaidInFullAt NullableString `json:"paidInFullAt,omitempty"`
+	CancelledAt NullableString `json:"cancelledAt,omitempty"`
+	Schedule []ListLayawaysItemSchedule `json:"schedule"`
+}
+
+// NewListLayawaysItem instantiates a new ListLayawaysItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLayawaysItem(id string, purchaseId string, status string, title string, imageUrl string, priceCents float32, depositCents float32, paidCents float32, remainingCents float32, finalDueAt string, cancelFeeCents float32, schedule []ListLayawaysItemSchedule) *ListLayawaysItem {
+	this := ListLayawaysItem{}
+	this.Id = id
+	this.PurchaseId = purchaseId
+	this.Status = status
+	this.Title = title
+	this.ImageUrl = imageUrl
+	this.PriceCents = priceCents
+	this.DepositCents = depositCents
+	this.PaidCents = paidCents
+	this.RemainingCents = remainingCents
+	this.FinalDueAt = finalDueAt
+	this.CancelFeeCents = cancelFeeCents
+	this.Schedule = schedule
+	return &this
+}
+
+// NewListLayawaysItemWithDefaults instantiates a new ListLayawaysItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLayawaysItemWithDefaults() *ListLayawaysItem {
+	this := ListLayawaysItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListLayawaysItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListLayawaysItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetPurchaseId returns the PurchaseId field value
+func (o *ListLayawaysItem) GetPurchaseId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PurchaseId
+}
+
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetPurchaseIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PurchaseId, true
+}
+
+// SetPurchaseId sets field value
+func (o *ListLayawaysItem) SetPurchaseId(v string) {
+	o.PurchaseId = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListLayawaysItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListLayawaysItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListLayawaysItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListLayawaysItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLayawaysItem) GetSlug() string {
+	if o == nil || o.Slug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug.Get()
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLayawaysItem) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Slug.Get(), o.Slug.IsSet()
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *ListLayawaysItem) HasSlug() bool {
+	if o != nil && o.Slug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given NullableString and assigns it to the Slug field.
+func (o *ListLayawaysItem) SetSlug(v string) {
+	o.Slug.Set(&v)
+}
+// SetSlugNil sets the value for Slug to be an explicit nil
+func (o *ListLayawaysItem) SetSlugNil() {
+	o.Slug.Set(nil)
+}
+
+// UnsetSlug ensures that no value is present for Slug, not even an explicit nil
+func (o *ListLayawaysItem) UnsetSlug() {
+	o.Slug.Unset()
+}
+
+// GetImageUrl returns the ImageUrl field value
+func (o *ListLayawaysItem) GetImageUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ImageUrl
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ImageUrl, true
+}
+
+// SetImageUrl sets field value
+func (o *ListLayawaysItem) SetImageUrl(v string) {
+	o.ImageUrl = v
+}
+
+// GetPriceCents returns the PriceCents field value
+func (o *ListLayawaysItem) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *ListLayawaysItem) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+// GetDepositCents returns the DepositCents field value
+func (o *ListLayawaysItem) GetDepositCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.DepositCents
+}
+
+// GetDepositCentsOk returns a tuple with the DepositCents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetDepositCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DepositCents, true
+}
+
+// SetDepositCents sets field value
+func (o *ListLayawaysItem) SetDepositCents(v float32) {
+	o.DepositCents = v
+}
+
+// GetPaidCents returns the PaidCents field value
+func (o *ListLayawaysItem) GetPaidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PaidCents
+}
+
+// GetPaidCentsOk returns a tuple with the PaidCents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaidCents, true
+}
+
+// SetPaidCents sets field value
+func (o *ListLayawaysItem) SetPaidCents(v float32) {
+	o.PaidCents = v
+}
+
+// GetRemainingCents returns the RemainingCents field value
+func (o *ListLayawaysItem) GetRemainingCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RemainingCents
+}
+
+// GetRemainingCentsOk returns a tuple with the RemainingCents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetRemainingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RemainingCents, true
+}
+
+// SetRemainingCents sets field value
+func (o *ListLayawaysItem) SetRemainingCents(v float32) {
+	o.RemainingCents = v
+}
+
+// GetNextDueAt returns the NextDueAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLayawaysItem) GetNextDueAt() string {
+	if o == nil || o.NextDueAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.NextDueAt.Get()
+}
+
+// GetNextDueAtOk returns a tuple with the NextDueAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLayawaysItem) GetNextDueAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NextDueAt.Get(), o.NextDueAt.IsSet()
+}
+
+// HasNextDueAt returns a boolean if a field has been set.
+func (o *ListLayawaysItem) HasNextDueAt() bool {
+	if o != nil && o.NextDueAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextDueAt gets a reference to the given NullableString and assigns it to the NextDueAt field.
+func (o *ListLayawaysItem) SetNextDueAt(v string) {
+	o.NextDueAt.Set(&v)
+}
+// SetNextDueAtNil sets the value for NextDueAt to be an explicit nil
+func (o *ListLayawaysItem) SetNextDueAtNil() {
+	o.NextDueAt.Set(nil)
+}
+
+// UnsetNextDueAt ensures that no value is present for NextDueAt, not even an explicit nil
+func (o *ListLayawaysItem) UnsetNextDueAt() {
+	o.NextDueAt.Unset()
+}
+
+// GetFinalDueAt returns the FinalDueAt field value
+func (o *ListLayawaysItem) GetFinalDueAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FinalDueAt
+}
+
+// GetFinalDueAtOk returns a tuple with the FinalDueAt field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetFinalDueAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FinalDueAt, true
+}
+
+// SetFinalDueAt sets field value
+func (o *ListLayawaysItem) SetFinalDueAt(v string) {
+	o.FinalDueAt = v
+}
+
+// GetLastError returns the LastError field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLayawaysItem) GetLastError() string {
+	if o == nil || o.LastError.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastError.Get()
+}
+
+// GetLastErrorOk returns a tuple with the LastError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLayawaysItem) GetLastErrorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastError.Get(), o.LastError.IsSet()
+}
+
+// HasLastError returns a boolean if a field has been set.
+func (o *ListLayawaysItem) HasLastError() bool {
+	if o != nil && o.LastError.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastError gets a reference to the given NullableString and assigns it to the LastError field.
+func (o *ListLayawaysItem) SetLastError(v string) {
+	o.LastError.Set(&v)
+}
+// SetLastErrorNil sets the value for LastError to be an explicit nil
+func (o *ListLayawaysItem) SetLastErrorNil() {
+	o.LastError.Set(nil)
+}
+
+// UnsetLastError ensures that no value is present for LastError, not even an explicit nil
+func (o *ListLayawaysItem) UnsetLastError() {
+	o.LastError.Unset()
+}
+
+// GetCancelFeeCents returns the CancelFeeCents field value
+func (o *ListLayawaysItem) GetCancelFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CancelFeeCents
+}
+
+// GetCancelFeeCentsOk returns a tuple with the CancelFeeCents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetCancelFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CancelFeeCents, true
+}
+
+// SetCancelFeeCents sets field value
+func (o *ListLayawaysItem) SetCancelFeeCents(v float32) {
+	o.CancelFeeCents = v
+}
+
+// GetPaidInFullAt returns the PaidInFullAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLayawaysItem) GetPaidInFullAt() string {
+	if o == nil || o.PaidInFullAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaidInFullAt.Get()
+}
+
+// GetPaidInFullAtOk returns a tuple with the PaidInFullAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLayawaysItem) GetPaidInFullAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaidInFullAt.Get(), o.PaidInFullAt.IsSet()
+}
+
+// HasPaidInFullAt returns a boolean if a field has been set.
+func (o *ListLayawaysItem) HasPaidInFullAt() bool {
+	if o != nil && o.PaidInFullAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaidInFullAt gets a reference to the given NullableString and assigns it to the PaidInFullAt field.
+func (o *ListLayawaysItem) SetPaidInFullAt(v string) {
+	o.PaidInFullAt.Set(&v)
+}
+// SetPaidInFullAtNil sets the value for PaidInFullAt to be an explicit nil
+func (o *ListLayawaysItem) SetPaidInFullAtNil() {
+	o.PaidInFullAt.Set(nil)
+}
+
+// UnsetPaidInFullAt ensures that no value is present for PaidInFullAt, not even an explicit nil
+func (o *ListLayawaysItem) UnsetPaidInFullAt() {
+	o.PaidInFullAt.Unset()
+}
+
+// GetCancelledAt returns the CancelledAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListLayawaysItem) GetCancelledAt() string {
+	if o == nil || o.CancelledAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CancelledAt.Get()
+}
+
+// GetCancelledAtOk returns a tuple with the CancelledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListLayawaysItem) GetCancelledAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CancelledAt.Get(), o.CancelledAt.IsSet()
+}
+
+// HasCancelledAt returns a boolean if a field has been set.
+func (o *ListLayawaysItem) HasCancelledAt() bool {
+	if o != nil && o.CancelledAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelledAt gets a reference to the given NullableString and assigns it to the CancelledAt field.
+func (o *ListLayawaysItem) SetCancelledAt(v string) {
+	o.CancelledAt.Set(&v)
+}
+// SetCancelledAtNil sets the value for CancelledAt to be an explicit nil
+func (o *ListLayawaysItem) SetCancelledAtNil() {
+	o.CancelledAt.Set(nil)
+}
+
+// UnsetCancelledAt ensures that no value is present for CancelledAt, not even an explicit nil
+func (o *ListLayawaysItem) UnsetCancelledAt() {
+	o.CancelledAt.Unset()
+}
+
+// GetSchedule returns the Schedule field value
+func (o *ListLayawaysItem) GetSchedule() []ListLayawaysItemSchedule {
+	if o == nil {
+		var ret []ListLayawaysItemSchedule
+		return ret
+	}
+
+	return o.Schedule
+}
+
+// GetScheduleOk returns a tuple with the Schedule field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItem) GetScheduleOk() ([]ListLayawaysItemSchedule, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Schedule, true
+}
+
+// SetSchedule sets field value
+func (o *ListLayawaysItem) SetSchedule(v []ListLayawaysItemSchedule) {
+	o.Schedule = v
+}
+
+func (o ListLayawaysItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["purchaseId"] = o.PurchaseId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Slug.IsSet() {
+		toSerialize["slug"] = o.Slug.Get()
+	}
+	if true {
+		toSerialize["imageUrl"] = o.ImageUrl
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["depositCents"] = o.DepositCents
+	}
+	if true {
+		toSerialize["paidCents"] = o.PaidCents
+	}
+	if true {
+		toSerialize["remainingCents"] = o.RemainingCents
+	}
+	if o.NextDueAt.IsSet() {
+		toSerialize["nextDueAt"] = o.NextDueAt.Get()
+	}
+	if true {
+		toSerialize["finalDueAt"] = o.FinalDueAt
+	}
+	if o.LastError.IsSet() {
+		toSerialize["lastError"] = o.LastError.Get()
+	}
+	if true {
+		toSerialize["cancelFeeCents"] = o.CancelFeeCents
+	}
+	if o.PaidInFullAt.IsSet() {
+		toSerialize["paidInFullAt"] = o.PaidInFullAt.Get()
+	}
+	if o.CancelledAt.IsSet() {
+		toSerialize["cancelledAt"] = o.CancelledAt.Get()
+	}
+	if true {
+		toSerialize["schedule"] = o.Schedule
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListLayawaysItem struct {
+	value *ListLayawaysItem
+	isSet bool
+}
+
+func (v NullableListLayawaysItem) Get() *ListLayawaysItem {
+	return v.value
+}
+
+func (v *NullableListLayawaysItem) Set(val *ListLayawaysItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLayawaysItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLayawaysItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLayawaysItem(val *ListLayawaysItem) *NullableListLayawaysItem {
+	return &NullableListLayawaysItem{value: val, isSet: true}
+}
+
+func (v NullableListLayawaysItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLayawaysItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListLayawaysItemSchedule struct for ListLayawaysItemSchedule
+type ListLayawaysItemSchedule struct {
+	DueAt string `json:"dueAt"`
+	Cents float32 `json:"cents"`
+	Paid bool `json:"paid"`
+}
+
+// NewListLayawaysItemSchedule instantiates a new ListLayawaysItemSchedule object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLayawaysItemSchedule(dueAt string, cents float32, paid bool) *ListLayawaysItemSchedule {
+	this := ListLayawaysItemSchedule{}
+	this.DueAt = dueAt
+	this.Cents = cents
+	this.Paid = paid
+	return &this
+}
+
+// NewListLayawaysItemScheduleWithDefaults instantiates a new ListLayawaysItemSchedule object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLayawaysItemScheduleWithDefaults() *ListLayawaysItemSchedule {
+	this := ListLayawaysItemSchedule{}
+	return &this
+}
+
+// GetDueAt returns the DueAt field value
+func (o *ListLayawaysItemSchedule) GetDueAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DueAt
+}
+
+// GetDueAtOk returns a tuple with the DueAt field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItemSchedule) GetDueAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DueAt, true
+}
+
+// SetDueAt sets field value
+func (o *ListLayawaysItemSchedule) SetDueAt(v string) {
+	o.DueAt = v
+}
+
+// GetCents returns the Cents field value
+func (o *ListLayawaysItemSchedule) GetCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Cents
+}
+
+// GetCentsOk returns a tuple with the Cents field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItemSchedule) GetCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Cents, true
+}
+
+// SetCents sets field value
+func (o *ListLayawaysItemSchedule) SetCents(v float32) {
+	o.Cents = v
+}
+
+// GetPaid returns the Paid field value
+func (o *ListLayawaysItemSchedule) GetPaid() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Paid
+}
+
+// GetPaidOk returns a tuple with the Paid field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysItemSchedule) GetPaidOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Paid, true
+}
+
+// SetPaid sets field value
+func (o *ListLayawaysItemSchedule) SetPaid(v bool) {
+	o.Paid = v
+}
+
+func (o ListLayawaysItemSchedule) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["dueAt"] = o.DueAt
+	}
+	if true {
+		toSerialize["cents"] = o.Cents
+	}
+	if true {
+		toSerialize["paid"] = o.Paid
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListLayawaysItemSchedule struct {
+	value *ListLayawaysItemSchedule
+	isSet bool
+}
+
+func (v NullableListLayawaysItemSchedule) Get() *ListLayawaysItemSchedule {
+	return v.value
+}
+
+func (v *NullableListLayawaysItemSchedule) Set(val *ListLayawaysItemSchedule) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLayawaysItemSchedule) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLayawaysItemSchedule) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLayawaysItemSchedule(val *ListLayawaysItemSchedule) *NullableListLayawaysItemSchedule {
+	return &NullableListLayawaysItemSchedule{value: val, isSet: true}
+}
+
+func (v NullableListLayawaysItemSchedule) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLayawaysItemSchedule) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListLayawaysResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListLayawaysResponse struct {
+	// The rows.
+	Data []ListLayawaysItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListLayawaysResponse instantiates a new ListLayawaysResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLayawaysResponse(data []ListLayawaysItem) *ListLayawaysResponse {
+	this := ListLayawaysResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListLayawaysResponseWithDefaults instantiates a new ListLayawaysResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLayawaysResponseWithDefaults() *ListLayawaysResponse {
+	this := ListLayawaysResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListLayawaysResponse) GetData() []ListLayawaysItem {
+	if o == nil {
+		var ret []ListLayawaysItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysResponse) GetDataOk() ([]ListLayawaysItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListLayawaysResponse) SetData(v []ListLayawaysItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListLayawaysResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListLayawaysResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListLayawaysResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListLayawaysResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLayawaysResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListLayawaysResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListLayawaysResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListLayawaysResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListLayawaysResponse struct {
+	value *ListLayawaysResponse
+	isSet bool
+}
+
+func (v NullableListLayawaysResponse) Get() *ListLayawaysResponse {
+	return v.value
+}
+
+func (v *NullableListLayawaysResponse) Set(val *ListLayawaysResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLayawaysResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLayawaysResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLayawaysResponse(val *ListLayawaysResponse) *NullableListLayawaysResponse {
+	return &NullableListLayawaysResponse{value: val, isSet: true}
+}
+
+func (v NullableListLayawaysResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLayawaysResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListMileageItem struct for ListMileageItem
+type ListMileageItem struct {
+	Date string `json:"date"`
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Notes NullableString `json:"notes,omitempty"`
+	Miles string `json:"miles"`
+	Purpose string `json:"purpose"`
+	StartLocation NullableString `json:"startLocation,omitempty"`
+	EndLocation NullableString `json:"endLocation,omitempty"`
+}
+
+// NewListMileageItem instantiates a new ListMileageItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMileageItem(date string, id string, createdAt time.Time, userId string, miles string, purpose string) *ListMileageItem {
+	this := ListMileageItem{}
+	this.Date = date
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Miles = miles
+	this.Purpose = purpose
+	return &this
+}
+
+// NewListMileageItemWithDefaults instantiates a new ListMileageItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMileageItemWithDefaults() *ListMileageItem {
+	this := ListMileageItem{}
+	return &this
+}
+
+// GetDate returns the Date field value
+func (o *ListMileageItem) GetDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Date, true
+}
+
+// SetDate sets field value
+func (o *ListMileageItem) SetDate(v string) {
+	o.Date = v
+}
+
+// GetId returns the Id field value
+func (o *ListMileageItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListMileageItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListMileageItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListMileageItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *ListMileageItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListMileageItem) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMileageItem) GetNotes() string {
+	if o == nil || o.Notes.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Notes.Get()
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMileageItem) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes.Get(), o.Notes.IsSet()
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *ListMileageItem) HasNotes() bool {
+	if o != nil && o.Notes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
+func (o *ListMileageItem) SetNotes(v string) {
+	o.Notes.Set(&v)
+}
+// SetNotesNil sets the value for Notes to be an explicit nil
+func (o *ListMileageItem) SetNotesNil() {
+	o.Notes.Set(nil)
+}
+
+// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
+func (o *ListMileageItem) UnsetNotes() {
+	o.Notes.Unset()
+}
+
+// GetMiles returns the Miles field value
+func (o *ListMileageItem) GetMiles() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Miles
+}
+
+// GetMilesOk returns a tuple with the Miles field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetMilesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Miles, true
+}
+
+// SetMiles sets field value
+func (o *ListMileageItem) SetMiles(v string) {
+	o.Miles = v
+}
+
+// GetPurpose returns the Purpose field value
+func (o *ListMileageItem) GetPurpose() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Purpose
+}
+
+// GetPurposeOk returns a tuple with the Purpose field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageItem) GetPurposeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Purpose, true
+}
+
+// SetPurpose sets field value
+func (o *ListMileageItem) SetPurpose(v string) {
+	o.Purpose = v
+}
+
+// GetStartLocation returns the StartLocation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMileageItem) GetStartLocation() string {
+	if o == nil || o.StartLocation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StartLocation.Get()
+}
+
+// GetStartLocationOk returns a tuple with the StartLocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMileageItem) GetStartLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StartLocation.Get(), o.StartLocation.IsSet()
+}
+
+// HasStartLocation returns a boolean if a field has been set.
+func (o *ListMileageItem) HasStartLocation() bool {
+	if o != nil && o.StartLocation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStartLocation gets a reference to the given NullableString and assigns it to the StartLocation field.
+func (o *ListMileageItem) SetStartLocation(v string) {
+	o.StartLocation.Set(&v)
+}
+// SetStartLocationNil sets the value for StartLocation to be an explicit nil
+func (o *ListMileageItem) SetStartLocationNil() {
+	o.StartLocation.Set(nil)
+}
+
+// UnsetStartLocation ensures that no value is present for StartLocation, not even an explicit nil
+func (o *ListMileageItem) UnsetStartLocation() {
+	o.StartLocation.Unset()
+}
+
+// GetEndLocation returns the EndLocation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMileageItem) GetEndLocation() string {
+	if o == nil || o.EndLocation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndLocation.Get()
+}
+
+// GetEndLocationOk returns a tuple with the EndLocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMileageItem) GetEndLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndLocation.Get(), o.EndLocation.IsSet()
+}
+
+// HasEndLocation returns a boolean if a field has been set.
+func (o *ListMileageItem) HasEndLocation() bool {
+	if o != nil && o.EndLocation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndLocation gets a reference to the given NullableString and assigns it to the EndLocation field.
+func (o *ListMileageItem) SetEndLocation(v string) {
+	o.EndLocation.Set(&v)
+}
+// SetEndLocationNil sets the value for EndLocation to be an explicit nil
+func (o *ListMileageItem) SetEndLocationNil() {
+	o.EndLocation.Set(nil)
+}
+
+// UnsetEndLocation ensures that no value is present for EndLocation, not even an explicit nil
+func (o *ListMileageItem) UnsetEndLocation() {
+	o.EndLocation.Unset()
+}
+
+func (o ListMileageItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["date"] = o.Date
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.Notes.IsSet() {
+		toSerialize["notes"] = o.Notes.Get()
+	}
+	if true {
+		toSerialize["miles"] = o.Miles
+	}
+	if true {
+		toSerialize["purpose"] = o.Purpose
+	}
+	if o.StartLocation.IsSet() {
+		toSerialize["startLocation"] = o.StartLocation.Get()
+	}
+	if o.EndLocation.IsSet() {
+		toSerialize["endLocation"] = o.EndLocation.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMileageItem struct {
+	value *ListMileageItem
+	isSet bool
+}
+
+func (v NullableListMileageItem) Get() *ListMileageItem {
+	return v.value
+}
+
+func (v *NullableListMileageItem) Set(val *ListMileageItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMileageItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMileageItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMileageItem(val *ListMileageItem) *NullableListMileageItem {
+	return &NullableListMileageItem{value: val, isSet: true}
+}
+
+func (v NullableListMileageItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMileageItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListMileageResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListMileageResponse struct {
+	// The rows.
+	Data []ListMileageItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListMileageResponse instantiates a new ListMileageResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMileageResponse(data []ListMileageItem) *ListMileageResponse {
+	this := ListMileageResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListMileageResponseWithDefaults instantiates a new ListMileageResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMileageResponseWithDefaults() *ListMileageResponse {
+	this := ListMileageResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListMileageResponse) GetData() []ListMileageItem {
+	if o == nil {
+		var ret []ListMileageItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListMileageResponse) GetDataOk() ([]ListMileageItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListMileageResponse) SetData(v []ListMileageItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListMileageResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMileageResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListMileageResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListMileageResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListMileageResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMileageResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListMileageResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListMileageResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListMileageResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMileageResponse struct {
+	value *ListMileageResponse
+	isSet bool
+}
+
+func (v NullableListMileageResponse) Get() *ListMileageResponse {
+	return v.value
+}
+
+func (v *NullableListMileageResponse) Set(val *ListMileageResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMileageResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMileageResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMileageResponse(val *ListMileageResponse) *NullableListMileageResponse {
+	return &NullableListMileageResponse{value: val, isSet: true}
+}
+
+func (v NullableListMileageResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMileageResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListMobilePushTokensItem struct for ListMobilePushTokensItem
+type ListMobilePushTokensItem struct {
+	Token string `json:"token"`
+	Platform string `json:"platform"`
+	CreatedAt time.Time `json:"createdAt"`
+	LastUsedAt time.Time `json:"lastUsedAt"`
+}
+
+// NewListMobilePushTokensItem instantiates a new ListMobilePushTokensItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMobilePushTokensItem(token string, platform string, createdAt time.Time, lastUsedAt time.Time) *ListMobilePushTokensItem {
+	this := ListMobilePushTokensItem{}
+	this.Token = token
+	this.Platform = platform
+	this.CreatedAt = createdAt
+	this.LastUsedAt = lastUsedAt
+	return &this
+}
+
+// NewListMobilePushTokensItemWithDefaults instantiates a new ListMobilePushTokensItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMobilePushTokensItemWithDefaults() *ListMobilePushTokensItem {
+	this := ListMobilePushTokensItem{}
+	return &this
+}
+
+// GetToken returns the Token field value
+func (o *ListMobilePushTokensItem) GetToken() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensItem) GetTokenOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Token, true
+}
+
+// SetToken sets field value
+func (o *ListMobilePushTokensItem) SetToken(v string) {
+	o.Token = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListMobilePushTokensItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListMobilePushTokensItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListMobilePushTokensItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListMobilePushTokensItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetLastUsedAt returns the LastUsedAt field value
+func (o *ListMobilePushTokensItem) GetLastUsedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.LastUsedAt
+}
+
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensItem) GetLastUsedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LastUsedAt, true
+}
+
+// SetLastUsedAt sets field value
+func (o *ListMobilePushTokensItem) SetLastUsedAt(v time.Time) {
+	o.LastUsedAt = v
+}
+
+func (o ListMobilePushTokensItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["token"] = o.Token
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["lastUsedAt"] = o.LastUsedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMobilePushTokensItem struct {
+	value *ListMobilePushTokensItem
+	isSet bool
+}
+
+func (v NullableListMobilePushTokensItem) Get() *ListMobilePushTokensItem {
+	return v.value
+}
+
+func (v *NullableListMobilePushTokensItem) Set(val *ListMobilePushTokensItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMobilePushTokensItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMobilePushTokensItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMobilePushTokensItem(val *ListMobilePushTokensItem) *NullableListMobilePushTokensItem {
+	return &NullableListMobilePushTokensItem{value: val, isSet: true}
+}
+
+func (v NullableListMobilePushTokensItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMobilePushTokensItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListMobilePushTokensResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListMobilePushTokensResponse struct {
+	// The rows.
+	Data []ListMobilePushTokensItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListMobilePushTokensResponse instantiates a new ListMobilePushTokensResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMobilePushTokensResponse(data []ListMobilePushTokensItem) *ListMobilePushTokensResponse {
+	this := ListMobilePushTokensResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListMobilePushTokensResponseWithDefaults instantiates a new ListMobilePushTokensResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMobilePushTokensResponseWithDefaults() *ListMobilePushTokensResponse {
+	this := ListMobilePushTokensResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListMobilePushTokensResponse) GetData() []ListMobilePushTokensItem {
+	if o == nil {
+		var ret []ListMobilePushTokensItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensResponse) GetDataOk() ([]ListMobilePushTokensItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListMobilePushTokensResponse) SetData(v []ListMobilePushTokensItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListMobilePushTokensResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListMobilePushTokensResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListMobilePushTokensResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListMobilePushTokensResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMobilePushTokensResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListMobilePushTokensResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListMobilePushTokensResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListMobilePushTokensResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMobilePushTokensResponse struct {
+	value *ListMobilePushTokensResponse
+	isSet bool
+}
+
+func (v NullableListMobilePushTokensResponse) Get() *ListMobilePushTokensResponse {
+	return v.value
+}
+
+func (v *NullableListMobilePushTokensResponse) Set(val *ListMobilePushTokensResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMobilePushTokensResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMobilePushTokensResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMobilePushTokensResponse(val *ListMobilePushTokensResponse) *NullableListMobilePushTokensResponse {
+	return &NullableListMobilePushTokensResponse{value: val, isSet: true}
+}
+
+func (v NullableListMobilePushTokensResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMobilePushTokensResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNeighbourhoodsItem struct for ListNeighbourhoodsItem
+type ListNeighbourhoodsItem struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+	Tagline string `json:"tagline"`
+	Who string `json:"who"`
+	Anchor ListNeighbourhoodsItemAnchor `json:"anchor"`
+	Accent string `json:"accent"`
+	// Open by the shared rule: NEIGHBOURHOOD_MIN_SHOPS businesses, or a street event on now.
+	Open bool `json:"open"`
+	// \"Open - 7 shops\" / \"Opening soon - 2 of 6 shops\".
+	Status string `json:"status"`
+	Shops float32 `json:"shops"`
+	StallsToday float32 `json:"stallsToday"`
+	OpenStalls float32 `json:"openStalls"`
+	MinShops float32 `json:"minShops"`
+	NextEvent NullableListNeighbourhoodsItemNextEvent `json:"nextEvent,omitempty"`
+	// Where it is on the web (`/c/<slug>`); the app opens crossly.net + this.
+	Url string `json:"url"`
+}
+
+// NewListNeighbourhoodsItem instantiates a new ListNeighbourhoodsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNeighbourhoodsItem(slug string, name string, tagline string, who string, anchor ListNeighbourhoodsItemAnchor, accent string, open bool, status string, shops float32, stallsToday float32, openStalls float32, minShops float32, url string) *ListNeighbourhoodsItem {
+	this := ListNeighbourhoodsItem{}
+	this.Slug = slug
+	this.Name = name
+	this.Tagline = tagline
+	this.Who = who
+	this.Anchor = anchor
+	this.Accent = accent
+	this.Open = open
+	this.Status = status
+	this.Shops = shops
+	this.StallsToday = stallsToday
+	this.OpenStalls = openStalls
+	this.MinShops = minShops
+	this.Url = url
+	return &this
+}
+
+// NewListNeighbourhoodsItemWithDefaults instantiates a new ListNeighbourhoodsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNeighbourhoodsItemWithDefaults() *ListNeighbourhoodsItem {
+	this := ListNeighbourhoodsItem{}
+	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *ListNeighbourhoodsItem) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *ListNeighbourhoodsItem) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetName returns the Name field value
+func (o *ListNeighbourhoodsItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListNeighbourhoodsItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetTagline returns the Tagline field value
+func (o *ListNeighbourhoodsItem) GetTagline() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tagline
+}
+
+// GetTaglineOk returns a tuple with the Tagline field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetTaglineOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tagline, true
+}
+
+// SetTagline sets field value
+func (o *ListNeighbourhoodsItem) SetTagline(v string) {
+	o.Tagline = v
+}
+
+// GetWho returns the Who field value
+func (o *ListNeighbourhoodsItem) GetWho() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Who
+}
+
+// GetWhoOk returns a tuple with the Who field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetWhoOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Who, true
+}
+
+// SetWho sets field value
+func (o *ListNeighbourhoodsItem) SetWho(v string) {
+	o.Who = v
+}
+
+// GetAnchor returns the Anchor field value
+func (o *ListNeighbourhoodsItem) GetAnchor() ListNeighbourhoodsItemAnchor {
+	if o == nil {
+		var ret ListNeighbourhoodsItemAnchor
+		return ret
+	}
+
+	return o.Anchor
+}
+
+// GetAnchorOk returns a tuple with the Anchor field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetAnchorOk() (*ListNeighbourhoodsItemAnchor, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Anchor, true
+}
+
+// SetAnchor sets field value
+func (o *ListNeighbourhoodsItem) SetAnchor(v ListNeighbourhoodsItemAnchor) {
+	o.Anchor = v
+}
+
+// GetAccent returns the Accent field value
+func (o *ListNeighbourhoodsItem) GetAccent() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Accent
+}
+
+// GetAccentOk returns a tuple with the Accent field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetAccentOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Accent, true
+}
+
+// SetAccent sets field value
+func (o *ListNeighbourhoodsItem) SetAccent(v string) {
+	o.Accent = v
+}
+
+// GetOpen returns the Open field value
+func (o *ListNeighbourhoodsItem) GetOpen() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Open
+}
+
+// GetOpenOk returns a tuple with the Open field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetOpenOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Open, true
+}
+
+// SetOpen sets field value
+func (o *ListNeighbourhoodsItem) SetOpen(v bool) {
+	o.Open = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListNeighbourhoodsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListNeighbourhoodsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetShops returns the Shops field value
+func (o *ListNeighbourhoodsItem) GetShops() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Shops
+}
+
+// GetShopsOk returns a tuple with the Shops field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetShopsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Shops, true
+}
+
+// SetShops sets field value
+func (o *ListNeighbourhoodsItem) SetShops(v float32) {
+	o.Shops = v
+}
+
+// GetStallsToday returns the StallsToday field value
+func (o *ListNeighbourhoodsItem) GetStallsToday() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.StallsToday
+}
+
+// GetStallsTodayOk returns a tuple with the StallsToday field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetStallsTodayOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StallsToday, true
+}
+
+// SetStallsToday sets field value
+func (o *ListNeighbourhoodsItem) SetStallsToday(v float32) {
+	o.StallsToday = v
+}
+
+// GetOpenStalls returns the OpenStalls field value
+func (o *ListNeighbourhoodsItem) GetOpenStalls() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.OpenStalls
+}
+
+// GetOpenStallsOk returns a tuple with the OpenStalls field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetOpenStallsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OpenStalls, true
+}
+
+// SetOpenStalls sets field value
+func (o *ListNeighbourhoodsItem) SetOpenStalls(v float32) {
+	o.OpenStalls = v
+}
+
+// GetMinShops returns the MinShops field value
+func (o *ListNeighbourhoodsItem) GetMinShops() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MinShops
+}
+
+// GetMinShopsOk returns a tuple with the MinShops field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetMinShopsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MinShops, true
+}
+
+// SetMinShops sets field value
+func (o *ListNeighbourhoodsItem) SetMinShops(v float32) {
+	o.MinShops = v
+}
+
+// GetNextEvent returns the NextEvent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListNeighbourhoodsItem) GetNextEvent() ListNeighbourhoodsItemNextEvent {
+	if o == nil || o.NextEvent.Get() == nil {
+		var ret ListNeighbourhoodsItemNextEvent
+		return ret
+	}
+	return *o.NextEvent.Get()
+}
+
+// GetNextEventOk returns a tuple with the NextEvent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListNeighbourhoodsItem) GetNextEventOk() (*ListNeighbourhoodsItemNextEvent, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NextEvent.Get(), o.NextEvent.IsSet()
+}
+
+// HasNextEvent returns a boolean if a field has been set.
+func (o *ListNeighbourhoodsItem) HasNextEvent() bool {
+	if o != nil && o.NextEvent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextEvent gets a reference to the given NullableListNeighbourhoodsItemNextEvent and assigns it to the NextEvent field.
+func (o *ListNeighbourhoodsItem) SetNextEvent(v ListNeighbourhoodsItemNextEvent) {
+	o.NextEvent.Set(&v)
+}
+// SetNextEventNil sets the value for NextEvent to be an explicit nil
+func (o *ListNeighbourhoodsItem) SetNextEventNil() {
+	o.NextEvent.Set(nil)
+}
+
+// UnsetNextEvent ensures that no value is present for NextEvent, not even an explicit nil
+func (o *ListNeighbourhoodsItem) UnsetNextEvent() {
+	o.NextEvent.Unset()
+}
+
+// GetUrl returns the Url field value
+func (o *ListNeighbourhoodsItem) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItem) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *ListNeighbourhoodsItem) SetUrl(v string) {
+	o.Url = v
+}
+
+func (o ListNeighbourhoodsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["tagline"] = o.Tagline
+	}
+	if true {
+		toSerialize["who"] = o.Who
+	}
+	if true {
+		toSerialize["anchor"] = o.Anchor
+	}
+	if true {
+		toSerialize["accent"] = o.Accent
+	}
+	if true {
+		toSerialize["open"] = o.Open
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["shops"] = o.Shops
+	}
+	if true {
+		toSerialize["stallsToday"] = o.StallsToday
+	}
+	if true {
+		toSerialize["openStalls"] = o.OpenStalls
+	}
+	if true {
+		toSerialize["minShops"] = o.MinShops
+	}
+	if o.NextEvent.IsSet() {
+		toSerialize["nextEvent"] = o.NextEvent.Get()
+	}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNeighbourhoodsItem struct {
+	value *ListNeighbourhoodsItem
+	isSet bool
+}
+
+func (v NullableListNeighbourhoodsItem) Get() *ListNeighbourhoodsItem {
+	return v.value
+}
+
+func (v *NullableListNeighbourhoodsItem) Set(val *ListNeighbourhoodsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNeighbourhoodsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNeighbourhoodsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNeighbourhoodsItem(val *ListNeighbourhoodsItem) *NullableListNeighbourhoodsItem {
+	return &NullableListNeighbourhoodsItem{value: val, isSet: true}
+}
+
+func (v NullableListNeighbourhoodsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNeighbourhoodsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNeighbourhoodsItemAnchor struct for ListNeighbourhoodsItemAnchor
+type ListNeighbourhoodsItemAnchor struct {
+	Kind string `json:"kind"`
+	Label string `json:"label"`
+}
+
+// NewListNeighbourhoodsItemAnchor instantiates a new ListNeighbourhoodsItemAnchor object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNeighbourhoodsItemAnchor(kind string, label string) *ListNeighbourhoodsItemAnchor {
+	this := ListNeighbourhoodsItemAnchor{}
+	this.Kind = kind
+	this.Label = label
+	return &this
+}
+
+// NewListNeighbourhoodsItemAnchorWithDefaults instantiates a new ListNeighbourhoodsItemAnchor object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNeighbourhoodsItemAnchorWithDefaults() *ListNeighbourhoodsItemAnchor {
+	this := ListNeighbourhoodsItemAnchor{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *ListNeighbourhoodsItemAnchor) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemAnchor) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *ListNeighbourhoodsItemAnchor) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetLabel returns the Label field value
+func (o *ListNeighbourhoodsItemAnchor) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemAnchor) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *ListNeighbourhoodsItemAnchor) SetLabel(v string) {
+	o.Label = v
+}
+
+func (o ListNeighbourhoodsItemAnchor) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNeighbourhoodsItemAnchor struct {
+	value *ListNeighbourhoodsItemAnchor
+	isSet bool
+}
+
+func (v NullableListNeighbourhoodsItemAnchor) Get() *ListNeighbourhoodsItemAnchor {
+	return v.value
+}
+
+func (v *NullableListNeighbourhoodsItemAnchor) Set(val *ListNeighbourhoodsItemAnchor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNeighbourhoodsItemAnchor) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNeighbourhoodsItemAnchor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNeighbourhoodsItemAnchor(val *ListNeighbourhoodsItemAnchor) *NullableListNeighbourhoodsItemAnchor {
+	return &NullableListNeighbourhoodsItemAnchor{value: val, isSet: true}
+}
+
+func (v NullableListNeighbourhoodsItemAnchor) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNeighbourhoodsItemAnchor) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNeighbourhoodsItemNextEvent struct for ListNeighbourhoodsItemNextEvent
+type ListNeighbourhoodsItemNextEvent struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+	Live bool `json:"live"`
+	EndsAt string `json:"endsAt"`
+	Kind string `json:"kind"`
+	StartsAt string `json:"startsAt"`
+}
+
+// NewListNeighbourhoodsItemNextEvent instantiates a new ListNeighbourhoodsItemNextEvent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNeighbourhoodsItemNextEvent(id string, title string, live bool, endsAt string, kind string, startsAt string) *ListNeighbourhoodsItemNextEvent {
+	this := ListNeighbourhoodsItemNextEvent{}
+	this.Id = id
+	this.Title = title
+	this.Live = live
+	this.EndsAt = endsAt
+	this.Kind = kind
+	this.StartsAt = startsAt
+	return &this
+}
+
+// NewListNeighbourhoodsItemNextEventWithDefaults instantiates a new ListNeighbourhoodsItemNextEvent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNeighbourhoodsItemNextEventWithDefaults() *ListNeighbourhoodsItemNextEvent {
+	this := ListNeighbourhoodsItemNextEvent{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListNeighbourhoodsItemNextEvent) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetId(v string) {
+	o.Id = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListNeighbourhoodsItemNextEvent) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetLive returns the Live field value
+func (o *ListNeighbourhoodsItemNextEvent) GetLive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Live
+}
+
+// GetLiveOk returns a tuple with the Live field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetLiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Live, true
+}
+
+// SetLive sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetLive(v bool) {
+	o.Live = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *ListNeighbourhoodsItemNextEvent) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetKind returns the Kind field value
+func (o *ListNeighbourhoodsItemNextEvent) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *ListNeighbourhoodsItemNextEvent) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsItemNextEvent) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *ListNeighbourhoodsItemNextEvent) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+func (o ListNeighbourhoodsItemNextEvent) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["live"] = o.Live
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNeighbourhoodsItemNextEvent struct {
+	value *ListNeighbourhoodsItemNextEvent
+	isSet bool
+}
+
+func (v NullableListNeighbourhoodsItemNextEvent) Get() *ListNeighbourhoodsItemNextEvent {
+	return v.value
+}
+
+func (v *NullableListNeighbourhoodsItemNextEvent) Set(val *ListNeighbourhoodsItemNextEvent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNeighbourhoodsItemNextEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNeighbourhoodsItemNextEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNeighbourhoodsItemNextEvent(val *ListNeighbourhoodsItemNextEvent) *NullableListNeighbourhoodsItemNextEvent {
+	return &NullableListNeighbourhoodsItemNextEvent{value: val, isSet: true}
+}
+
+func (v NullableListNeighbourhoodsItemNextEvent) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNeighbourhoodsItemNextEvent) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNeighbourhoodsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListNeighbourhoodsResponse struct {
+	// The rows.
+	Data []ListNeighbourhoodsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListNeighbourhoodsResponse instantiates a new ListNeighbourhoodsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNeighbourhoodsResponse(data []ListNeighbourhoodsItem) *ListNeighbourhoodsResponse {
+	this := ListNeighbourhoodsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListNeighbourhoodsResponseWithDefaults instantiates a new ListNeighbourhoodsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNeighbourhoodsResponseWithDefaults() *ListNeighbourhoodsResponse {
+	this := ListNeighbourhoodsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListNeighbourhoodsResponse) GetData() []ListNeighbourhoodsItem {
+	if o == nil {
+		var ret []ListNeighbourhoodsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsResponse) GetDataOk() ([]ListNeighbourhoodsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListNeighbourhoodsResponse) SetData(v []ListNeighbourhoodsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListNeighbourhoodsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListNeighbourhoodsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListNeighbourhoodsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListNeighbourhoodsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListNeighbourhoodsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListNeighbourhoodsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListNeighbourhoodsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListNeighbourhoodsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNeighbourhoodsResponse struct {
+	value *ListNeighbourhoodsResponse
+	isSet bool
+}
+
+func (v NullableListNeighbourhoodsResponse) Get() *ListNeighbourhoodsResponse {
+	return v.value
+}
+
+func (v *NullableListNeighbourhoodsResponse) Set(val *ListNeighbourhoodsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNeighbourhoodsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNeighbourhoodsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNeighbourhoodsResponse(val *ListNeighbourhoodsResponse) *NullableListNeighbourhoodsResponse {
+	return &NullableListNeighbourhoodsResponse{value: val, isSet: true}
+}
+
+func (v NullableListNeighbourhoodsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNeighbourhoodsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNotificationIntegrationsItem struct for ListNotificationIntegrationsItem
+type ListNotificationIntegrationsItem struct {
+	Config map[string]interface{} `json:"config"`
+	Id string `json:"id"`
+	Provider string `json:"provider"`
+	Name string `json:"name"`
+	Enabled bool `json:"enabled"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+// NewListNotificationIntegrationsItem instantiates a new ListNotificationIntegrationsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNotificationIntegrationsItem(config map[string]interface{}, id string, provider string, name string, enabled bool, createdAt time.Time) *ListNotificationIntegrationsItem {
+	this := ListNotificationIntegrationsItem{}
+	this.Config = config
+	this.Id = id
+	this.Provider = provider
+	this.Name = name
+	this.Enabled = enabled
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListNotificationIntegrationsItemWithDefaults instantiates a new ListNotificationIntegrationsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNotificationIntegrationsItemWithDefaults() *ListNotificationIntegrationsItem {
+	this := ListNotificationIntegrationsItem{}
+	return &this
+}
+
+// GetConfig returns the Config field value
+func (o *ListNotificationIntegrationsItem) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetConfigOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// SetConfig sets field value
+func (o *ListNotificationIntegrationsItem) SetConfig(v map[string]interface{}) {
+	o.Config = v
+}
+
+// GetId returns the Id field value
+func (o *ListNotificationIntegrationsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListNotificationIntegrationsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetProvider returns the Provider field value
+func (o *ListNotificationIntegrationsItem) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetProviderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *ListNotificationIntegrationsItem) SetProvider(v string) {
+	o.Provider = v
+}
+
+// GetName returns the Name field value
+func (o *ListNotificationIntegrationsItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListNotificationIntegrationsItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *ListNotificationIntegrationsItem) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *ListNotificationIntegrationsItem) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListNotificationIntegrationsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListNotificationIntegrationsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+func (o ListNotificationIntegrationsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["config"] = o.Config
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["provider"] = o.Provider
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNotificationIntegrationsItem struct {
+	value *ListNotificationIntegrationsItem
+	isSet bool
+}
+
+func (v NullableListNotificationIntegrationsItem) Get() *ListNotificationIntegrationsItem {
+	return v.value
+}
+
+func (v *NullableListNotificationIntegrationsItem) Set(val *ListNotificationIntegrationsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNotificationIntegrationsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNotificationIntegrationsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNotificationIntegrationsItem(val *ListNotificationIntegrationsItem) *NullableListNotificationIntegrationsItem {
+	return &NullableListNotificationIntegrationsItem{value: val, isSet: true}
+}
+
+func (v NullableListNotificationIntegrationsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNotificationIntegrationsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListNotificationIntegrationsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListNotificationIntegrationsResponse struct {
+	// The rows.
+	Data []ListNotificationIntegrationsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListNotificationIntegrationsResponse instantiates a new ListNotificationIntegrationsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListNotificationIntegrationsResponse(data []ListNotificationIntegrationsItem) *ListNotificationIntegrationsResponse {
+	this := ListNotificationIntegrationsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListNotificationIntegrationsResponseWithDefaults instantiates a new ListNotificationIntegrationsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListNotificationIntegrationsResponseWithDefaults() *ListNotificationIntegrationsResponse {
+	this := ListNotificationIntegrationsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListNotificationIntegrationsResponse) GetData() []ListNotificationIntegrationsItem {
+	if o == nil {
+		var ret []ListNotificationIntegrationsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsResponse) GetDataOk() ([]ListNotificationIntegrationsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListNotificationIntegrationsResponse) SetData(v []ListNotificationIntegrationsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListNotificationIntegrationsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListNotificationIntegrationsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListNotificationIntegrationsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListNotificationIntegrationsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListNotificationIntegrationsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListNotificationIntegrationsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListNotificationIntegrationsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListNotificationIntegrationsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListNotificationIntegrationsResponse struct {
+	value *ListNotificationIntegrationsResponse
+	isSet bool
+}
+
+func (v NullableListNotificationIntegrationsResponse) Get() *ListNotificationIntegrationsResponse {
+	return v.value
+}
+
+func (v *NullableListNotificationIntegrationsResponse) Set(val *ListNotificationIntegrationsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListNotificationIntegrationsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListNotificationIntegrationsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListNotificationIntegrationsResponse(val *ListNotificationIntegrationsResponse) *NullableListNotificationIntegrationsResponse {
+	return &NullableListNotificationIntegrationsResponse{value: val, isSet: true}
+}
+
+func (v NullableListNotificationIntegrationsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListNotificationIntegrationsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListPatItem struct for ListPatItem
+type ListPatItem struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Prefix string `json:"prefix"`
+	Scopes []string `json:"scopes"`
+	Environment string `json:"environment"`
+	LastUsedAt NullableTime `json:"lastUsedAt,omitempty"`
+	ExpiresAt NullableTime `json:"expiresAt,omitempty"`
+	RevokedAt NullableTime `json:"revokedAt,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+// NewListPatItem instantiates a new ListPatItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListPatItem(id string, name string, prefix string, scopes []string, environment string, createdAt time.Time) *ListPatItem {
+	this := ListPatItem{}
+	this.Id = id
+	this.Name = name
+	this.Prefix = prefix
+	this.Scopes = scopes
+	this.Environment = environment
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListPatItemWithDefaults instantiates a new ListPatItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListPatItemWithDefaults() *ListPatItem {
+	this := ListPatItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListPatItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListPatItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *ListPatItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListPatItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetPrefix returns the Prefix field value
+func (o *ListPatItem) GetPrefix() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Prefix
+}
+
+// GetPrefixOk returns a tuple with the Prefix field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetPrefixOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Prefix, true
+}
+
+// SetPrefix sets field value
+func (o *ListPatItem) SetPrefix(v string) {
+	o.Prefix = v
+}
+
+// GetScopes returns the Scopes field value
+func (o *ListPatItem) GetScopes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Scopes
+}
+
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetScopesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Scopes, true
+}
+
+// SetScopes sets field value
+func (o *ListPatItem) SetScopes(v []string) {
+	o.Scopes = v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *ListPatItem) GetEnvironment() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Environment
+}
+
+// GetEnvironmentOk returns a tuple with the Environment field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetEnvironmentOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Environment, true
+}
+
+// SetEnvironment sets field value
+func (o *ListPatItem) SetEnvironment(v string) {
+	o.Environment = v
+}
+
+// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPatItem) GetLastUsedAt() time.Time {
+	if o == nil || o.LastUsedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUsedAt.Get()
+}
+
+// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPatItem) GetLastUsedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
+}
+
+// HasLastUsedAt returns a boolean if a field has been set.
+func (o *ListPatItem) HasLastUsedAt() bool {
+	if o != nil && o.LastUsedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUsedAt gets a reference to the given NullableTime and assigns it to the LastUsedAt field.
+func (o *ListPatItem) SetLastUsedAt(v time.Time) {
+	o.LastUsedAt.Set(&v)
+}
+// SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil
+func (o *ListPatItem) SetLastUsedAtNil() {
+	o.LastUsedAt.Set(nil)
+}
+
+// UnsetLastUsedAt ensures that no value is present for LastUsedAt, not even an explicit nil
+func (o *ListPatItem) UnsetLastUsedAt() {
+	o.LastUsedAt.Unset()
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPatItem) GetExpiresAt() time.Time {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPatItem) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *ListPatItem) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableTime and assigns it to the ExpiresAt field.
+func (o *ListPatItem) SetExpiresAt(v time.Time) {
+	o.ExpiresAt.Set(&v)
+}
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *ListPatItem) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *ListPatItem) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
+// GetRevokedAt returns the RevokedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPatItem) GetRevokedAt() time.Time {
+	if o == nil || o.RevokedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.RevokedAt.Get()
+}
+
+// GetRevokedAtOk returns a tuple with the RevokedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPatItem) GetRevokedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RevokedAt.Get(), o.RevokedAt.IsSet()
+}
+
+// HasRevokedAt returns a boolean if a field has been set.
+func (o *ListPatItem) HasRevokedAt() bool {
+	if o != nil && o.RevokedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevokedAt gets a reference to the given NullableTime and assigns it to the RevokedAt field.
+func (o *ListPatItem) SetRevokedAt(v time.Time) {
+	o.RevokedAt.Set(&v)
+}
+// SetRevokedAtNil sets the value for RevokedAt to be an explicit nil
+func (o *ListPatItem) SetRevokedAtNil() {
+	o.RevokedAt.Set(nil)
+}
+
+// UnsetRevokedAt ensures that no value is present for RevokedAt, not even an explicit nil
+func (o *ListPatItem) UnsetRevokedAt() {
+	o.RevokedAt.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListPatItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListPatItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListPatItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+func (o ListPatItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	if true {
+		toSerialize["environment"] = o.Environment
+	}
+	if o.LastUsedAt.IsSet() {
+		toSerialize["lastUsedAt"] = o.LastUsedAt.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expiresAt"] = o.ExpiresAt.Get()
+	}
+	if o.RevokedAt.IsSet() {
+		toSerialize["revokedAt"] = o.RevokedAt.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListPatItem struct {
+	value *ListPatItem
+	isSet bool
+}
+
+func (v NullableListPatItem) Get() *ListPatItem {
+	return v.value
+}
+
+func (v *NullableListPatItem) Set(val *ListPatItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListPatItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListPatItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListPatItem(val *ListPatItem) *NullableListPatItem {
+	return &NullableListPatItem{value: val, isSet: true}
+}
+
+func (v NullableListPatItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListPatItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListPatResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListPatResponse struct {
+	// The rows.
+	Data []ListPatItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListPatResponse instantiates a new ListPatResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListPatResponse(data []ListPatItem) *ListPatResponse {
+	this := ListPatResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListPatResponseWithDefaults instantiates a new ListPatResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListPatResponseWithDefaults() *ListPatResponse {
+	this := ListPatResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListPatResponse) GetData() []ListPatItem {
+	if o == nil {
+		var ret []ListPatItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListPatResponse) GetDataOk() ([]ListPatItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListPatResponse) SetData(v []ListPatItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListPatResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPatResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListPatResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListPatResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListPatResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPatResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListPatResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListPatResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListPatResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListPatResponse struct {
+	value *ListPatResponse
+	isSet bool
+}
+
+func (v NullableListPatResponse) Get() *ListPatResponse {
+	return v.value
+}
+
+func (v *NullableListPatResponse) Set(val *ListPatResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListPatResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListPatResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListPatResponse(val *ListPatResponse) *NullableListPatResponse {
+	return &NullableListPatResponse{value: val, isSet: true}
+}
+
+func (v NullableListPatResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListPatResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListPriceRulesItem struct for ListPriceRulesItem
+type ListPriceRulesItem struct {
+	Id string `json:"id"`
+	CreatedAt string `json:"createdAt"`
+	UpdatedAt string `json:"updatedAt"`
+	Platform string `json:"platform"`
+	AccountSlot NullableFloat32 `json:"accountSlot,omitempty"`
+	CategoryPrefix NullableString `json:"categoryPrefix,omitempty"`
+	Enabled bool `json:"enabled"`
+	AdjustPercent NullableFloat32 `json:"adjustPercent,omitempty"`
+	AdjustFixed NullableFloat32 `json:"adjustFixed,omitempty"`
+	Rounding string `json:"rounding"`
+	MinPrice NullableFloat32 `json:"minPrice,omitempty"`
+	MaxPrice NullableFloat32 `json:"maxPrice,omitempty"`
+	TargetCurrency NullableString `json:"targetCurrency,omitempty"`
+	FxBufferPercent float32 `json:"fxBufferPercent"`
+}
+
+// NewListPriceRulesItem instantiates a new ListPriceRulesItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListPriceRulesItem(id string, createdAt string, updatedAt string, platform string, enabled bool, rounding string, fxBufferPercent float32) *ListPriceRulesItem {
+	this := ListPriceRulesItem{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
+	this.Platform = platform
+	this.Enabled = enabled
+	this.Rounding = rounding
+	this.FxBufferPercent = fxBufferPercent
+	return &this
+}
+
+// NewListPriceRulesItemWithDefaults instantiates a new ListPriceRulesItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListPriceRulesItemWithDefaults() *ListPriceRulesItem {
+	this := ListPriceRulesItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListPriceRulesItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListPriceRulesItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListPriceRulesItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListPriceRulesItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *ListPriceRulesItem) GetUpdatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetUpdatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *ListPriceRulesItem) SetUpdatedAt(v string) {
+	o.UpdatedAt = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListPriceRulesItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListPriceRulesItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetAccountSlot returns the AccountSlot field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetAccountSlot() float32 {
+	if o == nil || o.AccountSlot.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AccountSlot.Get()
+}
+
+// GetAccountSlotOk returns a tuple with the AccountSlot field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetAccountSlotOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AccountSlot.Get(), o.AccountSlot.IsSet()
+}
+
+// HasAccountSlot returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasAccountSlot() bool {
+	if o != nil && o.AccountSlot.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountSlot gets a reference to the given NullableFloat32 and assigns it to the AccountSlot field.
+func (o *ListPriceRulesItem) SetAccountSlot(v float32) {
+	o.AccountSlot.Set(&v)
+}
+// SetAccountSlotNil sets the value for AccountSlot to be an explicit nil
+func (o *ListPriceRulesItem) SetAccountSlotNil() {
+	o.AccountSlot.Set(nil)
+}
+
+// UnsetAccountSlot ensures that no value is present for AccountSlot, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetAccountSlot() {
+	o.AccountSlot.Unset()
+}
+
+// GetCategoryPrefix returns the CategoryPrefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetCategoryPrefix() string {
+	if o == nil || o.CategoryPrefix.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CategoryPrefix.Get()
+}
+
+// GetCategoryPrefixOk returns a tuple with the CategoryPrefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetCategoryPrefixOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CategoryPrefix.Get(), o.CategoryPrefix.IsSet()
+}
+
+// HasCategoryPrefix returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasCategoryPrefix() bool {
+	if o != nil && o.CategoryPrefix.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCategoryPrefix gets a reference to the given NullableString and assigns it to the CategoryPrefix field.
+func (o *ListPriceRulesItem) SetCategoryPrefix(v string) {
+	o.CategoryPrefix.Set(&v)
+}
+// SetCategoryPrefixNil sets the value for CategoryPrefix to be an explicit nil
+func (o *ListPriceRulesItem) SetCategoryPrefixNil() {
+	o.CategoryPrefix.Set(nil)
+}
+
+// UnsetCategoryPrefix ensures that no value is present for CategoryPrefix, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetCategoryPrefix() {
+	o.CategoryPrefix.Unset()
+}
+
+// GetEnabled returns the Enabled field value
+func (o *ListPriceRulesItem) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *ListPriceRulesItem) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetAdjustPercent returns the AdjustPercent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetAdjustPercent() float32 {
+	if o == nil || o.AdjustPercent.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AdjustPercent.Get()
+}
+
+// GetAdjustPercentOk returns a tuple with the AdjustPercent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetAdjustPercentOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AdjustPercent.Get(), o.AdjustPercent.IsSet()
+}
+
+// HasAdjustPercent returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasAdjustPercent() bool {
+	if o != nil && o.AdjustPercent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustPercent gets a reference to the given NullableFloat32 and assigns it to the AdjustPercent field.
+func (o *ListPriceRulesItem) SetAdjustPercent(v float32) {
+	o.AdjustPercent.Set(&v)
+}
+// SetAdjustPercentNil sets the value for AdjustPercent to be an explicit nil
+func (o *ListPriceRulesItem) SetAdjustPercentNil() {
+	o.AdjustPercent.Set(nil)
+}
+
+// UnsetAdjustPercent ensures that no value is present for AdjustPercent, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetAdjustPercent() {
+	o.AdjustPercent.Unset()
+}
+
+// GetAdjustFixed returns the AdjustFixed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetAdjustFixed() float32 {
+	if o == nil || o.AdjustFixed.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AdjustFixed.Get()
+}
+
+// GetAdjustFixedOk returns a tuple with the AdjustFixed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetAdjustFixedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AdjustFixed.Get(), o.AdjustFixed.IsSet()
+}
+
+// HasAdjustFixed returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasAdjustFixed() bool {
+	if o != nil && o.AdjustFixed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustFixed gets a reference to the given NullableFloat32 and assigns it to the AdjustFixed field.
+func (o *ListPriceRulesItem) SetAdjustFixed(v float32) {
+	o.AdjustFixed.Set(&v)
+}
+// SetAdjustFixedNil sets the value for AdjustFixed to be an explicit nil
+func (o *ListPriceRulesItem) SetAdjustFixedNil() {
+	o.AdjustFixed.Set(nil)
+}
+
+// UnsetAdjustFixed ensures that no value is present for AdjustFixed, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetAdjustFixed() {
+	o.AdjustFixed.Unset()
+}
+
+// GetRounding returns the Rounding field value
+func (o *ListPriceRulesItem) GetRounding() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Rounding
+}
+
+// GetRoundingOk returns a tuple with the Rounding field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetRoundingOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rounding, true
+}
+
+// SetRounding sets field value
+func (o *ListPriceRulesItem) SetRounding(v string) {
+	o.Rounding = v
+}
+
+// GetMinPrice returns the MinPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetMinPrice() float32 {
+	if o == nil || o.MinPrice.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MinPrice.Get()
+}
+
+// GetMinPriceOk returns a tuple with the MinPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetMinPriceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MinPrice.Get(), o.MinPrice.IsSet()
+}
+
+// HasMinPrice returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasMinPrice() bool {
+	if o != nil && o.MinPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMinPrice gets a reference to the given NullableFloat32 and assigns it to the MinPrice field.
+func (o *ListPriceRulesItem) SetMinPrice(v float32) {
+	o.MinPrice.Set(&v)
+}
+// SetMinPriceNil sets the value for MinPrice to be an explicit nil
+func (o *ListPriceRulesItem) SetMinPriceNil() {
+	o.MinPrice.Set(nil)
+}
+
+// UnsetMinPrice ensures that no value is present for MinPrice, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetMinPrice() {
+	o.MinPrice.Unset()
+}
+
+// GetMaxPrice returns the MaxPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetMaxPrice() float32 {
+	if o == nil || o.MaxPrice.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MaxPrice.Get()
+}
+
+// GetMaxPriceOk returns a tuple with the MaxPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetMaxPriceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MaxPrice.Get(), o.MaxPrice.IsSet()
+}
+
+// HasMaxPrice returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasMaxPrice() bool {
+	if o != nil && o.MaxPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxPrice gets a reference to the given NullableFloat32 and assigns it to the MaxPrice field.
+func (o *ListPriceRulesItem) SetMaxPrice(v float32) {
+	o.MaxPrice.Set(&v)
+}
+// SetMaxPriceNil sets the value for MaxPrice to be an explicit nil
+func (o *ListPriceRulesItem) SetMaxPriceNil() {
+	o.MaxPrice.Set(nil)
+}
+
+// UnsetMaxPrice ensures that no value is present for MaxPrice, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetMaxPrice() {
+	o.MaxPrice.Unset()
+}
+
+// GetTargetCurrency returns the TargetCurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListPriceRulesItem) GetTargetCurrency() string {
+	if o == nil || o.TargetCurrency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TargetCurrency.Get()
+}
+
+// GetTargetCurrencyOk returns a tuple with the TargetCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListPriceRulesItem) GetTargetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TargetCurrency.Get(), o.TargetCurrency.IsSet()
+}
+
+// HasTargetCurrency returns a boolean if a field has been set.
+func (o *ListPriceRulesItem) HasTargetCurrency() bool {
+	if o != nil && o.TargetCurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetCurrency gets a reference to the given NullableString and assigns it to the TargetCurrency field.
+func (o *ListPriceRulesItem) SetTargetCurrency(v string) {
+	o.TargetCurrency.Set(&v)
+}
+// SetTargetCurrencyNil sets the value for TargetCurrency to be an explicit nil
+func (o *ListPriceRulesItem) SetTargetCurrencyNil() {
+	o.TargetCurrency.Set(nil)
+}
+
+// UnsetTargetCurrency ensures that no value is present for TargetCurrency, not even an explicit nil
+func (o *ListPriceRulesItem) UnsetTargetCurrency() {
+	o.TargetCurrency.Unset()
+}
+
+// GetFxBufferPercent returns the FxBufferPercent field value
+func (o *ListPriceRulesItem) GetFxBufferPercent() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FxBufferPercent
+}
+
+// GetFxBufferPercentOk returns a tuple with the FxBufferPercent field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesItem) GetFxBufferPercentOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FxBufferPercent, true
+}
+
+// SetFxBufferPercent sets field value
+func (o *ListPriceRulesItem) SetFxBufferPercent(v float32) {
+	o.FxBufferPercent = v
+}
+
+func (o ListPriceRulesItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if o.AccountSlot.IsSet() {
+		toSerialize["accountSlot"] = o.AccountSlot.Get()
+	}
+	if o.CategoryPrefix.IsSet() {
+		toSerialize["categoryPrefix"] = o.CategoryPrefix.Get()
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if o.AdjustPercent.IsSet() {
+		toSerialize["adjustPercent"] = o.AdjustPercent.Get()
+	}
+	if o.AdjustFixed.IsSet() {
+		toSerialize["adjustFixed"] = o.AdjustFixed.Get()
+	}
+	if true {
+		toSerialize["rounding"] = o.Rounding
+	}
+	if o.MinPrice.IsSet() {
+		toSerialize["minPrice"] = o.MinPrice.Get()
+	}
+	if o.MaxPrice.IsSet() {
+		toSerialize["maxPrice"] = o.MaxPrice.Get()
+	}
+	if o.TargetCurrency.IsSet() {
+		toSerialize["targetCurrency"] = o.TargetCurrency.Get()
+	}
+	if true {
+		toSerialize["fxBufferPercent"] = o.FxBufferPercent
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListPriceRulesItem struct {
+	value *ListPriceRulesItem
+	isSet bool
+}
+
+func (v NullableListPriceRulesItem) Get() *ListPriceRulesItem {
+	return v.value
+}
+
+func (v *NullableListPriceRulesItem) Set(val *ListPriceRulesItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListPriceRulesItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListPriceRulesItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListPriceRulesItem(val *ListPriceRulesItem) *NullableListPriceRulesItem {
+	return &NullableListPriceRulesItem{value: val, isSet: true}
+}
+
+func (v NullableListPriceRulesItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListPriceRulesItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListPriceRulesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListPriceRulesResponse struct {
+	// The rows.
+	Data []ListPriceRulesItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListPriceRulesResponse instantiates a new ListPriceRulesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListPriceRulesResponse(data []ListPriceRulesItem) *ListPriceRulesResponse {
+	this := ListPriceRulesResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListPriceRulesResponseWithDefaults instantiates a new ListPriceRulesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListPriceRulesResponseWithDefaults() *ListPriceRulesResponse {
+	this := ListPriceRulesResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListPriceRulesResponse) GetData() []ListPriceRulesItem {
+	if o == nil {
+		var ret []ListPriceRulesItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesResponse) GetDataOk() ([]ListPriceRulesItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListPriceRulesResponse) SetData(v []ListPriceRulesItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListPriceRulesResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListPriceRulesResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListPriceRulesResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListPriceRulesResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPriceRulesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListPriceRulesResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListPriceRulesResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListPriceRulesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListPriceRulesResponse struct {
+	value *ListPriceRulesResponse
+	isSet bool
+}
+
+func (v NullableListPriceRulesResponse) Get() *ListPriceRulesResponse {
+	return v.value
+}
+
+func (v *NullableListPriceRulesResponse) Set(val *ListPriceRulesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListPriceRulesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListPriceRulesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListPriceRulesResponse(val *ListPriceRulesResponse) *NullableListPriceRulesResponse {
+	return &NullableListPriceRulesResponse{value: val, isSet: true}
+}
+
+func (v NullableListPriceRulesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListPriceRulesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListReferenceCountriesItem struct for ListReferenceCountriesItem
+type ListReferenceCountriesItem struct {
+	Code string `json:"code"`
+	Name string `json:"name"`
+	Currency string `json:"currency"`
+	Regions []string `json:"regions"`
+	HasPostal bool `json:"hasPostal"`
+	PostalRequired bool `json:"postalRequired"`
+	PostalLabel string `json:"postalLabel"`
+	StateRequired bool `json:"stateRequired"`
+	StateLabel string `json:"stateLabel"`
+	Subdivisions []CodeName `json:"subdivisions,omitempty"`
+	Embargoed bool `json:"embargoed"`
+}
+
+// NewListReferenceCountriesItem instantiates a new ListReferenceCountriesItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListReferenceCountriesItem(code string, name string, currency string, regions []string, hasPostal bool, postalRequired bool, postalLabel string, stateRequired bool, stateLabel string, embargoed bool) *ListReferenceCountriesItem {
+	this := ListReferenceCountriesItem{}
+	this.Code = code
+	this.Name = name
+	this.Currency = currency
+	this.Regions = regions
+	this.HasPostal = hasPostal
+	this.PostalRequired = postalRequired
+	this.PostalLabel = postalLabel
+	this.StateRequired = stateRequired
+	this.StateLabel = stateLabel
+	this.Embargoed = embargoed
+	return &this
+}
+
+// NewListReferenceCountriesItemWithDefaults instantiates a new ListReferenceCountriesItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListReferenceCountriesItemWithDefaults() *ListReferenceCountriesItem {
+	this := ListReferenceCountriesItem{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *ListReferenceCountriesItem) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *ListReferenceCountriesItem) SetCode(v string) {
+	o.Code = v
+}
+
+// GetName returns the Name field value
+func (o *ListReferenceCountriesItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListReferenceCountriesItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *ListReferenceCountriesItem) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *ListReferenceCountriesItem) SetCurrency(v string) {
+	o.Currency = v
+}
+
+// GetRegions returns the Regions field value
+func (o *ListReferenceCountriesItem) GetRegions() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Regions
+}
+
+// GetRegionsOk returns a tuple with the Regions field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetRegionsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Regions, true
+}
+
+// SetRegions sets field value
+func (o *ListReferenceCountriesItem) SetRegions(v []string) {
+	o.Regions = v
+}
+
+// GetHasPostal returns the HasPostal field value
+func (o *ListReferenceCountriesItem) GetHasPostal() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasPostal
+}
+
+// GetHasPostalOk returns a tuple with the HasPostal field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetHasPostalOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HasPostal, true
+}
+
+// SetHasPostal sets field value
+func (o *ListReferenceCountriesItem) SetHasPostal(v bool) {
+	o.HasPostal = v
+}
+
+// GetPostalRequired returns the PostalRequired field value
+func (o *ListReferenceCountriesItem) GetPostalRequired() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PostalRequired
+}
+
+// GetPostalRequiredOk returns a tuple with the PostalRequired field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetPostalRequiredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PostalRequired, true
+}
+
+// SetPostalRequired sets field value
+func (o *ListReferenceCountriesItem) SetPostalRequired(v bool) {
+	o.PostalRequired = v
+}
+
+// GetPostalLabel returns the PostalLabel field value
+func (o *ListReferenceCountriesItem) GetPostalLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PostalLabel
+}
+
+// GetPostalLabelOk returns a tuple with the PostalLabel field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetPostalLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PostalLabel, true
+}
+
+// SetPostalLabel sets field value
+func (o *ListReferenceCountriesItem) SetPostalLabel(v string) {
+	o.PostalLabel = v
+}
+
+// GetStateRequired returns the StateRequired field value
+func (o *ListReferenceCountriesItem) GetStateRequired() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.StateRequired
+}
+
+// GetStateRequiredOk returns a tuple with the StateRequired field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetStateRequiredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StateRequired, true
+}
+
+// SetStateRequired sets field value
+func (o *ListReferenceCountriesItem) SetStateRequired(v bool) {
+	o.StateRequired = v
+}
+
+// GetStateLabel returns the StateLabel field value
+func (o *ListReferenceCountriesItem) GetStateLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StateLabel
+}
+
+// GetStateLabelOk returns a tuple with the StateLabel field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetStateLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StateLabel, true
+}
+
+// SetStateLabel sets field value
+func (o *ListReferenceCountriesItem) SetStateLabel(v string) {
+	o.StateLabel = v
+}
+
+// GetSubdivisions returns the Subdivisions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListReferenceCountriesItem) GetSubdivisions() []CodeName {
+	if o == nil  {
+		var ret []CodeName
+		return ret
+	}
+	return o.Subdivisions
+}
+
+// GetSubdivisionsOk returns a tuple with the Subdivisions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListReferenceCountriesItem) GetSubdivisionsOk() ([]CodeName, bool) {
+	if o == nil || o.Subdivisions == nil {
+		return nil, false
+	}
+	return o.Subdivisions, true
+}
+
+// HasSubdivisions returns a boolean if a field has been set.
+func (o *ListReferenceCountriesItem) HasSubdivisions() bool {
+	if o != nil && o.Subdivisions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubdivisions gets a reference to the given []CodeName and assigns it to the Subdivisions field.
+func (o *ListReferenceCountriesItem) SetSubdivisions(v []CodeName) {
+	o.Subdivisions = v
+}
+
+// GetEmbargoed returns the Embargoed field value
+func (o *ListReferenceCountriesItem) GetEmbargoed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Embargoed
+}
+
+// GetEmbargoedOk returns a tuple with the Embargoed field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesItem) GetEmbargoedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Embargoed, true
+}
+
+// SetEmbargoed sets field value
+func (o *ListReferenceCountriesItem) SetEmbargoed(v bool) {
+	o.Embargoed = v
+}
+
+func (o ListReferenceCountriesItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	if true {
+		toSerialize["regions"] = o.Regions
+	}
+	if true {
+		toSerialize["hasPostal"] = o.HasPostal
+	}
+	if true {
+		toSerialize["postalRequired"] = o.PostalRequired
+	}
+	if true {
+		toSerialize["postalLabel"] = o.PostalLabel
+	}
+	if true {
+		toSerialize["stateRequired"] = o.StateRequired
+	}
+	if true {
+		toSerialize["stateLabel"] = o.StateLabel
+	}
+	if o.Subdivisions != nil {
+		toSerialize["subdivisions"] = o.Subdivisions
+	}
+	if true {
+		toSerialize["embargoed"] = o.Embargoed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListReferenceCountriesItem struct {
+	value *ListReferenceCountriesItem
+	isSet bool
+}
+
+func (v NullableListReferenceCountriesItem) Get() *ListReferenceCountriesItem {
+	return v.value
+}
+
+func (v *NullableListReferenceCountriesItem) Set(val *ListReferenceCountriesItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListReferenceCountriesItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListReferenceCountriesItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListReferenceCountriesItem(val *ListReferenceCountriesItem) *NullableListReferenceCountriesItem {
+	return &NullableListReferenceCountriesItem{value: val, isSet: true}
+}
+
+func (v NullableListReferenceCountriesItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListReferenceCountriesItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListReferenceCountriesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListReferenceCountriesResponse struct {
+	// The rows.
+	Data []ListReferenceCountriesItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListReferenceCountriesResponse instantiates a new ListReferenceCountriesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListReferenceCountriesResponse(data []ListReferenceCountriesItem) *ListReferenceCountriesResponse {
+	this := ListReferenceCountriesResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListReferenceCountriesResponseWithDefaults instantiates a new ListReferenceCountriesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListReferenceCountriesResponseWithDefaults() *ListReferenceCountriesResponse {
+	this := ListReferenceCountriesResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListReferenceCountriesResponse) GetData() []ListReferenceCountriesItem {
+	if o == nil {
+		var ret []ListReferenceCountriesItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesResponse) GetDataOk() ([]ListReferenceCountriesItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListReferenceCountriesResponse) SetData(v []ListReferenceCountriesItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListReferenceCountriesResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListReferenceCountriesResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListReferenceCountriesResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListReferenceCountriesResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListReferenceCountriesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListReferenceCountriesResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListReferenceCountriesResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListReferenceCountriesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListReferenceCountriesResponse struct {
+	value *ListReferenceCountriesResponse
+	isSet bool
+}
+
+func (v NullableListReferenceCountriesResponse) Get() *ListReferenceCountriesResponse {
+	return v.value
+}
+
+func (v *NullableListReferenceCountriesResponse) Set(val *ListReferenceCountriesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListReferenceCountriesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListReferenceCountriesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListReferenceCountriesResponse(val *ListReferenceCountriesResponse) *NullableListReferenceCountriesResponse {
+	return &NullableListReferenceCountriesResponse{value: val, isSet: true}
+}
+
+func (v NullableListReferenceCountriesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListReferenceCountriesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListReferenceMetrosItem struct for ListReferenceMetrosItem
+type ListReferenceMetrosItem struct {
+	Level string `json:"level"`
+	Code string `json:"code"`
+	Title string `json:"title"`
+	// Two-letter state codes the area touches, sorted.
+	States []string `json:"states"`
+	// ZIP codes mapped to the area.
+	ZipCount float32 `json:"zipCount"`
+}
+
+// NewListReferenceMetrosItem instantiates a new ListReferenceMetrosItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListReferenceMetrosItem(level string, code string, title string, states []string, zipCount float32) *ListReferenceMetrosItem {
+	this := ListReferenceMetrosItem{}
+	this.Level = level
+	this.Code = code
+	this.Title = title
+	this.States = states
+	this.ZipCount = zipCount
+	return &this
+}
+
+// NewListReferenceMetrosItemWithDefaults instantiates a new ListReferenceMetrosItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListReferenceMetrosItemWithDefaults() *ListReferenceMetrosItem {
+	this := ListReferenceMetrosItem{}
+	return &this
+}
+
+// GetLevel returns the Level field value
+func (o *ListReferenceMetrosItem) GetLevel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosItem) GetLevelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Level, true
+}
+
+// SetLevel sets field value
+func (o *ListReferenceMetrosItem) SetLevel(v string) {
+	o.Level = v
+}
+
+// GetCode returns the Code field value
+func (o *ListReferenceMetrosItem) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosItem) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *ListReferenceMetrosItem) SetCode(v string) {
+	o.Code = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListReferenceMetrosItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListReferenceMetrosItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetStates returns the States field value
+func (o *ListReferenceMetrosItem) GetStates() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.States
+}
+
+// GetStatesOk returns a tuple with the States field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosItem) GetStatesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.States, true
+}
+
+// SetStates sets field value
+func (o *ListReferenceMetrosItem) SetStates(v []string) {
+	o.States = v
+}
+
+// GetZipCount returns the ZipCount field value
+func (o *ListReferenceMetrosItem) GetZipCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ZipCount
+}
+
+// GetZipCountOk returns a tuple with the ZipCount field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosItem) GetZipCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ZipCount, true
+}
+
+// SetZipCount sets field value
+func (o *ListReferenceMetrosItem) SetZipCount(v float32) {
+	o.ZipCount = v
+}
+
+func (o ListReferenceMetrosItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["level"] = o.Level
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["states"] = o.States
+	}
+	if true {
+		toSerialize["zipCount"] = o.ZipCount
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListReferenceMetrosItem struct {
+	value *ListReferenceMetrosItem
+	isSet bool
+}
+
+func (v NullableListReferenceMetrosItem) Get() *ListReferenceMetrosItem {
+	return v.value
+}
+
+func (v *NullableListReferenceMetrosItem) Set(val *ListReferenceMetrosItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListReferenceMetrosItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListReferenceMetrosItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListReferenceMetrosItem(val *ListReferenceMetrosItem) *NullableListReferenceMetrosItem {
+	return &NullableListReferenceMetrosItem{value: val, isSet: true}
+}
+
+func (v NullableListReferenceMetrosItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListReferenceMetrosItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListReferenceMetrosResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListReferenceMetrosResponse struct {
+	// The rows.
+	Data []ListReferenceMetrosItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListReferenceMetrosResponse instantiates a new ListReferenceMetrosResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListReferenceMetrosResponse(data []ListReferenceMetrosItem) *ListReferenceMetrosResponse {
+	this := ListReferenceMetrosResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListReferenceMetrosResponseWithDefaults instantiates a new ListReferenceMetrosResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListReferenceMetrosResponseWithDefaults() *ListReferenceMetrosResponse {
+	this := ListReferenceMetrosResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListReferenceMetrosResponse) GetData() []ListReferenceMetrosItem {
+	if o == nil {
+		var ret []ListReferenceMetrosItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosResponse) GetDataOk() ([]ListReferenceMetrosItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListReferenceMetrosResponse) SetData(v []ListReferenceMetrosItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListReferenceMetrosResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListReferenceMetrosResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListReferenceMetrosResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListReferenceMetrosResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListReferenceMetrosResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListReferenceMetrosResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListReferenceMetrosResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListReferenceMetrosResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListReferenceMetrosResponse struct {
+	value *ListReferenceMetrosResponse
+	isSet bool
+}
+
+func (v NullableListReferenceMetrosResponse) Get() *ListReferenceMetrosResponse {
+	return v.value
+}
+
+func (v *NullableListReferenceMetrosResponse) Set(val *ListReferenceMetrosResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListReferenceMetrosResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListReferenceMetrosResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListReferenceMetrosResponse(val *ListReferenceMetrosResponse) *NullableListReferenceMetrosResponse {
+	return &NullableListReferenceMetrosResponse{value: val, isSet: true}
+}
+
+func (v NullableListReferenceMetrosResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListReferenceMetrosResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListRepriceEventsItem struct for ListRepriceEventsItem
+type ListRepriceEventsItem struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Platform NullableString `json:"platform,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
+	PlatformListingId NullableString `json:"platformListingId,omitempty"`
+	Reason string `json:"reason"`
+	RuleId NullableString `json:"ruleId,omitempty"`
+	Strategy string `json:"strategy"`
+	OldPriceCents NullableFloat32 `json:"oldPriceCents,omitempty"`
+	NewPriceCents NullableFloat32 `json:"newPriceCents,omitempty"`
+	Changed bool `json:"changed"`
+	FloorCents NullableFloat32 `json:"floorCents,omitempty"`
+	FloorWasNet bool `json:"floorWasNet"`
+	Approval NullableString `json:"approval,omitempty"`
+	DecidedAt NullableTime `json:"decidedAt,omitempty"`
+}
+
+// NewListRepriceEventsItem instantiates a new ListRepriceEventsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRepriceEventsItem(id string, createdAt time.Time, userId string, reason string, strategy string, changed bool, floorWasNet bool) *ListRepriceEventsItem {
+	this := ListRepriceEventsItem{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Reason = reason
+	this.Strategy = strategy
+	this.Changed = changed
+	this.FloorWasNet = floorWasNet
+	return &this
+}
+
+// NewListRepriceEventsItemWithDefaults instantiates a new ListRepriceEventsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRepriceEventsItemWithDefaults() *ListRepriceEventsItem {
+	this := ListRepriceEventsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListRepriceEventsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListRepriceEventsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListRepriceEventsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListRepriceEventsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *ListRepriceEventsItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListRepriceEventsItem) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetPlatform returns the Platform field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetPlatform() string {
+	if o == nil || o.Platform.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Platform.Get()
+}
+
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Platform.Get(), o.Platform.IsSet()
+}
+
+// HasPlatform returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasPlatform() bool {
+	if o != nil && o.Platform.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatform gets a reference to the given NullableString and assigns it to the Platform field.
+func (o *ListRepriceEventsItem) SetPlatform(v string) {
+	o.Platform.Set(&v)
+}
+// SetPlatformNil sets the value for Platform to be an explicit nil
+func (o *ListRepriceEventsItem) SetPlatformNil() {
+	o.Platform.Set(nil)
+}
+
+// UnsetPlatform ensures that no value is present for Platform, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetPlatform() {
+	o.Platform.Unset()
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *ListRepriceEventsItem) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *ListRepriceEventsItem) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+// GetPlatformListingId returns the PlatformListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetPlatformListingId() string {
+	if o == nil || o.PlatformListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformListingId.Get()
+}
+
+// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetPlatformListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformListingId.Get(), o.PlatformListingId.IsSet()
+}
+
+// HasPlatformListingId returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasPlatformListingId() bool {
+	if o != nil && o.PlatformListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformListingId gets a reference to the given NullableString and assigns it to the PlatformListingId field.
+func (o *ListRepriceEventsItem) SetPlatformListingId(v string) {
+	o.PlatformListingId.Set(&v)
+}
+// SetPlatformListingIdNil sets the value for PlatformListingId to be an explicit nil
+func (o *ListRepriceEventsItem) SetPlatformListingIdNil() {
+	o.PlatformListingId.Set(nil)
+}
+
+// UnsetPlatformListingId ensures that no value is present for PlatformListingId, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetPlatformListingId() {
+	o.PlatformListingId.Unset()
+}
+
+// GetReason returns the Reason field value
+func (o *ListRepriceEventsItem) GetReason() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Reason, true
+}
+
+// SetReason sets field value
+func (o *ListRepriceEventsItem) SetReason(v string) {
+	o.Reason = v
+}
+
+// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetRuleId() string {
+	if o == nil || o.RuleId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RuleId.Get()
+}
+
+// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetRuleIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RuleId.Get(), o.RuleId.IsSet()
+}
+
+// HasRuleId returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasRuleId() bool {
+	if o != nil && o.RuleId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleId gets a reference to the given NullableString and assigns it to the RuleId field.
+func (o *ListRepriceEventsItem) SetRuleId(v string) {
+	o.RuleId.Set(&v)
+}
+// SetRuleIdNil sets the value for RuleId to be an explicit nil
+func (o *ListRepriceEventsItem) SetRuleIdNil() {
+	o.RuleId.Set(nil)
+}
+
+// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetRuleId() {
+	o.RuleId.Unset()
+}
+
+// GetStrategy returns the Strategy field value
+func (o *ListRepriceEventsItem) GetStrategy() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetStrategyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Strategy, true
+}
+
+// SetStrategy sets field value
+func (o *ListRepriceEventsItem) SetStrategy(v string) {
+	o.Strategy = v
+}
+
+// GetOldPriceCents returns the OldPriceCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetOldPriceCents() float32 {
+	if o == nil || o.OldPriceCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.OldPriceCents.Get()
+}
+
+// GetOldPriceCentsOk returns a tuple with the OldPriceCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetOldPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OldPriceCents.Get(), o.OldPriceCents.IsSet()
+}
+
+// HasOldPriceCents returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasOldPriceCents() bool {
+	if o != nil && o.OldPriceCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOldPriceCents gets a reference to the given NullableFloat32 and assigns it to the OldPriceCents field.
+func (o *ListRepriceEventsItem) SetOldPriceCents(v float32) {
+	o.OldPriceCents.Set(&v)
+}
+// SetOldPriceCentsNil sets the value for OldPriceCents to be an explicit nil
+func (o *ListRepriceEventsItem) SetOldPriceCentsNil() {
+	o.OldPriceCents.Set(nil)
+}
+
+// UnsetOldPriceCents ensures that no value is present for OldPriceCents, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetOldPriceCents() {
+	o.OldPriceCents.Unset()
+}
+
+// GetNewPriceCents returns the NewPriceCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetNewPriceCents() float32 {
+	if o == nil || o.NewPriceCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.NewPriceCents.Get()
+}
+
+// GetNewPriceCentsOk returns a tuple with the NewPriceCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetNewPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NewPriceCents.Get(), o.NewPriceCents.IsSet()
+}
+
+// HasNewPriceCents returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasNewPriceCents() bool {
+	if o != nil && o.NewPriceCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNewPriceCents gets a reference to the given NullableFloat32 and assigns it to the NewPriceCents field.
+func (o *ListRepriceEventsItem) SetNewPriceCents(v float32) {
+	o.NewPriceCents.Set(&v)
+}
+// SetNewPriceCentsNil sets the value for NewPriceCents to be an explicit nil
+func (o *ListRepriceEventsItem) SetNewPriceCentsNil() {
+	o.NewPriceCents.Set(nil)
+}
+
+// UnsetNewPriceCents ensures that no value is present for NewPriceCents, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetNewPriceCents() {
+	o.NewPriceCents.Unset()
+}
+
+// GetChanged returns the Changed field value
+func (o *ListRepriceEventsItem) GetChanged() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Changed
+}
+
+// GetChangedOk returns a tuple with the Changed field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetChangedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Changed, true
+}
+
+// SetChanged sets field value
+func (o *ListRepriceEventsItem) SetChanged(v bool) {
+	o.Changed = v
+}
+
+// GetFloorCents returns the FloorCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetFloorCents() float32 {
+	if o == nil || o.FloorCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.FloorCents.Get()
+}
+
+// GetFloorCentsOk returns a tuple with the FloorCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetFloorCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.FloorCents.Get(), o.FloorCents.IsSet()
+}
+
+// HasFloorCents returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasFloorCents() bool {
+	if o != nil && o.FloorCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFloorCents gets a reference to the given NullableFloat32 and assigns it to the FloorCents field.
+func (o *ListRepriceEventsItem) SetFloorCents(v float32) {
+	o.FloorCents.Set(&v)
+}
+// SetFloorCentsNil sets the value for FloorCents to be an explicit nil
+func (o *ListRepriceEventsItem) SetFloorCentsNil() {
+	o.FloorCents.Set(nil)
+}
+
+// UnsetFloorCents ensures that no value is present for FloorCents, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetFloorCents() {
+	o.FloorCents.Unset()
+}
+
+// GetFloorWasNet returns the FloorWasNet field value
+func (o *ListRepriceEventsItem) GetFloorWasNet() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.FloorWasNet
+}
+
+// GetFloorWasNetOk returns a tuple with the FloorWasNet field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsItem) GetFloorWasNetOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FloorWasNet, true
+}
+
+// SetFloorWasNet sets field value
+func (o *ListRepriceEventsItem) SetFloorWasNet(v bool) {
+	o.FloorWasNet = v
+}
+
+// GetApproval returns the Approval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetApproval() string {
+	if o == nil || o.Approval.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Approval.Get()
+}
+
+// GetApprovalOk returns a tuple with the Approval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetApprovalOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Approval.Get(), o.Approval.IsSet()
+}
+
+// HasApproval returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasApproval() bool {
+	if o != nil && o.Approval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApproval gets a reference to the given NullableString and assigns it to the Approval field.
+func (o *ListRepriceEventsItem) SetApproval(v string) {
+	o.Approval.Set(&v)
+}
+// SetApprovalNil sets the value for Approval to be an explicit nil
+func (o *ListRepriceEventsItem) SetApprovalNil() {
+	o.Approval.Set(nil)
+}
+
+// UnsetApproval ensures that no value is present for Approval, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetApproval() {
+	o.Approval.Unset()
+}
+
+// GetDecidedAt returns the DecidedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRepriceEventsItem) GetDecidedAt() time.Time {
+	if o == nil || o.DecidedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.DecidedAt.Get()
+}
+
+// GetDecidedAtOk returns a tuple with the DecidedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRepriceEventsItem) GetDecidedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DecidedAt.Get(), o.DecidedAt.IsSet()
+}
+
+// HasDecidedAt returns a boolean if a field has been set.
+func (o *ListRepriceEventsItem) HasDecidedAt() bool {
+	if o != nil && o.DecidedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDecidedAt gets a reference to the given NullableTime and assigns it to the DecidedAt field.
+func (o *ListRepriceEventsItem) SetDecidedAt(v time.Time) {
+	o.DecidedAt.Set(&v)
+}
+// SetDecidedAtNil sets the value for DecidedAt to be an explicit nil
+func (o *ListRepriceEventsItem) SetDecidedAtNil() {
+	o.DecidedAt.Set(nil)
+}
+
+// UnsetDecidedAt ensures that no value is present for DecidedAt, not even an explicit nil
+func (o *ListRepriceEventsItem) UnsetDecidedAt() {
+	o.DecidedAt.Unset()
+}
+
+func (o ListRepriceEventsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.Platform.IsSet() {
+		toSerialize["platform"] = o.Platform.Get()
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	if o.PlatformListingId.IsSet() {
+		toSerialize["platformListingId"] = o.PlatformListingId.Get()
+	}
+	if true {
+		toSerialize["reason"] = o.Reason
+	}
+	if o.RuleId.IsSet() {
+		toSerialize["ruleId"] = o.RuleId.Get()
+	}
+	if true {
+		toSerialize["strategy"] = o.Strategy
+	}
+	if o.OldPriceCents.IsSet() {
+		toSerialize["oldPriceCents"] = o.OldPriceCents.Get()
+	}
+	if o.NewPriceCents.IsSet() {
+		toSerialize["newPriceCents"] = o.NewPriceCents.Get()
+	}
+	if true {
+		toSerialize["changed"] = o.Changed
+	}
+	if o.FloorCents.IsSet() {
+		toSerialize["floorCents"] = o.FloorCents.Get()
+	}
+	if true {
+		toSerialize["floorWasNet"] = o.FloorWasNet
+	}
+	if o.Approval.IsSet() {
+		toSerialize["approval"] = o.Approval.Get()
+	}
+	if o.DecidedAt.IsSet() {
+		toSerialize["decidedAt"] = o.DecidedAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListRepriceEventsItem struct {
+	value *ListRepriceEventsItem
+	isSet bool
+}
+
+func (v NullableListRepriceEventsItem) Get() *ListRepriceEventsItem {
+	return v.value
+}
+
+func (v *NullableListRepriceEventsItem) Set(val *ListRepriceEventsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRepriceEventsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRepriceEventsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRepriceEventsItem(val *ListRepriceEventsItem) *NullableListRepriceEventsItem {
+	return &NullableListRepriceEventsItem{value: val, isSet: true}
+}
+
+func (v NullableListRepriceEventsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRepriceEventsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListRepriceEventsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListRepriceEventsResponse struct {
+	// The rows.
+	Data []ListRepriceEventsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListRepriceEventsResponse instantiates a new ListRepriceEventsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRepriceEventsResponse(data []ListRepriceEventsItem) *ListRepriceEventsResponse {
+	this := ListRepriceEventsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListRepriceEventsResponseWithDefaults instantiates a new ListRepriceEventsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRepriceEventsResponseWithDefaults() *ListRepriceEventsResponse {
+	this := ListRepriceEventsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListRepriceEventsResponse) GetData() []ListRepriceEventsItem {
+	if o == nil {
+		var ret []ListRepriceEventsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsResponse) GetDataOk() ([]ListRepriceEventsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListRepriceEventsResponse) SetData(v []ListRepriceEventsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListRepriceEventsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListRepriceEventsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListRepriceEventsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListRepriceEventsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRepriceEventsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListRepriceEventsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListRepriceEventsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListRepriceEventsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListRepriceEventsResponse struct {
+	value *ListRepriceEventsResponse
+	isSet bool
+}
+
+func (v NullableListRepriceEventsResponse) Get() *ListRepriceEventsResponse {
+	return v.value
+}
+
+func (v *NullableListRepriceEventsResponse) Set(val *ListRepriceEventsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRepriceEventsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRepriceEventsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRepriceEventsResponse(val *ListRepriceEventsResponse) *NullableListRepriceEventsResponse {
+	return &NullableListRepriceEventsResponse{value: val, isSet: true}
+}
+
+func (v NullableListRepriceEventsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRepriceEventsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListRestockPromptsItem struct for ListRestockPromptsItem
+type ListRestockPromptsItem struct {
+	Id string `json:"id"`
+	ListingId string `json:"listingId"`
+	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+	Platforms []string `json:"platforms"`
+	NewQuantity float32 `json:"newQuantity"`
+	CreatedAt time.Time `json:"createdAt"`
+	ListingTitle NullableString `json:"listingTitle,omitempty"`
+	ListingImages []string `json:"listingImages,omitempty"`
+	ListingPrice NullableString `json:"listingPrice,omitempty"`
+}
+
+// NewListRestockPromptsItem instantiates a new ListRestockPromptsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRestockPromptsItem(id string, listingId string, platforms []string, newQuantity float32, createdAt time.Time) *ListRestockPromptsItem {
+	this := ListRestockPromptsItem{}
+	this.Id = id
+	this.ListingId = listingId
+	this.Platforms = platforms
+	this.NewQuantity = newQuantity
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListRestockPromptsItemWithDefaults instantiates a new ListRestockPromptsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRestockPromptsItemWithDefaults() *ListRestockPromptsItem {
+	this := ListRestockPromptsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListRestockPromptsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListRestockPromptsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetListingId returns the ListingId field value
+func (o *ListRestockPromptsItem) GetListingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ListingId
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsItem) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingId, true
+}
+
+// SetListingId sets field value
+func (o *ListRestockPromptsItem) SetListingId(v string) {
+	o.ListingId = v
+}
+
+// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRestockPromptsItem) GetInventoryItemId() string {
+	if o == nil || o.InventoryItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InventoryItemId.Get()
+}
+
+// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRestockPromptsItem) GetInventoryItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
+}
+
+// HasInventoryItemId returns a boolean if a field has been set.
+func (o *ListRestockPromptsItem) HasInventoryItemId() bool {
+	if o != nil && o.InventoryItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
+func (o *ListRestockPromptsItem) SetInventoryItemId(v string) {
+	o.InventoryItemId.Set(&v)
+}
+// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
+func (o *ListRestockPromptsItem) SetInventoryItemIdNil() {
+	o.InventoryItemId.Set(nil)
+}
+
+// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
+func (o *ListRestockPromptsItem) UnsetInventoryItemId() {
+	o.InventoryItemId.Unset()
+}
+
+// GetPlatforms returns the Platforms field value
+func (o *ListRestockPromptsItem) GetPlatforms() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Platforms
+}
+
+// GetPlatformsOk returns a tuple with the Platforms field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsItem) GetPlatformsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Platforms, true
+}
+
+// SetPlatforms sets field value
+func (o *ListRestockPromptsItem) SetPlatforms(v []string) {
+	o.Platforms = v
+}
+
+// GetNewQuantity returns the NewQuantity field value
+func (o *ListRestockPromptsItem) GetNewQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NewQuantity
+}
+
+// GetNewQuantityOk returns a tuple with the NewQuantity field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsItem) GetNewQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NewQuantity, true
+}
+
+// SetNewQuantity sets field value
+func (o *ListRestockPromptsItem) SetNewQuantity(v float32) {
+	o.NewQuantity = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListRestockPromptsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListRestockPromptsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetListingTitle returns the ListingTitle field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRestockPromptsItem) GetListingTitle() string {
+	if o == nil || o.ListingTitle.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingTitle.Get()
+}
+
+// GetListingTitleOk returns a tuple with the ListingTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRestockPromptsItem) GetListingTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingTitle.Get(), o.ListingTitle.IsSet()
+}
+
+// HasListingTitle returns a boolean if a field has been set.
+func (o *ListRestockPromptsItem) HasListingTitle() bool {
+	if o != nil && o.ListingTitle.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingTitle gets a reference to the given NullableString and assigns it to the ListingTitle field.
+func (o *ListRestockPromptsItem) SetListingTitle(v string) {
+	o.ListingTitle.Set(&v)
+}
+// SetListingTitleNil sets the value for ListingTitle to be an explicit nil
+func (o *ListRestockPromptsItem) SetListingTitleNil() {
+	o.ListingTitle.Set(nil)
+}
+
+// UnsetListingTitle ensures that no value is present for ListingTitle, not even an explicit nil
+func (o *ListRestockPromptsItem) UnsetListingTitle() {
+	o.ListingTitle.Unset()
+}
+
+// GetListingImages returns the ListingImages field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRestockPromptsItem) GetListingImages() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.ListingImages
+}
+
+// GetListingImagesOk returns a tuple with the ListingImages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRestockPromptsItem) GetListingImagesOk() ([]string, bool) {
+	if o == nil || o.ListingImages == nil {
+		return nil, false
+	}
+	return o.ListingImages, true
+}
+
+// HasListingImages returns a boolean if a field has been set.
+func (o *ListRestockPromptsItem) HasListingImages() bool {
+	if o != nil && o.ListingImages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetListingImages gets a reference to the given []string and assigns it to the ListingImages field.
+func (o *ListRestockPromptsItem) SetListingImages(v []string) {
+	o.ListingImages = v
+}
+
+// GetListingPrice returns the ListingPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListRestockPromptsItem) GetListingPrice() string {
+	if o == nil || o.ListingPrice.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingPrice.Get()
+}
+
+// GetListingPriceOk returns a tuple with the ListingPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListRestockPromptsItem) GetListingPriceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingPrice.Get(), o.ListingPrice.IsSet()
+}
+
+// HasListingPrice returns a boolean if a field has been set.
+func (o *ListRestockPromptsItem) HasListingPrice() bool {
+	if o != nil && o.ListingPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingPrice gets a reference to the given NullableString and assigns it to the ListingPrice field.
+func (o *ListRestockPromptsItem) SetListingPrice(v string) {
+	o.ListingPrice.Set(&v)
+}
+// SetListingPriceNil sets the value for ListingPrice to be an explicit nil
+func (o *ListRestockPromptsItem) SetListingPriceNil() {
+	o.ListingPrice.Set(nil)
+}
+
+// UnsetListingPrice ensures that no value is present for ListingPrice, not even an explicit nil
+func (o *ListRestockPromptsItem) UnsetListingPrice() {
+	o.ListingPrice.Unset()
+}
+
+func (o ListRestockPromptsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["listingId"] = o.ListingId
+	}
+	if o.InventoryItemId.IsSet() {
+		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
+	}
+	if true {
+		toSerialize["platforms"] = o.Platforms
+	}
+	if true {
+		toSerialize["newQuantity"] = o.NewQuantity
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if o.ListingTitle.IsSet() {
+		toSerialize["listingTitle"] = o.ListingTitle.Get()
+	}
+	if o.ListingImages != nil {
+		toSerialize["listingImages"] = o.ListingImages
+	}
+	if o.ListingPrice.IsSet() {
+		toSerialize["listingPrice"] = o.ListingPrice.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListRestockPromptsItem struct {
+	value *ListRestockPromptsItem
+	isSet bool
+}
+
+func (v NullableListRestockPromptsItem) Get() *ListRestockPromptsItem {
+	return v.value
+}
+
+func (v *NullableListRestockPromptsItem) Set(val *ListRestockPromptsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRestockPromptsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRestockPromptsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRestockPromptsItem(val *ListRestockPromptsItem) *NullableListRestockPromptsItem {
+	return &NullableListRestockPromptsItem{value: val, isSet: true}
+}
+
+func (v NullableListRestockPromptsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRestockPromptsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListRestockPromptsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListRestockPromptsResponse struct {
+	// The rows.
+	Data []ListRestockPromptsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListRestockPromptsResponse instantiates a new ListRestockPromptsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRestockPromptsResponse(data []ListRestockPromptsItem) *ListRestockPromptsResponse {
+	this := ListRestockPromptsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListRestockPromptsResponseWithDefaults instantiates a new ListRestockPromptsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRestockPromptsResponseWithDefaults() *ListRestockPromptsResponse {
+	this := ListRestockPromptsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListRestockPromptsResponse) GetData() []ListRestockPromptsItem {
+	if o == nil {
+		var ret []ListRestockPromptsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsResponse) GetDataOk() ([]ListRestockPromptsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListRestockPromptsResponse) SetData(v []ListRestockPromptsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListRestockPromptsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListRestockPromptsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListRestockPromptsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListRestockPromptsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRestockPromptsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListRestockPromptsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListRestockPromptsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListRestockPromptsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListRestockPromptsResponse struct {
+	value *ListRestockPromptsResponse
+	isSet bool
+}
+
+func (v NullableListRestockPromptsResponse) Get() *ListRestockPromptsResponse {
+	return v.value
+}
+
+func (v *NullableListRestockPromptsResponse) Set(val *ListRestockPromptsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRestockPromptsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRestockPromptsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRestockPromptsResponse(val *ListRestockPromptsResponse) *NullableListRestockPromptsResponse {
+	return &NullableListRestockPromptsResponse{value: val, isSet: true}
+}
+
+func (v NullableListRestockPromptsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRestockPromptsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

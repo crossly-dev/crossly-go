@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**DeleteMeTemplateShare**](TemplatesApi.md#DeleteMeTemplateShare) | **Delete** /v1/me/templates/{id}/share | Revoke a template share link.
 [**GetMeTemplate**](TemplatesApi.md#GetMeTemplate) | **Get** /v1/me/templates/{id} | Fetch one template in full.
 [**GetMeTemplateSuggest**](TemplatesApi.md#GetMeTemplateSuggest) | **Get** /v1/me/templates/suggest | The seller&#39;s default template for a category.
+[**GetPublicTemplate**](TemplatesApi.md#GetPublicTemplate) | **Get** /v1/public/templates/{token} | A shared template by its share token (public, no auth).
 [**ListMeTemplates**](TemplatesApi.md#ListMeTemplates) | **Get** /v1/me/templates | List the seller&#39;s templates.
 [**UpdateMeTemplate**](TemplatesApi.md#UpdateMeTemplate) | **Patch** /v1/me/templates/{id} | Patch a template.
 
@@ -522,6 +523,73 @@ Other parameters are passed through a pointer to a apiGetMeTemplateSuggestReques
 ### Authorization
 
 [PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetPublicTemplate
+
+> GetPublicTemplateResponse GetPublicTemplate(ctx, token).Execute()
+
+A shared template by its share token (public, no auth).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    token := "token_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.GetPublicTemplate(context.Background(), token).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.GetPublicTemplate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPublicTemplate`: GetPublicTemplateResponse
+    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.GetPublicTemplate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**token** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPublicTemplateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetPublicTemplateResponse**
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

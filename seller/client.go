@@ -61,13 +61,23 @@ type APIClient struct {
 
 	AnalyticsApi *AnalyticsApiService
 
+	AppManagedListingsApi *AppManagedListingsApiService
+
+	AppsApi *AppsApiService
+
 	AutomationApi *AutomationApiService
 
 	BillingApi *BillingApiService
 
+	BooksApi *BooksApiService
+
 	BrandDropsApi *BrandDropsApiService
 
+	BrandingApi *BrandingApiService
+
 	BreaksApi *BreaksApiService
+
+	BulkBatchesApi *BulkBatchesApiService
 
 	BuyerApi *BuyerApiService
 
@@ -77,9 +87,21 @@ type APIClient struct {
 
 	CatalogApi *CatalogApiService
 
+	ChannelInventoryApi *ChannelInventoryApiService
+
 	CompWatchlistsApi *CompWatchlistsApiService
 
 	ConnectionsApi *ConnectionsApiService
+
+	ConversationsApi *ConversationsApiService
+
+	CreatorApi *CreatorApiService
+
+	CreatorRewardsApi *CreatorRewardsApiService
+
+	CreatorStudioApi *CreatorStudioApiService
+
+	CrosslyWalletApi *CrosslyWalletApiService
 
 	CustomersApi *CustomersApiService
 
@@ -87,9 +109,17 @@ type APIClient struct {
 
 	DefaultApi *DefaultApiService
 
+	DeveloperAppsApi *DeveloperAppsApiService
+
+	DiscountsApi *DiscountsApiService
+
 	DropsApi *DropsApiService
 
 	EmbedsApi *EmbedsApiService
+
+	FieldRulesApi *FieldRulesApiService
+
+	FundingApi *FundingApiService
 
 	GradingApi *GradingApiService
 
@@ -104,6 +134,8 @@ type APIClient struct {
 	InventoryApi *InventoryApiService
 
 	ListingsApi *ListingsApiService
+
+	LookbooksApi *LookbooksApiService
 
 	MagicApi *MagicApiService
 
@@ -125,6 +157,12 @@ type APIClient struct {
 
 	PolicyPresetsApi *PolicyPresetsApiService
 
+	PriceRulesApi *PriceRulesApiService
+
+	ProductFeedsApi *ProductFeedsApiService
+
+	ProductSetsApi *ProductSetsApiService
+
 	ProductionApi *ProductionApiService
 
 	ProfileApi *ProfileApiService
@@ -137,15 +175,27 @@ type APIClient struct {
 
 	SalesApi *SalesApiService
 
+	SandboxApi *SandboxApiService
+
 	SavedViewsApi *SavedViewsApiService
 
 	ScanApi *ScanApiService
+
+	SearchApi *SearchApiService
+
+	SourceSyncApi *SourceSyncApiService
 
 	SourcingApi *SourcingApiService
 
 	StallsApi *StallsApiService
 
 	StorefrontApi *StorefrontApiService
+
+	StorefrontsApi *StorefrontsApiService
+
+	TCGApi *TCGApiService
+
+	TCGCreatorsApi *TCGCreatorsApiService
 
 	TaxApi *TaxApiService
 
@@ -155,17 +205,47 @@ type APIClient struct {
 
 	TemplatesApi *TemplatesApiService
 
+	ToolboxApi *ToolboxApiService
+
 	TradeBlockApi *TradeBlockApiService
 
 	VaultMarketsApi *VaultMarketsApiService
+
+	WalletApi *WalletApiService
 
 	Web3Api *Web3ApiService
 
 	WebhooksApi *WebhooksApiService
 
+	WholesaleApi *WholesaleApiService
+
 	WorkflowsApi *WorkflowsApiService
 
 	WorldApi *WorldApiService
+
+	WorldsApi *WorldsApiService
+
+	WorldsAdsApi *WorldsAdsApiService
+
+	WorldsBadgesApi *WorldsBadgesApiService
+
+	WorldsDataApi *WorldsDataApiService
+
+	WorldsEngagementApi *WorldsEngagementApiService
+
+	WorldsGalleryApi *WorldsGalleryApiService
+
+	WorldsHttpApi *WorldsHttpApiService
+
+	WorldsMoneyApi *WorldsMoneyApiService
+
+	WorldsPackagesApi *WorldsPackagesApiService
+
+	WorldsRewardsApi *WorldsRewardsApiService
+
+	WorldsStudioApi *WorldsStudioApiService
+
+	WorldsTeamApi *WorldsTeamApiService
 }
 
 type service struct {
@@ -190,21 +270,36 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ActivityApi = (*ActivityApiService)(&c.common)
 	c.AdsApi = (*AdsApiService)(&c.common)
 	c.AnalyticsApi = (*AnalyticsApiService)(&c.common)
+	c.AppManagedListingsApi = (*AppManagedListingsApiService)(&c.common)
+	c.AppsApi = (*AppsApiService)(&c.common)
 	c.AutomationApi = (*AutomationApiService)(&c.common)
 	c.BillingApi = (*BillingApiService)(&c.common)
+	c.BooksApi = (*BooksApiService)(&c.common)
 	c.BrandDropsApi = (*BrandDropsApiService)(&c.common)
+	c.BrandingApi = (*BrandingApiService)(&c.common)
 	c.BreaksApi = (*BreaksApiService)(&c.common)
+	c.BulkBatchesApi = (*BulkBatchesApiService)(&c.common)
 	c.BuyerApi = (*BuyerApiService)(&c.common)
 	c.CBXApi = (*CBXApiService)(&c.common)
 	c.COSMApi = (*COSMApiService)(&c.common)
 	c.CatalogApi = (*CatalogApiService)(&c.common)
+	c.ChannelInventoryApi = (*ChannelInventoryApiService)(&c.common)
 	c.CompWatchlistsApi = (*CompWatchlistsApiService)(&c.common)
 	c.ConnectionsApi = (*ConnectionsApiService)(&c.common)
+	c.ConversationsApi = (*ConversationsApiService)(&c.common)
+	c.CreatorApi = (*CreatorApiService)(&c.common)
+	c.CreatorRewardsApi = (*CreatorRewardsApiService)(&c.common)
+	c.CreatorStudioApi = (*CreatorStudioApiService)(&c.common)
+	c.CrosslyWalletApi = (*CrosslyWalletApiService)(&c.common)
 	c.CustomersApi = (*CustomersApiService)(&c.common)
 	c.DAOApi = (*DAOApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
+	c.DeveloperAppsApi = (*DeveloperAppsApiService)(&c.common)
+	c.DiscountsApi = (*DiscountsApiService)(&c.common)
 	c.DropsApi = (*DropsApiService)(&c.common)
 	c.EmbedsApi = (*EmbedsApiService)(&c.common)
+	c.FieldRulesApi = (*FieldRulesApiService)(&c.common)
+	c.FundingApi = (*FundingApiService)(&c.common)
 	c.GradingApi = (*GradingApiService)(&c.common)
 	c.GroupBuysApi = (*GroupBuysApiService)(&c.common)
 	c.ImportsApi = (*ImportsApiService)(&c.common)
@@ -212,6 +307,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.IntegrationsApi = (*IntegrationsApiService)(&c.common)
 	c.InventoryApi = (*InventoryApiService)(&c.common)
 	c.ListingsApi = (*ListingsApiService)(&c.common)
+	c.LookbooksApi = (*LookbooksApiService)(&c.common)
 	c.MagicApi = (*MagicApiService)(&c.common)
 	c.MobileApi = (*MobileApiService)(&c.common)
 	c.NFTMarketApi = (*NFTMarketApiService)(&c.common)
@@ -222,27 +318,51 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PATApi = (*PATApiService)(&c.common)
 	c.PayoutApi = (*PayoutApiService)(&c.common)
 	c.PolicyPresetsApi = (*PolicyPresetsApiService)(&c.common)
+	c.PriceRulesApi = (*PriceRulesApiService)(&c.common)
+	c.ProductFeedsApi = (*ProductFeedsApiService)(&c.common)
+	c.ProductSetsApi = (*ProductSetsApiService)(&c.common)
 	c.ProductionApi = (*ProductionApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
 	c.ReferenceApi = (*ReferenceApiService)(&c.common)
 	c.RestockPromptsApi = (*RestockPromptsApiService)(&c.common)
 	c.ReturnsApi = (*ReturnsApiService)(&c.common)
 	c.SalesApi = (*SalesApiService)(&c.common)
+	c.SandboxApi = (*SandboxApiService)(&c.common)
 	c.SavedViewsApi = (*SavedViewsApiService)(&c.common)
 	c.ScanApi = (*ScanApiService)(&c.common)
+	c.SearchApi = (*SearchApiService)(&c.common)
+	c.SourceSyncApi = (*SourceSyncApiService)(&c.common)
 	c.SourcingApi = (*SourcingApiService)(&c.common)
 	c.StallsApi = (*StallsApiService)(&c.common)
 	c.StorefrontApi = (*StorefrontApiService)(&c.common)
+	c.StorefrontsApi = (*StorefrontsApiService)(&c.common)
+	c.TCGApi = (*TCGApiService)(&c.common)
+	c.TCGCreatorsApi = (*TCGCreatorsApiService)(&c.common)
 	c.TaxApi = (*TaxApiService)(&c.common)
 	c.TaxonomyApi = (*TaxonomyApiService)(&c.common)
 	c.TeamApi = (*TeamApiService)(&c.common)
 	c.TemplatesApi = (*TemplatesApiService)(&c.common)
+	c.ToolboxApi = (*ToolboxApiService)(&c.common)
 	c.TradeBlockApi = (*TradeBlockApiService)(&c.common)
 	c.VaultMarketsApi = (*VaultMarketsApiService)(&c.common)
+	c.WalletApi = (*WalletApiService)(&c.common)
 	c.Web3Api = (*Web3ApiService)(&c.common)
 	c.WebhooksApi = (*WebhooksApiService)(&c.common)
+	c.WholesaleApi = (*WholesaleApiService)(&c.common)
 	c.WorkflowsApi = (*WorkflowsApiService)(&c.common)
 	c.WorldApi = (*WorldApiService)(&c.common)
+	c.WorldsApi = (*WorldsApiService)(&c.common)
+	c.WorldsAdsApi = (*WorldsAdsApiService)(&c.common)
+	c.WorldsBadgesApi = (*WorldsBadgesApiService)(&c.common)
+	c.WorldsDataApi = (*WorldsDataApiService)(&c.common)
+	c.WorldsEngagementApi = (*WorldsEngagementApiService)(&c.common)
+	c.WorldsGalleryApi = (*WorldsGalleryApiService)(&c.common)
+	c.WorldsHttpApi = (*WorldsHttpApiService)(&c.common)
+	c.WorldsMoneyApi = (*WorldsMoneyApiService)(&c.common)
+	c.WorldsPackagesApi = (*WorldsPackagesApiService)(&c.common)
+	c.WorldsRewardsApi = (*WorldsRewardsApiService)(&c.common)
+	c.WorldsStudioApi = (*WorldsStudioApiService)(&c.common)
+	c.WorldsTeamApi = (*WorldsTeamApiService)(&c.common)
 
 	return c
 }

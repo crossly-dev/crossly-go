@@ -1247,18 +1247,18 @@ func (v *NullableGetBuyerGiftFinderOptionResponseData) UnmarshalJSON(src []byte)
 
 // GetBuyerGiftFinderOptionResponseDataBudgets struct for GetBuyerGiftFinderOptionResponseDataBudgets
 type GetBuyerGiftFinderOptionResponseDataBudgets struct {
-	Label string `json:"label"`
 	Key string `json:"key"`
+	Label string `json:"label"`
 }
 
 // NewGetBuyerGiftFinderOptionResponseDataBudgets instantiates a new GetBuyerGiftFinderOptionResponseDataBudgets object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerGiftFinderOptionResponseDataBudgets(label string, key string) *GetBuyerGiftFinderOptionResponseDataBudgets {
+func NewGetBuyerGiftFinderOptionResponseDataBudgets(key string, label string) *GetBuyerGiftFinderOptionResponseDataBudgets {
 	this := GetBuyerGiftFinderOptionResponseDataBudgets{}
-	this.Label = label
 	this.Key = key
+	this.Label = label
 	return &this
 }
 
@@ -1268,30 +1268,6 @@ func NewGetBuyerGiftFinderOptionResponseDataBudgets(label string, key string) *G
 func NewGetBuyerGiftFinderOptionResponseDataBudgetsWithDefaults() *GetBuyerGiftFinderOptionResponseDataBudgets {
 	this := GetBuyerGiftFinderOptionResponseDataBudgets{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *GetBuyerGiftFinderOptionResponseDataBudgets) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerGiftFinderOptionResponseDataBudgets) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerGiftFinderOptionResponseDataBudgets) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetKey returns the Key field value
@@ -1318,13 +1294,37 @@ func (o *GetBuyerGiftFinderOptionResponseDataBudgets) SetKey(v string) {
 	o.Key = v
 }
 
+// GetLabel returns the Label field value
+func (o *GetBuyerGiftFinderOptionResponseDataBudgets) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerGiftFinderOptionResponseDataBudgets) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerGiftFinderOptionResponseDataBudgets) SetLabel(v string) {
+	o.Label = v
+}
+
 func (o GetBuyerGiftFinderOptionResponseDataBudgets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["label"] = o.Label
+		toSerialize["key"] = o.Key
 	}
 	if true {
-		toSerialize["key"] = o.Key
+		toSerialize["label"] = o.Label
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1367,8 +1367,8 @@ func (v *NullableGetBuyerGiftFinderOptionResponseDataBudgets) UnmarshalJSON(src 
 
 // GetBuyerGiftFinderOptionResponseDataRecipients struct for GetBuyerGiftFinderOptionResponseDataRecipients
 type GetBuyerGiftFinderOptionResponseDataRecipients struct {
-	Label string `json:"label"`
 	Key string `json:"key"`
+	Label string `json:"label"`
 	Interests []map[string]interface{} `json:"interests"`
 }
 
@@ -1376,10 +1376,10 @@ type GetBuyerGiftFinderOptionResponseDataRecipients struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerGiftFinderOptionResponseDataRecipients(label string, key string, interests []map[string]interface{}) *GetBuyerGiftFinderOptionResponseDataRecipients {
+func NewGetBuyerGiftFinderOptionResponseDataRecipients(key string, label string, interests []map[string]interface{}) *GetBuyerGiftFinderOptionResponseDataRecipients {
 	this := GetBuyerGiftFinderOptionResponseDataRecipients{}
-	this.Label = label
 	this.Key = key
+	this.Label = label
 	this.Interests = interests
 	return &this
 }
@@ -1390,30 +1390,6 @@ func NewGetBuyerGiftFinderOptionResponseDataRecipients(label string, key string,
 func NewGetBuyerGiftFinderOptionResponseDataRecipientsWithDefaults() *GetBuyerGiftFinderOptionResponseDataRecipients {
 	this := GetBuyerGiftFinderOptionResponseDataRecipients{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *GetBuyerGiftFinderOptionResponseDataRecipients) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerGiftFinderOptionResponseDataRecipients) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerGiftFinderOptionResponseDataRecipients) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetKey returns the Key field value
@@ -1438,6 +1414,30 @@ func (o *GetBuyerGiftFinderOptionResponseDataRecipients) GetKeyOk() (*string, bo
 // SetKey sets field value
 func (o *GetBuyerGiftFinderOptionResponseDataRecipients) SetKey(v string) {
 	o.Key = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetBuyerGiftFinderOptionResponseDataRecipients) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerGiftFinderOptionResponseDataRecipients) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerGiftFinderOptionResponseDataRecipients) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetInterests returns the Interests field value
@@ -1467,10 +1467,10 @@ func (o *GetBuyerGiftFinderOptionResponseDataRecipients) SetInterests(v []map[st
 func (o GetBuyerGiftFinderOptionResponseDataRecipients) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["label"] = o.Label
+		toSerialize["key"] = o.Key
 	}
 	if true {
-		toSerialize["key"] = o.Key
+		toSerialize["label"] = o.Label
 	}
 	if true {
 		toSerialize["interests"] = o.Interests
@@ -2658,8 +2658,8 @@ type ListBuyerGiftFinderItem struct {
 	Slug string `json:"slug"`
 	PriceCents float32 `json:"priceCents"`
 	Title NullableString `json:"title,omitempty"`
-	SalePriceCents NullableFloat32 `json:"salePriceCents,omitempty"`
 	Thumbnail NullableString `json:"thumbnail,omitempty"`
+	SalePriceCents NullableFloat32 `json:"salePriceCents,omitempty"`
 }
 
 // NewListBuyerGiftFinderItem instantiates a new ListBuyerGiftFinderItem object
@@ -2771,48 +2771,6 @@ func (o *ListBuyerGiftFinderItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetSalePriceCents returns the SalePriceCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerGiftFinderItem) GetSalePriceCents() float32 {
-	if o == nil || o.SalePriceCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.SalePriceCents.Get()
-}
-
-// GetSalePriceCentsOk returns a tuple with the SalePriceCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerGiftFinderItem) GetSalePriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SalePriceCents.Get(), o.SalePriceCents.IsSet()
-}
-
-// HasSalePriceCents returns a boolean if a field has been set.
-func (o *ListBuyerGiftFinderItem) HasSalePriceCents() bool {
-	if o != nil && o.SalePriceCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSalePriceCents gets a reference to the given NullableFloat32 and assigns it to the SalePriceCents field.
-func (o *ListBuyerGiftFinderItem) SetSalePriceCents(v float32) {
-	o.SalePriceCents.Set(&v)
-}
-// SetSalePriceCentsNil sets the value for SalePriceCents to be an explicit nil
-func (o *ListBuyerGiftFinderItem) SetSalePriceCentsNil() {
-	o.SalePriceCents.Set(nil)
-}
-
-// UnsetSalePriceCents ensures that no value is present for SalePriceCents, not even an explicit nil
-func (o *ListBuyerGiftFinderItem) UnsetSalePriceCents() {
-	o.SalePriceCents.Unset()
-}
-
 // GetThumbnail returns the Thumbnail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerGiftFinderItem) GetThumbnail() string {
 	if o == nil || o.Thumbnail.Get() == nil {
@@ -2855,6 +2813,48 @@ func (o *ListBuyerGiftFinderItem) UnsetThumbnail() {
 	o.Thumbnail.Unset()
 }
 
+// GetSalePriceCents returns the SalePriceCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerGiftFinderItem) GetSalePriceCents() float32 {
+	if o == nil || o.SalePriceCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.SalePriceCents.Get()
+}
+
+// GetSalePriceCentsOk returns a tuple with the SalePriceCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerGiftFinderItem) GetSalePriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SalePriceCents.Get(), o.SalePriceCents.IsSet()
+}
+
+// HasSalePriceCents returns a boolean if a field has been set.
+func (o *ListBuyerGiftFinderItem) HasSalePriceCents() bool {
+	if o != nil && o.SalePriceCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSalePriceCents gets a reference to the given NullableFloat32 and assigns it to the SalePriceCents field.
+func (o *ListBuyerGiftFinderItem) SetSalePriceCents(v float32) {
+	o.SalePriceCents.Set(&v)
+}
+// SetSalePriceCentsNil sets the value for SalePriceCents to be an explicit nil
+func (o *ListBuyerGiftFinderItem) SetSalePriceCentsNil() {
+	o.SalePriceCents.Set(nil)
+}
+
+// UnsetSalePriceCents ensures that no value is present for SalePriceCents, not even an explicit nil
+func (o *ListBuyerGiftFinderItem) UnsetSalePriceCents() {
+	o.SalePriceCents.Unset()
+}
+
 func (o ListBuyerGiftFinderItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2866,11 +2866,11 @@ func (o ListBuyerGiftFinderItem) MarshalJSON() ([]byte, error) {
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if o.SalePriceCents.IsSet() {
-		toSerialize["salePriceCents"] = o.SalePriceCents.Get()
-	}
 	if o.Thumbnail.IsSet() {
 		toSerialize["thumbnail"] = o.Thumbnail.Get()
+	}
+	if o.SalePriceCents.IsSet() {
+		toSerialize["salePriceCents"] = o.SalePriceCents.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -3079,29 +3079,29 @@ func (v *NullableListBuyerGiftFinderResponse) UnmarshalJSON(src []byte) error {
 // ListBuyerGiftSentItem struct for ListBuyerGiftSentItem
 type ListBuyerGiftSentItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Status string `json:"status"`
-	Url string `json:"url"`
-	OpenedAt NullableString `json:"openedAt,omitempty"`
-	RevealedAt NullableString `json:"revealedAt,omitempty"`
-	RecipientEmail string `json:"recipientEmail"`
 	RecipientName string `json:"recipientName"`
+	RecipientEmail string `json:"recipientEmail"`
+	Status string `json:"status"`
 	TeaserSentAt NullableString `json:"teaserSentAt,omitempty"`
+	RevealedAt NullableString `json:"revealedAt,omitempty"`
+	OpenedAt NullableString `json:"openedAt,omitempty"`
 	ThanksMessage NullableString `json:"thanksMessage,omitempty"`
+	CreatedAt string `json:"createdAt"`
+	Url string `json:"url"`
 }
 
 // NewListBuyerGiftSentItem instantiates a new ListBuyerGiftSentItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerGiftSentItem(id string, createdAt string, status string, url string, recipientEmail string, recipientName string) *ListBuyerGiftSentItem {
+func NewListBuyerGiftSentItem(id string, recipientName string, recipientEmail string, status string, createdAt string, url string) *ListBuyerGiftSentItem {
 	this := ListBuyerGiftSentItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Status = status
-	this.Url = url
-	this.RecipientEmail = recipientEmail
 	this.RecipientName = recipientName
+	this.RecipientEmail = recipientEmail
+	this.Status = status
+	this.CreatedAt = createdAt
+	this.Url = url
 	return &this
 }
 
@@ -3137,160 +3137,28 @@ func (o *ListBuyerGiftSentItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerGiftSentItem) GetCreatedAt() string {
+// GetRecipientName returns the RecipientName field value
+func (o *ListBuyerGiftSentItem) GetRecipientName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.RecipientName
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetRecipientNameOk returns a tuple with the RecipientName field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerGiftSentItem) GetCreatedAtOk() (*string, bool) {
+func (o *ListBuyerGiftSentItem) GetRecipientNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.RecipientName, true
 }
 
-// SetCreatedAt sets field value
-func (o *ListBuyerGiftSentItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetStatus returns the Status field value
-func (o *ListBuyerGiftSentItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerGiftSentItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListBuyerGiftSentItem) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetUrl returns the Url field value
-func (o *ListBuyerGiftSentItem) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerGiftSentItem) GetUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *ListBuyerGiftSentItem) SetUrl(v string) {
-	o.Url = v
-}
-
-// GetOpenedAt returns the OpenedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerGiftSentItem) GetOpenedAt() string {
-	if o == nil || o.OpenedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OpenedAt.Get()
-}
-
-// GetOpenedAtOk returns a tuple with the OpenedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerGiftSentItem) GetOpenedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OpenedAt.Get(), o.OpenedAt.IsSet()
-}
-
-// HasOpenedAt returns a boolean if a field has been set.
-func (o *ListBuyerGiftSentItem) HasOpenedAt() bool {
-	if o != nil && o.OpenedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOpenedAt gets a reference to the given NullableString and assigns it to the OpenedAt field.
-func (o *ListBuyerGiftSentItem) SetOpenedAt(v string) {
-	o.OpenedAt.Set(&v)
-}
-// SetOpenedAtNil sets the value for OpenedAt to be an explicit nil
-func (o *ListBuyerGiftSentItem) SetOpenedAtNil() {
-	o.OpenedAt.Set(nil)
-}
-
-// UnsetOpenedAt ensures that no value is present for OpenedAt, not even an explicit nil
-func (o *ListBuyerGiftSentItem) UnsetOpenedAt() {
-	o.OpenedAt.Unset()
-}
-
-// GetRevealedAt returns the RevealedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerGiftSentItem) GetRevealedAt() string {
-	if o == nil || o.RevealedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RevealedAt.Get()
-}
-
-// GetRevealedAtOk returns a tuple with the RevealedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerGiftSentItem) GetRevealedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RevealedAt.Get(), o.RevealedAt.IsSet()
-}
-
-// HasRevealedAt returns a boolean if a field has been set.
-func (o *ListBuyerGiftSentItem) HasRevealedAt() bool {
-	if o != nil && o.RevealedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRevealedAt gets a reference to the given NullableString and assigns it to the RevealedAt field.
-func (o *ListBuyerGiftSentItem) SetRevealedAt(v string) {
-	o.RevealedAt.Set(&v)
-}
-// SetRevealedAtNil sets the value for RevealedAt to be an explicit nil
-func (o *ListBuyerGiftSentItem) SetRevealedAtNil() {
-	o.RevealedAt.Set(nil)
-}
-
-// UnsetRevealedAt ensures that no value is present for RevealedAt, not even an explicit nil
-func (o *ListBuyerGiftSentItem) UnsetRevealedAt() {
-	o.RevealedAt.Unset()
+// SetRecipientName sets field value
+func (o *ListBuyerGiftSentItem) SetRecipientName(v string) {
+	o.RecipientName = v
 }
 
 // GetRecipientEmail returns the RecipientEmail field value
@@ -3317,28 +3185,28 @@ func (o *ListBuyerGiftSentItem) SetRecipientEmail(v string) {
 	o.RecipientEmail = v
 }
 
-// GetRecipientName returns the RecipientName field value
-func (o *ListBuyerGiftSentItem) GetRecipientName() string {
+// GetStatus returns the Status field value
+func (o *ListBuyerGiftSentItem) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.RecipientName
+	return o.Status
 }
 
-// GetRecipientNameOk returns a tuple with the RecipientName field value
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerGiftSentItem) GetRecipientNameOk() (*string, bool) {
+func (o *ListBuyerGiftSentItem) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.RecipientName, true
+	return &o.Status, true
 }
 
-// SetRecipientName sets field value
-func (o *ListBuyerGiftSentItem) SetRecipientName(v string) {
-	o.RecipientName = v
+// SetStatus sets field value
+func (o *ListBuyerGiftSentItem) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetTeaserSentAt returns the TeaserSentAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3383,6 +3251,90 @@ func (o *ListBuyerGiftSentItem) UnsetTeaserSentAt() {
 	o.TeaserSentAt.Unset()
 }
 
+// GetRevealedAt returns the RevealedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerGiftSentItem) GetRevealedAt() string {
+	if o == nil || o.RevealedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevealedAt.Get()
+}
+
+// GetRevealedAtOk returns a tuple with the RevealedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerGiftSentItem) GetRevealedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RevealedAt.Get(), o.RevealedAt.IsSet()
+}
+
+// HasRevealedAt returns a boolean if a field has been set.
+func (o *ListBuyerGiftSentItem) HasRevealedAt() bool {
+	if o != nil && o.RevealedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevealedAt gets a reference to the given NullableString and assigns it to the RevealedAt field.
+func (o *ListBuyerGiftSentItem) SetRevealedAt(v string) {
+	o.RevealedAt.Set(&v)
+}
+// SetRevealedAtNil sets the value for RevealedAt to be an explicit nil
+func (o *ListBuyerGiftSentItem) SetRevealedAtNil() {
+	o.RevealedAt.Set(nil)
+}
+
+// UnsetRevealedAt ensures that no value is present for RevealedAt, not even an explicit nil
+func (o *ListBuyerGiftSentItem) UnsetRevealedAt() {
+	o.RevealedAt.Unset()
+}
+
+// GetOpenedAt returns the OpenedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerGiftSentItem) GetOpenedAt() string {
+	if o == nil || o.OpenedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OpenedAt.Get()
+}
+
+// GetOpenedAtOk returns a tuple with the OpenedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerGiftSentItem) GetOpenedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OpenedAt.Get(), o.OpenedAt.IsSet()
+}
+
+// HasOpenedAt returns a boolean if a field has been set.
+func (o *ListBuyerGiftSentItem) HasOpenedAt() bool {
+	if o != nil && o.OpenedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenedAt gets a reference to the given NullableString and assigns it to the OpenedAt field.
+func (o *ListBuyerGiftSentItem) SetOpenedAt(v string) {
+	o.OpenedAt.Set(&v)
+}
+// SetOpenedAtNil sets the value for OpenedAt to be an explicit nil
+func (o *ListBuyerGiftSentItem) SetOpenedAtNil() {
+	o.OpenedAt.Set(nil)
+}
+
+// UnsetOpenedAt ensures that no value is present for OpenedAt, not even an explicit nil
+func (o *ListBuyerGiftSentItem) UnsetOpenedAt() {
+	o.OpenedAt.Unset()
+}
+
 // GetThanksMessage returns the ThanksMessage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerGiftSentItem) GetThanksMessage() string {
 	if o == nil || o.ThanksMessage.Get() == nil {
@@ -3425,37 +3377,85 @@ func (o *ListBuyerGiftSentItem) UnsetThanksMessage() {
 	o.ThanksMessage.Unset()
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerGiftSentItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerGiftSentItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerGiftSentItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetUrl returns the Url field value
+func (o *ListBuyerGiftSentItem) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerGiftSentItem) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *ListBuyerGiftSentItem) SetUrl(v string) {
+	o.Url = v
+}
+
 func (o ListBuyerGiftSentItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
-	if o.OpenedAt.IsSet() {
-		toSerialize["openedAt"] = o.OpenedAt.Get()
-	}
-	if o.RevealedAt.IsSet() {
-		toSerialize["revealedAt"] = o.RevealedAt.Get()
+		toSerialize["recipientName"] = o.RecipientName
 	}
 	if true {
 		toSerialize["recipientEmail"] = o.RecipientEmail
 	}
 	if true {
-		toSerialize["recipientName"] = o.RecipientName
+		toSerialize["status"] = o.Status
 	}
 	if o.TeaserSentAt.IsSet() {
 		toSerialize["teaserSentAt"] = o.TeaserSentAt.Get()
 	}
+	if o.RevealedAt.IsSet() {
+		toSerialize["revealedAt"] = o.RevealedAt.Get()
+	}
+	if o.OpenedAt.IsSet() {
+		toSerialize["openedAt"] = o.OpenedAt.Get()
+	}
 	if o.ThanksMessage.IsSet() {
 		toSerialize["thanksMessage"] = o.ThanksMessage.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
 }

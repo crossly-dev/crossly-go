@@ -24,19 +24,21 @@ type GetMainStageResponse struct {
 	Live NullableGetMainStageResponseLive `json:"live,omitempty"`
 	Upcoming []GetMainStageResponseUpcoming `json:"upcoming"`
 	Stream NullableGetMainStageResponseStream `json:"stream,omitempty"`
+	House GetMainStageResponseHouse `json:"house"`
 }
 
 // NewGetMainStageResponse instantiates a new GetMainStageResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetMainStageResponse(slug string, name string, capacity float32, here float32, upcoming []GetMainStageResponseUpcoming) *GetMainStageResponse {
+func NewGetMainStageResponse(slug string, name string, capacity float32, here float32, upcoming []GetMainStageResponseUpcoming, house GetMainStageResponseHouse) *GetMainStageResponse {
 	this := GetMainStageResponse{}
 	this.Slug = slug
 	this.Name = name
 	this.Capacity = capacity
 	this.Here = here
 	this.Upcoming = upcoming
+	this.House = house
 	return &this
 }
 
@@ -252,6 +254,30 @@ func (o *GetMainStageResponse) UnsetStream() {
 	o.Stream.Unset()
 }
 
+// GetHouse returns the House field value
+func (o *GetMainStageResponse) GetHouse() GetMainStageResponseHouse {
+	if o == nil {
+		var ret GetMainStageResponseHouse
+		return ret
+	}
+
+	return o.House
+}
+
+// GetHouseOk returns a tuple with the House field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponse) GetHouseOk() (*GetMainStageResponseHouse, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.House, true
+}
+
+// SetHouse sets field value
+func (o *GetMainStageResponse) SetHouse(v GetMainStageResponseHouse) {
+	o.House = v
+}
+
 func (o GetMainStageResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -274,6 +300,9 @@ func (o GetMainStageResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Stream.IsSet() {
 		toSerialize["stream"] = o.Stream.Get()
+	}
+	if true {
+		toSerialize["house"] = o.House
 	}
 	return json.Marshal(toSerialize)
 }
@@ -310,6 +339,897 @@ func (v NullableGetMainStageResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetMainStageResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetMainStageResponseHouse The house programme (house-programme.ts): what the stage shows while nobody has booked it, and the blocks after. `now` is null while a booked event is live.
+type GetMainStageResponseHouse struct {
+	Now NullableGetMainStageResponseHouseNow `json:"now,omitempty"`
+	Next []GetMainStageResponseHouseNext `json:"next"`
+}
+
+// NewGetMainStageResponseHouse instantiates a new GetMainStageResponseHouse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMainStageResponseHouse(next []GetMainStageResponseHouseNext) *GetMainStageResponseHouse {
+	this := GetMainStageResponseHouse{}
+	this.Next = next
+	return &this
+}
+
+// NewGetMainStageResponseHouseWithDefaults instantiates a new GetMainStageResponseHouse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMainStageResponseHouseWithDefaults() *GetMainStageResponseHouse {
+	this := GetMainStageResponseHouse{}
+	return &this
+}
+
+// GetNow returns the Now field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouse) GetNow() GetMainStageResponseHouseNow {
+	if o == nil || o.Now.Get() == nil {
+		var ret GetMainStageResponseHouseNow
+		return ret
+	}
+	return *o.Now.Get()
+}
+
+// GetNowOk returns a tuple with the Now field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouse) GetNowOk() (*GetMainStageResponseHouseNow, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Now.Get(), o.Now.IsSet()
+}
+
+// HasNow returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouse) HasNow() bool {
+	if o != nil && o.Now.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNow gets a reference to the given NullableGetMainStageResponseHouseNow and assigns it to the Now field.
+func (o *GetMainStageResponseHouse) SetNow(v GetMainStageResponseHouseNow) {
+	o.Now.Set(&v)
+}
+// SetNowNil sets the value for Now to be an explicit nil
+func (o *GetMainStageResponseHouse) SetNowNil() {
+	o.Now.Set(nil)
+}
+
+// UnsetNow ensures that no value is present for Now, not even an explicit nil
+func (o *GetMainStageResponseHouse) UnsetNow() {
+	o.Now.Unset()
+}
+
+// GetNext returns the Next field value
+func (o *GetMainStageResponseHouse) GetNext() []GetMainStageResponseHouseNext {
+	if o == nil {
+		var ret []GetMainStageResponseHouseNext
+		return ret
+	}
+
+	return o.Next
+}
+
+// GetNextOk returns a tuple with the Next field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouse) GetNextOk() ([]GetMainStageResponseHouseNext, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Next, true
+}
+
+// SetNext sets field value
+func (o *GetMainStageResponseHouse) SetNext(v []GetMainStageResponseHouseNext) {
+	o.Next = v
+}
+
+func (o GetMainStageResponseHouse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Now.IsSet() {
+		toSerialize["now"] = o.Now.Get()
+	}
+	if true {
+		toSerialize["next"] = o.Next
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetMainStageResponseHouse struct {
+	value *GetMainStageResponseHouse
+	isSet bool
+}
+
+func (v NullableGetMainStageResponseHouse) Get() *GetMainStageResponseHouse {
+	return v.value
+}
+
+func (v *NullableGetMainStageResponseHouse) Set(val *GetMainStageResponseHouse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMainStageResponseHouse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMainStageResponseHouse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMainStageResponseHouse(val *GetMainStageResponseHouse) *NullableGetMainStageResponseHouse {
+	return &NullableGetMainStageResponseHouse{value: val, isSet: true}
+}
+
+func (v NullableGetMainStageResponseHouse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMainStageResponseHouse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetMainStageResponseHouseNext struct for GetMainStageResponseHouseNext
+type GetMainStageResponseHouseNext struct {
+	Kind string `json:"kind"`
+	// Always true: the stage and boards mark these as the house's, never a booking.
+	House bool `json:"house"`
+	Title string `json:"title"`
+	About string `json:"about"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	// Where a tap goes (a drop, the arcade's contests), or null.
+	Href NullableString `json:"href,omitempty"`
+	// A replay's playable URL for the big screen, or null.
+	PlaybackUrl NullableString `json:"playbackUrl,omitempty"`
+	CoverImageUrl NullableString `json:"coverImageUrl,omitempty"`
+}
+
+// NewGetMainStageResponseHouseNext instantiates a new GetMainStageResponseHouseNext object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMainStageResponseHouseNext(kind string, house bool, title string, about string, startsAt string, endsAt string) *GetMainStageResponseHouseNext {
+	this := GetMainStageResponseHouseNext{}
+	this.Kind = kind
+	this.House = house
+	this.Title = title
+	this.About = about
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	return &this
+}
+
+// NewGetMainStageResponseHouseNextWithDefaults instantiates a new GetMainStageResponseHouseNext object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMainStageResponseHouseNextWithDefaults() *GetMainStageResponseHouseNext {
+	this := GetMainStageResponseHouseNext{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetMainStageResponseHouseNext) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetMainStageResponseHouseNext) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetHouse returns the House field value
+func (o *GetMainStageResponseHouseNext) GetHouse() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.House
+}
+
+// GetHouseOk returns a tuple with the House field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetHouseOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.House, true
+}
+
+// SetHouse sets field value
+func (o *GetMainStageResponseHouseNext) SetHouse(v bool) {
+	o.House = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetMainStageResponseHouseNext) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetMainStageResponseHouseNext) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetAbout returns the About field value
+func (o *GetMainStageResponseHouseNext) GetAbout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.About
+}
+
+// GetAboutOk returns a tuple with the About field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetAboutOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.About, true
+}
+
+// SetAbout sets field value
+func (o *GetMainStageResponseHouseNext) SetAbout(v string) {
+	o.About = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *GetMainStageResponseHouseNext) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *GetMainStageResponseHouseNext) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *GetMainStageResponseHouseNext) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNext) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *GetMainStageResponseHouseNext) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNext) GetHref() string {
+	if o == nil || o.Href.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href.Get()
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNext) GetHrefOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Href.Get(), o.Href.IsSet()
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNext) HasHref() bool {
+	if o != nil && o.Href.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given NullableString and assigns it to the Href field.
+func (o *GetMainStageResponseHouseNext) SetHref(v string) {
+	o.Href.Set(&v)
+}
+// SetHrefNil sets the value for Href to be an explicit nil
+func (o *GetMainStageResponseHouseNext) SetHrefNil() {
+	o.Href.Set(nil)
+}
+
+// UnsetHref ensures that no value is present for Href, not even an explicit nil
+func (o *GetMainStageResponseHouseNext) UnsetHref() {
+	o.Href.Unset()
+}
+
+// GetPlaybackUrl returns the PlaybackUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNext) GetPlaybackUrl() string {
+	if o == nil || o.PlaybackUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlaybackUrl.Get()
+}
+
+// GetPlaybackUrlOk returns a tuple with the PlaybackUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNext) GetPlaybackUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlaybackUrl.Get(), o.PlaybackUrl.IsSet()
+}
+
+// HasPlaybackUrl returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNext) HasPlaybackUrl() bool {
+	if o != nil && o.PlaybackUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaybackUrl gets a reference to the given NullableString and assigns it to the PlaybackUrl field.
+func (o *GetMainStageResponseHouseNext) SetPlaybackUrl(v string) {
+	o.PlaybackUrl.Set(&v)
+}
+// SetPlaybackUrlNil sets the value for PlaybackUrl to be an explicit nil
+func (o *GetMainStageResponseHouseNext) SetPlaybackUrlNil() {
+	o.PlaybackUrl.Set(nil)
+}
+
+// UnsetPlaybackUrl ensures that no value is present for PlaybackUrl, not even an explicit nil
+func (o *GetMainStageResponseHouseNext) UnsetPlaybackUrl() {
+	o.PlaybackUrl.Unset()
+}
+
+// GetCoverImageUrl returns the CoverImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNext) GetCoverImageUrl() string {
+	if o == nil || o.CoverImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CoverImageUrl.Get()
+}
+
+// GetCoverImageUrlOk returns a tuple with the CoverImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNext) GetCoverImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CoverImageUrl.Get(), o.CoverImageUrl.IsSet()
+}
+
+// HasCoverImageUrl returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNext) HasCoverImageUrl() bool {
+	if o != nil && o.CoverImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoverImageUrl gets a reference to the given NullableString and assigns it to the CoverImageUrl field.
+func (o *GetMainStageResponseHouseNext) SetCoverImageUrl(v string) {
+	o.CoverImageUrl.Set(&v)
+}
+// SetCoverImageUrlNil sets the value for CoverImageUrl to be an explicit nil
+func (o *GetMainStageResponseHouseNext) SetCoverImageUrlNil() {
+	o.CoverImageUrl.Set(nil)
+}
+
+// UnsetCoverImageUrl ensures that no value is present for CoverImageUrl, not even an explicit nil
+func (o *GetMainStageResponseHouseNext) UnsetCoverImageUrl() {
+	o.CoverImageUrl.Unset()
+}
+
+func (o GetMainStageResponseHouseNext) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["house"] = o.House
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["about"] = o.About
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if o.Href.IsSet() {
+		toSerialize["href"] = o.Href.Get()
+	}
+	if o.PlaybackUrl.IsSet() {
+		toSerialize["playbackUrl"] = o.PlaybackUrl.Get()
+	}
+	if o.CoverImageUrl.IsSet() {
+		toSerialize["coverImageUrl"] = o.CoverImageUrl.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetMainStageResponseHouseNext struct {
+	value *GetMainStageResponseHouseNext
+	isSet bool
+}
+
+func (v NullableGetMainStageResponseHouseNext) Get() *GetMainStageResponseHouseNext {
+	return v.value
+}
+
+func (v *NullableGetMainStageResponseHouseNext) Set(val *GetMainStageResponseHouseNext) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMainStageResponseHouseNext) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMainStageResponseHouseNext) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMainStageResponseHouseNext(val *GetMainStageResponseHouseNext) *NullableGetMainStageResponseHouseNext {
+	return &NullableGetMainStageResponseHouseNext{value: val, isSet: true}
+}
+
+func (v NullableGetMainStageResponseHouseNext) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMainStageResponseHouseNext) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetMainStageResponseHouseNow struct for GetMainStageResponseHouseNow
+type GetMainStageResponseHouseNow struct {
+	Kind string `json:"kind"`
+	// Always true: the stage and boards mark these as the house's, never a booking.
+	House bool `json:"house"`
+	Title string `json:"title"`
+	About string `json:"about"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	// Where a tap goes (a drop, the arcade's contests), or null.
+	Href NullableString `json:"href,omitempty"`
+	// A replay's playable URL for the big screen, or null.
+	PlaybackUrl NullableString `json:"playbackUrl,omitempty"`
+	CoverImageUrl NullableString `json:"coverImageUrl,omitempty"`
+}
+
+// NewGetMainStageResponseHouseNow instantiates a new GetMainStageResponseHouseNow object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMainStageResponseHouseNow(kind string, house bool, title string, about string, startsAt string, endsAt string) *GetMainStageResponseHouseNow {
+	this := GetMainStageResponseHouseNow{}
+	this.Kind = kind
+	this.House = house
+	this.Title = title
+	this.About = about
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	return &this
+}
+
+// NewGetMainStageResponseHouseNowWithDefaults instantiates a new GetMainStageResponseHouseNow object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMainStageResponseHouseNowWithDefaults() *GetMainStageResponseHouseNow {
+	this := GetMainStageResponseHouseNow{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetMainStageResponseHouseNow) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetMainStageResponseHouseNow) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetHouse returns the House field value
+func (o *GetMainStageResponseHouseNow) GetHouse() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.House
+}
+
+// GetHouseOk returns a tuple with the House field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetHouseOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.House, true
+}
+
+// SetHouse sets field value
+func (o *GetMainStageResponseHouseNow) SetHouse(v bool) {
+	o.House = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetMainStageResponseHouseNow) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetMainStageResponseHouseNow) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetAbout returns the About field value
+func (o *GetMainStageResponseHouseNow) GetAbout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.About
+}
+
+// GetAboutOk returns a tuple with the About field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetAboutOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.About, true
+}
+
+// SetAbout sets field value
+func (o *GetMainStageResponseHouseNow) SetAbout(v string) {
+	o.About = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *GetMainStageResponseHouseNow) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *GetMainStageResponseHouseNow) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *GetMainStageResponseHouseNow) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseHouseNow) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *GetMainStageResponseHouseNow) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNow) GetHref() string {
+	if o == nil || o.Href.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Href.Get()
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNow) GetHrefOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Href.Get(), o.Href.IsSet()
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNow) HasHref() bool {
+	if o != nil && o.Href.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given NullableString and assigns it to the Href field.
+func (o *GetMainStageResponseHouseNow) SetHref(v string) {
+	o.Href.Set(&v)
+}
+// SetHrefNil sets the value for Href to be an explicit nil
+func (o *GetMainStageResponseHouseNow) SetHrefNil() {
+	o.Href.Set(nil)
+}
+
+// UnsetHref ensures that no value is present for Href, not even an explicit nil
+func (o *GetMainStageResponseHouseNow) UnsetHref() {
+	o.Href.Unset()
+}
+
+// GetPlaybackUrl returns the PlaybackUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNow) GetPlaybackUrl() string {
+	if o == nil || o.PlaybackUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlaybackUrl.Get()
+}
+
+// GetPlaybackUrlOk returns a tuple with the PlaybackUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNow) GetPlaybackUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlaybackUrl.Get(), o.PlaybackUrl.IsSet()
+}
+
+// HasPlaybackUrl returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNow) HasPlaybackUrl() bool {
+	if o != nil && o.PlaybackUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaybackUrl gets a reference to the given NullableString and assigns it to the PlaybackUrl field.
+func (o *GetMainStageResponseHouseNow) SetPlaybackUrl(v string) {
+	o.PlaybackUrl.Set(&v)
+}
+// SetPlaybackUrlNil sets the value for PlaybackUrl to be an explicit nil
+func (o *GetMainStageResponseHouseNow) SetPlaybackUrlNil() {
+	o.PlaybackUrl.Set(nil)
+}
+
+// UnsetPlaybackUrl ensures that no value is present for PlaybackUrl, not even an explicit nil
+func (o *GetMainStageResponseHouseNow) UnsetPlaybackUrl() {
+	o.PlaybackUrl.Unset()
+}
+
+// GetCoverImageUrl returns the CoverImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseHouseNow) GetCoverImageUrl() string {
+	if o == nil || o.CoverImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CoverImageUrl.Get()
+}
+
+// GetCoverImageUrlOk returns a tuple with the CoverImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseHouseNow) GetCoverImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CoverImageUrl.Get(), o.CoverImageUrl.IsSet()
+}
+
+// HasCoverImageUrl returns a boolean if a field has been set.
+func (o *GetMainStageResponseHouseNow) HasCoverImageUrl() bool {
+	if o != nil && o.CoverImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoverImageUrl gets a reference to the given NullableString and assigns it to the CoverImageUrl field.
+func (o *GetMainStageResponseHouseNow) SetCoverImageUrl(v string) {
+	o.CoverImageUrl.Set(&v)
+}
+// SetCoverImageUrlNil sets the value for CoverImageUrl to be an explicit nil
+func (o *GetMainStageResponseHouseNow) SetCoverImageUrlNil() {
+	o.CoverImageUrl.Set(nil)
+}
+
+// UnsetCoverImageUrl ensures that no value is present for CoverImageUrl, not even an explicit nil
+func (o *GetMainStageResponseHouseNow) UnsetCoverImageUrl() {
+	o.CoverImageUrl.Unset()
+}
+
+func (o GetMainStageResponseHouseNow) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["house"] = o.House
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["about"] = o.About
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if o.Href.IsSet() {
+		toSerialize["href"] = o.Href.Get()
+	}
+	if o.PlaybackUrl.IsSet() {
+		toSerialize["playbackUrl"] = o.PlaybackUrl.Get()
+	}
+	if o.CoverImageUrl.IsSet() {
+		toSerialize["coverImageUrl"] = o.CoverImageUrl.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetMainStageResponseHouseNow struct {
+	value *GetMainStageResponseHouseNow
+	isSet bool
+}
+
+func (v NullableGetMainStageResponseHouseNow) Get() *GetMainStageResponseHouseNow {
+	return v.value
+}
+
+func (v *NullableGetMainStageResponseHouseNow) Set(val *GetMainStageResponseHouseNow) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMainStageResponseHouseNow) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMainStageResponseHouseNow) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMainStageResponseHouseNow(val *GetMainStageResponseHouseNow) *NullableGetMainStageResponseHouseNow {
+	return &NullableGetMainStageResponseHouseNow{value: val, isSet: true}
+}
+
+func (v NullableGetMainStageResponseHouseNow) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMainStageResponseHouseNow) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -862,6 +1782,7 @@ type GetMainStageResponseStream struct {
 	PlaybackUrl NullableString `json:"playbackUrl,omitempty"`
 	CoverImageUrl NullableString `json:"coverImageUrl,omitempty"`
 	Host NullableString `json:"host,omitempty"`
+	Lot NullableGetMainStageResponseStreamLot `json:"lot,omitempty"`
 }
 
 // NewGetMainStageResponseStream instantiates a new GetMainStageResponseStream object
@@ -1057,6 +1978,48 @@ func (o *GetMainStageResponseStream) UnsetHost() {
 	o.Host.Unset()
 }
 
+// GetLot returns the Lot field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseStream) GetLot() GetMainStageResponseStreamLot {
+	if o == nil || o.Lot.Get() == nil {
+		var ret GetMainStageResponseStreamLot
+		return ret
+	}
+	return *o.Lot.Get()
+}
+
+// GetLotOk returns a tuple with the Lot field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseStream) GetLotOk() (*GetMainStageResponseStreamLot, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Lot.Get(), o.Lot.IsSet()
+}
+
+// HasLot returns a boolean if a field has been set.
+func (o *GetMainStageResponseStream) HasLot() bool {
+	if o != nil && o.Lot.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLot gets a reference to the given NullableGetMainStageResponseStreamLot and assigns it to the Lot field.
+func (o *GetMainStageResponseStream) SetLot(v GetMainStageResponseStreamLot) {
+	o.Lot.Set(&v)
+}
+// SetLotNil sets the value for Lot to be an explicit nil
+func (o *GetMainStageResponseStream) SetLotNil() {
+	o.Lot.Set(nil)
+}
+
+// UnsetLot ensures that no value is present for Lot, not even an explicit nil
+func (o *GetMainStageResponseStream) UnsetLot() {
+	o.Lot.Unset()
+}
+
 func (o GetMainStageResponseStream) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1073,6 +2036,9 @@ func (o GetMainStageResponseStream) MarshalJSON() ([]byte, error) {
 	}
 	if o.Host.IsSet() {
 		toSerialize["host"] = o.Host.Get()
+	}
+	if o.Lot.IsSet() {
+		toSerialize["lot"] = o.Lot.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1109,6 +2075,290 @@ func (v NullableGetMainStageResponseStream) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableGetMainStageResponseStream) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetMainStageResponseStreamLot struct for GetMainStageResponseStreamLot
+type GetMainStageResponseStreamLot struct {
+	Id string `json:"id"`
+	SessionId string `json:"sessionId"`
+	LotNumber float32 `json:"lotNumber"`
+	Title string `json:"title"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	// Integer cents; 0 until somebody bids.
+	CurrentBidCents float32 `json:"currentBidCents"`
+	// What the bid transaction will demand next -- the api's own figure.
+	MinimumNextBidCents float32 `json:"minimumNextBidCents"`
+}
+
+// NewGetMainStageResponseStreamLot instantiates a new GetMainStageResponseStreamLot object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMainStageResponseStreamLot(id string, sessionId string, lotNumber float32, title string, currentBidCents float32, minimumNextBidCents float32) *GetMainStageResponseStreamLot {
+	this := GetMainStageResponseStreamLot{}
+	this.Id = id
+	this.SessionId = sessionId
+	this.LotNumber = lotNumber
+	this.Title = title
+	this.CurrentBidCents = currentBidCents
+	this.MinimumNextBidCents = minimumNextBidCents
+	return &this
+}
+
+// NewGetMainStageResponseStreamLotWithDefaults instantiates a new GetMainStageResponseStreamLot object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMainStageResponseStreamLotWithDefaults() *GetMainStageResponseStreamLot {
+	this := GetMainStageResponseStreamLot{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetMainStageResponseStreamLot) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetMainStageResponseStreamLot) SetId(v string) {
+	o.Id = v
+}
+
+// GetSessionId returns the SessionId field value
+func (o *GetMainStageResponseStreamLot) GetSessionId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SessionId
+}
+
+// GetSessionIdOk returns a tuple with the SessionId field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetSessionIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SessionId, true
+}
+
+// SetSessionId sets field value
+func (o *GetMainStageResponseStreamLot) SetSessionId(v string) {
+	o.SessionId = v
+}
+
+// GetLotNumber returns the LotNumber field value
+func (o *GetMainStageResponseStreamLot) GetLotNumber() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LotNumber
+}
+
+// GetLotNumberOk returns a tuple with the LotNumber field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetLotNumberOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LotNumber, true
+}
+
+// SetLotNumber sets field value
+func (o *GetMainStageResponseStreamLot) SetLotNumber(v float32) {
+	o.LotNumber = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetMainStageResponseStreamLot) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetMainStageResponseStreamLot) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMainStageResponseStreamLot) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMainStageResponseStreamLot) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetMainStageResponseStreamLot) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetMainStageResponseStreamLot) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetMainStageResponseStreamLot) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetMainStageResponseStreamLot) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetCurrentBidCents returns the CurrentBidCents field value
+func (o *GetMainStageResponseStreamLot) GetCurrentBidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CurrentBidCents
+}
+
+// GetCurrentBidCentsOk returns a tuple with the CurrentBidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetCurrentBidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CurrentBidCents, true
+}
+
+// SetCurrentBidCents sets field value
+func (o *GetMainStageResponseStreamLot) SetCurrentBidCents(v float32) {
+	o.CurrentBidCents = v
+}
+
+// GetMinimumNextBidCents returns the MinimumNextBidCents field value
+func (o *GetMainStageResponseStreamLot) GetMinimumNextBidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MinimumNextBidCents
+}
+
+// GetMinimumNextBidCentsOk returns a tuple with the MinimumNextBidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetMainStageResponseStreamLot) GetMinimumNextBidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MinimumNextBidCents, true
+}
+
+// SetMinimumNextBidCents sets field value
+func (o *GetMainStageResponseStreamLot) SetMinimumNextBidCents(v float32) {
+	o.MinimumNextBidCents = v
+}
+
+func (o GetMainStageResponseStreamLot) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	if true {
+		toSerialize["lotNumber"] = o.LotNumber
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["currentBidCents"] = o.CurrentBidCents
+	}
+	if true {
+		toSerialize["minimumNextBidCents"] = o.MinimumNextBidCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetMainStageResponseStreamLot struct {
+	value *GetMainStageResponseStreamLot
+	isSet bool
+}
+
+func (v NullableGetMainStageResponseStreamLot) Get() *GetMainStageResponseStreamLot {
+	return v.value
+}
+
+func (v *NullableGetMainStageResponseStreamLot) Set(val *GetMainStageResponseStreamLot) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMainStageResponseStreamLot) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMainStageResponseStreamLot) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMainStageResponseStreamLot(val *GetMainStageResponseStreamLot) *NullableGetMainStageResponseStreamLot {
+	return &NullableGetMainStageResponseStreamLot{value: val, isSet: true}
+}
+
+func (v NullableGetMainStageResponseStreamLot) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMainStageResponseStreamLot) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

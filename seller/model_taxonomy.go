@@ -112,11 +112,11 @@ type GetTaxonomyCategoryAspectResponseAspects struct {
 	DataType string `json:"dataType"`
 	EnumValues []string `json:"enumValues,omitempty"`
 	Required bool `json:"required"`
-	// Cardinality — SINGLE_VALUE / MULTIPLE_VALUES.
-	Cardinality string `json:"cardinality"`
 	VariesByAspect NullableBool `json:"variesByAspect,omitempty"`
 	// Helpful for client validation — max length when supplied.
 	MaxLength NullableFloat32 `json:"maxLength,omitempty"`
+	// Cardinality — SINGLE_VALUE / MULTIPLE_VALUES.
+	Cardinality string `json:"cardinality"`
 	SelectionOnly bool `json:"selectionOnly"`
 }
 
@@ -247,30 +247,6 @@ func (o *GetTaxonomyCategoryAspectResponseAspects) SetRequired(v bool) {
 	o.Required = v
 }
 
-// GetCardinality returns the Cardinality field value
-func (o *GetTaxonomyCategoryAspectResponseAspects) GetCardinality() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Cardinality
-}
-
-// GetCardinalityOk returns a tuple with the Cardinality field value
-// and a boolean to check if the value has been set.
-func (o *GetTaxonomyCategoryAspectResponseAspects) GetCardinalityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cardinality, true
-}
-
-// SetCardinality sets field value
-func (o *GetTaxonomyCategoryAspectResponseAspects) SetCardinality(v string) {
-	o.Cardinality = v
-}
-
 // GetVariesByAspect returns the VariesByAspect field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTaxonomyCategoryAspectResponseAspects) GetVariesByAspect() bool {
 	if o == nil || o.VariesByAspect.Get() == nil {
@@ -355,6 +331,30 @@ func (o *GetTaxonomyCategoryAspectResponseAspects) UnsetMaxLength() {
 	o.MaxLength.Unset()
 }
 
+// GetCardinality returns the Cardinality field value
+func (o *GetTaxonomyCategoryAspectResponseAspects) GetCardinality() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Cardinality
+}
+
+// GetCardinalityOk returns a tuple with the Cardinality field value
+// and a boolean to check if the value has been set.
+func (o *GetTaxonomyCategoryAspectResponseAspects) GetCardinalityOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Cardinality, true
+}
+
+// SetCardinality sets field value
+func (o *GetTaxonomyCategoryAspectResponseAspects) SetCardinality(v string) {
+	o.Cardinality = v
+}
+
 // GetSelectionOnly returns the SelectionOnly field value
 func (o *GetTaxonomyCategoryAspectResponseAspects) GetSelectionOnly() bool {
 	if o == nil {
@@ -393,14 +393,14 @@ func (o GetTaxonomyCategoryAspectResponseAspects) MarshalJSON() ([]byte, error) 
 	if true {
 		toSerialize["required"] = o.Required
 	}
-	if true {
-		toSerialize["cardinality"] = o.Cardinality
-	}
 	if o.VariesByAspect.IsSet() {
 		toSerialize["variesByAspect"] = o.VariesByAspect.Get()
 	}
 	if o.MaxLength.IsSet() {
 		toSerialize["maxLength"] = o.MaxLength.Get()
+	}
+	if true {
+		toSerialize["cardinality"] = o.Cardinality
 	}
 	if true {
 		toSerialize["selectionOnly"] = o.SelectionOnly
@@ -872,14 +872,14 @@ func (v *NullableGetTaxonomyCategoryResponse) UnmarshalJSON(src []byte) error {
 type GetTaxonomyRequiredFieldResponse struct {
 	Platform string `json:"platform"`
 	RequiredFields []GetTaxonomyRequiredFieldResponseRequiredFields `json:"requiredFields"`
-	InlineAspects []GetTaxonomyCategoryAspectResponseAspects `json:"inlineAspects"`
+	InlineAspects []GetTaxonomyRequiredFieldResponseInlineAspects `json:"inlineAspects"`
 }
 
 // NewGetTaxonomyRequiredFieldResponse instantiates a new GetTaxonomyRequiredFieldResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetTaxonomyRequiredFieldResponse(platform string, requiredFields []GetTaxonomyRequiredFieldResponseRequiredFields, inlineAspects []GetTaxonomyCategoryAspectResponseAspects) *GetTaxonomyRequiredFieldResponse {
+func NewGetTaxonomyRequiredFieldResponse(platform string, requiredFields []GetTaxonomyRequiredFieldResponseRequiredFields, inlineAspects []GetTaxonomyRequiredFieldResponseInlineAspects) *GetTaxonomyRequiredFieldResponse {
 	this := GetTaxonomyRequiredFieldResponse{}
 	this.Platform = platform
 	this.RequiredFields = requiredFields
@@ -944,9 +944,9 @@ func (o *GetTaxonomyRequiredFieldResponse) SetRequiredFields(v []GetTaxonomyRequ
 }
 
 // GetInlineAspects returns the InlineAspects field value
-func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspects() []GetTaxonomyCategoryAspectResponseAspects {
+func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspects() []GetTaxonomyRequiredFieldResponseInlineAspects {
 	if o == nil {
-		var ret []GetTaxonomyCategoryAspectResponseAspects
+		var ret []GetTaxonomyRequiredFieldResponseInlineAspects
 		return ret
 	}
 
@@ -955,7 +955,7 @@ func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspects() []GetTaxonomyCateg
 
 // GetInlineAspectsOk returns a tuple with the InlineAspects field value
 // and a boolean to check if the value has been set.
-func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspectsOk() ([]GetTaxonomyCategoryAspectResponseAspects, bool) {
+func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspectsOk() ([]GetTaxonomyRequiredFieldResponseInlineAspects, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -963,7 +963,7 @@ func (o *GetTaxonomyRequiredFieldResponse) GetInlineAspectsOk() ([]GetTaxonomyCa
 }
 
 // SetInlineAspects sets field value
-func (o *GetTaxonomyRequiredFieldResponse) SetInlineAspects(v []GetTaxonomyCategoryAspectResponseAspects) {
+func (o *GetTaxonomyRequiredFieldResponse) SetInlineAspects(v []GetTaxonomyRequiredFieldResponseInlineAspects) {
 	o.InlineAspects = v
 }
 
@@ -1017,14 +1017,105 @@ func (v *NullableGetTaxonomyRequiredFieldResponse) UnmarshalJSON(src []byte) err
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetTaxonomyRequiredFieldResponseInlineAspects struct for GetTaxonomyRequiredFieldResponseInlineAspects
+type GetTaxonomyRequiredFieldResponseInlineAspects struct {
+	SelectionOnly bool `json:"selectionOnly"`
+}
+
+// NewGetTaxonomyRequiredFieldResponseInlineAspects instantiates a new GetTaxonomyRequiredFieldResponseInlineAspects object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetTaxonomyRequiredFieldResponseInlineAspects(selectionOnly bool) *GetTaxonomyRequiredFieldResponseInlineAspects {
+	this := GetTaxonomyRequiredFieldResponseInlineAspects{}
+	this.SelectionOnly = selectionOnly
+	return &this
+}
+
+// NewGetTaxonomyRequiredFieldResponseInlineAspectsWithDefaults instantiates a new GetTaxonomyRequiredFieldResponseInlineAspects object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetTaxonomyRequiredFieldResponseInlineAspectsWithDefaults() *GetTaxonomyRequiredFieldResponseInlineAspects {
+	this := GetTaxonomyRequiredFieldResponseInlineAspects{}
+	return &this
+}
+
+// GetSelectionOnly returns the SelectionOnly field value
+func (o *GetTaxonomyRequiredFieldResponseInlineAspects) GetSelectionOnly() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SelectionOnly
+}
+
+// GetSelectionOnlyOk returns a tuple with the SelectionOnly field value
+// and a boolean to check if the value has been set.
+func (o *GetTaxonomyRequiredFieldResponseInlineAspects) GetSelectionOnlyOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SelectionOnly, true
+}
+
+// SetSelectionOnly sets field value
+func (o *GetTaxonomyRequiredFieldResponseInlineAspects) SetSelectionOnly(v bool) {
+	o.SelectionOnly = v
+}
+
+func (o GetTaxonomyRequiredFieldResponseInlineAspects) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["selectionOnly"] = o.SelectionOnly
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetTaxonomyRequiredFieldResponseInlineAspects struct {
+	value *GetTaxonomyRequiredFieldResponseInlineAspects
+	isSet bool
+}
+
+func (v NullableGetTaxonomyRequiredFieldResponseInlineAspects) Get() *GetTaxonomyRequiredFieldResponseInlineAspects {
+	return v.value
+}
+
+func (v *NullableGetTaxonomyRequiredFieldResponseInlineAspects) Set(val *GetTaxonomyRequiredFieldResponseInlineAspects) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetTaxonomyRequiredFieldResponseInlineAspects) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetTaxonomyRequiredFieldResponseInlineAspects) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetTaxonomyRequiredFieldResponseInlineAspects(val *GetTaxonomyRequiredFieldResponseInlineAspects) *NullableGetTaxonomyRequiredFieldResponseInlineAspects {
+	return &NullableGetTaxonomyRequiredFieldResponseInlineAspects{value: val, isSet: true}
+}
+
+func (v NullableGetTaxonomyRequiredFieldResponseInlineAspects) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetTaxonomyRequiredFieldResponseInlineAspects) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetTaxonomyRequiredFieldResponseRequiredFields struct for GetTaxonomyRequiredFieldResponseRequiredFields
 type GetTaxonomyRequiredFieldResponseRequiredFields struct {
 	DataType string `json:"dataType"`
 	EnumValues []string `json:"enumValues,omitempty"`
 	Label string `json:"label"`
 	Key string `json:"key"`
-	Required bool `json:"required"`
 	Hint NullableString `json:"hint,omitempty"`
+	Required bool `json:"required"`
 	Master bool `json:"master"`
 	SelectionOnly bool `json:"selectionOnly"`
 }
@@ -1157,30 +1248,6 @@ func (o *GetTaxonomyRequiredFieldResponseRequiredFields) SetKey(v string) {
 	o.Key = v
 }
 
-// GetRequired returns the Required field value
-func (o *GetTaxonomyRequiredFieldResponseRequiredFields) GetRequired() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Required
-}
-
-// GetRequiredOk returns a tuple with the Required field value
-// and a boolean to check if the value has been set.
-func (o *GetTaxonomyRequiredFieldResponseRequiredFields) GetRequiredOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Required, true
-}
-
-// SetRequired sets field value
-func (o *GetTaxonomyRequiredFieldResponseRequiredFields) SetRequired(v bool) {
-	o.Required = v
-}
-
 // GetHint returns the Hint field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTaxonomyRequiredFieldResponseRequiredFields) GetHint() string {
 	if o == nil || o.Hint.Get() == nil {
@@ -1221,6 +1288,30 @@ func (o *GetTaxonomyRequiredFieldResponseRequiredFields) SetHintNil() {
 // UnsetHint ensures that no value is present for Hint, not even an explicit nil
 func (o *GetTaxonomyRequiredFieldResponseRequiredFields) UnsetHint() {
 	o.Hint.Unset()
+}
+
+// GetRequired returns the Required field value
+func (o *GetTaxonomyRequiredFieldResponseRequiredFields) GetRequired() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Required
+}
+
+// GetRequiredOk returns a tuple with the Required field value
+// and a boolean to check if the value has been set.
+func (o *GetTaxonomyRequiredFieldResponseRequiredFields) GetRequiredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Required, true
+}
+
+// SetRequired sets field value
+func (o *GetTaxonomyRequiredFieldResponseRequiredFields) SetRequired(v bool) {
+	o.Required = v
 }
 
 // GetMaster returns the Master field value
@@ -1285,11 +1376,11 @@ func (o GetTaxonomyRequiredFieldResponseRequiredFields) MarshalJSON() ([]byte, e
 	if true {
 		toSerialize["key"] = o.Key
 	}
-	if true {
-		toSerialize["required"] = o.Required
-	}
 	if o.Hint.IsSet() {
 		toSerialize["hint"] = o.Hint.Get()
+	}
+	if true {
+		toSerialize["required"] = o.Required
 	}
 	if true {
 		toSerialize["master"] = o.Master
@@ -1332,6 +1423,523 @@ func (v NullableGetTaxonomyRequiredFieldResponseRequiredFields) MarshalJSON() ([
 }
 
 func (v *NullableGetTaxonomyRequiredFieldResponseRequiredFields) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListTaxonomyEbayCharitiesItem struct for ListTaxonomyEbayCharitiesItem
+type ListTaxonomyEbayCharitiesItem struct {
+	// What the listing's `charityId` takes.
+	CharityOrgId string `json:"charityOrgId"`
+	Name string `json:"name"`
+	MissionStatement NullableString `json:"missionStatement,omitempty"`
+	LogoUrl NullableString `json:"logoUrl,omitempty"`
+	Website NullableString `json:"website,omitempty"`
+	// \"Nashville, TN\" — whatever of city / state / country eBay returns.
+	Location NullableString `json:"location,omitempty"`
+	RegistrationId NullableString `json:"registrationId,omitempty"`
+}
+
+// NewListTaxonomyEbayCharitiesItem instantiates a new ListTaxonomyEbayCharitiesItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListTaxonomyEbayCharitiesItem(charityOrgId string, name string) *ListTaxonomyEbayCharitiesItem {
+	this := ListTaxonomyEbayCharitiesItem{}
+	this.CharityOrgId = charityOrgId
+	this.Name = name
+	return &this
+}
+
+// NewListTaxonomyEbayCharitiesItemWithDefaults instantiates a new ListTaxonomyEbayCharitiesItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListTaxonomyEbayCharitiesItemWithDefaults() *ListTaxonomyEbayCharitiesItem {
+	this := ListTaxonomyEbayCharitiesItem{}
+	return &this
+}
+
+// GetCharityOrgId returns the CharityOrgId field value
+func (o *ListTaxonomyEbayCharitiesItem) GetCharityOrgId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CharityOrgId
+}
+
+// GetCharityOrgIdOk returns a tuple with the CharityOrgId field value
+// and a boolean to check if the value has been set.
+func (o *ListTaxonomyEbayCharitiesItem) GetCharityOrgIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CharityOrgId, true
+}
+
+// SetCharityOrgId sets field value
+func (o *ListTaxonomyEbayCharitiesItem) SetCharityOrgId(v string) {
+	o.CharityOrgId = v
+}
+
+// GetName returns the Name field value
+func (o *ListTaxonomyEbayCharitiesItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListTaxonomyEbayCharitiesItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListTaxonomyEbayCharitiesItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetMissionStatement returns the MissionStatement field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListTaxonomyEbayCharitiesItem) GetMissionStatement() string {
+	if o == nil || o.MissionStatement.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MissionStatement.Get()
+}
+
+// GetMissionStatementOk returns a tuple with the MissionStatement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListTaxonomyEbayCharitiesItem) GetMissionStatementOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MissionStatement.Get(), o.MissionStatement.IsSet()
+}
+
+// HasMissionStatement returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesItem) HasMissionStatement() bool {
+	if o != nil && o.MissionStatement.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMissionStatement gets a reference to the given NullableString and assigns it to the MissionStatement field.
+func (o *ListTaxonomyEbayCharitiesItem) SetMissionStatement(v string) {
+	o.MissionStatement.Set(&v)
+}
+// SetMissionStatementNil sets the value for MissionStatement to be an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) SetMissionStatementNil() {
+	o.MissionStatement.Set(nil)
+}
+
+// UnsetMissionStatement ensures that no value is present for MissionStatement, not even an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) UnsetMissionStatement() {
+	o.MissionStatement.Unset()
+}
+
+// GetLogoUrl returns the LogoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListTaxonomyEbayCharitiesItem) GetLogoUrl() string {
+	if o == nil || o.LogoUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LogoUrl.Get()
+}
+
+// GetLogoUrlOk returns a tuple with the LogoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListTaxonomyEbayCharitiesItem) GetLogoUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LogoUrl.Get(), o.LogoUrl.IsSet()
+}
+
+// HasLogoUrl returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesItem) HasLogoUrl() bool {
+	if o != nil && o.LogoUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLogoUrl gets a reference to the given NullableString and assigns it to the LogoUrl field.
+func (o *ListTaxonomyEbayCharitiesItem) SetLogoUrl(v string) {
+	o.LogoUrl.Set(&v)
+}
+// SetLogoUrlNil sets the value for LogoUrl to be an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) SetLogoUrlNil() {
+	o.LogoUrl.Set(nil)
+}
+
+// UnsetLogoUrl ensures that no value is present for LogoUrl, not even an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) UnsetLogoUrl() {
+	o.LogoUrl.Unset()
+}
+
+// GetWebsite returns the Website field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListTaxonomyEbayCharitiesItem) GetWebsite() string {
+	if o == nil || o.Website.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Website.Get()
+}
+
+// GetWebsiteOk returns a tuple with the Website field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListTaxonomyEbayCharitiesItem) GetWebsiteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Website.Get(), o.Website.IsSet()
+}
+
+// HasWebsite returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesItem) HasWebsite() bool {
+	if o != nil && o.Website.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWebsite gets a reference to the given NullableString and assigns it to the Website field.
+func (o *ListTaxonomyEbayCharitiesItem) SetWebsite(v string) {
+	o.Website.Set(&v)
+}
+// SetWebsiteNil sets the value for Website to be an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) SetWebsiteNil() {
+	o.Website.Set(nil)
+}
+
+// UnsetWebsite ensures that no value is present for Website, not even an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) UnsetWebsite() {
+	o.Website.Unset()
+}
+
+// GetLocation returns the Location field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListTaxonomyEbayCharitiesItem) GetLocation() string {
+	if o == nil || o.Location.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Location.Get()
+}
+
+// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListTaxonomyEbayCharitiesItem) GetLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Location.Get(), o.Location.IsSet()
+}
+
+// HasLocation returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesItem) HasLocation() bool {
+	if o != nil && o.Location.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLocation gets a reference to the given NullableString and assigns it to the Location field.
+func (o *ListTaxonomyEbayCharitiesItem) SetLocation(v string) {
+	o.Location.Set(&v)
+}
+// SetLocationNil sets the value for Location to be an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) SetLocationNil() {
+	o.Location.Set(nil)
+}
+
+// UnsetLocation ensures that no value is present for Location, not even an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) UnsetLocation() {
+	o.Location.Unset()
+}
+
+// GetRegistrationId returns the RegistrationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListTaxonomyEbayCharitiesItem) GetRegistrationId() string {
+	if o == nil || o.RegistrationId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RegistrationId.Get()
+}
+
+// GetRegistrationIdOk returns a tuple with the RegistrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListTaxonomyEbayCharitiesItem) GetRegistrationIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RegistrationId.Get(), o.RegistrationId.IsSet()
+}
+
+// HasRegistrationId returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesItem) HasRegistrationId() bool {
+	if o != nil && o.RegistrationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationId gets a reference to the given NullableString and assigns it to the RegistrationId field.
+func (o *ListTaxonomyEbayCharitiesItem) SetRegistrationId(v string) {
+	o.RegistrationId.Set(&v)
+}
+// SetRegistrationIdNil sets the value for RegistrationId to be an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) SetRegistrationIdNil() {
+	o.RegistrationId.Set(nil)
+}
+
+// UnsetRegistrationId ensures that no value is present for RegistrationId, not even an explicit nil
+func (o *ListTaxonomyEbayCharitiesItem) UnsetRegistrationId() {
+	o.RegistrationId.Unset()
+}
+
+func (o ListTaxonomyEbayCharitiesItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["charityOrgId"] = o.CharityOrgId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.MissionStatement.IsSet() {
+		toSerialize["missionStatement"] = o.MissionStatement.Get()
+	}
+	if o.LogoUrl.IsSet() {
+		toSerialize["logoUrl"] = o.LogoUrl.Get()
+	}
+	if o.Website.IsSet() {
+		toSerialize["website"] = o.Website.Get()
+	}
+	if o.Location.IsSet() {
+		toSerialize["location"] = o.Location.Get()
+	}
+	if o.RegistrationId.IsSet() {
+		toSerialize["registrationId"] = o.RegistrationId.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListTaxonomyEbayCharitiesItem struct {
+	value *ListTaxonomyEbayCharitiesItem
+	isSet bool
+}
+
+func (v NullableListTaxonomyEbayCharitiesItem) Get() *ListTaxonomyEbayCharitiesItem {
+	return v.value
+}
+
+func (v *NullableListTaxonomyEbayCharitiesItem) Set(val *ListTaxonomyEbayCharitiesItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListTaxonomyEbayCharitiesItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListTaxonomyEbayCharitiesItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListTaxonomyEbayCharitiesItem(val *ListTaxonomyEbayCharitiesItem) *NullableListTaxonomyEbayCharitiesItem {
+	return &NullableListTaxonomyEbayCharitiesItem{value: val, isSet: true}
+}
+
+func (v NullableListTaxonomyEbayCharitiesItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListTaxonomyEbayCharitiesItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListTaxonomyEbayCharitiesResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListTaxonomyEbayCharitiesResponse struct {
+	// The rows.
+	Data []ListTaxonomyEbayCharitiesItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListTaxonomyEbayCharitiesResponse instantiates a new ListTaxonomyEbayCharitiesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListTaxonomyEbayCharitiesResponse(data []ListTaxonomyEbayCharitiesItem) *ListTaxonomyEbayCharitiesResponse {
+	this := ListTaxonomyEbayCharitiesResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListTaxonomyEbayCharitiesResponseWithDefaults instantiates a new ListTaxonomyEbayCharitiesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListTaxonomyEbayCharitiesResponseWithDefaults() *ListTaxonomyEbayCharitiesResponse {
+	this := ListTaxonomyEbayCharitiesResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListTaxonomyEbayCharitiesResponse) GetData() []ListTaxonomyEbayCharitiesItem {
+	if o == nil {
+		var ret []ListTaxonomyEbayCharitiesItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListTaxonomyEbayCharitiesResponse) GetDataOk() ([]ListTaxonomyEbayCharitiesItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListTaxonomyEbayCharitiesResponse) SetData(v []ListTaxonomyEbayCharitiesItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListTaxonomyEbayCharitiesResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListTaxonomyEbayCharitiesResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListTaxonomyEbayCharitiesResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListTaxonomyEbayCharitiesResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListTaxonomyEbayCharitiesResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListTaxonomyEbayCharitiesResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListTaxonomyEbayCharitiesResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListTaxonomyEbayCharitiesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListTaxonomyEbayCharitiesResponse struct {
+	value *ListTaxonomyEbayCharitiesResponse
+	isSet bool
+}
+
+func (v NullableListTaxonomyEbayCharitiesResponse) Get() *ListTaxonomyEbayCharitiesResponse {
+	return v.value
+}
+
+func (v *NullableListTaxonomyEbayCharitiesResponse) Set(val *ListTaxonomyEbayCharitiesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListTaxonomyEbayCharitiesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListTaxonomyEbayCharitiesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListTaxonomyEbayCharitiesResponse(val *ListTaxonomyEbayCharitiesResponse) *NullableListTaxonomyEbayCharitiesResponse {
+	return &NullableListTaxonomyEbayCharitiesResponse{value: val, isSet: true}
+}
+
+func (v NullableListTaxonomyEbayCharitiesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListTaxonomyEbayCharitiesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

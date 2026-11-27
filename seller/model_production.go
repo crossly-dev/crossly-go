@@ -113,12 +113,12 @@ type CreateProductionCandidateAcceptResponseCandidate struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Status string `json:"status"`
 	RetailPriceCents NullableFloat32 `json:"retailPriceCents,omitempty"`
-	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
-	CompletedAt NullableTime `json:"completedAt,omitempty"`
 	AcceptedAt NullableTime `json:"acceptedAt,omitempty"`
+	CompletedAt NullableTime `json:"completedAt,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
+	CosmeticId string `json:"cosmeticId"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
-	CosmeticId string `json:"cosmeticId"`
 	EditionSize NullableFloat32 `json:"editionSize,omitempty"`
 	UnitCostCents NullableFloat32 `json:"unitCostCents,omitempty"`
 	RunCostCents NullableFloat32 `json:"runCostCents,omitempty"`
@@ -138,15 +138,15 @@ type CreateProductionCandidateAcceptResponseCandidate struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProductionCandidateAcceptResponseCandidate(id string, createdAt time.Time, updatedAt time.Time, status string, merchantId string, creatorSubjectId string, cosmeticId string, designerRoyaltyBps float32, fundingAtEligibleCents float32, distinctHoldersAtEligible float32, holderPriority bool) *CreateProductionCandidateAcceptResponseCandidate {
+func NewCreateProductionCandidateAcceptResponseCandidate(id string, createdAt time.Time, updatedAt time.Time, status string, cosmeticId string, merchantId string, creatorSubjectId string, designerRoyaltyBps float32, fundingAtEligibleCents float32, distinctHoldersAtEligible float32, holderPriority bool) *CreateProductionCandidateAcceptResponseCandidate {
 	this := CreateProductionCandidateAcceptResponseCandidate{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	this.Status = status
+	this.CosmeticId = cosmeticId
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
-	this.CosmeticId = cosmeticId
 	this.DesignerRoyaltyBps = designerRoyaltyBps
 	this.FundingAtEligibleCents = fundingAtEligibleCents
 	this.DistinctHoldersAtEligible = distinctHoldersAtEligible
@@ -300,46 +300,46 @@ func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetRetailPriceCents
 	o.RetailPriceCents.Unset()
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId.Get() == nil {
-		var ret string
+// GetAcceptedAt returns the AcceptedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetAcceptedAt() time.Time {
+	if o == nil || o.AcceptedAt.Get() == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.CreatorUserId.Get()
+	return *o.AcceptedAt.Get()
 }
 
-// GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
+// GetAcceptedAtOk returns a tuple with the AcceptedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetCreatorUserIdOk() (*string, bool) {
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetAcceptedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
+	return o.AcceptedAt.Get(), o.AcceptedAt.IsSet()
 }
 
-// HasCreatorUserId returns a boolean if a field has been set.
-func (o *CreateProductionCandidateAcceptResponseCandidate) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId.IsSet() {
+// HasAcceptedAt returns a boolean if a field has been set.
+func (o *CreateProductionCandidateAcceptResponseCandidate) HasAcceptedAt() bool {
+	if o != nil && o.AcceptedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
-func (o *CreateProductionCandidateAcceptResponseCandidate) SetCreatorUserId(v string) {
-	o.CreatorUserId.Set(&v)
+// SetAcceptedAt gets a reference to the given NullableTime and assigns it to the AcceptedAt field.
+func (o *CreateProductionCandidateAcceptResponseCandidate) SetAcceptedAt(v time.Time) {
+	o.AcceptedAt.Set(&v)
 }
-// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
-func (o *CreateProductionCandidateAcceptResponseCandidate) SetCreatorUserIdNil() {
-	o.CreatorUserId.Set(nil)
+// SetAcceptedAtNil sets the value for AcceptedAt to be an explicit nil
+func (o *CreateProductionCandidateAcceptResponseCandidate) SetAcceptedAtNil() {
+	o.AcceptedAt.Set(nil)
 }
 
-// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
-func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetCreatorUserId() {
-	o.CreatorUserId.Unset()
+// UnsetAcceptedAt ensures that no value is present for AcceptedAt, not even an explicit nil
+func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetAcceptedAt() {
+	o.AcceptedAt.Unset()
 }
 
 // GetCompletedAt returns the CompletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -384,46 +384,70 @@ func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetCompletedAt() {
 	o.CompletedAt.Unset()
 }
 
-// GetAcceptedAt returns the AcceptedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetAcceptedAt() time.Time {
-	if o == nil || o.AcceptedAt.Get() == nil {
-		var ret time.Time
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetCreatorUserId() string {
+	if o == nil || o.CreatorUserId.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.AcceptedAt.Get()
+	return *o.CreatorUserId.Get()
 }
 
-// GetAcceptedAtOk returns a tuple with the AcceptedAt field value if set, nil otherwise
+// GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetAcceptedAtOk() (*time.Time, bool) {
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetCreatorUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.AcceptedAt.Get(), o.AcceptedAt.IsSet()
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
-// HasAcceptedAt returns a boolean if a field has been set.
-func (o *CreateProductionCandidateAcceptResponseCandidate) HasAcceptedAt() bool {
-	if o != nil && o.AcceptedAt.IsSet() {
+// HasCreatorUserId returns a boolean if a field has been set.
+func (o *CreateProductionCandidateAcceptResponseCandidate) HasCreatorUserId() bool {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAcceptedAt gets a reference to the given NullableTime and assigns it to the AcceptedAt field.
-func (o *CreateProductionCandidateAcceptResponseCandidate) SetAcceptedAt(v time.Time) {
-	o.AcceptedAt.Set(&v)
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
+func (o *CreateProductionCandidateAcceptResponseCandidate) SetCreatorUserId(v string) {
+	o.CreatorUserId.Set(&v)
 }
-// SetAcceptedAtNil sets the value for AcceptedAt to be an explicit nil
-func (o *CreateProductionCandidateAcceptResponseCandidate) SetAcceptedAtNil() {
-	o.AcceptedAt.Set(nil)
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *CreateProductionCandidateAcceptResponseCandidate) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
 }
 
-// UnsetAcceptedAt ensures that no value is present for AcceptedAt, not even an explicit nil
-func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetAcceptedAt() {
-	o.AcceptedAt.Unset()
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *CreateProductionCandidateAcceptResponseCandidate) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
+}
+
+// GetCosmeticId returns the CosmeticId field value
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *CreateProductionCandidateAcceptResponseCandidate) GetCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmeticId, true
+}
+
+// SetCosmeticId sets field value
+func (o *CreateProductionCandidateAcceptResponseCandidate) SetCosmeticId(v string) {
+	o.CosmeticId = v
 }
 
 // GetMerchantId returns the MerchantId field value
@@ -472,30 +496,6 @@ func (o *CreateProductionCandidateAcceptResponseCandidate) GetCreatorSubjectIdOk
 // SetCreatorSubjectId sets field value
 func (o *CreateProductionCandidateAcceptResponseCandidate) SetCreatorSubjectId(v string) {
 	o.CreatorSubjectId = v
-}
-
-// GetCosmeticId returns the CosmeticId field value
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CosmeticId
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *CreateProductionCandidateAcceptResponseCandidate) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CosmeticId, true
-}
-
-// SetCosmeticId sets field value
-func (o *CreateProductionCandidateAcceptResponseCandidate) SetCosmeticId(v string) {
-	o.CosmeticId = v
 }
 
 // GetEditionSize returns the EditionSize field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -989,23 +989,23 @@ func (o CreateProductionCandidateAcceptResponseCandidate) MarshalJSON() ([]byte,
 	if o.RetailPriceCents.IsSet() {
 		toSerialize["retailPriceCents"] = o.RetailPriceCents.Get()
 	}
-	if o.CreatorUserId.IsSet() {
-		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
+	if o.AcceptedAt.IsSet() {
+		toSerialize["acceptedAt"] = o.AcceptedAt.Get()
 	}
 	if o.CompletedAt.IsSet() {
 		toSerialize["completedAt"] = o.CompletedAt.Get()
 	}
-	if o.AcceptedAt.IsSet() {
-		toSerialize["acceptedAt"] = o.AcceptedAt.Get()
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
+	}
+	if true {
+		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["creatorSubjectId"] = o.CreatorSubjectId
-	}
-	if true {
-		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if o.EditionSize.IsSet() {
 		toSerialize["editionSize"] = o.EditionSize.Get()
@@ -1301,9 +1301,9 @@ type CreateProductionDesignSpecResponsePrefs struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
+	CosmeticId string `json:"cosmeticId"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
-	CosmeticId string `json:"cosmeticId"`
 	Spec NullableCreateProductionDesignSpecResponsePrefsSpec `json:"spec,omitempty"`
 	PhysicalOptOut bool `json:"physicalOptOut"`
 	Brief NullableCreateProductionDesignSpecResponsePrefsBrief `json:"brief,omitempty"`
@@ -1314,14 +1314,14 @@ type CreateProductionDesignSpecResponsePrefs struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProductionDesignSpecResponsePrefs(id string, createdAt time.Time, updatedAt time.Time, merchantId string, creatorSubjectId string, cosmeticId string, physicalOptOut bool) *CreateProductionDesignSpecResponsePrefs {
+func NewCreateProductionDesignSpecResponsePrefs(id string, createdAt time.Time, updatedAt time.Time, cosmeticId string, merchantId string, creatorSubjectId string, physicalOptOut bool) *CreateProductionDesignSpecResponsePrefs {
 	this := CreateProductionDesignSpecResponsePrefs{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
+	this.CosmeticId = cosmeticId
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
-	this.CosmeticId = cosmeticId
 	this.PhysicalOptOut = physicalOptOut
 	return &this
 }
@@ -1406,6 +1406,30 @@ func (o *CreateProductionDesignSpecResponsePrefs) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetCosmeticId returns the CosmeticId field value
+func (o *CreateProductionDesignSpecResponsePrefs) GetCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *CreateProductionDesignSpecResponsePrefs) GetCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmeticId, true
+}
+
+// SetCosmeticId sets field value
+func (o *CreateProductionDesignSpecResponsePrefs) SetCosmeticId(v string) {
+	o.CosmeticId = v
+}
+
 // GetMerchantId returns the MerchantId field value
 func (o *CreateProductionDesignSpecResponsePrefs) GetMerchantId() string {
 	if o == nil {
@@ -1452,30 +1476,6 @@ func (o *CreateProductionDesignSpecResponsePrefs) GetCreatorSubjectIdOk() (*stri
 // SetCreatorSubjectId sets field value
 func (o *CreateProductionDesignSpecResponsePrefs) SetCreatorSubjectId(v string) {
 	o.CreatorSubjectId = v
-}
-
-// GetCosmeticId returns the CosmeticId field value
-func (o *CreateProductionDesignSpecResponsePrefs) GetCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CosmeticId
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *CreateProductionDesignSpecResponsePrefs) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CosmeticId, true
-}
-
-// SetCosmeticId sets field value
-func (o *CreateProductionDesignSpecResponsePrefs) SetCosmeticId(v string) {
-	o.CosmeticId = v
 }
 
 // GetSpec returns the Spec field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1640,13 +1640,13 @@ func (o CreateProductionDesignSpecResponsePrefs) MarshalJSON() ([]byte, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if true {
+		toSerialize["cosmeticId"] = o.CosmeticId
+	}
+	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["creatorSubjectId"] = o.CreatorSubjectId
-	}
-	if true {
-		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if o.Spec.IsSet() {
 		toSerialize["spec"] = o.Spec.Get()
@@ -4193,12 +4193,12 @@ type GetProductionCandidateResponseCandidates struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 	Status string `json:"status"`
 	RetailPriceCents NullableFloat32 `json:"retailPriceCents,omitempty"`
-	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
-	CompletedAt NullableTime `json:"completedAt,omitempty"`
 	AcceptedAt NullableTime `json:"acceptedAt,omitempty"`
+	CompletedAt NullableTime `json:"completedAt,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
+	CosmeticId string `json:"cosmeticId"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
-	CosmeticId string `json:"cosmeticId"`
 	EditionSize NullableFloat32 `json:"editionSize,omitempty"`
 	UnitCostCents NullableFloat32 `json:"unitCostCents,omitempty"`
 	RunCostCents NullableFloat32 `json:"runCostCents,omitempty"`
@@ -4218,15 +4218,15 @@ type GetProductionCandidateResponseCandidates struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProductionCandidateResponseCandidates(id string, createdAt time.Time, updatedAt time.Time, status string, merchantId string, creatorSubjectId string, cosmeticId string, designerRoyaltyBps float32, fundingAtEligibleCents float32, distinctHoldersAtEligible float32, holderPriority bool) *GetProductionCandidateResponseCandidates {
+func NewGetProductionCandidateResponseCandidates(id string, createdAt time.Time, updatedAt time.Time, status string, cosmeticId string, merchantId string, creatorSubjectId string, designerRoyaltyBps float32, fundingAtEligibleCents float32, distinctHoldersAtEligible float32, holderPriority bool) *GetProductionCandidateResponseCandidates {
 	this := GetProductionCandidateResponseCandidates{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	this.Status = status
+	this.CosmeticId = cosmeticId
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
-	this.CosmeticId = cosmeticId
 	this.DesignerRoyaltyBps = designerRoyaltyBps
 	this.FundingAtEligibleCents = fundingAtEligibleCents
 	this.DistinctHoldersAtEligible = distinctHoldersAtEligible
@@ -4380,46 +4380,46 @@ func (o *GetProductionCandidateResponseCandidates) UnsetRetailPriceCents() {
 	o.RetailPriceCents.Unset()
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetProductionCandidateResponseCandidates) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId.Get() == nil {
-		var ret string
+// GetAcceptedAt returns the AcceptedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetProductionCandidateResponseCandidates) GetAcceptedAt() time.Time {
+	if o == nil || o.AcceptedAt.Get() == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.CreatorUserId.Get()
+	return *o.AcceptedAt.Get()
 }
 
-// GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
+// GetAcceptedAtOk returns a tuple with the AcceptedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetProductionCandidateResponseCandidates) GetCreatorUserIdOk() (*string, bool) {
+func (o *GetProductionCandidateResponseCandidates) GetAcceptedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
+	return o.AcceptedAt.Get(), o.AcceptedAt.IsSet()
 }
 
-// HasCreatorUserId returns a boolean if a field has been set.
-func (o *GetProductionCandidateResponseCandidates) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId.IsSet() {
+// HasAcceptedAt returns a boolean if a field has been set.
+func (o *GetProductionCandidateResponseCandidates) HasAcceptedAt() bool {
+	if o != nil && o.AcceptedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
-func (o *GetProductionCandidateResponseCandidates) SetCreatorUserId(v string) {
-	o.CreatorUserId.Set(&v)
+// SetAcceptedAt gets a reference to the given NullableTime and assigns it to the AcceptedAt field.
+func (o *GetProductionCandidateResponseCandidates) SetAcceptedAt(v time.Time) {
+	o.AcceptedAt.Set(&v)
 }
-// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
-func (o *GetProductionCandidateResponseCandidates) SetCreatorUserIdNil() {
-	o.CreatorUserId.Set(nil)
+// SetAcceptedAtNil sets the value for AcceptedAt to be an explicit nil
+func (o *GetProductionCandidateResponseCandidates) SetAcceptedAtNil() {
+	o.AcceptedAt.Set(nil)
 }
 
-// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
-func (o *GetProductionCandidateResponseCandidates) UnsetCreatorUserId() {
-	o.CreatorUserId.Unset()
+// UnsetAcceptedAt ensures that no value is present for AcceptedAt, not even an explicit nil
+func (o *GetProductionCandidateResponseCandidates) UnsetAcceptedAt() {
+	o.AcceptedAt.Unset()
 }
 
 // GetCompletedAt returns the CompletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -4464,46 +4464,70 @@ func (o *GetProductionCandidateResponseCandidates) UnsetCompletedAt() {
 	o.CompletedAt.Unset()
 }
 
-// GetAcceptedAt returns the AcceptedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetProductionCandidateResponseCandidates) GetAcceptedAt() time.Time {
-	if o == nil || o.AcceptedAt.Get() == nil {
-		var ret time.Time
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetProductionCandidateResponseCandidates) GetCreatorUserId() string {
+	if o == nil || o.CreatorUserId.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.AcceptedAt.Get()
+	return *o.CreatorUserId.Get()
 }
 
-// GetAcceptedAtOk returns a tuple with the AcceptedAt field value if set, nil otherwise
+// GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetProductionCandidateResponseCandidates) GetAcceptedAtOk() (*time.Time, bool) {
+func (o *GetProductionCandidateResponseCandidates) GetCreatorUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.AcceptedAt.Get(), o.AcceptedAt.IsSet()
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
-// HasAcceptedAt returns a boolean if a field has been set.
-func (o *GetProductionCandidateResponseCandidates) HasAcceptedAt() bool {
-	if o != nil && o.AcceptedAt.IsSet() {
+// HasCreatorUserId returns a boolean if a field has been set.
+func (o *GetProductionCandidateResponseCandidates) HasCreatorUserId() bool {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAcceptedAt gets a reference to the given NullableTime and assigns it to the AcceptedAt field.
-func (o *GetProductionCandidateResponseCandidates) SetAcceptedAt(v time.Time) {
-	o.AcceptedAt.Set(&v)
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
+func (o *GetProductionCandidateResponseCandidates) SetCreatorUserId(v string) {
+	o.CreatorUserId.Set(&v)
 }
-// SetAcceptedAtNil sets the value for AcceptedAt to be an explicit nil
-func (o *GetProductionCandidateResponseCandidates) SetAcceptedAtNil() {
-	o.AcceptedAt.Set(nil)
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *GetProductionCandidateResponseCandidates) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
 }
 
-// UnsetAcceptedAt ensures that no value is present for AcceptedAt, not even an explicit nil
-func (o *GetProductionCandidateResponseCandidates) UnsetAcceptedAt() {
-	o.AcceptedAt.Unset()
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *GetProductionCandidateResponseCandidates) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
+}
+
+// GetCosmeticId returns the CosmeticId field value
+func (o *GetProductionCandidateResponseCandidates) GetCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *GetProductionCandidateResponseCandidates) GetCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmeticId, true
+}
+
+// SetCosmeticId sets field value
+func (o *GetProductionCandidateResponseCandidates) SetCosmeticId(v string) {
+	o.CosmeticId = v
 }
 
 // GetMerchantId returns the MerchantId field value
@@ -4552,30 +4576,6 @@ func (o *GetProductionCandidateResponseCandidates) GetCreatorSubjectIdOk() (*str
 // SetCreatorSubjectId sets field value
 func (o *GetProductionCandidateResponseCandidates) SetCreatorSubjectId(v string) {
 	o.CreatorSubjectId = v
-}
-
-// GetCosmeticId returns the CosmeticId field value
-func (o *GetProductionCandidateResponseCandidates) GetCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CosmeticId
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *GetProductionCandidateResponseCandidates) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CosmeticId, true
-}
-
-// SetCosmeticId sets field value
-func (o *GetProductionCandidateResponseCandidates) SetCosmeticId(v string) {
-	o.CosmeticId = v
 }
 
 // GetEditionSize returns the EditionSize field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -5069,23 +5069,23 @@ func (o GetProductionCandidateResponseCandidates) MarshalJSON() ([]byte, error) 
 	if o.RetailPriceCents.IsSet() {
 		toSerialize["retailPriceCents"] = o.RetailPriceCents.Get()
 	}
-	if o.CreatorUserId.IsSet() {
-		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
+	if o.AcceptedAt.IsSet() {
+		toSerialize["acceptedAt"] = o.AcceptedAt.Get()
 	}
 	if o.CompletedAt.IsSet() {
 		toSerialize["completedAt"] = o.CompletedAt.Get()
 	}
-	if o.AcceptedAt.IsSet() {
-		toSerialize["acceptedAt"] = o.AcceptedAt.Get()
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
+	}
+	if true {
+		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["creatorSubjectId"] = o.CreatorSubjectId
-	}
-	if true {
-		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if o.EditionSize.IsSet() {
 		toSerialize["editionSize"] = o.EditionSize.Get()
@@ -5692,9 +5692,9 @@ type GetProductionDesignPrefResponsePrefs struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
+	CosmeticId string `json:"cosmeticId"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
-	CosmeticId string `json:"cosmeticId"`
 	Spec NullableCreateProductionDesignSpecResponsePrefsSpec `json:"spec,omitempty"`
 	PhysicalOptOut bool `json:"physicalOptOut"`
 	Brief NullableCreateProductionDesignSpecResponsePrefsBrief `json:"brief,omitempty"`
@@ -5705,14 +5705,14 @@ type GetProductionDesignPrefResponsePrefs struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProductionDesignPrefResponsePrefs(id string, createdAt time.Time, updatedAt time.Time, merchantId string, creatorSubjectId string, cosmeticId string, physicalOptOut bool) *GetProductionDesignPrefResponsePrefs {
+func NewGetProductionDesignPrefResponsePrefs(id string, createdAt time.Time, updatedAt time.Time, cosmeticId string, merchantId string, creatorSubjectId string, physicalOptOut bool) *GetProductionDesignPrefResponsePrefs {
 	this := GetProductionDesignPrefResponsePrefs{}
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
+	this.CosmeticId = cosmeticId
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
-	this.CosmeticId = cosmeticId
 	this.PhysicalOptOut = physicalOptOut
 	return &this
 }
@@ -5797,6 +5797,30 @@ func (o *GetProductionDesignPrefResponsePrefs) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetCosmeticId returns the CosmeticId field value
+func (o *GetProductionDesignPrefResponsePrefs) GetCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *GetProductionDesignPrefResponsePrefs) GetCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmeticId, true
+}
+
+// SetCosmeticId sets field value
+func (o *GetProductionDesignPrefResponsePrefs) SetCosmeticId(v string) {
+	o.CosmeticId = v
+}
+
 // GetMerchantId returns the MerchantId field value
 func (o *GetProductionDesignPrefResponsePrefs) GetMerchantId() string {
 	if o == nil {
@@ -5843,30 +5867,6 @@ func (o *GetProductionDesignPrefResponsePrefs) GetCreatorSubjectIdOk() (*string,
 // SetCreatorSubjectId sets field value
 func (o *GetProductionDesignPrefResponsePrefs) SetCreatorSubjectId(v string) {
 	o.CreatorSubjectId = v
-}
-
-// GetCosmeticId returns the CosmeticId field value
-func (o *GetProductionDesignPrefResponsePrefs) GetCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CosmeticId
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *GetProductionDesignPrefResponsePrefs) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CosmeticId, true
-}
-
-// SetCosmeticId sets field value
-func (o *GetProductionDesignPrefResponsePrefs) SetCosmeticId(v string) {
-	o.CosmeticId = v
 }
 
 // GetSpec returns the Spec field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -6031,13 +6031,13 @@ func (o GetProductionDesignPrefResponsePrefs) MarshalJSON() ([]byte, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if true {
+		toSerialize["cosmeticId"] = o.CosmeticId
+	}
+	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["creatorSubjectId"] = o.CreatorSubjectId
-	}
-	if true {
-		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if o.Spec.IsSet() {
 		toSerialize["spec"] = o.Spec.Get()
@@ -9932,12 +9932,12 @@ type UpdateProductionPoResponsePo struct {
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Notes NullableString `json:"notes,omitempty"`
 	Status string `json:"status"`
+	Notes NullableString `json:"notes,omitempty"`
+	SupplierName NullableString `json:"supplierName,omitempty"`
+	TrackingCode NullableString `json:"trackingCode,omitempty"`
 	MerchantId string `json:"merchantId"`
 	CandidateId string `json:"candidateId"`
-	TrackingCode NullableString `json:"trackingCode,omitempty"`
-	SupplierName NullableString `json:"supplierName,omitempty"`
 	SupplierContact NullableString `json:"supplierContact,omitempty"`
 	FreightMode NullableString `json:"freightMode,omitempty"`
 	EstimateLandedCents NullableFloat32 `json:"estimateLandedCents,omitempty"`
@@ -10050,6 +10050,30 @@ func (o *UpdateProductionPoResponsePo) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
+// GetStatus returns the Status field value
+func (o *UpdateProductionPoResponsePo) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *UpdateProductionPoResponsePo) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *UpdateProductionPoResponsePo) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProductionPoResponsePo) GetNotes() string {
 	if o == nil || o.Notes.Get() == nil {
@@ -10092,28 +10116,88 @@ func (o *UpdateProductionPoResponsePo) UnsetNotes() {
 	o.Notes.Unset()
 }
 
-// GetStatus returns the Status field value
-func (o *UpdateProductionPoResponsePo) GetStatus() string {
-	if o == nil {
+// GetSupplierName returns the SupplierName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProductionPoResponsePo) GetSupplierName() string {
+	if o == nil || o.SupplierName.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.SupplierName.Get()
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetSupplierNameOk returns a tuple with the SupplierName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductionPoResponsePo) GetStatusOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProductionPoResponsePo) GetSupplierNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.SupplierName.Get(), o.SupplierName.IsSet()
 }
 
-// SetStatus sets field value
-func (o *UpdateProductionPoResponsePo) SetStatus(v string) {
-	o.Status = v
+// HasSupplierName returns a boolean if a field has been set.
+func (o *UpdateProductionPoResponsePo) HasSupplierName() bool {
+	if o != nil && o.SupplierName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupplierName gets a reference to the given NullableString and assigns it to the SupplierName field.
+func (o *UpdateProductionPoResponsePo) SetSupplierName(v string) {
+	o.SupplierName.Set(&v)
+}
+// SetSupplierNameNil sets the value for SupplierName to be an explicit nil
+func (o *UpdateProductionPoResponsePo) SetSupplierNameNil() {
+	o.SupplierName.Set(nil)
+}
+
+// UnsetSupplierName ensures that no value is present for SupplierName, not even an explicit nil
+func (o *UpdateProductionPoResponsePo) UnsetSupplierName() {
+	o.SupplierName.Unset()
+}
+
+// GetTrackingCode returns the TrackingCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProductionPoResponsePo) GetTrackingCode() string {
+	if o == nil || o.TrackingCode.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingCode.Get()
+}
+
+// GetTrackingCodeOk returns a tuple with the TrackingCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProductionPoResponsePo) GetTrackingCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingCode.Get(), o.TrackingCode.IsSet()
+}
+
+// HasTrackingCode returns a boolean if a field has been set.
+func (o *UpdateProductionPoResponsePo) HasTrackingCode() bool {
+	if o != nil && o.TrackingCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingCode gets a reference to the given NullableString and assigns it to the TrackingCode field.
+func (o *UpdateProductionPoResponsePo) SetTrackingCode(v string) {
+	o.TrackingCode.Set(&v)
+}
+// SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
+func (o *UpdateProductionPoResponsePo) SetTrackingCodeNil() {
+	o.TrackingCode.Set(nil)
+}
+
+// UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
+func (o *UpdateProductionPoResponsePo) UnsetTrackingCode() {
+	o.TrackingCode.Unset()
 }
 
 // GetMerchantId returns the MerchantId field value
@@ -10162,90 +10246,6 @@ func (o *UpdateProductionPoResponsePo) GetCandidateIdOk() (*string, bool) {
 // SetCandidateId sets field value
 func (o *UpdateProductionPoResponsePo) SetCandidateId(v string) {
 	o.CandidateId = v
-}
-
-// GetTrackingCode returns the TrackingCode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateProductionPoResponsePo) GetTrackingCode() string {
-	if o == nil || o.TrackingCode.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TrackingCode.Get()
-}
-
-// GetTrackingCodeOk returns a tuple with the TrackingCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateProductionPoResponsePo) GetTrackingCodeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TrackingCode.Get(), o.TrackingCode.IsSet()
-}
-
-// HasTrackingCode returns a boolean if a field has been set.
-func (o *UpdateProductionPoResponsePo) HasTrackingCode() bool {
-	if o != nil && o.TrackingCode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTrackingCode gets a reference to the given NullableString and assigns it to the TrackingCode field.
-func (o *UpdateProductionPoResponsePo) SetTrackingCode(v string) {
-	o.TrackingCode.Set(&v)
-}
-// SetTrackingCodeNil sets the value for TrackingCode to be an explicit nil
-func (o *UpdateProductionPoResponsePo) SetTrackingCodeNil() {
-	o.TrackingCode.Set(nil)
-}
-
-// UnsetTrackingCode ensures that no value is present for TrackingCode, not even an explicit nil
-func (o *UpdateProductionPoResponsePo) UnsetTrackingCode() {
-	o.TrackingCode.Unset()
-}
-
-// GetSupplierName returns the SupplierName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateProductionPoResponsePo) GetSupplierName() string {
-	if o == nil || o.SupplierName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SupplierName.Get()
-}
-
-// GetSupplierNameOk returns a tuple with the SupplierName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateProductionPoResponsePo) GetSupplierNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SupplierName.Get(), o.SupplierName.IsSet()
-}
-
-// HasSupplierName returns a boolean if a field has been set.
-func (o *UpdateProductionPoResponsePo) HasSupplierName() bool {
-	if o != nil && o.SupplierName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSupplierName gets a reference to the given NullableString and assigns it to the SupplierName field.
-func (o *UpdateProductionPoResponsePo) SetSupplierName(v string) {
-	o.SupplierName.Set(&v)
-}
-// SetSupplierNameNil sets the value for SupplierName to be an explicit nil
-func (o *UpdateProductionPoResponsePo) SetSupplierNameNil() {
-	o.SupplierName.Set(nil)
-}
-
-// UnsetSupplierName ensures that no value is present for SupplierName, not even an explicit nil
-func (o *UpdateProductionPoResponsePo) UnsetSupplierName() {
-	o.SupplierName.Unset()
 }
 
 // GetSupplierContact returns the SupplierContact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -10829,23 +10829,23 @@ func (o UpdateProductionPoResponsePo) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
 	if o.Notes.IsSet() {
 		toSerialize["notes"] = o.Notes.Get()
 	}
-	if true {
-		toSerialize["status"] = o.Status
+	if o.SupplierName.IsSet() {
+		toSerialize["supplierName"] = o.SupplierName.Get()
+	}
+	if o.TrackingCode.IsSet() {
+		toSerialize["trackingCode"] = o.TrackingCode.Get()
 	}
 	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["candidateId"] = o.CandidateId
-	}
-	if o.TrackingCode.IsSet() {
-		toSerialize["trackingCode"] = o.TrackingCode.Get()
-	}
-	if o.SupplierName.IsSet() {
-		toSerialize["supplierName"] = o.SupplierName.Get()
 	}
 	if o.SupplierContact.IsSet() {
 		toSerialize["supplierContact"] = o.SupplierContact.Get()

@@ -5,24 +5,27 @@ All URIs are relative to *https://crossly.net/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateInboxAiSuggest**](InboxApi.md#CreateInboxAiSuggest) | **Post** /v1/inbox/ai-suggest | AI reply suggestion for a conversation.
-[**CreateInboxCannedResponse**](InboxApi.md#CreateInboxCannedResponse) | **Post** /v1/inbox/canned-responses | Create a canned response.
+[**CreateInboxCannedResponse**](InboxApi.md#CreateInboxCannedResponse) | **Post** /v1/inbox/canned-responses | Create a canned response (added to the end of the list).
 [**CreateInboxConversationBulk**](InboxApi.md#CreateInboxConversationBulk) | **Post** /v1/inbox/conversations/bulk | Bulk mark read / mark unread / soft-delete conversations.
 [**CreateInboxConversationBulkAiRespond**](InboxApi.md#CreateInboxConversationBulkAiRespond) | **Post** /v1/inbox/conversations/bulk-ai-respond | AI reply suggestion for multiple conversations — draft or send.
 [**CreateInboxConversationOfferAction**](InboxApi.md#CreateInboxConversationOfferAction) | **Post** /v1/inbox/conversations/{id}/offer-action | Accept / counter / decline an active offer on a conversation.
 [**CreateInboxMessageTriage**](InboxApi.md#CreateInboxMessageTriage) | **Post** /v1/inbox/messages/{id}/triage | Manually re-triage a buyer message.
 [**CreateInboxOffer**](InboxApi.md#CreateInboxOffer) | **Post** /v1/inbox/{id}/offer | Accept, counter, or decline an offer on a conversation.
 [**CreateInboxReply**](InboxApi.md#CreateInboxReply) | **Post** /v1/inbox/{id}/reply | Send a reply to a conversation thread.
+[**CreateInboxSendOffer**](InboxApi.md#CreateInboxSendOffer) | **Post** /v1/inbox/{id}/send-offer | Make the buyer an offer inside a conversation (seller → buyer). Only where the conversation&#39;s canSendOffer is true (Grailed today). &#x60;amount&#x60; is in the listing&#39;s currency, above 0 and below the listing price (whole dollars on Grailed). The offer is in the thread at once as a message with offerAmount + offerStatus, deliveryStatus &#39;sending&#39; until the platform confirms.
 [**CreateVideoRequestAnswer**](InboxApi.md#CreateVideoRequestAnswer) | **Post** /v1/video-requests/{id}/answer | Answer a video request with a clip you uploaded (POST /v1/video-requests/upload-url, then PUT the file to uploadUrl). The buyer is notified and the clip shows on the listing.
 [**CreateVideoRequestDecline**](InboxApi.md#CreateVideoRequestDecline) | **Post** /v1/video-requests/{id}/decline | Decline a video request, with an optional note to the buyer.
 [**CreateVideoRequestUploadUrl**](InboxApi.md#CreateVideoRequestUploadUrl) | **Post** /v1/video-requests/upload-url | A presigned upload for a video answer: PUT the file to uploadUrl with the same Content-Type and exact Content-Length, then answer with publicUrl.
 [**DeleteInboxCannedResponse**](InboxApi.md#DeleteInboxCannedResponse) | **Delete** /v1/inbox/canned-responses/{id} | Delete a canned response.
-[**GetInbox**](InboxApi.md#GetInbox) | **Get** /v1/inbox/{id} | Get one conversation with its messages.
-[**GetInboxCannedResponse**](InboxApi.md#GetInboxCannedResponse) | **Get** /v1/inbox/canned-responses | List canned responses.
+[**GetInbox**](InboxApi.md#GetInbox) | **Get** /v1/inbox/{id} | Get one conversation with its messages and the item it is about (itemTitle, itemThumbnail, itemPrice, itemCurrency, itemUrl on the platform, listingId in Crossly, crosslyListingSlug, canSendOffer). An offer made in the thread is a message with offerAmount + offerStatus.
+[**GetInboxCannedResponse**](InboxApi.md#GetInboxCannedResponse) | **Get** /v1/inbox/canned-responses | List canned responses in the seller&#39;s order.
 [**GetInboxConversationMessage**](InboxApi.md#GetInboxConversationMessage) | **Get** /v1/inbox/conversations/{id}/messages | Paginated messages for a conversation.
-[**GetInboxConversationUnreadCount**](InboxApi.md#GetInboxConversationUnreadCount) | **Get** /v1/inbox/conversations/unread-count | Sidebar badge: unread conversation count.
-[**ListInbox**](InboxApi.md#ListInbox) | **Get** /v1/inbox | List conversations.
+[**GetInboxConversationUnreadCount**](InboxApi.md#GetInboxConversationUnreadCount) | **Get** /v1/inbox/conversations/unread-count | Unread conversation count (threads only; /v1/inbox/counts adds offers).
+[**GetInboxCount**](InboxApi.md#GetInboxCount) | **Get** /v1/inbox/counts | Inbox badges: unread and needs-reply, split into conversations and offers.
+[**ListInbox**](InboxApi.md#ListInbox) | **Get** /v1/inbox | List conversations. &#x60;filter&#x60; narrows to the rows GET /v1/inbox/counts counts.
 [**ListVideoRequests**](InboxApi.md#ListVideoRequests) | **Get** /v1/video-requests | Buyers asking for a video of your items. status: open (default), answered, declined or all.
 [**UpdateInboxCannedResponse**](InboxApi.md#UpdateInboxCannedResponse) | **Put** /v1/inbox/canned-responses/{id} | Update a canned response.
+[**UpdateInboxCannedResponseOrder**](InboxApi.md#UpdateInboxCannedResponseOrder) | **Put** /v1/inbox/canned-responses/order | Reorder canned responses.
 [**UpdateInboxConversation**](InboxApi.md#UpdateInboxConversation) | **Patch** /v1/inbox/conversations/{id} | Mark read / change status / close conversation.
 
 
@@ -89,7 +92,7 @@ Other parameters are passed through a pointer to a apiCreateInboxAiSuggestReques
 
 > CreateInboxCannedResponseResponse CreateInboxCannedResponse(ctx).Execute()
 
-Create a canned response.
+Create a canned response (added to the end of the list).
 
 ### Example
 
@@ -527,6 +530,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateInboxSendOffer
+
+> CreateInboxSendOfferResponse CreateInboxSendOffer(ctx, id).CreateInboxSendOfferRequest(createInboxSendOfferRequest).Execute()
+
+Make the buyer an offer inside a conversation (seller → buyer). Only where the conversation's canSendOffer is true (Grailed today). `amount` is in the listing's currency, above 0 and below the listing price (whole dollars on Grailed). The offer is in the thread at once as a message with offerAmount + offerStatus, deliveryStatus 'sending' until the platform confirms.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    createInboxSendOfferRequest := *openapiclient.NewCreateInboxSendOfferRequest(float32(123)) // CreateInboxSendOfferRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboxApi.CreateInboxSendOffer(context.Background(), id).CreateInboxSendOfferRequest(createInboxSendOfferRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InboxApi.CreateInboxSendOffer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateInboxSendOffer`: CreateInboxSendOfferResponse
+    fmt.Fprintf(os.Stdout, "Response from `InboxApi.CreateInboxSendOffer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateInboxSendOfferRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createInboxSendOfferRequest** | **CreateInboxSendOfferRequest** |  | 
+
+### Return type
+
+**CreateInboxSendOfferResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateVideoRequestAnswer
 
 > CreateVideoRequestAnswerResponse CreateVideoRequestAnswer(ctx, id).Execute()
@@ -721,7 +793,7 @@ Other parameters are passed through a pointer to a apiCreateVideoRequestUploadUr
 
 ## DeleteInboxCannedResponse
 
-> CreateOrderDisputeResponse DeleteInboxCannedResponse(ctx, id).Execute()
+> DeleteInboxCannedResponse(ctx, id).Execute()
 
 Delete a canned response.
 
@@ -747,8 +819,6 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InboxApi.DeleteInboxCannedResponse``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteInboxCannedResponse`: CreateOrderDisputeResponse
-    fmt.Fprintf(os.Stdout, "Response from `InboxApi.DeleteInboxCannedResponse`: %v\n", resp)
 }
 ```
 
@@ -771,7 +841,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateOrderDisputeResponse**
+ (empty response body)
 
 ### Authorization
 
@@ -790,7 +860,7 @@ Name | Type | Description  | Notes
 
 > GetInboxResponse GetInbox(ctx, id).Execute()
 
-Get one conversation with its messages.
+Get one conversation with its messages and the item it is about (itemTitle, itemThumbnail, itemPrice, itemCurrency, itemUrl on the platform, listingId in Crossly, crosslyListingSlug, canSendOffer). An offer made in the thread is a message with offerAmount + offerStatus.
 
 ### Example
 
@@ -857,7 +927,7 @@ Name | Type | Description  | Notes
 
 > GetInboxCannedResponseResponse GetInboxCannedResponse(ctx).Execute()
 
-List canned responses.
+List canned responses in the seller's order.
 
 ### Example
 
@@ -982,7 +1052,7 @@ Name | Type | Description  | Notes
 
 > CreateWeb3LaunchArtResponse GetInboxConversationUnreadCount(ctx).Execute()
 
-Sidebar badge: unread conversation count.
+Unread conversation count (threads only; /v1/inbox/counts adds offers).
 
 ### Example
 
@@ -1036,11 +1106,69 @@ Other parameters are passed through a pointer to a apiGetInboxConversationUnread
 [[Back to README]](../README.md)
 
 
+## GetInboxCount
+
+> GetInboxCountResponse GetInboxCount(ctx).Execute()
+
+Inbox badges: unread and needs-reply, split into conversations and offers.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboxApi.GetInboxCount(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InboxApi.GetInboxCount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetInboxCount`: GetInboxCountResponse
+    fmt.Fprintf(os.Stdout, "Response from `InboxApi.GetInboxCount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInboxCountRequest struct via the builder pattern
+
+
+### Return type
+
+**GetInboxCountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListInbox
 
-> ListInboxResponse ListInbox(ctx).Page(page).Limit(limit).Execute()
+> ListInboxResponse ListInbox(ctx).Page(page).Limit(limit).Filter(filter).Execute()
 
-List conversations.
+List conversations. `filter` narrows to the rows GET /v1/inbox/counts counts.
 
 ### Example
 
@@ -1057,10 +1185,11 @@ import (
 func main() {
     page := int32(56) // int32 |  (optional) (default to 1)
     limit := int32(56) // int32 |  (optional) (default to 25)
+    filter := "filter_example" // string | unread | needs_reply (services/inbox/attention.ts). Omit for all. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboxApi.ListInbox(context.Background()).Page(page).Limit(limit).Execute()
+    resp, r, err := apiClient.InboxApi.ListInbox(context.Background()).Page(page).Limit(limit).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboxApi.ListInbox``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1083,6 +1212,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int32** |  | [default to 1]
  **limit** | **int32** |  | [default to 25]
+ **filter** | **string** | unread | needs_reply (services/inbox/attention.ts). Omit for all. | 
 
 ### Return type
 
@@ -1220,6 +1350,71 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateInboxCannedResponseOrder
+
+> GetInboxCannedResponseResponse UpdateInboxCannedResponseOrder(ctx).UpdateInboxCannedResponseOrderRequest(updateInboxCannedResponseOrderRequest).Execute()
+
+Reorder canned responses.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    updateInboxCannedResponseOrderRequest := *openapiclient.NewUpdateInboxCannedResponseOrderRequest([]string{"Ids_example"}) // UpdateInboxCannedResponseOrderRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboxApi.UpdateInboxCannedResponseOrder(context.Background()).UpdateInboxCannedResponseOrderRequest(updateInboxCannedResponseOrderRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InboxApi.UpdateInboxCannedResponseOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateInboxCannedResponseOrder`: GetInboxCannedResponseResponse
+    fmt.Fprintf(os.Stdout, "Response from `InboxApi.UpdateInboxCannedResponseOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateInboxCannedResponseOrderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateInboxCannedResponseOrderRequest** | **UpdateInboxCannedResponseOrderRequest** |  | 
+
+### Return type
+
+**GetInboxCannedResponseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

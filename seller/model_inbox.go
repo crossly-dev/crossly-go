@@ -204,22 +204,24 @@ type CreateInboxCannedResponseResponseCannedResponse struct {
 	CreatedAt time.Time `json:"createdAt"`
 	UserId string `json:"userId"`
 	Title NullableString `json:"title,omitempty"`
-	Surface string `json:"surface"`
 	Body string `json:"body"`
+	Surface string `json:"surface"`
+	SortOrder float32 `json:"sortOrder"`
 }
 
 // NewCreateInboxCannedResponseResponseCannedResponse instantiates a new CreateInboxCannedResponseResponseCannedResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInboxCannedResponseResponseCannedResponse(id string, name string, createdAt time.Time, userId string, surface string, body string) *CreateInboxCannedResponseResponseCannedResponse {
+func NewCreateInboxCannedResponseResponseCannedResponse(id string, name string, createdAt time.Time, userId string, body string, surface string, sortOrder float32) *CreateInboxCannedResponseResponseCannedResponse {
 	this := CreateInboxCannedResponseResponseCannedResponse{}
 	this.Id = id
 	this.Name = name
 	this.CreatedAt = createdAt
 	this.UserId = userId
-	this.Surface = surface
 	this.Body = body
+	this.Surface = surface
+	this.SortOrder = sortOrder
 	return &this
 }
 
@@ -369,30 +371,6 @@ func (o *CreateInboxCannedResponseResponseCannedResponse) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetSurface returns the Surface field value
-func (o *CreateInboxCannedResponseResponseCannedResponse) GetSurface() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Surface
-}
-
-// GetSurfaceOk returns a tuple with the Surface field value
-// and a boolean to check if the value has been set.
-func (o *CreateInboxCannedResponseResponseCannedResponse) GetSurfaceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Surface, true
-}
-
-// SetSurface sets field value
-func (o *CreateInboxCannedResponseResponseCannedResponse) SetSurface(v string) {
-	o.Surface = v
-}
-
 // GetBody returns the Body field value
 func (o *CreateInboxCannedResponseResponseCannedResponse) GetBody() string {
 	if o == nil {
@@ -417,6 +395,54 @@ func (o *CreateInboxCannedResponseResponseCannedResponse) SetBody(v string) {
 	o.Body = v
 }
 
+// GetSurface returns the Surface field value
+func (o *CreateInboxCannedResponseResponseCannedResponse) GetSurface() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Surface
+}
+
+// GetSurfaceOk returns a tuple with the Surface field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxCannedResponseResponseCannedResponse) GetSurfaceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Surface, true
+}
+
+// SetSurface sets field value
+func (o *CreateInboxCannedResponseResponseCannedResponse) SetSurface(v string) {
+	o.Surface = v
+}
+
+// GetSortOrder returns the SortOrder field value
+func (o *CreateInboxCannedResponseResponseCannedResponse) GetSortOrder() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SortOrder
+}
+
+// GetSortOrderOk returns a tuple with the SortOrder field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxCannedResponseResponseCannedResponse) GetSortOrderOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SortOrder, true
+}
+
+// SetSortOrder sets field value
+func (o *CreateInboxCannedResponseResponseCannedResponse) SetSortOrder(v float32) {
+	o.SortOrder = v
+}
+
 func (o CreateInboxCannedResponseResponseCannedResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -435,10 +461,13 @@ func (o CreateInboxCannedResponseResponseCannedResponse) MarshalJSON() ([]byte, 
 		toSerialize["title"] = o.Title.Get()
 	}
 	if true {
+		toSerialize["body"] = o.Body
+	}
+	if true {
 		toSerialize["surface"] = o.Surface
 	}
 	if true {
-		toSerialize["body"] = o.Body
+		toSerialize["sortOrder"] = o.SortOrder
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1422,6 +1451,1510 @@ func (v *NullableCreateInboxReplyResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// CreateInboxSendOfferRequest struct for CreateInboxSendOfferRequest
+type CreateInboxSendOfferRequest struct {
+	Amount float32 `json:"amount"`
+	// Optional text sent with the offer; the marketplace shows it as a message of its own.
+	Note *string `json:"note,omitempty"`
+}
+
+// NewCreateInboxSendOfferRequest instantiates a new CreateInboxSendOfferRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInboxSendOfferRequest(amount float32) *CreateInboxSendOfferRequest {
+	this := CreateInboxSendOfferRequest{}
+	this.Amount = amount
+	return &this
+}
+
+// NewCreateInboxSendOfferRequestWithDefaults instantiates a new CreateInboxSendOfferRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInboxSendOfferRequestWithDefaults() *CreateInboxSendOfferRequest {
+	this := CreateInboxSendOfferRequest{}
+	return &this
+}
+
+// GetAmount returns the Amount field value
+func (o *CreateInboxSendOfferRequest) GetAmount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferRequest) GetAmountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
+// SetAmount sets field value
+func (o *CreateInboxSendOfferRequest) SetAmount(v float32) {
+	o.Amount = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise.
+func (o *CreateInboxSendOfferRequest) GetNote() string {
+	if o == nil || o.Note == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferRequest) GetNoteOk() (*string, bool) {
+	if o == nil || o.Note == nil {
+		return nil, false
+	}
+	return o.Note, true
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferRequest) HasNote() bool {
+	if o != nil && o.Note != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given string and assigns it to the Note field.
+func (o *CreateInboxSendOfferRequest) SetNote(v string) {
+	o.Note = &v
+}
+
+func (o CreateInboxSendOfferRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if o.Note != nil {
+		toSerialize["note"] = o.Note
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateInboxSendOfferRequest struct {
+	value *CreateInboxSendOfferRequest
+	isSet bool
+}
+
+func (v NullableCreateInboxSendOfferRequest) Get() *CreateInboxSendOfferRequest {
+	return v.value
+}
+
+func (v *NullableCreateInboxSendOfferRequest) Set(val *CreateInboxSendOfferRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInboxSendOfferRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInboxSendOfferRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInboxSendOfferRequest(val *CreateInboxSendOfferRequest) *NullableCreateInboxSendOfferRequest {
+	return &NullableCreateInboxSendOfferRequest{value: val, isSet: true}
+}
+
+func (v NullableCreateInboxSendOfferRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInboxSendOfferRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateInboxSendOfferResponse struct for CreateInboxSendOfferResponse
+type CreateInboxSendOfferResponse struct {
+	JobId string `json:"jobId"`
+	MessageId string `json:"messageId"`
+	DeliveryStatus NullableString `json:"deliveryStatus,omitempty"`
+	Message CreateInboxSendOfferResponseMessage `json:"message"`
+}
+
+// NewCreateInboxSendOfferResponse instantiates a new CreateInboxSendOfferResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInboxSendOfferResponse(jobId string, messageId string, message CreateInboxSendOfferResponseMessage) *CreateInboxSendOfferResponse {
+	this := CreateInboxSendOfferResponse{}
+	this.JobId = jobId
+	this.MessageId = messageId
+	this.Message = message
+	return &this
+}
+
+// NewCreateInboxSendOfferResponseWithDefaults instantiates a new CreateInboxSendOfferResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInboxSendOfferResponseWithDefaults() *CreateInboxSendOfferResponse {
+	this := CreateInboxSendOfferResponse{}
+	return &this
+}
+
+// GetJobId returns the JobId field value
+func (o *CreateInboxSendOfferResponse) GetJobId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.JobId
+}
+
+// GetJobIdOk returns a tuple with the JobId field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponse) GetJobIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.JobId, true
+}
+
+// SetJobId sets field value
+func (o *CreateInboxSendOfferResponse) SetJobId(v string) {
+	o.JobId = v
+}
+
+// GetMessageId returns the MessageId field value
+func (o *CreateInboxSendOfferResponse) GetMessageId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MessageId
+}
+
+// GetMessageIdOk returns a tuple with the MessageId field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponse) GetMessageIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MessageId, true
+}
+
+// SetMessageId sets field value
+func (o *CreateInboxSendOfferResponse) SetMessageId(v string) {
+	o.MessageId = v
+}
+
+// GetDeliveryStatus returns the DeliveryStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponse) GetDeliveryStatus() string {
+	if o == nil || o.DeliveryStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryStatus.Get()
+}
+
+// GetDeliveryStatusOk returns a tuple with the DeliveryStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponse) GetDeliveryStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryStatus.Get(), o.DeliveryStatus.IsSet()
+}
+
+// HasDeliveryStatus returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponse) HasDeliveryStatus() bool {
+	if o != nil && o.DeliveryStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryStatus gets a reference to the given NullableString and assigns it to the DeliveryStatus field.
+func (o *CreateInboxSendOfferResponse) SetDeliveryStatus(v string) {
+	o.DeliveryStatus.Set(&v)
+}
+// SetDeliveryStatusNil sets the value for DeliveryStatus to be an explicit nil
+func (o *CreateInboxSendOfferResponse) SetDeliveryStatusNil() {
+	o.DeliveryStatus.Set(nil)
+}
+
+// UnsetDeliveryStatus ensures that no value is present for DeliveryStatus, not even an explicit nil
+func (o *CreateInboxSendOfferResponse) UnsetDeliveryStatus() {
+	o.DeliveryStatus.Unset()
+}
+
+// GetMessage returns the Message field value
+func (o *CreateInboxSendOfferResponse) GetMessage() CreateInboxSendOfferResponseMessage {
+	if o == nil {
+		var ret CreateInboxSendOfferResponseMessage
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponse) GetMessageOk() (*CreateInboxSendOfferResponseMessage, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *CreateInboxSendOfferResponse) SetMessage(v CreateInboxSendOfferResponseMessage) {
+	o.Message = v
+}
+
+func (o CreateInboxSendOfferResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["jobId"] = o.JobId
+	}
+	if true {
+		toSerialize["messageId"] = o.MessageId
+	}
+	if o.DeliveryStatus.IsSet() {
+		toSerialize["deliveryStatus"] = o.DeliveryStatus.Get()
+	}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateInboxSendOfferResponse struct {
+	value *CreateInboxSendOfferResponse
+	isSet bool
+}
+
+func (v NullableCreateInboxSendOfferResponse) Get() *CreateInboxSendOfferResponse {
+	return v.value
+}
+
+func (v *NullableCreateInboxSendOfferResponse) Set(val *CreateInboxSendOfferResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInboxSendOfferResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInboxSendOfferResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInboxSendOfferResponse(val *CreateInboxSendOfferResponse) *NullableCreateInboxSendOfferResponse {
+	return &NullableCreateInboxSendOfferResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateInboxSendOfferResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInboxSendOfferResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateInboxSendOfferResponseMessage struct for CreateInboxSendOfferResponseMessage
+type CreateInboxSendOfferResponseMessage struct {
+	Id string `json:"id"`
+	VideoUrl NullableString `json:"videoUrl,omitempty"`
+	SyncedAt NullableTime `json:"syncedAt,omitempty"`
+	OfferAmount NullableString `json:"offerAmount,omitempty"`
+	OfferStatus NullableString `json:"offerStatus,omitempty"`
+	ConversationId string `json:"conversationId"`
+	PlatformMessageId NullableString `json:"platformMessageId,omitempty"`
+	Sender string `json:"sender"`
+	Body NullableString `json:"body,omitempty"`
+	AuthorUserId NullableString `json:"authorUserId,omitempty"`
+	Attachments []string `json:"attachments,omitempty"`
+	SentAt time.Time `json:"sentAt"`
+	AiIntent NullableString `json:"aiIntent,omitempty"`
+	AiUrgency NullableString `json:"aiUrgency,omitempty"`
+	AiScamScore NullableFloat32 `json:"aiScamScore,omitempty"`
+	AiSuggestedReply NullableString `json:"aiSuggestedReply,omitempty"`
+	AiTriagedAt NullableTime `json:"aiTriagedAt,omitempty"`
+	StickerId NullableString `json:"stickerId,omitempty"`
+	GifUrl NullableString `json:"gifUrl,omitempty"`
+	VideoThumbUrl NullableString `json:"videoThumbUrl,omitempty"`
+	VoiceUrl NullableString `json:"voiceUrl,omitempty"`
+	VoiceDurationSeconds NullableFloat32 `json:"voiceDurationSeconds,omitempty"`
+	ReadAt NullableTime `json:"readAt,omitempty"`
+	DeliveryStatus NullableString `json:"deliveryStatus,omitempty"`
+	DeliveryError NullableString `json:"deliveryError,omitempty"`
+	Automation NullableString `json:"automation,omitempty"`
+}
+
+// NewCreateInboxSendOfferResponseMessage instantiates a new CreateInboxSendOfferResponseMessage object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInboxSendOfferResponseMessage(id string, conversationId string, sender string, sentAt time.Time) *CreateInboxSendOfferResponseMessage {
+	this := CreateInboxSendOfferResponseMessage{}
+	this.Id = id
+	this.ConversationId = conversationId
+	this.Sender = sender
+	this.SentAt = sentAt
+	return &this
+}
+
+// NewCreateInboxSendOfferResponseMessageWithDefaults instantiates a new CreateInboxSendOfferResponseMessage object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInboxSendOfferResponseMessageWithDefaults() *CreateInboxSendOfferResponseMessage {
+	this := CreateInboxSendOfferResponseMessage{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateInboxSendOfferResponseMessage) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponseMessage) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateInboxSendOfferResponseMessage) SetId(v string) {
+	o.Id = v
+}
+
+// GetVideoUrl returns the VideoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetVideoUrl() string {
+	if o == nil || o.VideoUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VideoUrl.Get()
+}
+
+// GetVideoUrlOk returns a tuple with the VideoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetVideoUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VideoUrl.Get(), o.VideoUrl.IsSet()
+}
+
+// HasVideoUrl returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasVideoUrl() bool {
+	if o != nil && o.VideoUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoUrl gets a reference to the given NullableString and assigns it to the VideoUrl field.
+func (o *CreateInboxSendOfferResponseMessage) SetVideoUrl(v string) {
+	o.VideoUrl.Set(&v)
+}
+// SetVideoUrlNil sets the value for VideoUrl to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetVideoUrlNil() {
+	o.VideoUrl.Set(nil)
+}
+
+// UnsetVideoUrl ensures that no value is present for VideoUrl, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetVideoUrl() {
+	o.VideoUrl.Unset()
+}
+
+// GetSyncedAt returns the SyncedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetSyncedAt() time.Time {
+	if o == nil || o.SyncedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SyncedAt.Get()
+}
+
+// GetSyncedAtOk returns a tuple with the SyncedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetSyncedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SyncedAt.Get(), o.SyncedAt.IsSet()
+}
+
+// HasSyncedAt returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasSyncedAt() bool {
+	if o != nil && o.SyncedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSyncedAt gets a reference to the given NullableTime and assigns it to the SyncedAt field.
+func (o *CreateInboxSendOfferResponseMessage) SetSyncedAt(v time.Time) {
+	o.SyncedAt.Set(&v)
+}
+// SetSyncedAtNil sets the value for SyncedAt to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetSyncedAtNil() {
+	o.SyncedAt.Set(nil)
+}
+
+// UnsetSyncedAt ensures that no value is present for SyncedAt, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetSyncedAt() {
+	o.SyncedAt.Unset()
+}
+
+// GetOfferAmount returns the OfferAmount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetOfferAmount() string {
+	if o == nil || o.OfferAmount.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferAmount.Get()
+}
+
+// GetOfferAmountOk returns a tuple with the OfferAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetOfferAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferAmount.Get(), o.OfferAmount.IsSet()
+}
+
+// HasOfferAmount returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasOfferAmount() bool {
+	if o != nil && o.OfferAmount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferAmount gets a reference to the given NullableString and assigns it to the OfferAmount field.
+func (o *CreateInboxSendOfferResponseMessage) SetOfferAmount(v string) {
+	o.OfferAmount.Set(&v)
+}
+// SetOfferAmountNil sets the value for OfferAmount to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetOfferAmountNil() {
+	o.OfferAmount.Set(nil)
+}
+
+// UnsetOfferAmount ensures that no value is present for OfferAmount, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetOfferAmount() {
+	o.OfferAmount.Unset()
+}
+
+// GetOfferStatus returns the OfferStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetOfferStatus() string {
+	if o == nil || o.OfferStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferStatus.Get()
+}
+
+// GetOfferStatusOk returns a tuple with the OfferStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetOfferStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferStatus.Get(), o.OfferStatus.IsSet()
+}
+
+// HasOfferStatus returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasOfferStatus() bool {
+	if o != nil && o.OfferStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferStatus gets a reference to the given NullableString and assigns it to the OfferStatus field.
+func (o *CreateInboxSendOfferResponseMessage) SetOfferStatus(v string) {
+	o.OfferStatus.Set(&v)
+}
+// SetOfferStatusNil sets the value for OfferStatus to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetOfferStatusNil() {
+	o.OfferStatus.Set(nil)
+}
+
+// UnsetOfferStatus ensures that no value is present for OfferStatus, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetOfferStatus() {
+	o.OfferStatus.Unset()
+}
+
+// GetConversationId returns the ConversationId field value
+func (o *CreateInboxSendOfferResponseMessage) GetConversationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ConversationId
+}
+
+// GetConversationIdOk returns a tuple with the ConversationId field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponseMessage) GetConversationIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConversationId, true
+}
+
+// SetConversationId sets field value
+func (o *CreateInboxSendOfferResponseMessage) SetConversationId(v string) {
+	o.ConversationId = v
+}
+
+// GetPlatformMessageId returns the PlatformMessageId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetPlatformMessageId() string {
+	if o == nil || o.PlatformMessageId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformMessageId.Get()
+}
+
+// GetPlatformMessageIdOk returns a tuple with the PlatformMessageId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetPlatformMessageIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformMessageId.Get(), o.PlatformMessageId.IsSet()
+}
+
+// HasPlatformMessageId returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasPlatformMessageId() bool {
+	if o != nil && o.PlatformMessageId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformMessageId gets a reference to the given NullableString and assigns it to the PlatformMessageId field.
+func (o *CreateInboxSendOfferResponseMessage) SetPlatformMessageId(v string) {
+	o.PlatformMessageId.Set(&v)
+}
+// SetPlatformMessageIdNil sets the value for PlatformMessageId to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetPlatformMessageIdNil() {
+	o.PlatformMessageId.Set(nil)
+}
+
+// UnsetPlatformMessageId ensures that no value is present for PlatformMessageId, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetPlatformMessageId() {
+	o.PlatformMessageId.Unset()
+}
+
+// GetSender returns the Sender field value
+func (o *CreateInboxSendOfferResponseMessage) GetSender() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Sender
+}
+
+// GetSenderOk returns a tuple with the Sender field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponseMessage) GetSenderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sender, true
+}
+
+// SetSender sets field value
+func (o *CreateInboxSendOfferResponseMessage) SetSender(v string) {
+	o.Sender = v
+}
+
+// GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetBody() string {
+	if o == nil || o.Body.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Body.Get()
+}
+
+// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetBodyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Body.Get(), o.Body.IsSet()
+}
+
+// HasBody returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasBody() bool {
+	if o != nil && o.Body.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBody gets a reference to the given NullableString and assigns it to the Body field.
+func (o *CreateInboxSendOfferResponseMessage) SetBody(v string) {
+	o.Body.Set(&v)
+}
+// SetBodyNil sets the value for Body to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetBodyNil() {
+	o.Body.Set(nil)
+}
+
+// UnsetBody ensures that no value is present for Body, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetBody() {
+	o.Body.Unset()
+}
+
+// GetAuthorUserId returns the AuthorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAuthorUserId() string {
+	if o == nil || o.AuthorUserId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AuthorUserId.Get()
+}
+
+// GetAuthorUserIdOk returns a tuple with the AuthorUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAuthorUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AuthorUserId.Get(), o.AuthorUserId.IsSet()
+}
+
+// HasAuthorUserId returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAuthorUserId() bool {
+	if o != nil && o.AuthorUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorUserId gets a reference to the given NullableString and assigns it to the AuthorUserId field.
+func (o *CreateInboxSendOfferResponseMessage) SetAuthorUserId(v string) {
+	o.AuthorUserId.Set(&v)
+}
+// SetAuthorUserIdNil sets the value for AuthorUserId to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAuthorUserIdNil() {
+	o.AuthorUserId.Set(nil)
+}
+
+// UnsetAuthorUserId ensures that no value is present for AuthorUserId, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAuthorUserId() {
+	o.AuthorUserId.Unset()
+}
+
+// GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAttachments() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.Attachments
+}
+
+// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAttachmentsOk() ([]string, bool) {
+	if o == nil || o.Attachments == nil {
+		return nil, false
+	}
+	return o.Attachments, true
+}
+
+// HasAttachments returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAttachments() bool {
+	if o != nil && o.Attachments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttachments gets a reference to the given []string and assigns it to the Attachments field.
+func (o *CreateInboxSendOfferResponseMessage) SetAttachments(v []string) {
+	o.Attachments = v
+}
+
+// GetSentAt returns the SentAt field value
+func (o *CreateInboxSendOfferResponseMessage) GetSentAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.SentAt
+}
+
+// GetSentAtOk returns a tuple with the SentAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateInboxSendOfferResponseMessage) GetSentAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SentAt, true
+}
+
+// SetSentAt sets field value
+func (o *CreateInboxSendOfferResponseMessage) SetSentAt(v time.Time) {
+	o.SentAt = v
+}
+
+// GetAiIntent returns the AiIntent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAiIntent() string {
+	if o == nil || o.AiIntent.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AiIntent.Get()
+}
+
+// GetAiIntentOk returns a tuple with the AiIntent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAiIntentOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AiIntent.Get(), o.AiIntent.IsSet()
+}
+
+// HasAiIntent returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAiIntent() bool {
+	if o != nil && o.AiIntent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiIntent gets a reference to the given NullableString and assigns it to the AiIntent field.
+func (o *CreateInboxSendOfferResponseMessage) SetAiIntent(v string) {
+	o.AiIntent.Set(&v)
+}
+// SetAiIntentNil sets the value for AiIntent to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAiIntentNil() {
+	o.AiIntent.Set(nil)
+}
+
+// UnsetAiIntent ensures that no value is present for AiIntent, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAiIntent() {
+	o.AiIntent.Unset()
+}
+
+// GetAiUrgency returns the AiUrgency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAiUrgency() string {
+	if o == nil || o.AiUrgency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AiUrgency.Get()
+}
+
+// GetAiUrgencyOk returns a tuple with the AiUrgency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAiUrgencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AiUrgency.Get(), o.AiUrgency.IsSet()
+}
+
+// HasAiUrgency returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAiUrgency() bool {
+	if o != nil && o.AiUrgency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiUrgency gets a reference to the given NullableString and assigns it to the AiUrgency field.
+func (o *CreateInboxSendOfferResponseMessage) SetAiUrgency(v string) {
+	o.AiUrgency.Set(&v)
+}
+// SetAiUrgencyNil sets the value for AiUrgency to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAiUrgencyNil() {
+	o.AiUrgency.Set(nil)
+}
+
+// UnsetAiUrgency ensures that no value is present for AiUrgency, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAiUrgency() {
+	o.AiUrgency.Unset()
+}
+
+// GetAiScamScore returns the AiScamScore field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAiScamScore() float32 {
+	if o == nil || o.AiScamScore.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AiScamScore.Get()
+}
+
+// GetAiScamScoreOk returns a tuple with the AiScamScore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAiScamScoreOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AiScamScore.Get(), o.AiScamScore.IsSet()
+}
+
+// HasAiScamScore returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAiScamScore() bool {
+	if o != nil && o.AiScamScore.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiScamScore gets a reference to the given NullableFloat32 and assigns it to the AiScamScore field.
+func (o *CreateInboxSendOfferResponseMessage) SetAiScamScore(v float32) {
+	o.AiScamScore.Set(&v)
+}
+// SetAiScamScoreNil sets the value for AiScamScore to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAiScamScoreNil() {
+	o.AiScamScore.Set(nil)
+}
+
+// UnsetAiScamScore ensures that no value is present for AiScamScore, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAiScamScore() {
+	o.AiScamScore.Unset()
+}
+
+// GetAiSuggestedReply returns the AiSuggestedReply field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAiSuggestedReply() string {
+	if o == nil || o.AiSuggestedReply.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AiSuggestedReply.Get()
+}
+
+// GetAiSuggestedReplyOk returns a tuple with the AiSuggestedReply field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAiSuggestedReplyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AiSuggestedReply.Get(), o.AiSuggestedReply.IsSet()
+}
+
+// HasAiSuggestedReply returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAiSuggestedReply() bool {
+	if o != nil && o.AiSuggestedReply.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiSuggestedReply gets a reference to the given NullableString and assigns it to the AiSuggestedReply field.
+func (o *CreateInboxSendOfferResponseMessage) SetAiSuggestedReply(v string) {
+	o.AiSuggestedReply.Set(&v)
+}
+// SetAiSuggestedReplyNil sets the value for AiSuggestedReply to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAiSuggestedReplyNil() {
+	o.AiSuggestedReply.Set(nil)
+}
+
+// UnsetAiSuggestedReply ensures that no value is present for AiSuggestedReply, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAiSuggestedReply() {
+	o.AiSuggestedReply.Unset()
+}
+
+// GetAiTriagedAt returns the AiTriagedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAiTriagedAt() time.Time {
+	if o == nil || o.AiTriagedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AiTriagedAt.Get()
+}
+
+// GetAiTriagedAtOk returns a tuple with the AiTriagedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAiTriagedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AiTriagedAt.Get(), o.AiTriagedAt.IsSet()
+}
+
+// HasAiTriagedAt returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAiTriagedAt() bool {
+	if o != nil && o.AiTriagedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAiTriagedAt gets a reference to the given NullableTime and assigns it to the AiTriagedAt field.
+func (o *CreateInboxSendOfferResponseMessage) SetAiTriagedAt(v time.Time) {
+	o.AiTriagedAt.Set(&v)
+}
+// SetAiTriagedAtNil sets the value for AiTriagedAt to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAiTriagedAtNil() {
+	o.AiTriagedAt.Set(nil)
+}
+
+// UnsetAiTriagedAt ensures that no value is present for AiTriagedAt, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAiTriagedAt() {
+	o.AiTriagedAt.Unset()
+}
+
+// GetStickerId returns the StickerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetStickerId() string {
+	if o == nil || o.StickerId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StickerId.Get()
+}
+
+// GetStickerIdOk returns a tuple with the StickerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetStickerIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StickerId.Get(), o.StickerId.IsSet()
+}
+
+// HasStickerId returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasStickerId() bool {
+	if o != nil && o.StickerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStickerId gets a reference to the given NullableString and assigns it to the StickerId field.
+func (o *CreateInboxSendOfferResponseMessage) SetStickerId(v string) {
+	o.StickerId.Set(&v)
+}
+// SetStickerIdNil sets the value for StickerId to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetStickerIdNil() {
+	o.StickerId.Set(nil)
+}
+
+// UnsetStickerId ensures that no value is present for StickerId, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetStickerId() {
+	o.StickerId.Unset()
+}
+
+// GetGifUrl returns the GifUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetGifUrl() string {
+	if o == nil || o.GifUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.GifUrl.Get()
+}
+
+// GetGifUrlOk returns a tuple with the GifUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetGifUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.GifUrl.Get(), o.GifUrl.IsSet()
+}
+
+// HasGifUrl returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasGifUrl() bool {
+	if o != nil && o.GifUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGifUrl gets a reference to the given NullableString and assigns it to the GifUrl field.
+func (o *CreateInboxSendOfferResponseMessage) SetGifUrl(v string) {
+	o.GifUrl.Set(&v)
+}
+// SetGifUrlNil sets the value for GifUrl to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetGifUrlNil() {
+	o.GifUrl.Set(nil)
+}
+
+// UnsetGifUrl ensures that no value is present for GifUrl, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetGifUrl() {
+	o.GifUrl.Unset()
+}
+
+// GetVideoThumbUrl returns the VideoThumbUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetVideoThumbUrl() string {
+	if o == nil || o.VideoThumbUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VideoThumbUrl.Get()
+}
+
+// GetVideoThumbUrlOk returns a tuple with the VideoThumbUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetVideoThumbUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VideoThumbUrl.Get(), o.VideoThumbUrl.IsSet()
+}
+
+// HasVideoThumbUrl returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasVideoThumbUrl() bool {
+	if o != nil && o.VideoThumbUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoThumbUrl gets a reference to the given NullableString and assigns it to the VideoThumbUrl field.
+func (o *CreateInboxSendOfferResponseMessage) SetVideoThumbUrl(v string) {
+	o.VideoThumbUrl.Set(&v)
+}
+// SetVideoThumbUrlNil sets the value for VideoThumbUrl to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetVideoThumbUrlNil() {
+	o.VideoThumbUrl.Set(nil)
+}
+
+// UnsetVideoThumbUrl ensures that no value is present for VideoThumbUrl, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetVideoThumbUrl() {
+	o.VideoThumbUrl.Unset()
+}
+
+// GetVoiceUrl returns the VoiceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetVoiceUrl() string {
+	if o == nil || o.VoiceUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VoiceUrl.Get()
+}
+
+// GetVoiceUrlOk returns a tuple with the VoiceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetVoiceUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VoiceUrl.Get(), o.VoiceUrl.IsSet()
+}
+
+// HasVoiceUrl returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasVoiceUrl() bool {
+	if o != nil && o.VoiceUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVoiceUrl gets a reference to the given NullableString and assigns it to the VoiceUrl field.
+func (o *CreateInboxSendOfferResponseMessage) SetVoiceUrl(v string) {
+	o.VoiceUrl.Set(&v)
+}
+// SetVoiceUrlNil sets the value for VoiceUrl to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetVoiceUrlNil() {
+	o.VoiceUrl.Set(nil)
+}
+
+// UnsetVoiceUrl ensures that no value is present for VoiceUrl, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetVoiceUrl() {
+	o.VoiceUrl.Unset()
+}
+
+// GetVoiceDurationSeconds returns the VoiceDurationSeconds field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetVoiceDurationSeconds() float32 {
+	if o == nil || o.VoiceDurationSeconds.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.VoiceDurationSeconds.Get()
+}
+
+// GetVoiceDurationSecondsOk returns a tuple with the VoiceDurationSeconds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetVoiceDurationSecondsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VoiceDurationSeconds.Get(), o.VoiceDurationSeconds.IsSet()
+}
+
+// HasVoiceDurationSeconds returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasVoiceDurationSeconds() bool {
+	if o != nil && o.VoiceDurationSeconds.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVoiceDurationSeconds gets a reference to the given NullableFloat32 and assigns it to the VoiceDurationSeconds field.
+func (o *CreateInboxSendOfferResponseMessage) SetVoiceDurationSeconds(v float32) {
+	o.VoiceDurationSeconds.Set(&v)
+}
+// SetVoiceDurationSecondsNil sets the value for VoiceDurationSeconds to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetVoiceDurationSecondsNil() {
+	o.VoiceDurationSeconds.Set(nil)
+}
+
+// UnsetVoiceDurationSeconds ensures that no value is present for VoiceDurationSeconds, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetVoiceDurationSeconds() {
+	o.VoiceDurationSeconds.Unset()
+}
+
+// GetReadAt returns the ReadAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetReadAt() time.Time {
+	if o == nil || o.ReadAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ReadAt.Get()
+}
+
+// GetReadAtOk returns a tuple with the ReadAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetReadAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReadAt.Get(), o.ReadAt.IsSet()
+}
+
+// HasReadAt returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasReadAt() bool {
+	if o != nil && o.ReadAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReadAt gets a reference to the given NullableTime and assigns it to the ReadAt field.
+func (o *CreateInboxSendOfferResponseMessage) SetReadAt(v time.Time) {
+	o.ReadAt.Set(&v)
+}
+// SetReadAtNil sets the value for ReadAt to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetReadAtNil() {
+	o.ReadAt.Set(nil)
+}
+
+// UnsetReadAt ensures that no value is present for ReadAt, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetReadAt() {
+	o.ReadAt.Unset()
+}
+
+// GetDeliveryStatus returns the DeliveryStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetDeliveryStatus() string {
+	if o == nil || o.DeliveryStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryStatus.Get()
+}
+
+// GetDeliveryStatusOk returns a tuple with the DeliveryStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetDeliveryStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryStatus.Get(), o.DeliveryStatus.IsSet()
+}
+
+// HasDeliveryStatus returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasDeliveryStatus() bool {
+	if o != nil && o.DeliveryStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryStatus gets a reference to the given NullableString and assigns it to the DeliveryStatus field.
+func (o *CreateInboxSendOfferResponseMessage) SetDeliveryStatus(v string) {
+	o.DeliveryStatus.Set(&v)
+}
+// SetDeliveryStatusNil sets the value for DeliveryStatus to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetDeliveryStatusNil() {
+	o.DeliveryStatus.Set(nil)
+}
+
+// UnsetDeliveryStatus ensures that no value is present for DeliveryStatus, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetDeliveryStatus() {
+	o.DeliveryStatus.Unset()
+}
+
+// GetDeliveryError returns the DeliveryError field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetDeliveryError() string {
+	if o == nil || o.DeliveryError.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryError.Get()
+}
+
+// GetDeliveryErrorOk returns a tuple with the DeliveryError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetDeliveryErrorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryError.Get(), o.DeliveryError.IsSet()
+}
+
+// HasDeliveryError returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasDeliveryError() bool {
+	if o != nil && o.DeliveryError.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryError gets a reference to the given NullableString and assigns it to the DeliveryError field.
+func (o *CreateInboxSendOfferResponseMessage) SetDeliveryError(v string) {
+	o.DeliveryError.Set(&v)
+}
+// SetDeliveryErrorNil sets the value for DeliveryError to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetDeliveryErrorNil() {
+	o.DeliveryError.Set(nil)
+}
+
+// UnsetDeliveryError ensures that no value is present for DeliveryError, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetDeliveryError() {
+	o.DeliveryError.Unset()
+}
+
+// GetAutomation returns the Automation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateInboxSendOfferResponseMessage) GetAutomation() string {
+	if o == nil || o.Automation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Automation.Get()
+}
+
+// GetAutomationOk returns a tuple with the Automation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateInboxSendOfferResponseMessage) GetAutomationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Automation.Get(), o.Automation.IsSet()
+}
+
+// HasAutomation returns a boolean if a field has been set.
+func (o *CreateInboxSendOfferResponseMessage) HasAutomation() bool {
+	if o != nil && o.Automation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAutomation gets a reference to the given NullableString and assigns it to the Automation field.
+func (o *CreateInboxSendOfferResponseMessage) SetAutomation(v string) {
+	o.Automation.Set(&v)
+}
+// SetAutomationNil sets the value for Automation to be an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) SetAutomationNil() {
+	o.Automation.Set(nil)
+}
+
+// UnsetAutomation ensures that no value is present for Automation, not even an explicit nil
+func (o *CreateInboxSendOfferResponseMessage) UnsetAutomation() {
+	o.Automation.Unset()
+}
+
+func (o CreateInboxSendOfferResponseMessage) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.VideoUrl.IsSet() {
+		toSerialize["videoUrl"] = o.VideoUrl.Get()
+	}
+	if o.SyncedAt.IsSet() {
+		toSerialize["syncedAt"] = o.SyncedAt.Get()
+	}
+	if o.OfferAmount.IsSet() {
+		toSerialize["offerAmount"] = o.OfferAmount.Get()
+	}
+	if o.OfferStatus.IsSet() {
+		toSerialize["offerStatus"] = o.OfferStatus.Get()
+	}
+	if true {
+		toSerialize["conversationId"] = o.ConversationId
+	}
+	if o.PlatformMessageId.IsSet() {
+		toSerialize["platformMessageId"] = o.PlatformMessageId.Get()
+	}
+	if true {
+		toSerialize["sender"] = o.Sender
+	}
+	if o.Body.IsSet() {
+		toSerialize["body"] = o.Body.Get()
+	}
+	if o.AuthorUserId.IsSet() {
+		toSerialize["authorUserId"] = o.AuthorUserId.Get()
+	}
+	if o.Attachments != nil {
+		toSerialize["attachments"] = o.Attachments
+	}
+	if true {
+		toSerialize["sentAt"] = o.SentAt
+	}
+	if o.AiIntent.IsSet() {
+		toSerialize["aiIntent"] = o.AiIntent.Get()
+	}
+	if o.AiUrgency.IsSet() {
+		toSerialize["aiUrgency"] = o.AiUrgency.Get()
+	}
+	if o.AiScamScore.IsSet() {
+		toSerialize["aiScamScore"] = o.AiScamScore.Get()
+	}
+	if o.AiSuggestedReply.IsSet() {
+		toSerialize["aiSuggestedReply"] = o.AiSuggestedReply.Get()
+	}
+	if o.AiTriagedAt.IsSet() {
+		toSerialize["aiTriagedAt"] = o.AiTriagedAt.Get()
+	}
+	if o.StickerId.IsSet() {
+		toSerialize["stickerId"] = o.StickerId.Get()
+	}
+	if o.GifUrl.IsSet() {
+		toSerialize["gifUrl"] = o.GifUrl.Get()
+	}
+	if o.VideoThumbUrl.IsSet() {
+		toSerialize["videoThumbUrl"] = o.VideoThumbUrl.Get()
+	}
+	if o.VoiceUrl.IsSet() {
+		toSerialize["voiceUrl"] = o.VoiceUrl.Get()
+	}
+	if o.VoiceDurationSeconds.IsSet() {
+		toSerialize["voiceDurationSeconds"] = o.VoiceDurationSeconds.Get()
+	}
+	if o.ReadAt.IsSet() {
+		toSerialize["readAt"] = o.ReadAt.Get()
+	}
+	if o.DeliveryStatus.IsSet() {
+		toSerialize["deliveryStatus"] = o.DeliveryStatus.Get()
+	}
+	if o.DeliveryError.IsSet() {
+		toSerialize["deliveryError"] = o.DeliveryError.Get()
+	}
+	if o.Automation.IsSet() {
+		toSerialize["automation"] = o.Automation.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateInboxSendOfferResponseMessage struct {
+	value *CreateInboxSendOfferResponseMessage
+	isSet bool
+}
+
+func (v NullableCreateInboxSendOfferResponseMessage) Get() *CreateInboxSendOfferResponseMessage {
+	return v.value
+}
+
+func (v *NullableCreateInboxSendOfferResponseMessage) Set(val *CreateInboxSendOfferResponseMessage) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInboxSendOfferResponseMessage) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInboxSendOfferResponseMessage) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInboxSendOfferResponseMessage(val *CreateInboxSendOfferResponseMessage) *NullableCreateInboxSendOfferResponseMessage {
+	return &NullableCreateInboxSendOfferResponseMessage{value: val, isSet: true}
+}
+
+func (v NullableCreateInboxSendOfferResponseMessage) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInboxSendOfferResponseMessage) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetInboxCannedResponseResponse struct for GetInboxCannedResponseResponse
 type GetInboxCannedResponseResponse struct {
 	CannedResponses []CreateInboxCannedResponseResponseCannedResponse `json:"cannedResponses"`
@@ -1619,6 +3152,8 @@ type GetInboxConversationMessageResponseMessages struct {
 	AiScamScore NullableFloat32 `json:"aiScamScore,omitempty"`
 	AiSuggestedReply NullableString `json:"aiSuggestedReply,omitempty"`
 	AiTriagedAt NullableTime `json:"aiTriagedAt,omitempty"`
+	OfferAmount NullableString `json:"offerAmount,omitempty"`
+	OfferStatus NullableString `json:"offerStatus,omitempty"`
 }
 
 // NewGetInboxConversationMessageResponseMessages instantiates a new GetInboxConversationMessageResponseMessages object
@@ -2107,6 +3642,90 @@ func (o *GetInboxConversationMessageResponseMessages) UnsetAiTriagedAt() {
 	o.AiTriagedAt.Unset()
 }
 
+// GetOfferAmount returns the OfferAmount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxConversationMessageResponseMessages) GetOfferAmount() string {
+	if o == nil || o.OfferAmount.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferAmount.Get()
+}
+
+// GetOfferAmountOk returns a tuple with the OfferAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxConversationMessageResponseMessages) GetOfferAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferAmount.Get(), o.OfferAmount.IsSet()
+}
+
+// HasOfferAmount returns a boolean if a field has been set.
+func (o *GetInboxConversationMessageResponseMessages) HasOfferAmount() bool {
+	if o != nil && o.OfferAmount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferAmount gets a reference to the given NullableString and assigns it to the OfferAmount field.
+func (o *GetInboxConversationMessageResponseMessages) SetOfferAmount(v string) {
+	o.OfferAmount.Set(&v)
+}
+// SetOfferAmountNil sets the value for OfferAmount to be an explicit nil
+func (o *GetInboxConversationMessageResponseMessages) SetOfferAmountNil() {
+	o.OfferAmount.Set(nil)
+}
+
+// UnsetOfferAmount ensures that no value is present for OfferAmount, not even an explicit nil
+func (o *GetInboxConversationMessageResponseMessages) UnsetOfferAmount() {
+	o.OfferAmount.Unset()
+}
+
+// GetOfferStatus returns the OfferStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxConversationMessageResponseMessages) GetOfferStatus() string {
+	if o == nil || o.OfferStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferStatus.Get()
+}
+
+// GetOfferStatusOk returns a tuple with the OfferStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxConversationMessageResponseMessages) GetOfferStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferStatus.Get(), o.OfferStatus.IsSet()
+}
+
+// HasOfferStatus returns a boolean if a field has been set.
+func (o *GetInboxConversationMessageResponseMessages) HasOfferStatus() bool {
+	if o != nil && o.OfferStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferStatus gets a reference to the given NullableString and assigns it to the OfferStatus field.
+func (o *GetInboxConversationMessageResponseMessages) SetOfferStatus(v string) {
+	o.OfferStatus.Set(&v)
+}
+// SetOfferStatusNil sets the value for OfferStatus to be an explicit nil
+func (o *GetInboxConversationMessageResponseMessages) SetOfferStatusNil() {
+	o.OfferStatus.Set(nil)
+}
+
+// UnsetOfferStatus ensures that no value is present for OfferStatus, not even an explicit nil
+func (o *GetInboxConversationMessageResponseMessages) UnsetOfferStatus() {
+	o.OfferStatus.Unset()
+}
+
 func (o GetInboxConversationMessageResponseMessages) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2148,6 +3767,12 @@ func (o GetInboxConversationMessageResponseMessages) MarshalJSON() ([]byte, erro
 	if o.AiTriagedAt.IsSet() {
 		toSerialize["aiTriagedAt"] = o.AiTriagedAt.Get()
 	}
+	if o.OfferAmount.IsSet() {
+		toSerialize["offerAmount"] = o.OfferAmount.Get()
+	}
+	if o.OfferStatus.IsSet() {
+		toSerialize["offerStatus"] = o.OfferStatus.Get()
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -2187,22 +3812,509 @@ func (v *NullableGetInboxConversationMessageResponseMessages) UnmarshalJSON(src 
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetInboxCountResponse struct for GetInboxCountResponse
+type GetInboxCountResponse struct {
+	Unread GetInboxCountResponseUnread `json:"unread"`
+	NeedsReply GetInboxCountResponseNeedsReply `json:"needsReply"`
+	// Live offers (open, not past their deadline).
+	OpenOffers float32 `json:"openOffers"`
+}
+
+// NewGetInboxCountResponse instantiates a new GetInboxCountResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetInboxCountResponse(unread GetInboxCountResponseUnread, needsReply GetInboxCountResponseNeedsReply, openOffers float32) *GetInboxCountResponse {
+	this := GetInboxCountResponse{}
+	this.Unread = unread
+	this.NeedsReply = needsReply
+	this.OpenOffers = openOffers
+	return &this
+}
+
+// NewGetInboxCountResponseWithDefaults instantiates a new GetInboxCountResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetInboxCountResponseWithDefaults() *GetInboxCountResponse {
+	this := GetInboxCountResponse{}
+	return &this
+}
+
+// GetUnread returns the Unread field value
+func (o *GetInboxCountResponse) GetUnread() GetInboxCountResponseUnread {
+	if o == nil {
+		var ret GetInboxCountResponseUnread
+		return ret
+	}
+
+	return o.Unread
+}
+
+// GetUnreadOk returns a tuple with the Unread field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponse) GetUnreadOk() (*GetInboxCountResponseUnread, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Unread, true
+}
+
+// SetUnread sets field value
+func (o *GetInboxCountResponse) SetUnread(v GetInboxCountResponseUnread) {
+	o.Unread = v
+}
+
+// GetNeedsReply returns the NeedsReply field value
+func (o *GetInboxCountResponse) GetNeedsReply() GetInboxCountResponseNeedsReply {
+	if o == nil {
+		var ret GetInboxCountResponseNeedsReply
+		return ret
+	}
+
+	return o.NeedsReply
+}
+
+// GetNeedsReplyOk returns a tuple with the NeedsReply field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponse) GetNeedsReplyOk() (*GetInboxCountResponseNeedsReply, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NeedsReply, true
+}
+
+// SetNeedsReply sets field value
+func (o *GetInboxCountResponse) SetNeedsReply(v GetInboxCountResponseNeedsReply) {
+	o.NeedsReply = v
+}
+
+// GetOpenOffers returns the OpenOffers field value
+func (o *GetInboxCountResponse) GetOpenOffers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.OpenOffers
+}
+
+// GetOpenOffersOk returns a tuple with the OpenOffers field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponse) GetOpenOffersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OpenOffers, true
+}
+
+// SetOpenOffers sets field value
+func (o *GetInboxCountResponse) SetOpenOffers(v float32) {
+	o.OpenOffers = v
+}
+
+func (o GetInboxCountResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["unread"] = o.Unread
+	}
+	if true {
+		toSerialize["needsReply"] = o.NeedsReply
+	}
+	if true {
+		toSerialize["openOffers"] = o.OpenOffers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetInboxCountResponse struct {
+	value *GetInboxCountResponse
+	isSet bool
+}
+
+func (v NullableGetInboxCountResponse) Get() *GetInboxCountResponse {
+	return v.value
+}
+
+func (v *NullableGetInboxCountResponse) Set(val *GetInboxCountResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetInboxCountResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetInboxCountResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetInboxCountResponse(val *GetInboxCountResponse) *NullableGetInboxCountResponse {
+	return &NullableGetInboxCountResponse{value: val, isSet: true}
+}
+
+func (v NullableGetInboxCountResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetInboxCountResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetInboxCountResponseNeedsReply struct for GetInboxCountResponseNeedsReply
+type GetInboxCountResponseNeedsReply struct {
+	Conversations float32 `json:"conversations"`
+	Offers float32 `json:"offers"`
+	Total float32 `json:"total"`
+	WindowDays float32 `json:"windowDays"`
+}
+
+// NewGetInboxCountResponseNeedsReply instantiates a new GetInboxCountResponseNeedsReply object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetInboxCountResponseNeedsReply(conversations float32, offers float32, total float32, windowDays float32) *GetInboxCountResponseNeedsReply {
+	this := GetInboxCountResponseNeedsReply{}
+	this.Conversations = conversations
+	this.Offers = offers
+	this.Total = total
+	this.WindowDays = windowDays
+	return &this
+}
+
+// NewGetInboxCountResponseNeedsReplyWithDefaults instantiates a new GetInboxCountResponseNeedsReply object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetInboxCountResponseNeedsReplyWithDefaults() *GetInboxCountResponseNeedsReply {
+	this := GetInboxCountResponseNeedsReply{}
+	return &this
+}
+
+// GetConversations returns the Conversations field value
+func (o *GetInboxCountResponseNeedsReply) GetConversations() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Conversations
+}
+
+// GetConversationsOk returns a tuple with the Conversations field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseNeedsReply) GetConversationsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Conversations, true
+}
+
+// SetConversations sets field value
+func (o *GetInboxCountResponseNeedsReply) SetConversations(v float32) {
+	o.Conversations = v
+}
+
+// GetOffers returns the Offers field value
+func (o *GetInboxCountResponseNeedsReply) GetOffers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Offers
+}
+
+// GetOffersOk returns a tuple with the Offers field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseNeedsReply) GetOffersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Offers, true
+}
+
+// SetOffers sets field value
+func (o *GetInboxCountResponseNeedsReply) SetOffers(v float32) {
+	o.Offers = v
+}
+
+// GetTotal returns the Total field value
+func (o *GetInboxCountResponseNeedsReply) GetTotal() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseNeedsReply) GetTotalOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
+// SetTotal sets field value
+func (o *GetInboxCountResponseNeedsReply) SetTotal(v float32) {
+	o.Total = v
+}
+
+// GetWindowDays returns the WindowDays field value
+func (o *GetInboxCountResponseNeedsReply) GetWindowDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WindowDays
+}
+
+// GetWindowDaysOk returns a tuple with the WindowDays field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseNeedsReply) GetWindowDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WindowDays, true
+}
+
+// SetWindowDays sets field value
+func (o *GetInboxCountResponseNeedsReply) SetWindowDays(v float32) {
+	o.WindowDays = v
+}
+
+func (o GetInboxCountResponseNeedsReply) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["conversations"] = o.Conversations
+	}
+	if true {
+		toSerialize["offers"] = o.Offers
+	}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["windowDays"] = o.WindowDays
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetInboxCountResponseNeedsReply struct {
+	value *GetInboxCountResponseNeedsReply
+	isSet bool
+}
+
+func (v NullableGetInboxCountResponseNeedsReply) Get() *GetInboxCountResponseNeedsReply {
+	return v.value
+}
+
+func (v *NullableGetInboxCountResponseNeedsReply) Set(val *GetInboxCountResponseNeedsReply) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetInboxCountResponseNeedsReply) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetInboxCountResponseNeedsReply) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetInboxCountResponseNeedsReply(val *GetInboxCountResponseNeedsReply) *NullableGetInboxCountResponseNeedsReply {
+	return &NullableGetInboxCountResponseNeedsReply{value: val, isSet: true}
+}
+
+func (v NullableGetInboxCountResponseNeedsReply) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetInboxCountResponseNeedsReply) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetInboxCountResponseUnread struct for GetInboxCountResponseUnread
+type GetInboxCountResponseUnread struct {
+	Conversations float32 `json:"conversations"`
+	Offers float32 `json:"offers"`
+	Total float32 `json:"total"`
+}
+
+// NewGetInboxCountResponseUnread instantiates a new GetInboxCountResponseUnread object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetInboxCountResponseUnread(conversations float32, offers float32, total float32) *GetInboxCountResponseUnread {
+	this := GetInboxCountResponseUnread{}
+	this.Conversations = conversations
+	this.Offers = offers
+	this.Total = total
+	return &this
+}
+
+// NewGetInboxCountResponseUnreadWithDefaults instantiates a new GetInboxCountResponseUnread object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetInboxCountResponseUnreadWithDefaults() *GetInboxCountResponseUnread {
+	this := GetInboxCountResponseUnread{}
+	return &this
+}
+
+// GetConversations returns the Conversations field value
+func (o *GetInboxCountResponseUnread) GetConversations() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Conversations
+}
+
+// GetConversationsOk returns a tuple with the Conversations field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseUnread) GetConversationsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Conversations, true
+}
+
+// SetConversations sets field value
+func (o *GetInboxCountResponseUnread) SetConversations(v float32) {
+	o.Conversations = v
+}
+
+// GetOffers returns the Offers field value
+func (o *GetInboxCountResponseUnread) GetOffers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Offers
+}
+
+// GetOffersOk returns a tuple with the Offers field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseUnread) GetOffersOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Offers, true
+}
+
+// SetOffers sets field value
+func (o *GetInboxCountResponseUnread) SetOffers(v float32) {
+	o.Offers = v
+}
+
+// GetTotal returns the Total field value
+func (o *GetInboxCountResponseUnread) GetTotal() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxCountResponseUnread) GetTotalOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
+// SetTotal sets field value
+func (o *GetInboxCountResponseUnread) SetTotal(v float32) {
+	o.Total = v
+}
+
+func (o GetInboxCountResponseUnread) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["conversations"] = o.Conversations
+	}
+	if true {
+		toSerialize["offers"] = o.Offers
+	}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetInboxCountResponseUnread struct {
+	value *GetInboxCountResponseUnread
+	isSet bool
+}
+
+func (v NullableGetInboxCountResponseUnread) Get() *GetInboxCountResponseUnread {
+	return v.value
+}
+
+func (v *NullableGetInboxCountResponseUnread) Set(val *GetInboxCountResponseUnread) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetInboxCountResponseUnread) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetInboxCountResponseUnread) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetInboxCountResponseUnread(val *GetInboxCountResponseUnread) *NullableGetInboxCountResponseUnread {
+	return &NullableGetInboxCountResponseUnread{value: val, isSet: true}
+}
+
+func (v NullableGetInboxCountResponseUnread) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetInboxCountResponseUnread) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetInboxResponse struct for GetInboxResponse
 type GetInboxResponse struct {
-	Messages []GetInboxResponseMessages `json:"messages"`
+	Messages []CreateInboxSendOfferResponseMessage `json:"messages"`
+	ListingId NullableString `json:"listingId,omitempty"`
+	ItemTitle NullableString `json:"itemTitle,omitempty"`
+	ItemThumbnail NullableString `json:"itemThumbnail,omitempty"`
+	ItemUrl NullableString `json:"itemUrl,omitempty"`
+	CrosslyListingSlug NullableString `json:"crosslyListingSlug,omitempty"`
+	ItemPrice NullableFloat32 `json:"itemPrice,omitempty"`
+	ItemCurrency NullableString `json:"itemCurrency,omitempty"`
+	CanSendOffer bool `json:"canSendOffer"`
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UserId string `json:"userId"`
-	Status string `json:"status"`
 	Platform string `json:"platform"`
-	ListingId NullableString `json:"listingId,omitempty"`
 	AccountSlot float32 `json:"accountSlot"`
+	Status string `json:"status"`
+	Source NullableString `json:"source,omitempty"`
+	Labels []string `json:"labels"`
 	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
 	PlatformListingId NullableString `json:"platformListingId,omitempty"`
 	BuyerUsername NullableString `json:"buyerUsername,omitempty"`
-	Subject NullableString `json:"subject,omitempty"`
 	PlatformConversationId string `json:"platformConversationId"`
 	BuyerPlatformId NullableString `json:"buyerPlatformId,omitempty"`
+	BuyerAvatarUrl NullableString `json:"buyerAvatarUrl,omitempty"`
+	Subject NullableString `json:"subject,omitempty"`
 	IsRead bool `json:"isRead"`
 	IsHidden bool `json:"isHidden"`
 	HasOffer bool `json:"hasOffer"`
@@ -2210,25 +4322,30 @@ type GetInboxResponse struct {
 	OfferStatus NullableString `json:"offerStatus,omitempty"`
 	PlatformConversationUrl NullableString `json:"platformConversationUrl,omitempty"`
 	LastMessageAt NullableTime `json:"lastMessageAt,omitempty"`
+	SupersededAt NullableTime `json:"supersededAt,omitempty"`
+	IsStarred bool `json:"isStarred"`
 }
 
 // NewGetInboxResponse instantiates a new GetInboxResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetInboxResponse(messages []GetInboxResponseMessages, id string, createdAt time.Time, userId string, status string, platform string, accountSlot float32, platformConversationId string, isRead bool, isHidden bool, hasOffer bool) *GetInboxResponse {
+func NewGetInboxResponse(messages []CreateInboxSendOfferResponseMessage, canSendOffer bool, id string, createdAt time.Time, userId string, platform string, accountSlot float32, status string, labels []string, platformConversationId string, isRead bool, isHidden bool, hasOffer bool, isStarred bool) *GetInboxResponse {
 	this := GetInboxResponse{}
 	this.Messages = messages
+	this.CanSendOffer = canSendOffer
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UserId = userId
-	this.Status = status
 	this.Platform = platform
 	this.AccountSlot = accountSlot
+	this.Status = status
+	this.Labels = labels
 	this.PlatformConversationId = platformConversationId
 	this.IsRead = isRead
 	this.IsHidden = isHidden
 	this.HasOffer = hasOffer
+	this.IsStarred = isStarred
 	return &this
 }
 
@@ -2241,9 +4358,9 @@ func NewGetInboxResponseWithDefaults() *GetInboxResponse {
 }
 
 // GetMessages returns the Messages field value
-func (o *GetInboxResponse) GetMessages() []GetInboxResponseMessages {
+func (o *GetInboxResponse) GetMessages() []CreateInboxSendOfferResponseMessage {
 	if o == nil {
-		var ret []GetInboxResponseMessages
+		var ret []CreateInboxSendOfferResponseMessage
 		return ret
 	}
 
@@ -2252,7 +4369,7 @@ func (o *GetInboxResponse) GetMessages() []GetInboxResponseMessages {
 
 // GetMessagesOk returns a tuple with the Messages field value
 // and a boolean to check if the value has been set.
-func (o *GetInboxResponse) GetMessagesOk() ([]GetInboxResponseMessages, bool) {
+func (o *GetInboxResponse) GetMessagesOk() ([]CreateInboxSendOfferResponseMessage, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2260,8 +4377,326 @@ func (o *GetInboxResponse) GetMessagesOk() ([]GetInboxResponseMessages, bool) {
 }
 
 // SetMessages sets field value
-func (o *GetInboxResponse) SetMessages(v []GetInboxResponseMessages) {
+func (o *GetInboxResponse) SetMessages(v []CreateInboxSendOfferResponseMessage) {
 	o.Messages = v
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *GetInboxResponse) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *GetInboxResponse) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *GetInboxResponse) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+// GetItemTitle returns the ItemTitle field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetItemTitle() string {
+	if o == nil || o.ItemTitle.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemTitle.Get()
+}
+
+// GetItemTitleOk returns a tuple with the ItemTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetItemTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemTitle.Get(), o.ItemTitle.IsSet()
+}
+
+// HasItemTitle returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasItemTitle() bool {
+	if o != nil && o.ItemTitle.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemTitle gets a reference to the given NullableString and assigns it to the ItemTitle field.
+func (o *GetInboxResponse) SetItemTitle(v string) {
+	o.ItemTitle.Set(&v)
+}
+// SetItemTitleNil sets the value for ItemTitle to be an explicit nil
+func (o *GetInboxResponse) SetItemTitleNil() {
+	o.ItemTitle.Set(nil)
+}
+
+// UnsetItemTitle ensures that no value is present for ItemTitle, not even an explicit nil
+func (o *GetInboxResponse) UnsetItemTitle() {
+	o.ItemTitle.Unset()
+}
+
+// GetItemThumbnail returns the ItemThumbnail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetItemThumbnail() string {
+	if o == nil || o.ItemThumbnail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemThumbnail.Get()
+}
+
+// GetItemThumbnailOk returns a tuple with the ItemThumbnail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetItemThumbnailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemThumbnail.Get(), o.ItemThumbnail.IsSet()
+}
+
+// HasItemThumbnail returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasItemThumbnail() bool {
+	if o != nil && o.ItemThumbnail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemThumbnail gets a reference to the given NullableString and assigns it to the ItemThumbnail field.
+func (o *GetInboxResponse) SetItemThumbnail(v string) {
+	o.ItemThumbnail.Set(&v)
+}
+// SetItemThumbnailNil sets the value for ItemThumbnail to be an explicit nil
+func (o *GetInboxResponse) SetItemThumbnailNil() {
+	o.ItemThumbnail.Set(nil)
+}
+
+// UnsetItemThumbnail ensures that no value is present for ItemThumbnail, not even an explicit nil
+func (o *GetInboxResponse) UnsetItemThumbnail() {
+	o.ItemThumbnail.Unset()
+}
+
+// GetItemUrl returns the ItemUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetItemUrl() string {
+	if o == nil || o.ItemUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemUrl.Get()
+}
+
+// GetItemUrlOk returns a tuple with the ItemUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetItemUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemUrl.Get(), o.ItemUrl.IsSet()
+}
+
+// HasItemUrl returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasItemUrl() bool {
+	if o != nil && o.ItemUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemUrl gets a reference to the given NullableString and assigns it to the ItemUrl field.
+func (o *GetInboxResponse) SetItemUrl(v string) {
+	o.ItemUrl.Set(&v)
+}
+// SetItemUrlNil sets the value for ItemUrl to be an explicit nil
+func (o *GetInboxResponse) SetItemUrlNil() {
+	o.ItemUrl.Set(nil)
+}
+
+// UnsetItemUrl ensures that no value is present for ItemUrl, not even an explicit nil
+func (o *GetInboxResponse) UnsetItemUrl() {
+	o.ItemUrl.Unset()
+}
+
+// GetCrosslyListingSlug returns the CrosslyListingSlug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetCrosslyListingSlug() string {
+	if o == nil || o.CrosslyListingSlug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CrosslyListingSlug.Get()
+}
+
+// GetCrosslyListingSlugOk returns a tuple with the CrosslyListingSlug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetCrosslyListingSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CrosslyListingSlug.Get(), o.CrosslyListingSlug.IsSet()
+}
+
+// HasCrosslyListingSlug returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasCrosslyListingSlug() bool {
+	if o != nil && o.CrosslyListingSlug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrosslyListingSlug gets a reference to the given NullableString and assigns it to the CrosslyListingSlug field.
+func (o *GetInboxResponse) SetCrosslyListingSlug(v string) {
+	o.CrosslyListingSlug.Set(&v)
+}
+// SetCrosslyListingSlugNil sets the value for CrosslyListingSlug to be an explicit nil
+func (o *GetInboxResponse) SetCrosslyListingSlugNil() {
+	o.CrosslyListingSlug.Set(nil)
+}
+
+// UnsetCrosslyListingSlug ensures that no value is present for CrosslyListingSlug, not even an explicit nil
+func (o *GetInboxResponse) UnsetCrosslyListingSlug() {
+	o.CrosslyListingSlug.Unset()
+}
+
+// GetItemPrice returns the ItemPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetItemPrice() float32 {
+	if o == nil || o.ItemPrice.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ItemPrice.Get()
+}
+
+// GetItemPriceOk returns a tuple with the ItemPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetItemPriceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemPrice.Get(), o.ItemPrice.IsSet()
+}
+
+// HasItemPrice returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasItemPrice() bool {
+	if o != nil && o.ItemPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemPrice gets a reference to the given NullableFloat32 and assigns it to the ItemPrice field.
+func (o *GetInboxResponse) SetItemPrice(v float32) {
+	o.ItemPrice.Set(&v)
+}
+// SetItemPriceNil sets the value for ItemPrice to be an explicit nil
+func (o *GetInboxResponse) SetItemPriceNil() {
+	o.ItemPrice.Set(nil)
+}
+
+// UnsetItemPrice ensures that no value is present for ItemPrice, not even an explicit nil
+func (o *GetInboxResponse) UnsetItemPrice() {
+	o.ItemPrice.Unset()
+}
+
+// GetItemCurrency returns the ItemCurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetItemCurrency() string {
+	if o == nil || o.ItemCurrency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemCurrency.Get()
+}
+
+// GetItemCurrencyOk returns a tuple with the ItemCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetItemCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemCurrency.Get(), o.ItemCurrency.IsSet()
+}
+
+// HasItemCurrency returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasItemCurrency() bool {
+	if o != nil && o.ItemCurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemCurrency gets a reference to the given NullableString and assigns it to the ItemCurrency field.
+func (o *GetInboxResponse) SetItemCurrency(v string) {
+	o.ItemCurrency.Set(&v)
+}
+// SetItemCurrencyNil sets the value for ItemCurrency to be an explicit nil
+func (o *GetInboxResponse) SetItemCurrencyNil() {
+	o.ItemCurrency.Set(nil)
+}
+
+// UnsetItemCurrency ensures that no value is present for ItemCurrency, not even an explicit nil
+func (o *GetInboxResponse) UnsetItemCurrency() {
+	o.ItemCurrency.Unset()
+}
+
+// GetCanSendOffer returns the CanSendOffer field value
+func (o *GetInboxResponse) GetCanSendOffer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CanSendOffer
+}
+
+// GetCanSendOfferOk returns a tuple with the CanSendOffer field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxResponse) GetCanSendOfferOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CanSendOffer, true
+}
+
+// SetCanSendOffer sets field value
+func (o *GetInboxResponse) SetCanSendOffer(v bool) {
+	o.CanSendOffer = v
 }
 
 // GetId returns the Id field value
@@ -2336,30 +4771,6 @@ func (o *GetInboxResponse) SetUserId(v string) {
 	o.UserId = v
 }
 
-// GetStatus returns the Status field value
-func (o *GetInboxResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetInboxResponse) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetInboxResponse) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetPlatform returns the Platform field value
 func (o *GetInboxResponse) GetPlatform() string {
 	if o == nil {
@@ -2384,48 +4795,6 @@ func (o *GetInboxResponse) SetPlatform(v string) {
 	o.Platform = v
 }
 
-// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponse) GetListingId() string {
-	if o == nil || o.ListingId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ListingId.Get()
-}
-
-// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponse) GetListingIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ListingId.Get(), o.ListingId.IsSet()
-}
-
-// HasListingId returns a boolean if a field has been set.
-func (o *GetInboxResponse) HasListingId() bool {
-	if o != nil && o.ListingId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
-func (o *GetInboxResponse) SetListingId(v string) {
-	o.ListingId.Set(&v)
-}
-// SetListingIdNil sets the value for ListingId to be an explicit nil
-func (o *GetInboxResponse) SetListingIdNil() {
-	o.ListingId.Set(nil)
-}
-
-// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
-func (o *GetInboxResponse) UnsetListingId() {
-	o.ListingId.Unset()
-}
-
 // GetAccountSlot returns the AccountSlot field value
 func (o *GetInboxResponse) GetAccountSlot() float32 {
 	if o == nil {
@@ -2448,6 +4817,96 @@ func (o *GetInboxResponse) GetAccountSlotOk() (*float32, bool) {
 // SetAccountSlot sets field value
 func (o *GetInboxResponse) SetAccountSlot(v float32) {
 	o.AccountSlot = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetInboxResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxResponse) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetInboxResponse) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetSource() string {
+	if o == nil || o.Source.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source.Get()
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Source.Get(), o.Source.IsSet()
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasSource() bool {
+	if o != nil && o.Source.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given NullableString and assigns it to the Source field.
+func (o *GetInboxResponse) SetSource(v string) {
+	o.Source.Set(&v)
+}
+// SetSourceNil sets the value for Source to be an explicit nil
+func (o *GetInboxResponse) SetSourceNil() {
+	o.Source.Set(nil)
+}
+
+// UnsetSource ensures that no value is present for Source, not even an explicit nil
+func (o *GetInboxResponse) UnsetSource() {
+	o.Source.Unset()
+}
+
+// GetLabels returns the Labels field value
+func (o *GetInboxResponse) GetLabels() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxResponse) GetLabelsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// SetLabels sets field value
+func (o *GetInboxResponse) SetLabels(v []string) {
+	o.Labels = v
 }
 
 // GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2576,48 +5035,6 @@ func (o *GetInboxResponse) UnsetBuyerUsername() {
 	o.BuyerUsername.Unset()
 }
 
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponse) GetSubject() string {
-	if o == nil || o.Subject.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Subject.Get()
-}
-
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponse) GetSubjectOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Subject.Get(), o.Subject.IsSet()
-}
-
-// HasSubject returns a boolean if a field has been set.
-func (o *GetInboxResponse) HasSubject() bool {
-	if o != nil && o.Subject.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
-func (o *GetInboxResponse) SetSubject(v string) {
-	o.Subject.Set(&v)
-}
-// SetSubjectNil sets the value for Subject to be an explicit nil
-func (o *GetInboxResponse) SetSubjectNil() {
-	o.Subject.Set(nil)
-}
-
-// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
-func (o *GetInboxResponse) UnsetSubject() {
-	o.Subject.Unset()
-}
-
 // GetPlatformConversationId returns the PlatformConversationId field value
 func (o *GetInboxResponse) GetPlatformConversationId() string {
 	if o == nil {
@@ -2682,6 +5099,90 @@ func (o *GetInboxResponse) SetBuyerPlatformIdNil() {
 // UnsetBuyerPlatformId ensures that no value is present for BuyerPlatformId, not even an explicit nil
 func (o *GetInboxResponse) UnsetBuyerPlatformId() {
 	o.BuyerPlatformId.Unset()
+}
+
+// GetBuyerAvatarUrl returns the BuyerAvatarUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetBuyerAvatarUrl() string {
+	if o == nil || o.BuyerAvatarUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerAvatarUrl.Get()
+}
+
+// GetBuyerAvatarUrlOk returns a tuple with the BuyerAvatarUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetBuyerAvatarUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerAvatarUrl.Get(), o.BuyerAvatarUrl.IsSet()
+}
+
+// HasBuyerAvatarUrl returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasBuyerAvatarUrl() bool {
+	if o != nil && o.BuyerAvatarUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerAvatarUrl gets a reference to the given NullableString and assigns it to the BuyerAvatarUrl field.
+func (o *GetInboxResponse) SetBuyerAvatarUrl(v string) {
+	o.BuyerAvatarUrl.Set(&v)
+}
+// SetBuyerAvatarUrlNil sets the value for BuyerAvatarUrl to be an explicit nil
+func (o *GetInboxResponse) SetBuyerAvatarUrlNil() {
+	o.BuyerAvatarUrl.Set(nil)
+}
+
+// UnsetBuyerAvatarUrl ensures that no value is present for BuyerAvatarUrl, not even an explicit nil
+func (o *GetInboxResponse) UnsetBuyerAvatarUrl() {
+	o.BuyerAvatarUrl.Unset()
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetSubject() string {
+	if o == nil || o.Subject.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Subject.Get()
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetSubjectOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Subject.Get(), o.Subject.IsSet()
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasSubject() bool {
+	if o != nil && o.Subject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
+func (o *GetInboxResponse) SetSubject(v string) {
+	o.Subject.Set(&v)
+}
+// SetSubjectNil sets the value for Subject to be an explicit nil
+func (o *GetInboxResponse) SetSubjectNil() {
+	o.Subject.Set(nil)
+}
+
+// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+func (o *GetInboxResponse) UnsetSubject() {
+	o.Subject.Unset()
 }
 
 // GetIsRead returns the IsRead field value
@@ -2924,10 +5425,100 @@ func (o *GetInboxResponse) UnsetLastMessageAt() {
 	o.LastMessageAt.Unset()
 }
 
+// GetSupersededAt returns the SupersededAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetInboxResponse) GetSupersededAt() time.Time {
+	if o == nil || o.SupersededAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SupersededAt.Get()
+}
+
+// GetSupersededAtOk returns a tuple with the SupersededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetInboxResponse) GetSupersededAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SupersededAt.Get(), o.SupersededAt.IsSet()
+}
+
+// HasSupersededAt returns a boolean if a field has been set.
+func (o *GetInboxResponse) HasSupersededAt() bool {
+	if o != nil && o.SupersededAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupersededAt gets a reference to the given NullableTime and assigns it to the SupersededAt field.
+func (o *GetInboxResponse) SetSupersededAt(v time.Time) {
+	o.SupersededAt.Set(&v)
+}
+// SetSupersededAtNil sets the value for SupersededAt to be an explicit nil
+func (o *GetInboxResponse) SetSupersededAtNil() {
+	o.SupersededAt.Set(nil)
+}
+
+// UnsetSupersededAt ensures that no value is present for SupersededAt, not even an explicit nil
+func (o *GetInboxResponse) UnsetSupersededAt() {
+	o.SupersededAt.Unset()
+}
+
+// GetIsStarred returns the IsStarred field value
+func (o *GetInboxResponse) GetIsStarred() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsStarred
+}
+
+// GetIsStarredOk returns a tuple with the IsStarred field value
+// and a boolean to check if the value has been set.
+func (o *GetInboxResponse) GetIsStarredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsStarred, true
+}
+
+// SetIsStarred sets field value
+func (o *GetInboxResponse) SetIsStarred(v bool) {
+	o.IsStarred = v
+}
+
 func (o GetInboxResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	if o.ItemTitle.IsSet() {
+		toSerialize["itemTitle"] = o.ItemTitle.Get()
+	}
+	if o.ItemThumbnail.IsSet() {
+		toSerialize["itemThumbnail"] = o.ItemThumbnail.Get()
+	}
+	if o.ItemUrl.IsSet() {
+		toSerialize["itemUrl"] = o.ItemUrl.Get()
+	}
+	if o.CrosslyListingSlug.IsSet() {
+		toSerialize["crosslyListingSlug"] = o.CrosslyListingSlug.Get()
+	}
+	if o.ItemPrice.IsSet() {
+		toSerialize["itemPrice"] = o.ItemPrice.Get()
+	}
+	if o.ItemCurrency.IsSet() {
+		toSerialize["itemCurrency"] = o.ItemCurrency.Get()
+	}
+	if true {
+		toSerialize["canSendOffer"] = o.CanSendOffer
 	}
 	if true {
 		toSerialize["id"] = o.Id
@@ -2939,16 +5530,19 @@ func (o GetInboxResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["userId"] = o.UserId
 	}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
 		toSerialize["platform"] = o.Platform
-	}
-	if o.ListingId.IsSet() {
-		toSerialize["listingId"] = o.ListingId.Get()
 	}
 	if true {
 		toSerialize["accountSlot"] = o.AccountSlot
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Source.IsSet() {
+		toSerialize["source"] = o.Source.Get()
+	}
+	if true {
+		toSerialize["labels"] = o.Labels
 	}
 	if o.InventoryItemId.IsSet() {
 		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
@@ -2959,14 +5553,17 @@ func (o GetInboxResponse) MarshalJSON() ([]byte, error) {
 	if o.BuyerUsername.IsSet() {
 		toSerialize["buyerUsername"] = o.BuyerUsername.Get()
 	}
-	if o.Subject.IsSet() {
-		toSerialize["subject"] = o.Subject.Get()
-	}
 	if true {
 		toSerialize["platformConversationId"] = o.PlatformConversationId
 	}
 	if o.BuyerPlatformId.IsSet() {
 		toSerialize["buyerPlatformId"] = o.BuyerPlatformId.Get()
+	}
+	if o.BuyerAvatarUrl.IsSet() {
+		toSerialize["buyerAvatarUrl"] = o.BuyerAvatarUrl.Get()
+	}
+	if o.Subject.IsSet() {
+		toSerialize["subject"] = o.Subject.Get()
 	}
 	if true {
 		toSerialize["isRead"] = o.IsRead
@@ -2988,6 +5585,12 @@ func (o GetInboxResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.LastMessageAt.IsSet() {
 		toSerialize["lastMessageAt"] = o.LastMessageAt.Get()
+	}
+	if o.SupersededAt.IsSet() {
+		toSerialize["supersededAt"] = o.SupersededAt.Get()
+	}
+	if true {
+		toSerialize["isStarred"] = o.IsStarred
 	}
 	return json.Marshal(toSerialize)
 }
@@ -3028,1064 +5631,25 @@ func (v *NullableGetInboxResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetInboxResponseMessages struct for GetInboxResponseMessages
-type GetInboxResponseMessages struct {
-	Id string `json:"id"`
-	VideoUrl NullableString `json:"videoUrl,omitempty"`
-	SyncedAt NullableTime `json:"syncedAt,omitempty"`
-	AuthorUserId NullableString `json:"authorUserId,omitempty"`
-	SentAt time.Time `json:"sentAt"`
-	Body NullableString `json:"body,omitempty"`
-	ConversationId string `json:"conversationId"`
-	ReadAt NullableTime `json:"readAt,omitempty"`
-	PlatformMessageId NullableString `json:"platformMessageId,omitempty"`
-	Sender string `json:"sender"`
-	Attachments []string `json:"attachments,omitempty"`
-	AiIntent NullableString `json:"aiIntent,omitempty"`
-	AiUrgency NullableString `json:"aiUrgency,omitempty"`
-	AiScamScore NullableFloat32 `json:"aiScamScore,omitempty"`
-	AiSuggestedReply NullableString `json:"aiSuggestedReply,omitempty"`
-	AiTriagedAt NullableTime `json:"aiTriagedAt,omitempty"`
-	StickerId NullableString `json:"stickerId,omitempty"`
-	GifUrl NullableString `json:"gifUrl,omitempty"`
-	VideoThumbUrl NullableString `json:"videoThumbUrl,omitempty"`
-	VoiceUrl NullableString `json:"voiceUrl,omitempty"`
-	VoiceDurationSeconds NullableFloat32 `json:"voiceDurationSeconds,omitempty"`
-	DeliveryStatus NullableString `json:"deliveryStatus,omitempty"`
-	DeliveryError NullableString `json:"deliveryError,omitempty"`
-}
-
-// NewGetInboxResponseMessages instantiates a new GetInboxResponseMessages object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetInboxResponseMessages(id string, sentAt time.Time, conversationId string, sender string) *GetInboxResponseMessages {
-	this := GetInboxResponseMessages{}
-	this.Id = id
-	this.SentAt = sentAt
-	this.ConversationId = conversationId
-	this.Sender = sender
-	return &this
-}
-
-// NewGetInboxResponseMessagesWithDefaults instantiates a new GetInboxResponseMessages object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetInboxResponseMessagesWithDefaults() *GetInboxResponseMessages {
-	this := GetInboxResponseMessages{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetInboxResponseMessages) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetInboxResponseMessages) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetInboxResponseMessages) SetId(v string) {
-	o.Id = v
-}
-
-// GetVideoUrl returns the VideoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetVideoUrl() string {
-	if o == nil || o.VideoUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VideoUrl.Get()
-}
-
-// GetVideoUrlOk returns a tuple with the VideoUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetVideoUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VideoUrl.Get(), o.VideoUrl.IsSet()
-}
-
-// HasVideoUrl returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasVideoUrl() bool {
-	if o != nil && o.VideoUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVideoUrl gets a reference to the given NullableString and assigns it to the VideoUrl field.
-func (o *GetInboxResponseMessages) SetVideoUrl(v string) {
-	o.VideoUrl.Set(&v)
-}
-// SetVideoUrlNil sets the value for VideoUrl to be an explicit nil
-func (o *GetInboxResponseMessages) SetVideoUrlNil() {
-	o.VideoUrl.Set(nil)
-}
-
-// UnsetVideoUrl ensures that no value is present for VideoUrl, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetVideoUrl() {
-	o.VideoUrl.Unset()
-}
-
-// GetSyncedAt returns the SyncedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetSyncedAt() time.Time {
-	if o == nil || o.SyncedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.SyncedAt.Get()
-}
-
-// GetSyncedAtOk returns a tuple with the SyncedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetSyncedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SyncedAt.Get(), o.SyncedAt.IsSet()
-}
-
-// HasSyncedAt returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasSyncedAt() bool {
-	if o != nil && o.SyncedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSyncedAt gets a reference to the given NullableTime and assigns it to the SyncedAt field.
-func (o *GetInboxResponseMessages) SetSyncedAt(v time.Time) {
-	o.SyncedAt.Set(&v)
-}
-// SetSyncedAtNil sets the value for SyncedAt to be an explicit nil
-func (o *GetInboxResponseMessages) SetSyncedAtNil() {
-	o.SyncedAt.Set(nil)
-}
-
-// UnsetSyncedAt ensures that no value is present for SyncedAt, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetSyncedAt() {
-	o.SyncedAt.Unset()
-}
-
-// GetAuthorUserId returns the AuthorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAuthorUserId() string {
-	if o == nil || o.AuthorUserId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AuthorUserId.Get()
-}
-
-// GetAuthorUserIdOk returns a tuple with the AuthorUserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAuthorUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AuthorUserId.Get(), o.AuthorUserId.IsSet()
-}
-
-// HasAuthorUserId returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAuthorUserId() bool {
-	if o != nil && o.AuthorUserId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorUserId gets a reference to the given NullableString and assigns it to the AuthorUserId field.
-func (o *GetInboxResponseMessages) SetAuthorUserId(v string) {
-	o.AuthorUserId.Set(&v)
-}
-// SetAuthorUserIdNil sets the value for AuthorUserId to be an explicit nil
-func (o *GetInboxResponseMessages) SetAuthorUserIdNil() {
-	o.AuthorUserId.Set(nil)
-}
-
-// UnsetAuthorUserId ensures that no value is present for AuthorUserId, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAuthorUserId() {
-	o.AuthorUserId.Unset()
-}
-
-// GetSentAt returns the SentAt field value
-func (o *GetInboxResponseMessages) GetSentAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.SentAt
-}
-
-// GetSentAtOk returns a tuple with the SentAt field value
-// and a boolean to check if the value has been set.
-func (o *GetInboxResponseMessages) GetSentAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SentAt, true
-}
-
-// SetSentAt sets field value
-func (o *GetInboxResponseMessages) SetSentAt(v time.Time) {
-	o.SentAt = v
-}
-
-// GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetBody() string {
-	if o == nil || o.Body.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Body.Get()
-}
-
-// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetBodyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Body.Get(), o.Body.IsSet()
-}
-
-// HasBody returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasBody() bool {
-	if o != nil && o.Body.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBody gets a reference to the given NullableString and assigns it to the Body field.
-func (o *GetInboxResponseMessages) SetBody(v string) {
-	o.Body.Set(&v)
-}
-// SetBodyNil sets the value for Body to be an explicit nil
-func (o *GetInboxResponseMessages) SetBodyNil() {
-	o.Body.Set(nil)
-}
-
-// UnsetBody ensures that no value is present for Body, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetBody() {
-	o.Body.Unset()
-}
-
-// GetConversationId returns the ConversationId field value
-func (o *GetInboxResponseMessages) GetConversationId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ConversationId
-}
-
-// GetConversationIdOk returns a tuple with the ConversationId field value
-// and a boolean to check if the value has been set.
-func (o *GetInboxResponseMessages) GetConversationIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ConversationId, true
-}
-
-// SetConversationId sets field value
-func (o *GetInboxResponseMessages) SetConversationId(v string) {
-	o.ConversationId = v
-}
-
-// GetReadAt returns the ReadAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetReadAt() time.Time {
-	if o == nil || o.ReadAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ReadAt.Get()
-}
-
-// GetReadAtOk returns a tuple with the ReadAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetReadAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReadAt.Get(), o.ReadAt.IsSet()
-}
-
-// HasReadAt returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasReadAt() bool {
-	if o != nil && o.ReadAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReadAt gets a reference to the given NullableTime and assigns it to the ReadAt field.
-func (o *GetInboxResponseMessages) SetReadAt(v time.Time) {
-	o.ReadAt.Set(&v)
-}
-// SetReadAtNil sets the value for ReadAt to be an explicit nil
-func (o *GetInboxResponseMessages) SetReadAtNil() {
-	o.ReadAt.Set(nil)
-}
-
-// UnsetReadAt ensures that no value is present for ReadAt, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetReadAt() {
-	o.ReadAt.Unset()
-}
-
-// GetPlatformMessageId returns the PlatformMessageId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetPlatformMessageId() string {
-	if o == nil || o.PlatformMessageId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PlatformMessageId.Get()
-}
-
-// GetPlatformMessageIdOk returns a tuple with the PlatformMessageId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetPlatformMessageIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PlatformMessageId.Get(), o.PlatformMessageId.IsSet()
-}
-
-// HasPlatformMessageId returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasPlatformMessageId() bool {
-	if o != nil && o.PlatformMessageId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatformMessageId gets a reference to the given NullableString and assigns it to the PlatformMessageId field.
-func (o *GetInboxResponseMessages) SetPlatformMessageId(v string) {
-	o.PlatformMessageId.Set(&v)
-}
-// SetPlatformMessageIdNil sets the value for PlatformMessageId to be an explicit nil
-func (o *GetInboxResponseMessages) SetPlatformMessageIdNil() {
-	o.PlatformMessageId.Set(nil)
-}
-
-// UnsetPlatformMessageId ensures that no value is present for PlatformMessageId, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetPlatformMessageId() {
-	o.PlatformMessageId.Unset()
-}
-
-// GetSender returns the Sender field value
-func (o *GetInboxResponseMessages) GetSender() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Sender
-}
-
-// GetSenderOk returns a tuple with the Sender field value
-// and a boolean to check if the value has been set.
-func (o *GetInboxResponseMessages) GetSenderOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Sender, true
-}
-
-// SetSender sets field value
-func (o *GetInboxResponseMessages) SetSender(v string) {
-	o.Sender = v
-}
-
-// GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAttachments() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Attachments
-}
-
-// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAttachmentsOk() ([]string, bool) {
-	if o == nil || o.Attachments == nil {
-		return nil, false
-	}
-	return o.Attachments, true
-}
-
-// HasAttachments returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAttachments gets a reference to the given []string and assigns it to the Attachments field.
-func (o *GetInboxResponseMessages) SetAttachments(v []string) {
-	o.Attachments = v
-}
-
-// GetAiIntent returns the AiIntent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAiIntent() string {
-	if o == nil || o.AiIntent.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AiIntent.Get()
-}
-
-// GetAiIntentOk returns a tuple with the AiIntent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAiIntentOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AiIntent.Get(), o.AiIntent.IsSet()
-}
-
-// HasAiIntent returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAiIntent() bool {
-	if o != nil && o.AiIntent.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAiIntent gets a reference to the given NullableString and assigns it to the AiIntent field.
-func (o *GetInboxResponseMessages) SetAiIntent(v string) {
-	o.AiIntent.Set(&v)
-}
-// SetAiIntentNil sets the value for AiIntent to be an explicit nil
-func (o *GetInboxResponseMessages) SetAiIntentNil() {
-	o.AiIntent.Set(nil)
-}
-
-// UnsetAiIntent ensures that no value is present for AiIntent, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAiIntent() {
-	o.AiIntent.Unset()
-}
-
-// GetAiUrgency returns the AiUrgency field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAiUrgency() string {
-	if o == nil || o.AiUrgency.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AiUrgency.Get()
-}
-
-// GetAiUrgencyOk returns a tuple with the AiUrgency field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAiUrgencyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AiUrgency.Get(), o.AiUrgency.IsSet()
-}
-
-// HasAiUrgency returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAiUrgency() bool {
-	if o != nil && o.AiUrgency.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAiUrgency gets a reference to the given NullableString and assigns it to the AiUrgency field.
-func (o *GetInboxResponseMessages) SetAiUrgency(v string) {
-	o.AiUrgency.Set(&v)
-}
-// SetAiUrgencyNil sets the value for AiUrgency to be an explicit nil
-func (o *GetInboxResponseMessages) SetAiUrgencyNil() {
-	o.AiUrgency.Set(nil)
-}
-
-// UnsetAiUrgency ensures that no value is present for AiUrgency, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAiUrgency() {
-	o.AiUrgency.Unset()
-}
-
-// GetAiScamScore returns the AiScamScore field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAiScamScore() float32 {
-	if o == nil || o.AiScamScore.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.AiScamScore.Get()
-}
-
-// GetAiScamScoreOk returns a tuple with the AiScamScore field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAiScamScoreOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AiScamScore.Get(), o.AiScamScore.IsSet()
-}
-
-// HasAiScamScore returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAiScamScore() bool {
-	if o != nil && o.AiScamScore.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAiScamScore gets a reference to the given NullableFloat32 and assigns it to the AiScamScore field.
-func (o *GetInboxResponseMessages) SetAiScamScore(v float32) {
-	o.AiScamScore.Set(&v)
-}
-// SetAiScamScoreNil sets the value for AiScamScore to be an explicit nil
-func (o *GetInboxResponseMessages) SetAiScamScoreNil() {
-	o.AiScamScore.Set(nil)
-}
-
-// UnsetAiScamScore ensures that no value is present for AiScamScore, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAiScamScore() {
-	o.AiScamScore.Unset()
-}
-
-// GetAiSuggestedReply returns the AiSuggestedReply field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAiSuggestedReply() string {
-	if o == nil || o.AiSuggestedReply.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.AiSuggestedReply.Get()
-}
-
-// GetAiSuggestedReplyOk returns a tuple with the AiSuggestedReply field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAiSuggestedReplyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AiSuggestedReply.Get(), o.AiSuggestedReply.IsSet()
-}
-
-// HasAiSuggestedReply returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAiSuggestedReply() bool {
-	if o != nil && o.AiSuggestedReply.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAiSuggestedReply gets a reference to the given NullableString and assigns it to the AiSuggestedReply field.
-func (o *GetInboxResponseMessages) SetAiSuggestedReply(v string) {
-	o.AiSuggestedReply.Set(&v)
-}
-// SetAiSuggestedReplyNil sets the value for AiSuggestedReply to be an explicit nil
-func (o *GetInboxResponseMessages) SetAiSuggestedReplyNil() {
-	o.AiSuggestedReply.Set(nil)
-}
-
-// UnsetAiSuggestedReply ensures that no value is present for AiSuggestedReply, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAiSuggestedReply() {
-	o.AiSuggestedReply.Unset()
-}
-
-// GetAiTriagedAt returns the AiTriagedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetAiTriagedAt() time.Time {
-	if o == nil || o.AiTriagedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.AiTriagedAt.Get()
-}
-
-// GetAiTriagedAtOk returns a tuple with the AiTriagedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetAiTriagedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AiTriagedAt.Get(), o.AiTriagedAt.IsSet()
-}
-
-// HasAiTriagedAt returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasAiTriagedAt() bool {
-	if o != nil && o.AiTriagedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAiTriagedAt gets a reference to the given NullableTime and assigns it to the AiTriagedAt field.
-func (o *GetInboxResponseMessages) SetAiTriagedAt(v time.Time) {
-	o.AiTriagedAt.Set(&v)
-}
-// SetAiTriagedAtNil sets the value for AiTriagedAt to be an explicit nil
-func (o *GetInboxResponseMessages) SetAiTriagedAtNil() {
-	o.AiTriagedAt.Set(nil)
-}
-
-// UnsetAiTriagedAt ensures that no value is present for AiTriagedAt, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetAiTriagedAt() {
-	o.AiTriagedAt.Unset()
-}
-
-// GetStickerId returns the StickerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetStickerId() string {
-	if o == nil || o.StickerId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.StickerId.Get()
-}
-
-// GetStickerIdOk returns a tuple with the StickerId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetStickerIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.StickerId.Get(), o.StickerId.IsSet()
-}
-
-// HasStickerId returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasStickerId() bool {
-	if o != nil && o.StickerId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStickerId gets a reference to the given NullableString and assigns it to the StickerId field.
-func (o *GetInboxResponseMessages) SetStickerId(v string) {
-	o.StickerId.Set(&v)
-}
-// SetStickerIdNil sets the value for StickerId to be an explicit nil
-func (o *GetInboxResponseMessages) SetStickerIdNil() {
-	o.StickerId.Set(nil)
-}
-
-// UnsetStickerId ensures that no value is present for StickerId, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetStickerId() {
-	o.StickerId.Unset()
-}
-
-// GetGifUrl returns the GifUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetGifUrl() string {
-	if o == nil || o.GifUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.GifUrl.Get()
-}
-
-// GetGifUrlOk returns a tuple with the GifUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetGifUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.GifUrl.Get(), o.GifUrl.IsSet()
-}
-
-// HasGifUrl returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasGifUrl() bool {
-	if o != nil && o.GifUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGifUrl gets a reference to the given NullableString and assigns it to the GifUrl field.
-func (o *GetInboxResponseMessages) SetGifUrl(v string) {
-	o.GifUrl.Set(&v)
-}
-// SetGifUrlNil sets the value for GifUrl to be an explicit nil
-func (o *GetInboxResponseMessages) SetGifUrlNil() {
-	o.GifUrl.Set(nil)
-}
-
-// UnsetGifUrl ensures that no value is present for GifUrl, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetGifUrl() {
-	o.GifUrl.Unset()
-}
-
-// GetVideoThumbUrl returns the VideoThumbUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetVideoThumbUrl() string {
-	if o == nil || o.VideoThumbUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VideoThumbUrl.Get()
-}
-
-// GetVideoThumbUrlOk returns a tuple with the VideoThumbUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetVideoThumbUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VideoThumbUrl.Get(), o.VideoThumbUrl.IsSet()
-}
-
-// HasVideoThumbUrl returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasVideoThumbUrl() bool {
-	if o != nil && o.VideoThumbUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVideoThumbUrl gets a reference to the given NullableString and assigns it to the VideoThumbUrl field.
-func (o *GetInboxResponseMessages) SetVideoThumbUrl(v string) {
-	o.VideoThumbUrl.Set(&v)
-}
-// SetVideoThumbUrlNil sets the value for VideoThumbUrl to be an explicit nil
-func (o *GetInboxResponseMessages) SetVideoThumbUrlNil() {
-	o.VideoThumbUrl.Set(nil)
-}
-
-// UnsetVideoThumbUrl ensures that no value is present for VideoThumbUrl, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetVideoThumbUrl() {
-	o.VideoThumbUrl.Unset()
-}
-
-// GetVoiceUrl returns the VoiceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetVoiceUrl() string {
-	if o == nil || o.VoiceUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VoiceUrl.Get()
-}
-
-// GetVoiceUrlOk returns a tuple with the VoiceUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetVoiceUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VoiceUrl.Get(), o.VoiceUrl.IsSet()
-}
-
-// HasVoiceUrl returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasVoiceUrl() bool {
-	if o != nil && o.VoiceUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVoiceUrl gets a reference to the given NullableString and assigns it to the VoiceUrl field.
-func (o *GetInboxResponseMessages) SetVoiceUrl(v string) {
-	o.VoiceUrl.Set(&v)
-}
-// SetVoiceUrlNil sets the value for VoiceUrl to be an explicit nil
-func (o *GetInboxResponseMessages) SetVoiceUrlNil() {
-	o.VoiceUrl.Set(nil)
-}
-
-// UnsetVoiceUrl ensures that no value is present for VoiceUrl, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetVoiceUrl() {
-	o.VoiceUrl.Unset()
-}
-
-// GetVoiceDurationSeconds returns the VoiceDurationSeconds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetVoiceDurationSeconds() float32 {
-	if o == nil || o.VoiceDurationSeconds.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.VoiceDurationSeconds.Get()
-}
-
-// GetVoiceDurationSecondsOk returns a tuple with the VoiceDurationSeconds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetVoiceDurationSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VoiceDurationSeconds.Get(), o.VoiceDurationSeconds.IsSet()
-}
-
-// HasVoiceDurationSeconds returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasVoiceDurationSeconds() bool {
-	if o != nil && o.VoiceDurationSeconds.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVoiceDurationSeconds gets a reference to the given NullableFloat32 and assigns it to the VoiceDurationSeconds field.
-func (o *GetInboxResponseMessages) SetVoiceDurationSeconds(v float32) {
-	o.VoiceDurationSeconds.Set(&v)
-}
-// SetVoiceDurationSecondsNil sets the value for VoiceDurationSeconds to be an explicit nil
-func (o *GetInboxResponseMessages) SetVoiceDurationSecondsNil() {
-	o.VoiceDurationSeconds.Set(nil)
-}
-
-// UnsetVoiceDurationSeconds ensures that no value is present for VoiceDurationSeconds, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetVoiceDurationSeconds() {
-	o.VoiceDurationSeconds.Unset()
-}
-
-// GetDeliveryStatus returns the DeliveryStatus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetDeliveryStatus() string {
-	if o == nil || o.DeliveryStatus.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.DeliveryStatus.Get()
-}
-
-// GetDeliveryStatusOk returns a tuple with the DeliveryStatus field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetDeliveryStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.DeliveryStatus.Get(), o.DeliveryStatus.IsSet()
-}
-
-// HasDeliveryStatus returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasDeliveryStatus() bool {
-	if o != nil && o.DeliveryStatus.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeliveryStatus gets a reference to the given NullableString and assigns it to the DeliveryStatus field.
-func (o *GetInboxResponseMessages) SetDeliveryStatus(v string) {
-	o.DeliveryStatus.Set(&v)
-}
-// SetDeliveryStatusNil sets the value for DeliveryStatus to be an explicit nil
-func (o *GetInboxResponseMessages) SetDeliveryStatusNil() {
-	o.DeliveryStatus.Set(nil)
-}
-
-// UnsetDeliveryStatus ensures that no value is present for DeliveryStatus, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetDeliveryStatus() {
-	o.DeliveryStatus.Unset()
-}
-
-// GetDeliveryError returns the DeliveryError field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboxResponseMessages) GetDeliveryError() string {
-	if o == nil || o.DeliveryError.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.DeliveryError.Get()
-}
-
-// GetDeliveryErrorOk returns a tuple with the DeliveryError field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboxResponseMessages) GetDeliveryErrorOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.DeliveryError.Get(), o.DeliveryError.IsSet()
-}
-
-// HasDeliveryError returns a boolean if a field has been set.
-func (o *GetInboxResponseMessages) HasDeliveryError() bool {
-	if o != nil && o.DeliveryError.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeliveryError gets a reference to the given NullableString and assigns it to the DeliveryError field.
-func (o *GetInboxResponseMessages) SetDeliveryError(v string) {
-	o.DeliveryError.Set(&v)
-}
-// SetDeliveryErrorNil sets the value for DeliveryError to be an explicit nil
-func (o *GetInboxResponseMessages) SetDeliveryErrorNil() {
-	o.DeliveryError.Set(nil)
-}
-
-// UnsetDeliveryError ensures that no value is present for DeliveryError, not even an explicit nil
-func (o *GetInboxResponseMessages) UnsetDeliveryError() {
-	o.DeliveryError.Unset()
-}
-
-func (o GetInboxResponseMessages) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.VideoUrl.IsSet() {
-		toSerialize["videoUrl"] = o.VideoUrl.Get()
-	}
-	if o.SyncedAt.IsSet() {
-		toSerialize["syncedAt"] = o.SyncedAt.Get()
-	}
-	if o.AuthorUserId.IsSet() {
-		toSerialize["authorUserId"] = o.AuthorUserId.Get()
-	}
-	if true {
-		toSerialize["sentAt"] = o.SentAt
-	}
-	if o.Body.IsSet() {
-		toSerialize["body"] = o.Body.Get()
-	}
-	if true {
-		toSerialize["conversationId"] = o.ConversationId
-	}
-	if o.ReadAt.IsSet() {
-		toSerialize["readAt"] = o.ReadAt.Get()
-	}
-	if o.PlatformMessageId.IsSet() {
-		toSerialize["platformMessageId"] = o.PlatformMessageId.Get()
-	}
-	if true {
-		toSerialize["sender"] = o.Sender
-	}
-	if o.Attachments != nil {
-		toSerialize["attachments"] = o.Attachments
-	}
-	if o.AiIntent.IsSet() {
-		toSerialize["aiIntent"] = o.AiIntent.Get()
-	}
-	if o.AiUrgency.IsSet() {
-		toSerialize["aiUrgency"] = o.AiUrgency.Get()
-	}
-	if o.AiScamScore.IsSet() {
-		toSerialize["aiScamScore"] = o.AiScamScore.Get()
-	}
-	if o.AiSuggestedReply.IsSet() {
-		toSerialize["aiSuggestedReply"] = o.AiSuggestedReply.Get()
-	}
-	if o.AiTriagedAt.IsSet() {
-		toSerialize["aiTriagedAt"] = o.AiTriagedAt.Get()
-	}
-	if o.StickerId.IsSet() {
-		toSerialize["stickerId"] = o.StickerId.Get()
-	}
-	if o.GifUrl.IsSet() {
-		toSerialize["gifUrl"] = o.GifUrl.Get()
-	}
-	if o.VideoThumbUrl.IsSet() {
-		toSerialize["videoThumbUrl"] = o.VideoThumbUrl.Get()
-	}
-	if o.VoiceUrl.IsSet() {
-		toSerialize["voiceUrl"] = o.VoiceUrl.Get()
-	}
-	if o.VoiceDurationSeconds.IsSet() {
-		toSerialize["voiceDurationSeconds"] = o.VoiceDurationSeconds.Get()
-	}
-	if o.DeliveryStatus.IsSet() {
-		toSerialize["deliveryStatus"] = o.DeliveryStatus.Get()
-	}
-	if o.DeliveryError.IsSet() {
-		toSerialize["deliveryError"] = o.DeliveryError.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetInboxResponseMessages struct {
-	value *GetInboxResponseMessages
-	isSet bool
-}
-
-func (v NullableGetInboxResponseMessages) Get() *GetInboxResponseMessages {
-	return v.value
-}
-
-func (v *NullableGetInboxResponseMessages) Set(val *GetInboxResponseMessages) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetInboxResponseMessages) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetInboxResponseMessages) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetInboxResponseMessages(val *GetInboxResponseMessages) *NullableGetInboxResponseMessages {
-	return &NullableGetInboxResponseMessages{value: val, isSet: true}
-}
-
-func (v NullableGetInboxResponseMessages) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetInboxResponseMessages) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // ListInboxItem struct for ListInboxItem
 type ListInboxItem struct {
+	CanSendOffer bool `json:"canSendOffer"`
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UserId string `json:"userId"`
-	Status string `json:"status"`
 	Platform string `json:"platform"`
-	ListingId NullableString `json:"listingId,omitempty"`
 	AccountSlot float32 `json:"accountSlot"`
+	Status string `json:"status"`
+	Source NullableString `json:"source,omitempty"`
+	Labels []string `json:"labels"`
 	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
 	PlatformListingId NullableString `json:"platformListingId,omitempty"`
 	BuyerUsername NullableString `json:"buyerUsername,omitempty"`
-	Subject NullableString `json:"subject,omitempty"`
 	PlatformConversationId string `json:"platformConversationId"`
 	BuyerPlatformId NullableString `json:"buyerPlatformId,omitempty"`
+	BuyerAvatarUrl NullableString `json:"buyerAvatarUrl,omitempty"`
+	Subject NullableString `json:"subject,omitempty"`
 	IsRead bool `json:"isRead"`
 	IsHidden bool `json:"isHidden"`
 	HasOffer bool `json:"hasOffer"`
@@ -4093,24 +5657,29 @@ type ListInboxItem struct {
 	OfferStatus NullableString `json:"offerStatus,omitempty"`
 	PlatformConversationUrl NullableString `json:"platformConversationUrl,omitempty"`
 	LastMessageAt NullableTime `json:"lastMessageAt,omitempty"`
+	SupersededAt NullableTime `json:"supersededAt,omitempty"`
+	IsStarred bool `json:"isStarred"`
 }
 
 // NewListInboxItem instantiates a new ListInboxItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListInboxItem(id string, createdAt time.Time, userId string, status string, platform string, accountSlot float32, platformConversationId string, isRead bool, isHidden bool, hasOffer bool) *ListInboxItem {
+func NewListInboxItem(canSendOffer bool, id string, createdAt time.Time, userId string, platform string, accountSlot float32, status string, labels []string, platformConversationId string, isRead bool, isHidden bool, hasOffer bool, isStarred bool) *ListInboxItem {
 	this := ListInboxItem{}
+	this.CanSendOffer = canSendOffer
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UserId = userId
-	this.Status = status
 	this.Platform = platform
 	this.AccountSlot = accountSlot
+	this.Status = status
+	this.Labels = labels
 	this.PlatformConversationId = platformConversationId
 	this.IsRead = isRead
 	this.IsHidden = isHidden
 	this.HasOffer = hasOffer
+	this.IsStarred = isStarred
 	return &this
 }
 
@@ -4120,6 +5689,30 @@ func NewListInboxItem(id string, createdAt time.Time, userId string, status stri
 func NewListInboxItemWithDefaults() *ListInboxItem {
 	this := ListInboxItem{}
 	return &this
+}
+
+// GetCanSendOffer returns the CanSendOffer field value
+func (o *ListInboxItem) GetCanSendOffer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CanSendOffer
+}
+
+// GetCanSendOfferOk returns a tuple with the CanSendOffer field value
+// and a boolean to check if the value has been set.
+func (o *ListInboxItem) GetCanSendOfferOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CanSendOffer, true
+}
+
+// SetCanSendOffer sets field value
+func (o *ListInboxItem) SetCanSendOffer(v bool) {
+	o.CanSendOffer = v
 }
 
 // GetId returns the Id field value
@@ -4194,30 +5787,6 @@ func (o *ListInboxItem) SetUserId(v string) {
 	o.UserId = v
 }
 
-// GetStatus returns the Status field value
-func (o *ListInboxItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListInboxItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListInboxItem) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetPlatform returns the Platform field value
 func (o *ListInboxItem) GetPlatform() string {
 	if o == nil {
@@ -4242,48 +5811,6 @@ func (o *ListInboxItem) SetPlatform(v string) {
 	o.Platform = v
 }
 
-// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListInboxItem) GetListingId() string {
-	if o == nil || o.ListingId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ListingId.Get()
-}
-
-// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListInboxItem) GetListingIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ListingId.Get(), o.ListingId.IsSet()
-}
-
-// HasListingId returns a boolean if a field has been set.
-func (o *ListInboxItem) HasListingId() bool {
-	if o != nil && o.ListingId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
-func (o *ListInboxItem) SetListingId(v string) {
-	o.ListingId.Set(&v)
-}
-// SetListingIdNil sets the value for ListingId to be an explicit nil
-func (o *ListInboxItem) SetListingIdNil() {
-	o.ListingId.Set(nil)
-}
-
-// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
-func (o *ListInboxItem) UnsetListingId() {
-	o.ListingId.Unset()
-}
-
 // GetAccountSlot returns the AccountSlot field value
 func (o *ListInboxItem) GetAccountSlot() float32 {
 	if o == nil {
@@ -4306,6 +5833,96 @@ func (o *ListInboxItem) GetAccountSlotOk() (*float32, bool) {
 // SetAccountSlot sets field value
 func (o *ListInboxItem) SetAccountSlot(v float32) {
 	o.AccountSlot = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListInboxItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListInboxItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListInboxItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInboxItem) GetSource() string {
+	if o == nil || o.Source.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source.Get()
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInboxItem) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Source.Get(), o.Source.IsSet()
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *ListInboxItem) HasSource() bool {
+	if o != nil && o.Source.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given NullableString and assigns it to the Source field.
+func (o *ListInboxItem) SetSource(v string) {
+	o.Source.Set(&v)
+}
+// SetSourceNil sets the value for Source to be an explicit nil
+func (o *ListInboxItem) SetSourceNil() {
+	o.Source.Set(nil)
+}
+
+// UnsetSource ensures that no value is present for Source, not even an explicit nil
+func (o *ListInboxItem) UnsetSource() {
+	o.Source.Unset()
+}
+
+// GetLabels returns the Labels field value
+func (o *ListInboxItem) GetLabels() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value
+// and a boolean to check if the value has been set.
+func (o *ListInboxItem) GetLabelsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// SetLabels sets field value
+func (o *ListInboxItem) SetLabels(v []string) {
+	o.Labels = v
 }
 
 // GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -4348,6 +5965,48 @@ func (o *ListInboxItem) SetInventoryItemIdNil() {
 // UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
 func (o *ListInboxItem) UnsetInventoryItemId() {
 	o.InventoryItemId.Unset()
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInboxItem) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInboxItem) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *ListInboxItem) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *ListInboxItem) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *ListInboxItem) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *ListInboxItem) UnsetListingId() {
+	o.ListingId.Unset()
 }
 
 // GetPlatformListingId returns the PlatformListingId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -4434,48 +6093,6 @@ func (o *ListInboxItem) UnsetBuyerUsername() {
 	o.BuyerUsername.Unset()
 }
 
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListInboxItem) GetSubject() string {
-	if o == nil || o.Subject.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Subject.Get()
-}
-
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListInboxItem) GetSubjectOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Subject.Get(), o.Subject.IsSet()
-}
-
-// HasSubject returns a boolean if a field has been set.
-func (o *ListInboxItem) HasSubject() bool {
-	if o != nil && o.Subject.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
-func (o *ListInboxItem) SetSubject(v string) {
-	o.Subject.Set(&v)
-}
-// SetSubjectNil sets the value for Subject to be an explicit nil
-func (o *ListInboxItem) SetSubjectNil() {
-	o.Subject.Set(nil)
-}
-
-// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
-func (o *ListInboxItem) UnsetSubject() {
-	o.Subject.Unset()
-}
-
 // GetPlatformConversationId returns the PlatformConversationId field value
 func (o *ListInboxItem) GetPlatformConversationId() string {
 	if o == nil {
@@ -4540,6 +6157,90 @@ func (o *ListInboxItem) SetBuyerPlatformIdNil() {
 // UnsetBuyerPlatformId ensures that no value is present for BuyerPlatformId, not even an explicit nil
 func (o *ListInboxItem) UnsetBuyerPlatformId() {
 	o.BuyerPlatformId.Unset()
+}
+
+// GetBuyerAvatarUrl returns the BuyerAvatarUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInboxItem) GetBuyerAvatarUrl() string {
+	if o == nil || o.BuyerAvatarUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerAvatarUrl.Get()
+}
+
+// GetBuyerAvatarUrlOk returns a tuple with the BuyerAvatarUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInboxItem) GetBuyerAvatarUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerAvatarUrl.Get(), o.BuyerAvatarUrl.IsSet()
+}
+
+// HasBuyerAvatarUrl returns a boolean if a field has been set.
+func (o *ListInboxItem) HasBuyerAvatarUrl() bool {
+	if o != nil && o.BuyerAvatarUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerAvatarUrl gets a reference to the given NullableString and assigns it to the BuyerAvatarUrl field.
+func (o *ListInboxItem) SetBuyerAvatarUrl(v string) {
+	o.BuyerAvatarUrl.Set(&v)
+}
+// SetBuyerAvatarUrlNil sets the value for BuyerAvatarUrl to be an explicit nil
+func (o *ListInboxItem) SetBuyerAvatarUrlNil() {
+	o.BuyerAvatarUrl.Set(nil)
+}
+
+// UnsetBuyerAvatarUrl ensures that no value is present for BuyerAvatarUrl, not even an explicit nil
+func (o *ListInboxItem) UnsetBuyerAvatarUrl() {
+	o.BuyerAvatarUrl.Unset()
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInboxItem) GetSubject() string {
+	if o == nil || o.Subject.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Subject.Get()
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInboxItem) GetSubjectOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Subject.Get(), o.Subject.IsSet()
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *ListInboxItem) HasSubject() bool {
+	if o != nil && o.Subject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
+func (o *ListInboxItem) SetSubject(v string) {
+	o.Subject.Set(&v)
+}
+// SetSubjectNil sets the value for Subject to be an explicit nil
+func (o *ListInboxItem) SetSubjectNil() {
+	o.Subject.Set(nil)
+}
+
+// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+func (o *ListInboxItem) UnsetSubject() {
+	o.Subject.Unset()
 }
 
 // GetIsRead returns the IsRead field value
@@ -4782,8 +6483,77 @@ func (o *ListInboxItem) UnsetLastMessageAt() {
 	o.LastMessageAt.Unset()
 }
 
+// GetSupersededAt returns the SupersededAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInboxItem) GetSupersededAt() time.Time {
+	if o == nil || o.SupersededAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SupersededAt.Get()
+}
+
+// GetSupersededAtOk returns a tuple with the SupersededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInboxItem) GetSupersededAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SupersededAt.Get(), o.SupersededAt.IsSet()
+}
+
+// HasSupersededAt returns a boolean if a field has been set.
+func (o *ListInboxItem) HasSupersededAt() bool {
+	if o != nil && o.SupersededAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupersededAt gets a reference to the given NullableTime and assigns it to the SupersededAt field.
+func (o *ListInboxItem) SetSupersededAt(v time.Time) {
+	o.SupersededAt.Set(&v)
+}
+// SetSupersededAtNil sets the value for SupersededAt to be an explicit nil
+func (o *ListInboxItem) SetSupersededAtNil() {
+	o.SupersededAt.Set(nil)
+}
+
+// UnsetSupersededAt ensures that no value is present for SupersededAt, not even an explicit nil
+func (o *ListInboxItem) UnsetSupersededAt() {
+	o.SupersededAt.Unset()
+}
+
+// GetIsStarred returns the IsStarred field value
+func (o *ListInboxItem) GetIsStarred() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsStarred
+}
+
+// GetIsStarredOk returns a tuple with the IsStarred field value
+// and a boolean to check if the value has been set.
+func (o *ListInboxItem) GetIsStarredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsStarred, true
+}
+
+// SetIsStarred sets field value
+func (o *ListInboxItem) SetIsStarred(v bool) {
+	o.IsStarred = v
+}
+
 func (o ListInboxItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["canSendOffer"] = o.CanSendOffer
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -4794,19 +6564,25 @@ func (o ListInboxItem) MarshalJSON() ([]byte, error) {
 		toSerialize["userId"] = o.UserId
 	}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
 		toSerialize["platform"] = o.Platform
-	}
-	if o.ListingId.IsSet() {
-		toSerialize["listingId"] = o.ListingId.Get()
 	}
 	if true {
 		toSerialize["accountSlot"] = o.AccountSlot
 	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Source.IsSet() {
+		toSerialize["source"] = o.Source.Get()
+	}
+	if true {
+		toSerialize["labels"] = o.Labels
+	}
 	if o.InventoryItemId.IsSet() {
 		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
 	}
 	if o.PlatformListingId.IsSet() {
 		toSerialize["platformListingId"] = o.PlatformListingId.Get()
@@ -4814,14 +6590,17 @@ func (o ListInboxItem) MarshalJSON() ([]byte, error) {
 	if o.BuyerUsername.IsSet() {
 		toSerialize["buyerUsername"] = o.BuyerUsername.Get()
 	}
-	if o.Subject.IsSet() {
-		toSerialize["subject"] = o.Subject.Get()
-	}
 	if true {
 		toSerialize["platformConversationId"] = o.PlatformConversationId
 	}
 	if o.BuyerPlatformId.IsSet() {
 		toSerialize["buyerPlatformId"] = o.BuyerPlatformId.Get()
+	}
+	if o.BuyerAvatarUrl.IsSet() {
+		toSerialize["buyerAvatarUrl"] = o.BuyerAvatarUrl.Get()
+	}
+	if o.Subject.IsSet() {
+		toSerialize["subject"] = o.Subject.Get()
 	}
 	if true {
 		toSerialize["isRead"] = o.IsRead
@@ -4843,6 +6622,12 @@ func (o ListInboxItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.LastMessageAt.IsSet() {
 		toSerialize["lastMessageAt"] = o.LastMessageAt.Get()
+	}
+	if o.SupersededAt.IsSet() {
+		toSerialize["supersededAt"] = o.SupersededAt.Get()
+	}
+	if true {
+		toSerialize["isStarred"] = o.IsStarred
 	}
 	return json.Marshal(toSerialize)
 }
@@ -5048,16 +6833,107 @@ func (v *NullableListInboxResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// UpdateInboxCannedResponseOrderRequest struct for UpdateInboxCannedResponseOrderRequest
+type UpdateInboxCannedResponseOrderRequest struct {
+	Ids []string `json:"ids"`
+}
+
+// NewUpdateInboxCannedResponseOrderRequest instantiates a new UpdateInboxCannedResponseOrderRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateInboxCannedResponseOrderRequest(ids []string) *UpdateInboxCannedResponseOrderRequest {
+	this := UpdateInboxCannedResponseOrderRequest{}
+	this.Ids = ids
+	return &this
+}
+
+// NewUpdateInboxCannedResponseOrderRequestWithDefaults instantiates a new UpdateInboxCannedResponseOrderRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateInboxCannedResponseOrderRequestWithDefaults() *UpdateInboxCannedResponseOrderRequest {
+	this := UpdateInboxCannedResponseOrderRequest{}
+	return &this
+}
+
+// GetIds returns the Ids field value
+func (o *UpdateInboxCannedResponseOrderRequest) GetIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Ids
+}
+
+// GetIdsOk returns a tuple with the Ids field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxCannedResponseOrderRequest) GetIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Ids, true
+}
+
+// SetIds sets field value
+func (o *UpdateInboxCannedResponseOrderRequest) SetIds(v []string) {
+	o.Ids = v
+}
+
+func (o UpdateInboxCannedResponseOrderRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ids"] = o.Ids
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdateInboxCannedResponseOrderRequest struct {
+	value *UpdateInboxCannedResponseOrderRequest
+	isSet bool
+}
+
+func (v NullableUpdateInboxCannedResponseOrderRequest) Get() *UpdateInboxCannedResponseOrderRequest {
+	return v.value
+}
+
+func (v *NullableUpdateInboxCannedResponseOrderRequest) Set(val *UpdateInboxCannedResponseOrderRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateInboxCannedResponseOrderRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateInboxCannedResponseOrderRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateInboxCannedResponseOrderRequest(val *UpdateInboxCannedResponseOrderRequest) *NullableUpdateInboxCannedResponseOrderRequest {
+	return &NullableUpdateInboxCannedResponseOrderRequest{value: val, isSet: true}
+}
+
+func (v NullableUpdateInboxCannedResponseOrderRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateInboxCannedResponseOrderRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // UpdateInboxConversationResponse struct for UpdateInboxConversationResponse
 type UpdateInboxConversationResponse struct {
-	Conversation ListInboxItem `json:"conversation"`
+	Conversation UpdateInboxConversationResponseConversation `json:"conversation"`
 }
 
 // NewUpdateInboxConversationResponse instantiates a new UpdateInboxConversationResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInboxConversationResponse(conversation ListInboxItem) *UpdateInboxConversationResponse {
+func NewUpdateInboxConversationResponse(conversation UpdateInboxConversationResponseConversation) *UpdateInboxConversationResponse {
 	this := UpdateInboxConversationResponse{}
 	this.Conversation = conversation
 	return &this
@@ -5072,9 +6948,9 @@ func NewUpdateInboxConversationResponseWithDefaults() *UpdateInboxConversationRe
 }
 
 // GetConversation returns the Conversation field value
-func (o *UpdateInboxConversationResponse) GetConversation() ListInboxItem {
+func (o *UpdateInboxConversationResponse) GetConversation() UpdateInboxConversationResponseConversation {
 	if o == nil {
-		var ret ListInboxItem
+		var ret UpdateInboxConversationResponseConversation
 		return ret
 	}
 
@@ -5083,7 +6959,7 @@ func (o *UpdateInboxConversationResponse) GetConversation() ListInboxItem {
 
 // GetConversationOk returns a tuple with the Conversation field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInboxConversationResponse) GetConversationOk() (*ListInboxItem, bool) {
+func (o *UpdateInboxConversationResponse) GetConversationOk() (*UpdateInboxConversationResponseConversation, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -5091,7 +6967,7 @@ func (o *UpdateInboxConversationResponse) GetConversationOk() (*ListInboxItem, b
 }
 
 // SetConversation sets field value
-func (o *UpdateInboxConversationResponse) SetConversation(v ListInboxItem) {
+func (o *UpdateInboxConversationResponse) SetConversation(v UpdateInboxConversationResponseConversation) {
 	o.Conversation = v
 }
 
@@ -5135,6 +7011,1060 @@ func (v NullableUpdateInboxConversationResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableUpdateInboxConversationResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdateInboxConversationResponseConversation struct for UpdateInboxConversationResponseConversation
+type UpdateInboxConversationResponseConversation struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Platform string `json:"platform"`
+	AccountSlot float32 `json:"accountSlot"`
+	Status string `json:"status"`
+	Source NullableString `json:"source,omitempty"`
+	Labels []string `json:"labels"`
+	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
+	PlatformListingId NullableString `json:"platformListingId,omitempty"`
+	BuyerUsername NullableString `json:"buyerUsername,omitempty"`
+	PlatformConversationId string `json:"platformConversationId"`
+	BuyerPlatformId NullableString `json:"buyerPlatformId,omitempty"`
+	BuyerAvatarUrl NullableString `json:"buyerAvatarUrl,omitempty"`
+	BuyerAvatarSourceUrl NullableString `json:"buyerAvatarSourceUrl,omitempty"`
+	Subject NullableString `json:"subject,omitempty"`
+	IsRead bool `json:"isRead"`
+	IsHidden bool `json:"isHidden"`
+	HasOffer bool `json:"hasOffer"`
+	OfferAmount NullableString `json:"offerAmount,omitempty"`
+	OfferStatus NullableString `json:"offerStatus,omitempty"`
+	PlatformConversationUrl NullableString `json:"platformConversationUrl,omitempty"`
+	LastMessageAt NullableTime `json:"lastMessageAt,omitempty"`
+	SupersededAt NullableTime `json:"supersededAt,omitempty"`
+	IsStarred bool `json:"isStarred"`
+}
+
+// NewUpdateInboxConversationResponseConversation instantiates a new UpdateInboxConversationResponseConversation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateInboxConversationResponseConversation(id string, createdAt time.Time, userId string, platform string, accountSlot float32, status string, labels []string, platformConversationId string, isRead bool, isHidden bool, hasOffer bool, isStarred bool) *UpdateInboxConversationResponseConversation {
+	this := UpdateInboxConversationResponseConversation{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Platform = platform
+	this.AccountSlot = accountSlot
+	this.Status = status
+	this.Labels = labels
+	this.PlatformConversationId = platformConversationId
+	this.IsRead = isRead
+	this.IsHidden = isHidden
+	this.HasOffer = hasOffer
+	this.IsStarred = isStarred
+	return &this
+}
+
+// NewUpdateInboxConversationResponseConversationWithDefaults instantiates a new UpdateInboxConversationResponseConversation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateInboxConversationResponseConversationWithDefaults() *UpdateInboxConversationResponseConversation {
+	this := UpdateInboxConversationResponseConversation{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *UpdateInboxConversationResponseConversation) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *UpdateInboxConversationResponseConversation) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *UpdateInboxConversationResponseConversation) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *UpdateInboxConversationResponseConversation) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *UpdateInboxConversationResponseConversation) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *UpdateInboxConversationResponseConversation) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *UpdateInboxConversationResponseConversation) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *UpdateInboxConversationResponseConversation) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetAccountSlot returns the AccountSlot field value
+func (o *UpdateInboxConversationResponseConversation) GetAccountSlot() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AccountSlot
+}
+
+// GetAccountSlotOk returns a tuple with the AccountSlot field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetAccountSlotOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountSlot, true
+}
+
+// SetAccountSlot sets field value
+func (o *UpdateInboxConversationResponseConversation) SetAccountSlot(v float32) {
+	o.AccountSlot = v
+}
+
+// GetStatus returns the Status field value
+func (o *UpdateInboxConversationResponseConversation) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *UpdateInboxConversationResponseConversation) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetSource() string {
+	if o == nil || o.Source.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source.Get()
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Source.Get(), o.Source.IsSet()
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasSource() bool {
+	if o != nil && o.Source.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given NullableString and assigns it to the Source field.
+func (o *UpdateInboxConversationResponseConversation) SetSource(v string) {
+	o.Source.Set(&v)
+}
+// SetSourceNil sets the value for Source to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetSourceNil() {
+	o.Source.Set(nil)
+}
+
+// UnsetSource ensures that no value is present for Source, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetSource() {
+	o.Source.Unset()
+}
+
+// GetLabels returns the Labels field value
+func (o *UpdateInboxConversationResponseConversation) GetLabels() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetLabelsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// SetLabels sets field value
+func (o *UpdateInboxConversationResponseConversation) SetLabels(v []string) {
+	o.Labels = v
+}
+
+// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetInventoryItemId() string {
+	if o == nil || o.InventoryItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InventoryItemId.Get()
+}
+
+// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetInventoryItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
+}
+
+// HasInventoryItemId returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasInventoryItemId() bool {
+	if o != nil && o.InventoryItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
+func (o *UpdateInboxConversationResponseConversation) SetInventoryItemId(v string) {
+	o.InventoryItemId.Set(&v)
+}
+// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetInventoryItemIdNil() {
+	o.InventoryItemId.Set(nil)
+}
+
+// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetInventoryItemId() {
+	o.InventoryItemId.Unset()
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *UpdateInboxConversationResponseConversation) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+// GetPlatformListingId returns the PlatformListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetPlatformListingId() string {
+	if o == nil || o.PlatformListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformListingId.Get()
+}
+
+// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetPlatformListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformListingId.Get(), o.PlatformListingId.IsSet()
+}
+
+// HasPlatformListingId returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasPlatformListingId() bool {
+	if o != nil && o.PlatformListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformListingId gets a reference to the given NullableString and assigns it to the PlatformListingId field.
+func (o *UpdateInboxConversationResponseConversation) SetPlatformListingId(v string) {
+	o.PlatformListingId.Set(&v)
+}
+// SetPlatformListingIdNil sets the value for PlatformListingId to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetPlatformListingIdNil() {
+	o.PlatformListingId.Set(nil)
+}
+
+// UnsetPlatformListingId ensures that no value is present for PlatformListingId, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetPlatformListingId() {
+	o.PlatformListingId.Unset()
+}
+
+// GetBuyerUsername returns the BuyerUsername field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetBuyerUsername() string {
+	if o == nil || o.BuyerUsername.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerUsername.Get()
+}
+
+// GetBuyerUsernameOk returns a tuple with the BuyerUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetBuyerUsernameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerUsername.Get(), o.BuyerUsername.IsSet()
+}
+
+// HasBuyerUsername returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasBuyerUsername() bool {
+	if o != nil && o.BuyerUsername.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerUsername gets a reference to the given NullableString and assigns it to the BuyerUsername field.
+func (o *UpdateInboxConversationResponseConversation) SetBuyerUsername(v string) {
+	o.BuyerUsername.Set(&v)
+}
+// SetBuyerUsernameNil sets the value for BuyerUsername to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetBuyerUsernameNil() {
+	o.BuyerUsername.Set(nil)
+}
+
+// UnsetBuyerUsername ensures that no value is present for BuyerUsername, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetBuyerUsername() {
+	o.BuyerUsername.Unset()
+}
+
+// GetPlatformConversationId returns the PlatformConversationId field value
+func (o *UpdateInboxConversationResponseConversation) GetPlatformConversationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlatformConversationId
+}
+
+// GetPlatformConversationIdOk returns a tuple with the PlatformConversationId field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetPlatformConversationIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlatformConversationId, true
+}
+
+// SetPlatformConversationId sets field value
+func (o *UpdateInboxConversationResponseConversation) SetPlatformConversationId(v string) {
+	o.PlatformConversationId = v
+}
+
+// GetBuyerPlatformId returns the BuyerPlatformId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetBuyerPlatformId() string {
+	if o == nil || o.BuyerPlatformId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerPlatformId.Get()
+}
+
+// GetBuyerPlatformIdOk returns a tuple with the BuyerPlatformId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetBuyerPlatformIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerPlatformId.Get(), o.BuyerPlatformId.IsSet()
+}
+
+// HasBuyerPlatformId returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasBuyerPlatformId() bool {
+	if o != nil && o.BuyerPlatformId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerPlatformId gets a reference to the given NullableString and assigns it to the BuyerPlatformId field.
+func (o *UpdateInboxConversationResponseConversation) SetBuyerPlatformId(v string) {
+	o.BuyerPlatformId.Set(&v)
+}
+// SetBuyerPlatformIdNil sets the value for BuyerPlatformId to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetBuyerPlatformIdNil() {
+	o.BuyerPlatformId.Set(nil)
+}
+
+// UnsetBuyerPlatformId ensures that no value is present for BuyerPlatformId, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetBuyerPlatformId() {
+	o.BuyerPlatformId.Unset()
+}
+
+// GetBuyerAvatarUrl returns the BuyerAvatarUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetBuyerAvatarUrl() string {
+	if o == nil || o.BuyerAvatarUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerAvatarUrl.Get()
+}
+
+// GetBuyerAvatarUrlOk returns a tuple with the BuyerAvatarUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetBuyerAvatarUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerAvatarUrl.Get(), o.BuyerAvatarUrl.IsSet()
+}
+
+// HasBuyerAvatarUrl returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasBuyerAvatarUrl() bool {
+	if o != nil && o.BuyerAvatarUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerAvatarUrl gets a reference to the given NullableString and assigns it to the BuyerAvatarUrl field.
+func (o *UpdateInboxConversationResponseConversation) SetBuyerAvatarUrl(v string) {
+	o.BuyerAvatarUrl.Set(&v)
+}
+// SetBuyerAvatarUrlNil sets the value for BuyerAvatarUrl to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetBuyerAvatarUrlNil() {
+	o.BuyerAvatarUrl.Set(nil)
+}
+
+// UnsetBuyerAvatarUrl ensures that no value is present for BuyerAvatarUrl, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetBuyerAvatarUrl() {
+	o.BuyerAvatarUrl.Unset()
+}
+
+// GetBuyerAvatarSourceUrl returns the BuyerAvatarSourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetBuyerAvatarSourceUrl() string {
+	if o == nil || o.BuyerAvatarSourceUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerAvatarSourceUrl.Get()
+}
+
+// GetBuyerAvatarSourceUrlOk returns a tuple with the BuyerAvatarSourceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetBuyerAvatarSourceUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerAvatarSourceUrl.Get(), o.BuyerAvatarSourceUrl.IsSet()
+}
+
+// HasBuyerAvatarSourceUrl returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasBuyerAvatarSourceUrl() bool {
+	if o != nil && o.BuyerAvatarSourceUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerAvatarSourceUrl gets a reference to the given NullableString and assigns it to the BuyerAvatarSourceUrl field.
+func (o *UpdateInboxConversationResponseConversation) SetBuyerAvatarSourceUrl(v string) {
+	o.BuyerAvatarSourceUrl.Set(&v)
+}
+// SetBuyerAvatarSourceUrlNil sets the value for BuyerAvatarSourceUrl to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetBuyerAvatarSourceUrlNil() {
+	o.BuyerAvatarSourceUrl.Set(nil)
+}
+
+// UnsetBuyerAvatarSourceUrl ensures that no value is present for BuyerAvatarSourceUrl, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetBuyerAvatarSourceUrl() {
+	o.BuyerAvatarSourceUrl.Unset()
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetSubject() string {
+	if o == nil || o.Subject.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Subject.Get()
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetSubjectOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Subject.Get(), o.Subject.IsSet()
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasSubject() bool {
+	if o != nil && o.Subject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
+func (o *UpdateInboxConversationResponseConversation) SetSubject(v string) {
+	o.Subject.Set(&v)
+}
+// SetSubjectNil sets the value for Subject to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetSubjectNil() {
+	o.Subject.Set(nil)
+}
+
+// UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetSubject() {
+	o.Subject.Unset()
+}
+
+// GetIsRead returns the IsRead field value
+func (o *UpdateInboxConversationResponseConversation) GetIsRead() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsRead
+}
+
+// GetIsReadOk returns a tuple with the IsRead field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetIsReadOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsRead, true
+}
+
+// SetIsRead sets field value
+func (o *UpdateInboxConversationResponseConversation) SetIsRead(v bool) {
+	o.IsRead = v
+}
+
+// GetIsHidden returns the IsHidden field value
+func (o *UpdateInboxConversationResponseConversation) GetIsHidden() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsHidden
+}
+
+// GetIsHiddenOk returns a tuple with the IsHidden field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetIsHiddenOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsHidden, true
+}
+
+// SetIsHidden sets field value
+func (o *UpdateInboxConversationResponseConversation) SetIsHidden(v bool) {
+	o.IsHidden = v
+}
+
+// GetHasOffer returns the HasOffer field value
+func (o *UpdateInboxConversationResponseConversation) GetHasOffer() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasOffer
+}
+
+// GetHasOfferOk returns a tuple with the HasOffer field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetHasOfferOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HasOffer, true
+}
+
+// SetHasOffer sets field value
+func (o *UpdateInboxConversationResponseConversation) SetHasOffer(v bool) {
+	o.HasOffer = v
+}
+
+// GetOfferAmount returns the OfferAmount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetOfferAmount() string {
+	if o == nil || o.OfferAmount.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferAmount.Get()
+}
+
+// GetOfferAmountOk returns a tuple with the OfferAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetOfferAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferAmount.Get(), o.OfferAmount.IsSet()
+}
+
+// HasOfferAmount returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasOfferAmount() bool {
+	if o != nil && o.OfferAmount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferAmount gets a reference to the given NullableString and assigns it to the OfferAmount field.
+func (o *UpdateInboxConversationResponseConversation) SetOfferAmount(v string) {
+	o.OfferAmount.Set(&v)
+}
+// SetOfferAmountNil sets the value for OfferAmount to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetOfferAmountNil() {
+	o.OfferAmount.Set(nil)
+}
+
+// UnsetOfferAmount ensures that no value is present for OfferAmount, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetOfferAmount() {
+	o.OfferAmount.Unset()
+}
+
+// GetOfferStatus returns the OfferStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetOfferStatus() string {
+	if o == nil || o.OfferStatus.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OfferStatus.Get()
+}
+
+// GetOfferStatusOk returns a tuple with the OfferStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetOfferStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OfferStatus.Get(), o.OfferStatus.IsSet()
+}
+
+// HasOfferStatus returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasOfferStatus() bool {
+	if o != nil && o.OfferStatus.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOfferStatus gets a reference to the given NullableString and assigns it to the OfferStatus field.
+func (o *UpdateInboxConversationResponseConversation) SetOfferStatus(v string) {
+	o.OfferStatus.Set(&v)
+}
+// SetOfferStatusNil sets the value for OfferStatus to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetOfferStatusNil() {
+	o.OfferStatus.Set(nil)
+}
+
+// UnsetOfferStatus ensures that no value is present for OfferStatus, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetOfferStatus() {
+	o.OfferStatus.Unset()
+}
+
+// GetPlatformConversationUrl returns the PlatformConversationUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetPlatformConversationUrl() string {
+	if o == nil || o.PlatformConversationUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformConversationUrl.Get()
+}
+
+// GetPlatformConversationUrlOk returns a tuple with the PlatformConversationUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetPlatformConversationUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformConversationUrl.Get(), o.PlatformConversationUrl.IsSet()
+}
+
+// HasPlatformConversationUrl returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasPlatformConversationUrl() bool {
+	if o != nil && o.PlatformConversationUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformConversationUrl gets a reference to the given NullableString and assigns it to the PlatformConversationUrl field.
+func (o *UpdateInboxConversationResponseConversation) SetPlatformConversationUrl(v string) {
+	o.PlatformConversationUrl.Set(&v)
+}
+// SetPlatformConversationUrlNil sets the value for PlatformConversationUrl to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetPlatformConversationUrlNil() {
+	o.PlatformConversationUrl.Set(nil)
+}
+
+// UnsetPlatformConversationUrl ensures that no value is present for PlatformConversationUrl, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetPlatformConversationUrl() {
+	o.PlatformConversationUrl.Unset()
+}
+
+// GetLastMessageAt returns the LastMessageAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetLastMessageAt() time.Time {
+	if o == nil || o.LastMessageAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastMessageAt.Get()
+}
+
+// GetLastMessageAtOk returns a tuple with the LastMessageAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetLastMessageAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastMessageAt.Get(), o.LastMessageAt.IsSet()
+}
+
+// HasLastMessageAt returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasLastMessageAt() bool {
+	if o != nil && o.LastMessageAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastMessageAt gets a reference to the given NullableTime and assigns it to the LastMessageAt field.
+func (o *UpdateInboxConversationResponseConversation) SetLastMessageAt(v time.Time) {
+	o.LastMessageAt.Set(&v)
+}
+// SetLastMessageAtNil sets the value for LastMessageAt to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetLastMessageAtNil() {
+	o.LastMessageAt.Set(nil)
+}
+
+// UnsetLastMessageAt ensures that no value is present for LastMessageAt, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetLastMessageAt() {
+	o.LastMessageAt.Unset()
+}
+
+// GetSupersededAt returns the SupersededAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateInboxConversationResponseConversation) GetSupersededAt() time.Time {
+	if o == nil || o.SupersededAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SupersededAt.Get()
+}
+
+// GetSupersededAtOk returns a tuple with the SupersededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateInboxConversationResponseConversation) GetSupersededAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SupersededAt.Get(), o.SupersededAt.IsSet()
+}
+
+// HasSupersededAt returns a boolean if a field has been set.
+func (o *UpdateInboxConversationResponseConversation) HasSupersededAt() bool {
+	if o != nil && o.SupersededAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupersededAt gets a reference to the given NullableTime and assigns it to the SupersededAt field.
+func (o *UpdateInboxConversationResponseConversation) SetSupersededAt(v time.Time) {
+	o.SupersededAt.Set(&v)
+}
+// SetSupersededAtNil sets the value for SupersededAt to be an explicit nil
+func (o *UpdateInboxConversationResponseConversation) SetSupersededAtNil() {
+	o.SupersededAt.Set(nil)
+}
+
+// UnsetSupersededAt ensures that no value is present for SupersededAt, not even an explicit nil
+func (o *UpdateInboxConversationResponseConversation) UnsetSupersededAt() {
+	o.SupersededAt.Unset()
+}
+
+// GetIsStarred returns the IsStarred field value
+func (o *UpdateInboxConversationResponseConversation) GetIsStarred() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsStarred
+}
+
+// GetIsStarredOk returns a tuple with the IsStarred field value
+// and a boolean to check if the value has been set.
+func (o *UpdateInboxConversationResponseConversation) GetIsStarredOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsStarred, true
+}
+
+// SetIsStarred sets field value
+func (o *UpdateInboxConversationResponseConversation) SetIsStarred(v bool) {
+	o.IsStarred = v
+}
+
+func (o UpdateInboxConversationResponseConversation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["accountSlot"] = o.AccountSlot
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Source.IsSet() {
+		toSerialize["source"] = o.Source.Get()
+	}
+	if true {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.InventoryItemId.IsSet() {
+		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	if o.PlatformListingId.IsSet() {
+		toSerialize["platformListingId"] = o.PlatformListingId.Get()
+	}
+	if o.BuyerUsername.IsSet() {
+		toSerialize["buyerUsername"] = o.BuyerUsername.Get()
+	}
+	if true {
+		toSerialize["platformConversationId"] = o.PlatformConversationId
+	}
+	if o.BuyerPlatformId.IsSet() {
+		toSerialize["buyerPlatformId"] = o.BuyerPlatformId.Get()
+	}
+	if o.BuyerAvatarUrl.IsSet() {
+		toSerialize["buyerAvatarUrl"] = o.BuyerAvatarUrl.Get()
+	}
+	if o.BuyerAvatarSourceUrl.IsSet() {
+		toSerialize["buyerAvatarSourceUrl"] = o.BuyerAvatarSourceUrl.Get()
+	}
+	if o.Subject.IsSet() {
+		toSerialize["subject"] = o.Subject.Get()
+	}
+	if true {
+		toSerialize["isRead"] = o.IsRead
+	}
+	if true {
+		toSerialize["isHidden"] = o.IsHidden
+	}
+	if true {
+		toSerialize["hasOffer"] = o.HasOffer
+	}
+	if o.OfferAmount.IsSet() {
+		toSerialize["offerAmount"] = o.OfferAmount.Get()
+	}
+	if o.OfferStatus.IsSet() {
+		toSerialize["offerStatus"] = o.OfferStatus.Get()
+	}
+	if o.PlatformConversationUrl.IsSet() {
+		toSerialize["platformConversationUrl"] = o.PlatformConversationUrl.Get()
+	}
+	if o.LastMessageAt.IsSet() {
+		toSerialize["lastMessageAt"] = o.LastMessageAt.Get()
+	}
+	if o.SupersededAt.IsSet() {
+		toSerialize["supersededAt"] = o.SupersededAt.Get()
+	}
+	if true {
+		toSerialize["isStarred"] = o.IsStarred
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdateInboxConversationResponseConversation struct {
+	value *UpdateInboxConversationResponseConversation
+	isSet bool
+}
+
+func (v NullableUpdateInboxConversationResponseConversation) Get() *UpdateInboxConversationResponseConversation {
+	return v.value
+}
+
+func (v *NullableUpdateInboxConversationResponseConversation) Set(val *UpdateInboxConversationResponseConversation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateInboxConversationResponseConversation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateInboxConversationResponseConversation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateInboxConversationResponseConversation(val *UpdateInboxConversationResponseConversation) *NullableUpdateInboxConversationResponseConversation {
+	return &NullableUpdateInboxConversationResponseConversation{value: val, isSet: true}
+}
+
+func (v NullableUpdateInboxConversationResponseConversation) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateInboxConversationResponseConversation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

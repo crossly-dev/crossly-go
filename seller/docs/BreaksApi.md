@@ -74,7 +74,7 @@ Other parameters are passed through a pointer to a apiCreateBreakRequest struct 
 
 ## CreateBreakCancel
 
-> CreateBreakCancelResponse CreateBreakCancel(ctx, id).Execute()
+> UpdateGroupBuyResponse CreateBreakCancel(ctx, id).Execute()
 
 Cancel a break before any spot is paid for; after that, refund those orders instead (409).
 
@@ -100,7 +100,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BreaksApi.CreateBreakCancel``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBreakCancel`: CreateBreakCancelResponse
+    // response from `CreateBreakCancel`: UpdateGroupBuyResponse
     fmt.Fprintf(os.Stdout, "Response from `BreaksApi.CreateBreakCancel`: %v\n", resp)
 }
 ```
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ## CreateBreakOpened
 
-> CreateBreakCancelResponse CreateBreakOpened(ctx, id).Execute()
+> UpdateGroupBuyResponse CreateBreakOpened(ctx, id).Execute()
 
 Mark the product opened on stream.
 
@@ -234,7 +234,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BreaksApi.CreateBreakOpened``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBreakOpened`: CreateBreakCancelResponse
+    // response from `CreateBreakOpened`: UpdateGroupBuyResponse
     fmt.Fprintf(os.Stdout, "Response from `BreaksApi.CreateBreakOpened`: %v\n", resp)
 }
 ```
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 
 ## CreateBreakSpotHit
 
-> CreateBreakCancelResponse CreateBreakSpotHit(ctx, id, spotId).Execute()
+> UpdateGroupBuyResponse CreateBreakSpotHit(ctx, id, spotId).Execute()
 
 Record what a spot pulled.
 
@@ -302,7 +302,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BreaksApi.CreateBreakSpotHit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBreakSpotHit`: CreateBreakCancelResponse
+    // response from `CreateBreakSpotHit`: UpdateGroupBuyResponse
     fmt.Fprintf(os.Stdout, "Response from `BreaksApi.CreateBreakSpotHit`: %v\n", resp)
 }
 ```
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 

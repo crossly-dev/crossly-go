@@ -236,18 +236,18 @@ func (v *NullableCreateBuyerTotalRequestResponse) UnmarshalJSON(src []byte) erro
 
 // CreateBuyerTotalRequestResponseData struct for CreateBuyerTotalRequestResponseData
 type CreateBuyerTotalRequestResponseData struct {
-	Id string `json:"id"`
 	Ok bool `json:"ok"`
+	Id string `json:"id"`
 }
 
 // NewCreateBuyerTotalRequestResponseData instantiates a new CreateBuyerTotalRequestResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerTotalRequestResponseData(id string, ok bool) *CreateBuyerTotalRequestResponseData {
+func NewCreateBuyerTotalRequestResponseData(ok bool, id string) *CreateBuyerTotalRequestResponseData {
 	this := CreateBuyerTotalRequestResponseData{}
-	this.Id = id
 	this.Ok = ok
+	this.Id = id
 	return &this
 }
 
@@ -257,30 +257,6 @@ func NewCreateBuyerTotalRequestResponseData(id string, ok bool) *CreateBuyerTota
 func NewCreateBuyerTotalRequestResponseDataWithDefaults() *CreateBuyerTotalRequestResponseData {
 	this := CreateBuyerTotalRequestResponseData{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *CreateBuyerTotalRequestResponseData) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerTotalRequestResponseData) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CreateBuyerTotalRequestResponseData) SetId(v string) {
-	o.Id = v
 }
 
 // GetOk returns the Ok field value
@@ -307,13 +283,37 @@ func (o *CreateBuyerTotalRequestResponseData) SetOk(v bool) {
 	o.Ok = v
 }
 
+// GetId returns the Id field value
+func (o *CreateBuyerTotalRequestResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerTotalRequestResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateBuyerTotalRequestResponseData) SetId(v string) {
+	o.Id = v
+}
+
 func (o CreateBuyerTotalRequestResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["id"] = o.Id
+		toSerialize["ok"] = o.Ok
 	}
 	if true {
-		toSerialize["ok"] = o.Ok
+		toSerialize["id"] = o.Id
 	}
 	return json.Marshal(toSerialize)
 }
@@ -357,32 +357,32 @@ func (v *NullableCreateBuyerTotalRequestResponseData) UnmarshalJSON(src []byte) 
 // ListBuyerTotalRequestsItem struct for ListBuyerTotalRequestsItem
 type ListBuyerTotalRequestsItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
+	SellerUserId string `json:"sellerUserId"`
 	// requested | quoted | declined | expired.
 	Status string `json:"status"`
-	SellerUserId string `json:"sellerUserId"`
 	// The cart lines the request covers.
 	Lines []ListBuyerTotalRequestsItemLines `json:"lines"`
+	CreatedAt string `json:"createdAt"`
 	// Your cart still holds exactly the quoted items, so checkout applies the quote.
 	MatchesCart bool `json:"matchesCart"`
-	ExpiresAt NullableString `json:"expiresAt,omitempty"`
+	SellerDisplayName NullableString `json:"sellerDisplayName,omitempty"`
 	// The seller's combined shipping for these items, in cents, once quoted.
 	QuotedShippingCents NullableFloat32 `json:"quotedShippingCents,omitempty"`
 	SellerMessage NullableString `json:"sellerMessage,omitempty"`
-	SellerDisplayName NullableString `json:"sellerDisplayName,omitempty"`
+	ExpiresAt NullableString `json:"expiresAt,omitempty"`
 }
 
 // NewListBuyerTotalRequestsItem instantiates a new ListBuyerTotalRequestsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerTotalRequestsItem(id string, createdAt string, status string, sellerUserId string, lines []ListBuyerTotalRequestsItemLines, matchesCart bool) *ListBuyerTotalRequestsItem {
+func NewListBuyerTotalRequestsItem(id string, sellerUserId string, status string, lines []ListBuyerTotalRequestsItemLines, createdAt string, matchesCart bool) *ListBuyerTotalRequestsItem {
 	this := ListBuyerTotalRequestsItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Status = status
 	this.SellerUserId = sellerUserId
+	this.Status = status
 	this.Lines = lines
+	this.CreatedAt = createdAt
 	this.MatchesCart = matchesCart
 	return &this
 }
@@ -419,28 +419,28 @@ func (o *ListBuyerTotalRequestsItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerTotalRequestsItem) GetCreatedAt() string {
+// GetSellerUserId returns the SellerUserId field value
+func (o *ListBuyerTotalRequestsItem) GetSellerUserId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.SellerUserId
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetSellerUserIdOk returns a tuple with the SellerUserId field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerTotalRequestsItem) GetCreatedAtOk() (*string, bool) {
+func (o *ListBuyerTotalRequestsItem) GetSellerUserIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.SellerUserId, true
 }
 
-// SetCreatedAt sets field value
-func (o *ListBuyerTotalRequestsItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
+// SetSellerUserId sets field value
+func (o *ListBuyerTotalRequestsItem) SetSellerUserId(v string) {
+	o.SellerUserId = v
 }
 
 // GetStatus returns the Status field value
@@ -467,30 +467,6 @@ func (o *ListBuyerTotalRequestsItem) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetSellerUserId returns the SellerUserId field value
-func (o *ListBuyerTotalRequestsItem) GetSellerUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SellerUserId
-}
-
-// GetSellerUserIdOk returns a tuple with the SellerUserId field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerTotalRequestsItem) GetSellerUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SellerUserId, true
-}
-
-// SetSellerUserId sets field value
-func (o *ListBuyerTotalRequestsItem) SetSellerUserId(v string) {
-	o.SellerUserId = v
-}
-
 // GetLines returns the Lines field value
 func (o *ListBuyerTotalRequestsItem) GetLines() []ListBuyerTotalRequestsItemLines {
 	if o == nil {
@@ -513,6 +489,30 @@ func (o *ListBuyerTotalRequestsItem) GetLinesOk() ([]ListBuyerTotalRequestsItemL
 // SetLines sets field value
 func (o *ListBuyerTotalRequestsItem) SetLines(v []ListBuyerTotalRequestsItemLines) {
 	o.Lines = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerTotalRequestsItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerTotalRequestsItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerTotalRequestsItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 // GetMatchesCart returns the MatchesCart field value
@@ -539,46 +539,46 @@ func (o *ListBuyerTotalRequestsItem) SetMatchesCart(v bool) {
 	o.MatchesCart = v
 }
 
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerTotalRequestsItem) GetExpiresAt() string {
-	if o == nil || o.ExpiresAt.Get() == nil {
+// GetSellerDisplayName returns the SellerDisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerTotalRequestsItem) GetSellerDisplayName() string {
+	if o == nil || o.SellerDisplayName.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ExpiresAt.Get()
+	return *o.SellerDisplayName.Get()
 }
 
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// GetSellerDisplayNameOk returns a tuple with the SellerDisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerTotalRequestsItem) GetExpiresAtOk() (*string, bool) {
+func (o *ListBuyerTotalRequestsItem) GetSellerDisplayNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+	return o.SellerDisplayName.Get(), o.SellerDisplayName.IsSet()
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *ListBuyerTotalRequestsItem) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+// HasSellerDisplayName returns a boolean if a field has been set.
+func (o *ListBuyerTotalRequestsItem) HasSellerDisplayName() bool {
+	if o != nil && o.SellerDisplayName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
-func (o *ListBuyerTotalRequestsItem) SetExpiresAt(v string) {
-	o.ExpiresAt.Set(&v)
+// SetSellerDisplayName gets a reference to the given NullableString and assigns it to the SellerDisplayName field.
+func (o *ListBuyerTotalRequestsItem) SetSellerDisplayName(v string) {
+	o.SellerDisplayName.Set(&v)
 }
-// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
-func (o *ListBuyerTotalRequestsItem) SetExpiresAtNil() {
-	o.ExpiresAt.Set(nil)
+// SetSellerDisplayNameNil sets the value for SellerDisplayName to be an explicit nil
+func (o *ListBuyerTotalRequestsItem) SetSellerDisplayNameNil() {
+	o.SellerDisplayName.Set(nil)
 }
 
-// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
-func (o *ListBuyerTotalRequestsItem) UnsetExpiresAt() {
-	o.ExpiresAt.Unset()
+// UnsetSellerDisplayName ensures that no value is present for SellerDisplayName, not even an explicit nil
+func (o *ListBuyerTotalRequestsItem) UnsetSellerDisplayName() {
+	o.SellerDisplayName.Unset()
 }
 
 // GetQuotedShippingCents returns the QuotedShippingCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -665,46 +665,46 @@ func (o *ListBuyerTotalRequestsItem) UnsetSellerMessage() {
 	o.SellerMessage.Unset()
 }
 
-// GetSellerDisplayName returns the SellerDisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerTotalRequestsItem) GetSellerDisplayName() string {
-	if o == nil || o.SellerDisplayName.Get() == nil {
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerTotalRequestsItem) GetExpiresAt() string {
+	if o == nil || o.ExpiresAt.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.SellerDisplayName.Get()
+	return *o.ExpiresAt.Get()
 }
 
-// GetSellerDisplayNameOk returns a tuple with the SellerDisplayName field value if set, nil otherwise
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerTotalRequestsItem) GetSellerDisplayNameOk() (*string, bool) {
+func (o *ListBuyerTotalRequestsItem) GetExpiresAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.SellerDisplayName.Get(), o.SellerDisplayName.IsSet()
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// HasSellerDisplayName returns a boolean if a field has been set.
-func (o *ListBuyerTotalRequestsItem) HasSellerDisplayName() bool {
-	if o != nil && o.SellerDisplayName.IsSet() {
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *ListBuyerTotalRequestsItem) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSellerDisplayName gets a reference to the given NullableString and assigns it to the SellerDisplayName field.
-func (o *ListBuyerTotalRequestsItem) SetSellerDisplayName(v string) {
-	o.SellerDisplayName.Set(&v)
+// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
+func (o *ListBuyerTotalRequestsItem) SetExpiresAt(v string) {
+	o.ExpiresAt.Set(&v)
 }
-// SetSellerDisplayNameNil sets the value for SellerDisplayName to be an explicit nil
-func (o *ListBuyerTotalRequestsItem) SetSellerDisplayNameNil() {
-	o.SellerDisplayName.Set(nil)
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *ListBuyerTotalRequestsItem) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
 }
 
-// UnsetSellerDisplayName ensures that no value is present for SellerDisplayName, not even an explicit nil
-func (o *ListBuyerTotalRequestsItem) UnsetSellerDisplayName() {
-	o.SellerDisplayName.Unset()
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *ListBuyerTotalRequestsItem) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
 }
 
 func (o ListBuyerTotalRequestsItem) MarshalJSON() ([]byte, error) {
@@ -713,22 +713,22 @@ func (o ListBuyerTotalRequestsItem) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["sellerUserId"] = o.SellerUserId
 	}
 	if true {
 		toSerialize["status"] = o.Status
 	}
 	if true {
-		toSerialize["sellerUserId"] = o.SellerUserId
+		toSerialize["lines"] = o.Lines
 	}
 	if true {
-		toSerialize["lines"] = o.Lines
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if true {
 		toSerialize["matchesCart"] = o.MatchesCart
 	}
-	if o.ExpiresAt.IsSet() {
-		toSerialize["expiresAt"] = o.ExpiresAt.Get()
+	if o.SellerDisplayName.IsSet() {
+		toSerialize["sellerDisplayName"] = o.SellerDisplayName.Get()
 	}
 	if o.QuotedShippingCents.IsSet() {
 		toSerialize["quotedShippingCents"] = o.QuotedShippingCents.Get()
@@ -736,8 +736,8 @@ func (o ListBuyerTotalRequestsItem) MarshalJSON() ([]byte, error) {
 	if o.SellerMessage.IsSet() {
 		toSerialize["sellerMessage"] = o.SellerMessage.Get()
 	}
-	if o.SellerDisplayName.IsSet() {
-		toSerialize["sellerDisplayName"] = o.SellerDisplayName.Get()
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expiresAt"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -780,18 +780,18 @@ func (v *NullableListBuyerTotalRequestsItem) UnmarshalJSON(src []byte) error {
 
 // ListBuyerTotalRequestsItemLines struct for ListBuyerTotalRequestsItemLines
 type ListBuyerTotalRequestsItemLines struct {
-	Quantity float32 `json:"quantity"`
 	PlatformListingId string `json:"platformListingId"`
+	Quantity float32 `json:"quantity"`
 }
 
 // NewListBuyerTotalRequestsItemLines instantiates a new ListBuyerTotalRequestsItemLines object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerTotalRequestsItemLines(quantity float32, platformListingId string) *ListBuyerTotalRequestsItemLines {
+func NewListBuyerTotalRequestsItemLines(platformListingId string, quantity float32) *ListBuyerTotalRequestsItemLines {
 	this := ListBuyerTotalRequestsItemLines{}
-	this.Quantity = quantity
 	this.PlatformListingId = platformListingId
+	this.Quantity = quantity
 	return &this
 }
 
@@ -801,30 +801,6 @@ func NewListBuyerTotalRequestsItemLines(quantity float32, platformListingId stri
 func NewListBuyerTotalRequestsItemLinesWithDefaults() *ListBuyerTotalRequestsItemLines {
 	this := ListBuyerTotalRequestsItemLines{}
 	return &this
-}
-
-// GetQuantity returns the Quantity field value
-func (o *ListBuyerTotalRequestsItemLines) GetQuantity() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Quantity
-}
-
-// GetQuantityOk returns a tuple with the Quantity field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerTotalRequestsItemLines) GetQuantityOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quantity, true
-}
-
-// SetQuantity sets field value
-func (o *ListBuyerTotalRequestsItemLines) SetQuantity(v float32) {
-	o.Quantity = v
 }
 
 // GetPlatformListingId returns the PlatformListingId field value
@@ -851,13 +827,37 @@ func (o *ListBuyerTotalRequestsItemLines) SetPlatformListingId(v string) {
 	o.PlatformListingId = v
 }
 
+// GetQuantity returns the Quantity field value
+func (o *ListBuyerTotalRequestsItemLines) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerTotalRequestsItemLines) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *ListBuyerTotalRequestsItemLines) SetQuantity(v float32) {
+	o.Quantity = v
+}
+
 func (o ListBuyerTotalRequestsItemLines) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["quantity"] = o.Quantity
+		toSerialize["platformListingId"] = o.PlatformListingId
 	}
 	if true {
-		toSerialize["platformListingId"] = o.PlatformListingId
+		toSerialize["quantity"] = o.Quantity
 	}
 	return json.Marshal(toSerialize)
 }

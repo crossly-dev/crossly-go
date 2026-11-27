@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**CreateVaultMarketAuctionLot**](VaultMarketsApi.md#CreateVaultMarketAuctionLot) | **Post** /v1/vault-markets/auctions/lots | Consign a stored, authenticated unit to the next weekly or premier event, with an optional opening price and reserve. The unit is held until the close. Returns &#x60;{ lotId, eventId, endsAt }&#x60;.
 [**CreateVaultMarketAuctionLotBid**](VaultMarketsApi.md#CreateVaultMarketAuctionLotBid) | **Post** /v1/vault-markets/auctions/lots/{id}/bids | Leave or raise your maximum on a lot; the system bids for you up to it. A bid in the last 2 minutes extends the lot by 2 minutes. The winner&#39;s saved card is charged at the close through the order book. ID needed above $10,000.
 [**CreateVaultMarketAuctionLotWithdraw**](VaultMarketsApi.md#CreateVaultMarketAuctionLotWithdraw) | **Post** /v1/vault-markets/auctions/lots/{id}/withdraw | Withdraw your lot before any bid; the unit goes back on your shelf. Returns &#x60;{ ok }&#x60;.
+[**CreateVaultMarketAutoBuyPause**](VaultMarketsApi.md#CreateVaultMarketAutoBuyPause) | **Post** /v1/vault-markets/auto-buy/pause | Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+[**CreateVaultMarketAutoBuyResume**](VaultMarketsApi.md#CreateVaultMarketAutoBuyResume) | **Post** /v1/vault-markets/auto-buy/resume | Resume Auto-buy with payouts: payouts released from now on count.
 [**CreateVaultMarketBlock**](VaultMarketsApi.md#CreateVaultMarketBlock) | **Post** /v1/vault-markets/blocks | Place a block buy for an entity: one order booked to the first sub-account in &#x60;plan&#x60; (it pays from its custodian account), split across every sub-account in the plan at the average price, fees included, once it is done and the custodian confirmed each payment. Each share&#39;s cash moves between the entity&#39;s own custodian accounts; its units move only after that settles. Every sub-account must be one you may trade, and its share must fit its limits.
 [**CreateVaultMarketBlockAllocate**](VaultMarketsApi.md#CreateVaultMarketBlockAllocate) | **Post** /v1/vault-markets/blocks/{orderId}/allocate | Allocate a done block now (the keeper does it too). Returns &#x60;{ outcome, block }&#x60;: allocated, waiting (a payment or transfer is not settled yet), nothing_filled or none.
 [**CreateVaultMarketBullionFamilyPeg**](VaultMarketsApi.md#CreateVaultMarketBullionFamilyPeg) | **Post** /v1/vault-markets/bullion/family-pegs | Set a family-wide spot-pegged quote: one \&quot;any 1 oz gold coin\&quot; quote resting on each product book of a bullion family at the chosen condition (DS, VNDS or Used). When any leg fills it comes off the others and goes back on only for what is left; two fills at once are settled one at a time against what is left. A bid pays from your custodian account. Replaces your live family quote on the same family, condition and side. ID required.
@@ -93,6 +95,32 @@ Method | HTTP request | Description
 [**CreateVaultMarketMmMassCancel**](VaultMarketsApi.md#CreateVaultMarketMmMassCancel) | **Post** /v1/vault-markets/mm/mass-cancel | Cancel every open order (one key, or only quotes) and every resting leg in one statement: nothing fills between the first cancel and the last.
 [**CreateVaultMarketMmMmpReset**](VaultMarketsApi.md#CreateVaultMarketMmMmpReset) | **Post** /v1/vault-markets/mm/mmp/reset | End a market-maker protection freeze early.
 [**CreateVaultMarketOpeningWaitlist**](VaultMarketsApi.md#CreateVaultMarketOpeningWaitlist) | **Post** /v1/vault-markets/opening/{slug}/waitlist | Join a key&#39;s waitlist, optionally with a friend&#39;s invite code (&#x60;ref&#x60;). Inviting moves you up the queue; nobody is paid. Returns your place and your own code.
+[**CreateVaultMarketOptionCombo**](VaultMarketsApi.md#CreateVaultMarketOptionCombo) | **Post** /v1/vault-markets/options/combos | Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs&#39; own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+[**CreateVaultMarketOptionComboCancel**](VaultMarketsApi.md#CreateVaultMarketOptionComboCancel) | **Post** /v1/vault-markets/options/combos/{id}/cancel | Cancel a working strategy.
+[**CreateVaultMarketOptionComboRfq**](VaultMarketsApi.md#CreateVaultMarketOptionComboRfq) | **Post** /v1/vault-markets/options/combos/rfq | Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+[**CreateVaultMarketOptionComboRfqAccept**](VaultMarketsApi.md#CreateVaultMarketOptionComboRfqAccept) | **Post** /v1/vault-markets/options/combos/rfq/{id}/accept | Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+[**CreateVaultMarketOptionComboRfqCancel**](VaultMarketsApi.md#CreateVaultMarketOptionComboRfqCancel) | **Post** /v1/vault-markets/options/combos/rfq/{id}/cancel | Cancel your open strategy quote request.
+[**CreateVaultMarketOptionComboRfqRespond**](VaultMarketsApi.md#CreateVaultMarketOptionComboRfqRespond) | **Post** /v1/vault-markets/options/combos/rfq/{id}/respond | Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+[**CreateVaultMarketOptionComboRfqResponseWithdraw**](VaultMarketsApi.md#CreateVaultMarketOptionComboRfqResponseWithdraw) | **Post** /v1/vault-markets/options/combos/rfq/responses/{id}/withdraw | Withdraw your live answer to a strategy quote request.
+[**CreateVaultMarketOptionCoveredCall**](VaultMarketsApi.md#CreateVaultMarketOptionCoveredCall) | **Post** /v1/vault-markets/options/covered-calls | Write a covered call: lock a stored vault unit (&#x60;vaultItemId&#x60;) as collateral and sell up to one call on its own key (&#x60;contractId&#x60;, &#x60;quantity&#x60; &lt;&#x3D; 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+[**CreateVaultMarketOptionCoveredCallRelease**](VaultMarketsApi.md#CreateVaultMarketOptionCoveredCallRelease) | **Post** /v1/vault-markets/options/covered-calls/{id}/release | Free a covered call&#39;s vault unit once the call it covers is closed (or covered by other units).
+[**CreateVaultMarketOptionMmHeartbeat**](VaultMarketsApi.md#CreateVaultMarketOptionMmHeartbeat) | **Post** /v1/vault-markets/options/mm/heartbeat | Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+[**CreateVaultMarketOptionMmQuote**](VaultMarketsApi.md#CreateVaultMarketOptionMmQuote) | **Post** /v1/vault-markets/options/mm/quotes | Set (replace) a two-sided quote on an option contract: &#x60;bid&#x60; and / or &#x60;ask&#x60; each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+[**CreateVaultMarketOptionMmQuotePull**](VaultMarketsApi.md#CreateVaultMarketOptionMmQuotePull) | **Post** /v1/vault-markets/options/mm/quotes/pull | Pull your option quotes on one contract (&#x60;contractId&#x60;) or all of them.
+[**CreateVaultMarketOptionOrder**](VaultMarketsApi.md#CreateVaultMarketOptionOrder) | **Post** /v1/vault-markets/options/orders | Place an options order: &#x60;contractId&#x60;, &#x60;side&#x60;, &#x60;quantity&#x60; in contracts (three decimals), a &#x60;priceCents&#x60; or an &#x60;iv&#x60; (&#x60;quoteMode&#x60;), &#x60;tif&#x60; gtc / gtd (with &#x60;expiresAt&#x60;) / ioc, &#x60;postOnly&#x60;. Idempotent on &#x60;clientOrderId&#x60;. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its &#x60;termsVersion&#x60;). &#x60;subaccountId&#x60; trades for a firm sub-account you may trade.
+[**CreateVaultMarketOptionOrderCancel**](VaultMarketsApi.md#CreateVaultMarketOptionOrderCancel) | **Post** /v1/vault-markets/options/orders/{id}/cancel | Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+[**CreateVaultMarketOptionPracticeCombo**](VaultMarketsApi.md#CreateVaultMarketOptionPracticeCombo) | **Post** /v1/vault-markets/options/practice/combos | A practice strategy (play money): the same ticket as a real one, filled at the practice maker&#39;s quotes when the net is inside the limit.
+[**CreateVaultMarketOptionPracticeOrder**](VaultMarketsApi.md#CreateVaultMarketOptionPracticeOrder) | **Post** /v1/vault-markets/options/practice/orders | Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+[**CreateVaultMarketOptionPracticeOrderCancel**](VaultMarketsApi.md#CreateVaultMarketOptionPracticeOrderCancel) | **Post** /v1/vault-markets/options/practice/orders/{id}/cancel | Cancel a working practice options order.
+[**CreateVaultMarketOptionPracticeReset**](VaultMarketsApi.md#CreateVaultMarketOptionPracticeReset) | **Post** /v1/vault-markets/options/practice/reset | Start the options practice account again with $10,000: positions and working orders are cleared.
+[**CreateVaultMarketOptionQuote**](VaultMarketsApi.md#CreateVaultMarketOptionQuote) | **Post** /v1/vault-markets/options/quote | Price a ticket without placing it: give a price per contract or an implied vol (&#x60;quoteMode&#x60;), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+[**CreateVaultMarketOptionRfq**](VaultMarketsApi.md#CreateVaultMarketOptionRfq) | **Post** /v1/vault-markets/options/rfq | Ask for a quote on an option contract: &#x60;side&#x60;, &#x60;quantity&#x60; in contracts, an optional &#x60;limitCents&#x60; (never shown). Makers quoting the series, the underlying&#39;s DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+[**CreateVaultMarketOptionRfqAccept**](VaultMarketsApi.md#CreateVaultMarketOptionRfqAccept) | **Post** /v1/vault-markets/options/rfq/{id}/accept | Take a live answer (&#x60;responseId&#x60;) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+[**CreateVaultMarketOptionRfqCancel**](VaultMarketsApi.md#CreateVaultMarketOptionRfqCancel) | **Post** /v1/vault-markets/options/rfq/{id}/cancel | Cancel your open option quote request.
+[**CreateVaultMarketOptionRfqRespond**](VaultMarketsApi.md#CreateVaultMarketOptionRfqRespond) | **Post** /v1/vault-markets/options/rfq/{id}/respond | Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+[**CreateVaultMarketOptionRfqResponseWithdraw**](VaultMarketsApi.md#CreateVaultMarketOptionRfqResponseWithdraw) | **Post** /v1/vault-markets/options/rfq/responses/{id}/withdraw | Withdraw your live answer to an option quote request.
+[**CreateVaultMarketOptionRoll**](VaultMarketsApi.md#CreateVaultMarketOptionRoll) | **Post** /v1/vault-markets/options/roll | Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. &#x60;practice&#x60; rolls a practice position.
+[**CreateVaultMarketOptionStrategyPreview**](VaultMarketsApi.md#CreateVaultMarketOptionStrategyPreview) | **Post** /v1/vault-markets/options/strategies/preview | Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null &#x3D; unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
 [**CreateVaultMarketP2pLoanCall**](VaultMarketsApi.md#CreateVaultMarketP2pLoanCall) | **Post** /v1/vault-markets/p2p/loans/{id}/call | Lender: call the loan (once it is a day old). A refinancing auction runs for about 30 hours, the rate a new lender gets climbing to the ceiling; repaid or refinanced, you are paid in full; neither by the end, the unit moves to your vault.
 [**CreateVaultMarketP2pLoanCancelCall**](VaultMarketsApi.md#CreateVaultMarketP2pLoanCancelCall) | **Post** /v1/vault-markets/p2p/loans/{id}/cancel-call | Lender: take back your call before any other lender has taken the loan over. The refinancing auction stops and the loan carries on as before on its terms.
 [**CreateVaultMarketP2pLoanRefiAuction**](VaultMarketsApi.md#CreateVaultMarketP2pLoanRefiAuction) | **Post** /v1/vault-markets/p2p/loans/{id}/refi-auction | Borrower: look for a cheaper lender. A refinancing auction runs for &#x60;hours&#x60; (1-72, default 24); the rate a new lender gets climbs from &#x60;startAprBps&#x60; (default half the loan rate) to just under the loan rate now. The first lender to take it pays your lender off and the loan carries on at that lower rate. Nobody by the end: nothing changes.
@@ -117,6 +145,34 @@ Method | HTTP request | Description
 [**CreateVaultMarketPositionClose**](VaultMarketsApi.md#CreateVaultMarketPositionClose) | **Post** /v1/vault-markets/positions/{id}/close | Close a leveraged long: all its units, or &#x60;units&#x60; of them, each sold for at least &#x60;minCents&#x60;; each sale repays the pool first.
 [**CreateVaultMarketPositionCollateral**](VaultMarketsApi.md#CreateVaultMarketPositionCollateral) | **Post** /v1/vault-markets/positions/{id}/collateral | Answer a margin call: a short posts more collateral (USD, or CBX at half value); a leveraged long pays down its pool loan. Returns the position.
 [**CreateVaultMarketPositionCover**](VaultMarketsApi.md#CreateVaultMarketPositionCover) | **Post** /v1/vault-markets/positions/{id}/cover | Cover a short: all its units, or &#x60;units&#x60; of them, each buying any unit of the key into the vault for up to &#x60;maxCents&#x60;; each goes back to its lender.
+[**CreateVaultMarketPredictionAccount**](VaultMarketsApi.md#CreateVaultMarketPredictionAccount) | **Post** /v1/vault-markets/predictions/account | Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns &#x60;{ venue, status, opened }&#x60;.
+[**CreateVaultMarketPredictionAlert**](VaultMarketsApi.md#CreateVaultMarketPredictionAlert) | **Post** /v1/vault-markets/predictions/alerts | Tell me when a market&#39;s probability crosses a level: &#x60;{ marketId, levelPercent, direction }&#x60;. Returns the alert.
+[**CreateVaultMarketPredictionCard**](VaultMarketsApi.md#CreateVaultMarketPredictionCard) | **Post** /v1/vault-markets/predictions/cards | Make an \&quot;I called it\&quot; share card for a position of yours that settled in your favour (&#x60;showAmounts&#x60; to include what you paid and won). Returns the card with its public URL.
+[**CreateVaultMarketPredictionComboRfq**](VaultMarketsApi.md#CreateVaultMarketPredictionComboRfq) | **Post** /v1/vault-markets/predictions/combos/rfqs | Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. &#x60;venue&#x60; paper or live.
+[**CreateVaultMarketPredictionComboRfqAccept**](VaultMarketsApi.md#CreateVaultMarketPredictionComboRfqAccept) | **Post** /v1/vault-markets/predictions/combos/rfqs/{id}/accept | Take one live, firm answer to your combo request (&#x60;quoteId&#x60;): both stakes are locked and the combo opens. Returns the combo.
+[**CreateVaultMarketPredictionComboRfqCancel**](VaultMarketsApi.md#CreateVaultMarketPredictionComboRfqCancel) | **Post** /v1/vault-markets/predictions/combos/rfqs/{id}/cancel | Withdraw your combo request; its answers are withdrawn too.
+[**CreateVaultMarketPredictionComboRfqQuote**](VaultMarketsApi.md#CreateVaultMarketPredictionComboRfqQuote) | **Post** /v1/vault-markets/predictions/combos/rfqs/{id}/quotes | Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+[**CreateVaultMarketPredictionComment**](VaultMarketsApi.md#CreateVaultMarketPredictionComment) | **Post** /v1/vault-markets/predictions/comments | Comment on a market or a series, or reply to a comment (&#x60;parentId&#x60;). Moderated like every comment on Crossly.
+[**CreateVaultMarketPredictionCommentReport**](VaultMarketsApi.md#CreateVaultMarketPredictionCommentReport) | **Post** /v1/vault-markets/predictions/comments/{id}/report | Report a comment with a reason; enough reports hide it until ops look.
+[**CreateVaultMarketPredictionConversion**](VaultMarketsApi.md#CreateVaultMarketPredictionConversion) | **Post** /v1/vault-markets/predictions/conversions | Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. &#x60;venue&#x60; paper or live. Returns the conversion and the event after it.
+[**CreateVaultMarketPredictionForecast**](VaultMarketsApi.md#CreateVaultMarketPredictionForecast) | **Post** /v1/vault-markets/predictions/forecasts | Forecast a market: &#x60;probabilityPercent&#x60; 0 to 100. The one standing when trading closes is scored (Brier).
+[**CreateVaultMarketPredictionForecasterFollow**](VaultMarketsApi.md#CreateVaultMarketPredictionForecasterFollow) | **Post** /v1/vault-markets/predictions/forecasters/{id}/follow | Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+[**CreateVaultMarketPredictionMaker**](VaultMarketsApi.md#CreateVaultMarketPredictionMaker) | **Post** /v1/vault-markets/predictions/makers | Apply to make markets in prediction ladders (one series, or all with &#x60;seriesId&#x60; null). Needs the ID check; ops approve. Returns the application.
+[**CreateVaultMarketPredictionMakerQuote**](VaultMarketsApi.md#CreateVaultMarketPredictionMakerQuote) | **Post** /v1/vault-markets/predictions/makers/quotes | Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+[**CreateVaultMarketPredictionOrder**](VaultMarketsApi.md#CreateVaultMarketPredictionOrder) | **Post** /v1/vault-markets/predictions/orders | Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action&#39;s own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. &#x60;venue&#x60; paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+[**CreateVaultMarketPredictionOrderAmend**](VaultMarketsApi.md#CreateVaultMarketPredictionOrderAmend) | **Post** /v1/vault-markets/predictions/orders/{id}/amend | Amend a resting order&#39;s price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with &#x60;keptPriority&#x60;.
+[**CreateVaultMarketPredictionOrderBatch**](VaultMarketsApi.md#CreateVaultMarketPredictionOrderBatch) | **Post** /v1/vault-markets/predictions/orders/batch | Place up to 20 orders in one call; each answers on its own (&#x60;results[]&#x60;), one refused never stops the rest.
+[**CreateVaultMarketPredictionOrderBatchCancel**](VaultMarketsApi.md#CreateVaultMarketPredictionOrderBatchCancel) | **Post** /v1/vault-markets/predictions/orders/batch-cancel | Cancel up to 20 orders in one call; each answers on its own.
+[**CreateVaultMarketPredictionOrderCancel**](VaultMarketsApi.md#CreateVaultMarketPredictionOrderCancel) | **Post** /v1/vault-markets/predictions/orders/{id}/cancel | Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+[**CreateVaultMarketPredictionOrderCancelAll**](VaultMarketsApi.md#CreateVaultMarketPredictionOrderCancelAll) | **Post** /v1/vault-markets/predictions/orders/cancel-all | Cancel every working prediction order you have, or only those on one market (&#x60;marketId&#x60;). Returns &#x60;{ cancelled }&#x60;.
+[**CreateVaultMarketPredictionPaperReset**](VaultMarketsApi.md#CreateVaultMarketPredictionPaperReset) | **Post** /v1/vault-markets/predictions/paper/reset | Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+[**CreateVaultMarketPredictionPositionClose**](VaultMarketsApi.md#CreateVaultMarketPredictionPositionClose) | **Post** /v1/vault-markets/predictions/positions/close | Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at &#x60;priceCents&#x60;. Returns the sell order.
+[**CreateVaultMarketPredictionPositionCloseAll**](VaultMarketsApi.md#CreateVaultMarketPredictionPositionCloseAll) | **Post** /v1/vault-markets/predictions/positions/close-all | Sell all: close every open position on a venue, or only one event&#39;s (&#x60;eventId&#x60;). Each answers on its own.
+[**CreateVaultMarketPredictionProposal**](VaultMarketsApi.md#CreateVaultMarketPredictionProposal) | **Post** /v1/vault-markets/predictions/proposals | Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly&#39;s take on its fees.
+[**CreateVaultMarketPredictionProposalCheck**](VaultMarketsApi.md#CreateVaultMarketPredictionProposalCheck) | **Post** /v1/vault-markets/predictions/proposals/check | Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+[**CreateVaultMarketPredictionProposalWithdraw**](VaultMarketsApi.md#CreateVaultMarketPredictionProposalWithdraw) | **Post** /v1/vault-markets/predictions/proposals/{id}/withdraw | Withdraw a proposal still waiting for review.
+[**CreateVaultMarketPredictionSettlementDispute**](VaultMarketsApi.md#CreateVaultMarketPredictionSettlementDispute) | **Post** /v1/vault-markets/predictions/settlements/{id}/dispute | Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue&#39;s decision. Returns &#x60;{ settlementId, status }&#x60;.
+[**CreateVaultMarketPredictionTerm**](VaultMarketsApi.md#CreateVaultMarketPredictionTerm) | **Post** /v1/vault-markets/predictions/terms | Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns &#x60;{ termsVersion, venue }&#x60;.
 [**CreateVaultMarketPriceWidget**](VaultMarketsApi.md#CreateVaultMarketPriceWidget) | **Post** /v1/vault-markets/price-widgets | Make a price widget for one vault market (&#x60;kind&#x60; mark + &#x60;bookKey&#x60;) or one public index (&#x60;kind&#x60; index + &#x60;indexSlug&#x60;): range, layout (compact or chart), theme (auto, light, dark), optionally your own affiliate code for the link back and the sites allowed to show it (empty &#x3D; any). Returns the widget with its snippets.
 [**CreateVaultMarketPriceWidgetPreview**](VaultMarketsApi.md#CreateVaultMarketPriceWidgetPreview) | **Post** /v1/vault-markets/price-widgets/preview | What a widget would show before you save it: &#x60;view&#x60; (value, move, quality, n, as-of, link back) and &#x60;html&#x60;, the exact page the iframe serves. Nothing is stored.
 [**CreateVaultMarketProBracket**](VaultMarketsApi.md#CreateVaultMarketProBracket) | **Post** /v1/vault-markets/pro/brackets | A buy order with a take-profit and/or stop-loss attached; the exits arm as an OCO pair for what the entry fills.
@@ -139,11 +195,43 @@ Method | HTTP request | Description
 [**CreateVaultMarketSetGoal**](VaultMarketsApi.md#CreateVaultMarketSetGoal) | **Post** /v1/vault-markets/set-goals | Start a goal on a catalogue set (category, brandSlug, modelSlug from the set search), optionally with a target: one condition, and any grade, ungraded, or one exact grade. One live goal per set.
 [**CreateVaultMarketSetGoalBasket**](VaultMarketsApi.md#CreateVaultMarketSetGoalBasket) | **Post** /v1/vault-markets/set-goals/{id}/basket | Place the \&quot;complete my set\&quot; basket bid: one GTC limit buy per missing piece, under a hard budget, paid by one of your saved cards or your custodian account. Every leg passes pre-trade risk and the ID line like any order. Idempotent on clientBasketId. One working basket per goal; its legs are cancelled once the set is complete.
 [**CreateVaultMarketSetGoalBasketCancel**](VaultMarketsApi.md#CreateVaultMarketSetGoalBasketCancel) | **Post** /v1/vault-markets/set-goals/{id}/basket/cancel | Cancel the goal working basket bid: every working leg comes off the book; what already filled stays in your vault.
+[**CreateVaultMarketShareAutoInvest**](VaultMarketsApi.md#CreateVaultMarketShareAutoInvest) | **Post** /v1/vault-markets/shares/auto-invest | Start auto-invest: &#x60;amountCents&#x60; ($5-$10,000) &#x60;every&#x60; week or month into &#x60;seriesIds&#x60; (equal weights) or &#x60;targets&#x60; (seriesId + weightBps summing to 10,000) or a &#x60;basketId&#x60; (with &#x60;rebalance&#x60; to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to &#x60;maxPremiumBps&#x60; over the indicative value. &#x60;practice&#x60; runs it on paper.
+[**CreateVaultMarketShareAutoInvestRun**](VaultMarketsApi.md#CreateVaultMarketShareAutoInvestRun) | **Post** /v1/vault-markets/shares/auto-invest/{id}/run | Run a plan now (once a minute at most); the schedule does not move.
+[**CreateVaultMarketShareAutoInvestUpdate**](VaultMarketsApi.md#CreateVaultMarketShareAutoInvestUpdate) | **Post** /v1/vault-markets/shares/auto-invest/{id}/update | Change a plan (amount, cadence, series or weights, cap, rebalance) or set its &#x60;status&#x60; active, paused or cancelled.
+[**CreateVaultMarketShareBasketBuy**](VaultMarketsApi.md#CreateVaultMarketShareBasketBuy) | **Post** /v1/vault-markets/shares/baskets/{id}/buy | Buy a basket once: &#x60;amountCents&#x60; split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to &#x60;maxPremiumBps&#x60;). &#x60;practice&#x60; buys on paper.
+[**CreateVaultMarketShareBuyoutFund**](VaultMarketsApi.md#CreateVaultMarketShareBuyoutFund) | **Post** /v1/vault-markets/shares/buyouts/{id}/fund | Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+[**CreateVaultMarketShareBuyoutVote**](VaultMarketsApi.md#CreateVaultMarketShareBuyoutVote) | **Post** /v1/vault-markets/shares/buyouts/{id}/vote | Vote &#x60;yes&#x60; or &#x60;no&#x60; on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+[**CreateVaultMarketShareBuyoutWithdraw**](VaultMarketsApi.md#CreateVaultMarketShareBuyoutWithdraw) | **Post** /v1/vault-markets/shares/buyouts/{id}/withdraw | Withdraw your buyout bid before its vote opens; the escrow is refunded.
 [**CreateVaultMarketShareCard**](VaultMarketsApi.md#CreateVaultMarketShareCard) | **Post** /v1/vault-markets/share-cards | Make a verified share card of a position, a vault unit, a public index or your portfolio (&#x60;kind&#x60;, &#x60;refId&#x60;). The % on it is the price move since your real fill; amounts stay hidden unless &#x60;showAmounts&#x60;.
+[**CreateVaultMarketShareGiftAccept**](VaultMarketsApi.md#CreateVaultMarketShareGiftAccept) | **Post** /v1/vault-markets/shares/gifts/{id}/accept | Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+[**CreateVaultMarketShareGiftCancel**](VaultMarketsApi.md#CreateVaultMarketShareGiftCancel) | **Post** /v1/vault-markets/shares/gifts/{id}/cancel | Cancel a gift you offered, before it is accepted: the shares are free again.
+[**CreateVaultMarketShareGiftDecline**](VaultMarketsApi.md#CreateVaultMarketShareGiftDecline) | **Post** /v1/vault-markets/shares/gifts/{id}/decline | Decline a share gift offered to you.
+[**CreateVaultMarketShareInvestor**](VaultMarketsApi.md#CreateVaultMarketShareInvestor) | **Post** /v1/vault-markets/shares/investor | Open or update your investor account at the venue: accept the current investor terms (&#x60;acceptTerms&#x60;), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+[**CreateVaultMarketShareOrderCancel**](VaultMarketsApi.md#CreateVaultMarketShareOrderCancel) | **Post** /v1/vault-markets/shares/orders/{id}/cancel | Cancel one of your open share-book orders.
+[**CreateVaultMarketSharePaperOrderCancel**](VaultMarketsApi.md#CreateVaultMarketSharePaperOrderCancel) | **Post** /v1/vault-markets/shares/paper/orders/{id}/cancel | Cancel an open practice order.
+[**CreateVaultMarketSharePaperReset**](VaultMarketsApi.md#CreateVaultMarketSharePaperReset) | **Post** /v1/vault-markets/shares/paper/reset | Start the practice account over with fresh play money (once a day).
+[**CreateVaultMarketSharePaperSeryOrder**](VaultMarketsApi.md#CreateVaultMarketSharePaperSeryOrder) | **Post** /v1/vault-markets/shares/paper/series/{id}/orders | Place a practice order (play money) with the same rules as the real share book.
+[**CreateVaultMarketSharePaperSerySubscribe**](VaultMarketsApi.md#CreateVaultMarketSharePaperSerySubscribe) | **Post** /v1/vault-markets/shares/paper/series/{id}/subscribe | Subscribe with play money to a practice series’ offering.
+[**CreateVaultMarketShareRoomHide**](VaultMarketsApi.md#CreateVaultMarketShareRoomHide) | **Post** /v1/vault-markets/shares/room/{id}/hide | Take down one of your own holder-room posts (&#x60;reason&#x60;).
+[**CreateVaultMarketShareSery**](VaultMarketsApi.md#CreateVaultMarketShareSery) | **Post** /v1/vault-markets/shares/series | Propose a Vault Shares series for one of your units (&#x60;vaultItemId&#x60;), keeping &#x60;retainedShares&#x60; (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass &#x60;requestId&#x60; to make a retry safe.
+[**CreateVaultMarketShareSeryBuyout**](VaultMarketsApi.md#CreateVaultMarketShareSeryBuyout) | **Post** /v1/vault-markets/shares/series/{id}/buyouts | Bid for the whole item (&#x60;offerCents&#x60;, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+[**CreateVaultMarketShareSeryGift**](VaultMarketsApi.md#CreateVaultMarketShareSeryGift) | **Post** /v1/vault-markets/shares/series/{id}/gifts | Give whole &#x60;shares&#x60; of a series to someone (&#x60;to&#x60;: their @handle, email or user id), with an optional &#x60;message&#x60;. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+[**CreateVaultMarketShareSeryOrder**](VaultMarketsApi.md#CreateVaultMarketShareSeryOrder) | **Post** /v1/vault-markets/shares/series/{id}/orders | Place an order on a series’ share book: &#x60;side&#x60;, &#x60;type&#x60; limit or market (immediate-or-cancel inside a 10% band), &#x60;tif&#x60; gtc / gtd (&#x60;expiresAt&#x60;) / ioc, whole &#x60;shares&#x60; or a buy’s &#x60;amountCents&#x60; (turned into whole shares at the most it could pay), integer &#x60;limitCents&#x60; a share, &#x60;postOnly&#x60;. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass &#x60;requestId&#x60; to make a retry safe.
+[**CreateVaultMarketShareSeryRecombine**](VaultMarketsApi.md#CreateVaultMarketShareSeryRecombine) | **Post** /v1/vault-markets/shares/series/{id}/recombine | You hold every share: take the item back whole. With &#x60;withdraw&#x60;, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+[**CreateVaultMarketShareSeryRoom**](VaultMarketsApi.md#CreateVaultMarketShareSeryRoom) | **Post** /v1/vault-markets/shares/series/{id}/room | Post in the holder room (shareholders only), up to 1,000 characters.
+[**CreateVaultMarketShareSerySubscribe**](VaultMarketsApi.md#CreateVaultMarketShareSerySubscribe) | **Post** /v1/vault-markets/shares/series/{id}/subscribe | Subscribe for whole &#x60;shares&#x60; in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass &#x60;jointVaultId&#x60;. Pass &#x60;requestId&#x60; to make a retry safe.
+[**CreateVaultMarketShareSeryUnwatch**](VaultMarketsApi.md#CreateVaultMarketShareSeryUnwatch) | **Post** /v1/vault-markets/shares/series/{id}/unwatch | Stop being told about a drop (&#x60;kind&#x60; notify) or leave its waitlist (&#x60;kind&#x60; waitlist).
+[**CreateVaultMarketShareSeryUpdate**](VaultMarketsApi.md#CreateVaultMarketShareSeryUpdate) | **Post** /v1/vault-markets/shares/series/{id}/updates | Post an update on your own item’s series (you are its originator): &#x60;kind&#x60; story, provenance, condition, appraisal, exhibition or event, a &#x60;title&#x60;, a &#x60;body&#x60;, an optional https &#x60;mediaUrl&#x60;, &#x60;holdersOnly&#x60;. Holders are told.
+[**CreateVaultMarketShareSeryWatch**](VaultMarketsApi.md#CreateVaultMarketShareSeryWatch) | **Post** /v1/vault-markets/shares/series/{id}/watch | Ask to be told about a drop (&#x60;kind&#x60; notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (&#x60;kind&#x60; waitlist, with the &#x60;shares&#x60; you want).
+[**CreateVaultMarketShareSeryWithdrawProposal**](VaultMarketsApi.md#CreateVaultMarketShareSeryWithdrawProposal) | **Post** /v1/vault-markets/shares/series/{id}/withdraw-proposal | Withdraw your own proposal before its offering opens.
+[**CreateVaultMarketShareSubscriptionCancel**](VaultMarketsApi.md#CreateVaultMarketShareSubscriptionCancel) | **Post** /v1/vault-markets/shares/subscriptions/{id}/cancel | Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+[**CreateVaultMarketShareViewingBook**](VaultMarketsApi.md#CreateVaultMarketShareViewingBook) | **Post** /v1/vault-markets/shares/viewings/{id}/book | Book a place on a viewing day (shareholders only), with up to the day’s &#x60;guests&#x60;. Bookings close a day before; booking again changes your guests.
+[**CreateVaultMarketShareViewingBookingCancel**](VaultMarketsApi.md#CreateVaultMarketShareViewingBookingCancel) | **Post** /v1/vault-markets/shares/viewing-bookings/{id}/cancel | Cancel your viewing-day booking.
 [**CreateVaultMarketShort**](VaultMarketsApi.md#CreateVaultMarketShort) | **Post** /v1/vault-markets/shorts | Short a book key: borrow &#x60;units&#x60; lent units (default 1; at most 25/10/3/1 by liquidity tier A/B/C/D) and sell each at &#x60;limitCents&#x60; or better, posting collateral for all of them (50% of the mark each; CBX counts at half, up to 30%). All units are borrowed or none unless &#x60;allowPartial&#x60;. A partial sale opens with the units sold. Returns &#x60;{ positionId, matched, units }&#x60;.
 [**CreateVaultMarketSupplyBatchLabel**](VaultMarketsApi.md#CreateVaultMarketSupplyBatchLabel) | **Post** /v1/vault-markets/supply/batches/{id}/label | Buy a box&#39;s prepaid label again after it failed (for example once a ship-from address is saved). A box that has a label keeps it.
 [**CreateVaultMarketSupplyInvite**](VaultMarketsApi.md#CreateVaultMarketSupplyInvite) | **Post** /v1/vault-markets/supply/invites/{id} | Accept or decline a Market Open invite (&#x60;accept&#x60;).
 [**CreateVaultMarketSupplySend**](VaultMarketsApi.md#CreateVaultMarketSupplySend) | **Post** /v1/vault-markets/supply/send | Send inventory items matched to a catalogue variant to the vault as one box: each becomes an inbound vault unit, and the box gets one prepaid inbound label (a PDF to print). Optional: auto-list each unit in the vault book at a share of the mark once stored, and lend when idle. Items that cannot go say why. Crosslisted listings stay live.
+[**CreateVaultMarketSupplySendIn**](VaultMarketsApi.md#CreateVaultMarketSupplySendIn) | **Post** /v1/vault-markets/supply/send-in | Send inventory items to the vault: &#x60;method: label&#x60; (one box on a prepaid label) or &#x60;dropoff&#x60; at a partner (&#x60;partnerId&#x60;, from the finder; you get a counter code). Each item can carry its declared value; &#x60;insured&#x60; insures the box for it.
 [**CreateVaultMarketTerm**](VaultMarketsApi.md#CreateVaultMarketTerm) | **Post** /v1/vault-markets/terms | Accept the current lending terms (needed to lend or short). Returns &#x60;{ termsVersion }&#x60;.
 [**CreateVaultMarketTodClaimObject**](VaultMarketsApi.md#CreateVaultMarketTodClaimObject) | **Post** /v1/vault-markets/tod/claims/{id}/object | Stop a transfer-on-death claim made on your own account. Returns &#x60;{ id, status, estateUnlocked }&#x60;.
 [**CreateVaultMarketTodMyClaim**](VaultMarketsApi.md#CreateVaultMarketTodMyClaim) | **Post** /v1/vault-markets/tod/my-claims | Start a claim as a named beneficiary (ID first), naming the account holder by @username or email. It stays a draft until you add documents and submit. Returns &#x60;{ id, status, existing }&#x60;.
@@ -163,6 +251,7 @@ Method | HTTP request | Description
 [**CreateVaultReceiptTokenWalletAllow**](VaultMarketsApi.md#CreateVaultReceiptTokenWalletAllow) | **Post** /v1/vault/receipt-tokens/wallets/allow | Put one of your verified Solana wallets (&#x60;wallet&#x60;) on the receipt-token allow-list so it can hold and receive receipt tokens. Returns a base64 transaction already signed by the receipts authority: the wallet pays the small rent (about 0.001 SOL) and must sign and send it within about two minutes. Needs a verified ID and a wallet that passes the sanctions screen.
 [**DeleteVaultMarketAgentWatch**](VaultMarketsApi.md#DeleteVaultMarketAgentWatch) | **Delete** /v1/vault-markets/agent/watches/{id} | Cancel a live price watch. Returns the watch.
 [**DeleteVaultMarketAlert**](VaultMarketsApi.md#DeleteVaultMarketAlert) | **Delete** /v1/vault-markets/alerts/{id} | Delete a price alert. Returns &#x60;{ ok }&#x60;.
+[**DeleteVaultMarketAutoBuy**](VaultMarketsApi.md#DeleteVaultMarketAutoBuy) | **Delete** /v1/vault-markets/auto-buy | Stop Auto-buy with payouts. The history stays.
 [**DeleteVaultMarketBullionFamilyPeg**](VaultMarketsApi.md#DeleteVaultMarketBullionFamilyPeg) | **Delete** /v1/vault-markets/bullion/family-pegs/{id} | Stop a family-wide quote: every leg order comes off the book; what filled stays filled.
 [**DeleteVaultMarketBullionPeg**](VaultMarketsApi.md#DeleteVaultMarketBullionPeg) | **Delete** /v1/vault-markets/bullion/pegs/{id} | Stop a spot-pegged quote: its resting order comes off the book; what filled stays filled.
 [**DeleteVaultMarketDealerBand**](VaultMarketsApi.md#DeleteVaultMarketDealerBand) | **Delete** /v1/vault-markets/dealer/bands | Stop a band on a key; its standing bid comes off.
@@ -171,6 +260,10 @@ Method | HTTP request | Description
 [**DeleteVaultMarketIndex**](VaultMarketsApi.md#DeleteVaultMarketIndex) | **Delete** /v1/vault-markets/indexes/{slug} | Delete an index of your own. Returns &#x60;{ ok }&#x60;.
 [**DeleteVaultMarketLocate**](VaultMarketsApi.md#DeleteVaultMarketLocate) | **Delete** /v1/vault-markets/locates/{id} | Release a live locate before it lapses.
 [**DeleteVaultMarketOpeningWaitlist**](VaultMarketsApi.md#DeleteVaultMarketOpeningWaitlist) | **Delete** /v1/vault-markets/opening/{slug}/waitlist | Leave a key&#39;s waitlist.
+[**DeleteVaultMarketPredictionAlert**](VaultMarketsApi.md#DeleteVaultMarketPredictionAlert) | **Delete** /v1/vault-markets/predictions/alerts/{id} | Remove a probability alert. Returns &#x60;{ ok }&#x60;.
+[**DeleteVaultMarketPredictionCard**](VaultMarketsApi.md#DeleteVaultMarketPredictionCard) | **Delete** /v1/vault-markets/predictions/cards/{id} | Take an \&quot;I called it\&quot; card down; its link stops working. Returns &#x60;{ ok }&#x60;.
+[**DeleteVaultMarketPredictionComment**](VaultMarketsApi.md#DeleteVaultMarketPredictionComment) | **Delete** /v1/vault-markets/predictions/comments/{id} | Delete your comment.
+[**DeleteVaultMarketPredictionForecasterFollow**](VaultMarketsApi.md#DeleteVaultMarketPredictionForecasterFollow) | **Delete** /v1/vault-markets/predictions/forecasters/{id}/follow | Stop following a forecaster.
 [**DeleteVaultMarketPriceWidget**](VaultMarketsApi.md#DeleteVaultMarketPriceWidget) | **Delete** /v1/vault-markets/price-widgets/{id} | Delete a widget. Pages that still paste it show that it is no longer available. Returns &#x60;{ id, archived }&#x60;.
 [**DeleteVaultMarketProQuote**](VaultMarketsApi.md#DeleteVaultMarketProQuote) | **Delete** /v1/vault-markets/pro/quotes | Pull your quote on a book key, or every quote. Returns &#x60;{ pulled }&#x60;.
 [**DeleteVaultMarketProfileFollow**](VaultMarketsApi.md#DeleteVaultMarketProfileFollow) | **Delete** /v1/vault-markets/profiles/{handle}/follow | Stop following someone.
@@ -191,6 +284,7 @@ Method | HTTP request | Description
 [**GetVaultMarketAlertPref**](VaultMarketsApi.md#GetVaultMarketAlertPref) | **Get** /v1/vault-markets/alert-prefs | Your vault alert settings: every kind (price, fill, margin_call, adl, p2p_loan, auction, market_open, receipt_token, set_goal, follow, account), every channel (push, telegram, terminal, email, webhook) with whether it is set up, the full on/off grid, the locked switches (a critical kind always pushes) and quiet hours.
 [**GetVaultMarketAuctionLot**](VaultMarketsApi.md#GetVaultMarketAuctionLot) | **Get** /v1/vault-markets/auctions/lots/{id} | One lot: the price showing, the next minimum bid, whether a reserve exists and is met, the end (extended by late bids), the bid history and your standing.
 [**GetVaultMarketAuctionMine**](VaultMarketsApi.md#GetVaultMarketAuctionMine) | **Get** /v1/vault-markets/auctions/mine | Lots you consigned (with your reserve) and lots you bid on (with your maximum and whether you lead).
+[**GetVaultMarketAutoBuy**](VaultMarketsApi.md#GetVaultMarketAutoBuy) | **Get** /v1/vault-markets/auto-buy | Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. &#x60;autoBuy&#x60; is null when it is not set up.
 [**GetVaultMarketBlock**](VaultMarketsApi.md#GetVaultMarketBlock) | **Get** /v1/vault-markets/blocks/{orderId} | One block order: its order, plan lines (planned and allocated units, average price, cash share, status).
 [**GetVaultMarketBullionFor**](VaultMarketsApi.md#GetVaultMarketBullionFor) | **Get** /v1/vault-markets/bullion/for | The bullion key families one book key belongs to, with spot for its metal as a labelled reference and its melt value at that spot. Empty families when the item is not keyed bullion.
 [**GetVaultMarketBullionKey**](VaultMarketsApi.md#GetVaultMarketBullionKey) | **Get** /v1/vault-markets/bullion/keys/{slug} | One bullion key family: its catalogue products, every live book key with best bid, best ask, vault units and its mark (from the book only), live pegged quote counts, and spot as a labelled reference.
@@ -229,6 +323,8 @@ Method | HTTP request | Description
 [**GetVaultMarketHallLoan**](VaultMarketsApi.md#GetVaultMarketHallLoan) | **Get** /v1/vault-markets/hall/loans | Your Hall of Grails desk: this week&#39;s exhibition, the rules (maxLive loans, shownPerHolder per exhibition, repPoints per exhibition shown), reputation (exhibitions finished), your loans (status active, ending or ended; onShowNow, showingUntil, exhibitions, the next exhibition it fits, the Lent to the Hall badge) and the vault units you could lend (canLend, or the blocker in words, and the next exhibition each fits). Display only.
 [**GetVaultMarketHealth**](VaultMarketsApi.md#GetVaultMarketHealth) | **Get** /v1/vault-markets/health | Portfolio health of your vault holdings at Crossly marks: concentration by single item, category, grade and grader (shares, HHI on 0 to 10000, its band and effective number of holdings), value by liquidity tier, the stress grid (each category and everything down 10, 20 and 30 percent), value by mark quality, plain observations, and the held items a what-if can run on. Information only, not advice.
 [**GetVaultMarketHealthWhatIf**](VaultMarketsApi.md#GetVaultMarketHealthWhatIf) | **Get** /v1/vault-markets/health/what-if | What if one held item moved by moveBps (-10000 to 10000 basis points of its mark): the item, your vault total, the item and its category share of the vault, and the single-item HHI, before and after. A scenario on the mark, not a price you could sell at.
+[**GetVaultMarketHoldingInventoryItem**](VaultMarketsApi.md#GetVaultMarketHoldingInventoryItem) | **Get** /v1/vault-markets/holdings/{id}/inventory-item | The inventory item a vault unit of yours came from (null for a unit bought on the book).
+[**GetVaultMarketHoldingWithdrawQuote**](VaultMarketsApi.md#GetVaultMarketHoldingWithdrawQuote) | **Get** /v1/vault-markets/holdings/{id}/withdraw-quote | What shipping one unit you own home would charge now, for &#x60;standard&#x60; and &#x60;expedited&#x60;: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
 [**GetVaultMarketHomeUnit**](VaultMarketsApi.md#GetVaultMarketHomeUnit) | **Get** /v1/vault-markets/home/units | \&quot;Show my vault\&quot;: the vault units you hold, the ones standing in your Crossly World home first. Each: vaultItemId, title, grade, imageUrl, bookKey (its market), inHome, visitors (visitors to your home see it). Also your home (slug, privacy, path), max units one home shows, shown, visitorsSee and a note on who sees what. Your home is made on first read. No prices.
 [**GetVaultMarketIndex**](VaultMarketsApi.md#GetVaultMarketIndex) | **Get** /v1/vault-markets/indexes/{slug} | One index with its daily closes (oldest first) and its level now.
 [**GetVaultMarketIndexCalendar**](VaultMarketsApi.md#GetVaultMarketIndexCalendar) | **Get** /v1/vault-markets/index-calendar | The next four quarterly reviews: reference day (2nd Friday of Mar/Jun/Sep/Dec), announcement day, last close under the old membership and the effective day; June and December also review the Blue-chip 50.
@@ -240,6 +336,7 @@ Method | HTTP request | Description
 [**GetVaultMarketIndexLicenceUsage**](VaultMarketsApi.md#GetVaultMarketIndexLicenceUsage) | **Get** /v1/vault-markets/index-licence/usage | Your licensed index feed reads over &#x60;days&#x60;, per index and endpoint (licence-usage report).
 [**GetVaultMarketIndexMethodology**](VaultMarketsApi.md#GetVaultMarketIndexMethodology) | **Get** /v1/vault-markets/index-methodology | The index method in machine-readable form: version (semver), inputs, weightings and caps, the family and its screens, the engines and their publication gate, revisions and the settlement series, the calendar, governance and limitations.
 [**GetVaultMarketInstantExit**](VaultMarketsApi.md#GetVaultMarketInstantExit) | **Get** /v1/vault-markets/instant-exit | The Instant Exit quote for one vault unit you hold: the best resting bid on its book key (anyone&#39;s, dealers&#39; included), its share of the mark, the bid depth, and whether it can be taken now.
+[**GetVaultMarketItemLocation**](VaultMarketsApi.md#GetVaultMarketItemLocation) | **Get** /v1/vault-markets/items/{inventoryItemId}/location | Where one inventory item&#39;s units are: in your own stock (warehouse) and in the vault per location, each vault unit&#39;s status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
 [**GetVaultMarketJoint**](VaultMarketsApi.md#GetVaultMarketJoint) | **Get** /v1/vault-markets/joint | Your joint vaults and the invitations waiting for you, with the gate (open, missing env), the joint terms in words and what each right allows. A JointVaultsHome object, not a collection.
 [**GetVaultMarketJointById**](VaultMarketsApi.md#GetVaultMarketJointById) | **Get** /v1/vault-markets/joint/{id} | One joint vault (active members only): members and rights, the units in it at the mark with each owner of record, totals, recent joint trades, and the activity from the audit trail.
 [**GetVaultMarketKeyStat**](VaultMarketsApi.md#GetVaultMarketKeyStat) | **Get** /v1/vault-markets/key-stats/{bookKey} | Everything derived about one book key in one read: the Crossly Estimate, the liquidity score, risk statistics and the gem rate. A part that cannot be read is &#x60;{ error }&#x60;.
@@ -262,6 +359,23 @@ Method | HTTP request | Description
 [**GetVaultMarketNav**](VaultMarketsApi.md#GetVaultMarketNav) | **Get** /v1/vault-markets/nav | Mark NAV, bid NAV (the resting bids) and liquidation NAV (the bids at 20% of ADV for 10 days), holding by holding, each with its ASC 820 level, mark quality and source, and your administrator&#39;s price when uploaded.
 [**GetVaultMarketNavFile**](VaultMarketsApi.md#GetVaultMarketNavFile) | **Get** /v1/vault-markets/nav/file/{format} | The NAV as a csv, pdf or json file.
 [**GetVaultMarketOpening**](VaultMarketsApi.md#GetVaultMarketOpening) | **Get** /v1/vault-markets/opening/{slug} | One opening key.
+[**GetVaultMarketOption**](VaultMarketsApi.md#GetVaultMarketOption) | **Get** /v1/vault-markets/options | Fractional options: the venue mode (self &#x3D; Crossly is the venue and clearing house, partner &#x3D; routed to the index DCM, paper &#x3D; practice only) with the env each mode still needs, the active series and the rule book in force.
+[**GetVaultMarketOptionAnalytic**](VaultMarketsApi.md#GetVaultMarketOptionAnalytic) | **Get** /v1/vault-markets/options/analytics/{underlying} | Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry&#39;s smile (&#x60;expiry&#x60;), IV rank and percentile against the series&#39; own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying&#39;s own published series. Every implied vol is derived and display only.
+[**GetVaultMarketOptionAutoClose**](VaultMarketsApi.md#GetVaultMarketOptionAutoClose) | **Get** /v1/vault-markets/options/auto-close | Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+[**GetVaultMarketOptionChain**](VaultMarketsApi.md#GetVaultMarketOptionChain) | **Get** /v1/vault-markets/options/chain/{underlying} | The option chain for an underlying (index slug or book key): its expiries, and for one expiry (&#x60;expiry&#x60;, default the nearest) each strike&#39;s call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+[**GetVaultMarketOptionComboBook**](VaultMarketsApi.md#GetVaultMarketOptionComboBook) | **Get** /v1/vault-markets/options/combos/book | One strategy&#39;s combo book by its canonical key (&#x60;key&#x60;, from the preview or an order): bids and asks by net price and recent strategy trades.
+[**GetVaultMarketOptionComboRfq**](VaultMarketsApi.md#GetVaultMarketOptionComboRfq) | **Get** /v1/vault-markets/options/combos/rfq/{id} | One strategy quote request and its answers (all of them to the requester, your own to a responder).
+[**GetVaultMarketOptionContract**](VaultMarketsApi.md#GetVaultMarketOptionContract) | **Get** /v1/vault-markets/options/contracts/{id} | One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+[**GetVaultMarketOptionContractBook**](VaultMarketsApi.md#GetVaultMarketOptionContractBook) | **Get** /v1/vault-markets/options/contracts/{id}/book | A contract&#39;s order book on the Crossly venue (&#x60;levels&#x60;, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+[**GetVaultMarketOptionContractSettlement**](VaultMarketsApi.md#GetVaultMarketOptionContractSettlement) | **Get** /v1/vault-markets/options/contracts/{id}/settlement | A settled contract&#39;s settlement: the value (cents per unit of the underlying), its source (the index&#39;s frozen 7-day TWAP, the item&#39;s expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+[**GetVaultMarketOptionHedge**](VaultMarketsApi.md#GetVaultMarketOptionHedge) | **Get** /v1/vault-markets/options/hedges | Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+[**GetVaultMarketOptionIv**](VaultMarketsApi.md#GetVaultMarketOptionIv) | **Get** /v1/vault-markets/options/iv/{underlying} | The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+[**GetVaultMarketOptionMargin**](VaultMarketsApi.md#GetVaultMarketOptionMargin) | **Get** /v1/vault-markets/options/margin | Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner&#39;s figure decides and this is an estimate.
+[**GetVaultMarketOptionPayoff**](VaultMarketsApi.md#GetVaultMarketOptionPayoff) | **Get** /v1/vault-markets/options/payoff | Your whole options position on one &#x60;underlying&#x60; at expiry: the P&amp;L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+[**GetVaultMarketOptionPosition**](VaultMarketsApi.md#GetVaultMarketOptionPosition) | **Get** /v1/vault-markets/options/positions | Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&amp;L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. &#x60;status&#x60; open (default) / all, &#x60;subaccountId&#x60;.
+[**GetVaultMarketOptionPractice**](VaultMarketsApi.md#GetVaultMarketOptionPractice) | **Get** /v1/vault-markets/options/practice | Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker&#39;s price, equity and P&amp;L.
+[**GetVaultMarketOptionRfq**](VaultMarketsApi.md#GetVaultMarketOptionRfq) | **Get** /v1/vault-markets/options/rfq/{id} | One option quote request: yours with every answer, or one you were sent with your own answer.
+[**GetVaultMarketOptionRisk**](VaultMarketsApi.md#GetVaultMarketOptionRisk) | **Get** /v1/vault-markets/options/risk | Your options portfolio&#39;s Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario&#39;s P&amp;L (&#x60;priceShift&#x60;, &#x60;volShift&#x60;, &#x60;daysForward&#x60;), a price x vol P&amp;L grid, and the beta-weighted delta against an index (&#x60;betaIndex&#x60;, default the deepest). &#x60;book&#x60; live (default) or practice.
 [**GetVaultMarketOracle**](VaultMarketsApi.md#GetVaultMarketOracle) | **Get** /v1/vault-markets/oracle | Crossly as an oracle publisher (needs CROSSLY_ORACLE_PUBLISHER_KEY + CROSSLY_ORACLE_NETWORK): the network (pyth or switchboard), the ed25519 key every value is signed with, each published index feed with its latest attempt, and 24 h counts of published, skipped and failed. Only built-in indexes priced from A/B marks are published; Crossly never reads its own feed back.
 [**GetVaultMarketOracleBySlug**](VaultMarketsApi.md#GetVaultMarketOracleBySlug) | **Get** /v1/vault-markets/oracle/{slug} | The latest published oracle value for an index: level, fixed-point price and confidence at the feed exponent, confidence in bps, staleness in seconds, coverage, the exact signed message and its ed25519 signature with the signer key, and whether it is fresh.
 [**GetVaultMarketOrderHandling**](VaultMarketsApi.md#GetVaultMarketOrderHandling) | **Get** /v1/vault-markets/order-handling | How orders are handled (the 606/607-style disclosure): one book, self-trade prevention, protected market orders, liquidations by auction, halts, dealers and fees.
@@ -269,7 +383,7 @@ Method | HTTP request | Description
 [**GetVaultMarketP2pLoan**](VaultMarketsApi.md#GetVaultMarketP2pLoan) | **Get** /v1/vault-markets/p2p/loans/{id} | One P2P loan with its money log (fund, repay, refinance). A loan in a running refinancing auction can be read by any lender, without the log.
 [**GetVaultMarketPaper**](VaultMarketsApi.md#GetVaultMarketPaper) | **Get** /v1/vault-markets/paper | Your paper trading account (play money only, never real or convertible; opened at $10,000 the first time): play cash, buying power, paper positions at the real marks, P&amp;L, working paper orders, recent paper fills and this week on the leaderboard.
 [**GetVaultMarketPaperQuote**](VaultMarketsApi.md#GetVaultMarketPaperQuote) | **Get** /v1/vault-markets/paper/quote | What a paper order would fill against the real book now, without placing it: units fillable inside the limit (a market order uses the 5% protection band around the mark), average price, simulated fee, and the queue ahead of any rest.
-[**GetVaultMarketPartnerMe**](VaultMarketsApi.md#GetVaultMarketPartnerMe) | **Get** /v1/vault-markets/partners/me | Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+[**GetVaultMarketPartnerMe**](VaultMarketsApi.md#GetVaultMarketPartnerMe) | **Get** /v1/vault-markets/partners/me | Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
 [**GetVaultMarketPool**](VaultMarketsApi.md#GetVaultMarketPool) | **Get** /v1/vault-markets/pool | The CBX market staking pool: size, value, what it lends, utilisation, rate, insurance fund.
 [**GetVaultMarketPopReport**](VaultMarketsApi.md#GetVaultMarketPopReport) | **Get** /v1/vault-markets/pop-reports | Grading population report for one market (&#x60;bookKey&#x60;): focus (on a graded market: its grade, pop &#x3D; copies graded at exactly that grade, higher &#x3D; copies graded better by the same grader, total, asOf and source), graders (each grader ladder for the card, best grade first, from one report: the newest, the population feed over a hand entry on the same date), provider.connected, and status (ok, not_synced, no_report or no_source) with explain, which says in plain words what is missing. source is provider (the population feed) or ops (entered by Crossly from the grader published report). Counts only, never a price.
 [**GetVaultMarketPortfolio**](VaultMarketsApi.md#GetVaultMarketPortfolio) | **Get** /v1/vault-markets/portfolio | Your vault holdings at the market price, with cost and P&amp;L, and units you have out on loan.
@@ -278,6 +392,30 @@ Method | HTTP request | Description
 [**GetVaultMarketPosition**](VaultMarketsApi.md#GetVaultMarketPosition) | **Get** /v1/vault-markets/positions/{id} | One position with its loans, auctions and custodian instruction log.
 [**GetVaultMarketPositionExit**](VaultMarketsApi.md#GetVaultMarketPositionExit) | **Get** /v1/vault-markets/positions/{id}/exits | A position&#39;s take-profit / stop-loss, if set.
 [**GetVaultMarketPositionRisk**](VaultMarketsApi.md#GetVaultMarketPositionRisk) | **Get** /v1/vault-markets/positions/{id}/risk | One position&#39;s call and liquidation marks.
+[**GetVaultMarketPrediction**](VaultMarketsApi.md#GetVaultMarketPrediction) | **Get** /v1/vault-markets/predictions | The prediction markets home: the busiest and soonest-expiring \&quot;Will it hit?\&quot; markets with their probability (each market&#39;s own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+[**GetVaultMarketPredictionAccount**](VaultMarketsApi.md#GetVaultMarketPredictionAccount) | **Get** /v1/vault-markets/predictions/account | Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+[**GetVaultMarketPredictionBoard**](VaultMarketsApi.md#GetVaultMarketPredictionBoard) | **Get** /v1/vault-markets/predictions/board | The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+[**GetVaultMarketPredictionCombo**](VaultMarketsApi.md#GetVaultMarketPredictionCombo) | **Get** /v1/vault-markets/predictions/combos/{id} | One of your combos.
+[**GetVaultMarketPredictionComboRfq**](VaultMarketsApi.md#GetVaultMarketPredictionComboRfq) | **Get** /v1/vault-markets/predictions/combos/rfqs/{id} | One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+[**GetVaultMarketPredictionDailyPrice**](VaultMarketsApi.md#GetVaultMarketPredictionDailyPrice) | **Get** /v1/vault-markets/predictions/daily-prices | The published daily settlement price of every listed market for a day (default yesterday): the last hour&#39;s volume-weighted Yes price, else the book mid, else the prior day&#39;s, with volume and open interest.
+[**GetVaultMarketPredictionEvent**](VaultMarketsApi.md#GetVaultMarketPredictionEvent) | **Get** /v1/vault-markets/predictions/events/{id} | One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. &#x60;venue&#x60; paper or live.
+[**GetVaultMarketPredictionForecaster**](VaultMarketsApi.md#GetVaultMarketPredictionForecaster) | **Get** /v1/vault-markets/predictions/forecaster | Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+[**GetVaultMarketPredictionForecasterById**](VaultMarketsApi.md#GetVaultMarketPredictionForecasterById) | **Get** /v1/vault-markets/predictions/forecasters/{id} | A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+[**GetVaultMarketPredictionLeaderboard**](VaultMarketsApi.md#GetVaultMarketPredictionLeaderboard) | **Get** /v1/vault-markets/predictions/leaderboard | Opt-in forecaster leaderboards: &#x60;period&#x60; week, month or all; &#x60;metric&#x60; pnl, accuracy or brier; &#x60;venue&#x60; live or paper (practice has its own board).
+[**GetVaultMarketPredictionLimit**](VaultMarketsApi.md#GetVaultMarketPredictionLimit) | **Get** /v1/vault-markets/predictions/limits | Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+[**GetVaultMarketPredictionMarket**](VaultMarketsApi.md#GetVaultMarketPredictionMarket) | **Get** /v1/vault-markets/predictions/markets/{id} | One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+[**GetVaultMarketPredictionMarketForecast**](VaultMarketsApi.md#GetVaultMarketPredictionMarketForecast) | **Get** /v1/vault-markets/predictions/markets/{id}/forecasts | How many people forecast a market and their median probability (no names).
+[**GetVaultMarketPredictionMarketHistory**](VaultMarketsApi.md#GetVaultMarketPredictionMarketHistory) | **Get** /v1/vault-markets/predictions/markets/{id}/history | A market&#39;s history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over &#x60;range&#x60; 1d, 1w, 1m or all; &#x60;venue&#x60; live or paper.
+[**GetVaultMarketPredictionMarketStream**](VaultMarketsApi.md#GetVaultMarketPredictionMarketStream) | **Get** /v1/vault-markets/predictions/markets/{id}/stream | A server-sent event stream for one prediction market: &#x60;snapshot&#x60; first, then &#x60;pm_depth&#x60;, &#x60;pm_trades&#x60;, &#x60;pm_probability&#x60;, &#x60;pm_status&#x60; and &#x60;pm_settlement&#x60; as they change.
+[**GetVaultMarketPredictionMarketTrade**](VaultMarketsApi.md#GetVaultMarketPredictionMarketTrade) | **Get** /v1/vault-markets/predictions/markets/{id}/trades | The trade tape, newest first: Yes price, size, which side took, venue. Page with &#x60;before&#x60; (the last &#x60;seq&#x60;).
+[**GetVaultMarketPredictionMeStream**](VaultMarketsApi.md#GetVaultMarketPredictionMeStream) | **Get** /v1/vault-markets/predictions/me/stream | A server-sent event stream of your own prediction events: &#x60;pm_order&#x60; (placed, filled, amended, cancelled, expired), &#x60;pm_fill&#x60; (your side, price and fee), &#x60;pm_position&#x60;, &#x60;pm_combo&#x60; and &#x60;pm_conversion&#x60;.
+[**GetVaultMarketPredictionMission**](VaultMarketsApi.md#GetVaultMarketPredictionMission) | **Get** /v1/vault-markets/predictions/missions | The two \&quot;Will it hit?\&quot; practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+[**GetVaultMarketPredictionPaper**](VaultMarketsApi.md#GetVaultMarketPredictionPaper) | **Get** /v1/vault-markets/predictions/paper | Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+[**GetVaultMarketPredictionQuote**](VaultMarketsApi.md#GetVaultMarketPredictionQuote) | **Get** /v1/vault-markets/predictions/quote | What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi&#39;s formula), the money it would lock, and the most it could pay out.
+[**GetVaultMarketPredictionRulebook**](VaultMarketsApi.md#GetVaultMarketPredictionRulebook) | **Get** /v1/vault-markets/predictions/rulebook | The prediction venue&#39;s rule book now and every version, each hashed and chained to the one before (&#x60;chainOk&#x60;).
+[**GetVaultMarketPredictionStream**](VaultMarketsApi.md#GetVaultMarketPredictionStream) | **Get** /v1/vault-markets/predictions/stream | A server-sent event stream for up to 50 markets (&#x60;markets&#x60;&#x3D;id,id): &#x60;ready&#x60;, then &#x60;pm_depth&#x60;, &#x60;pm_trades&#x60;, &#x60;pm_probability&#x60;, &#x60;pm_status&#x60; and &#x60;pm_settlement&#x60;, each carrying its marketId.
+[**GetVaultMarketPredictionVenue**](VaultMarketsApi.md#GetVaultMarketPredictionVenue) | **Get** /v1/vault-markets/predictions/venue | Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+[**GetVaultMarketPredictionWillItHit**](VaultMarketsApi.md#GetVaultMarketPredictionWillItHit) | **Get** /v1/vault-markets/predictions/will-it-hit | The \&quot;Will it hit?\&quot; panel for a key (&#x60;bookKey&#x60;) or an index (&#x60;index&#x60; slug): its open markets grouped by expiry, each with its probability. &#x60;eligible&#x60; is false when nothing is listed on it.
 [**GetVaultMarketPress**](VaultMarketsApi.md#GetVaultMarketPress) | **Get** /v1/vault-markets/press | The press kit: each built-in index with level, quality, n, CSV link and a \&quot;cite as\&quot; line, plus the methodology links.
 [**GetVaultMarketPriceWidget**](VaultMarketsApi.md#GetVaultMarketPriceWidget) | **Get** /v1/vault-markets/price-widgets/{id} | One of your price widgets, with its iframe and script-tag snippets and URLs.
 [**GetVaultMarketProDepth**](VaultMarketsApi.md#GetVaultMarketProDepth) | **Get** /v1/vault-markets/pro/depth | The L2 depth ladder: price levels and units per side, best first; asks show how many units are authenticated vault stock.
@@ -297,17 +435,34 @@ Method | HTTP request | Description
 [**GetVaultMarketRiskStat**](VaultMarketsApi.md#GetVaultMarketRiskStat) | **Get** /v1/vault-markets/risk-stats/{bookKey} | Risk statistics for a book key (weekly returns from A-quality marks only) or an index slug (its closes): annualised volatility raw and Geltner-desmoothed (labelled), max drawdown and beta to the Composite. Needs 26 weekly returns, else no numbers.
 [**GetVaultMarketSetGoal**](VaultMarketsApi.md#GetVaultMarketSetGoal) | **Get** /v1/vault-markets/set-goals/{id} | One set goal: every piece in the set order, held (with the vault unit) or missing (with the cheapest marked book key that meets the target and its mark), the conditions and grades seen, and the working basket bid with its legs.
 [**GetVaultMarketSetGoalBasketPlan**](VaultMarketsApi.md#GetVaultMarketSetGoalBasketPlan) | **Get** /v1/vault-markets/set-goals/{id}/basket-plan | What a basket bid would place now, without placing it: one leg per missing piece (cheapest first, the mark plus maxBpsOverMark as the limit), the pieces skipped and why, and the most it can cost (limits plus the worst-case buyer fee), never more than budgetCents.
+[**GetVaultMarketSetting**](VaultMarketsApi.md#GetVaultMarketSetting) | **Get** /v1/vault-markets/settings | Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+[**GetVaultMarketShare**](VaultMarketsApi.md#GetVaultMarketShare) | **Get** /v1/vault-markets/shares | Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+[**GetVaultMarketShareBasket**](VaultMarketsApi.md#GetVaultMarketShareBasket) | **Get** /v1/vault-markets/shares/baskets/{id} | One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
 [**GetVaultMarketShareCard**](VaultMarketsApi.md#GetVaultMarketShareCard) | **Get** /v1/vault-markets/share-cards/{id} | One share card as the public sees it, with its image and link paths.
+[**GetVaultMarketShareInvestor**](VaultMarketsApi.md#GetVaultMarketShareInvestor) | **Get** /v1/vault-markets/shares/investor | Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+[**GetVaultMarketShareMe**](VaultMarketsApi.md#GetVaultMarketShareMe) | **Get** /v1/vault-markets/shares/me | Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+[**GetVaultMarketSharePaper**](VaultMarketsApi.md#GetVaultMarketSharePaper) | **Get** /v1/vault-markets/shares/paper | Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+[**GetVaultMarketSharePaperSeryBook**](VaultMarketsApi.md#GetVaultMarketSharePaperSeryBook) | **Get** /v1/vault-markets/shares/paper/series/{id}/book | A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+[**GetVaultMarketSharePreview**](VaultMarketsApi.md#GetVaultMarketSharePreview) | **Get** /v1/vault-markets/shares/preview | Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+[**GetVaultMarketShareSery**](VaultMarketsApi.md#GetVaultMarketShareSery) | **Get** /v1/vault-markets/shares/series/{id} | One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+[**GetVaultMarketShareSeryBook**](VaultMarketsApi.md#GetVaultMarketShareSeryBook) | **Get** /v1/vault-markets/shares/series/{id}/book | A share book’s depth: whole shares per price level (integer cents a share), best first.
+[**GetVaultMarketShareSeryHistory**](VaultMarketsApi.md#GetVaultMarketShareSeryHistory) | **Get** /v1/vault-markets/shares/series/{id}/history | A series’ full price history: OHLC candles of every share-book fill (&#x60;interval&#x60; 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+[**GetVaultMarketShareSeryPerk**](VaultMarketsApi.md#GetVaultMarketShareSeryPerk) | **Get** /v1/vault-markets/shares/series/{id}/perks | Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+[**GetVaultMarketShareSeryRoom**](VaultMarketsApi.md#GetVaultMarketShareSeryRoom) | **Get** /v1/vault-markets/shares/series/{id}/room | The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. &#x60;before&#x60; pages back.
 [**GetVaultMarketStatement**](VaultMarketsApi.md#GetVaultMarketStatement) | **Get** /v1/vault-markets/statements | The last 24 months with whether each statement is issued (frozen, with its sha256).
 [**GetVaultMarketStatementByMonth**](VaultMarketsApi.md#GetVaultMarketStatementByMonth) | **Get** /v1/vault-markets/statements/{month} | A monthly statement (&#x60;month&#x60; like 2026-10): units held at month end, loans, pledges, positions, fills, fees, storage, and cash quoted from the custodian and labelled as its record. Issued (frozen) once the month ends.
 [**GetVaultMarketStatementFile**](VaultMarketsApi.md#GetVaultMarketStatementFile) | **Get** /v1/vault-markets/statements/{month}/file/{format} | A monthly statement as a csv, pdf or json file.
 [**GetVaultMarketSupply**](VaultMarketsApi.md#GetVaultMarketSupply) | **Get** /v1/vault-markets/supply | A book key&#39;s units in the vault and authentications passed, by day (oldest first, today live).
 [**GetVaultMarketSupplyBatch**](VaultMarketsApi.md#GetVaultMarketSupplyBatch) | **Get** /v1/vault-markets/supply/batches/{id} | A box sent to the vault: its prepaid label and tracking, or why it has no label.
 [**GetVaultMarketSupplyRoundUp**](VaultMarketsApi.md#GetVaultMarketSupplyRoundUp) | **Get** /v1/vault-markets/supply/round-up | Your seller round-up: the share of each payout that sets a vault buy&#39;s budget, the budget so far and what it is doing. &#x60;roundUp&#x60; is null when none is set.
+[**GetVaultMarketSupplyShipment**](VaultMarketsApi.md#GetVaultMarketSupplyShipment) | **Get** /v1/vault-markets/supply/shipments/{id} | One shipment into the vault, with each unit and whether it was received.
 [**GetVaultMarketTax**](VaultMarketsApi.md#GetVaultMarketTax) | **Get** /v1/vault-markets/tax | Your tax year on the vault markets: units bought and sold with cost, proceeds, gain and term; lending fees, staking interest (estimate), market-maker rewards; closed positions. Links to the CSV and PDF.
 [**GetVaultMarketTaxCsv**](VaultMarketsApi.md#GetVaultMarketTaxCsv) | **Get** /v1/vault-markets/tax.csv | The tax year as a CSV: one row per sale, purchase, gift, income line and closed position.
 [**GetVaultMarketTaxLossSuggestion**](VaultMarketsApi.md#GetVaultMarketTaxLossSuggestion) | **Get** /v1/vault-markets/tax/loss-suggestions | Tax-loss suggestions: the units you hold whose mark is below your cost, each with its lot (acquired when and how, cost in cents), short or long term if sold today and the day a short lot turns long, the estimated loss at the mark before selling fees, mark quality, what stops a sale, and a link to the ordinary sell ticket. With totals by term, the gains realised so far this year, and a not-tax-advice disclosure. Never sells.
+[**GetVaultMarketTaxOption**](VaultMarketsApi.md#GetVaultMarketTaxOption) | **Get** /v1/vault-markets/tax/options | Your fractional options tax lots for a calendar year (&#x60;year&#x60;, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
 [**GetVaultMarketTaxPdf**](VaultMarketsApi.md#GetVaultMarketTaxPdf) | **Get** /v1/vault-markets/tax.pdf | The tax year as a PDF summary.
+[**GetVaultMarketTaxPrediction**](VaultMarketsApi.md#GetVaultMarketTaxPrediction) | **Get** /v1/vault-markets/tax/predictions | Your prediction-market results for a calendar year (&#x60;year&#x60;), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+[**GetVaultMarketTaxShare**](VaultMarketsApi.md#GetVaultMarketTaxShare) | **Get** /v1/vault-markets/tax/shares | Your Vault Shares tax lots for a calendar year (&#x60;year&#x60;): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
 [**GetVaultMarketTca**](VaultMarketsApi.md#GetVaultMarketTca) | **Get** /v1/vault-markets/tca | Your pro orders in a window (&#x60;from&#x60;, &#x60;to&#x60;; default 90 days) with arrival mark and mid, average fill, implementation shortfall, slippage, fill rate and time to fill.
 [**GetVaultMarketTcaByOrderId**](VaultMarketsApi.md#GetVaultMarketTcaByOrderId) | **Get** /v1/vault-markets/tca/{orderId} | One order&#39;s TCA, including slippage against the VWAP of eligible trades while it worked.
 [**GetVaultMarketTod**](VaultMarketsApi.md#GetVaultMarketTod) | **Get** /v1/vault-markets/tod | Your transfer-on-death setup: the gate and terms, whether you accepted them, your beneficiaries and shares, units with their designations and who the plan gives them to today, and open claims on your account (which you can stop). A TodOverview object, not a collection.
@@ -326,6 +481,7 @@ Method | HTTP request | Description
 [**GetVaultMarketWidgetMark**](VaultMarketsApi.md#GetVaultMarketWidgetMark) | **Get** /v1/vault-markets/widgets/mark | What the &lt;crossly-mark&gt; widget shows for &#x60;bookKey&#x60;: mark, quality, trades over 30 days, as-of, sparkline, or &#x60;insufficient&#x60;.
 [**GetVaultMarketWidgetSummary**](VaultMarketsApi.md#GetVaultMarketWidgetSummary) | **Get** /v1/vault-markets/widget/summary | The home-screen widget summary: portfolio value at the mark with its move since the previous marks (cents and bps) and the share resting on reliable A/B marks, the three biggest movers among what you hold (the market movers when you hold nothing; &#x60;movers.source&#x60; says which), and one watchlist key (&#x60;?key&#x3D;&#x60; a book key on your watchlist; else your newest watch) with a 14-day sparkline. Every price is from the Crossly order book and carries its mark quality (A, B, C or none). Cached for five minutes.
 [**GetVaultMarketWorldFloor**](VaultMarketsApi.md#GetVaultMarketWorldFloor) | **Get** /v1/vault-markets/world/floor | The Trading Floor in Crossly World: trades (the newest trades on every vault book in the last day, at most 40, newest first: bookKey, name, priceCents, priceText, side -- buy when a buyer took an ask, sell when a seller hit a bid, cross for an auction -- and ageS), tickers (the big board: the most-traded markets, each with its last trade price, the change from the last trade before today in basis points, trades today and the display mark with its quality), bell (Market Open: ringing for ten minutes after a new key opens, with the key and its market link, and what opens next) and trades24h. Every price is a trade on the Crossly order book; it never shows who traded. Nothing can be traded in the room.
+[**GetVaultMarketWorldFloorBoard**](VaultMarketsApi.md#GetVaultMarketWorldFloorBoard) | **Get** /v1/vault-markets/world/floor/boards | The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \&quot;Will it hit?\&quot; markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
 [**GetVaultMarketWorldLounge**](VaultMarketsApi.md#GetVaultMarketWorldLounge) | **Get** /v1/vault-markets/world/lounge | The Vault Holders Lounge: the rule to join (held value at reliable marks, or a unit count), whether you may join now and what you hold toward it. Anyone may look in; only holders are seen there. No perks, nothing to trade.
 [**GetVaultMarketWorldPlaceVaultGate**](VaultMarketsApi.md#GetVaultMarketWorldPlaceVaultGate) | **Get** /v1/vault-markets/world/places/{place}/vault-gate | The vault-holder door on a Crossly World room or Space, by its presence slug (a room share slug, or space-&lt;slug&gt;): the rule (minValueCents held at reliable A/B marks and/or minUnits units, mode any or all, optionally one product, bullion family or category), the rule in words, and whether you may join now with what you hold toward it. gate is null when the place has no vault door. Anyone may look in; only holders join.
 [**GetVaultMarketWorth**](VaultMarketsApi.md#GetVaultMarketWorth) | **Get** /v1/vault-markets/worth | What one book key (variantId:condition:gradeKey, &#x60;bookKey&#x60;) is worth: the mark in cents with its quality (A from trades, B from firm quotes, C indicative, none) and band, what Instant Exit would pay for one unit now from the best resting bid (yours left out), and your units: how many you hold, how many are free to sell, their value at the mark and what selling every free one now would fetch from today’s bids. Plain-words &#x60;headline&#x60; and &#x60;lines&#x60;. Read only.
@@ -368,6 +524,7 @@ Method | HTTP request | Description
 [**ListVaultMarketGradeToVault**](VaultMarketsApi.md#ListVaultMarketGradeToVault) | **Get** /v1/vault-markets/grade-to-vault | Your Grade to Vault flows, newest first, each brought up to date: its step, the grading submission, the unit, the grade, the market for it, and the ask once listed. &#x60;live&#x3D;1&#x60; for those still going.
 [**ListVaultMarketGrading**](VaultMarketsApi.md#ListVaultMarketGrading) | **Get** /v1/vault-markets/grading | Your vault units sent to grading: where each card is in its run, and the grade once it is back.
 [**ListVaultMarketHallLenders**](VaultMarketsApi.md#ListVaultMarketHallLenders) | **Get** /v1/vault-markets/hall/lenders | The vault units lent to this week&#39;s Hall of Grails exhibition and on show now, in plinth order: the item (skuId, name, imageUrl, grade), the lender as the plate names them (a display name, or \&quot;a collector\&quot;), the plate lines and how many exhibitions the unit has stood in. meta.exhibition is the week (key, title, endsAt). Names no ids and no amounts.
+[**ListVaultMarketHoldings**](VaultMarketsApi.md#ListVaultMarketHoldings) | **Get** /v1/vault-markets/holdings | Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (&#x60;valueCents&#x60; with &#x60;valueSource&#x60; mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (&#x60;actions&#x60;). Units sold or shipped home in the last 90 days have &#x60;past: true&#x60;. &#x60;meta&#x60; carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
 [**ListVaultMarketIndexCommitteeMinutes**](VaultMarketsApi.md#ListVaultMarketIndexCommitteeMinutes) | **Get** /v1/vault-markets/index-committee/minutes | Published Index Committee minutes, newest first: attendees (names and roles), quorum, agenda, minutes and decisions.
 [**ListVaultMarketIndexComplaints**](VaultMarketsApi.md#ListVaultMarketIndexComplaints) | **Get** /v1/vault-markets/index-complaints | Your complaints and their answers, newest first.
 [**ListVaultMarketIndexConstituents**](VaultMarketsApi.md#ListVaultMarketIndexConstituents) | **Get** /v1/vault-markets/indexes/{slug}/constituents | The book keys in an index with their weight, move since the last close and contribution to the index&#39;s move (basis points).
@@ -392,6 +549,20 @@ Method | HTTP request | Description
 [**ListVaultMarketNavHistory**](VaultMarketsApi.md#ListVaultMarketNavHistory) | **Get** /v1/vault-markets/nav/history | Daily NAV snapshots (mark, bid, liquidation, Level 2 / Level 3).
 [**ListVaultMarketOffers**](VaultMarketsApi.md#ListVaultMarketOffers) | **Get** /v1/vault-markets/offers | The offers inbox: for each book key you hold, the best bid from someone else, units at it, the top bid levels, the mark, and your alert.
 [**ListVaultMarketOpening**](VaultMarketsApi.md#ListVaultMarketOpening) | **Get** /v1/vault-markets/opening | Keys opening soon on the vault book (and just opened): units on the shelf, dealers quoting, the waitlist, the mark when the book has one, and your place.
+[**ListVaultMarketOptionComboRfq**](VaultMarketsApi.md#ListVaultMarketOptionComboRfq) | **Get** /v1/vault-markets/options/combos/rfq | Your strategy quote requests, newest first.
+[**ListVaultMarketOptionComboRfqInbox**](VaultMarketsApi.md#ListVaultMarketOptionComboRfqInbox) | **Get** /v1/vault-markets/options/combos/rfq/inbox | Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+[**ListVaultMarketOptionCombos**](VaultMarketsApi.md#ListVaultMarketOptionCombos) | **Get** /v1/vault-markets/options/combos | Your strategies: &#x60;status&#x60; working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+[**ListVaultMarketOptionContractDaily**](VaultMarketsApi.md#ListVaultMarketOptionContractDaily) | **Get** /v1/vault-markets/options/contracts/{id}/daily | A contract&#39;s published daily settlement prices, newest first (&#x60;days&#x60;, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row&#39;s chain hash.
+[**ListVaultMarketOptionMmQuotes**](VaultMarketsApi.md#ListVaultMarketOptionMmQuotes) | **Get** /v1/vault-markets/options/mm/quotes | Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+[**ListVaultMarketOptionNotices**](VaultMarketsApi.md#ListVaultMarketOptionNotices) | **Get** /v1/vault-markets/options/notices | Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+[**ListVaultMarketOptionOrders**](VaultMarketsApi.md#ListVaultMarketOptionOrders) | **Get** /v1/vault-markets/options/orders | Your options orders, newest first: &#x60;status&#x60; working (default) / done / all, &#x60;limit&#x60;, &#x60;subaccountId&#x60;.
+[**ListVaultMarketOptionPracticeCombos**](VaultMarketsApi.md#ListVaultMarketOptionPracticeCombos) | **Get** /v1/vault-markets/options/practice/combos | Your practice strategies.
+[**ListVaultMarketOptionPracticeFills**](VaultMarketsApi.md#ListVaultMarketOptionPracticeFills) | **Get** /v1/vault-markets/options/practice/fills | Your practice options fills, newest first (&#x60;limit&#x60;).
+[**ListVaultMarketOptionPracticeOrders**](VaultMarketsApi.md#ListVaultMarketOptionPracticeOrders) | **Get** /v1/vault-markets/options/practice/orders | Your practice options orders: &#x60;status&#x60; working (default) / done / all, &#x60;limit&#x60;.
+[**ListVaultMarketOptionRfq**](VaultMarketsApi.md#ListVaultMarketOptionRfq) | **Get** /v1/vault-markets/options/rfq | Your option quote requests, newest first.
+[**ListVaultMarketOptionRfqInbox**](VaultMarketsApi.md#ListVaultMarketOptionRfqInbox) | **Get** /v1/vault-markets/options/rfq/inbox | Open option quote requests you can answer.
+[**ListVaultMarketOptionSeries**](VaultMarketsApi.md#ListVaultMarketOptionSeries) | **Get** /v1/vault-markets/options/series | Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. &#x60;status&#x60;: active (default) or all.
+[**ListVaultMarketOptionStrategies**](VaultMarketsApi.md#ListVaultMarketOptionStrategies) | **Get** /v1/vault-markets/options/strategies | The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
 [**ListVaultMarketOracleHistory**](VaultMarketsApi.md#ListVaultMarketOracleHistory) | **Get** /v1/vault-markets/oracle/{slug}/history | Recent publish attempts for an index over 30 days, newest first: published, skipped (with the reason: too few items priced, stale marks, confidence too wide...) or failed (with the error). Filter with &#x60;status&#x60;, cap with &#x60;limit&#x60; (default 100).
 [**ListVaultMarketP2pAuctions**](VaultMarketsApi.md#ListVaultMarketP2pAuctions) | **Get** /v1/vault-markets/p2p/auctions | Running refinancing auctions, soonest to end first: lenders calls (&#x60;auction&#x60;) and borrowers looking for a cheaper lender (&#x60;refiAuction&#x60;). The payoff now, the rate a new lender gets now, when it ends, and the item.
 [**ListVaultMarketP2pLoans**](VaultMarketsApi.md#ListVaultMarketP2pLoans) | **Get** /v1/vault-markets/p2p/loans | Your P2P loans as borrower and/or lender (&#x60;role&#x60;), live by default (&#x60;status&#x60;): what is owed now, daily interest, the refinancing auction when called, and the item mark for information only (it never triggers anything).
@@ -403,11 +574,26 @@ Method | HTTP request | Description
 [**ListVaultMarketPaperMissions**](VaultMarketsApi.md#ListVaultMarketPaperMissions) | **Get** /v1/vault-markets/paper/missions | Your paper-trading missions (play money only): each mission with what to do, your count toward its target, whether it is done and when, plus a suggested market for the \&quot;Read the mark\&quot; mission. Progress is observed by the server from your paper orders and fills, price watches, set goals and graded mark checks. Missions earn world quest progress and cosmetic pins, never money.
 [**ListVaultMarketPaperOrders**](VaultMarketsApi.md#ListVaultMarketPaperOrders) | **Get** /v1/vault-markets/paper/orders | Your paper orders since your last reset, newest first: working, done (filled, cancelled, expired) or all. Play money only.
 [**ListVaultMarketPartnerAccruals**](VaultMarketsApi.md#ListVaultMarketPartnerAccruals) | **Get** /v1/vault-markets/partners/accruals | Your partner fee shares, newest first: accrued on a unit&#39;s first sale, paid in Bucks once the sale is final, void if it was refunded.
+[**ListVaultMarketPartnerFinder**](VaultMarketsApi.md#ListVaultMarketPartnerFinder) | **Get** /v1/vault-markets/partners/finder | Vault drop-off partners near a &#x60;postalCode&#x60;, optionally offering a &#x60;service&#x60;: address, hours and services.
 [**ListVaultMarketPoolStakes**](VaultMarketsApi.md#ListVaultMarketPoolStakes) | **Get** /v1/vault-markets/pool/stakes | Your stakes in the market pool and what each redeems for now.
 [**ListVaultMarketPortfolioMarginHistory**](VaultMarketsApi.md#ListVaultMarketPortfolioMarginHistory) | **Get** /v1/vault-markets/portfolio-margin/history | The 5-minute portfolio margin recalculations for a firm sub-account over the last &#x60;hours&#x60; (default 24, at most 720), newest first: equity, requirement, excess, scenario and floor figures, gross and state.
 [**ListVaultMarketPositionUnits**](VaultMarketsApi.md#ListVaultMarketPositionUnits) | **Get** /v1/vault-markets/positions/{id}/units | The vault units of one of your positions that you hold (a leveraged long&#39;s collateral), each with its story link.
 [**ListVaultMarketPositions**](VaultMarketsApi.md#ListVaultMarketPositions) | **Get** /v1/vault-markets/positions | Your positions, live (default) or closed.
 [**ListVaultMarketPositionsRisk**](VaultMarketsApi.md#ListVaultMarketPositionsRisk) | **Get** /v1/vault-markets/positions-risk | For each live position: its tier, health, margin state, the mark at which it is called and the mark at which it is liquidated, and the distance to it.
+[**ListVaultMarketPredictionAlerts**](VaultMarketsApi.md#ListVaultMarketPredictionAlerts) | **Get** /v1/vault-markets/predictions/alerts | Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+[**ListVaultMarketPredictionComboMyRfqs**](VaultMarketsApi.md#ListVaultMarketPredictionComboMyRfqs) | **Get** /v1/vault-markets/predictions/combos/my-rfqs | Your combo requests with every answer they got.
+[**ListVaultMarketPredictionComboRfqs**](VaultMarketsApi.md#ListVaultMarketPredictionComboRfqs) | **Get** /v1/vault-markets/predictions/combos/rfqs | Open combo requests makers can answer: legs, size and the legs&#39; own combined price; never who asked. Your own answers are shown on them.
+[**ListVaultMarketPredictionCombos**](VaultMarketsApi.md#ListVaultMarketPredictionCombos) | **Get** /v1/vault-markets/predictions/combos | Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+[**ListVaultMarketPredictionComments**](VaultMarketsApi.md#ListVaultMarketPredictionComments) | **Get** /v1/vault-markets/predictions/comments | A discussion thread on a market (&#x60;marketId&#x60;) or a series (&#x60;seriesId&#x60;): comments newest first with their replies. A commenter&#39;s side shows only when their forecaster profile is public.
+[**ListVaultMarketPredictionConversions**](VaultMarketsApi.md#ListVaultMarketPredictionConversions) | **Get** /v1/vault-markets/predictions/conversions | Your bucket-set conversions (split, merge, convert), newest first.
+[**ListVaultMarketPredictionFollowing**](VaultMarketsApi.md#ListVaultMarketPredictionFollowing) | **Get** /v1/vault-markets/predictions/following | The forecasters you follow.
+[**ListVaultMarketPredictionForecasts**](VaultMarketsApi.md#ListVaultMarketPredictionForecasts) | **Get** /v1/vault-markets/predictions/forecasts | Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+[**ListVaultMarketPredictionMakers**](VaultMarketsApi.md#ListVaultMarketPredictionMakers) | **Get** /v1/vault-markets/predictions/makers | Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+[**ListVaultMarketPredictionMarkets**](VaultMarketsApi.md#ListVaultMarketPredictionMarkets) | **Get** /v1/vault-markets/predictions/markets | Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+[**ListVaultMarketPredictionOrders**](VaultMarketsApi.md#ListVaultMarketPredictionOrders) | **Get** /v1/vault-markets/predictions/orders | Your prediction orders, newest first: working, done or all; practice, live or all.
+[**ListVaultMarketPredictionPositions**](VaultMarketsApi.md#ListVaultMarketPredictionPositions) | **Get** /v1/vault-markets/predictions/positions | Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&amp;L, payout or refund once settled, and the share card if you made one.
+[**ListVaultMarketPredictionProposalListed**](VaultMarketsApi.md#ListVaultMarketPredictionProposalListed) | **Get** /v1/vault-markets/predictions/proposals/listed | The markets you proposed that are listed: volume, status and what the creator share has earned you.
+[**ListVaultMarketPredictionProposals**](VaultMarketsApi.md#ListVaultMarketPredictionProposals) | **Get** /v1/vault-markets/predictions/proposals | Your market proposals and where each stands (pending, listed, rejected, withdrawn).
 [**ListVaultMarketPriceWidgets**](VaultMarketsApi.md#ListVaultMarketPriceWidgets) | **Get** /v1/vault-markets/price-widgets | Your price widgets, newest first, each with its iframe and script-tag snippets. &#x60;meta.codes&#x60; lists your affiliate codes a widget can link through; &#x60;meta.max&#x60; is the cap on live widgets.
 [**ListVaultMarketProCandles**](VaultMarketsApi.md#ListVaultMarketProCandles) | **Get** /v1/vault-markets/pro/candles | OHLCV candles (1m, 5m, 15m, 1h, 4h, 1d) from the trades on a book key.
 [**ListVaultMarketProEvents**](VaultMarketsApi.md#ListVaultMarketProEvents) | **Get** /v1/vault-markets/pro/events | Your order event log after a sequence number (new, leg, fill, replaced, cancelled, expired, done): a replayable drop copy.
@@ -426,9 +612,24 @@ Method | HTTP request | Description
 [**ListVaultMarketSetGoalBaskets**](VaultMarketsApi.md#ListVaultMarketSetGoalBaskets) | **Get** /v1/vault-markets/set-goals/{id}/baskets | A set goal basket bids, newest first, each with its budget, what it committed and spent, and every leg (piece, book key, limit, pro order id, status).
 [**ListVaultMarketSetGoalSets**](VaultMarketsApi.md#ListVaultMarketSetGoalSets) | **Get** /v1/vault-markets/set-goals/sets | Sets to start a goal on. With q (2+ characters): a word-start search of every catalogue set. Without: the sets you hold pieces of in the vault, then the collections you are building. Each with your live goal on it, if any.
 [**ListVaultMarketSetGoals**](VaultMarketsApi.md#ListVaultMarketSetGoals) | **Get** /v1/vault-markets/set-goals | Your set goals: the set, the target a piece must meet, pieces held of the total (from your vault), and the working basket bid.
+[**ListVaultMarketShareAutoInvest**](VaultMarketsApi.md#ListVaultMarketShareAutoInvest) | **Get** /v1/vault-markets/shares/auto-invest | Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+[**ListVaultMarketShareAutoInvestRuns**](VaultMarketsApi.md#ListVaultMarketShareAutoInvestRuns) | **Get** /v1/vault-markets/shares/auto-invest/{id}/runs | A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+[**ListVaultMarketShareBaskets**](VaultMarketsApi.md#ListVaultMarketShareBaskets) | **Get** /v1/vault-markets/shares/baskets | Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
 [**ListVaultMarketShareCards**](VaultMarketsApi.md#ListVaultMarketShareCards) | **Get** /v1/vault-markets/share-cards | Your share cards (not taken down), each as the public sees it.
+[**ListVaultMarketShareDrops**](VaultMarketsApi.md#ListVaultMarketShareDrops) | **Get** /v1/vault-markets/shares/drops | The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+[**ListVaultMarketShareGifts**](VaultMarketsApi.md#ListVaultMarketShareGifts) | **Get** /v1/vault-markets/shares/gifts | Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+[**ListVaultMarketShareOrders**](VaultMarketsApi.md#ListVaultMarketShareOrders) | **Get** /v1/vault-markets/shares/orders | Your share-book orders, newest first; &#x60;seriesId&#x60; and &#x60;open&#x60; narrow it.
+[**ListVaultMarketShareSeries**](VaultMarketsApi.md#ListVaultMarketShareSeries) | **Get** /v1/vault-markets/shares/series | Vault Shares series: open offerings first, then trading, then the rest. &#x60;status&#x60; and &#x60;bookKey&#x60; narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+[**ListVaultMarketShareSeryAppraisals**](VaultMarketsApi.md#ListVaultMarketShareSeryAppraisals) | **Get** /v1/vault-markets/shares/series/{id}/appraisals | The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+[**ListVaultMarketShareSeryTape**](VaultMarketsApi.md#ListVaultMarketShareSeryTape) | **Get** /v1/vault-markets/shares/series/{id}/tape | The latest fills on a share book, newest first, with which side made the market.
+[**ListVaultMarketShareSeryUpdates**](VaultMarketsApi.md#ListVaultMarketShareSeryUpdates) | **Get** /v1/vault-markets/shares/series/{id}/updates | The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+[**ListVaultMarketShareSubscriptions**](VaultMarketsApi.md#ListVaultMarketShareSubscriptions) | **Get** /v1/vault-markets/shares/subscriptions | Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+[**ListVaultMarketShareWorld**](VaultMarketsApi.md#ListVaultMarketShareWorld) | **Get** /v1/vault-markets/shares/world | The world vault home’s fractional tiles: each item you own a share of, with \&quot;you own 3.2%\&quot;.
+[**ListVaultMarketSupplyDeclaredValues**](VaultMarketsApi.md#ListVaultMarketSupplyDeclaredValues) | **Get** /v1/vault-markets/supply/declared-values | What each item&#39;s declared value starts at, by your insurance rule (market, cost or price). &#x60;inventoryItemIds&#x60; comma-separated.
 [**ListVaultMarketSupplyDeposits**](VaultMarketsApi.md#ListVaultMarketSupplyDeposits) | **Get** /v1/vault-markets/supply/deposits | Your units sent to the vault, newest first, each with its state and its key&#39;s Instant Exit line (\&quot;Instant Exit now: $X (N% of mark)\&quot; or \&quot;No market yet\&quot;). Filter with &#x60;inventoryItemIds&#x60; (comma-separated).
+[**ListVaultMarketSupplyEligibility**](VaultMarketsApi.md#ListVaultMarketSupplyEligibility) | **Get** /v1/vault-markets/supply/eligibility | Can these inventory items (&#x60;inventoryItemIds&#x60;, comma-separated, or every item linked to &#x60;listingId&#x60;) be sent to the vault now? Each says why not.
 [**ListVaultMarketSupplyInvites**](VaultMarketsApi.md#ListVaultMarketSupplyInvites) | **Get** /v1/vault-markets/supply/invites | Market Open invites to you as a dealer: keys Crossly is opening and asks you to quote.
+[**ListVaultMarketSupplyShipments**](VaultMarketsApi.md#ListVaultMarketSupplyShipments) | **Get** /v1/vault-markets/supply/shipments | Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
 [**ListVaultMarketValuationStatements**](VaultMarketsApi.md#ListVaultMarketValuationStatements) | **Get** /v1/vault-markets/valuation-statements | The insurance and appraisal statements you issued, newest first: purpose, date, units, total at the marks, hash and verify link.
 [**ListVaultMarketVaultSuggestions**](VaultMarketsApi.md#ListVaultMarketVaultSuggestions) | **Get** /v1/vault-markets/vault-suggestions | What to send to the vault: your inventory items whose book key has a liquid vault market (tier A, B or C), best first. Each has a score (0 to 100) and its reasons, the market (tier, mark and its quality, best bid, best vault ask, spread), Instant Exit now, your list price, days listed without selling, and the vault fee. &#x60;meta.summary&#x60; counts what was left out and why. Inform only; send with POST /api/v1/vault-markets/supply/send.
 [**ListVaultMarketWatchlist**](VaultMarketsApi.md#ListVaultMarketWatchlist) | **Get** /v1/vault-markets/watchlist | Your watched book keys with mark, 24 h and 7 d change, and the last 30 daily marks (sparkline).
@@ -441,6 +642,7 @@ Method | HTTP request | Description
 [**ListVaultReceipts**](VaultMarketsApi.md#ListVaultReceipts) | **Get** /v1/vault/receipts | Your warehouse receipts (documents of title for your vault units), live first. meta.receipts says whether receipts are registered (VAULT_WAREHOUSE_ISSUER) and their terms version.
 [**ListVaultUnitList**](VaultMarketsApi.md#ListVaultUnitList) | **Get** /v1/vault/unit-list | The published unit list (bar-list equivalent): every unit on a vault shelf with its warehouse receipt number (when receipts are registered), book key, shelf location code, insured value, status, pledged / on-loan flags and a per-receipt hashed holder (never a name or id). Filter with &#x60;bookKey&#x60;; pages with &#x60;page&#x60; / &#x60;limit&#x60;.
 [**UpdateVaultMarketAlertPref**](VaultMarketsApi.md#UpdateVaultMarketAlertPref) | **Put** /v1/vault-markets/alert-prefs | Change vault alert settings: &#x60;matrix&#x60; ({ kind: { channel: true|false } }, merged onto what is set), &#x60;quietHours&#x60; ({ start: \&quot;HH:MM\&quot;, end: \&quot;HH:MM\&quot;, tz } or null to clear) and &#x60;telegram&#x60; (the Telegram master switch). Locked switches are ignored. Returns the new settings.
+[**UpdateVaultMarketAutoBuy**](VaultMarketsApi.md#UpdateVaultMarketAutoBuy) | **Put** /v1/vault-markets/auto-buy | Set up or change Auto-buy with payouts: &#x60;shareBps&#x60; (1–50%) and the whole want list in order, each with an optional &#x60;maxPriceCents&#x60; (fee included).
 [**UpdateVaultMarketBlockAllocation**](VaultMarketsApi.md#UpdateVaultMarketBlockAllocation) | **Put** /v1/vault-markets/blocks/{orderId}/allocation | Post-trade allocation: set or replace the plan for a buy you placed for one of the entity&#39;s sub-accounts (that sub-account leads). Refused once any share has moved.
 [**UpdateVaultMarketChannel**](VaultMarketsApi.md#UpdateVaultMarketChannel) | **Put** /v1/vault-markets/channels | Change the switches: &#x60;telegramAlerts&#x60;, &#x60;telegramDigest&#x60;, &#x60;pushCapPerDay&#x60; (0 to 20). Margin calls and recalls are never capped. Returns the new view.
 [**UpdateVaultMarketDealerBand**](VaultMarketsApi.md#UpdateVaultMarketDealerBand) | **Put** /v1/vault-markets/dealer/bands | Commit to an Instant Exit band on a key: a standing bid for &#x60;units&#x60; kept at &#x60;bandBps&#x60; of the mark, never above &#x60;maxPriceCents&#x60;, re-quoted as the mark moves.
@@ -452,16 +654,23 @@ Method | HTTP request | Description
 [**UpdateVaultMarketFollowSharing**](VaultMarketsApi.md#UpdateVaultMarketFollowSharing) | **Put** /v1/vault-markets/follows/sharing | Turn sharing switches on or off (&#x60;isPublic&#x60;, &#x60;showBuys&#x60;, &#x60;deposits&#x60;, &#x60;sales&#x60;, &#x60;hallLoans&#x60;, &#x60;orders&#x60;, &#x60;leaderboard&#x60;). A switch shows only what happens after it goes on; all but the profile itself need the profile public.
 [**UpdateVaultMarketHomeUnit**](VaultMarketsApi.md#UpdateVaultMarketHomeUnit) | **Put** /v1/vault-markets/home/units | Show exactly these vault units in your Crossly World home: { units: [{ vaultItemId, visitors }] }. Units left out come out of their cases; units already standing stay where they are; new ones go into a free display-case or shelf slot, else a glass case of their own along a wall. visitors: true lets people who may enter your home see that unit (default false: only you). Returns placed, unplaced (no free case: the home is full), refused (with why) and the desk. Display only: nothing moves.
 [**UpdateVaultMarketIndex**](VaultMarketsApi.md#UpdateVaultMarketIndex) | **Patch** /v1/vault-markets/indexes/{slug} | Rename, re-weight, share or change the keys of an index of your own; its level carries on.
+[**UpdateVaultMarketItemSellFrom**](VaultMarketsApi.md#UpdateVaultMarketItemSellFrom) | **Put** /v1/vault-markets/items/{inventoryItemId}/sell-from | Set which unit a sale of this item ships first: &#x60;vault_first&#x60;, &#x60;warehouse_first&#x60; or &#x60;cheapest&#x60; (to ship); null &#x3D; your default. Quantities stay the same on every channel: only who ships changes.
 [**UpdateVaultMarketLendingElection**](VaultMarketsApi.md#UpdateVaultMarketLendingElection) | **Put** /v1/vault-markets/lending/election | Change your lender election (applies to loans opened after the change). Needs lending.
 [**UpdateVaultMarketMmMmp**](VaultMarketsApi.md#UpdateVaultMarketMmMmp) | **Put** /v1/vault-markets/mm/mmp | Set market-maker protection: N units or $X filled on your quotes within T seconds pulls every quote and freezes quoting for a set time.
 [**UpdateVaultMarketMode**](VaultMarketsApi.md#UpdateVaultMarketMode) | **Put** /v1/vault-markets/mode | Choose your Vault Markets mode: &#x60;mode&#x60; simple or pro. Remembered for you on the web and in the app. A display preference only: it places nothing and moves no money.
 [**UpdateVaultMarketOfferAlert**](VaultMarketsApi.md#UpdateVaultMarketOfferAlert) | **Put** /v1/vault-markets/offers/alert | Set (or clear with null) the bid price that should always notify you on a key you hold, and mute or unmute offer notices on it.
+[**UpdateVaultMarketOptionAutoClose**](VaultMarketsApi.md#UpdateVaultMarketOptionAutoClose) | **Put** /v1/vault-markets/options/auto-close | Set your auto-close rule: &#x60;enabled&#x60;, &#x60;minutesBefore&#x60; (30 to 10080), &#x60;onlyItm&#x60;, &#x60;maxSlippageBps&#x60; (0 to 2000).
 [**UpdateVaultMarketPaperLeaderboard**](VaultMarketsApi.md#UpdateVaultMarketPaperLeaderboard) | **Put** /v1/vault-markets/paper/leaderboard | Join or leave the weekly paper leaderboard. Joining needs a display name (2 to 24 letters, numbers, spaces, dots, dashes or underscores), never your real name. Returns &#x60;{ optIn, displayName }&#x60;.
+[**UpdateVaultMarketPartnerMe**](VaultMarketsApi.md#UpdateVaultMarketPartnerMe) | **Patch** /v1/vault-markets/partners/me | Your drop-off partnership&#39;s finder profile: postal code, opening hours, services and whether you are listed.
 [**UpdateVaultMarketPositionExit**](VaultMarketsApi.md#UpdateVaultMarketPositionExit) | **Put** /v1/vault-markets/positions/{id}/exits | Set a position&#39;s take-profit / stop-loss: a long is closed, a short covered, when the last trade reaches one. Both null clears them.
+[**UpdateVaultMarketPredictionComment**](VaultMarketsApi.md#UpdateVaultMarketPredictionComment) | **Patch** /v1/vault-markets/predictions/comments/{id} | Edit your comment.
+[**UpdateVaultMarketPredictionForecaster**](VaultMarketsApi.md#UpdateVaultMarketPredictionForecaster) | **Put** /v1/vault-markets/predictions/forecaster | Go public under a display name (&#x60;public: true&#x60;), rename, or go private (&#x60;public: false&#x60;: nothing is shown again).
+[**UpdateVaultMarketPredictionLimit**](VaultMarketsApi.md#UpdateVaultMarketPredictionLimit) | **Put** /v1/vault-markets/predictions/limits | Set your daily loss limit (&#x60;dailyLossLimitCents&#x60;, null &#x3D; none) or exclude yourself (&#x60;excludeDays&#x60;, &#x60;excludedUntil&#x60; or \&quot;forever\&quot;). Tighter takes effect at once; looser waits 24 hours.
 [**UpdateVaultMarketPriceWidget**](VaultMarketsApi.md#UpdateVaultMarketPriceWidget) | **Patch** /v1/vault-markets/price-widgets/{id} | Change a widget: name, range, layout, theme, affiliate code (null for none) or allowed sites. The market or index it shows never changes: make a new widget for another.
 [**UpdateVaultMarketProfile**](VaultMarketsApi.md#UpdateVaultMarketProfile) | **Put** /v1/vault-markets/profile | Turn your public vault profile on or off (&#x60;isPublic&#x60;) and whether followers see your new buys (&#x60;showBuys&#x60;). It shows weights by market, never dollars.
 [**UpdateVaultMarketRecurring**](VaultMarketsApi.md#UpdateVaultMarketRecurring) | **Patch** /v1/vault-markets/recurring/{id} | Change a recurring buy&#39;s schedule, caps, cards or auto-lend, or pause / resume it.
 [**UpdateVaultMarketSetGoal**](VaultMarketsApi.md#UpdateVaultMarketSetGoal) | **Patch** /v1/vault-markets/set-goals/{id} | Change what a piece must be to count (condition, grade mode, grade). Refused while a basket bid works: cancel it first.
+[**UpdateVaultMarketSetting**](VaultMarketsApi.md#UpdateVaultMarketSetting) | **Put** /v1/vault-markets/settings | Change your vault defaults; send only the fields you change.
 [**UpdateVaultMarketShareCard**](VaultMarketsApi.md#UpdateVaultMarketShareCard) | **Patch** /v1/vault-markets/share-cards/{id} | Show or hide the dollar amounts on one of your share cards (&#x60;showAmounts&#x60;).
 [**UpdateVaultMarketSupplyDeposit**](VaultMarketsApi.md#UpdateVaultMarketSupplyDeposit) | **Patch** /v1/vault-markets/supply/deposits/{id} | Change a deposit&#39;s toggles: &#x60;autoListBps&#x60; (list at that share of the mark once stored; null &#x3D; do not) and &#x60;lendWhenIdle&#x60;.
 [**UpdateVaultMarketSupplyRoundUp**](VaultMarketsApi.md#UpdateVaultMarketSupplyRoundUp) | **Put** /v1/vault-markets/supply/round-up | Set the round-up: &#x60;shareBps&#x60; (1%-50%) of each payout released to you adds to a budget; when it covers the cheapest vault unit on &#x60;bookKey&#x60;, one unit is bought with your saved card, never above the budget.
@@ -1199,6 +1408,122 @@ Name | Type | Description  | Notes
 ### Return type
 
 **OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketAutoBuyPause
+
+> CreateVaultMarketAutoBuyPauseResponse CreateVaultMarketAutoBuyPause(ctx).Execute()
+
+Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketAutoBuyPause(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketAutoBuyPause``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketAutoBuyPause`: CreateVaultMarketAutoBuyPauseResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketAutoBuyPause`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketAutoBuyPauseRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketAutoBuyPauseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketAutoBuyResume
+
+> CreateVaultMarketAutoBuyResumeResponse CreateVaultMarketAutoBuyResume(ctx).Execute()
+
+Resume Auto-buy with payouts: payouts released from now on count.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketAutoBuyResume(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketAutoBuyResume``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketAutoBuyResume`: CreateVaultMarketAutoBuyResumeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketAutoBuyResume`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketAutoBuyResumeRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketAutoBuyResumeResponse**
 
 ### Authorization
 
@@ -6105,6 +6430,1622 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateVaultMarketOptionCombo
+
+> CreateVaultMarketOptionComboResponse CreateVaultMarketOptionCombo(ctx).Execute()
+
+Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs' own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionCombo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionCombo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionCombo`: CreateVaultMarketOptionComboResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionCombo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionComboResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboCancel
+
+> ListVaultMarketOptionCombosItem CreateVaultMarketOptionComboCancel(ctx, id).Execute()
+
+Cancel a working strategy.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboCancel`: ListVaultMarketOptionCombosItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketOptionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboRfq
+
+> CreateVaultMarketOptionComboRfqResponse CreateVaultMarketOptionComboRfq(ctx).Execute()
+
+Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboRfq(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboRfq`: CreateVaultMarketOptionComboRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRfqRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboRfqAccept
+
+> CreateVaultMarketOptionComboRfqAcceptResponse CreateVaultMarketOptionComboRfqAccept(ctx, id).Execute()
+
+Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboRfqAccept(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboRfqAccept``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboRfqAccept`: CreateVaultMarketOptionComboRfqAcceptResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboRfqAccept`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRfqAcceptRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionComboRfqAcceptResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboRfqCancel
+
+> IdStatusResponse CreateVaultMarketOptionComboRfqCancel(ctx, id).Execute()
+
+Cancel your open strategy quote request.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboRfqCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboRfqCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboRfqCancel`: IdStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboRfqCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRfqCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboRfqRespond
+
+> CreateVaultMarketOptionRfqRespondResponse CreateVaultMarketOptionComboRfqRespond(ctx, id).Execute()
+
+Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboRfqRespond(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboRfqRespond``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboRfqRespond`: CreateVaultMarketOptionRfqRespondResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboRfqRespond`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRfqRespondRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionRfqRespondResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionComboRfqResponseWithdraw
+
+> IdStatusResponse CreateVaultMarketOptionComboRfqResponseWithdraw(ctx, id).Execute()
+
+Withdraw your live answer to a strategy quote request.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionComboRfqResponseWithdraw(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionComboRfqResponseWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionComboRfqResponseWithdraw`: IdStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionComboRfqResponseWithdraw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionComboRfqResponseWithdrawRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionCoveredCall
+
+> CreateVaultMarketOptionCoveredCallResponse CreateVaultMarketOptionCoveredCall(ctx).Execute()
+
+Write a covered call: lock a stored vault unit (`vaultItemId`) as collateral and sell up to one call on its own key (`contractId`, `quantity` <= 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionCoveredCall(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionCoveredCall``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionCoveredCall`: CreateVaultMarketOptionCoveredCallResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionCoveredCall`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionCoveredCallRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionCoveredCallResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionCoveredCallRelease
+
+> CreateVaultMarketOptionCoveredCallReleaseResponse CreateVaultMarketOptionCoveredCallRelease(ctx, id).Execute()
+
+Free a covered call's vault unit once the call it covers is closed (or covered by other units).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionCoveredCallRelease(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionCoveredCallRelease``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionCoveredCallRelease`: CreateVaultMarketOptionCoveredCallReleaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionCoveredCallRelease`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionCoveredCallReleaseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionCoveredCallReleaseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionMmHeartbeat
+
+> CreateVaultMarketOptionMmHeartbeatResponse CreateVaultMarketOptionMmHeartbeat(ctx).Execute()
+
+Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionMmHeartbeat(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionMmHeartbeat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionMmHeartbeat`: CreateVaultMarketOptionMmHeartbeatResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionMmHeartbeat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionMmHeartbeatRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionMmHeartbeatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionMmQuote
+
+> CreateVaultMarketOptionMmQuoteResponse CreateVaultMarketOptionMmQuote(ctx).Execute()
+
+Set (replace) a two-sided quote on an option contract: `bid` and / or `ask` each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionMmQuote(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionMmQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionMmQuote`: CreateVaultMarketOptionMmQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionMmQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionMmQuoteRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionMmQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionMmQuotePull
+
+> DeleteVaultMarketProQuoteResponse CreateVaultMarketOptionMmQuotePull(ctx).Execute()
+
+Pull your option quotes on one contract (`contractId`) or all of them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionMmQuotePull(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionMmQuotePull``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionMmQuotePull`: DeleteVaultMarketProQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionMmQuotePull`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionMmQuotePullRequest struct via the builder pattern
+
+
+### Return type
+
+**DeleteVaultMarketProQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionOrder
+
+> CreateVaultMarketOptionOrderResponse CreateVaultMarketOptionOrder(ctx).Execute()
+
+Place an options order: `contractId`, `side`, `quantity` in contracts (three decimals), a `priceCents` or an `iv` (`quoteMode`), `tif` gtc / gtd (with `expiresAt`) / ioc, `postOnly`. Idempotent on `clientOrderId`. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its `termsVersion`). `subaccountId` trades for a firm sub-account you may trade.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionOrder(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionOrder`: CreateVaultMarketOptionOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionOrderRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionOrderCancel
+
+> CreateVaultMarketOptionOrderCancelResponse CreateVaultMarketOptionOrderCancel(ctx, id).Execute()
+
+Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionOrderCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionOrderCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionOrderCancel`: CreateVaultMarketOptionOrderCancelResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionOrderCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionOrderCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionOrderCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionPracticeCombo
+
+> CreateVaultMarketOptionPracticeComboResponse CreateVaultMarketOptionPracticeCombo(ctx).Execute()
+
+A practice strategy (play money): the same ticket as a real one, filled at the practice maker's quotes when the net is inside the limit.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionPracticeCombo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionPracticeCombo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionPracticeCombo`: CreateVaultMarketOptionPracticeComboResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionPracticeCombo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionPracticeComboRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionPracticeComboResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionPracticeOrder
+
+> CreateVaultMarketOptionPracticeOrderResponse CreateVaultMarketOptionPracticeOrder(ctx).Execute()
+
+Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionPracticeOrder(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionPracticeOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionPracticeOrder`: CreateVaultMarketOptionPracticeOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionPracticeOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionPracticeOrderRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionPracticeOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionPracticeOrderCancel
+
+> ListVaultMarketOptionPracticeOrdersItem CreateVaultMarketOptionPracticeOrderCancel(ctx, id).Execute()
+
+Cancel a working practice options order.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionPracticeOrderCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionPracticeOrderCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionPracticeOrderCancel`: ListVaultMarketOptionPracticeOrdersItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionPracticeOrderCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionPracticeOrderCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketOptionPracticeOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionPracticeReset
+
+> GetVaultMarketOptionPracticeResponse CreateVaultMarketOptionPracticeReset(ctx).Execute()
+
+Start the options practice account again with $10,000: positions and working orders are cleared.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionPracticeReset(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionPracticeReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionPracticeReset`: GetVaultMarketOptionPracticeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionPracticeReset`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionPracticeResetRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionPracticeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionQuote
+
+> CreateVaultMarketOptionQuoteResponse CreateVaultMarketOptionQuote(ctx).Execute()
+
+Price a ticket without placing it: give a price per contract or an implied vol (`quoteMode`), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionQuote(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionQuote`: CreateVaultMarketOptionQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionQuoteRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRfq
+
+> CreateVaultMarketRfqResponse CreateVaultMarketOptionRfq(ctx).Execute()
+
+Ask for a quote on an option contract: `side`, `quantity` in contracts, an optional `limitCents` (never shown). Makers quoting the series, the underlying's DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRfq(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRfq`: CreateVaultMarketRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRfqRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRfqAccept
+
+> CreateVaultMarketOptionRfqAcceptResponse CreateVaultMarketOptionRfqAccept(ctx, id).Execute()
+
+Take a live answer (`responseId`) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRfqAccept(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRfqAccept``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRfqAccept`: CreateVaultMarketOptionRfqAcceptResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRfqAccept`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRfqAcceptRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionRfqAcceptResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRfqCancel
+
+> IdStatusResponse CreateVaultMarketOptionRfqCancel(ctx, id).Execute()
+
+Cancel your open option quote request.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRfqCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRfqCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRfqCancel`: IdStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRfqCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRfqCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRfqRespond
+
+> CreateVaultMarketOptionRfqRespondResponse CreateVaultMarketOptionRfqRespond(ctx, id).Execute()
+
+Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRfqRespond(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRfqRespond``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRfqRespond`: CreateVaultMarketOptionRfqRespondResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRfqRespond`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRfqRespondRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketOptionRfqRespondResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRfqResponseWithdraw
+
+> IdStatusResponse CreateVaultMarketOptionRfqResponseWithdraw(ctx, id).Execute()
+
+Withdraw your live answer to an option quote request.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRfqResponseWithdraw(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRfqResponseWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRfqResponseWithdraw`: IdStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRfqResponseWithdraw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRfqResponseWithdrawRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionRoll
+
+> CreateVaultMarketOptionRollResponse CreateVaultMarketOptionRoll(ctx).Execute()
+
+Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. `practice` rolls a practice position.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionRoll(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionRoll``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionRoll`: CreateVaultMarketOptionRollResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionRoll`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionRollRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionRollResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketOptionStrategyPreview
+
+> CreateVaultMarketOptionStrategyPreviewResponse CreateVaultMarketOptionStrategyPreview(ctx).Execute()
+
+Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null = unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketOptionStrategyPreview(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketOptionStrategyPreview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketOptionStrategyPreview`: CreateVaultMarketOptionStrategyPreviewResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketOptionStrategyPreview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketOptionStrategyPreviewRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketOptionStrategyPreviewResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateVaultMarketP2pLoanCall
 
 > GetVaultMarketP2pLoanResponse CreateVaultMarketP2pLoanCall(ctx, id).Execute()
@@ -7623,6 +9564,1711 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateVaultMarketPredictionAccount
+
+> CreateVaultMarketPredictionAccountResponse CreateVaultMarketPredictionAccount(ctx).Execute()
+
+Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns `{ venue, status, opened }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionAccount(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionAccount`: CreateVaultMarketPredictionAccountResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionAccount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionAccountRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionAccountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionAlert
+
+> CreateVaultMarketPredictionAlertResponse CreateVaultMarketPredictionAlert(ctx).Execute()
+
+Tell me when a market's probability crosses a level: `{ marketId, levelPercent, direction }`. Returns the alert.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionAlert(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionAlert``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionAlert`: CreateVaultMarketPredictionAlertResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionAlert`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionAlertRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionAlertResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionCard
+
+> CreateVaultMarketPredictionCardResponse CreateVaultMarketPredictionCard(ctx).Execute()
+
+Make an \"I called it\" share card for a position of yours that settled in your favour (`showAmounts` to include what you paid and won). Returns the card with its public URL.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionCard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionCard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionCard`: CreateVaultMarketPredictionCardResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionCard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionCardRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionCardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionComboRfq
+
+> CreateVaultMarketPredictionComboRfqResponse CreateVaultMarketPredictionComboRfq(ctx).Execute()
+
+Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. `venue` paper or live.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionComboRfq(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionComboRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionComboRfq`: CreateVaultMarketPredictionComboRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionComboRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionComboRfqRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionComboRfqAccept
+
+> ListVaultMarketPredictionCombosItem CreateVaultMarketPredictionComboRfqAccept(ctx, id).Execute()
+
+Take one live, firm answer to your combo request (`quoteId`): both stakes are locked and the combo opens. Returns the combo.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionComboRfqAccept(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionComboRfqAccept``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionComboRfqAccept`: ListVaultMarketPredictionCombosItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionComboRfqAccept`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionComboRfqAcceptRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketPredictionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionComboRfqCancel
+
+> ListVaultMarketPredictionComboRfqsItem CreateVaultMarketPredictionComboRfqCancel(ctx, id).Execute()
+
+Withdraw your combo request; its answers are withdrawn too.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionComboRfqCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionComboRfqCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionComboRfqCancel`: ListVaultMarketPredictionComboRfqsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionComboRfqCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionComboRfqCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionComboRfqQuote
+
+> CreateVaultMarketPredictionComboRfqQuoteResponse CreateVaultMarketPredictionComboRfqQuote(ctx, id).Execute()
+
+Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionComboRfqQuote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionComboRfqQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionComboRfqQuote`: CreateVaultMarketPredictionComboRfqQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionComboRfqQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionComboRfqQuoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionComboRfqQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionComment
+
+> CreateVaultMarketPredictionCommentResponse CreateVaultMarketPredictionComment(ctx).Execute()
+
+Comment on a market or a series, or reply to a comment (`parentId`). Moderated like every comment on Crossly.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionComment(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionComment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionComment`: CreateVaultMarketPredictionCommentResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionComment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionCommentRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionCommentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionCommentReport
+
+> CreateVaultMarketPredictionCommentReportResponse CreateVaultMarketPredictionCommentReport(ctx, id).Execute()
+
+Report a comment with a reason; enough reports hide it until ops look.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionCommentReport(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionCommentReport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionCommentReport`: CreateVaultMarketPredictionCommentReportResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionCommentReport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionCommentReportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionCommentReportResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionConversion
+
+> CreateVaultMarketPredictionConversionResponse CreateVaultMarketPredictionConversion(ctx).Execute()
+
+Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. `venue` paper or live. Returns the conversion and the event after it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionConversion(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionConversion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionConversion`: CreateVaultMarketPredictionConversionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionConversion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionConversionRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionConversionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionForecast
+
+> CreateVaultMarketPredictionForecastResponse CreateVaultMarketPredictionForecast(ctx).Execute()
+
+Forecast a market: `probabilityPercent` 0 to 100. The one standing when trading closes is scored (Brier).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionForecast(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionForecast``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionForecast`: CreateVaultMarketPredictionForecastResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionForecast`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionForecastRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionForecastResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionForecasterFollow
+
+> CreateVaultMarketPredictionForecasterFollowResponse CreateVaultMarketPredictionForecasterFollow(ctx, id).Execute()
+
+Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionForecasterFollow(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionForecasterFollow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionForecasterFollow`: CreateVaultMarketPredictionForecasterFollowResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionForecasterFollow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionForecasterFollowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionForecasterFollowResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionMaker
+
+> ListVaultMarketPredictionMakersItem CreateVaultMarketPredictionMaker(ctx).Execute()
+
+Apply to make markets in prediction ladders (one series, or all with `seriesId` null). Needs the ID check; ops approve. Returns the application.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionMaker(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionMaker``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionMaker`: ListVaultMarketPredictionMakersItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionMaker`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionMakerRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionMakersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionMakerQuote
+
+> CreateVaultMarketPredictionMakerQuoteResponse CreateVaultMarketPredictionMakerQuote(ctx).Execute()
+
+Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionMakerQuote(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionMakerQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionMakerQuote`: CreateVaultMarketPredictionMakerQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionMakerQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionMakerQuoteRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionMakerQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrder
+
+> CreateVaultMarketPredictionOrderResponse CreateVaultMarketPredictionOrder(ctx).Execute()
+
+Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action's own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. `venue` paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrder(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrder`: CreateVaultMarketPredictionOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrderAmend
+
+> CreateVaultMarketPredictionOrderAmendResponse CreateVaultMarketPredictionOrderAmend(ctx, id).Execute()
+
+Amend a resting order's price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with `keptPriority`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrderAmend(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrderAmend``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrderAmend`: CreateVaultMarketPredictionOrderAmendResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrderAmend`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderAmendRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderAmendResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrderBatch
+
+> CreateVaultMarketPredictionOrderBatchResponse CreateVaultMarketPredictionOrderBatch(ctx).Execute()
+
+Place up to 20 orders in one call; each answers on its own (`results[]`), one refused never stops the rest.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrderBatch(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrderBatch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrderBatch`: CreateVaultMarketPredictionOrderBatchResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrderBatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderBatchRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderBatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrderBatchCancel
+
+> CreateVaultMarketPredictionOrderBatchCancelResponse CreateVaultMarketPredictionOrderBatchCancel(ctx).Execute()
+
+Cancel up to 20 orders in one call; each answers on its own.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrderBatchCancel(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrderBatchCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrderBatchCancel`: CreateVaultMarketPredictionOrderBatchCancelResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrderBatchCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderBatchCancelRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderBatchCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrderCancel
+
+> CreateVaultMarketPredictionOrderResponse CreateVaultMarketPredictionOrderCancel(ctx, id).Execute()
+
+Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrderCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrderCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrderCancel`: CreateVaultMarketPredictionOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrderCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionOrderCancelAll
+
+> CreateVaultMarketProOrderCancelAllResponse CreateVaultMarketPredictionOrderCancelAll(ctx).Execute()
+
+Cancel every working prediction order you have, or only those on one market (`marketId`). Returns `{ cancelled }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionOrderCancelAll(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionOrderCancelAll``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionOrderCancelAll`: CreateVaultMarketProOrderCancelAllResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionOrderCancelAll`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionOrderCancelAllRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketProOrderCancelAllResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionPaperReset
+
+> CreateVaultMarketPredictionPaperResetResponse CreateVaultMarketPredictionPaperReset(ctx).Execute()
+
+Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionPaperReset(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionPaperReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionPaperReset`: CreateVaultMarketPredictionPaperResetResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionPaperReset`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionPaperResetRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionPaperResetResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionPositionClose
+
+> CreateVaultMarketPredictionOrderResponse CreateVaultMarketPredictionPositionClose(ctx).Execute()
+
+Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at `priceCents`. Returns the sell order.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionPositionClose(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionPositionClose``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionPositionClose`: CreateVaultMarketPredictionOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionPositionClose`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionPositionCloseRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionPositionCloseAll
+
+> CreateVaultMarketPredictionPositionCloseAllResponse CreateVaultMarketPredictionPositionCloseAll(ctx).Execute()
+
+Sell all: close every open position on a venue, or only one event's (`eventId`). Each answers on its own.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionPositionCloseAll(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionPositionCloseAll``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionPositionCloseAll`: CreateVaultMarketPredictionPositionCloseAllResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionPositionCloseAll`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionPositionCloseAllRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionPositionCloseAllResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionProposal
+
+> ListVaultMarketPredictionProposalsItem CreateVaultMarketPredictionProposal(ctx).Execute()
+
+Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly's take on its fees.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionProposal(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionProposal``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionProposal`: ListVaultMarketPredictionProposalsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionProposal`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionProposalRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionProposalsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionProposalCheck
+
+> CreateVaultMarketPredictionProposalCheckResponse CreateVaultMarketPredictionProposalCheck(ctx).Execute()
+
+Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionProposalCheck(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionProposalCheck``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionProposalCheck`: CreateVaultMarketPredictionProposalCheckResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionProposalCheck`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionProposalCheckRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionProposalCheckResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionProposalWithdraw
+
+> ListVaultMarketPredictionProposalsItem CreateVaultMarketPredictionProposalWithdraw(ctx, id).Execute()
+
+Withdraw a proposal still waiting for review.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionProposalWithdraw(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionProposalWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionProposalWithdraw`: ListVaultMarketPredictionProposalsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionProposalWithdraw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionProposalWithdrawRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketPredictionProposalsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionSettlementDispute
+
+> CreateVaultMarketPredictionSettlementDisputeResponse CreateVaultMarketPredictionSettlementDispute(ctx, id).Execute()
+
+Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue's decision. Returns `{ settlementId, status }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionSettlementDispute(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionSettlementDispute``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionSettlementDispute`: CreateVaultMarketPredictionSettlementDisputeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionSettlementDispute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionSettlementDisputeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionSettlementDisputeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketPredictionTerm
+
+> CreateVaultMarketPredictionTermResponse CreateVaultMarketPredictionTerm(ctx).Execute()
+
+Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns `{ termsVersion, venue }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketPredictionTerm(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketPredictionTerm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketPredictionTerm`: CreateVaultMarketPredictionTermResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketPredictionTerm`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketPredictionTermRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketPredictionTermResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateVaultMarketPriceWidget
 
 > ListVaultMarketPriceWidgetsItem CreateVaultMarketPriceWidget(ctx).Execute()
@@ -8232,7 +11878,7 @@ Other parameters are passed through a pointer to a apiCreateVaultMarketProQuoteR
 
 ## CreateVaultMarketProQuoteHeartbeat
 
-> CreateVaultMarketProQuoteHeartbeatResponse CreateVaultMarketProQuoteHeartbeat(ctx).Execute()
+> CreateVaultMarketOptionMmHeartbeatResponse CreateVaultMarketProQuoteHeartbeat(ctx).Execute()
 
 Keep your quotes alive (cancel-on-disconnect). Returns `{ quotes, at }`.
 
@@ -8257,7 +11903,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketProQuoteHeartbeat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateVaultMarketProQuoteHeartbeat`: CreateVaultMarketProQuoteHeartbeatResponse
+    // response from `CreateVaultMarketProQuoteHeartbeat`: CreateVaultMarketOptionMmHeartbeatResponse
     fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketProQuoteHeartbeat`: %v\n", resp)
 }
 ```
@@ -8273,7 +11919,7 @@ Other parameters are passed through a pointer to a apiCreateVaultMarketProQuoteH
 
 ### Return type
 
-**CreateVaultMarketProQuoteHeartbeatResponse**
+**CreateVaultMarketOptionMmHeartbeatResponse**
 
 ### Authorization
 
@@ -8989,6 +12635,466 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateVaultMarketShareAutoInvest
+
+> ListVaultMarketShareAutoInvestItem CreateVaultMarketShareAutoInvest(ctx).Execute()
+
+Start auto-invest: `amountCents` ($5-$10,000) `every` week or month into `seriesIds` (equal weights) or `targets` (seriesId + weightBps summing to 10,000) or a `basketId` (with `rebalance` to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to `maxPremiumBps` over the indicative value. `practice` runs it on paper.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareAutoInvest(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareAutoInvest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareAutoInvest`: ListVaultMarketShareAutoInvestItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareAutoInvest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareAutoInvestRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareAutoInvestItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareAutoInvestRun
+
+> CreateVaultMarketShareAutoInvestRunResponse CreateVaultMarketShareAutoInvestRun(ctx, id).Execute()
+
+Run a plan now (once a minute at most); the schedule does not move.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareAutoInvestRun(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareAutoInvestRun``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareAutoInvestRun`: CreateVaultMarketShareAutoInvestRunResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareAutoInvestRun`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareAutoInvestRunRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareAutoInvestRunResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareAutoInvestUpdate
+
+> ListVaultMarketShareAutoInvestItem CreateVaultMarketShareAutoInvestUpdate(ctx, id).Execute()
+
+Change a plan (amount, cadence, series or weights, cap, rebalance) or set its `status` active, paused or cancelled.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareAutoInvestUpdate(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareAutoInvestUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareAutoInvestUpdate`: ListVaultMarketShareAutoInvestItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareAutoInvestUpdate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareAutoInvestUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareAutoInvestItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareBasketBuy
+
+> CreateVaultMarketShareBasketBuyResponse CreateVaultMarketShareBasketBuy(ctx, id).Execute()
+
+Buy a basket once: `amountCents` split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to `maxPremiumBps`). `practice` buys on paper.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareBasketBuy(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareBasketBuy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareBasketBuy`: CreateVaultMarketShareBasketBuyResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareBasketBuy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareBasketBuyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareBasketBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareBuyoutFund
+
+> CreateVaultMarketShareBuyoutFundResponse CreateVaultMarketShareBuyoutFund(ctx, id).Execute()
+
+Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareBuyoutFund(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareBuyoutFund``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareBuyoutFund`: CreateVaultMarketShareBuyoutFundResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareBuyoutFund`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareBuyoutFundRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareBuyoutVote
+
+> CreateVaultMarketShareBuyoutFundResponse CreateVaultMarketShareBuyoutVote(ctx, id).Execute()
+
+Vote `yes` or `no` on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareBuyoutVote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareBuyoutVote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareBuyoutVote`: CreateVaultMarketShareBuyoutFundResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareBuyoutVote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareBuyoutVoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareBuyoutWithdraw
+
+> CreateVaultMarketShareBuyoutFundResponse CreateVaultMarketShareBuyoutWithdraw(ctx, id).Execute()
+
+Withdraw your buyout bid before its vote opens; the escrow is refunded.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareBuyoutWithdraw(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareBuyoutWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareBuyoutWithdraw`: CreateVaultMarketShareBuyoutFundResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareBuyoutWithdraw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareBuyoutWithdrawRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateVaultMarketShareCard
 
 > ListVaultMarketShareCardsItem CreateVaultMarketShareCard(ctx).Execute()
@@ -9033,6 +13139,1587 @@ Other parameters are passed through a pointer to a apiCreateVaultMarketShareCard
 ### Return type
 
 **ListVaultMarketShareCardsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareGiftAccept
+
+> ListVaultMarketShareGiftsItem CreateVaultMarketShareGiftAccept(ctx, id).Execute()
+
+Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareGiftAccept(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareGiftAccept``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareGiftAccept`: ListVaultMarketShareGiftsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareGiftAccept`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareGiftAcceptRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareGiftCancel
+
+> ListVaultMarketShareGiftsItem CreateVaultMarketShareGiftCancel(ctx, id).Execute()
+
+Cancel a gift you offered, before it is accepted: the shares are free again.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareGiftCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareGiftCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareGiftCancel`: ListVaultMarketShareGiftsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareGiftCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareGiftCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareGiftDecline
+
+> ListVaultMarketShareGiftsItem CreateVaultMarketShareGiftDecline(ctx, id).Execute()
+
+Decline a share gift offered to you.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareGiftDecline(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareGiftDecline``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareGiftDecline`: ListVaultMarketShareGiftsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareGiftDecline`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareGiftDeclineRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareInvestor
+
+> GetVaultMarketShareInvestorResponse CreateVaultMarketShareInvestor(ctx).Execute()
+
+Open or update your investor account at the venue: accept the current investor terms (`acceptTerms`), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareInvestor(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareInvestor``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareInvestor`: GetVaultMarketShareInvestorResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareInvestor`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareInvestorRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketShareInvestorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareOrderCancel
+
+> ListVaultMarketShareOrdersItem CreateVaultMarketShareOrderCancel(ctx, id).Execute()
+
+Cancel one of your open share-book orders.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareOrderCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareOrderCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareOrderCancel`: ListVaultMarketShareOrdersItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareOrderCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareOrderCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketSharePaperOrderCancel
+
+> CreateVaultMarketSharePaperSeryOrderResponse CreateVaultMarketSharePaperOrderCancel(ctx, id).Execute()
+
+Cancel an open practice order.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketSharePaperOrderCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketSharePaperOrderCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketSharePaperOrderCancel`: CreateVaultMarketSharePaperSeryOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketSharePaperOrderCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketSharePaperOrderCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketSharePaperSeryOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketSharePaperReset
+
+> GetVaultMarketSharePaperResponse CreateVaultMarketSharePaperReset(ctx).Execute()
+
+Start the practice account over with fresh play money (once a day).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketSharePaperReset(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketSharePaperReset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketSharePaperReset`: GetVaultMarketSharePaperResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketSharePaperReset`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketSharePaperResetRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketSharePaperSeryOrder
+
+> CreateVaultMarketSharePaperSeryOrderResponse CreateVaultMarketSharePaperSeryOrder(ctx, id).Execute()
+
+Place a practice order (play money) with the same rules as the real share book.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketSharePaperSeryOrder(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketSharePaperSeryOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketSharePaperSeryOrder`: CreateVaultMarketSharePaperSeryOrderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketSharePaperSeryOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketSharePaperSeryOrderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketSharePaperSeryOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketSharePaperSerySubscribe
+
+> GetVaultMarketSharePaperResponse CreateVaultMarketSharePaperSerySubscribe(ctx, id).Execute()
+
+Subscribe with play money to a practice series’ offering.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketSharePaperSerySubscribe(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketSharePaperSerySubscribe``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketSharePaperSerySubscribe`: GetVaultMarketSharePaperResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketSharePaperSerySubscribe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketSharePaperSerySubscribeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareRoomHide
+
+> CreateVaultMarketShareRoomHideResponse CreateVaultMarketShareRoomHide(ctx, id).Execute()
+
+Take down one of your own holder-room posts (`reason`).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareRoomHide(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareRoomHide``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareRoomHide`: CreateVaultMarketShareRoomHideResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareRoomHide`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareRoomHideRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareRoomHideResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSery
+
+> ListVaultMarketShareSeriesItem CreateVaultMarketShareSery(ctx).Execute()
+
+Propose a Vault Shares series for one of your units (`vaultItemId`), keeping `retainedShares` (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass `requestId` to make a retry safe.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSery(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSery`: ListVaultMarketShareSeriesItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareSeriesItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryBuyout
+
+> CreateVaultMarketShareBuyoutFundResponse CreateVaultMarketShareSeryBuyout(ctx, id).Execute()
+
+Bid for the whole item (`offerCents`, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryBuyout(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryBuyout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryBuyout`: CreateVaultMarketShareBuyoutFundResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryBuyout`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryBuyoutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryGift
+
+> ListVaultMarketShareGiftsItem CreateVaultMarketShareSeryGift(ctx, id).Execute()
+
+Give whole `shares` of a series to someone (`to`: their @handle, email or user id), with an optional `message`. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryGift(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryGift``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryGift`: ListVaultMarketShareGiftsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryGift`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryGiftRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryOrder
+
+> ListVaultMarketShareOrdersItem CreateVaultMarketShareSeryOrder(ctx, id).Execute()
+
+Place an order on a series’ share book: `side`, `type` limit or market (immediate-or-cancel inside a 10% band), `tif` gtc / gtd (`expiresAt`) / ioc, whole `shares` or a buy’s `amountCents` (turned into whole shares at the most it could pay), integer `limitCents` a share, `postOnly`. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass `requestId` to make a retry safe.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryOrder(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryOrder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryOrder`: ListVaultMarketShareOrdersItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryOrder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryOrderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryRecombine
+
+> CreateVaultMarketShareSeryRecombineResponse CreateVaultMarketShareSeryRecombine(ctx, id).Execute()
+
+You hold every share: take the item back whole. With `withdraw`, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryRecombine(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryRecombine``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryRecombine`: CreateVaultMarketShareSeryRecombineResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryRecombine`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryRecombineRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareSeryRecombineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryRoom
+
+> CreateVaultMarketShareSeryRoomResponse CreateVaultMarketShareSeryRoom(ctx, id).Execute()
+
+Post in the holder room (shareholders only), up to 1,000 characters.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryRoom(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryRoom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryRoom`: CreateVaultMarketShareSeryRoomResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryRoom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryRoomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareSeryRoomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSerySubscribe
+
+> ListVaultMarketShareSubscriptionsItem CreateVaultMarketShareSerySubscribe(ctx, id).Execute()
+
+Subscribe for whole `shares` in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass `jointVaultId`. Pass `requestId` to make a retry safe.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSerySubscribe(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSerySubscribe``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSerySubscribe`: ListVaultMarketShareSubscriptionsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSerySubscribe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSerySubscribeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryUnwatch
+
+> CreateVaultMarketShareSeryWatchResponse CreateVaultMarketShareSeryUnwatch(ctx, id).Execute()
+
+Stop being told about a drop (`kind` notify) or leave its waitlist (`kind` waitlist).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryUnwatch(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryUnwatch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryUnwatch`: CreateVaultMarketShareSeryWatchResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryUnwatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryUnwatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareSeryWatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryUpdate
+
+> IdResponse CreateVaultMarketShareSeryUpdate(ctx, id).Execute()
+
+Post an update on your own item’s series (you are its originator): `kind` story, provenance, condition, appraisal, exhibition or event, a `title`, a `body`, an optional https `mediaUrl`, `holdersOnly`. Holders are told.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryUpdate(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryUpdate`: IdResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryUpdate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**IdResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryWatch
+
+> CreateVaultMarketShareSeryWatchResponse CreateVaultMarketShareSeryWatch(ctx, id).Execute()
+
+Ask to be told about a drop (`kind` notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (`kind` waitlist, with the `shares` you want).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryWatch(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryWatch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryWatch`: CreateVaultMarketShareSeryWatchResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryWatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryWatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareSeryWatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSeryWithdrawProposal
+
+> ListVaultMarketShareSeriesItem CreateVaultMarketShareSeryWithdrawProposal(ctx, id).Execute()
+
+Withdraw your own proposal before its offering opens.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSeryWithdrawProposal(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSeryWithdrawProposal``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSeryWithdrawProposal`: ListVaultMarketShareSeriesItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSeryWithdrawProposal`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSeryWithdrawProposalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSeriesItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareSubscriptionCancel
+
+> ListVaultMarketShareSubscriptionsItem CreateVaultMarketShareSubscriptionCancel(ctx, id).Execute()
+
+Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareSubscriptionCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareSubscriptionCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareSubscriptionCancel`: ListVaultMarketShareSubscriptionsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareSubscriptionCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareSubscriptionCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareViewingBook
+
+> CreateVaultMarketShareViewingBookResponse CreateVaultMarketShareViewingBook(ctx, id).Execute()
+
+Book a place on a viewing day (shareholders only), with up to the day’s `guests`. Bookings close a day before; booking again changes your guests.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareViewingBook(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareViewingBook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareViewingBook`: CreateVaultMarketShareViewingBookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareViewingBook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareViewingBookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareViewingBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketShareViewingBookingCancel
+
+> CreateVaultMarketShareViewingBookingCancelResponse CreateVaultMarketShareViewingBookingCancel(ctx, id).Execute()
+
+Cancel your viewing-day booking.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketShareViewingBookingCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketShareViewingBookingCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketShareViewingBookingCancel`: CreateVaultMarketShareViewingBookingCancelResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketShareViewingBookingCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketShareViewingBookingCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketShareViewingBookingCancelResponse**
 
 ### Authorization
 
@@ -9283,6 +14970,64 @@ Other parameters are passed through a pointer to a apiCreateVaultMarketSupplySen
 ### Return type
 
 **CreateVaultMarketSupplySendResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVaultMarketSupplySendIn
+
+> CreateVaultMarketSupplySendInResponse CreateVaultMarketSupplySendIn(ctx).Execute()
+
+Send inventory items to the vault: `method: label` (one box on a prepaid label) or `dropoff` at a partner (`partnerId`, from the finder; you get a counter code). Each item can carry its declared value; `insured` insures the box for it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.CreateVaultMarketSupplySendIn(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.CreateVaultMarketSupplySendIn``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultMarketSupplySendIn`: CreateVaultMarketSupplySendInResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.CreateVaultMarketSupplySendIn`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultMarketSupplySendInRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateVaultMarketSupplySendInResponse**
 
 ### Authorization
 
@@ -10498,6 +16243,64 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteVaultMarketAutoBuy
+
+> DeleteVaultMarketAutoBuyResponse DeleteVaultMarketAutoBuy(ctx).Execute()
+
+Stop Auto-buy with payouts. The history stays.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.DeleteVaultMarketAutoBuy(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.DeleteVaultMarketAutoBuy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteVaultMarketAutoBuy`: DeleteVaultMarketAutoBuyResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.DeleteVaultMarketAutoBuy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVaultMarketAutoBuyRequest struct via the builder pattern
+
+
+### Return type
+
+**DeleteVaultMarketAutoBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteVaultMarketBullionFamilyPeg
 
 > ListVaultMarketBullionFamilyPegsItem DeleteVaultMarketBullionFamilyPeg(ctx, id).Execute()
@@ -11014,6 +16817,274 @@ Name | Type | Description  | Notes
 ### Return type
 
 **DeleteVaultMarketOpeningWaitlistResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteVaultMarketPredictionAlert
+
+> OkResponse DeleteVaultMarketPredictionAlert(ctx, id).Execute()
+
+Remove a probability alert. Returns `{ ok }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.DeleteVaultMarketPredictionAlert(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.DeleteVaultMarketPredictionAlert``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteVaultMarketPredictionAlert`: OkResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.DeleteVaultMarketPredictionAlert`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVaultMarketPredictionAlertRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteVaultMarketPredictionCard
+
+> OkResponse DeleteVaultMarketPredictionCard(ctx, id).Execute()
+
+Take an \"I called it\" card down; its link stops working. Returns `{ ok }`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.DeleteVaultMarketPredictionCard(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.DeleteVaultMarketPredictionCard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteVaultMarketPredictionCard`: OkResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.DeleteVaultMarketPredictionCard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVaultMarketPredictionCardRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteVaultMarketPredictionComment
+
+> OkResponse DeleteVaultMarketPredictionComment(ctx, id).Execute()
+
+Delete your comment.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.DeleteVaultMarketPredictionComment(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.DeleteVaultMarketPredictionComment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteVaultMarketPredictionComment`: OkResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.DeleteVaultMarketPredictionComment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVaultMarketPredictionCommentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteVaultMarketPredictionForecasterFollow
+
+> CreateVaultMarketPredictionForecasterFollowResponse DeleteVaultMarketPredictionForecasterFollow(ctx, id).Execute()
+
+Stop following a forecaster.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.DeleteVaultMarketPredictionForecasterFollow(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.DeleteVaultMarketPredictionForecasterFollow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteVaultMarketPredictionForecasterFollow`: CreateVaultMarketPredictionForecasterFollowResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.DeleteVaultMarketPredictionForecasterFollow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteVaultMarketPredictionForecasterFollowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionForecasterFollowResponse**
 
 ### Authorization
 
@@ -12267,6 +18338,64 @@ Other parameters are passed through a pointer to a apiGetVaultMarketAuctionMineR
 ### Return type
 
 **GetVaultMarketAuctionMineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketAutoBuy
+
+> GetVaultMarketAutoBuyResponse GetVaultMarketAutoBuy(ctx).Execute()
+
+Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. `autoBuy` is null when it is not set up.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketAutoBuy(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketAutoBuy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketAutoBuy`: GetVaultMarketAutoBuyResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketAutoBuy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketAutoBuyRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketAutoBuyResponse**
 
 ### Authorization
 
@@ -14618,6 +20747,140 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetVaultMarketHoldingInventoryItem
+
+> GetVaultMarketHoldingInventoryItemResponse GetVaultMarketHoldingInventoryItem(ctx, id).Execute()
+
+The inventory item a vault unit of yours came from (null for a unit bought on the book).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketHoldingInventoryItem(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketHoldingInventoryItem``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketHoldingInventoryItem`: GetVaultMarketHoldingInventoryItemResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketHoldingInventoryItem`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketHoldingInventoryItemRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketHoldingInventoryItemResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketHoldingWithdrawQuote
+
+> GetVaultMarketHoldingWithdrawQuoteResponse GetVaultMarketHoldingWithdrawQuote(ctx, id).Execute()
+
+What shipping one unit you own home would charge now, for `standard` and `expedited`: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketHoldingWithdrawQuote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketHoldingWithdrawQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketHoldingWithdrawQuote`: GetVaultMarketHoldingWithdrawQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketHoldingWithdrawQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketHoldingWithdrawQuoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketHoldingWithdrawQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetVaultMarketHomeUnit
 
 > GetVaultMarketHomeUnitResponse GetVaultMarketHomeUnit(ctx).Execute()
@@ -15296,6 +21559,73 @@ Other parameters are passed through a pointer to a apiGetVaultMarketInstantExitR
 ### Return type
 
 **GetVaultMarketInstantExitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketItemLocation
+
+> GetVaultMarketItemLocationResponse GetVaultMarketItemLocation(ctx, inventoryItemId).Execute()
+
+Where one inventory item's units are: in your own stock (warehouse) and in the vault per location, each vault unit's status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    inventoryItemId := "inventoryItemId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketItemLocation(context.Background(), inventoryItemId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketItemLocation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketItemLocation`: GetVaultMarketItemLocationResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketItemLocation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**inventoryItemId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketItemLocationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketItemLocationResponse**
 
 ### Authorization
 
@@ -16670,6 +23000,1064 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetVaultMarketOption
+
+> GetVaultMarketOptionResponse GetVaultMarketOption(ctx).Execute()
+
+Fractional options: the venue mode (self = Crossly is the venue and clearing house, partner = routed to the index DCM, paper = practice only) with the env each mode still needs, the active series and the rule book in force.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOption(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOption``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOption`: GetVaultMarketOptionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOption`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionAnalytic
+
+> GetVaultMarketOptionAnalyticResponse GetVaultMarketOptionAnalytic(ctx, underlying).Execute()
+
+Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry's smile (`expiry`), IV rank and percentile against the series' own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying's own published series. Every implied vol is derived and display only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionAnalytic(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionAnalytic``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionAnalytic`: GetVaultMarketOptionAnalyticResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionAnalytic`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionAnalyticRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionAnalyticResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionAutoClose
+
+> GetVaultMarketOptionAutoCloseResponse GetVaultMarketOptionAutoClose(ctx).Execute()
+
+Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionAutoClose(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionAutoClose``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionAutoClose`: GetVaultMarketOptionAutoCloseResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionAutoClose`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionAutoCloseRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionAutoCloseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionChain
+
+> GetVaultMarketOptionChainResponse GetVaultMarketOptionChain(ctx, underlying).Execute()
+
+The option chain for an underlying (index slug or book key): its expiries, and for one expiry (`expiry`, default the nearest) each strike's call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionChain(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionChain``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionChain`: GetVaultMarketOptionChainResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionChain`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionChainRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionChainResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionComboBook
+
+> GetVaultMarketOptionComboBookResponse GetVaultMarketOptionComboBook(ctx).Execute()
+
+One strategy's combo book by its canonical key (`key`, from the preview or an order): bids and asks by net price and recent strategy trades.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionComboBook(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionComboBook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionComboBook`: GetVaultMarketOptionComboBookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionComboBook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionComboBookRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionComboBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionComboRfq
+
+> GetVaultMarketOptionComboRfqResponse GetVaultMarketOptionComboRfq(ctx, id).Execute()
+
+One strategy quote request and its answers (all of them to the requester, your own to a responder).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionComboRfq(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionComboRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionComboRfq`: GetVaultMarketOptionComboRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionComboRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionComboRfqRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionContract
+
+> GetVaultMarketOptionContractResponse GetVaultMarketOptionContract(ctx, id).Execute()
+
+One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionContract(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionContract``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionContract`: GetVaultMarketOptionContractResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionContract`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionContractRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionContractResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionContractBook
+
+> GetVaultMarketOptionContractBookResponse GetVaultMarketOptionContractBook(ctx, id).Execute()
+
+A contract's order book on the Crossly venue (`levels`, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionContractBook(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionContractBook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionContractBook`: GetVaultMarketOptionContractBookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionContractBook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionContractBookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionContractBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionContractSettlement
+
+> GetVaultMarketOptionContractSettlementResponse GetVaultMarketOptionContractSettlement(ctx, id).Execute()
+
+A settled contract's settlement: the value (cents per unit of the underlying), its source (the index's frozen 7-day TWAP, the item's expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionContractSettlement(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionContractSettlement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionContractSettlement`: GetVaultMarketOptionContractSettlementResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionContractSettlement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionContractSettlementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionContractSettlementResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionHedge
+
+> GetVaultMarketOptionHedgeResponse GetVaultMarketOptionHedge(ctx).Execute()
+
+Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionHedge(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionHedge``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionHedge`: GetVaultMarketOptionHedgeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionHedge`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionHedgeRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionHedgeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionIv
+
+> GetVaultMarketOptionIvResponse GetVaultMarketOptionIv(ctx, underlying).Execute()
+
+The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionIv(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionIv``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionIv`: GetVaultMarketOptionIvResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionIv`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionIvRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionIvResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionMargin
+
+> GetVaultMarketOptionMarginResponse GetVaultMarketOptionMargin(ctx).Execute()
+
+Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner's figure decides and this is an estimate.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionMargin(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionMargin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionMargin`: GetVaultMarketOptionMarginResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionMargin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionMarginRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionMarginResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionPayoff
+
+> GetVaultMarketOptionPayoffResponse GetVaultMarketOptionPayoff(ctx).Execute()
+
+Your whole options position on one `underlying` at expiry: the P&L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionPayoff(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionPayoff``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionPayoff`: GetVaultMarketOptionPayoffResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionPayoff`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionPayoffRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionPayoffResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionPosition
+
+> GetVaultMarketOptionPositionResponse GetVaultMarketOptionPosition(ctx).Execute()
+
+Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. `status` open (default) / all, `subaccountId`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionPosition(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionPosition``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionPosition`: GetVaultMarketOptionPositionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionPosition`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionPositionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionPositionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionPractice
+
+> GetVaultMarketOptionPracticeResponse GetVaultMarketOptionPractice(ctx).Execute()
+
+Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker's price, equity and P&L.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionPractice(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionPractice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionPractice`: GetVaultMarketOptionPracticeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionPractice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionPracticeRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionPracticeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionRfq
+
+> GetVaultMarketOptionRfqResponse GetVaultMarketOptionRfq(ctx, id).Execute()
+
+One option quote request: yours with every answer, or one you were sent with your own answer.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionRfq(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionRfq`: GetVaultMarketOptionRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionRfqRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketOptionRisk
+
+> GetVaultMarketOptionRiskResponse GetVaultMarketOptionRisk(ctx).Execute()
+
+Your options portfolio's Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario's P&L (`priceShift`, `volShift`, `daysForward`), a price x vol P&L grid, and the beta-weighted delta against an index (`betaIndex`, default the deepest). `book` live (default) or practice.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketOptionRisk(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketOptionRisk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketOptionRisk`: GetVaultMarketOptionRiskResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketOptionRisk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketOptionRiskRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionRiskResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetVaultMarketOracle
 
 > GetVaultMarketOracleResponse GetVaultMarketOracle(ctx).Execute()
@@ -17098,7 +24486,7 @@ Other parameters are passed through a pointer to a apiGetVaultMarketPaperQuoteRe
 
 > GetVaultMarketPartnerMeResponse GetVaultMarketPartnerMe(ctx).Execute()
 
-Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
 
 ### Example
 
@@ -17634,6 +25022,1479 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListVaultMarketPositionsRiskItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPrediction
+
+> GetVaultMarketPredictionResponse GetVaultMarketPrediction(ctx).Execute()
+
+The prediction markets home: the busiest and soonest-expiring \"Will it hit?\" markets with their probability (each market's own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPrediction(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPrediction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPrediction`: GetVaultMarketPredictionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPrediction`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionAccount
+
+> GetVaultMarketPredictionAccountResponse GetVaultMarketPredictionAccount(ctx).Execute()
+
+Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionAccount(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionAccount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionAccount`: GetVaultMarketPredictionAccountResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionAccount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionAccountRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionAccountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionBoard
+
+> GetVaultMarketPredictionBoardResponse GetVaultMarketPredictionBoard(ctx).Execute()
+
+The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionBoard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionBoard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionBoard`: GetVaultMarketPredictionBoardResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionBoard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionBoardRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionBoardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionCombo
+
+> ListVaultMarketPredictionCombosItem GetVaultMarketPredictionCombo(ctx, id).Execute()
+
+One of your combos.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionCombo(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionCombo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionCombo`: ListVaultMarketPredictionCombosItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionCombo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionComboRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketPredictionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionComboRfq
+
+> ListVaultMarketPredictionComboRfqsItem GetVaultMarketPredictionComboRfq(ctx, id).Execute()
+
+One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionComboRfq(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionComboRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionComboRfq`: ListVaultMarketPredictionComboRfqsItem
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionComboRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionComboRfqRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionDailyPrice
+
+> GetVaultMarketPredictionDailyPriceResponse GetVaultMarketPredictionDailyPrice(ctx).Execute()
+
+The published daily settlement price of every listed market for a day (default yesterday): the last hour's volume-weighted Yes price, else the book mid, else the prior day's, with volume and open interest.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionDailyPrice(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionDailyPrice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionDailyPrice`: GetVaultMarketPredictionDailyPriceResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionDailyPrice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionDailyPriceRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionDailyPriceResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionEvent
+
+> GetVaultMarketPredictionEventResponse GetVaultMarketPredictionEvent(ctx, id).Execute()
+
+One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. `venue` paper or live.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionEvent(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionEvent`: GetVaultMarketPredictionEventResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionEvent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionEventRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionEventResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionForecaster
+
+> GetVaultMarketPredictionForecasterResponse GetVaultMarketPredictionForecaster(ctx).Execute()
+
+Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionForecaster(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionForecaster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionForecaster`: GetVaultMarketPredictionForecasterResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionForecaster`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionForecasterRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionForecasterResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionForecasterById
+
+> GetVaultMarketPredictionForecasterByIdResponse GetVaultMarketPredictionForecasterById(ctx, id).Execute()
+
+A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionForecasterById(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionForecasterById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionForecasterById`: GetVaultMarketPredictionForecasterByIdResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionForecasterById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionForecasterByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionForecasterByIdResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionLeaderboard
+
+> GetVaultMarketPredictionLeaderboardResponse GetVaultMarketPredictionLeaderboard(ctx).Execute()
+
+Opt-in forecaster leaderboards: `period` week, month or all; `metric` pnl, accuracy or brier; `venue` live or paper (practice has its own board).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionLeaderboard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionLeaderboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionLeaderboard`: GetVaultMarketPredictionLeaderboardResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionLeaderboard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionLeaderboardRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionLeaderboardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionLimit
+
+> GetVaultMarketPredictionLimitResponse GetVaultMarketPredictionLimit(ctx).Execute()
+
+Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionLimit(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionLimit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionLimit`: GetVaultMarketPredictionLimitResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionLimit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionLimitRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionLimitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMarket
+
+> GetVaultMarketPredictionMarketResponse GetVaultMarketPredictionMarket(ctx, id).Execute()
+
+One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMarket(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMarket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMarket`: GetVaultMarketPredictionMarketResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMarket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMarketRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionMarketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMarketForecast
+
+> GetVaultMarketPredictionMarketForecastResponse GetVaultMarketPredictionMarketForecast(ctx, id).Execute()
+
+How many people forecast a market and their median probability (no names).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMarketForecast(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMarketForecast``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMarketForecast`: GetVaultMarketPredictionMarketForecastResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMarketForecast`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMarketForecastRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionMarketForecastResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMarketHistory
+
+> GetVaultMarketPredictionMarketHistoryResponse GetVaultMarketPredictionMarketHistory(ctx, id).Execute()
+
+A market's history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over `range` 1d, 1w, 1m or all; `venue` live or paper.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMarketHistory(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMarketHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMarketHistory`: GetVaultMarketPredictionMarketHistoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMarketHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMarketHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionMarketHistoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMarketStream
+
+> string GetVaultMarketPredictionMarketStream(ctx, id).Execute()
+
+A server-sent event stream for one prediction market: `snapshot` first, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement` as they change.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMarketStream(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMarketStream``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMarketStream`: string
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMarketStream`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMarketStreamRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMarketTrade
+
+> GetVaultMarketPredictionMarketTradeResponse GetVaultMarketPredictionMarketTrade(ctx, id).Execute()
+
+The trade tape, newest first: Yes price, size, which side took, venue. Page with `before` (the last `seq`).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMarketTrade(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMarketTrade``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMarketTrade`: GetVaultMarketPredictionMarketTradeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMarketTrade`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMarketTradeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketPredictionMarketTradeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMeStream
+
+> string GetVaultMarketPredictionMeStream(ctx).Execute()
+
+A server-sent event stream of your own prediction events: `pm_order` (placed, filled, amended, cancelled, expired), `pm_fill` (your side, price and fee), `pm_position`, `pm_combo` and `pm_conversion`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMeStream(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMeStream``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMeStream`: string
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMeStream`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMeStreamRequest struct via the builder pattern
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionMission
+
+> GetVaultMarketPredictionMissionResponse GetVaultMarketPredictionMission(ctx).Execute()
+
+The two \"Will it hit?\" practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionMission(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionMission``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionMission`: GetVaultMarketPredictionMissionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionMission`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionMissionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionMissionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionPaper
+
+> GetVaultMarketPredictionPaperResponse GetVaultMarketPredictionPaper(ctx).Execute()
+
+Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionPaper(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionPaper``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionPaper`: GetVaultMarketPredictionPaperResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionPaper`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionPaperRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionPaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionQuote
+
+> GetVaultMarketPredictionQuoteResponse GetVaultMarketPredictionQuote(ctx).Execute()
+
+What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi's formula), the money it would lock, and the most it could pay out.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionQuote(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionQuote`: GetVaultMarketPredictionQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionQuoteRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionRulebook
+
+> GetVaultMarketPredictionRulebookResponse GetVaultMarketPredictionRulebook(ctx).Execute()
+
+The prediction venue's rule book now and every version, each hashed and chained to the one before (`chainOk`).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionRulebook(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionRulebook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionRulebook`: GetVaultMarketPredictionRulebookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionRulebook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionRulebookRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionRulebookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionStream
+
+> string GetVaultMarketPredictionStream(ctx).Execute()
+
+A server-sent event stream for up to 50 markets (`markets`=id,id): `ready`, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement`, each carrying its marketId.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionStream(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionStream``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionStream`: string
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionStream`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionStreamRequest struct via the builder pattern
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionVenue
+
+> GetVaultMarketPredictionVenueResponse GetVaultMarketPredictionVenue(ctx).Execute()
+
+Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionVenue(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionVenue``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionVenue`: GetVaultMarketPredictionVenueResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionVenue`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionVenueRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionVenueResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketPredictionWillItHit
+
+> GetVaultMarketPredictionWillItHitResponse GetVaultMarketPredictionWillItHit(ctx).Execute()
+
+The \"Will it hit?\" panel for a key (`bookKey`) or an index (`index` slug): its open markets grouped by expiry, each with its probability. `eligible` is false when nothing is listed on it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketPredictionWillItHit(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketPredictionWillItHit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketPredictionWillItHit`: GetVaultMarketPredictionWillItHitResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketPredictionWillItHit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketPredictionWillItHitRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionWillItHitResponse**
 
 ### Authorization
 
@@ -18822,6 +27683,189 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetVaultMarketSetting
+
+> GetVaultMarketSettingResponse GetVaultMarketSetting(ctx).Execute()
+
+Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketSetting(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketSetting`: GetVaultMarketSettingResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketSetting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketSettingRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketSettingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShare
+
+> GetVaultMarketShareResponse GetVaultMarketShare(ctx).Execute()
+
+Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShare(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShare``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShare`: GetVaultMarketShareResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShare`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketShareResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareBasket
+
+> GetVaultMarketShareBasketResponse GetVaultMarketShareBasket(ctx, id).Execute()
+
+One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareBasket(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareBasket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareBasket`: GetVaultMarketShareBasketResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareBasket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareBasketRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareBasketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetVaultMarketShareCard
 
 > ListVaultMarketShareCardsItem GetVaultMarketShareCard(ctx, id).Execute()
@@ -18875,6 +27919,640 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListVaultMarketShareCardsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareInvestor
+
+> GetVaultMarketShareInvestorResponse GetVaultMarketShareInvestor(ctx).Execute()
+
+Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareInvestor(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareInvestor``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareInvestor`: GetVaultMarketShareInvestorResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareInvestor`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareInvestorRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketShareInvestorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareMe
+
+> GetVaultMarketShareMeResponse GetVaultMarketShareMe(ctx).Execute()
+
+Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareMe(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareMe``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareMe`: GetVaultMarketShareMeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareMe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareMeRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketShareMeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketSharePaper
+
+> GetVaultMarketSharePaperResponse GetVaultMarketSharePaper(ctx).Execute()
+
+Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketSharePaper(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketSharePaper``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketSharePaper`: GetVaultMarketSharePaperResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketSharePaper`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketSharePaperRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketSharePaperSeryBook
+
+> GetVaultMarketSharePaperSeryBookResponse GetVaultMarketSharePaperSeryBook(ctx, id).Execute()
+
+A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketSharePaperSeryBook(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketSharePaperSeryBook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketSharePaperSeryBook`: GetVaultMarketSharePaperSeryBookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketSharePaperSeryBook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketSharePaperSeryBookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketSharePaperSeryBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketSharePreview
+
+> GetVaultMarketSharePreviewResponse GetVaultMarketSharePreview(ctx).Execute()
+
+Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketSharePreview(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketSharePreview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketSharePreview`: GetVaultMarketSharePreviewResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketSharePreview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketSharePreviewRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketSharePreviewResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareSery
+
+> GetVaultMarketShareSeryResponse GetVaultMarketShareSery(ctx, id).Execute()
+
+One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareSery(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareSery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareSery`: GetVaultMarketShareSeryResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareSery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareSeryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareSeryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareSeryBook
+
+> GetVaultMarketShareSeryBookResponse GetVaultMarketShareSeryBook(ctx, id).Execute()
+
+A share book’s depth: whole shares per price level (integer cents a share), best first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareSeryBook(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareSeryBook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareSeryBook`: GetVaultMarketShareSeryBookResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareSeryBook`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareSeryBookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareSeryBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareSeryHistory
+
+> GetVaultMarketShareSeryHistoryResponse GetVaultMarketShareSeryHistory(ctx, id).Execute()
+
+A series’ full price history: OHLC candles of every share-book fill (`interval` 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareSeryHistory(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareSeryHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareSeryHistory`: GetVaultMarketShareSeryHistoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareSeryHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareSeryHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareSeryHistoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareSeryPerk
+
+> GetVaultMarketShareSeryPerkResponse GetVaultMarketShareSeryPerk(ctx, id).Execute()
+
+Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareSeryPerk(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareSeryPerk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareSeryPerk`: GetVaultMarketShareSeryPerkResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareSeryPerk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareSeryPerkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareSeryPerkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketShareSeryRoom
+
+> GetVaultMarketShareSeryRoomResponse GetVaultMarketShareSeryRoom(ctx, id).Execute()
+
+The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. `before` pages back.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketShareSeryRoom(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketShareSeryRoom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketShareSeryRoom`: GetVaultMarketShareSeryRoomResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketShareSeryRoom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketShareSeryRoomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketShareSeryRoomResponse**
 
 ### Authorization
 
@@ -19267,6 +28945,73 @@ Other parameters are passed through a pointer to a apiGetVaultMarketSupplyRoundU
 [[Back to README]](../README.md)
 
 
+## GetVaultMarketSupplyShipment
+
+> GetVaultMarketSupplyShipmentResponse GetVaultMarketSupplyShipment(ctx, id).Execute()
+
+One shipment into the vault, with each unit and whether it was received.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketSupplyShipment(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketSupplyShipment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketSupplyShipment`: GetVaultMarketSupplyShipmentResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketSupplyShipment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketSupplyShipmentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketSupplyShipmentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetVaultMarketTax
 
 > GetVaultMarketTaxResponse GetVaultMarketTax(ctx).Execute()
@@ -19441,6 +29186,64 @@ Other parameters are passed through a pointer to a apiGetVaultMarketTaxLossSugge
 [[Back to README]](../README.md)
 
 
+## GetVaultMarketTaxOption
+
+> GetVaultMarketTaxOptionResponse GetVaultMarketTaxOption(ctx).Execute()
+
+Your fractional options tax lots for a calendar year (`year`, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketTaxOption(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketTaxOption``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketTaxOption`: GetVaultMarketTaxOptionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketTaxOption`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketTaxOptionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketTaxOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetVaultMarketTaxPdf
 
 > *os.File GetVaultMarketTaxPdf(ctx).Execute()
@@ -19494,6 +29297,122 @@ Other parameters are passed through a pointer to a apiGetVaultMarketTaxPdfReques
 
 - **Content-Type**: Not defined
 - **Accept**: application/pdf, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketTaxPrediction
+
+> GetVaultMarketTaxPredictionResponse GetVaultMarketTaxPrediction(ctx).Execute()
+
+Your prediction-market results for a calendar year (`year`), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketTaxPrediction(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketTaxPrediction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketTaxPrediction`: GetVaultMarketTaxPredictionResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketTaxPrediction`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketTaxPredictionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketTaxPredictionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketTaxShare
+
+> GetVaultMarketTaxShareResponse GetVaultMarketTaxShare(ctx).Execute()
+
+Your Vault Shares tax lots for a calendar year (`year`): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketTaxShare(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketTaxShare``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketTaxShare`: GetVaultMarketTaxShareResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketTaxShare`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketTaxShareRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketTaxShareResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to README]](../README.md)
@@ -20619,6 +30538,64 @@ Other parameters are passed through a pointer to a apiGetVaultMarketWorldFloorRe
 ### Return type
 
 **GetVaultMarketWorldFloorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetVaultMarketWorldFloorBoard
+
+> GetVaultMarketWorldFloorBoardResponse GetVaultMarketWorldFloorBoard(ctx).Execute()
+
+The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \"Will it hit?\" markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.GetVaultMarketWorldFloorBoard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.GetVaultMarketWorldFloorBoard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultMarketWorldFloorBoard`: GetVaultMarketWorldFloorBoardResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.GetVaultMarketWorldFloorBoard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultMarketWorldFloorBoardRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketWorldFloorBoardResponse**
 
 ### Authorization
 
@@ -23141,6 +33118,64 @@ Other parameters are passed through a pointer to a apiListVaultMarketHallLenders
 [[Back to README]](../README.md)
 
 
+## ListVaultMarketHoldings
+
+> ListVaultMarketHoldingsResponse ListVaultMarketHoldings(ctx).Execute()
+
+Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (`valueCents` with `valueSource` mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (`actions`). Units sold or shipped home in the last 90 days have `past: true`. `meta` carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketHoldings(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketHoldings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketHoldings`: ListVaultMarketHoldingsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketHoldings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketHoldingsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketHoldingsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListVaultMarketIndexCommitteeMinutes
 
 > ListVaultMarketIndexCommitteeMinutesResponse ListVaultMarketIndexCommitteeMinutes(ctx).Execute()
@@ -24578,6 +34613,827 @@ Other parameters are passed through a pointer to a apiListVaultMarketOpeningRequ
 [[Back to README]](../README.md)
 
 
+## ListVaultMarketOptionComboRfq
+
+> ListVaultMarketOptionComboRfqResponse ListVaultMarketOptionComboRfq(ctx).Execute()
+
+Your strategy quote requests, newest first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionComboRfq(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionComboRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionComboRfq`: ListVaultMarketOptionComboRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionComboRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionComboRfqRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionComboRfqInbox
+
+> ListVaultMarketOptionComboRfqResponse ListVaultMarketOptionComboRfqInbox(ctx).Execute()
+
+Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionComboRfqInbox(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionComboRfqInbox``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionComboRfqInbox`: ListVaultMarketOptionComboRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionComboRfqInbox`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionComboRfqInboxRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionCombos
+
+> ListVaultMarketOptionCombosResponse ListVaultMarketOptionCombos(ctx).Execute()
+
+Your strategies: `status` working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionCombos(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionCombos``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionCombos`: ListVaultMarketOptionCombosResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionCombos`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionCombosRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionContractDaily
+
+> ListVaultMarketOptionContractDailyResponse ListVaultMarketOptionContractDaily(ctx, id).Execute()
+
+A contract's published daily settlement prices, newest first (`days`, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row's chain hash.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionContractDaily(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionContractDaily``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionContractDaily`: ListVaultMarketOptionContractDailyResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionContractDaily`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionContractDailyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketOptionContractDailyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionMmQuotes
+
+> ListVaultMarketOptionMmQuotesResponse ListVaultMarketOptionMmQuotes(ctx).Execute()
+
+Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionMmQuotes(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionMmQuotes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionMmQuotes`: ListVaultMarketOptionMmQuotesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionMmQuotes`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionMmQuotesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionMmQuotesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionNotices
+
+> ListVaultMarketOptionNoticesResponse ListVaultMarketOptionNotices(ctx).Execute()
+
+Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionNotices(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionNotices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionNotices`: ListVaultMarketOptionNoticesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionNotices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionNoticesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionNoticesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionOrders
+
+> ListVaultMarketOptionOrdersResponse ListVaultMarketOptionOrders(ctx).Execute()
+
+Your options orders, newest first: `status` working (default) / done / all, `limit`, `subaccountId`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionOrders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionOrders`: ListVaultMarketOptionOrdersResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionOrdersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionPracticeCombos
+
+> ListVaultMarketOptionCombosResponse ListVaultMarketOptionPracticeCombos(ctx).Execute()
+
+Your practice strategies.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionPracticeCombos(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionPracticeCombos``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionPracticeCombos`: ListVaultMarketOptionCombosResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionPracticeCombos`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionPracticeCombosRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionPracticeFills
+
+> ListVaultMarketOptionPracticeFillsResponse ListVaultMarketOptionPracticeFills(ctx).Execute()
+
+Your practice options fills, newest first (`limit`).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionPracticeFills(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionPracticeFills``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionPracticeFills`: ListVaultMarketOptionPracticeFillsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionPracticeFills`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionPracticeFillsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionPracticeFillsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionPracticeOrders
+
+> ListVaultMarketOptionPracticeOrdersResponse ListVaultMarketOptionPracticeOrders(ctx).Execute()
+
+Your practice options orders: `status` working (default) / done / all, `limit`.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionPracticeOrders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionPracticeOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionPracticeOrders`: ListVaultMarketOptionPracticeOrdersResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionPracticeOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionPracticeOrdersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionPracticeOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionRfq
+
+> ListVaultMarketOptionRfqResponse ListVaultMarketOptionRfq(ctx).Execute()
+
+Your option quote requests, newest first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionRfq(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionRfq``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionRfq`: ListVaultMarketOptionRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionRfq`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionRfqRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionRfqInbox
+
+> ListVaultMarketOptionRfqResponse ListVaultMarketOptionRfqInbox(ctx).Execute()
+
+Open option quote requests you can answer.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionRfqInbox(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionRfqInbox``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionRfqInbox`: ListVaultMarketOptionRfqResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionRfqInbox`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionRfqInboxRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionSeries
+
+> ListVaultMarketOptionSeriesResponse ListVaultMarketOptionSeries(ctx).Execute()
+
+Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. `status`: active (default) or all.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionSeries(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionSeries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionSeries`: ListVaultMarketOptionSeriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionSeries`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionSeriesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionSeriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketOptionStrategies
+
+> ListVaultMarketOptionStrategiesResponse ListVaultMarketOptionStrategies(ctx).Execute()
+
+The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketOptionStrategies(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketOptionStrategies``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketOptionStrategies`: ListVaultMarketOptionStrategiesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketOptionStrategies`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketOptionStrategiesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketOptionStrategiesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListVaultMarketOracleHistory
 
 > ListVaultMarketOracleHistoryResponse ListVaultMarketOracleHistory(ctx, slug).Execute()
@@ -25225,6 +36081,64 @@ Other parameters are passed through a pointer to a apiListVaultMarketPartnerAccr
 [[Back to README]](../README.md)
 
 
+## ListVaultMarketPartnerFinder
+
+> ListVaultMarketPartnerFinderResponse ListVaultMarketPartnerFinder(ctx).Execute()
+
+Vault drop-off partners near a `postalCode`, optionally offering a `service`: address, hours and services.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPartnerFinder(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPartnerFinder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPartnerFinder`: ListVaultMarketPartnerFinderResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPartnerFinder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPartnerFinderRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPartnerFinderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListVaultMarketPoolStakes
 
 > ListVaultMarketPoolStakesResponse ListVaultMarketPoolStakes(ctx).Execute()
@@ -25510,6 +36424,818 @@ Other parameters are passed through a pointer to a apiListVaultMarketPositionsRi
 ### Return type
 
 **ListVaultMarketPositionsRiskResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionAlerts
+
+> ListVaultMarketPredictionAlertsResponse ListVaultMarketPredictionAlerts(ctx).Execute()
+
+Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionAlerts(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionAlerts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionAlerts`: ListVaultMarketPredictionAlertsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionAlerts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionAlertsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionAlertsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionComboMyRfqs
+
+> ListVaultMarketPredictionComboRfqsResponse ListVaultMarketPredictionComboMyRfqs(ctx).Execute()
+
+Your combo requests with every answer they got.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionComboMyRfqs(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionComboMyRfqs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionComboMyRfqs`: ListVaultMarketPredictionComboRfqsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionComboMyRfqs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionComboMyRfqsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionComboRfqs
+
+> ListVaultMarketPredictionComboRfqsResponse ListVaultMarketPredictionComboRfqs(ctx).Execute()
+
+Open combo requests makers can answer: legs, size and the legs' own combined price; never who asked. Your own answers are shown on them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionComboRfqs(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionComboRfqs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionComboRfqs`: ListVaultMarketPredictionComboRfqsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionComboRfqs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionComboRfqsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionCombos
+
+> ListVaultMarketPredictionCombosResponse ListVaultMarketPredictionCombos(ctx).Execute()
+
+Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionCombos(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionCombos``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionCombos`: ListVaultMarketPredictionCombosResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionCombos`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionCombosRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionComments
+
+> ListVaultMarketPredictionCommentsResponse ListVaultMarketPredictionComments(ctx).Execute()
+
+A discussion thread on a market (`marketId`) or a series (`seriesId`): comments newest first with their replies. A commenter's side shows only when their forecaster profile is public.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionComments(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionComments``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionComments`: ListVaultMarketPredictionCommentsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionComments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionCommentsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionCommentsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionConversions
+
+> ListVaultMarketPredictionConversionsResponse ListVaultMarketPredictionConversions(ctx).Execute()
+
+Your bucket-set conversions (split, merge, convert), newest first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionConversions(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionConversions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionConversions`: ListVaultMarketPredictionConversionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionConversions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionConversionsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionConversionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionFollowing
+
+> ListVaultMarketPredictionFollowingResponse ListVaultMarketPredictionFollowing(ctx).Execute()
+
+The forecasters you follow.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionFollowing(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionFollowing``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionFollowing`: ListVaultMarketPredictionFollowingResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionFollowing`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionFollowingRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionFollowingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionForecasts
+
+> ListVaultMarketPredictionForecastsResponse ListVaultMarketPredictionForecasts(ctx).Execute()
+
+Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionForecasts(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionForecasts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionForecasts`: ListVaultMarketPredictionForecastsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionForecasts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionForecastsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionForecastsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionMakers
+
+> ListVaultMarketPredictionMakersResponse ListVaultMarketPredictionMakers(ctx).Execute()
+
+Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionMakers(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionMakers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionMakers`: ListVaultMarketPredictionMakersResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionMakers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionMakersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionMakersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionMarkets
+
+> ListVaultMarketPredictionMarketsResponse ListVaultMarketPredictionMarkets(ctx).Execute()
+
+Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionMarkets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionMarkets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionMarkets`: ListVaultMarketPredictionMarketsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionMarkets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionMarketsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionMarketsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionOrders
+
+> ListVaultMarketPredictionOrdersResponse ListVaultMarketPredictionOrders(ctx).Execute()
+
+Your prediction orders, newest first: working, done or all; practice, live or all.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionOrders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionOrders`: ListVaultMarketPredictionOrdersResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionOrdersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionPositions
+
+> ListVaultMarketPredictionPositionsResponse ListVaultMarketPredictionPositions(ctx).Execute()
+
+Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&L, payout or refund once settled, and the share card if you made one.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionPositions(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionPositions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionPositions`: ListVaultMarketPredictionPositionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionPositions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionPositionsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionPositionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionProposalListed
+
+> ListVaultMarketPredictionProposalListedResponse ListVaultMarketPredictionProposalListed(ctx).Execute()
+
+The markets you proposed that are listed: volume, status and what the creator share has earned you.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionProposalListed(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionProposalListed``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionProposalListed`: ListVaultMarketPredictionProposalListedResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionProposalListed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionProposalListedRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionProposalListedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketPredictionProposals
+
+> ListVaultMarketPredictionProposalsResponse ListVaultMarketPredictionProposals(ctx).Execute()
+
+Your market proposals and where each stands (pending, listed, rejected, withdrawn).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketPredictionProposals(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketPredictionProposals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketPredictionProposals`: ListVaultMarketPredictionProposalsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketPredictionProposals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketPredictionProposalsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketPredictionProposalsResponse**
 
 ### Authorization
 
@@ -26595,6 +38321,189 @@ Other parameters are passed through a pointer to a apiListVaultMarketSetGoalsReq
 [[Back to README]](../README.md)
 
 
+## ListVaultMarketShareAutoInvest
+
+> ListVaultMarketShareAutoInvestResponse ListVaultMarketShareAutoInvest(ctx).Execute()
+
+Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareAutoInvest(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareAutoInvest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareAutoInvest`: ListVaultMarketShareAutoInvestResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareAutoInvest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareAutoInvestRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareAutoInvestResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareAutoInvestRuns
+
+> ListVaultMarketShareAutoInvestRunsResponse ListVaultMarketShareAutoInvestRuns(ctx, id).Execute()
+
+A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareAutoInvestRuns(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareAutoInvestRuns``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareAutoInvestRuns`: ListVaultMarketShareAutoInvestRunsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareAutoInvestRuns`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareAutoInvestRunsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareAutoInvestRunsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareBaskets
+
+> ListVaultMarketShareBasketsResponse ListVaultMarketShareBaskets(ctx).Execute()
+
+Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareBaskets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareBaskets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareBaskets`: ListVaultMarketShareBasketsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareBaskets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareBasketsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareBasketsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListVaultMarketShareCards
 
 > ListVaultMarketShareCardsResponse ListVaultMarketShareCards(ctx).Execute()
@@ -26639,6 +38548,613 @@ Other parameters are passed through a pointer to a apiListVaultMarketShareCardsR
 ### Return type
 
 **ListVaultMarketShareCardsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareDrops
+
+> ListVaultMarketShareDropsResponse ListVaultMarketShareDrops(ctx).Execute()
+
+The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareDrops(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareDrops``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareDrops`: ListVaultMarketShareDropsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareDrops`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareDropsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareDropsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareGifts
+
+> ListVaultMarketShareGiftsResponse ListVaultMarketShareGifts(ctx).Execute()
+
+Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareGifts(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareGifts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareGifts`: ListVaultMarketShareGiftsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareGifts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareGiftsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareGiftsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareOrders
+
+> ListVaultMarketShareOrdersResponse ListVaultMarketShareOrders(ctx).Execute()
+
+Your share-book orders, newest first; `seriesId` and `open` narrow it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareOrders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareOrders`: ListVaultMarketShareOrdersResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareOrdersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareSeries
+
+> ListVaultMarketShareSeriesResponse ListVaultMarketShareSeries(ctx).Execute()
+
+Vault Shares series: open offerings first, then trading, then the rest. `status` and `bookKey` narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareSeries(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareSeries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareSeries`: ListVaultMarketShareSeriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareSeries`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareSeriesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareSeriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareSeryAppraisals
+
+> ListVaultMarketShareSeryAppraisalsResponse ListVaultMarketShareSeryAppraisals(ctx, id).Execute()
+
+The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareSeryAppraisals(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareSeryAppraisals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareSeryAppraisals`: ListVaultMarketShareSeryAppraisalsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareSeryAppraisals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareSeryAppraisalsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSeryAppraisalsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareSeryTape
+
+> ListVaultMarketShareSeryTapeResponse ListVaultMarketShareSeryTape(ctx, id).Execute()
+
+The latest fills on a share book, newest first, with which side made the market.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareSeryTape(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareSeryTape``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareSeryTape`: ListVaultMarketShareSeryTapeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareSeryTape`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareSeryTapeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSeryTapeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareSeryUpdates
+
+> ListVaultMarketShareSeryUpdatesResponse ListVaultMarketShareSeryUpdates(ctx, id).Execute()
+
+The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareSeryUpdates(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareSeryUpdates``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareSeryUpdates`: ListVaultMarketShareSeryUpdatesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareSeryUpdates`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareSeryUpdatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListVaultMarketShareSeryUpdatesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareSubscriptions
+
+> ListVaultMarketShareSubscriptionsResponse ListVaultMarketShareSubscriptions(ctx).Execute()
+
+Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareSubscriptions(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareSubscriptions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareSubscriptions`: ListVaultMarketShareSubscriptionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareSubscriptions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareSubscriptionsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketShareWorld
+
+> ListVaultMarketShareWorldResponse ListVaultMarketShareWorld(ctx).Execute()
+
+The world vault home’s fractional tiles: each item you own a share of, with \"you own 3.2%\".
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketShareWorld(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketShareWorld``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketShareWorld`: ListVaultMarketShareWorldResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketShareWorld`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketShareWorldRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketShareWorldResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketSupplyDeclaredValues
+
+> ListVaultMarketSupplyDeclaredValuesResponse ListVaultMarketSupplyDeclaredValues(ctx).Execute()
+
+What each item's declared value starts at, by your insurance rule (market, cost or price). `inventoryItemIds` comma-separated.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketSupplyDeclaredValues(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketSupplyDeclaredValues``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketSupplyDeclaredValues`: ListVaultMarketSupplyDeclaredValuesResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketSupplyDeclaredValues`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketSupplyDeclaredValuesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketSupplyDeclaredValuesResponse**
 
 ### Authorization
 
@@ -26711,6 +39227,64 @@ Other parameters are passed through a pointer to a apiListVaultMarketSupplyDepos
 [[Back to README]](../README.md)
 
 
+## ListVaultMarketSupplyEligibility
+
+> ListVaultMarketSupplyEligibilityResponse ListVaultMarketSupplyEligibility(ctx).Execute()
+
+Can these inventory items (`inventoryItemIds`, comma-separated, or every item linked to `listingId`) be sent to the vault now? Each says why not.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketSupplyEligibility(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketSupplyEligibility``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketSupplyEligibility`: ListVaultMarketSupplyEligibilityResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketSupplyEligibility`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketSupplyEligibilityRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketSupplyEligibilityResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListVaultMarketSupplyInvites
 
 > ListVaultMarketSupplyInvitesResponse ListVaultMarketSupplyInvites(ctx).Execute()
@@ -26755,6 +39329,64 @@ Other parameters are passed through a pointer to a apiListVaultMarketSupplyInvit
 ### Return type
 
 **ListVaultMarketSupplyInvitesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListVaultMarketSupplyShipments
+
+> ListVaultMarketSupplyShipmentsResponse ListVaultMarketSupplyShipments(ctx).Execute()
+
+Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.ListVaultMarketSupplyShipments(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.ListVaultMarketSupplyShipments``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListVaultMarketSupplyShipments`: ListVaultMarketSupplyShipmentsResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.ListVaultMarketSupplyShipments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListVaultMarketSupplyShipmentsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListVaultMarketSupplyShipmentsResponse**
 
 ### Authorization
 
@@ -27451,6 +40083,64 @@ Other parameters are passed through a pointer to a apiUpdateVaultMarketAlertPref
 ### Return type
 
 **GetVaultMarketAlertPrefResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketAutoBuy
+
+> UpdateVaultMarketAutoBuyResponse UpdateVaultMarketAutoBuy(ctx).Execute()
+
+Set up or change Auto-buy with payouts: `shareBps` (1–50%) and the whole want list in order, each with an optional `maxPriceCents` (fee included).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketAutoBuy(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketAutoBuy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketAutoBuy`: UpdateVaultMarketAutoBuyResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketAutoBuy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketAutoBuyRequest struct via the builder pattern
+
+
+### Return type
+
+**UpdateVaultMarketAutoBuyResponse**
 
 ### Authorization
 
@@ -28172,6 +40862,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateVaultMarketItemSellFrom
+
+> GetVaultMarketItemLocationResponse UpdateVaultMarketItemSellFrom(ctx, inventoryItemId).Execute()
+
+Set which unit a sale of this item ships first: `vault_first`, `warehouse_first` or `cheapest` (to ship); null = your default. Quantities stay the same on every channel: only who ships changes.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    inventoryItemId := "inventoryItemId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketItemSellFrom(context.Background(), inventoryItemId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketItemSellFrom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketItemSellFrom`: GetVaultMarketItemLocationResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketItemSellFrom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**inventoryItemId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketItemSellFromRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetVaultMarketItemLocationResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateVaultMarketLendingElection
 
 > GetVaultMarketLendingElectionResponse UpdateVaultMarketLendingElection(ctx).Execute()
@@ -28404,6 +41161,64 @@ Other parameters are passed through a pointer to a apiUpdateVaultMarketOfferAler
 [[Back to README]](../README.md)
 
 
+## UpdateVaultMarketOptionAutoClose
+
+> GetVaultMarketOptionAutoCloseResponse UpdateVaultMarketOptionAutoClose(ctx).Execute()
+
+Set your auto-close rule: `enabled`, `minutesBefore` (30 to 10080), `onlyItm`, `maxSlippageBps` (0 to 2000).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketOptionAutoClose(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketOptionAutoClose``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketOptionAutoClose`: GetVaultMarketOptionAutoCloseResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketOptionAutoClose`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketOptionAutoCloseRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketOptionAutoCloseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateVaultMarketPaperLeaderboard
 
 > UpdateVaultMarketPaperLeaderboardResponse UpdateVaultMarketPaperLeaderboard(ctx).Execute()
@@ -28448,6 +41263,64 @@ Other parameters are passed through a pointer to a apiUpdateVaultMarketPaperLead
 ### Return type
 
 **UpdateVaultMarketPaperLeaderboardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketPartnerMe
+
+> UpdateVaultMarketPartnerMeResponse UpdateVaultMarketPartnerMe(ctx).Execute()
+
+Your drop-off partnership's finder profile: postal code, opening hours, services and whether you are listed.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketPartnerMe(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketPartnerMe``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketPartnerMe`: UpdateVaultMarketPartnerMeResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketPartnerMe`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketPartnerMeRequest struct via the builder pattern
+
+
+### Return type
+
+**UpdateVaultMarketPartnerMeResponse**
 
 ### Authorization
 
@@ -28515,6 +41388,189 @@ Name | Type | Description  | Notes
 ### Return type
 
 **UpdateVaultMarketPositionExitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketPredictionComment
+
+> CreateVaultMarketPredictionCommentResponse UpdateVaultMarketPredictionComment(ctx, id).Execute()
+
+Edit your comment.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketPredictionComment(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketPredictionComment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketPredictionComment`: CreateVaultMarketPredictionCommentResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketPredictionComment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketPredictionCommentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateVaultMarketPredictionCommentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketPredictionForecaster
+
+> GetVaultMarketPredictionForecasterResponse UpdateVaultMarketPredictionForecaster(ctx).Execute()
+
+Go public under a display name (`public: true`), rename, or go private (`public: false`: nothing is shown again).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketPredictionForecaster(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketPredictionForecaster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketPredictionForecaster`: GetVaultMarketPredictionForecasterResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketPredictionForecaster`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketPredictionForecasterRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionForecasterResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketPredictionLimit
+
+> GetVaultMarketPredictionLimitResponse UpdateVaultMarketPredictionLimit(ctx).Execute()
+
+Set your daily loss limit (`dailyLossLimitCents`, null = none) or exclude yourself (`excludeDays`, `excludedUntil` or \"forever\"). Tighter takes effect at once; looser waits 24 hours.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketPredictionLimit(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketPredictionLimit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketPredictionLimit`: GetVaultMarketPredictionLimitResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketPredictionLimit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketPredictionLimitRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketPredictionLimitResponse**
 
 ### Authorization
 
@@ -28774,6 +41830,64 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetVaultMarketSetGoalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVaultMarketSetting
+
+> GetVaultMarketSettingResponse UpdateVaultMarketSetting(ctx).Execute()
+
+Change your vault defaults; send only the fields you change.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultMarketsApi.UpdateVaultMarketSetting(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultMarketsApi.UpdateVaultMarketSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVaultMarketSetting`: GetVaultMarketSettingResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultMarketsApi.UpdateVaultMarketSetting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateVaultMarketSettingRequest struct via the builder pattern
+
+
+### Return type
+
+**GetVaultMarketSettingResponse**
 
 ### Authorization
 

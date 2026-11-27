@@ -291,29 +291,29 @@ func (v *NullableGetBuyerLiveStreamAuctionResponseData) UnmarshalJSON(src []byte
 // ListBuyerLiveShipmentsItem struct for ListBuyerLiveShipmentsItem
 type ListBuyerLiveShipmentsItem struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
-	Orders []ListBuyerLiveShipmentsItemOrders `json:"orders"`
-	Carrier NullableString `json:"carrier,omitempty"`
-	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
-	LabelUrl NullableString `json:"labelUrl,omitempty"`
 	StreamId string `json:"streamId"`
-	RefundedPostageCents float32 `json:"refundedPostageCents"`
 	StreamTitle string `json:"streamTitle"`
+	Status string `json:"status"`
 	BuyerName NullableString `json:"buyerName,omitempty"`
+	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+	Carrier NullableString `json:"carrier,omitempty"`
+	LabelUrl NullableString `json:"labelUrl,omitempty"`
+	RefundedPostageCents float32 `json:"refundedPostageCents"`
+	Orders []ListBuyerLiveShipmentsItemOrders `json:"orders"`
 }
 
 // NewListBuyerLiveShipmentsItem instantiates a new ListBuyerLiveShipmentsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerLiveShipmentsItem(id string, status string, orders []ListBuyerLiveShipmentsItemOrders, streamId string, refundedPostageCents float32, streamTitle string) *ListBuyerLiveShipmentsItem {
+func NewListBuyerLiveShipmentsItem(id string, streamId string, streamTitle string, status string, refundedPostageCents float32, orders []ListBuyerLiveShipmentsItemOrders) *ListBuyerLiveShipmentsItem {
 	this := ListBuyerLiveShipmentsItem{}
 	this.Id = id
-	this.Status = status
-	this.Orders = orders
 	this.StreamId = streamId
-	this.RefundedPostageCents = refundedPostageCents
 	this.StreamTitle = streamTitle
+	this.Status = status
+	this.RefundedPostageCents = refundedPostageCents
+	this.Orders = orders
 	return &this
 }
 
@@ -349,180 +349,6 @@ func (o *ListBuyerLiveShipmentsItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetStatus returns the Status field value
-func (o *ListBuyerLiveShipmentsItem) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerLiveShipmentsItem) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ListBuyerLiveShipmentsItem) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetOrders returns the Orders field value
-func (o *ListBuyerLiveShipmentsItem) GetOrders() []ListBuyerLiveShipmentsItemOrders {
-	if o == nil {
-		var ret []ListBuyerLiveShipmentsItemOrders
-		return ret
-	}
-
-	return o.Orders
-}
-
-// GetOrdersOk returns a tuple with the Orders field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerLiveShipmentsItem) GetOrdersOk() ([]ListBuyerLiveShipmentsItemOrders, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Orders, true
-}
-
-// SetOrders sets field value
-func (o *ListBuyerLiveShipmentsItem) SetOrders(v []ListBuyerLiveShipmentsItemOrders) {
-	o.Orders = v
-}
-
-// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerLiveShipmentsItem) GetCarrier() string {
-	if o == nil || o.Carrier.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Carrier.Get()
-}
-
-// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerLiveShipmentsItem) GetCarrierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Carrier.Get(), o.Carrier.IsSet()
-}
-
-// HasCarrier returns a boolean if a field has been set.
-func (o *ListBuyerLiveShipmentsItem) HasCarrier() bool {
-	if o != nil && o.Carrier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
-func (o *ListBuyerLiveShipmentsItem) SetCarrier(v string) {
-	o.Carrier.Set(&v)
-}
-// SetCarrierNil sets the value for Carrier to be an explicit nil
-func (o *ListBuyerLiveShipmentsItem) SetCarrierNil() {
-	o.Carrier.Set(nil)
-}
-
-// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
-func (o *ListBuyerLiveShipmentsItem) UnsetCarrier() {
-	o.Carrier.Unset()
-}
-
-// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerLiveShipmentsItem) GetTrackingNumber() string {
-	if o == nil || o.TrackingNumber.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TrackingNumber.Get()
-}
-
-// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerLiveShipmentsItem) GetTrackingNumberOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
-}
-
-// HasTrackingNumber returns a boolean if a field has been set.
-func (o *ListBuyerLiveShipmentsItem) HasTrackingNumber() bool {
-	if o != nil && o.TrackingNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
-func (o *ListBuyerLiveShipmentsItem) SetTrackingNumber(v string) {
-	o.TrackingNumber.Set(&v)
-}
-// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
-func (o *ListBuyerLiveShipmentsItem) SetTrackingNumberNil() {
-	o.TrackingNumber.Set(nil)
-}
-
-// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
-func (o *ListBuyerLiveShipmentsItem) UnsetTrackingNumber() {
-	o.TrackingNumber.Unset()
-}
-
-// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerLiveShipmentsItem) GetLabelUrl() string {
-	if o == nil || o.LabelUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LabelUrl.Get()
-}
-
-// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerLiveShipmentsItem) GetLabelUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
-}
-
-// HasLabelUrl returns a boolean if a field has been set.
-func (o *ListBuyerLiveShipmentsItem) HasLabelUrl() bool {
-	if o != nil && o.LabelUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
-func (o *ListBuyerLiveShipmentsItem) SetLabelUrl(v string) {
-	o.LabelUrl.Set(&v)
-}
-// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
-func (o *ListBuyerLiveShipmentsItem) SetLabelUrlNil() {
-	o.LabelUrl.Set(nil)
-}
-
-// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
-func (o *ListBuyerLiveShipmentsItem) UnsetLabelUrl() {
-	o.LabelUrl.Unset()
-}
-
 // GetStreamId returns the StreamId field value
 func (o *ListBuyerLiveShipmentsItem) GetStreamId() string {
 	if o == nil {
@@ -547,30 +373,6 @@ func (o *ListBuyerLiveShipmentsItem) SetStreamId(v string) {
 	o.StreamId = v
 }
 
-// GetRefundedPostageCents returns the RefundedPostageCents field value
-func (o *ListBuyerLiveShipmentsItem) GetRefundedPostageCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RefundedPostageCents
-}
-
-// GetRefundedPostageCentsOk returns a tuple with the RefundedPostageCents field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerLiveShipmentsItem) GetRefundedPostageCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RefundedPostageCents, true
-}
-
-// SetRefundedPostageCents sets field value
-func (o *ListBuyerLiveShipmentsItem) SetRefundedPostageCents(v float32) {
-	o.RefundedPostageCents = v
-}
-
 // GetStreamTitle returns the StreamTitle field value
 func (o *ListBuyerLiveShipmentsItem) GetStreamTitle() string {
 	if o == nil {
@@ -593,6 +395,30 @@ func (o *ListBuyerLiveShipmentsItem) GetStreamTitleOk() (*string, bool) {
 // SetStreamTitle sets field value
 func (o *ListBuyerLiveShipmentsItem) SetStreamTitle(v string) {
 	o.StreamTitle = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListBuyerLiveShipmentsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerLiveShipmentsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListBuyerLiveShipmentsItem) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetBuyerName returns the BuyerName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -637,37 +463,211 @@ func (o *ListBuyerLiveShipmentsItem) UnsetBuyerName() {
 	o.BuyerName.Unset()
 }
 
+// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerLiveShipmentsItem) GetTrackingNumber() string {
+	if o == nil || o.TrackingNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingNumber.Get()
+}
+
+// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerLiveShipmentsItem) GetTrackingNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
+}
+
+// HasTrackingNumber returns a boolean if a field has been set.
+func (o *ListBuyerLiveShipmentsItem) HasTrackingNumber() bool {
+	if o != nil && o.TrackingNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
+func (o *ListBuyerLiveShipmentsItem) SetTrackingNumber(v string) {
+	o.TrackingNumber.Set(&v)
+}
+// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
+func (o *ListBuyerLiveShipmentsItem) SetTrackingNumberNil() {
+	o.TrackingNumber.Set(nil)
+}
+
+// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+func (o *ListBuyerLiveShipmentsItem) UnsetTrackingNumber() {
+	o.TrackingNumber.Unset()
+}
+
+// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerLiveShipmentsItem) GetCarrier() string {
+	if o == nil || o.Carrier.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Carrier.Get()
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerLiveShipmentsItem) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Carrier.Get(), o.Carrier.IsSet()
+}
+
+// HasCarrier returns a boolean if a field has been set.
+func (o *ListBuyerLiveShipmentsItem) HasCarrier() bool {
+	if o != nil && o.Carrier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
+func (o *ListBuyerLiveShipmentsItem) SetCarrier(v string) {
+	o.Carrier.Set(&v)
+}
+// SetCarrierNil sets the value for Carrier to be an explicit nil
+func (o *ListBuyerLiveShipmentsItem) SetCarrierNil() {
+	o.Carrier.Set(nil)
+}
+
+// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+func (o *ListBuyerLiveShipmentsItem) UnsetCarrier() {
+	o.Carrier.Unset()
+}
+
+// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerLiveShipmentsItem) GetLabelUrl() string {
+	if o == nil || o.LabelUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LabelUrl.Get()
+}
+
+// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerLiveShipmentsItem) GetLabelUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
+}
+
+// HasLabelUrl returns a boolean if a field has been set.
+func (o *ListBuyerLiveShipmentsItem) HasLabelUrl() bool {
+	if o != nil && o.LabelUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
+func (o *ListBuyerLiveShipmentsItem) SetLabelUrl(v string) {
+	o.LabelUrl.Set(&v)
+}
+// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
+func (o *ListBuyerLiveShipmentsItem) SetLabelUrlNil() {
+	o.LabelUrl.Set(nil)
+}
+
+// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
+func (o *ListBuyerLiveShipmentsItem) UnsetLabelUrl() {
+	o.LabelUrl.Unset()
+}
+
+// GetRefundedPostageCents returns the RefundedPostageCents field value
+func (o *ListBuyerLiveShipmentsItem) GetRefundedPostageCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RefundedPostageCents
+}
+
+// GetRefundedPostageCentsOk returns a tuple with the RefundedPostageCents field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerLiveShipmentsItem) GetRefundedPostageCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RefundedPostageCents, true
+}
+
+// SetRefundedPostageCents sets field value
+func (o *ListBuyerLiveShipmentsItem) SetRefundedPostageCents(v float32) {
+	o.RefundedPostageCents = v
+}
+
+// GetOrders returns the Orders field value
+func (o *ListBuyerLiveShipmentsItem) GetOrders() []ListBuyerLiveShipmentsItemOrders {
+	if o == nil {
+		var ret []ListBuyerLiveShipmentsItemOrders
+		return ret
+	}
+
+	return o.Orders
+}
+
+// GetOrdersOk returns a tuple with the Orders field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerLiveShipmentsItem) GetOrdersOk() ([]ListBuyerLiveShipmentsItemOrders, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Orders, true
+}
+
+// SetOrders sets field value
+func (o *ListBuyerLiveShipmentsItem) SetOrders(v []ListBuyerLiveShipmentsItemOrders) {
+	o.Orders = v
+}
+
 func (o ListBuyerLiveShipmentsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["streamId"] = o.StreamId
 	}
 	if true {
-		toSerialize["orders"] = o.Orders
+		toSerialize["streamTitle"] = o.StreamTitle
 	}
-	if o.Carrier.IsSet() {
-		toSerialize["carrier"] = o.Carrier.Get()
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.BuyerName.IsSet() {
+		toSerialize["buyerName"] = o.BuyerName.Get()
 	}
 	if o.TrackingNumber.IsSet() {
 		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	if o.Carrier.IsSet() {
+		toSerialize["carrier"] = o.Carrier.Get()
 	}
 	if o.LabelUrl.IsSet() {
 		toSerialize["labelUrl"] = o.LabelUrl.Get()
 	}
 	if true {
-		toSerialize["streamId"] = o.StreamId
-	}
-	if true {
 		toSerialize["refundedPostageCents"] = o.RefundedPostageCents
 	}
 	if true {
-		toSerialize["streamTitle"] = o.StreamTitle
-	}
-	if o.BuyerName.IsSet() {
-		toSerialize["buyerName"] = o.BuyerName.Get()
+		toSerialize["orders"] = o.Orders
 	}
 	return json.Marshal(toSerialize)
 }
@@ -711,8 +711,8 @@ func (v *NullableListBuyerLiveShipmentsItem) UnmarshalJSON(src []byte) error {
 // ListBuyerLiveShipmentsItemOrders struct for ListBuyerLiveShipmentsItemOrders
 type ListBuyerLiveShipmentsItemOrders struct {
 	OrderId string `json:"orderId"`
-	Title NullableString `json:"title,omitempty"`
 	PurchaseId string `json:"purchaseId"`
+	Title NullableString `json:"title,omitempty"`
 	ShippingCents float32 `json:"shippingCents"`
 	OrderStatus NullableString `json:"orderStatus,omitempty"`
 }
@@ -761,6 +761,30 @@ func (o *ListBuyerLiveShipmentsItemOrders) SetOrderId(v string) {
 	o.OrderId = v
 }
 
+// GetPurchaseId returns the PurchaseId field value
+func (o *ListBuyerLiveShipmentsItemOrders) GetPurchaseId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PurchaseId
+}
+
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerLiveShipmentsItemOrders) GetPurchaseIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PurchaseId, true
+}
+
+// SetPurchaseId sets field value
+func (o *ListBuyerLiveShipmentsItemOrders) SetPurchaseId(v string) {
+	o.PurchaseId = v
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerLiveShipmentsItemOrders) GetTitle() string {
 	if o == nil || o.Title.Get() == nil {
@@ -801,30 +825,6 @@ func (o *ListBuyerLiveShipmentsItemOrders) SetTitleNil() {
 // UnsetTitle ensures that no value is present for Title, not even an explicit nil
 func (o *ListBuyerLiveShipmentsItemOrders) UnsetTitle() {
 	o.Title.Unset()
-}
-
-// GetPurchaseId returns the PurchaseId field value
-func (o *ListBuyerLiveShipmentsItemOrders) GetPurchaseId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PurchaseId
-}
-
-// GetPurchaseIdOk returns a tuple with the PurchaseId field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerLiveShipmentsItemOrders) GetPurchaseIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PurchaseId, true
-}
-
-// SetPurchaseId sets field value
-func (o *ListBuyerLiveShipmentsItemOrders) SetPurchaseId(v string) {
-	o.PurchaseId = v
 }
 
 // GetShippingCents returns the ShippingCents field value
@@ -898,11 +898,11 @@ func (o ListBuyerLiveShipmentsItemOrders) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["orderId"] = o.OrderId
 	}
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
-	}
 	if true {
 		toSerialize["purchaseId"] = o.PurchaseId
+	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
 	}
 	if true {
 		toSerialize["shippingCents"] = o.ShippingCents
@@ -1116,13 +1116,13 @@ func (v *NullableListBuyerLiveShipmentsResponse) UnmarshalJSON(src []byte) error
 
 // ListBuyerLiveStreamLineupItem struct for ListBuyerLiveStreamLineupItem
 type ListBuyerLiveStreamLineupItem struct {
-	Available bool `json:"available"`
-	Title NullableString `json:"title,omitempty"`
 	PlatformListingId string `json:"platformListingId"`
 	Position float32 `json:"position"`
 	Slug NullableString `json:"slug,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	PriceCents float32 `json:"priceCents"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Available bool `json:"available"`
 	Pinned bool `json:"pinned"`
 }
 
@@ -1130,12 +1130,12 @@ type ListBuyerLiveStreamLineupItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerLiveStreamLineupItem(available bool, platformListingId string, position float32, priceCents float32, pinned bool) *ListBuyerLiveStreamLineupItem {
+func NewListBuyerLiveStreamLineupItem(platformListingId string, position float32, priceCents float32, available bool, pinned bool) *ListBuyerLiveStreamLineupItem {
 	this := ListBuyerLiveStreamLineupItem{}
-	this.Available = available
 	this.PlatformListingId = platformListingId
 	this.Position = position
 	this.PriceCents = priceCents
+	this.Available = available
 	this.Pinned = pinned
 	return &this
 }
@@ -1146,72 +1146,6 @@ func NewListBuyerLiveStreamLineupItem(available bool, platformListingId string, 
 func NewListBuyerLiveStreamLineupItemWithDefaults() *ListBuyerLiveStreamLineupItem {
 	this := ListBuyerLiveStreamLineupItem{}
 	return &this
-}
-
-// GetAvailable returns the Available field value
-func (o *ListBuyerLiveStreamLineupItem) GetAvailable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Available
-}
-
-// GetAvailableOk returns a tuple with the Available field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerLiveStreamLineupItem) GetAvailableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Available, true
-}
-
-// SetAvailable sets field value
-func (o *ListBuyerLiveStreamLineupItem) SetAvailable(v bool) {
-	o.Available = v
-}
-
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerLiveStreamLineupItem) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Title.Get()
-}
-
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerLiveStreamLineupItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Title.Get(), o.Title.IsSet()
-}
-
-// HasTitle returns a boolean if a field has been set.
-func (o *ListBuyerLiveStreamLineupItem) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
-func (o *ListBuyerLiveStreamLineupItem) SetTitle(v string) {
-	o.Title.Set(&v)
-}
-// SetTitleNil sets the value for Title to be an explicit nil
-func (o *ListBuyerLiveStreamLineupItem) SetTitleNil() {
-	o.Title.Set(nil)
-}
-
-// UnsetTitle ensures that no value is present for Title, not even an explicit nil
-func (o *ListBuyerLiveStreamLineupItem) UnsetTitle() {
-	o.Title.Unset()
 }
 
 // GetPlatformListingId returns the PlatformListingId field value
@@ -1304,6 +1238,48 @@ func (o *ListBuyerLiveStreamLineupItem) UnsetSlug() {
 	o.Slug.Unset()
 }
 
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerLiveStreamLineupItem) GetTitle() string {
+	if o == nil || o.Title.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title.Get()
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerLiveStreamLineupItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Title.Get(), o.Title.IsSet()
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *ListBuyerLiveStreamLineupItem) HasTitle() bool {
+	if o != nil && o.Title.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+func (o *ListBuyerLiveStreamLineupItem) SetTitle(v string) {
+	o.Title.Set(&v)
+}
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *ListBuyerLiveStreamLineupItem) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *ListBuyerLiveStreamLineupItem) UnsetTitle() {
+	o.Title.Unset()
+}
+
 // GetPriceCents returns the PriceCents field value
 func (o *ListBuyerLiveStreamLineupItem) GetPriceCents() float32 {
 	if o == nil {
@@ -1370,6 +1346,30 @@ func (o *ListBuyerLiveStreamLineupItem) UnsetImageUrl() {
 	o.ImageUrl.Unset()
 }
 
+// GetAvailable returns the Available field value
+func (o *ListBuyerLiveStreamLineupItem) GetAvailable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerLiveStreamLineupItem) GetAvailableOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Available, true
+}
+
+// SetAvailable sets field value
+func (o *ListBuyerLiveStreamLineupItem) SetAvailable(v bool) {
+	o.Available = v
+}
+
 // GetPinned returns the Pinned field value
 func (o *ListBuyerLiveStreamLineupItem) GetPinned() bool {
 	if o == nil {
@@ -1397,12 +1397,6 @@ func (o *ListBuyerLiveStreamLineupItem) SetPinned(v bool) {
 func (o ListBuyerLiveStreamLineupItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["available"] = o.Available
-	}
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
-	}
-	if true {
 		toSerialize["platformListingId"] = o.PlatformListingId
 	}
 	if true {
@@ -1411,11 +1405,17 @@ func (o ListBuyerLiveStreamLineupItem) MarshalJSON() ([]byte, error) {
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
 	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
+	}
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
 	}
 	if o.ImageUrl.IsSet() {
 		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["available"] = o.Available
 	}
 	if true {
 		toSerialize["pinned"] = o.Pinned

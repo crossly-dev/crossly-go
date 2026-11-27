@@ -989,7 +989,9 @@ func (r ApiCreateInventoryBulkQuantityRequest) Execute() (*CreateInventoryBulkQu
 }
 
 /*
-CreateInventoryBulkQuantity Set / add / subtract stock across many items, syncing live listings.
+CreateInventoryBulkQuantity Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+
+Two bodies. {ids, mode: "set"|"increase"|"decrease", value, syncMarketplaces?} applies one value to every id. {mode: "set", items: [{id, quantity}], syncMarketplaces?} sets each item to its own quantity (1-5000 items, each id once; a repeated id, more than 5000 items, or a body mixing items with ids/value is a 400 naming both shapes). The value is the AVAILABLE stock (reserved units of open orders are kept). Stock changes at once; live listings are pushed in the background against the returned bulkJobId (anything dropping to 0 is delisted). Response: {affected, skipped, bulkJobId?}: skipped = ids that did not move (already at that number, or not yours). Send an Idempotency-Key to retry safely.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateInventoryBulkQuantityRequest
@@ -1017,6 +1019,163 @@ func (a *InventoryApiService) CreateInventoryBulkQuantityExecute(r ApiCreateInve
 	}
 
 	localVarPath := localBasePath + "/v1/inventory/bulk-quantity"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateInventoryBulkRestoreRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+}
+
+
+func (r ApiCreateInventoryBulkRestoreRequest) Execute() (*CreateInventoryBulkRestoreResponse, *http.Response, error) {
+	return r.ApiService.CreateInventoryBulkRestoreExecute(r)
+}
+
+/*
+CreateInventoryBulkRestore Restore archived inventory items (status returns to active, or sold_out when no stock).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateInventoryBulkRestoreRequest
+*/
+func (a *InventoryApiService) CreateInventoryBulkRestore(ctx context.Context) ApiCreateInventoryBulkRestoreRequest {
+	return ApiCreateInventoryBulkRestoreRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return CreateInventoryBulkRestoreResponse
+func (a *InventoryApiService) CreateInventoryBulkRestoreExecute(r ApiCreateInventoryBulkRestoreRequest) (*CreateInventoryBulkRestoreResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateInventoryBulkRestoreResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateInventoryBulkRestore")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/inventory/bulk-restore"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1616,7 +1775,7 @@ type ApiCreateInventoryLabelRenameRequest struct {
 }
 
 
-func (r ApiCreateInventoryLabelRenameRequest) Execute() (*CreateInventoryLabelRenameResponse, *http.Response, error) {
+func (r ApiCreateInventoryLabelRenameRequest) Execute() (*UpdatedResponse, *http.Response, error) {
 	return r.ApiService.CreateInventoryLabelRenameExecute(r)
 }
 
@@ -1634,13 +1793,13 @@ func (a *InventoryApiService) CreateInventoryLabelRename(ctx context.Context) Ap
 }
 
 // Execute executes the request
-//  @return CreateInventoryLabelRenameResponse
-func (a *InventoryApiService) CreateInventoryLabelRenameExecute(r ApiCreateInventoryLabelRenameRequest) (*CreateInventoryLabelRenameResponse, *http.Response, error) {
+//  @return UpdatedResponse
+func (a *InventoryApiService) CreateInventoryLabelRenameExecute(r ApiCreateInventoryLabelRenameRequest) (*UpdatedResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateInventoryLabelRenameResponse
+		localVarReturnValue  *UpdatedResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateInventoryLabelRename")
@@ -2742,7 +2901,7 @@ type ApiCreateSpatialPropertyLeaseAcceptRequest struct {
 }
 
 
-func (r ApiCreateSpatialPropertyLeaseAcceptRequest) Execute() (*CreateSpatialPropertyLeaseAcceptResponse, *http.Response, error) {
+func (r ApiCreateSpatialPropertyLeaseAcceptRequest) Execute() (*CreateWorldMarketPlotRentResponse, *http.Response, error) {
 	return r.ApiService.CreateSpatialPropertyLeaseAcceptExecute(r)
 }
 
@@ -2764,13 +2923,13 @@ func (a *InventoryApiService) CreateSpatialPropertyLeaseAccept(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return CreateSpatialPropertyLeaseAcceptResponse
-func (a *InventoryApiService) CreateSpatialPropertyLeaseAcceptExecute(r ApiCreateSpatialPropertyLeaseAcceptRequest) (*CreateSpatialPropertyLeaseAcceptResponse, *http.Response, error) {
+//  @return CreateWorldMarketPlotRentResponse
+func (a *InventoryApiService) CreateSpatialPropertyLeaseAcceptExecute(r ApiCreateSpatialPropertyLeaseAcceptRequest) (*CreateWorldMarketPlotRentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateSpatialPropertyLeaseAcceptResponse
+		localVarReturnValue  *CreateWorldMarketPlotRentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateSpatialPropertyLeaseAccept")
@@ -2912,7 +3071,7 @@ func (r ApiCreateSpatialPropertyLeaseEndRequest) Execute() (*CreateSpatialProper
 /*
 CreateSpatialPropertyLeaseEnd End a lease (owner or tenant).
 
-The tenant's shop gets a free Main Street address again.
+The tenant's showroom leaves the plot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -4864,6 +5023,593 @@ func (a *InventoryApiService) DeleteSpatialStreetPlotExecute(r ApiDeleteSpatialS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type InventoryApiGetAnalyticInventoryRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+	range_ *string
+	from *string
+	to *string
+	compare *string
+	cmpFrom *string
+	cmpTo *string
+	labels *string
+	platforms *string
+	category *string
+	brand *string
+	tz *string
+	maturity *int32
+}
+
+// Reporting window. Default 30d. custom needs from and to.
+func (r InventoryApiGetAnalyticInventoryRequest) Range_(range_ string) InventoryApiGetAnalyticInventoryRequest {
+	r.range_ = &range_
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r InventoryApiGetAnalyticInventoryRequest) From(from string) InventoryApiGetAnalyticInventoryRequest {
+	r.from = &from
+	return r
+}
+// YYYY-MM-DD, inclusive, in tz. Only with range&#x3D;custom.
+func (r InventoryApiGetAnalyticInventoryRequest) To(to string) InventoryApiGetAnalyticInventoryRequest {
+	r.to = &to
+	return r
+}
+// Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+func (r InventoryApiGetAnalyticInventoryRequest) Compare(compare string) InventoryApiGetAnalyticInventoryRequest {
+	r.compare = &compare
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r InventoryApiGetAnalyticInventoryRequest) CmpFrom(cmpFrom string) InventoryApiGetAnalyticInventoryRequest {
+	r.cmpFrom = &cmpFrom
+	return r
+}
+// YYYY-MM-DD. Only with compare&#x3D;custom.
+func (r InventoryApiGetAnalyticInventoryRequest) CmpTo(cmpTo string) InventoryApiGetAnalyticInventoryRequest {
+	r.cmpTo = &cmpTo
+	return r
+}
+// Comma-separated inventory labels (any of them).
+func (r InventoryApiGetAnalyticInventoryRequest) Labels(labels string) InventoryApiGetAnalyticInventoryRequest {
+	r.labels = &labels
+	return r
+}
+// Comma-separated platform ids.
+func (r InventoryApiGetAnalyticInventoryRequest) Platforms(platforms string) InventoryApiGetAnalyticInventoryRequest {
+	r.platforms = &platforms
+	return r
+}
+// Canonical main-category key.
+func (r InventoryApiGetAnalyticInventoryRequest) Category(category string) InventoryApiGetAnalyticInventoryRequest {
+	r.category = &category
+	return r
+}
+// Brand name.
+func (r InventoryApiGetAnalyticInventoryRequest) Brand(brand string) InventoryApiGetAnalyticInventoryRequest {
+	r.brand = &brand
+	return r
+}
+// IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+func (r InventoryApiGetAnalyticInventoryRequest) Tz(tz string) InventoryApiGetAnalyticInventoryRequest {
+	r.tz = &tz
+	return r
+}
+// Days an item has to sell within to count as sold in the cohort. Default 30.
+func (r InventoryApiGetAnalyticInventoryRequest) Maturity(maturity int32) InventoryApiGetAnalyticInventoryRequest {
+	r.maturity = &maturity
+	return r
+}
+
+func (r InventoryApiGetAnalyticInventoryRequest) Execute() (*GetAnalyticInventoryResponse, *http.Response, error) {
+	return r.ApiService.GetAnalyticInventoryExecute(r)
+}
+
+/*
+GetAnalyticInventory Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return InventoryApiGetAnalyticInventoryRequest
+*/
+func (a *InventoryApiService) GetAnalyticInventory(ctx context.Context) InventoryApiGetAnalyticInventoryRequest {
+	return InventoryApiGetAnalyticInventoryRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAnalyticInventoryResponse
+func (a *InventoryApiService) GetAnalyticInventoryExecute(r InventoryApiGetAnalyticInventoryRequest) (*GetAnalyticInventoryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAnalyticInventoryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetAnalyticInventory")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/analytics/inventory"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.range_ != nil {
+		localVarQueryParams.Add("range", parameterToString(*r.range_, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.compare != nil {
+		localVarQueryParams.Add("compare", parameterToString(*r.compare, ""))
+	}
+	if r.cmpFrom != nil {
+		localVarQueryParams.Add("cmpFrom", parameterToString(*r.cmpFrom, ""))
+	}
+	if r.cmpTo != nil {
+		localVarQueryParams.Add("cmpTo", parameterToString(*r.cmpTo, ""))
+	}
+	if r.labels != nil {
+		localVarQueryParams.Add("labels", parameterToString(*r.labels, ""))
+	}
+	if r.platforms != nil {
+		localVarQueryParams.Add("platforms", parameterToString(*r.platforms, ""))
+	}
+	if r.category != nil {
+		localVarQueryParams.Add("category", parameterToString(*r.category, ""))
+	}
+	if r.brand != nil {
+		localVarQueryParams.Add("brand", parameterToString(*r.brand, ""))
+	}
+	if r.tz != nil {
+		localVarQueryParams.Add("tz", parameterToString(*r.tz, ""))
+	}
+	if r.maturity != nil {
+		localVarQueryParams.Add("maturity", parameterToString(*r.maturity, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetGameEventSummaryRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+	eventId string
+}
+
+
+func (r ApiGetGameEventSummaryRequest) Execute() (*GetGameEventSummaryResponse, *http.Response, error) {
+	return r.ApiService.GetGameEventSummaryExecute(r)
+}
+
+/*
+GetGameEventSummary The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param eventId
+ @return ApiGetGameEventSummaryRequest
+*/
+func (a *InventoryApiService) GetGameEventSummary(ctx context.Context, eventId string) ApiGetGameEventSummaryRequest {
+	return ApiGetGameEventSummaryRequest{
+		ApiService: a,
+		ctx: ctx,
+		eventId: eventId,
+	}
+}
+
+// Execute executes the request
+//  @return GetGameEventSummaryResponse
+func (a *InventoryApiService) GetGameEventSummaryExecute(r ApiGetGameEventSummaryRequest) (*GetGameEventSummaryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetGameEventSummaryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetGameEventSummary")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/games/events/{eventId}/summary"
+	localVarPath = strings.Replace(localVarPath, "{"+"eventId"+"}", url.PathEscape(parameterToString(r.eventId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetGameHuntBuildRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+	id string
+}
+
+
+func (r ApiGetGameHuntBuildRequest) Execute() (*GetGameHuntBuildResponse, *http.Response, error) {
+	return r.ApiService.GetGameHuntBuildExecute(r)
+}
+
+/*
+GetGameHuntBuild One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiGetGameHuntBuildRequest
+*/
+func (a *InventoryApiService) GetGameHuntBuild(ctx context.Context, id string) ApiGetGameHuntBuildRequest {
+	return ApiGetGameHuntBuildRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return GetGameHuntBuildResponse
+func (a *InventoryApiService) GetGameHuntBuildExecute(r ApiGetGameHuntBuildRequest) (*GetGameHuntBuildResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetGameHuntBuildResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetGameHuntBuild")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/games/hunts/{id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetGameLeaderboardRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
@@ -5511,7 +6257,7 @@ func (r ApiGetInventoryAgingRequest) Execute() (*GetInventoryAgingResponse, *htt
 }
 
 /*
-GetInventoryAging Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+GetInventoryAging Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetInventoryAgingRequest
@@ -6300,7 +7046,7 @@ func (r ApiGetInventorySellThroughRequest) Execute() (*GetInventorySellThroughRe
 }
 
 /*
-GetInventorySellThrough Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+GetInventorySellThrough Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetInventorySellThroughRequest
@@ -6623,7 +7369,7 @@ func (r ApiGetInventoryValueHistoryRequest) Execute() (*GetInventoryValueHistory
 }
 
 /*
-GetInventoryValueHistory Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+GetInventoryValueHistory Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetInventoryValueHistoryRequest
@@ -9690,6 +10436,163 @@ func (a *InventoryApiService) GetSpatialStreetPlotQuoteExecute(r ApiGetSpatialSt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetWorldPulseRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+}
+
+
+func (r ApiGetWorldPulseRequest) Execute() (*GetWorldPulseResponse, *http.Response, error) {
+	return r.ApiService.GetWorldPulseExecute(r)
+}
+
+/*
+GetWorldPulse Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetWorldPulseRequest
+*/
+func (a *InventoryApiService) GetWorldPulse(ctx context.Context) ApiGetWorldPulseRequest {
+	return ApiGetWorldPulseRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetWorldPulseResponse
+func (a *InventoryApiService) GetWorldPulseExecute(r ApiGetWorldPulseRequest) (*GetWorldPulseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetWorldPulseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetWorldPulse")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/world/pulse"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetWorldRoomFunnelRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
@@ -10669,6 +11572,163 @@ func (a *InventoryApiService) ListGameBreakUpcomingExecute(r ApiListGameBreakUpc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiListGameHuntMineRequest struct {
+	ctx context.Context
+	ApiService *InventoryApiService
+}
+
+
+func (r ApiListGameHuntMineRequest) Execute() (*ListGameHuntMineResponse, *http.Response, error) {
+	return r.ApiService.ListGameHuntMineExecute(r)
+}
+
+/*
+ListGameHuntMine Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListGameHuntMineRequest
+*/
+func (a *InventoryApiService) ListGameHuntMine(ctx context.Context) ApiListGameHuntMineRequest {
+	return ApiListGameHuntMineRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ListGameHuntMineResponse
+func (a *InventoryApiService) ListGameHuntMineExecute(r ApiListGameHuntMineRequest) (*ListGameHuntMineResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListGameHuntMineResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.ListGameHuntMine")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/games/hunts/mine"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListGameHuntsRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
@@ -11315,6 +12375,8 @@ type ApiListInventoryRequest struct {
 	kind *string
 	platforms *string
 	platformMode *string
+	sku *string
+	updatedSince *time.Time
 }
 
 func (r ApiListInventoryRequest) Page(page int32) ApiListInventoryRequest {
@@ -11346,6 +12408,16 @@ func (r ApiListInventoryRequest) Platforms(platforms string) ApiListInventoryReq
 // \&quot;not_listed\&quot; inverts &#x60;platforms&#x60;: items live on none of them. Default \&quot;listed\&quot;.
 func (r ApiListInventoryRequest) PlatformMode(platformMode string) ApiListInventoryRequest {
 	r.platformMode = &platformMode
+	return r
+}
+// Exact SKU match: look up the row a supplier product maps to.
+func (r ApiListInventoryRequest) Sku(sku string) ApiListInventoryRequest {
+	r.sku = &sku
+	return r
+}
+// Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw.
+func (r ApiListInventoryRequest) UpdatedSince(updatedSince time.Time) ApiListInventoryRequest {
+	r.updatedSince = &updatedSince
 	return r
 }
 
@@ -11407,6 +12479,12 @@ func (a *InventoryApiService) ListInventoryExecute(r ApiListInventoryRequest) (*
 	}
 	if r.platformMode != nil {
 		localVarQueryParams.Add("platformMode", parameterToString(*r.platformMode, ""))
+	}
+	if r.sku != nil {
+		localVarQueryParams.Add("sku", parameterToString(*r.sku, ""))
+	}
+	if r.updatedSince != nil {
+		localVarQueryParams.Add("updatedSince", parameterToString(*r.updatedSince, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

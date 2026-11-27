@@ -15,10 +15,989 @@ import (
 	"time"
 )
 
+// CreateMagicAutoDecisionUndoResponse struct for CreateMagicAutoDecisionUndoResponse
+type CreateMagicAutoDecisionUndoResponse struct {
+	Decision ListMagicAutoRunDecisionsItem `json:"decision"`
+	DeletedDraftId NullableString `json:"deletedDraftId,omitempty"`
+	DeletedListingId NullableString `json:"deletedListingId,omitempty"`
+	// The keys to pre-mark in the deck after the undo.
+	SuggestedKeys []string `json:"suggestedKeys"`
+}
+
+// NewCreateMagicAutoDecisionUndoResponse instantiates a new CreateMagicAutoDecisionUndoResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicAutoDecisionUndoResponse(decision ListMagicAutoRunDecisionsItem, suggestedKeys []string) *CreateMagicAutoDecisionUndoResponse {
+	this := CreateMagicAutoDecisionUndoResponse{}
+	this.Decision = decision
+	this.SuggestedKeys = suggestedKeys
+	return &this
+}
+
+// NewCreateMagicAutoDecisionUndoResponseWithDefaults instantiates a new CreateMagicAutoDecisionUndoResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicAutoDecisionUndoResponseWithDefaults() *CreateMagicAutoDecisionUndoResponse {
+	this := CreateMagicAutoDecisionUndoResponse{}
+	return &this
+}
+
+// GetDecision returns the Decision field value
+func (o *CreateMagicAutoDecisionUndoResponse) GetDecision() ListMagicAutoRunDecisionsItem {
+	if o == nil {
+		var ret ListMagicAutoRunDecisionsItem
+		return ret
+	}
+
+	return o.Decision
+}
+
+// GetDecisionOk returns a tuple with the Decision field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoDecisionUndoResponse) GetDecisionOk() (*ListMagicAutoRunDecisionsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Decision, true
+}
+
+// SetDecision sets field value
+func (o *CreateMagicAutoDecisionUndoResponse) SetDecision(v ListMagicAutoRunDecisionsItem) {
+	o.Decision = v
+}
+
+// GetDeletedDraftId returns the DeletedDraftId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoDecisionUndoResponse) GetDeletedDraftId() string {
+	if o == nil || o.DeletedDraftId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedDraftId.Get()
+}
+
+// GetDeletedDraftIdOk returns a tuple with the DeletedDraftId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoDecisionUndoResponse) GetDeletedDraftIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeletedDraftId.Get(), o.DeletedDraftId.IsSet()
+}
+
+// HasDeletedDraftId returns a boolean if a field has been set.
+func (o *CreateMagicAutoDecisionUndoResponse) HasDeletedDraftId() bool {
+	if o != nil && o.DeletedDraftId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedDraftId gets a reference to the given NullableString and assigns it to the DeletedDraftId field.
+func (o *CreateMagicAutoDecisionUndoResponse) SetDeletedDraftId(v string) {
+	o.DeletedDraftId.Set(&v)
+}
+// SetDeletedDraftIdNil sets the value for DeletedDraftId to be an explicit nil
+func (o *CreateMagicAutoDecisionUndoResponse) SetDeletedDraftIdNil() {
+	o.DeletedDraftId.Set(nil)
+}
+
+// UnsetDeletedDraftId ensures that no value is present for DeletedDraftId, not even an explicit nil
+func (o *CreateMagicAutoDecisionUndoResponse) UnsetDeletedDraftId() {
+	o.DeletedDraftId.Unset()
+}
+
+// GetDeletedListingId returns the DeletedListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoDecisionUndoResponse) GetDeletedListingId() string {
+	if o == nil || o.DeletedListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedListingId.Get()
+}
+
+// GetDeletedListingIdOk returns a tuple with the DeletedListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoDecisionUndoResponse) GetDeletedListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeletedListingId.Get(), o.DeletedListingId.IsSet()
+}
+
+// HasDeletedListingId returns a boolean if a field has been set.
+func (o *CreateMagicAutoDecisionUndoResponse) HasDeletedListingId() bool {
+	if o != nil && o.DeletedListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedListingId gets a reference to the given NullableString and assigns it to the DeletedListingId field.
+func (o *CreateMagicAutoDecisionUndoResponse) SetDeletedListingId(v string) {
+	o.DeletedListingId.Set(&v)
+}
+// SetDeletedListingIdNil sets the value for DeletedListingId to be an explicit nil
+func (o *CreateMagicAutoDecisionUndoResponse) SetDeletedListingIdNil() {
+	o.DeletedListingId.Set(nil)
+}
+
+// UnsetDeletedListingId ensures that no value is present for DeletedListingId, not even an explicit nil
+func (o *CreateMagicAutoDecisionUndoResponse) UnsetDeletedListingId() {
+	o.DeletedListingId.Unset()
+}
+
+// GetSuggestedKeys returns the SuggestedKeys field value
+func (o *CreateMagicAutoDecisionUndoResponse) GetSuggestedKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.SuggestedKeys
+}
+
+// GetSuggestedKeysOk returns a tuple with the SuggestedKeys field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoDecisionUndoResponse) GetSuggestedKeysOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SuggestedKeys, true
+}
+
+// SetSuggestedKeys sets field value
+func (o *CreateMagicAutoDecisionUndoResponse) SetSuggestedKeys(v []string) {
+	o.SuggestedKeys = v
+}
+
+func (o CreateMagicAutoDecisionUndoResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["decision"] = o.Decision
+	}
+	if o.DeletedDraftId.IsSet() {
+		toSerialize["deletedDraftId"] = o.DeletedDraftId.Get()
+	}
+	if o.DeletedListingId.IsSet() {
+		toSerialize["deletedListingId"] = o.DeletedListingId.Get()
+	}
+	if true {
+		toSerialize["suggestedKeys"] = o.SuggestedKeys
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicAutoDecisionUndoResponse struct {
+	value *CreateMagicAutoDecisionUndoResponse
+	isSet bool
+}
+
+func (v NullableCreateMagicAutoDecisionUndoResponse) Get() *CreateMagicAutoDecisionUndoResponse {
+	return v.value
+}
+
+func (v *NullableCreateMagicAutoDecisionUndoResponse) Set(val *CreateMagicAutoDecisionUndoResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicAutoDecisionUndoResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicAutoDecisionUndoResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicAutoDecisionUndoResponse(val *CreateMagicAutoDecisionUndoResponse) *NullableCreateMagicAutoDecisionUndoResponse {
+	return &NullableCreateMagicAutoDecisionUndoResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicAutoDecisionUndoResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicAutoDecisionUndoResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicAutoItemResponse struct for CreateMagicAutoItemResponse
+type CreateMagicAutoItemResponse struct {
+	Mode string `json:"mode"`
+	RunId string `json:"runId"`
+	DraftId NullableString `json:"draftId,omitempty"`
+	Title NullableString `json:"title,omitempty"`
+	Confidence float32 `json:"confidence"`
+	Verdict string `json:"verdict"`
+	DecisionIds []string `json:"decisionIds"`
+}
+
+// NewCreateMagicAutoItemResponse instantiates a new CreateMagicAutoItemResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicAutoItemResponse(mode string, runId string, confidence float32, verdict string, decisionIds []string) *CreateMagicAutoItemResponse {
+	this := CreateMagicAutoItemResponse{}
+	this.Mode = mode
+	this.RunId = runId
+	this.Confidence = confidence
+	this.Verdict = verdict
+	this.DecisionIds = decisionIds
+	return &this
+}
+
+// NewCreateMagicAutoItemResponseWithDefaults instantiates a new CreateMagicAutoItemResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicAutoItemResponseWithDefaults() *CreateMagicAutoItemResponse {
+	this := CreateMagicAutoItemResponse{}
+	return &this
+}
+
+// GetMode returns the Mode field value
+func (o *CreateMagicAutoItemResponse) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoItemResponse) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *CreateMagicAutoItemResponse) SetMode(v string) {
+	o.Mode = v
+}
+
+// GetRunId returns the RunId field value
+func (o *CreateMagicAutoItemResponse) GetRunId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RunId
+}
+
+// GetRunIdOk returns a tuple with the RunId field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoItemResponse) GetRunIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RunId, true
+}
+
+// SetRunId sets field value
+func (o *CreateMagicAutoItemResponse) SetRunId(v string) {
+	o.RunId = v
+}
+
+// GetDraftId returns the DraftId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoItemResponse) GetDraftId() string {
+	if o == nil || o.DraftId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DraftId.Get()
+}
+
+// GetDraftIdOk returns a tuple with the DraftId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoItemResponse) GetDraftIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DraftId.Get(), o.DraftId.IsSet()
+}
+
+// HasDraftId returns a boolean if a field has been set.
+func (o *CreateMagicAutoItemResponse) HasDraftId() bool {
+	if o != nil && o.DraftId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDraftId gets a reference to the given NullableString and assigns it to the DraftId field.
+func (o *CreateMagicAutoItemResponse) SetDraftId(v string) {
+	o.DraftId.Set(&v)
+}
+// SetDraftIdNil sets the value for DraftId to be an explicit nil
+func (o *CreateMagicAutoItemResponse) SetDraftIdNil() {
+	o.DraftId.Set(nil)
+}
+
+// UnsetDraftId ensures that no value is present for DraftId, not even an explicit nil
+func (o *CreateMagicAutoItemResponse) UnsetDraftId() {
+	o.DraftId.Unset()
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoItemResponse) GetTitle() string {
+	if o == nil || o.Title.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title.Get()
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoItemResponse) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Title.Get(), o.Title.IsSet()
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *CreateMagicAutoItemResponse) HasTitle() bool {
+	if o != nil && o.Title.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+func (o *CreateMagicAutoItemResponse) SetTitle(v string) {
+	o.Title.Set(&v)
+}
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *CreateMagicAutoItemResponse) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *CreateMagicAutoItemResponse) UnsetTitle() {
+	o.Title.Unset()
+}
+
+// GetConfidence returns the Confidence field value
+func (o *CreateMagicAutoItemResponse) GetConfidence() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Confidence
+}
+
+// GetConfidenceOk returns a tuple with the Confidence field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoItemResponse) GetConfidenceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Confidence, true
+}
+
+// SetConfidence sets field value
+func (o *CreateMagicAutoItemResponse) SetConfidence(v float32) {
+	o.Confidence = v
+}
+
+// GetVerdict returns the Verdict field value
+func (o *CreateMagicAutoItemResponse) GetVerdict() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Verdict
+}
+
+// GetVerdictOk returns a tuple with the Verdict field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoItemResponse) GetVerdictOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Verdict, true
+}
+
+// SetVerdict sets field value
+func (o *CreateMagicAutoItemResponse) SetVerdict(v string) {
+	o.Verdict = v
+}
+
+// GetDecisionIds returns the DecisionIds field value
+func (o *CreateMagicAutoItemResponse) GetDecisionIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.DecisionIds
+}
+
+// GetDecisionIdsOk returns a tuple with the DecisionIds field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoItemResponse) GetDecisionIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DecisionIds, true
+}
+
+// SetDecisionIds sets field value
+func (o *CreateMagicAutoItemResponse) SetDecisionIds(v []string) {
+	o.DecisionIds = v
+}
+
+func (o CreateMagicAutoItemResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["mode"] = o.Mode
+	}
+	if true {
+		toSerialize["runId"] = o.RunId
+	}
+	if o.DraftId.IsSet() {
+		toSerialize["draftId"] = o.DraftId.Get()
+	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
+	}
+	if true {
+		toSerialize["confidence"] = o.Confidence
+	}
+	if true {
+		toSerialize["verdict"] = o.Verdict
+	}
+	if true {
+		toSerialize["decisionIds"] = o.DecisionIds
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicAutoItemResponse struct {
+	value *CreateMagicAutoItemResponse
+	isSet bool
+}
+
+func (v NullableCreateMagicAutoItemResponse) Get() *CreateMagicAutoItemResponse {
+	return v.value
+}
+
+func (v *NullableCreateMagicAutoItemResponse) Set(val *CreateMagicAutoItemResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicAutoItemResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicAutoItemResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicAutoItemResponse(val *CreateMagicAutoItemResponse) *NullableCreateMagicAutoItemResponse {
+	return &NullableCreateMagicAutoItemResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicAutoItemResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicAutoItemResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicAutoRunResponse struct for CreateMagicAutoRunResponse
+type CreateMagicAutoRunResponse struct {
+	Mode string `json:"mode"`
+	ListingId NullableString `json:"listingId,omitempty"`
+	// Keys Crossly picked: the draft's comps on an accept, the pre-marked set otherwise.
+	SuggestedKeys []string `json:"suggestedKeys"`
+	RunId string `json:"runId"`
+	DraftId NullableString `json:"draftId,omitempty"`
+	Title NullableString `json:"title,omitempty"`
+	Confidence float32 `json:"confidence"`
+	Verdict string `json:"verdict"`
+	DecisionIds []string `json:"decisionIds"`
+}
+
+// NewCreateMagicAutoRunResponse instantiates a new CreateMagicAutoRunResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicAutoRunResponse(mode string, suggestedKeys []string, runId string, confidence float32, verdict string, decisionIds []string) *CreateMagicAutoRunResponse {
+	this := CreateMagicAutoRunResponse{}
+	this.Mode = mode
+	this.SuggestedKeys = suggestedKeys
+	this.RunId = runId
+	this.Confidence = confidence
+	this.Verdict = verdict
+	this.DecisionIds = decisionIds
+	return &this
+}
+
+// NewCreateMagicAutoRunResponseWithDefaults instantiates a new CreateMagicAutoRunResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicAutoRunResponseWithDefaults() *CreateMagicAutoRunResponse {
+	this := CreateMagicAutoRunResponse{}
+	return &this
+}
+
+// GetMode returns the Mode field value
+func (o *CreateMagicAutoRunResponse) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *CreateMagicAutoRunResponse) SetMode(v string) {
+	o.Mode = v
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoRunResponse) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoRunResponse) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *CreateMagicAutoRunResponse) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *CreateMagicAutoRunResponse) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *CreateMagicAutoRunResponse) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *CreateMagicAutoRunResponse) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+// GetSuggestedKeys returns the SuggestedKeys field value
+func (o *CreateMagicAutoRunResponse) GetSuggestedKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.SuggestedKeys
+}
+
+// GetSuggestedKeysOk returns a tuple with the SuggestedKeys field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetSuggestedKeysOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SuggestedKeys, true
+}
+
+// SetSuggestedKeys sets field value
+func (o *CreateMagicAutoRunResponse) SetSuggestedKeys(v []string) {
+	o.SuggestedKeys = v
+}
+
+// GetRunId returns the RunId field value
+func (o *CreateMagicAutoRunResponse) GetRunId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RunId
+}
+
+// GetRunIdOk returns a tuple with the RunId field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetRunIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RunId, true
+}
+
+// SetRunId sets field value
+func (o *CreateMagicAutoRunResponse) SetRunId(v string) {
+	o.RunId = v
+}
+
+// GetDraftId returns the DraftId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoRunResponse) GetDraftId() string {
+	if o == nil || o.DraftId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DraftId.Get()
+}
+
+// GetDraftIdOk returns a tuple with the DraftId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoRunResponse) GetDraftIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DraftId.Get(), o.DraftId.IsSet()
+}
+
+// HasDraftId returns a boolean if a field has been set.
+func (o *CreateMagicAutoRunResponse) HasDraftId() bool {
+	if o != nil && o.DraftId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDraftId gets a reference to the given NullableString and assigns it to the DraftId field.
+func (o *CreateMagicAutoRunResponse) SetDraftId(v string) {
+	o.DraftId.Set(&v)
+}
+// SetDraftIdNil sets the value for DraftId to be an explicit nil
+func (o *CreateMagicAutoRunResponse) SetDraftIdNil() {
+	o.DraftId.Set(nil)
+}
+
+// UnsetDraftId ensures that no value is present for DraftId, not even an explicit nil
+func (o *CreateMagicAutoRunResponse) UnsetDraftId() {
+	o.DraftId.Unset()
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicAutoRunResponse) GetTitle() string {
+	if o == nil || o.Title.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title.Get()
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicAutoRunResponse) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Title.Get(), o.Title.IsSet()
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *CreateMagicAutoRunResponse) HasTitle() bool {
+	if o != nil && o.Title.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+func (o *CreateMagicAutoRunResponse) SetTitle(v string) {
+	o.Title.Set(&v)
+}
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *CreateMagicAutoRunResponse) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *CreateMagicAutoRunResponse) UnsetTitle() {
+	o.Title.Unset()
+}
+
+// GetConfidence returns the Confidence field value
+func (o *CreateMagicAutoRunResponse) GetConfidence() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Confidence
+}
+
+// GetConfidenceOk returns a tuple with the Confidence field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetConfidenceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Confidence, true
+}
+
+// SetConfidence sets field value
+func (o *CreateMagicAutoRunResponse) SetConfidence(v float32) {
+	o.Confidence = v
+}
+
+// GetVerdict returns the Verdict field value
+func (o *CreateMagicAutoRunResponse) GetVerdict() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Verdict
+}
+
+// GetVerdictOk returns a tuple with the Verdict field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetVerdictOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Verdict, true
+}
+
+// SetVerdict sets field value
+func (o *CreateMagicAutoRunResponse) SetVerdict(v string) {
+	o.Verdict = v
+}
+
+// GetDecisionIds returns the DecisionIds field value
+func (o *CreateMagicAutoRunResponse) GetDecisionIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.DecisionIds
+}
+
+// GetDecisionIdsOk returns a tuple with the DecisionIds field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunResponse) GetDecisionIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DecisionIds, true
+}
+
+// SetDecisionIds sets field value
+func (o *CreateMagicAutoRunResponse) SetDecisionIds(v []string) {
+	o.DecisionIds = v
+}
+
+func (o CreateMagicAutoRunResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["mode"] = o.Mode
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	if true {
+		toSerialize["suggestedKeys"] = o.SuggestedKeys
+	}
+	if true {
+		toSerialize["runId"] = o.RunId
+	}
+	if o.DraftId.IsSet() {
+		toSerialize["draftId"] = o.DraftId.Get()
+	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
+	}
+	if true {
+		toSerialize["confidence"] = o.Confidence
+	}
+	if true {
+		toSerialize["verdict"] = o.Verdict
+	}
+	if true {
+		toSerialize["decisionIds"] = o.DecisionIds
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicAutoRunResponse struct {
+	value *CreateMagicAutoRunResponse
+	isSet bool
+}
+
+func (v NullableCreateMagicAutoRunResponse) Get() *CreateMagicAutoRunResponse {
+	return v.value
+}
+
+func (v *NullableCreateMagicAutoRunResponse) Set(val *CreateMagicAutoRunResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicAutoRunResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicAutoRunResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicAutoRunResponse(val *CreateMagicAutoRunResponse) *NullableCreateMagicAutoRunResponse {
+	return &NullableCreateMagicAutoRunResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicAutoRunResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicAutoRunResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicAutoRunSwipeResponse struct for CreateMagicAutoRunSwipeResponse
+type CreateMagicAutoRunSwipeResponse struct {
+	Decision ListMagicAutoRunDecisionsItem `json:"decision"`
+}
+
+// NewCreateMagicAutoRunSwipeResponse instantiates a new CreateMagicAutoRunSwipeResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicAutoRunSwipeResponse(decision ListMagicAutoRunDecisionsItem) *CreateMagicAutoRunSwipeResponse {
+	this := CreateMagicAutoRunSwipeResponse{}
+	this.Decision = decision
+	return &this
+}
+
+// NewCreateMagicAutoRunSwipeResponseWithDefaults instantiates a new CreateMagicAutoRunSwipeResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicAutoRunSwipeResponseWithDefaults() *CreateMagicAutoRunSwipeResponse {
+	this := CreateMagicAutoRunSwipeResponse{}
+	return &this
+}
+
+// GetDecision returns the Decision field value
+func (o *CreateMagicAutoRunSwipeResponse) GetDecision() ListMagicAutoRunDecisionsItem {
+	if o == nil {
+		var ret ListMagicAutoRunDecisionsItem
+		return ret
+	}
+
+	return o.Decision
+}
+
+// GetDecisionOk returns a tuple with the Decision field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicAutoRunSwipeResponse) GetDecisionOk() (*ListMagicAutoRunDecisionsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Decision, true
+}
+
+// SetDecision sets field value
+func (o *CreateMagicAutoRunSwipeResponse) SetDecision(v ListMagicAutoRunDecisionsItem) {
+	o.Decision = v
+}
+
+func (o CreateMagicAutoRunSwipeResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["decision"] = o.Decision
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicAutoRunSwipeResponse struct {
+	value *CreateMagicAutoRunSwipeResponse
+	isSet bool
+}
+
+func (v NullableCreateMagicAutoRunSwipeResponse) Get() *CreateMagicAutoRunSwipeResponse {
+	return v.value
+}
+
+func (v *NullableCreateMagicAutoRunSwipeResponse) Set(val *CreateMagicAutoRunSwipeResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicAutoRunSwipeResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicAutoRunSwipeResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicAutoRunSwipeResponse(val *CreateMagicAutoRunSwipeResponse) *NullableCreateMagicAutoRunSwipeResponse {
+	return &NullableCreateMagicAutoRunSwipeResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicAutoRunSwipeResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicAutoRunSwipeResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreateMagicScanResponse struct for CreateMagicScanResponse
 type CreateMagicScanResponse struct {
 	RunId string `json:"runId"`
 	PhotoIdentifier NullableCreateMagicScanResponsePhotoIdentifier `json:"photoIdentifier,omitempty"`
+	MatchReference NullableCreateMagicScanResponseMatchReference `json:"matchReference,omitempty"`
 	EbayMatch NullableCreateMagicScanResponseEbayMatch `json:"ebayMatch,omitempty"`
 	// Unified top-10-globally list, ranked by CLIP visual similarity to the seller's source photo. Each hit carries its origin platform.
 	TopHits []CreateMagicScanResponseTopHits `json:"topHits"`
@@ -32,6 +1011,8 @@ type CreateMagicScanResponse struct {
 	// The seller's OWN listings/inventory that this scan probably duplicates (image + fuzzy-title self-dedup). Empty when nothing matched. Drives the \"you may already have this\" prompt.
 	PossibleDuplicates []CreateMagicScanResponsePossibleDuplicates `json:"possibleDuplicates"`
 	Cached bool `json:"cached"`
+	// Monthly vision calls (vision-quota.ts) this scan spent: the seller's Activity Log shows them as credits used. 0 for a single-photo scan and for a re-scan of the same photos.
+	VisionCallsUsed NullableFloat32 `json:"visionCallsUsed,omitempty"`
 }
 
 // NewCreateMagicScanResponse instantiates a new CreateMagicScanResponse object
@@ -123,6 +1104,48 @@ func (o *CreateMagicScanResponse) SetPhotoIdentifierNil() {
 // UnsetPhotoIdentifier ensures that no value is present for PhotoIdentifier, not even an explicit nil
 func (o *CreateMagicScanResponse) UnsetPhotoIdentifier() {
 	o.PhotoIdentifier.Unset()
+}
+
+// GetMatchReference returns the MatchReference field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponse) GetMatchReference() CreateMagicScanResponseMatchReference {
+	if o == nil || o.MatchReference.Get() == nil {
+		var ret CreateMagicScanResponseMatchReference
+		return ret
+	}
+	return *o.MatchReference.Get()
+}
+
+// GetMatchReferenceOk returns a tuple with the MatchReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponse) GetMatchReferenceOk() (*CreateMagicScanResponseMatchReference, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MatchReference.Get(), o.MatchReference.IsSet()
+}
+
+// HasMatchReference returns a boolean if a field has been set.
+func (o *CreateMagicScanResponse) HasMatchReference() bool {
+	if o != nil && o.MatchReference.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchReference gets a reference to the given NullableCreateMagicScanResponseMatchReference and assigns it to the MatchReference field.
+func (o *CreateMagicScanResponse) SetMatchReference(v CreateMagicScanResponseMatchReference) {
+	o.MatchReference.Set(&v)
+}
+// SetMatchReferenceNil sets the value for MatchReference to be an explicit nil
+func (o *CreateMagicScanResponse) SetMatchReferenceNil() {
+	o.MatchReference.Set(nil)
+}
+
+// UnsetMatchReference ensures that no value is present for MatchReference, not even an explicit nil
+func (o *CreateMagicScanResponse) UnsetMatchReference() {
+	o.MatchReference.Unset()
 }
 
 // GetEbayMatch returns the EbayMatch field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -335,6 +1358,48 @@ func (o *CreateMagicScanResponse) SetCached(v bool) {
 	o.Cached = v
 }
 
+// GetVisionCallsUsed returns the VisionCallsUsed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponse) GetVisionCallsUsed() float32 {
+	if o == nil || o.VisionCallsUsed.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.VisionCallsUsed.Get()
+}
+
+// GetVisionCallsUsedOk returns a tuple with the VisionCallsUsed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponse) GetVisionCallsUsedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VisionCallsUsed.Get(), o.VisionCallsUsed.IsSet()
+}
+
+// HasVisionCallsUsed returns a boolean if a field has been set.
+func (o *CreateMagicScanResponse) HasVisionCallsUsed() bool {
+	if o != nil && o.VisionCallsUsed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVisionCallsUsed gets a reference to the given NullableFloat32 and assigns it to the VisionCallsUsed field.
+func (o *CreateMagicScanResponse) SetVisionCallsUsed(v float32) {
+	o.VisionCallsUsed.Set(&v)
+}
+// SetVisionCallsUsedNil sets the value for VisionCallsUsed to be an explicit nil
+func (o *CreateMagicScanResponse) SetVisionCallsUsedNil() {
+	o.VisionCallsUsed.Set(nil)
+}
+
+// UnsetVisionCallsUsed ensures that no value is present for VisionCallsUsed, not even an explicit nil
+func (o *CreateMagicScanResponse) UnsetVisionCallsUsed() {
+	o.VisionCallsUsed.Unset()
+}
+
 func (o CreateMagicScanResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -342,6 +1407,9 @@ func (o CreateMagicScanResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.PhotoIdentifier.IsSet() {
 		toSerialize["photoIdentifier"] = o.PhotoIdentifier.Get()
+	}
+	if o.MatchReference.IsSet() {
+		toSerialize["matchReference"] = o.MatchReference.Get()
 	}
 	if o.EbayMatch.IsSet() {
 		toSerialize["ebayMatch"] = o.EbayMatch.Get()
@@ -366,6 +1434,9 @@ func (o CreateMagicScanResponse) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["cached"] = o.Cached
+	}
+	if o.VisionCallsUsed.IsSet() {
+		toSerialize["visionCallsUsed"] = o.VisionCallsUsed.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -412,16 +1483,16 @@ type CreateMagicScanResponseEbayHits struct {
 	LegacyItemId NullableString `json:"legacyItemId,omitempty"`
 	Title string `json:"title"`
 	Brand NullableString `json:"brand,omitempty"`
-	// Normalized cents. eBay returns string + currency on `price.value`.
+	// Integer cents.
 	PriceCents NullableFloat32 `json:"priceCents,omitempty"`
 	Currency NullableString `json:"currency,omitempty"`
 	Condition NullableString `json:"condition,omitempty"`
-	// Top-level category eBay assigned to the match (id + path).
+	// The category the marketplace filed the match under (id + path), when the provider returns it.
 	CategoryId NullableString `json:"categoryId,omitempty"`
 	CategoryPath NullableString `json:"categoryPath,omitempty"`
 	ItemUrl string `json:"itemUrl"`
 	ThumbnailUrl NullableString `json:"thumbnailUrl,omitempty"`
-	// Loosely-typed aspect bag — Brand, Color, Material, etc. when eBay inlines them. Always inspected defensively by the synthesizer.
+	// Item specifics, when the provider returns them. Always read defensively.
 	Aspects map[string]interface{} `json:"aspects,omitempty"`
 }
 
@@ -969,16 +2040,16 @@ type CreateMagicScanResponseEbayMatch struct {
 	LegacyItemId NullableString `json:"legacyItemId,omitempty"`
 	Title string `json:"title"`
 	Brand NullableString `json:"brand,omitempty"`
-	// Normalized cents. eBay returns string + currency on `price.value`.
+	// Integer cents.
 	PriceCents NullableFloat32 `json:"priceCents,omitempty"`
 	Currency NullableString `json:"currency,omitempty"`
 	Condition NullableString `json:"condition,omitempty"`
-	// Top-level category eBay assigned to the match (id + path).
+	// The category the marketplace filed the match under (id + path), when the provider returns it.
 	CategoryId NullableString `json:"categoryId,omitempty"`
 	CategoryPath NullableString `json:"categoryPath,omitempty"`
 	ItemUrl string `json:"itemUrl"`
 	ThumbnailUrl NullableString `json:"thumbnailUrl,omitempty"`
-	// Loosely-typed aspect bag — Brand, Color, Material, etc. when eBay inlines them. Always inspected defensively by the synthesizer.
+	// Item specifics, when the provider returns them. Always read defensively.
 	Aspects map[string]interface{} `json:"aspects,omitempty"`
 }
 
@@ -1516,6 +2587,597 @@ func (v NullableCreateMagicScanResponseEbayMatch) MarshalJSON() ([]byte, error) 
 }
 
 func (v *NullableCreateMagicScanResponseEbayMatch) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicScanResponseMatchReference What every comp was gated and ranked against: the catalogue product the identifier resolved to, else the eBay image match (scan/anchor.ts).
+type CreateMagicScanResponseMatchReference struct {
+	Title string `json:"title"`
+	Brand NullableString `json:"brand,omitempty"`
+	Hint NullableString `json:"hint,omitempty"`
+	// 'catalog' = an identifier resolved to exactly one catalogue product.
+	Source string `json:"source"`
+	Identifier NullableCreateMagicScanResponseMatchReferenceIdentifier `json:"identifier,omitempty"`
+	Catalog NullableCreateMagicScanResponseMatchReferenceCatalog `json:"catalog,omitempty"`
+}
+
+// NewCreateMagicScanResponseMatchReference instantiates a new CreateMagicScanResponseMatchReference object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicScanResponseMatchReference(title string, source string) *CreateMagicScanResponseMatchReference {
+	this := CreateMagicScanResponseMatchReference{}
+	this.Title = title
+	this.Source = source
+	return &this
+}
+
+// NewCreateMagicScanResponseMatchReferenceWithDefaults instantiates a new CreateMagicScanResponseMatchReference object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicScanResponseMatchReferenceWithDefaults() *CreateMagicScanResponseMatchReference {
+	this := CreateMagicScanResponseMatchReference{}
+	return &this
+}
+
+// GetTitle returns the Title field value
+func (o *CreateMagicScanResponseMatchReference) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReference) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *CreateMagicScanResponseMatchReference) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetBrand returns the Brand field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseMatchReference) GetBrand() string {
+	if o == nil || o.Brand.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Brand.Get()
+}
+
+// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseMatchReference) GetBrandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Brand.Get(), o.Brand.IsSet()
+}
+
+// HasBrand returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseMatchReference) HasBrand() bool {
+	if o != nil && o.Brand.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand gets a reference to the given NullableString and assigns it to the Brand field.
+func (o *CreateMagicScanResponseMatchReference) SetBrand(v string) {
+	o.Brand.Set(&v)
+}
+// SetBrandNil sets the value for Brand to be an explicit nil
+func (o *CreateMagicScanResponseMatchReference) SetBrandNil() {
+	o.Brand.Set(nil)
+}
+
+// UnsetBrand ensures that no value is present for Brand, not even an explicit nil
+func (o *CreateMagicScanResponseMatchReference) UnsetBrand() {
+	o.Brand.Unset()
+}
+
+// GetHint returns the Hint field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseMatchReference) GetHint() string {
+	if o == nil || o.Hint.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Hint.Get()
+}
+
+// GetHintOk returns a tuple with the Hint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseMatchReference) GetHintOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Hint.Get(), o.Hint.IsSet()
+}
+
+// HasHint returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseMatchReference) HasHint() bool {
+	if o != nil && o.Hint.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHint gets a reference to the given NullableString and assigns it to the Hint field.
+func (o *CreateMagicScanResponseMatchReference) SetHint(v string) {
+	o.Hint.Set(&v)
+}
+// SetHintNil sets the value for Hint to be an explicit nil
+func (o *CreateMagicScanResponseMatchReference) SetHintNil() {
+	o.Hint.Set(nil)
+}
+
+// UnsetHint ensures that no value is present for Hint, not even an explicit nil
+func (o *CreateMagicScanResponseMatchReference) UnsetHint() {
+	o.Hint.Unset()
+}
+
+// GetSource returns the Source field value
+func (o *CreateMagicScanResponseMatchReference) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReference) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *CreateMagicScanResponseMatchReference) SetSource(v string) {
+	o.Source = v
+}
+
+// GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseMatchReference) GetIdentifier() CreateMagicScanResponseMatchReferenceIdentifier {
+	if o == nil || o.Identifier.Get() == nil {
+		var ret CreateMagicScanResponseMatchReferenceIdentifier
+		return ret
+	}
+	return *o.Identifier.Get()
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseMatchReference) GetIdentifierOk() (*CreateMagicScanResponseMatchReferenceIdentifier, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Identifier.Get(), o.Identifier.IsSet()
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseMatchReference) HasIdentifier() bool {
+	if o != nil && o.Identifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given NullableCreateMagicScanResponseMatchReferenceIdentifier and assigns it to the Identifier field.
+func (o *CreateMagicScanResponseMatchReference) SetIdentifier(v CreateMagicScanResponseMatchReferenceIdentifier) {
+	o.Identifier.Set(&v)
+}
+// SetIdentifierNil sets the value for Identifier to be an explicit nil
+func (o *CreateMagicScanResponseMatchReference) SetIdentifierNil() {
+	o.Identifier.Set(nil)
+}
+
+// UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
+func (o *CreateMagicScanResponseMatchReference) UnsetIdentifier() {
+	o.Identifier.Unset()
+}
+
+// GetCatalog returns the Catalog field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseMatchReference) GetCatalog() CreateMagicScanResponseMatchReferenceCatalog {
+	if o == nil || o.Catalog.Get() == nil {
+		var ret CreateMagicScanResponseMatchReferenceCatalog
+		return ret
+	}
+	return *o.Catalog.Get()
+}
+
+// GetCatalogOk returns a tuple with the Catalog field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseMatchReference) GetCatalogOk() (*CreateMagicScanResponseMatchReferenceCatalog, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Catalog.Get(), o.Catalog.IsSet()
+}
+
+// HasCatalog returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseMatchReference) HasCatalog() bool {
+	if o != nil && o.Catalog.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCatalog gets a reference to the given NullableCreateMagicScanResponseMatchReferenceCatalog and assigns it to the Catalog field.
+func (o *CreateMagicScanResponseMatchReference) SetCatalog(v CreateMagicScanResponseMatchReferenceCatalog) {
+	o.Catalog.Set(&v)
+}
+// SetCatalogNil sets the value for Catalog to be an explicit nil
+func (o *CreateMagicScanResponseMatchReference) SetCatalogNil() {
+	o.Catalog.Set(nil)
+}
+
+// UnsetCatalog ensures that no value is present for Catalog, not even an explicit nil
+func (o *CreateMagicScanResponseMatchReference) UnsetCatalog() {
+	o.Catalog.Unset()
+}
+
+func (o CreateMagicScanResponseMatchReference) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Brand.IsSet() {
+		toSerialize["brand"] = o.Brand.Get()
+	}
+	if o.Hint.IsSet() {
+		toSerialize["hint"] = o.Hint.Get()
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if o.Identifier.IsSet() {
+		toSerialize["identifier"] = o.Identifier.Get()
+	}
+	if o.Catalog.IsSet() {
+		toSerialize["catalog"] = o.Catalog.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicScanResponseMatchReference struct {
+	value *CreateMagicScanResponseMatchReference
+	isSet bool
+}
+
+func (v NullableCreateMagicScanResponseMatchReference) Get() *CreateMagicScanResponseMatchReference {
+	return v.value
+}
+
+func (v *NullableCreateMagicScanResponseMatchReference) Set(val *CreateMagicScanResponseMatchReference) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicScanResponseMatchReference) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicScanResponseMatchReference) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicScanResponseMatchReference(val *CreateMagicScanResponseMatchReference) *NullableCreateMagicScanResponseMatchReference {
+	return &NullableCreateMagicScanResponseMatchReference{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicScanResponseMatchReference) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicScanResponseMatchReference) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicScanResponseMatchReferenceCatalog struct for CreateMagicScanResponseMatchReferenceCatalog
+type CreateMagicScanResponseMatchReferenceCatalog struct {
+	SkuId string `json:"skuId"`
+	VariantId NullableString `json:"variantId,omitempty"`
+	Name string `json:"name"`
+}
+
+// NewCreateMagicScanResponseMatchReferenceCatalog instantiates a new CreateMagicScanResponseMatchReferenceCatalog object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicScanResponseMatchReferenceCatalog(skuId string, name string) *CreateMagicScanResponseMatchReferenceCatalog {
+	this := CreateMagicScanResponseMatchReferenceCatalog{}
+	this.SkuId = skuId
+	this.Name = name
+	return &this
+}
+
+// NewCreateMagicScanResponseMatchReferenceCatalogWithDefaults instantiates a new CreateMagicScanResponseMatchReferenceCatalog object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicScanResponseMatchReferenceCatalogWithDefaults() *CreateMagicScanResponseMatchReferenceCatalog {
+	this := CreateMagicScanResponseMatchReferenceCatalog{}
+	return &this
+}
+
+// GetSkuId returns the SkuId field value
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetSkuId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SkuId
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SkuId, true
+}
+
+// SetSkuId sets field value
+func (o *CreateMagicScanResponseMatchReferenceCatalog) SetSkuId(v string) {
+	o.SkuId = v
+}
+
+// GetVariantId returns the VariantId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetVariantId() string {
+	if o == nil || o.VariantId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VariantId.Get()
+}
+
+// GetVariantIdOk returns a tuple with the VariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetVariantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VariantId.Get(), o.VariantId.IsSet()
+}
+
+// HasVariantId returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseMatchReferenceCatalog) HasVariantId() bool {
+	if o != nil && o.VariantId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVariantId gets a reference to the given NullableString and assigns it to the VariantId field.
+func (o *CreateMagicScanResponseMatchReferenceCatalog) SetVariantId(v string) {
+	o.VariantId.Set(&v)
+}
+// SetVariantIdNil sets the value for VariantId to be an explicit nil
+func (o *CreateMagicScanResponseMatchReferenceCatalog) SetVariantIdNil() {
+	o.VariantId.Set(nil)
+}
+
+// UnsetVariantId ensures that no value is present for VariantId, not even an explicit nil
+func (o *CreateMagicScanResponseMatchReferenceCatalog) UnsetVariantId() {
+	o.VariantId.Unset()
+}
+
+// GetName returns the Name field value
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReferenceCatalog) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateMagicScanResponseMatchReferenceCatalog) SetName(v string) {
+	o.Name = v
+}
+
+func (o CreateMagicScanResponseMatchReferenceCatalog) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
+	if o.VariantId.IsSet() {
+		toSerialize["variantId"] = o.VariantId.Get()
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicScanResponseMatchReferenceCatalog struct {
+	value *CreateMagicScanResponseMatchReferenceCatalog
+	isSet bool
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceCatalog) Get() *CreateMagicScanResponseMatchReferenceCatalog {
+	return v.value
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceCatalog) Set(val *CreateMagicScanResponseMatchReferenceCatalog) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceCatalog) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceCatalog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicScanResponseMatchReferenceCatalog(val *CreateMagicScanResponseMatchReferenceCatalog) *NullableCreateMagicScanResponseMatchReferenceCatalog {
+	return &NullableCreateMagicScanResponseMatchReferenceCatalog{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceCatalog) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceCatalog) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateMagicScanResponseMatchReferenceIdentifier struct for CreateMagicScanResponseMatchReferenceIdentifier
+type CreateMagicScanResponseMatchReferenceIdentifier struct {
+	Namespace string `json:"namespace"`
+	Value string `json:"value"`
+}
+
+// NewCreateMagicScanResponseMatchReferenceIdentifier instantiates a new CreateMagicScanResponseMatchReferenceIdentifier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateMagicScanResponseMatchReferenceIdentifier(namespace string, value string) *CreateMagicScanResponseMatchReferenceIdentifier {
+	this := CreateMagicScanResponseMatchReferenceIdentifier{}
+	this.Namespace = namespace
+	this.Value = value
+	return &this
+}
+
+// NewCreateMagicScanResponseMatchReferenceIdentifierWithDefaults instantiates a new CreateMagicScanResponseMatchReferenceIdentifier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateMagicScanResponseMatchReferenceIdentifierWithDefaults() *CreateMagicScanResponseMatchReferenceIdentifier {
+	this := CreateMagicScanResponseMatchReferenceIdentifier{}
+	return &this
+}
+
+// GetNamespace returns the Namespace field value
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) GetNamespace() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) GetNamespaceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Namespace, true
+}
+
+// SetNamespace sets field value
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) SetNamespace(v string) {
+	o.Namespace = v
+}
+
+// GetValue returns the Value field value
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) GetValue() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) GetValueOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *CreateMagicScanResponseMatchReferenceIdentifier) SetValue(v string) {
+	o.Value = v
+}
+
+func (o CreateMagicScanResponseMatchReferenceIdentifier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["namespace"] = o.Namespace
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateMagicScanResponseMatchReferenceIdentifier struct {
+	value *CreateMagicScanResponseMatchReferenceIdentifier
+	isSet bool
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceIdentifier) Get() *CreateMagicScanResponseMatchReferenceIdentifier {
+	return v.value
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceIdentifier) Set(val *CreateMagicScanResponseMatchReferenceIdentifier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceIdentifier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceIdentifier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateMagicScanResponseMatchReferenceIdentifier(val *CreateMagicScanResponseMatchReferenceIdentifier) *NullableCreateMagicScanResponseMatchReferenceIdentifier {
+	return &NullableCreateMagicScanResponseMatchReferenceIdentifier{value: val, isSet: true}
+}
+
+func (v NullableCreateMagicScanResponseMatchReferenceIdentifier) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateMagicScanResponseMatchReferenceIdentifier) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -2164,12 +3826,26 @@ type CreateMagicScanResponseTopHits struct {
 	PriceCents float32 `json:"priceCents"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
 	ListingUrl NullableString `json:"listingUrl,omitempty"`
-	// Origin marker for the UI badge.
+	// Origin marker for the UI badge. Every eBay hit is an image-search hit ('ebay-image'); 'ebay-text' is kept in the union only for rows cached before that was fixed.
 	Origin string `json:"origin"`
-	// CLIP cosine [0,1]; populated after the visual-rank pass.
+	// CLIP cosine [0,1]; populated after the visual-rank pass. ABSENT = unscored (no image, CLIP down) — never filled in with a made-up value.
 	VisualSim NullableFloat32 `json:"visualSim,omitempty"`
+	// Title agreement with the match reference after the hard gates (rank.ts).
+	Agreement NullableFloat32 `json:"agreement,omitempty"`
+	// True when the comp states the photo's own identifier (GTIN / style code).
+	CarriesIdentifier NullableBool `json:"carriesIdentifier,omitempty"`
+	// Price outlier within its condition / grade bucket: shown, but not used for pricing.
+	PriceOutlier NullableBool `json:"priceOutlier,omitempty"`
+	// Condition text the platform reported, for the pricing buckets.
+	Condition NullableString `json:"condition,omitempty"`
+	// Brand the platform reported, for the brand gate at verdict time.
+	Brand NullableString `json:"brand,omitempty"`
 	// 'active' = currently for sale; 'sold' = historical comp. UI renders distinct badges so the seller can see both at a glance.
 	State string `json:"state"`
+	// Shipping in cents (0 = free), where the platform reports it (ExternalSoldComp.shippingCents).
+	ShippingCents NullableFloat32 `json:"shippingCents,omitempty"`
+	// Auction vs fixed price, where the platform says; an active auction's price is a bid (compPriceIsBid).
+	Format NullableString `json:"format,omitempty"`
 }
 
 // NewCreateMagicScanResponseTopHits instantiates a new CreateMagicScanResponseTopHits object
@@ -2416,6 +4092,216 @@ func (o *CreateMagicScanResponseTopHits) UnsetVisualSim() {
 	o.VisualSim.Unset()
 }
 
+// GetAgreement returns the Agreement field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetAgreement() float32 {
+	if o == nil || o.Agreement.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Agreement.Get()
+}
+
+// GetAgreementOk returns a tuple with the Agreement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetAgreementOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Agreement.Get(), o.Agreement.IsSet()
+}
+
+// HasAgreement returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasAgreement() bool {
+	if o != nil && o.Agreement.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAgreement gets a reference to the given NullableFloat32 and assigns it to the Agreement field.
+func (o *CreateMagicScanResponseTopHits) SetAgreement(v float32) {
+	o.Agreement.Set(&v)
+}
+// SetAgreementNil sets the value for Agreement to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetAgreementNil() {
+	o.Agreement.Set(nil)
+}
+
+// UnsetAgreement ensures that no value is present for Agreement, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetAgreement() {
+	o.Agreement.Unset()
+}
+
+// GetCarriesIdentifier returns the CarriesIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetCarriesIdentifier() bool {
+	if o == nil || o.CarriesIdentifier.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CarriesIdentifier.Get()
+}
+
+// GetCarriesIdentifierOk returns a tuple with the CarriesIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetCarriesIdentifierOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CarriesIdentifier.Get(), o.CarriesIdentifier.IsSet()
+}
+
+// HasCarriesIdentifier returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasCarriesIdentifier() bool {
+	if o != nil && o.CarriesIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarriesIdentifier gets a reference to the given NullableBool and assigns it to the CarriesIdentifier field.
+func (o *CreateMagicScanResponseTopHits) SetCarriesIdentifier(v bool) {
+	o.CarriesIdentifier.Set(&v)
+}
+// SetCarriesIdentifierNil sets the value for CarriesIdentifier to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetCarriesIdentifierNil() {
+	o.CarriesIdentifier.Set(nil)
+}
+
+// UnsetCarriesIdentifier ensures that no value is present for CarriesIdentifier, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetCarriesIdentifier() {
+	o.CarriesIdentifier.Unset()
+}
+
+// GetPriceOutlier returns the PriceOutlier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetPriceOutlier() bool {
+	if o == nil || o.PriceOutlier.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PriceOutlier.Get()
+}
+
+// GetPriceOutlierOk returns a tuple with the PriceOutlier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetPriceOutlierOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PriceOutlier.Get(), o.PriceOutlier.IsSet()
+}
+
+// HasPriceOutlier returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasPriceOutlier() bool {
+	if o != nil && o.PriceOutlier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceOutlier gets a reference to the given NullableBool and assigns it to the PriceOutlier field.
+func (o *CreateMagicScanResponseTopHits) SetPriceOutlier(v bool) {
+	o.PriceOutlier.Set(&v)
+}
+// SetPriceOutlierNil sets the value for PriceOutlier to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetPriceOutlierNil() {
+	o.PriceOutlier.Set(nil)
+}
+
+// UnsetPriceOutlier ensures that no value is present for PriceOutlier, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetPriceOutlier() {
+	o.PriceOutlier.Unset()
+}
+
+// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetCondition() string {
+	if o == nil || o.Condition.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Condition.Get()
+}
+
+// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetConditionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Condition.Get(), o.Condition.IsSet()
+}
+
+// HasCondition returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasCondition() bool {
+	if o != nil && o.Condition.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCondition gets a reference to the given NullableString and assigns it to the Condition field.
+func (o *CreateMagicScanResponseTopHits) SetCondition(v string) {
+	o.Condition.Set(&v)
+}
+// SetConditionNil sets the value for Condition to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetConditionNil() {
+	o.Condition.Set(nil)
+}
+
+// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetCondition() {
+	o.Condition.Unset()
+}
+
+// GetBrand returns the Brand field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetBrand() string {
+	if o == nil || o.Brand.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Brand.Get()
+}
+
+// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetBrandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Brand.Get(), o.Brand.IsSet()
+}
+
+// HasBrand returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasBrand() bool {
+	if o != nil && o.Brand.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand gets a reference to the given NullableString and assigns it to the Brand field.
+func (o *CreateMagicScanResponseTopHits) SetBrand(v string) {
+	o.Brand.Set(&v)
+}
+// SetBrandNil sets the value for Brand to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetBrandNil() {
+	o.Brand.Set(nil)
+}
+
+// UnsetBrand ensures that no value is present for Brand, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetBrand() {
+	o.Brand.Unset()
+}
+
 // GetState returns the State field value
 func (o *CreateMagicScanResponseTopHits) GetState() string {
 	if o == nil {
@@ -2438,6 +4324,90 @@ func (o *CreateMagicScanResponseTopHits) GetStateOk() (*string, bool) {
 // SetState sets field value
 func (o *CreateMagicScanResponseTopHits) SetState(v string) {
 	o.State = v
+}
+
+// GetShippingCents returns the ShippingCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetShippingCents() float32 {
+	if o == nil || o.ShippingCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ShippingCents.Get()
+}
+
+// GetShippingCentsOk returns a tuple with the ShippingCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetShippingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShippingCents.Get(), o.ShippingCents.IsSet()
+}
+
+// HasShippingCents returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasShippingCents() bool {
+	if o != nil && o.ShippingCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShippingCents gets a reference to the given NullableFloat32 and assigns it to the ShippingCents field.
+func (o *CreateMagicScanResponseTopHits) SetShippingCents(v float32) {
+	o.ShippingCents.Set(&v)
+}
+// SetShippingCentsNil sets the value for ShippingCents to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetShippingCentsNil() {
+	o.ShippingCents.Set(nil)
+}
+
+// UnsetShippingCents ensures that no value is present for ShippingCents, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetShippingCents() {
+	o.ShippingCents.Unset()
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateMagicScanResponseTopHits) GetFormat() string {
+	if o == nil || o.Format.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Format.Get()
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateMagicScanResponseTopHits) GetFormatOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Format.Get(), o.Format.IsSet()
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *CreateMagicScanResponseTopHits) HasFormat() bool {
+	if o != nil && o.Format.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given NullableString and assigns it to the Format field.
+func (o *CreateMagicScanResponseTopHits) SetFormat(v string) {
+	o.Format.Set(&v)
+}
+// SetFormatNil sets the value for Format to be an explicit nil
+func (o *CreateMagicScanResponseTopHits) SetFormatNil() {
+	o.Format.Set(nil)
+}
+
+// UnsetFormat ensures that no value is present for Format, not even an explicit nil
+func (o *CreateMagicScanResponseTopHits) UnsetFormat() {
+	o.Format.Unset()
 }
 
 func (o CreateMagicScanResponseTopHits) MarshalJSON() ([]byte, error) {
@@ -2463,8 +4433,29 @@ func (o CreateMagicScanResponseTopHits) MarshalJSON() ([]byte, error) {
 	if o.VisualSim.IsSet() {
 		toSerialize["visualSim"] = o.VisualSim.Get()
 	}
+	if o.Agreement.IsSet() {
+		toSerialize["agreement"] = o.Agreement.Get()
+	}
+	if o.CarriesIdentifier.IsSet() {
+		toSerialize["carriesIdentifier"] = o.CarriesIdentifier.Get()
+	}
+	if o.PriceOutlier.IsSet() {
+		toSerialize["priceOutlier"] = o.PriceOutlier.Get()
+	}
+	if o.Condition.IsSet() {
+		toSerialize["condition"] = o.Condition.Get()
+	}
+	if o.Brand.IsSet() {
+		toSerialize["brand"] = o.Brand.Get()
+	}
 	if true {
 		toSerialize["state"] = o.State
+	}
+	if o.ShippingCents.IsSet() {
+		toSerialize["shippingCents"] = o.ShippingCents.Get()
+	}
+	if o.Format.IsSet() {
+		toSerialize["format"] = o.Format.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2632,7 +4623,7 @@ type CreateMagicScanSynthesizeResponsePayload struct {
 	Brand NullableString `json:"brand,omitempty"`
 	// Master form enum value — one of new/like_new/good/fair/poor. The heuristic synth maps eBay/Mercari/Poshmark condition strings into this canonical form so the UI's <Select> finds a match.
 	Condition NullableString `json:"condition,omitempty"`
-	Grading NullableListGradingSubmissionsItemGrading `json:"grading,omitempty"`
+	Grading NullableCreateBulkBatchItemResponseGrading `json:"grading,omitempty"`
 	Color NullableString `json:"color,omitempty"`
 	Material NullableString `json:"material,omitempty"`
 	Size NullableString `json:"size,omitempty"`
@@ -2841,9 +4832,9 @@ func (o *CreateMagicScanSynthesizeResponsePayload) UnsetCondition() {
 }
 
 // GetGrading returns the Grading field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateMagicScanSynthesizeResponsePayload) GetGrading() ListGradingSubmissionsItemGrading {
+func (o *CreateMagicScanSynthesizeResponsePayload) GetGrading() CreateBulkBatchItemResponseGrading {
 	if o == nil || o.Grading.Get() == nil {
-		var ret ListGradingSubmissionsItemGrading
+		var ret CreateBulkBatchItemResponseGrading
 		return ret
 	}
 	return *o.Grading.Get()
@@ -2852,7 +4843,7 @@ func (o *CreateMagicScanSynthesizeResponsePayload) GetGrading() ListGradingSubmi
 // GetGradingOk returns a tuple with the Grading field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateMagicScanSynthesizeResponsePayload) GetGradingOk() (*ListGradingSubmissionsItemGrading, bool) {
+func (o *CreateMagicScanSynthesizeResponsePayload) GetGradingOk() (*CreateBulkBatchItemResponseGrading, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2868,8 +4859,8 @@ func (o *CreateMagicScanSynthesizeResponsePayload) HasGrading() bool {
 	return false
 }
 
-// SetGrading gets a reference to the given NullableListGradingSubmissionsItemGrading and assigns it to the Grading field.
-func (o *CreateMagicScanSynthesizeResponsePayload) SetGrading(v ListGradingSubmissionsItemGrading) {
+// SetGrading gets a reference to the given NullableCreateBulkBatchItemResponseGrading and assigns it to the Grading field.
+func (o *CreateMagicScanSynthesizeResponsePayload) SetGrading(v CreateBulkBatchItemResponseGrading) {
 	o.Grading.Set(&v)
 }
 // SetGradingNil sets the value for Grading to be an explicit nil
@@ -5041,6 +7032,97 @@ func (v *NullableCreateMagicScanSynthesizeResponsePayloadSectionApplicability) U
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetMagicAutoSettingResponse struct for GetMagicAutoSettingResponse
+type GetMagicAutoSettingResponse struct {
+	Mode string `json:"mode"`
+}
+
+// NewGetMagicAutoSettingResponse instantiates a new GetMagicAutoSettingResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMagicAutoSettingResponse(mode string) *GetMagicAutoSettingResponse {
+	this := GetMagicAutoSettingResponse{}
+	this.Mode = mode
+	return &this
+}
+
+// NewGetMagicAutoSettingResponseWithDefaults instantiates a new GetMagicAutoSettingResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMagicAutoSettingResponseWithDefaults() *GetMagicAutoSettingResponse {
+	this := GetMagicAutoSettingResponse{}
+	return &this
+}
+
+// GetMode returns the Mode field value
+func (o *GetMagicAutoSettingResponse) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *GetMagicAutoSettingResponse) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *GetMagicAutoSettingResponse) SetMode(v string) {
+	o.Mode = v
+}
+
+func (o GetMagicAutoSettingResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["mode"] = o.Mode
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetMagicAutoSettingResponse struct {
+	value *GetMagicAutoSettingResponse
+	isSet bool
+}
+
+func (v NullableGetMagicAutoSettingResponse) Get() *GetMagicAutoSettingResponse {
+	return v.value
+}
+
+func (v *NullableGetMagicAutoSettingResponse) Set(val *GetMagicAutoSettingResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMagicAutoSettingResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMagicAutoSettingResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMagicAutoSettingResponse(val *GetMagicAutoSettingResponse) *NullableGetMagicAutoSettingResponse {
+	return &NullableGetMagicAutoSettingResponse{value: val, isSet: true}
+}
+
+func (v NullableGetMagicAutoSettingResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMagicAutoSettingResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetMagicDraftResponse struct for GetMagicDraftResponse
 type GetMagicDraftResponse struct {
 	Draft GetMagicDraftResponseDraft `json:"draft"`
@@ -5531,6 +7613,787 @@ func (v *NullableGetMagicDraftResponseDraft) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// ListMagicAutoRunDecisionsItem struct for ListMagicAutoRunDecisionsItem
+type ListMagicAutoRunDecisionsItem struct {
+	Id string `json:"id"`
+	RunId string `json:"runId"`
+	ItemRef string `json:"itemRef"`
+	Version float32 `json:"version"`
+	Actor string `json:"actor"`
+	Mode NullableString `json:"mode,omitempty"`
+	Verdict NullableString `json:"verdict,omitempty"`
+	AcceptedKeys []string `json:"acceptedKeys"`
+	RejectedKeys []string `json:"rejectedKeys"`
+	Score NullableFloat32 `json:"score,omitempty"`
+	ThresholdVersion NullableString `json:"thresholdVersion,omitempty"`
+	DraftId NullableString `json:"draftId,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
+	UndoneAt NullableString `json:"undoneAt,omitempty"`
+	CreatedAt string `json:"createdAt"`
+}
+
+// NewListMagicAutoRunDecisionsItem instantiates a new ListMagicAutoRunDecisionsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMagicAutoRunDecisionsItem(id string, runId string, itemRef string, version float32, actor string, acceptedKeys []string, rejectedKeys []string, createdAt string) *ListMagicAutoRunDecisionsItem {
+	this := ListMagicAutoRunDecisionsItem{}
+	this.Id = id
+	this.RunId = runId
+	this.ItemRef = itemRef
+	this.Version = version
+	this.Actor = actor
+	this.AcceptedKeys = acceptedKeys
+	this.RejectedKeys = rejectedKeys
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListMagicAutoRunDecisionsItemWithDefaults instantiates a new ListMagicAutoRunDecisionsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMagicAutoRunDecisionsItemWithDefaults() *ListMagicAutoRunDecisionsItem {
+	this := ListMagicAutoRunDecisionsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListMagicAutoRunDecisionsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetRunId returns the RunId field value
+func (o *ListMagicAutoRunDecisionsItem) GetRunId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RunId
+}
+
+// GetRunIdOk returns a tuple with the RunId field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetRunIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RunId, true
+}
+
+// SetRunId sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetRunId(v string) {
+	o.RunId = v
+}
+
+// GetItemRef returns the ItemRef field value
+func (o *ListMagicAutoRunDecisionsItem) GetItemRef() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ItemRef
+}
+
+// GetItemRefOk returns a tuple with the ItemRef field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetItemRefOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ItemRef, true
+}
+
+// SetItemRef sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetItemRef(v string) {
+	o.ItemRef = v
+}
+
+// GetVersion returns the Version field value
+func (o *ListMagicAutoRunDecisionsItem) GetVersion() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetVersionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetVersion(v float32) {
+	o.Version = v
+}
+
+// GetActor returns the Actor field value
+func (o *ListMagicAutoRunDecisionsItem) GetActor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Actor
+}
+
+// GetActorOk returns a tuple with the Actor field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetActorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Actor, true
+}
+
+// SetActor sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetActor(v string) {
+	o.Actor = v
+}
+
+// GetMode returns the Mode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetMode() string {
+	if o == nil || o.Mode.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Mode.Get()
+}
+
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Mode.Get(), o.Mode.IsSet()
+}
+
+// HasMode returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasMode() bool {
+	if o != nil && o.Mode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMode gets a reference to the given NullableString and assigns it to the Mode field.
+func (o *ListMagicAutoRunDecisionsItem) SetMode(v string) {
+	o.Mode.Set(&v)
+}
+// SetModeNil sets the value for Mode to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetModeNil() {
+	o.Mode.Set(nil)
+}
+
+// UnsetMode ensures that no value is present for Mode, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetMode() {
+	o.Mode.Unset()
+}
+
+// GetVerdict returns the Verdict field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetVerdict() string {
+	if o == nil || o.Verdict.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Verdict.Get()
+}
+
+// GetVerdictOk returns a tuple with the Verdict field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetVerdictOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Verdict.Get(), o.Verdict.IsSet()
+}
+
+// HasVerdict returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasVerdict() bool {
+	if o != nil && o.Verdict.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerdict gets a reference to the given NullableString and assigns it to the Verdict field.
+func (o *ListMagicAutoRunDecisionsItem) SetVerdict(v string) {
+	o.Verdict.Set(&v)
+}
+// SetVerdictNil sets the value for Verdict to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetVerdictNil() {
+	o.Verdict.Set(nil)
+}
+
+// UnsetVerdict ensures that no value is present for Verdict, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetVerdict() {
+	o.Verdict.Unset()
+}
+
+// GetAcceptedKeys returns the AcceptedKeys field value
+func (o *ListMagicAutoRunDecisionsItem) GetAcceptedKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.AcceptedKeys
+}
+
+// GetAcceptedKeysOk returns a tuple with the AcceptedKeys field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetAcceptedKeysOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AcceptedKeys, true
+}
+
+// SetAcceptedKeys sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetAcceptedKeys(v []string) {
+	o.AcceptedKeys = v
+}
+
+// GetRejectedKeys returns the RejectedKeys field value
+func (o *ListMagicAutoRunDecisionsItem) GetRejectedKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.RejectedKeys
+}
+
+// GetRejectedKeysOk returns a tuple with the RejectedKeys field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetRejectedKeysOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RejectedKeys, true
+}
+
+// SetRejectedKeys sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetRejectedKeys(v []string) {
+	o.RejectedKeys = v
+}
+
+// GetScore returns the Score field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetScore() float32 {
+	if o == nil || o.Score.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Score.Get()
+}
+
+// GetScoreOk returns a tuple with the Score field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetScoreOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Score.Get(), o.Score.IsSet()
+}
+
+// HasScore returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasScore() bool {
+	if o != nil && o.Score.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetScore gets a reference to the given NullableFloat32 and assigns it to the Score field.
+func (o *ListMagicAutoRunDecisionsItem) SetScore(v float32) {
+	o.Score.Set(&v)
+}
+// SetScoreNil sets the value for Score to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetScoreNil() {
+	o.Score.Set(nil)
+}
+
+// UnsetScore ensures that no value is present for Score, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetScore() {
+	o.Score.Unset()
+}
+
+// GetThresholdVersion returns the ThresholdVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetThresholdVersion() string {
+	if o == nil || o.ThresholdVersion.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ThresholdVersion.Get()
+}
+
+// GetThresholdVersionOk returns a tuple with the ThresholdVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetThresholdVersionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ThresholdVersion.Get(), o.ThresholdVersion.IsSet()
+}
+
+// HasThresholdVersion returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasThresholdVersion() bool {
+	if o != nil && o.ThresholdVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThresholdVersion gets a reference to the given NullableString and assigns it to the ThresholdVersion field.
+func (o *ListMagicAutoRunDecisionsItem) SetThresholdVersion(v string) {
+	o.ThresholdVersion.Set(&v)
+}
+// SetThresholdVersionNil sets the value for ThresholdVersion to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetThresholdVersionNil() {
+	o.ThresholdVersion.Set(nil)
+}
+
+// UnsetThresholdVersion ensures that no value is present for ThresholdVersion, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetThresholdVersion() {
+	o.ThresholdVersion.Unset()
+}
+
+// GetDraftId returns the DraftId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetDraftId() string {
+	if o == nil || o.DraftId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DraftId.Get()
+}
+
+// GetDraftIdOk returns a tuple with the DraftId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetDraftIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DraftId.Get(), o.DraftId.IsSet()
+}
+
+// HasDraftId returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasDraftId() bool {
+	if o != nil && o.DraftId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDraftId gets a reference to the given NullableString and assigns it to the DraftId field.
+func (o *ListMagicAutoRunDecisionsItem) SetDraftId(v string) {
+	o.DraftId.Set(&v)
+}
+// SetDraftIdNil sets the value for DraftId to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetDraftIdNil() {
+	o.DraftId.Set(nil)
+}
+
+// UnsetDraftId ensures that no value is present for DraftId, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetDraftId() {
+	o.DraftId.Unset()
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *ListMagicAutoRunDecisionsItem) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+// GetUndoneAt returns the UndoneAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMagicAutoRunDecisionsItem) GetUndoneAt() string {
+	if o == nil || o.UndoneAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.UndoneAt.Get()
+}
+
+// GetUndoneAtOk returns a tuple with the UndoneAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMagicAutoRunDecisionsItem) GetUndoneAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.UndoneAt.Get(), o.UndoneAt.IsSet()
+}
+
+// HasUndoneAt returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsItem) HasUndoneAt() bool {
+	if o != nil && o.UndoneAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUndoneAt gets a reference to the given NullableString and assigns it to the UndoneAt field.
+func (o *ListMagicAutoRunDecisionsItem) SetUndoneAt(v string) {
+	o.UndoneAt.Set(&v)
+}
+// SetUndoneAtNil sets the value for UndoneAt to be an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) SetUndoneAtNil() {
+	o.UndoneAt.Set(nil)
+}
+
+// UnsetUndoneAt ensures that no value is present for UndoneAt, not even an explicit nil
+func (o *ListMagicAutoRunDecisionsItem) UnsetUndoneAt() {
+	o.UndoneAt.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListMagicAutoRunDecisionsItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListMagicAutoRunDecisionsItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+func (o ListMagicAutoRunDecisionsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["runId"] = o.RunId
+	}
+	if true {
+		toSerialize["itemRef"] = o.ItemRef
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["actor"] = o.Actor
+	}
+	if o.Mode.IsSet() {
+		toSerialize["mode"] = o.Mode.Get()
+	}
+	if o.Verdict.IsSet() {
+		toSerialize["verdict"] = o.Verdict.Get()
+	}
+	if true {
+		toSerialize["acceptedKeys"] = o.AcceptedKeys
+	}
+	if true {
+		toSerialize["rejectedKeys"] = o.RejectedKeys
+	}
+	if o.Score.IsSet() {
+		toSerialize["score"] = o.Score.Get()
+	}
+	if o.ThresholdVersion.IsSet() {
+		toSerialize["thresholdVersion"] = o.ThresholdVersion.Get()
+	}
+	if o.DraftId.IsSet() {
+		toSerialize["draftId"] = o.DraftId.Get()
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	if o.UndoneAt.IsSet() {
+		toSerialize["undoneAt"] = o.UndoneAt.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMagicAutoRunDecisionsItem struct {
+	value *ListMagicAutoRunDecisionsItem
+	isSet bool
+}
+
+func (v NullableListMagicAutoRunDecisionsItem) Get() *ListMagicAutoRunDecisionsItem {
+	return v.value
+}
+
+func (v *NullableListMagicAutoRunDecisionsItem) Set(val *ListMagicAutoRunDecisionsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMagicAutoRunDecisionsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMagicAutoRunDecisionsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMagicAutoRunDecisionsItem(val *ListMagicAutoRunDecisionsItem) *NullableListMagicAutoRunDecisionsItem {
+	return &NullableListMagicAutoRunDecisionsItem{value: val, isSet: true}
+}
+
+func (v NullableListMagicAutoRunDecisionsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMagicAutoRunDecisionsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListMagicAutoRunDecisionsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListMagicAutoRunDecisionsResponse struct {
+	// The rows.
+	Data []ListMagicAutoRunDecisionsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListMagicAutoRunDecisionsResponse instantiates a new ListMagicAutoRunDecisionsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMagicAutoRunDecisionsResponse(data []ListMagicAutoRunDecisionsItem) *ListMagicAutoRunDecisionsResponse {
+	this := ListMagicAutoRunDecisionsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListMagicAutoRunDecisionsResponseWithDefaults instantiates a new ListMagicAutoRunDecisionsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMagicAutoRunDecisionsResponseWithDefaults() *ListMagicAutoRunDecisionsResponse {
+	this := ListMagicAutoRunDecisionsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListMagicAutoRunDecisionsResponse) GetData() []ListMagicAutoRunDecisionsItem {
+	if o == nil {
+		var ret []ListMagicAutoRunDecisionsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsResponse) GetDataOk() ([]ListMagicAutoRunDecisionsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListMagicAutoRunDecisionsResponse) SetData(v []ListMagicAutoRunDecisionsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListMagicAutoRunDecisionsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListMagicAutoRunDecisionsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListMagicAutoRunDecisionsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMagicAutoRunDecisionsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListMagicAutoRunDecisionsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListMagicAutoRunDecisionsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListMagicAutoRunDecisionsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListMagicAutoRunDecisionsResponse struct {
+	value *ListMagicAutoRunDecisionsResponse
+	isSet bool
+}
+
+func (v NullableListMagicAutoRunDecisionsResponse) Get() *ListMagicAutoRunDecisionsResponse {
+	return v.value
+}
+
+func (v *NullableListMagicAutoRunDecisionsResponse) Set(val *ListMagicAutoRunDecisionsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMagicAutoRunDecisionsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMagicAutoRunDecisionsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMagicAutoRunDecisionsResponse(val *ListMagicAutoRunDecisionsResponse) *NullableListMagicAutoRunDecisionsResponse {
+	return &NullableListMagicAutoRunDecisionsResponse{value: val, isSet: true}
+}
+
+func (v NullableListMagicAutoRunDecisionsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMagicAutoRunDecisionsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListMagicRecentItem struct for ListMagicRecentItem
 type ListMagicRecentItem struct {
 	Id string `json:"id"`
@@ -5899,6 +8762,97 @@ func (v NullableListMagicRecentResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListMagicRecentResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdateMagicAutoSettingRequest struct for UpdateMagicAutoSettingRequest
+type UpdateMagicAutoSettingRequest struct {
+	Mode string `json:"mode"`
+}
+
+// NewUpdateMagicAutoSettingRequest instantiates a new UpdateMagicAutoSettingRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateMagicAutoSettingRequest(mode string) *UpdateMagicAutoSettingRequest {
+	this := UpdateMagicAutoSettingRequest{}
+	this.Mode = mode
+	return &this
+}
+
+// NewUpdateMagicAutoSettingRequestWithDefaults instantiates a new UpdateMagicAutoSettingRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateMagicAutoSettingRequestWithDefaults() *UpdateMagicAutoSettingRequest {
+	this := UpdateMagicAutoSettingRequest{}
+	return &this
+}
+
+// GetMode returns the Mode field value
+func (o *UpdateMagicAutoSettingRequest) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *UpdateMagicAutoSettingRequest) GetModeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *UpdateMagicAutoSettingRequest) SetMode(v string) {
+	o.Mode = v
+}
+
+func (o UpdateMagicAutoSettingRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["mode"] = o.Mode
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdateMagicAutoSettingRequest struct {
+	value *UpdateMagicAutoSettingRequest
+	isSet bool
+}
+
+func (v NullableUpdateMagicAutoSettingRequest) Get() *UpdateMagicAutoSettingRequest {
+	return v.value
+}
+
+func (v *NullableUpdateMagicAutoSettingRequest) Set(val *UpdateMagicAutoSettingRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateMagicAutoSettingRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateMagicAutoSettingRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateMagicAutoSettingRequest(val *UpdateMagicAutoSettingRequest) *NullableUpdateMagicAutoSettingRequest {
+	return &NullableUpdateMagicAutoSettingRequest{value: val, isSet: true}
+}
+
+func (v NullableUpdateMagicAutoSettingRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateMagicAutoSettingRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

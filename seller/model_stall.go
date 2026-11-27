@@ -123,6 +123,8 @@ type CreateStallBookResponseBooking struct {
 	RefundedCents float32 `json:"refundedCents"`
 	Cancellable bool `json:"cancellable"`
 	ListingIds []string `json:"listingIds"`
+	BoothKind string `json:"boothKind"`
+	Capacity float32 `json:"capacity"`
 	Awning NullableColourPattern `json:"awning,omitempty"`
 	Booth NullableCreateStallBookResponseBookingBooth `json:"booth,omitempty"`
 	Sign NullableString `json:"sign,omitempty"`
@@ -135,7 +137,7 @@ type CreateStallBookResponseBooking struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateStallBookResponseBooking(id string, street string, spotIndex float32, unit string, units []CreateStallBookResponseBookingUnits, startsAt string, endsAt string, status string, rail string, owner CreateStallBookResponseBookingOwner, quote CreateStallBookResponseBookingQuote, totalCents float32, refundedCents float32, cancellable bool, listingIds []string, attendant bool, stats CreateStallBookResponseBookingStats, createdAt string) *CreateStallBookResponseBooking {
+func NewCreateStallBookResponseBooking(id string, street string, spotIndex float32, unit string, units []CreateStallBookResponseBookingUnits, startsAt string, endsAt string, status string, rail string, owner CreateStallBookResponseBookingOwner, quote CreateStallBookResponseBookingQuote, totalCents float32, refundedCents float32, cancellable bool, listingIds []string, boothKind string, capacity float32, attendant bool, stats CreateStallBookResponseBookingStats, createdAt string) *CreateStallBookResponseBooking {
 	this := CreateStallBookResponseBooking{}
 	this.Id = id
 	this.Street = street
@@ -152,6 +154,8 @@ func NewCreateStallBookResponseBooking(id string, street string, spotIndex float
 	this.RefundedCents = refundedCents
 	this.Cancellable = cancellable
 	this.ListingIds = listingIds
+	this.BoothKind = boothKind
+	this.Capacity = capacity
 	this.Attendant = attendant
 	this.Stats = stats
 	this.CreatedAt = createdAt
@@ -526,6 +530,54 @@ func (o *CreateStallBookResponseBooking) SetListingIds(v []string) {
 	o.ListingIds = v
 }
 
+// GetBoothKind returns the BoothKind field value
+func (o *CreateStallBookResponseBooking) GetBoothKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BoothKind
+}
+
+// GetBoothKindOk returns a tuple with the BoothKind field value
+// and a boolean to check if the value has been set.
+func (o *CreateStallBookResponseBooking) GetBoothKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothKind, true
+}
+
+// SetBoothKind sets field value
+func (o *CreateStallBookResponseBooking) SetBoothKind(v string) {
+	o.BoothKind = v
+}
+
+// GetCapacity returns the Capacity field value
+func (o *CreateStallBookResponseBooking) GetCapacity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Capacity
+}
+
+// GetCapacityOk returns a tuple with the Capacity field value
+// and a boolean to check if the value has been set.
+func (o *CreateStallBookResponseBooking) GetCapacityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capacity, true
+}
+
+// SetCapacity sets field value
+func (o *CreateStallBookResponseBooking) SetCapacity(v float32) {
+	o.Capacity = v
+}
+
 // GetAwning returns the Awning field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateStallBookResponseBooking) GetAwning() ColourPattern {
 	if o == nil || o.Awning.Get() == nil {
@@ -770,6 +822,12 @@ func (o CreateStallBookResponseBooking) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["listingIds"] = o.ListingIds
+	}
+	if true {
+		toSerialize["boothKind"] = o.BoothKind
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
 	}
 	if o.Awning.IsSet() {
 		toSerialize["awning"] = o.Awning.Get()
@@ -1837,6 +1895,8 @@ type CreateStallBookResponseBookingUnits struct {
 	Cents float32 `json:"cents"`
 	// CBX only: the spend's external id for this unit (one spend per unit).
 	ExternalId NullableString `json:"externalId,omitempty"`
+	// CBX only, booked since gap 6: this unit's world_payments row (refunds go through refundWorld).
+	PaymentId NullableString `json:"paymentId,omitempty"`
 }
 
 // NewCreateStallBookResponseBookingUnits instantiates a new CreateStallBookResponseBookingUnits object
@@ -1998,6 +2058,48 @@ func (o *CreateStallBookResponseBookingUnits) UnsetExternalId() {
 	o.ExternalId.Unset()
 }
 
+// GetPaymentId returns the PaymentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateStallBookResponseBookingUnits) GetPaymentId() string {
+	if o == nil || o.PaymentId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaymentId.Get()
+}
+
+// GetPaymentIdOk returns a tuple with the PaymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateStallBookResponseBookingUnits) GetPaymentIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PaymentId.Get(), o.PaymentId.IsSet()
+}
+
+// HasPaymentId returns a boolean if a field has been set.
+func (o *CreateStallBookResponseBookingUnits) HasPaymentId() bool {
+	if o != nil && o.PaymentId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentId gets a reference to the given NullableString and assigns it to the PaymentId field.
+func (o *CreateStallBookResponseBookingUnits) SetPaymentId(v string) {
+	o.PaymentId.Set(&v)
+}
+// SetPaymentIdNil sets the value for PaymentId to be an explicit nil
+func (o *CreateStallBookResponseBookingUnits) SetPaymentIdNil() {
+	o.PaymentId.Set(nil)
+}
+
+// UnsetPaymentId ensures that no value is present for PaymentId, not even an explicit nil
+func (o *CreateStallBookResponseBookingUnits) UnsetPaymentId() {
+	o.PaymentId.Unset()
+}
+
 func (o CreateStallBookResponseBookingUnits) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2014,6 +2116,9 @@ func (o CreateStallBookResponseBookingUnits) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExternalId.IsSet() {
 		toSerialize["externalId"] = o.ExternalId.Get()
+	}
+	if o.PaymentId.IsSet() {
+		toSerialize["paymentId"] = o.PaymentId.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2203,6 +2308,213 @@ func (v *NullableCreateStallBookingCancelResponse) UnmarshalJSON(src []byte) err
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetStallBookingCounterResponse struct for GetStallBookingCounterResponse
+type GetStallBookingCounterResponse struct {
+	BookingId string `json:"bookingId"`
+	Street string `json:"street"`
+	Capacity float32 `json:"capacity"`
+	BoothKind string `json:"boothKind"`
+	Listings []ListStallListingSearchItem `json:"listings"`
+}
+
+// NewGetStallBookingCounterResponse instantiates a new GetStallBookingCounterResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallBookingCounterResponse(bookingId string, street string, capacity float32, boothKind string, listings []ListStallListingSearchItem) *GetStallBookingCounterResponse {
+	this := GetStallBookingCounterResponse{}
+	this.BookingId = bookingId
+	this.Street = street
+	this.Capacity = capacity
+	this.BoothKind = boothKind
+	this.Listings = listings
+	return &this
+}
+
+// NewGetStallBookingCounterResponseWithDefaults instantiates a new GetStallBookingCounterResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallBookingCounterResponseWithDefaults() *GetStallBookingCounterResponse {
+	this := GetStallBookingCounterResponse{}
+	return &this
+}
+
+// GetBookingId returns the BookingId field value
+func (o *GetStallBookingCounterResponse) GetBookingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookingId
+}
+
+// GetBookingIdOk returns a tuple with the BookingId field value
+// and a boolean to check if the value has been set.
+func (o *GetStallBookingCounterResponse) GetBookingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookingId, true
+}
+
+// SetBookingId sets field value
+func (o *GetStallBookingCounterResponse) SetBookingId(v string) {
+	o.BookingId = v
+}
+
+// GetStreet returns the Street field value
+func (o *GetStallBookingCounterResponse) GetStreet() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Street
+}
+
+// GetStreetOk returns a tuple with the Street field value
+// and a boolean to check if the value has been set.
+func (o *GetStallBookingCounterResponse) GetStreetOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Street, true
+}
+
+// SetStreet sets field value
+func (o *GetStallBookingCounterResponse) SetStreet(v string) {
+	o.Street = v
+}
+
+// GetCapacity returns the Capacity field value
+func (o *GetStallBookingCounterResponse) GetCapacity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Capacity
+}
+
+// GetCapacityOk returns a tuple with the Capacity field value
+// and a boolean to check if the value has been set.
+func (o *GetStallBookingCounterResponse) GetCapacityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capacity, true
+}
+
+// SetCapacity sets field value
+func (o *GetStallBookingCounterResponse) SetCapacity(v float32) {
+	o.Capacity = v
+}
+
+// GetBoothKind returns the BoothKind field value
+func (o *GetStallBookingCounterResponse) GetBoothKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BoothKind
+}
+
+// GetBoothKindOk returns a tuple with the BoothKind field value
+// and a boolean to check if the value has been set.
+func (o *GetStallBookingCounterResponse) GetBoothKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothKind, true
+}
+
+// SetBoothKind sets field value
+func (o *GetStallBookingCounterResponse) SetBoothKind(v string) {
+	o.BoothKind = v
+}
+
+// GetListings returns the Listings field value
+func (o *GetStallBookingCounterResponse) GetListings() []ListStallListingSearchItem {
+	if o == nil {
+		var ret []ListStallListingSearchItem
+		return ret
+	}
+
+	return o.Listings
+}
+
+// GetListingsOk returns a tuple with the Listings field value
+// and a boolean to check if the value has been set.
+func (o *GetStallBookingCounterResponse) GetListingsOk() ([]ListStallListingSearchItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Listings, true
+}
+
+// SetListings sets field value
+func (o *GetStallBookingCounterResponse) SetListings(v []ListStallListingSearchItem) {
+	o.Listings = v
+}
+
+func (o GetStallBookingCounterResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bookingId"] = o.BookingId
+	}
+	if true {
+		toSerialize["street"] = o.Street
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
+	}
+	if true {
+		toSerialize["boothKind"] = o.BoothKind
+	}
+	if true {
+		toSerialize["listings"] = o.Listings
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallBookingCounterResponse struct {
+	value *GetStallBookingCounterResponse
+	isSet bool
+}
+
+func (v NullableGetStallBookingCounterResponse) Get() *GetStallBookingCounterResponse {
+	return v.value
+}
+
+func (v *NullableGetStallBookingCounterResponse) Set(val *GetStallBookingCounterResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallBookingCounterResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallBookingCounterResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallBookingCounterResponse(val *GetStallBookingCounterResponse) *NullableGetStallBookingCounterResponse {
+	return &NullableGetStallBookingCounterResponse{value: val, isSet: true}
+}
+
+func (v NullableGetStallBookingCounterResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallBookingCounterResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetStallQuoteResponse struct for GetStallQuoteResponse
 type GetStallQuoteResponse struct {
 	Quote GetStallQuoteResponseQuote `json:"quote"`
@@ -2303,6 +2615,8 @@ type GetStallQuoteResponseQuote struct {
 	Units []GetStallQuoteResponseQuoteUnits `json:"units"`
 	Quote CreateStallBookResponseBookingQuote `json:"quote"`
 	Rails []GetStallQuoteResponseQuoteRailsItem `json:"rails"`
+	BoothKind string `json:"boothKind"`
+	Capacity float32 `json:"capacity"`
 	Bookable bool `json:"bookable"`
 	UnbookableReason NullableString `json:"unbookableReason,omitempty"`
 }
@@ -2311,7 +2625,7 @@ type GetStallQuoteResponseQuote struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetStallQuoteResponseQuote(street string, spotIndex float32, owner GetStallQuoteResponseQuoteOwner, open bool, units []GetStallQuoteResponseQuoteUnits, quote CreateStallBookResponseBookingQuote, rails []GetStallQuoteResponseQuoteRailsItem, bookable bool) *GetStallQuoteResponseQuote {
+func NewGetStallQuoteResponseQuote(street string, spotIndex float32, owner GetStallQuoteResponseQuoteOwner, open bool, units []GetStallQuoteResponseQuoteUnits, quote CreateStallBookResponseBookingQuote, rails []GetStallQuoteResponseQuoteRailsItem, boothKind string, capacity float32, bookable bool) *GetStallQuoteResponseQuote {
 	this := GetStallQuoteResponseQuote{}
 	this.Street = street
 	this.SpotIndex = spotIndex
@@ -2320,6 +2634,8 @@ func NewGetStallQuoteResponseQuote(street string, spotIndex float32, owner GetSt
 	this.Units = units
 	this.Quote = quote
 	this.Rails = rails
+	this.BoothKind = boothKind
+	this.Capacity = capacity
 	this.Bookable = bookable
 	return &this
 }
@@ -2500,6 +2816,54 @@ func (o *GetStallQuoteResponseQuote) SetRails(v []GetStallQuoteResponseQuoteRail
 	o.Rails = v
 }
 
+// GetBoothKind returns the BoothKind field value
+func (o *GetStallQuoteResponseQuote) GetBoothKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BoothKind
+}
+
+// GetBoothKindOk returns a tuple with the BoothKind field value
+// and a boolean to check if the value has been set.
+func (o *GetStallQuoteResponseQuote) GetBoothKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothKind, true
+}
+
+// SetBoothKind sets field value
+func (o *GetStallQuoteResponseQuote) SetBoothKind(v string) {
+	o.BoothKind = v
+}
+
+// GetCapacity returns the Capacity field value
+func (o *GetStallQuoteResponseQuote) GetCapacity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Capacity
+}
+
+// GetCapacityOk returns a tuple with the Capacity field value
+// and a boolean to check if the value has been set.
+func (o *GetStallQuoteResponseQuote) GetCapacityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capacity, true
+}
+
+// SetCapacity sets field value
+func (o *GetStallQuoteResponseQuote) SetCapacity(v float32) {
+	o.Capacity = v
+}
+
 // GetBookable returns the Bookable field value
 func (o *GetStallQuoteResponseQuote) GetBookable() bool {
 	if o == nil {
@@ -2588,6 +2952,12 @@ func (o GetStallQuoteResponseQuote) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["rails"] = o.Rails
+	}
+	if true {
+		toSerialize["boothKind"] = o.BoothKind
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
 	}
 	if true {
 		toSerialize["bookable"] = o.Bookable
@@ -2760,15 +3130,15 @@ type GetStallQuoteResponseQuoteRailsItem string
 // List of GetStallQuoteResponseQuoteRailsItem
 const (
 	GETSTALLQUOTERESPONSEQUOTERAILSITEM_CARD GetStallQuoteResponseQuoteRailsItem = "card"
-	GETSTALLQUOTERESPONSEQUOTERAILSITEM_BUCKS GetStallQuoteResponseQuoteRailsItem = "bucks"
 	GETSTALLQUOTERESPONSEQUOTERAILSITEM_CBX GetStallQuoteResponseQuoteRailsItem = "cbx"
+	GETSTALLQUOTERESPONSEQUOTERAILSITEM_BUCKS GetStallQuoteResponseQuoteRailsItem = "bucks"
 )
 
 // All allowed values of GetStallQuoteResponseQuoteRailsItem enum
 var AllowedGetStallQuoteResponseQuoteRailsItemEnumValues = []GetStallQuoteResponseQuoteRailsItem{
 	"card",
-	"bucks",
 	"cbx",
+	"bucks",
 }
 
 func (v *GetStallQuoteResponseQuoteRailsItem) UnmarshalJSON(src []byte) error {
@@ -3028,6 +3398,1477 @@ func (v *NullableGetStallQuoteResponseQuoteUnits) UnmarshalJSON(src []byte) erro
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetStallStreetAerialResponse struct for GetStallStreetAerialResponse
+type GetStallStreetAerialResponse struct {
+	Street GetStallStreetAerialResponseStreet `json:"street"`
+	From string `json:"from"`
+	Days []GetStallStreetAerialResponseDays `json:"days"`
+	Events []GetStallStreetAerialResponseEvents `json:"events"`
+	Layouts map[string]interface{} `json:"layouts"`
+	Links GetStallStreetAerialResponseLinks `json:"links"`
+}
+
+// NewGetStallStreetAerialResponse instantiates a new GetStallStreetAerialResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallStreetAerialResponse(street GetStallStreetAerialResponseStreet, from string, days []GetStallStreetAerialResponseDays, events []GetStallStreetAerialResponseEvents, layouts map[string]interface{}, links GetStallStreetAerialResponseLinks) *GetStallStreetAerialResponse {
+	this := GetStallStreetAerialResponse{}
+	this.Street = street
+	this.From = from
+	this.Days = days
+	this.Events = events
+	this.Layouts = layouts
+	this.Links = links
+	return &this
+}
+
+// NewGetStallStreetAerialResponseWithDefaults instantiates a new GetStallStreetAerialResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallStreetAerialResponseWithDefaults() *GetStallStreetAerialResponse {
+	this := GetStallStreetAerialResponse{}
+	return &this
+}
+
+// GetStreet returns the Street field value
+func (o *GetStallStreetAerialResponse) GetStreet() GetStallStreetAerialResponseStreet {
+	if o == nil {
+		var ret GetStallStreetAerialResponseStreet
+		return ret
+	}
+
+	return o.Street
+}
+
+// GetStreetOk returns a tuple with the Street field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetStreetOk() (*GetStallStreetAerialResponseStreet, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Street, true
+}
+
+// SetStreet sets field value
+func (o *GetStallStreetAerialResponse) SetStreet(v GetStallStreetAerialResponseStreet) {
+	o.Street = v
+}
+
+// GetFrom returns the From field value
+func (o *GetStallStreetAerialResponse) GetFrom() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.From
+}
+
+// GetFromOk returns a tuple with the From field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetFromOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.From, true
+}
+
+// SetFrom sets field value
+func (o *GetStallStreetAerialResponse) SetFrom(v string) {
+	o.From = v
+}
+
+// GetDays returns the Days field value
+func (o *GetStallStreetAerialResponse) GetDays() []GetStallStreetAerialResponseDays {
+	if o == nil {
+		var ret []GetStallStreetAerialResponseDays
+		return ret
+	}
+
+	return o.Days
+}
+
+// GetDaysOk returns a tuple with the Days field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetDaysOk() ([]GetStallStreetAerialResponseDays, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Days, true
+}
+
+// SetDays sets field value
+func (o *GetStallStreetAerialResponse) SetDays(v []GetStallStreetAerialResponseDays) {
+	o.Days = v
+}
+
+// GetEvents returns the Events field value
+func (o *GetStallStreetAerialResponse) GetEvents() []GetStallStreetAerialResponseEvents {
+	if o == nil {
+		var ret []GetStallStreetAerialResponseEvents
+		return ret
+	}
+
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetEventsOk() ([]GetStallStreetAerialResponseEvents, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Events, true
+}
+
+// SetEvents sets field value
+func (o *GetStallStreetAerialResponse) SetEvents(v []GetStallStreetAerialResponseEvents) {
+	o.Events = v
+}
+
+// GetLayouts returns the Layouts field value
+func (o *GetStallStreetAerialResponse) GetLayouts() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Layouts
+}
+
+// GetLayoutsOk returns a tuple with the Layouts field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetLayoutsOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Layouts, true
+}
+
+// SetLayouts sets field value
+func (o *GetStallStreetAerialResponse) SetLayouts(v map[string]interface{}) {
+	o.Layouts = v
+}
+
+// GetLinks returns the Links field value
+func (o *GetStallStreetAerialResponse) GetLinks() GetStallStreetAerialResponseLinks {
+	if o == nil {
+		var ret GetStallStreetAerialResponseLinks
+		return ret
+	}
+
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponse) GetLinksOk() (*GetStallStreetAerialResponseLinks, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Links, true
+}
+
+// SetLinks sets field value
+func (o *GetStallStreetAerialResponse) SetLinks(v GetStallStreetAerialResponseLinks) {
+	o.Links = v
+}
+
+func (o GetStallStreetAerialResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["street"] = o.Street
+	}
+	if true {
+		toSerialize["from"] = o.From
+	}
+	if true {
+		toSerialize["days"] = o.Days
+	}
+	if true {
+		toSerialize["events"] = o.Events
+	}
+	if true {
+		toSerialize["layouts"] = o.Layouts
+	}
+	if true {
+		toSerialize["links"] = o.Links
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallStreetAerialResponse struct {
+	value *GetStallStreetAerialResponse
+	isSet bool
+}
+
+func (v NullableGetStallStreetAerialResponse) Get() *GetStallStreetAerialResponse {
+	return v.value
+}
+
+func (v *NullableGetStallStreetAerialResponse) Set(val *GetStallStreetAerialResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallStreetAerialResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallStreetAerialResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallStreetAerialResponse(val *GetStallStreetAerialResponse) *NullableGetStallStreetAerialResponse {
+	return &NullableGetStallStreetAerialResponse{value: val, isSet: true}
+}
+
+func (v NullableGetStallStreetAerialResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallStreetAerialResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetStallStreetAerialResponseDays struct for GetStallStreetAerialResponseDays
+type GetStallStreetAerialResponseDays struct {
+	Date string `json:"date"`
+	Key string `json:"key"`
+	Layout string `json:"layout"`
+	Taken []map[string]interface{} `json:"taken"`
+}
+
+// NewGetStallStreetAerialResponseDays instantiates a new GetStallStreetAerialResponseDays object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallStreetAerialResponseDays(date string, key string, layout string, taken []map[string]interface{}) *GetStallStreetAerialResponseDays {
+	this := GetStallStreetAerialResponseDays{}
+	this.Date = date
+	this.Key = key
+	this.Layout = layout
+	this.Taken = taken
+	return &this
+}
+
+// NewGetStallStreetAerialResponseDaysWithDefaults instantiates a new GetStallStreetAerialResponseDays object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallStreetAerialResponseDaysWithDefaults() *GetStallStreetAerialResponseDays {
+	this := GetStallStreetAerialResponseDays{}
+	return &this
+}
+
+// GetDate returns the Date field value
+func (o *GetStallStreetAerialResponseDays) GetDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseDays) GetDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Date, true
+}
+
+// SetDate sets field value
+func (o *GetStallStreetAerialResponseDays) SetDate(v string) {
+	o.Date = v
+}
+
+// GetKey returns the Key field value
+func (o *GetStallStreetAerialResponseDays) GetKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseDays) GetKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Key, true
+}
+
+// SetKey sets field value
+func (o *GetStallStreetAerialResponseDays) SetKey(v string) {
+	o.Key = v
+}
+
+// GetLayout returns the Layout field value
+func (o *GetStallStreetAerialResponseDays) GetLayout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Layout
+}
+
+// GetLayoutOk returns a tuple with the Layout field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseDays) GetLayoutOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Layout, true
+}
+
+// SetLayout sets field value
+func (o *GetStallStreetAerialResponseDays) SetLayout(v string) {
+	o.Layout = v
+}
+
+// GetTaken returns the Taken field value
+func (o *GetStallStreetAerialResponseDays) GetTaken() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Taken
+}
+
+// GetTakenOk returns a tuple with the Taken field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseDays) GetTakenOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Taken, true
+}
+
+// SetTaken sets field value
+func (o *GetStallStreetAerialResponseDays) SetTaken(v []map[string]interface{}) {
+	o.Taken = v
+}
+
+func (o GetStallStreetAerialResponseDays) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["date"] = o.Date
+	}
+	if true {
+		toSerialize["key"] = o.Key
+	}
+	if true {
+		toSerialize["layout"] = o.Layout
+	}
+	if true {
+		toSerialize["taken"] = o.Taken
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallStreetAerialResponseDays struct {
+	value *GetStallStreetAerialResponseDays
+	isSet bool
+}
+
+func (v NullableGetStallStreetAerialResponseDays) Get() *GetStallStreetAerialResponseDays {
+	return v.value
+}
+
+func (v *NullableGetStallStreetAerialResponseDays) Set(val *GetStallStreetAerialResponseDays) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallStreetAerialResponseDays) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallStreetAerialResponseDays) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallStreetAerialResponseDays(val *GetStallStreetAerialResponseDays) *NullableGetStallStreetAerialResponseDays {
+	return &NullableGetStallStreetAerialResponseDays{value: val, isSet: true}
+}
+
+func (v NullableGetStallStreetAerialResponseDays) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallStreetAerialResponseDays) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetStallStreetAerialResponseEvents struct for GetStallStreetAerialResponseEvents
+type GetStallStreetAerialResponseEvents struct {
+	EventId string `json:"eventId"`
+	Kind string `json:"kind"`
+	Label string `json:"label"`
+	Title string `json:"title"`
+	StartsAt string `json:"startsAt"`
+	EndsAt string `json:"endsAt"`
+	Layout string `json:"layout"`
+	Taken []map[string]interface{} `json:"taken"`
+}
+
+// NewGetStallStreetAerialResponseEvents instantiates a new GetStallStreetAerialResponseEvents object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallStreetAerialResponseEvents(eventId string, kind string, label string, title string, startsAt string, endsAt string, layout string, taken []map[string]interface{}) *GetStallStreetAerialResponseEvents {
+	this := GetStallStreetAerialResponseEvents{}
+	this.EventId = eventId
+	this.Kind = kind
+	this.Label = label
+	this.Title = title
+	this.StartsAt = startsAt
+	this.EndsAt = endsAt
+	this.Layout = layout
+	this.Taken = taken
+	return &this
+}
+
+// NewGetStallStreetAerialResponseEventsWithDefaults instantiates a new GetStallStreetAerialResponseEvents object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallStreetAerialResponseEventsWithDefaults() *GetStallStreetAerialResponseEvents {
+	this := GetStallStreetAerialResponseEvents{}
+	return &this
+}
+
+// GetEventId returns the EventId field value
+func (o *GetStallStreetAerialResponseEvents) GetEventId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EventId
+}
+
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetEventIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
+// SetEventId sets field value
+func (o *GetStallStreetAerialResponseEvents) SetEventId(v string) {
+	o.EventId = v
+}
+
+// GetKind returns the Kind field value
+func (o *GetStallStreetAerialResponseEvents) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetStallStreetAerialResponseEvents) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetStallStreetAerialResponseEvents) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetStallStreetAerialResponseEvents) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetStallStreetAerialResponseEvents) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetStallStreetAerialResponseEvents) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetStartsAt returns the StartsAt field value
+func (o *GetStallStreetAerialResponseEvents) GetStartsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StartsAt
+}
+
+// GetStartsAtOk returns a tuple with the StartsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetStartsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StartsAt, true
+}
+
+// SetStartsAt sets field value
+func (o *GetStallStreetAerialResponseEvents) SetStartsAt(v string) {
+	o.StartsAt = v
+}
+
+// GetEndsAt returns the EndsAt field value
+func (o *GetStallStreetAerialResponseEvents) GetEndsAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndsAt
+}
+
+// GetEndsAtOk returns a tuple with the EndsAt field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetEndsAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EndsAt, true
+}
+
+// SetEndsAt sets field value
+func (o *GetStallStreetAerialResponseEvents) SetEndsAt(v string) {
+	o.EndsAt = v
+}
+
+// GetLayout returns the Layout field value
+func (o *GetStallStreetAerialResponseEvents) GetLayout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Layout
+}
+
+// GetLayoutOk returns a tuple with the Layout field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetLayoutOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Layout, true
+}
+
+// SetLayout sets field value
+func (o *GetStallStreetAerialResponseEvents) SetLayout(v string) {
+	o.Layout = v
+}
+
+// GetTaken returns the Taken field value
+func (o *GetStallStreetAerialResponseEvents) GetTaken() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Taken
+}
+
+// GetTakenOk returns a tuple with the Taken field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseEvents) GetTakenOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Taken, true
+}
+
+// SetTaken sets field value
+func (o *GetStallStreetAerialResponseEvents) SetTaken(v []map[string]interface{}) {
+	o.Taken = v
+}
+
+func (o GetStallStreetAerialResponseEvents) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["eventId"] = o.EventId
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["startsAt"] = o.StartsAt
+	}
+	if true {
+		toSerialize["endsAt"] = o.EndsAt
+	}
+	if true {
+		toSerialize["layout"] = o.Layout
+	}
+	if true {
+		toSerialize["taken"] = o.Taken
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallStreetAerialResponseEvents struct {
+	value *GetStallStreetAerialResponseEvents
+	isSet bool
+}
+
+func (v NullableGetStallStreetAerialResponseEvents) Get() *GetStallStreetAerialResponseEvents {
+	return v.value
+}
+
+func (v *NullableGetStallStreetAerialResponseEvents) Set(val *GetStallStreetAerialResponseEvents) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallStreetAerialResponseEvents) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallStreetAerialResponseEvents) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallStreetAerialResponseEvents(val *GetStallStreetAerialResponseEvents) *NullableGetStallStreetAerialResponseEvents {
+	return &NullableGetStallStreetAerialResponseEvents{value: val, isSet: true}
+}
+
+func (v NullableGetStallStreetAerialResponseEvents) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallStreetAerialResponseEvents) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetStallStreetAerialResponseLinks \"Go to street\": the Worlds app first, the web world as the fallback.
+type GetStallStreetAerialResponseLinks struct {
+	App string `json:"app"`
+	Web string `json:"web"`
+}
+
+// NewGetStallStreetAerialResponseLinks instantiates a new GetStallStreetAerialResponseLinks object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallStreetAerialResponseLinks(app string, web string) *GetStallStreetAerialResponseLinks {
+	this := GetStallStreetAerialResponseLinks{}
+	this.App = app
+	this.Web = web
+	return &this
+}
+
+// NewGetStallStreetAerialResponseLinksWithDefaults instantiates a new GetStallStreetAerialResponseLinks object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallStreetAerialResponseLinksWithDefaults() *GetStallStreetAerialResponseLinks {
+	this := GetStallStreetAerialResponseLinks{}
+	return &this
+}
+
+// GetApp returns the App field value
+func (o *GetStallStreetAerialResponseLinks) GetApp() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.App
+}
+
+// GetAppOk returns a tuple with the App field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseLinks) GetAppOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.App, true
+}
+
+// SetApp sets field value
+func (o *GetStallStreetAerialResponseLinks) SetApp(v string) {
+	o.App = v
+}
+
+// GetWeb returns the Web field value
+func (o *GetStallStreetAerialResponseLinks) GetWeb() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Web
+}
+
+// GetWebOk returns a tuple with the Web field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseLinks) GetWebOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Web, true
+}
+
+// SetWeb sets field value
+func (o *GetStallStreetAerialResponseLinks) SetWeb(v string) {
+	o.Web = v
+}
+
+func (o GetStallStreetAerialResponseLinks) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["app"] = o.App
+	}
+	if true {
+		toSerialize["web"] = o.Web
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallStreetAerialResponseLinks struct {
+	value *GetStallStreetAerialResponseLinks
+	isSet bool
+}
+
+func (v NullableGetStallStreetAerialResponseLinks) Get() *GetStallStreetAerialResponseLinks {
+	return v.value
+}
+
+func (v *NullableGetStallStreetAerialResponseLinks) Set(val *GetStallStreetAerialResponseLinks) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallStreetAerialResponseLinks) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallStreetAerialResponseLinks) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallStreetAerialResponseLinks(val *GetStallStreetAerialResponseLinks) *NullableGetStallStreetAerialResponseLinks {
+	return &NullableGetStallStreetAerialResponseLinks{value: val, isSet: true}
+}
+
+func (v NullableGetStallStreetAerialResponseLinks) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallStreetAerialResponseLinks) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetStallStreetAerialResponseStreet struct for GetStallStreetAerialResponseStreet
+type GetStallStreetAerialResponseStreet struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+	Platform bool `json:"platform"`
+	Span float32 `json:"span"`
+}
+
+// NewGetStallStreetAerialResponseStreet instantiates a new GetStallStreetAerialResponseStreet object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetStallStreetAerialResponseStreet(slug string, name string, platform bool, span float32) *GetStallStreetAerialResponseStreet {
+	this := GetStallStreetAerialResponseStreet{}
+	this.Slug = slug
+	this.Name = name
+	this.Platform = platform
+	this.Span = span
+	return &this
+}
+
+// NewGetStallStreetAerialResponseStreetWithDefaults instantiates a new GetStallStreetAerialResponseStreet object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetStallStreetAerialResponseStreetWithDefaults() *GetStallStreetAerialResponseStreet {
+	this := GetStallStreetAerialResponseStreet{}
+	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *GetStallStreetAerialResponseStreet) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseStreet) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *GetStallStreetAerialResponseStreet) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetName returns the Name field value
+func (o *GetStallStreetAerialResponseStreet) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseStreet) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetStallStreetAerialResponseStreet) SetName(v string) {
+	o.Name = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *GetStallStreetAerialResponseStreet) GetPlatform() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseStreet) GetPlatformOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *GetStallStreetAerialResponseStreet) SetPlatform(v bool) {
+	o.Platform = v
+}
+
+// GetSpan returns the Span field value
+func (o *GetStallStreetAerialResponseStreet) GetSpan() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Span
+}
+
+// GetSpanOk returns a tuple with the Span field value
+// and a boolean to check if the value has been set.
+func (o *GetStallStreetAerialResponseStreet) GetSpanOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Span, true
+}
+
+// SetSpan sets field value
+func (o *GetStallStreetAerialResponseStreet) SetSpan(v float32) {
+	o.Span = v
+}
+
+func (o GetStallStreetAerialResponseStreet) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["span"] = o.Span
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetStallStreetAerialResponseStreet struct {
+	value *GetStallStreetAerialResponseStreet
+	isSet bool
+}
+
+func (v NullableGetStallStreetAerialResponseStreet) Get() *GetStallStreetAerialResponseStreet {
+	return v.value
+}
+
+func (v *NullableGetStallStreetAerialResponseStreet) Set(val *GetStallStreetAerialResponseStreet) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetStallStreetAerialResponseStreet) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetStallStreetAerialResponseStreet) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetStallStreetAerialResponseStreet(val *GetStallStreetAerialResponseStreet) *NullableGetStallStreetAerialResponseStreet {
+	return &NullableGetStallStreetAerialResponseStreet{value: val, isSet: true}
+}
+
+func (v NullableGetStallStreetAerialResponseStreet) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetStallStreetAerialResponseStreet) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListStallListingSearchItem struct for ListStallListingSearchItem
+type ListStallListingSearchItem struct {
+	ListingId string `json:"listingId"`
+	Slug string `json:"slug"`
+	Title string `json:"title"`
+	PriceCents float32 `json:"priceCents"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Category NullableString `json:"category,omitempty"`
+	// False when the street only takes some categories and this is not one of them.
+	Allowed bool `json:"allowed"`
+}
+
+// NewListStallListingSearchItem instantiates a new ListStallListingSearchItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListStallListingSearchItem(listingId string, slug string, title string, priceCents float32, allowed bool) *ListStallListingSearchItem {
+	this := ListStallListingSearchItem{}
+	this.ListingId = listingId
+	this.Slug = slug
+	this.Title = title
+	this.PriceCents = priceCents
+	this.Allowed = allowed
+	return &this
+}
+
+// NewListStallListingSearchItemWithDefaults instantiates a new ListStallListingSearchItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListStallListingSearchItemWithDefaults() *ListStallListingSearchItem {
+	this := ListStallListingSearchItem{}
+	return &this
+}
+
+// GetListingId returns the ListingId field value
+func (o *ListStallListingSearchItem) GetListingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ListingId
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchItem) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingId, true
+}
+
+// SetListingId sets field value
+func (o *ListStallListingSearchItem) SetListingId(v string) {
+	o.ListingId = v
+}
+
+// GetSlug returns the Slug field value
+func (o *ListStallListingSearchItem) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchItem) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *ListStallListingSearchItem) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListStallListingSearchItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListStallListingSearchItem) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetPriceCents returns the PriceCents field value
+func (o *ListStallListingSearchItem) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchItem) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *ListStallListingSearchItem) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListStallListingSearchItem) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListStallListingSearchItem) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *ListStallListingSearchItem) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *ListStallListingSearchItem) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *ListStallListingSearchItem) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *ListStallListingSearchItem) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetCategory returns the Category field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListStallListingSearchItem) GetCategory() string {
+	if o == nil || o.Category.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Category.Get()
+}
+
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListStallListingSearchItem) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Category.Get(), o.Category.IsSet()
+}
+
+// HasCategory returns a boolean if a field has been set.
+func (o *ListStallListingSearchItem) HasCategory() bool {
+	if o != nil && o.Category.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given NullableString and assigns it to the Category field.
+func (o *ListStallListingSearchItem) SetCategory(v string) {
+	o.Category.Set(&v)
+}
+// SetCategoryNil sets the value for Category to be an explicit nil
+func (o *ListStallListingSearchItem) SetCategoryNil() {
+	o.Category.Set(nil)
+}
+
+// UnsetCategory ensures that no value is present for Category, not even an explicit nil
+func (o *ListStallListingSearchItem) UnsetCategory() {
+	o.Category.Unset()
+}
+
+// GetAllowed returns the Allowed field value
+func (o *ListStallListingSearchItem) GetAllowed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Allowed
+}
+
+// GetAllowedOk returns a tuple with the Allowed field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchItem) GetAllowedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Allowed, true
+}
+
+// SetAllowed sets field value
+func (o *ListStallListingSearchItem) SetAllowed(v bool) {
+	o.Allowed = v
+}
+
+func (o ListStallListingSearchItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["listingId"] = o.ListingId
+	}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.Category.IsSet() {
+		toSerialize["category"] = o.Category.Get()
+	}
+	if true {
+		toSerialize["allowed"] = o.Allowed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListStallListingSearchItem struct {
+	value *ListStallListingSearchItem
+	isSet bool
+}
+
+func (v NullableListStallListingSearchItem) Get() *ListStallListingSearchItem {
+	return v.value
+}
+
+func (v *NullableListStallListingSearchItem) Set(val *ListStallListingSearchItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListStallListingSearchItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListStallListingSearchItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListStallListingSearchItem(val *ListStallListingSearchItem) *NullableListStallListingSearchItem {
+	return &NullableListStallListingSearchItem{value: val, isSet: true}
+}
+
+func (v NullableListStallListingSearchItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListStallListingSearchItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListStallListingSearchResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListStallListingSearchResponse struct {
+	// The rows.
+	Data []ListStallListingSearchItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListStallListingSearchResponse instantiates a new ListStallListingSearchResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListStallListingSearchResponse(data []ListStallListingSearchItem) *ListStallListingSearchResponse {
+	this := ListStallListingSearchResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListStallListingSearchResponseWithDefaults instantiates a new ListStallListingSearchResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListStallListingSearchResponseWithDefaults() *ListStallListingSearchResponse {
+	this := ListStallListingSearchResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListStallListingSearchResponse) GetData() []ListStallListingSearchItem {
+	if o == nil {
+		var ret []ListStallListingSearchItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchResponse) GetDataOk() ([]ListStallListingSearchItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListStallListingSearchResponse) SetData(v []ListStallListingSearchItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListStallListingSearchResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListStallListingSearchResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListStallListingSearchResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListStallListingSearchResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStallListingSearchResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListStallListingSearchResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListStallListingSearchResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListStallListingSearchResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListStallListingSearchResponse struct {
+	value *ListStallListingSearchResponse
+	isSet bool
+}
+
+func (v NullableListStallListingSearchResponse) Get() *ListStallListingSearchResponse {
+	return v.value
+}
+
+func (v *NullableListStallListingSearchResponse) Set(val *ListStallListingSearchResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListStallListingSearchResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListStallListingSearchResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListStallListingSearchResponse(val *ListStallListingSearchResponse) *NullableListStallListingSearchResponse {
+	return &NullableListStallListingSearchResponse{value: val, isSet: true}
+}
+
+func (v NullableListStallListingSearchResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListStallListingSearchResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListStallMineItem struct for ListStallMineItem
 type ListStallMineItem struct {
 	Stats ListStallMineItemStats `json:"stats"`
@@ -3049,6 +4890,8 @@ type ListStallMineItem struct {
 	RefundedCents float32 `json:"refundedCents"`
 	Cancellable bool `json:"cancellable"`
 	ListingIds []string `json:"listingIds"`
+	BoothKind string `json:"boothKind"`
+	Capacity float32 `json:"capacity"`
 	Awning NullableColourPattern `json:"awning,omitempty"`
 	Booth NullableCreateStallBookResponseBookingBooth `json:"booth,omitempty"`
 	Sign NullableString `json:"sign,omitempty"`
@@ -3060,7 +4903,7 @@ type ListStallMineItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListStallMineItem(stats ListStallMineItemStats, upcoming bool, boothTrimmed []ListStallMineItemBoothTrimmed, id string, street string, spotIndex float32, unit string, units []CreateStallBookResponseBookingUnits, startsAt string, endsAt string, status string, rail string, owner CreateStallBookResponseBookingOwner, quote ListStallMineItemQuote, totalCents float32, refundedCents float32, cancellable bool, listingIds []string, attendant bool, createdAt string) *ListStallMineItem {
+func NewListStallMineItem(stats ListStallMineItemStats, upcoming bool, boothTrimmed []ListStallMineItemBoothTrimmed, id string, street string, spotIndex float32, unit string, units []CreateStallBookResponseBookingUnits, startsAt string, endsAt string, status string, rail string, owner CreateStallBookResponseBookingOwner, quote ListStallMineItemQuote, totalCents float32, refundedCents float32, cancellable bool, listingIds []string, boothKind string, capacity float32, attendant bool, createdAt string) *ListStallMineItem {
 	this := ListStallMineItem{}
 	this.Stats = stats
 	this.Upcoming = upcoming
@@ -3080,6 +4923,8 @@ func NewListStallMineItem(stats ListStallMineItemStats, upcoming bool, boothTrim
 	this.RefundedCents = refundedCents
 	this.Cancellable = cancellable
 	this.ListingIds = listingIds
+	this.BoothKind = boothKind
+	this.Capacity = capacity
 	this.Attendant = attendant
 	this.CreatedAt = createdAt
 	return &this
@@ -3567,6 +5412,54 @@ func (o *ListStallMineItem) SetListingIds(v []string) {
 	o.ListingIds = v
 }
 
+// GetBoothKind returns the BoothKind field value
+func (o *ListStallMineItem) GetBoothKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BoothKind
+}
+
+// GetBoothKindOk returns a tuple with the BoothKind field value
+// and a boolean to check if the value has been set.
+func (o *ListStallMineItem) GetBoothKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BoothKind, true
+}
+
+// SetBoothKind sets field value
+func (o *ListStallMineItem) SetBoothKind(v string) {
+	o.BoothKind = v
+}
+
+// GetCapacity returns the Capacity field value
+func (o *ListStallMineItem) GetCapacity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Capacity
+}
+
+// GetCapacityOk returns a tuple with the Capacity field value
+// and a boolean to check if the value has been set.
+func (o *ListStallMineItem) GetCapacityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Capacity, true
+}
+
+// SetCapacity sets field value
+func (o *ListStallMineItem) SetCapacity(v float32) {
+	o.Capacity = v
+}
+
 // GetAwning returns the Awning field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListStallMineItem) GetAwning() ColourPattern {
 	if o == nil || o.Awning.Get() == nil {
@@ -3799,6 +5692,12 @@ func (o ListStallMineItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["listingIds"] = o.ListingIds
+	}
+	if true {
+		toSerialize["boothKind"] = o.BoothKind
+	}
+	if true {
+		toSerialize["capacity"] = o.Capacity
 	}
 	if o.Awning.IsSet() {
 		toSerialize["awning"] = o.Awning.Get()

@@ -473,6 +473,7 @@ func (v *NullableGetCbxSubjectBalanceBySubjectIdResponse) UnmarshalJSON(src []by
 // GetCbxSubjectBalanceBySubjectIdResponseData struct for GetCbxSubjectBalanceBySubjectIdResponseData
 type GetCbxSubjectBalanceBySubjectIdResponseData struct {
 	GrantedBaseUnits string `json:"grantedBaseUnits"`
+	FundingRestrictedBaseUnits string `json:"fundingRestrictedBaseUnits"`
 	EarnedBaseUnits string `json:"earnedBaseUnits"`
 	StakedBaseUnits string `json:"stakedBaseUnits"`
 	EarnedAvailableBaseUnits string `json:"earnedAvailableBaseUnits"`
@@ -484,9 +485,10 @@ type GetCbxSubjectBalanceBySubjectIdResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCbxSubjectBalanceBySubjectIdResponseData(grantedBaseUnits string, earnedBaseUnits string, stakedBaseUnits string, earnedAvailableBaseUnits string, connectedAvailableBaseUnits string, totalSpendableBaseUnits string) *GetCbxSubjectBalanceBySubjectIdResponseData {
+func NewGetCbxSubjectBalanceBySubjectIdResponseData(grantedBaseUnits string, fundingRestrictedBaseUnits string, earnedBaseUnits string, stakedBaseUnits string, earnedAvailableBaseUnits string, connectedAvailableBaseUnits string, totalSpendableBaseUnits string) *GetCbxSubjectBalanceBySubjectIdResponseData {
 	this := GetCbxSubjectBalanceBySubjectIdResponseData{}
 	this.GrantedBaseUnits = grantedBaseUnits
+	this.FundingRestrictedBaseUnits = fundingRestrictedBaseUnits
 	this.EarnedBaseUnits = earnedBaseUnits
 	this.StakedBaseUnits = stakedBaseUnits
 	this.EarnedAvailableBaseUnits = earnedAvailableBaseUnits
@@ -525,6 +527,30 @@ func (o *GetCbxSubjectBalanceBySubjectIdResponseData) GetGrantedBaseUnitsOk() (*
 // SetGrantedBaseUnits sets field value
 func (o *GetCbxSubjectBalanceBySubjectIdResponseData) SetGrantedBaseUnits(v string) {
 	o.GrantedBaseUnits = v
+}
+
+// GetFundingRestrictedBaseUnits returns the FundingRestrictedBaseUnits field value
+func (o *GetCbxSubjectBalanceBySubjectIdResponseData) GetFundingRestrictedBaseUnits() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FundingRestrictedBaseUnits
+}
+
+// GetFundingRestrictedBaseUnitsOk returns a tuple with the FundingRestrictedBaseUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetCbxSubjectBalanceBySubjectIdResponseData) GetFundingRestrictedBaseUnitsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FundingRestrictedBaseUnits, true
+}
+
+// SetFundingRestrictedBaseUnits sets field value
+func (o *GetCbxSubjectBalanceBySubjectIdResponseData) SetFundingRestrictedBaseUnits(v string) {
+	o.FundingRestrictedBaseUnits = v
 }
 
 // GetEarnedBaseUnits returns the EarnedBaseUnits field value
@@ -651,6 +677,9 @@ func (o GetCbxSubjectBalanceBySubjectIdResponseData) MarshalJSON() ([]byte, erro
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["grantedBaseUnits"] = o.GrantedBaseUnits
+	}
+	if true {
+		toSerialize["fundingRestrictedBaseUnits"] = o.FundingRestrictedBaseUnits
 	}
 	if true {
 		toSerialize["earnedBaseUnits"] = o.EarnedBaseUnits

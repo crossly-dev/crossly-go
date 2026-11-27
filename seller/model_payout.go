@@ -208,20 +208,21 @@ type CreatePayoutConnectOnboardResponseData struct {
 	Url string `json:"url"`
 	Country string `json:"country"`
 	Agreement string `json:"agreement"`
-	// False when Stripe offers no way for Crossly to pay this account (see connect.ts).
 	PayoutsSupported bool `json:"payoutsSupported"`
+	AccountSource string `json:"accountSource"`
 }
 
 // NewCreatePayoutConnectOnboardResponseData instantiates a new CreatePayoutConnectOnboardResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePayoutConnectOnboardResponseData(url string, country string, agreement string, payoutsSupported bool) *CreatePayoutConnectOnboardResponseData {
+func NewCreatePayoutConnectOnboardResponseData(url string, country string, agreement string, payoutsSupported bool, accountSource string) *CreatePayoutConnectOnboardResponseData {
 	this := CreatePayoutConnectOnboardResponseData{}
 	this.Url = url
 	this.Country = country
 	this.Agreement = agreement
 	this.PayoutsSupported = payoutsSupported
+	this.AccountSource = accountSource
 	return &this
 }
 
@@ -329,6 +330,30 @@ func (o *CreatePayoutConnectOnboardResponseData) SetPayoutsSupported(v bool) {
 	o.PayoutsSupported = v
 }
 
+// GetAccountSource returns the AccountSource field value
+func (o *CreatePayoutConnectOnboardResponseData) GetAccountSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccountSource
+}
+
+// GetAccountSourceOk returns a tuple with the AccountSource field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutConnectOnboardResponseData) GetAccountSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountSource, true
+}
+
+// SetAccountSource sets field value
+func (o *CreatePayoutConnectOnboardResponseData) SetAccountSource(v string) {
+	o.AccountSource = v
+}
+
 func (o CreatePayoutConnectOnboardResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -342,6 +367,9 @@ func (o CreatePayoutConnectOnboardResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["payoutsSupported"] = o.PayoutsSupported
+	}
+	if true {
+		toSerialize["accountSource"] = o.AccountSource
 	}
 	return json.Marshal(toSerialize)
 }
@@ -378,6 +406,998 @@ func (v NullableCreatePayoutConnectOnboardResponseData) MarshalJSON() ([]byte, e
 }
 
 func (v *NullableCreatePayoutConnectOnboardResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutIdentityLinkResponse struct for CreatePayoutIdentityLinkResponse
+type CreatePayoutIdentityLinkResponse struct {
+	Data CreatePayoutIdentityLinkResponseData `json:"data"`
+}
+
+// NewCreatePayoutIdentityLinkResponse instantiates a new CreatePayoutIdentityLinkResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutIdentityLinkResponse(data CreatePayoutIdentityLinkResponseData) *CreatePayoutIdentityLinkResponse {
+	this := CreatePayoutIdentityLinkResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreatePayoutIdentityLinkResponseWithDefaults instantiates a new CreatePayoutIdentityLinkResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutIdentityLinkResponseWithDefaults() *CreatePayoutIdentityLinkResponse {
+	this := CreatePayoutIdentityLinkResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreatePayoutIdentityLinkResponse) GetData() CreatePayoutIdentityLinkResponseData {
+	if o == nil {
+		var ret CreatePayoutIdentityLinkResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutIdentityLinkResponse) GetDataOk() (*CreatePayoutIdentityLinkResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreatePayoutIdentityLinkResponse) SetData(v CreatePayoutIdentityLinkResponseData) {
+	o.Data = v
+}
+
+func (o CreatePayoutIdentityLinkResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutIdentityLinkResponse struct {
+	value *CreatePayoutIdentityLinkResponse
+	isSet bool
+}
+
+func (v NullableCreatePayoutIdentityLinkResponse) Get() *CreatePayoutIdentityLinkResponse {
+	return v.value
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponse) Set(val *CreatePayoutIdentityLinkResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutIdentityLinkResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutIdentityLinkResponse(val *CreatePayoutIdentityLinkResponse) *NullableCreatePayoutIdentityLinkResponse {
+	return &NullableCreatePayoutIdentityLinkResponse{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutIdentityLinkResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutIdentityLinkResponseData struct for CreatePayoutIdentityLinkResponseData
+type CreatePayoutIdentityLinkResponseData struct {
+	Url string `json:"url"`
+	Type string `json:"type"`
+	ExpiresAt string `json:"expiresAt"`
+	AccountSource string `json:"accountSource"`
+}
+
+// NewCreatePayoutIdentityLinkResponseData instantiates a new CreatePayoutIdentityLinkResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutIdentityLinkResponseData(url string, type_ string, expiresAt string, accountSource string) *CreatePayoutIdentityLinkResponseData {
+	this := CreatePayoutIdentityLinkResponseData{}
+	this.Url = url
+	this.Type = type_
+	this.ExpiresAt = expiresAt
+	this.AccountSource = accountSource
+	return &this
+}
+
+// NewCreatePayoutIdentityLinkResponseDataWithDefaults instantiates a new CreatePayoutIdentityLinkResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutIdentityLinkResponseDataWithDefaults() *CreatePayoutIdentityLinkResponseData {
+	this := CreatePayoutIdentityLinkResponseData{}
+	return &this
+}
+
+// GetUrl returns the Url field value
+func (o *CreatePayoutIdentityLinkResponseData) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutIdentityLinkResponseData) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *CreatePayoutIdentityLinkResponseData) SetUrl(v string) {
+	o.Url = v
+}
+
+// GetType returns the Type field value
+func (o *CreatePayoutIdentityLinkResponseData) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutIdentityLinkResponseData) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *CreatePayoutIdentityLinkResponseData) SetType(v string) {
+	o.Type = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *CreatePayoutIdentityLinkResponseData) GetExpiresAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutIdentityLinkResponseData) GetExpiresAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *CreatePayoutIdentityLinkResponseData) SetExpiresAt(v string) {
+	o.ExpiresAt = v
+}
+
+// GetAccountSource returns the AccountSource field value
+func (o *CreatePayoutIdentityLinkResponseData) GetAccountSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccountSource
+}
+
+// GetAccountSourceOk returns a tuple with the AccountSource field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutIdentityLinkResponseData) GetAccountSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountSource, true
+}
+
+// SetAccountSource sets field value
+func (o *CreatePayoutIdentityLinkResponseData) SetAccountSource(v string) {
+	o.AccountSource = v
+}
+
+func (o CreatePayoutIdentityLinkResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	if true {
+		toSerialize["accountSource"] = o.AccountSource
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutIdentityLinkResponseData struct {
+	value *CreatePayoutIdentityLinkResponseData
+	isSet bool
+}
+
+func (v NullableCreatePayoutIdentityLinkResponseData) Get() *CreatePayoutIdentityLinkResponseData {
+	return v.value
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponseData) Set(val *CreatePayoutIdentityLinkResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutIdentityLinkResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutIdentityLinkResponseData(val *CreatePayoutIdentityLinkResponseData) *NullableCreatePayoutIdentityLinkResponseData {
+	return &NullableCreatePayoutIdentityLinkResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutIdentityLinkResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutIdentityLinkResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutPayoutRequest struct for CreatePayoutPayoutRequest
+type CreatePayoutPayoutRequest struct {
+	Method string `json:"method"`
+	AmountCents *int32 `json:"amountCents,omitempty"`
+	Destination *string `json:"destination,omitempty"`
+	IdempotencyKey *string `json:"idempotencyKey,omitempty"`
+}
+
+// NewCreatePayoutPayoutRequest instantiates a new CreatePayoutPayoutRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutPayoutRequest(method string) *CreatePayoutPayoutRequest {
+	this := CreatePayoutPayoutRequest{}
+	this.Method = method
+	return &this
+}
+
+// NewCreatePayoutPayoutRequestWithDefaults instantiates a new CreatePayoutPayoutRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutPayoutRequestWithDefaults() *CreatePayoutPayoutRequest {
+	this := CreatePayoutPayoutRequest{}
+	return &this
+}
+
+// GetMethod returns the Method field value
+func (o *CreatePayoutPayoutRequest) GetMethod() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutRequest) GetMethodOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Method, true
+}
+
+// SetMethod sets field value
+func (o *CreatePayoutPayoutRequest) SetMethod(v string) {
+	o.Method = v
+}
+
+// GetAmountCents returns the AmountCents field value if set, zero value otherwise.
+func (o *CreatePayoutPayoutRequest) GetAmountCents() int32 {
+	if o == nil || o.AmountCents == nil {
+		var ret int32
+		return ret
+	}
+	return *o.AmountCents
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutRequest) GetAmountCentsOk() (*int32, bool) {
+	if o == nil || o.AmountCents == nil {
+		return nil, false
+	}
+	return o.AmountCents, true
+}
+
+// HasAmountCents returns a boolean if a field has been set.
+func (o *CreatePayoutPayoutRequest) HasAmountCents() bool {
+	if o != nil && o.AmountCents != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAmountCents gets a reference to the given int32 and assigns it to the AmountCents field.
+func (o *CreatePayoutPayoutRequest) SetAmountCents(v int32) {
+	o.AmountCents = &v
+}
+
+// GetDestination returns the Destination field value if set, zero value otherwise.
+func (o *CreatePayoutPayoutRequest) GetDestination() string {
+	if o == nil || o.Destination == nil {
+		var ret string
+		return ret
+	}
+	return *o.Destination
+}
+
+// GetDestinationOk returns a tuple with the Destination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutRequest) GetDestinationOk() (*string, bool) {
+	if o == nil || o.Destination == nil {
+		return nil, false
+	}
+	return o.Destination, true
+}
+
+// HasDestination returns a boolean if a field has been set.
+func (o *CreatePayoutPayoutRequest) HasDestination() bool {
+	if o != nil && o.Destination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDestination gets a reference to the given string and assigns it to the Destination field.
+func (o *CreatePayoutPayoutRequest) SetDestination(v string) {
+	o.Destination = &v
+}
+
+// GetIdempotencyKey returns the IdempotencyKey field value if set, zero value otherwise.
+func (o *CreatePayoutPayoutRequest) GetIdempotencyKey() string {
+	if o == nil || o.IdempotencyKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.IdempotencyKey
+}
+
+// GetIdempotencyKeyOk returns a tuple with the IdempotencyKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutRequest) GetIdempotencyKeyOk() (*string, bool) {
+	if o == nil || o.IdempotencyKey == nil {
+		return nil, false
+	}
+	return o.IdempotencyKey, true
+}
+
+// HasIdempotencyKey returns a boolean if a field has been set.
+func (o *CreatePayoutPayoutRequest) HasIdempotencyKey() bool {
+	if o != nil && o.IdempotencyKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIdempotencyKey gets a reference to the given string and assigns it to the IdempotencyKey field.
+func (o *CreatePayoutPayoutRequest) SetIdempotencyKey(v string) {
+	o.IdempotencyKey = &v
+}
+
+func (o CreatePayoutPayoutRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["method"] = o.Method
+	}
+	if o.AmountCents != nil {
+		toSerialize["amountCents"] = o.AmountCents
+	}
+	if o.Destination != nil {
+		toSerialize["destination"] = o.Destination
+	}
+	if o.IdempotencyKey != nil {
+		toSerialize["idempotencyKey"] = o.IdempotencyKey
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutPayoutRequest struct {
+	value *CreatePayoutPayoutRequest
+	isSet bool
+}
+
+func (v NullableCreatePayoutPayoutRequest) Get() *CreatePayoutPayoutRequest {
+	return v.value
+}
+
+func (v *NullableCreatePayoutPayoutRequest) Set(val *CreatePayoutPayoutRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutPayoutRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutPayoutRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutPayoutRequest(val *CreatePayoutPayoutRequest) *NullableCreatePayoutPayoutRequest {
+	return &NullableCreatePayoutPayoutRequest{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutPayoutRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutPayoutRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutPayoutResponse struct for CreatePayoutPayoutResponse
+type CreatePayoutPayoutResponse struct {
+	Data CreatePayoutPayoutResponseData `json:"data"`
+}
+
+// NewCreatePayoutPayoutResponse instantiates a new CreatePayoutPayoutResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutPayoutResponse(data CreatePayoutPayoutResponseData) *CreatePayoutPayoutResponse {
+	this := CreatePayoutPayoutResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewCreatePayoutPayoutResponseWithDefaults instantiates a new CreatePayoutPayoutResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutPayoutResponseWithDefaults() *CreatePayoutPayoutResponse {
+	this := CreatePayoutPayoutResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *CreatePayoutPayoutResponse) GetData() CreatePayoutPayoutResponseData {
+	if o == nil {
+		var ret CreatePayoutPayoutResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponse) GetDataOk() (*CreatePayoutPayoutResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *CreatePayoutPayoutResponse) SetData(v CreatePayoutPayoutResponseData) {
+	o.Data = v
+}
+
+func (o CreatePayoutPayoutResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutPayoutResponse struct {
+	value *CreatePayoutPayoutResponse
+	isSet bool
+}
+
+func (v NullableCreatePayoutPayoutResponse) Get() *CreatePayoutPayoutResponse {
+	return v.value
+}
+
+func (v *NullableCreatePayoutPayoutResponse) Set(val *CreatePayoutPayoutResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutPayoutResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutPayoutResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutPayoutResponse(val *CreatePayoutPayoutResponse) *NullableCreatePayoutPayoutResponse {
+	return &NullableCreatePayoutPayoutResponse{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutPayoutResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutPayoutResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutPayoutResponseData struct for CreatePayoutPayoutResponseData
+type CreatePayoutPayoutResponseData struct {
+	Payout CreatePayoutPayoutResponseDataPayout `json:"payout"`
+	FeeCents float32 `json:"feeCents"`
+}
+
+// NewCreatePayoutPayoutResponseData instantiates a new CreatePayoutPayoutResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutPayoutResponseData(payout CreatePayoutPayoutResponseDataPayout, feeCents float32) *CreatePayoutPayoutResponseData {
+	this := CreatePayoutPayoutResponseData{}
+	this.Payout = payout
+	this.FeeCents = feeCents
+	return &this
+}
+
+// NewCreatePayoutPayoutResponseDataWithDefaults instantiates a new CreatePayoutPayoutResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutPayoutResponseDataWithDefaults() *CreatePayoutPayoutResponseData {
+	this := CreatePayoutPayoutResponseData{}
+	return &this
+}
+
+// GetPayout returns the Payout field value
+func (o *CreatePayoutPayoutResponseData) GetPayout() CreatePayoutPayoutResponseDataPayout {
+	if o == nil {
+		var ret CreatePayoutPayoutResponseDataPayout
+		return ret
+	}
+
+	return o.Payout
+}
+
+// GetPayoutOk returns a tuple with the Payout field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseData) GetPayoutOk() (*CreatePayoutPayoutResponseDataPayout, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Payout, true
+}
+
+// SetPayout sets field value
+func (o *CreatePayoutPayoutResponseData) SetPayout(v CreatePayoutPayoutResponseDataPayout) {
+	o.Payout = v
+}
+
+// GetFeeCents returns the FeeCents field value
+func (o *CreatePayoutPayoutResponseData) GetFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FeeCents
+}
+
+// GetFeeCentsOk returns a tuple with the FeeCents field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseData) GetFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCents, true
+}
+
+// SetFeeCents sets field value
+func (o *CreatePayoutPayoutResponseData) SetFeeCents(v float32) {
+	o.FeeCents = v
+}
+
+func (o CreatePayoutPayoutResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["payout"] = o.Payout
+	}
+	if true {
+		toSerialize["feeCents"] = o.FeeCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutPayoutResponseData struct {
+	value *CreatePayoutPayoutResponseData
+	isSet bool
+}
+
+func (v NullableCreatePayoutPayoutResponseData) Get() *CreatePayoutPayoutResponseData {
+	return v.value
+}
+
+func (v *NullableCreatePayoutPayoutResponseData) Set(val *CreatePayoutPayoutResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutPayoutResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutPayoutResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutPayoutResponseData(val *CreatePayoutPayoutResponseData) *NullableCreatePayoutPayoutResponseData {
+	return &NullableCreatePayoutPayoutResponseData{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutPayoutResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutPayoutResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreatePayoutPayoutResponseDataPayout struct for CreatePayoutPayoutResponseDataPayout
+type CreatePayoutPayoutResponseDataPayout struct {
+	Id string `json:"id"`
+	AmountCents float32 `json:"amountCents"`
+	Currency string `json:"currency"`
+	// paid | pending | in_transit | canceled | failed
+	Status string `json:"status"`
+	// standard | instant
+	Method string `json:"method"`
+	ArrivalDate string `json:"arrivalDate"`
+	CreatedAt string `json:"createdAt"`
+	FailureMessage NullableString `json:"failureMessage,omitempty"`
+}
+
+// NewCreatePayoutPayoutResponseDataPayout instantiates a new CreatePayoutPayoutResponseDataPayout object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreatePayoutPayoutResponseDataPayout(id string, amountCents float32, currency string, status string, method string, arrivalDate string, createdAt string) *CreatePayoutPayoutResponseDataPayout {
+	this := CreatePayoutPayoutResponseDataPayout{}
+	this.Id = id
+	this.AmountCents = amountCents
+	this.Currency = currency
+	this.Status = status
+	this.Method = method
+	this.ArrivalDate = arrivalDate
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewCreatePayoutPayoutResponseDataPayoutWithDefaults instantiates a new CreatePayoutPayoutResponseDataPayout object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreatePayoutPayoutResponseDataPayoutWithDefaults() *CreatePayoutPayoutResponseDataPayout {
+	this := CreatePayoutPayoutResponseDataPayout{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetId(v string) {
+	o.Id = v
+}
+
+// GetAmountCents returns the AmountCents field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetAmountCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AmountCents
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetAmountCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AmountCents, true
+}
+
+// SetAmountCents sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetAmountCents(v float32) {
+	o.AmountCents = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetCurrency(v string) {
+	o.Currency = v
+}
+
+// GetStatus returns the Status field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetMethod returns the Method field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetMethod() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetMethodOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Method, true
+}
+
+// SetMethod sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetMethod(v string) {
+	o.Method = v
+}
+
+// GetArrivalDate returns the ArrivalDate field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetArrivalDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ArrivalDate
+}
+
+// GetArrivalDateOk returns a tuple with the ArrivalDate field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetArrivalDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ArrivalDate, true
+}
+
+// SetArrivalDate sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetArrivalDate(v string) {
+	o.ArrivalDate = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *CreatePayoutPayoutResponseDataPayout) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *CreatePayoutPayoutResponseDataPayout) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetFailureMessage returns the FailureMessage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreatePayoutPayoutResponseDataPayout) GetFailureMessage() string {
+	if o == nil || o.FailureMessage.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.FailureMessage.Get()
+}
+
+// GetFailureMessageOk returns a tuple with the FailureMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreatePayoutPayoutResponseDataPayout) GetFailureMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.FailureMessage.Get(), o.FailureMessage.IsSet()
+}
+
+// HasFailureMessage returns a boolean if a field has been set.
+func (o *CreatePayoutPayoutResponseDataPayout) HasFailureMessage() bool {
+	if o != nil && o.FailureMessage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFailureMessage gets a reference to the given NullableString and assigns it to the FailureMessage field.
+func (o *CreatePayoutPayoutResponseDataPayout) SetFailureMessage(v string) {
+	o.FailureMessage.Set(&v)
+}
+// SetFailureMessageNil sets the value for FailureMessage to be an explicit nil
+func (o *CreatePayoutPayoutResponseDataPayout) SetFailureMessageNil() {
+	o.FailureMessage.Set(nil)
+}
+
+// UnsetFailureMessage ensures that no value is present for FailureMessage, not even an explicit nil
+func (o *CreatePayoutPayoutResponseDataPayout) UnsetFailureMessage() {
+	o.FailureMessage.Unset()
+}
+
+func (o CreatePayoutPayoutResponseDataPayout) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["amountCents"] = o.AmountCents
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["method"] = o.Method
+	}
+	if true {
+		toSerialize["arrivalDate"] = o.ArrivalDate
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if o.FailureMessage.IsSet() {
+		toSerialize["failureMessage"] = o.FailureMessage.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreatePayoutPayoutResponseDataPayout struct {
+	value *CreatePayoutPayoutResponseDataPayout
+	isSet bool
+}
+
+func (v NullableCreatePayoutPayoutResponseDataPayout) Get() *CreatePayoutPayoutResponseDataPayout {
+	return v.value
+}
+
+func (v *NullableCreatePayoutPayoutResponseDataPayout) Set(val *CreatePayoutPayoutResponseDataPayout) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreatePayoutPayoutResponseDataPayout) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreatePayoutPayoutResponseDataPayout) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreatePayoutPayoutResponseDataPayout(val *CreatePayoutPayoutResponseDataPayout) *NullableCreatePayoutPayoutResponseDataPayout {
+	return &NullableCreatePayoutPayoutResponseDataPayout{value: val, isSet: true}
+}
+
+func (v NullableCreatePayoutPayoutResponseDataPayout) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreatePayoutPayoutResponseDataPayout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -477,6 +1497,7 @@ func (v *NullableGetPayoutConnectResponse) UnmarshalJSON(src []byte) error {
 type GetPayoutConnectResponseData struct {
 	Status string `json:"status"`
 	DefaultCountry *string `json:"defaultCountry,omitempty"`
+	AccountSource string `json:"accountSource"`
 	PayoutsEnabled *bool `json:"payoutsEnabled,omitempty"`
 	ChargesEnabled *bool `json:"chargesEnabled,omitempty"`
 	// `capabilities.transfers === 'active'` — the capability every Crossly payout uses.
@@ -497,9 +1518,10 @@ type GetPayoutConnectResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetPayoutConnectResponseData(status string) *GetPayoutConnectResponseData {
+func NewGetPayoutConnectResponseData(status string, accountSource string) *GetPayoutConnectResponseData {
 	this := GetPayoutConnectResponseData{}
 	this.Status = status
+	this.AccountSource = accountSource
 	return &this
 }
 
@@ -565,6 +1587,30 @@ func (o *GetPayoutConnectResponseData) HasDefaultCountry() bool {
 // SetDefaultCountry gets a reference to the given string and assigns it to the DefaultCountry field.
 func (o *GetPayoutConnectResponseData) SetDefaultCountry(v string) {
 	o.DefaultCountry = &v
+}
+
+// GetAccountSource returns the AccountSource field value
+func (o *GetPayoutConnectResponseData) GetAccountSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccountSource
+}
+
+// GetAccountSourceOk returns a tuple with the AccountSource field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutConnectResponseData) GetAccountSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountSource, true
+}
+
+// SetAccountSource sets field value
+func (o *GetPayoutConnectResponseData) SetAccountSource(v string) {
+	o.AccountSource = v
 }
 
 // GetPayoutsEnabled returns the PayoutsEnabled field value if set, zero value otherwise.
@@ -957,6 +2003,9 @@ func (o GetPayoutConnectResponseData) MarshalJSON() ([]byte, error) {
 	if o.DefaultCountry != nil {
 		toSerialize["defaultCountry"] = o.DefaultCountry
 	}
+	if true {
+		toSerialize["accountSource"] = o.AccountSource
+	}
 	if o.PayoutsEnabled != nil {
 		toSerialize["payoutsEnabled"] = o.PayoutsEnabled
 	}
@@ -1327,6 +2376,3559 @@ func (v NullableGetPayoutGrossForNetResponseData) MarshalJSON() ([]byte, error) 
 }
 
 func (v *NullableGetPayoutGrossForNetResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutIdentityResponse struct for GetPayoutIdentityResponse
+type GetPayoutIdentityResponse struct {
+	Data GetPayoutIdentityResponseData `json:"data"`
+}
+
+// NewGetPayoutIdentityResponse instantiates a new GetPayoutIdentityResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutIdentityResponse(data GetPayoutIdentityResponseData) *GetPayoutIdentityResponse {
+	this := GetPayoutIdentityResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetPayoutIdentityResponseWithDefaults instantiates a new GetPayoutIdentityResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutIdentityResponseWithDefaults() *GetPayoutIdentityResponse {
+	this := GetPayoutIdentityResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetPayoutIdentityResponse) GetData() GetPayoutIdentityResponseData {
+	if o == nil {
+		var ret GetPayoutIdentityResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponse) GetDataOk() (*GetPayoutIdentityResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetPayoutIdentityResponse) SetData(v GetPayoutIdentityResponseData) {
+	o.Data = v
+}
+
+func (o GetPayoutIdentityResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutIdentityResponse struct {
+	value *GetPayoutIdentityResponse
+	isSet bool
+}
+
+func (v NullableGetPayoutIdentityResponse) Get() *GetPayoutIdentityResponse {
+	return v.value
+}
+
+func (v *NullableGetPayoutIdentityResponse) Set(val *GetPayoutIdentityResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutIdentityResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutIdentityResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutIdentityResponse(val *GetPayoutIdentityResponse) *NullableGetPayoutIdentityResponse {
+	return &NullableGetPayoutIdentityResponse{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutIdentityResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutIdentityResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutIdentityResponseData struct for GetPayoutIdentityResponseData
+type GetPayoutIdentityResponseData struct {
+	Status string `json:"status"`
+	HasAccount bool `json:"hasAccount"`
+	// Whose Connect account this is: the store's own, or the owner's (the default store, or a store not set up).
+	AccountSource NullableString `json:"accountSource,omitempty"`
+	DetailsSubmitted bool `json:"detailsSubmitted"`
+	PayoutsEnabled bool `json:"payoutsEnabled"`
+	ChargesEnabled bool `json:"chargesEnabled"`
+	// Due now (past due first): payouts stop or stay off until Stripe has them.
+	DueNow []GetPayoutIdentityResponseDataDueNow `json:"dueNow"`
+	// Stripe will ask later (at a volume threshold); the link collects them up front.
+	DueLater []GetPayoutIdentityResponseDataDueNow `json:"dueLater"`
+	// Sent, and Stripe is checking them.
+	InReview []GetPayoutIdentityResponseDataDueNow `json:"inReview"`
+	PastDue []string `json:"pastDue"`
+	CurrentlyDue []string `json:"currentlyDue"`
+	EventuallyDue []string `json:"eventuallyDue"`
+	PendingVerification []string `json:"pendingVerification"`
+	Errors []GetPayoutIdentityResponseDataErrors `json:"errors"`
+	DisabledReason NullableString `json:"disabledReason,omitempty"`
+	DisabledReasonText NullableString `json:"disabledReasonText,omitempty"`
+	CurrentDeadline NullableString `json:"currentDeadline,omitempty"`
+	SyncedAt NullableString `json:"syncedAt,omitempty"`
+}
+
+// NewGetPayoutIdentityResponseData instantiates a new GetPayoutIdentityResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutIdentityResponseData(status string, hasAccount bool, detailsSubmitted bool, payoutsEnabled bool, chargesEnabled bool, dueNow []GetPayoutIdentityResponseDataDueNow, dueLater []GetPayoutIdentityResponseDataDueNow, inReview []GetPayoutIdentityResponseDataDueNow, pastDue []string, currentlyDue []string, eventuallyDue []string, pendingVerification []string, errors []GetPayoutIdentityResponseDataErrors) *GetPayoutIdentityResponseData {
+	this := GetPayoutIdentityResponseData{}
+	this.Status = status
+	this.HasAccount = hasAccount
+	this.DetailsSubmitted = detailsSubmitted
+	this.PayoutsEnabled = payoutsEnabled
+	this.ChargesEnabled = chargesEnabled
+	this.DueNow = dueNow
+	this.DueLater = dueLater
+	this.InReview = inReview
+	this.PastDue = pastDue
+	this.CurrentlyDue = currentlyDue
+	this.EventuallyDue = eventuallyDue
+	this.PendingVerification = pendingVerification
+	this.Errors = errors
+	return &this
+}
+
+// NewGetPayoutIdentityResponseDataWithDefaults instantiates a new GetPayoutIdentityResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutIdentityResponseDataWithDefaults() *GetPayoutIdentityResponseData {
+	this := GetPayoutIdentityResponseData{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetPayoutIdentityResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetPayoutIdentityResponseData) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetHasAccount returns the HasAccount field value
+func (o *GetPayoutIdentityResponseData) GetHasAccount() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasAccount
+}
+
+// GetHasAccountOk returns a tuple with the HasAccount field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetHasAccountOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HasAccount, true
+}
+
+// SetHasAccount sets field value
+func (o *GetPayoutIdentityResponseData) SetHasAccount(v bool) {
+	o.HasAccount = v
+}
+
+// GetAccountSource returns the AccountSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutIdentityResponseData) GetAccountSource() string {
+	if o == nil || o.AccountSource.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AccountSource.Get()
+}
+
+// GetAccountSourceOk returns a tuple with the AccountSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutIdentityResponseData) GetAccountSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AccountSource.Get(), o.AccountSource.IsSet()
+}
+
+// HasAccountSource returns a boolean if a field has been set.
+func (o *GetPayoutIdentityResponseData) HasAccountSource() bool {
+	if o != nil && o.AccountSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountSource gets a reference to the given NullableString and assigns it to the AccountSource field.
+func (o *GetPayoutIdentityResponseData) SetAccountSource(v string) {
+	o.AccountSource.Set(&v)
+}
+// SetAccountSourceNil sets the value for AccountSource to be an explicit nil
+func (o *GetPayoutIdentityResponseData) SetAccountSourceNil() {
+	o.AccountSource.Set(nil)
+}
+
+// UnsetAccountSource ensures that no value is present for AccountSource, not even an explicit nil
+func (o *GetPayoutIdentityResponseData) UnsetAccountSource() {
+	o.AccountSource.Unset()
+}
+
+// GetDetailsSubmitted returns the DetailsSubmitted field value
+func (o *GetPayoutIdentityResponseData) GetDetailsSubmitted() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DetailsSubmitted
+}
+
+// GetDetailsSubmittedOk returns a tuple with the DetailsSubmitted field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetDetailsSubmittedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DetailsSubmitted, true
+}
+
+// SetDetailsSubmitted sets field value
+func (o *GetPayoutIdentityResponseData) SetDetailsSubmitted(v bool) {
+	o.DetailsSubmitted = v
+}
+
+// GetPayoutsEnabled returns the PayoutsEnabled field value
+func (o *GetPayoutIdentityResponseData) GetPayoutsEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PayoutsEnabled
+}
+
+// GetPayoutsEnabledOk returns a tuple with the PayoutsEnabled field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetPayoutsEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayoutsEnabled, true
+}
+
+// SetPayoutsEnabled sets field value
+func (o *GetPayoutIdentityResponseData) SetPayoutsEnabled(v bool) {
+	o.PayoutsEnabled = v
+}
+
+// GetChargesEnabled returns the ChargesEnabled field value
+func (o *GetPayoutIdentityResponseData) GetChargesEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ChargesEnabled
+}
+
+// GetChargesEnabledOk returns a tuple with the ChargesEnabled field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetChargesEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ChargesEnabled, true
+}
+
+// SetChargesEnabled sets field value
+func (o *GetPayoutIdentityResponseData) SetChargesEnabled(v bool) {
+	o.ChargesEnabled = v
+}
+
+// GetDueNow returns the DueNow field value
+func (o *GetPayoutIdentityResponseData) GetDueNow() []GetPayoutIdentityResponseDataDueNow {
+	if o == nil {
+		var ret []GetPayoutIdentityResponseDataDueNow
+		return ret
+	}
+
+	return o.DueNow
+}
+
+// GetDueNowOk returns a tuple with the DueNow field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetDueNowOk() ([]GetPayoutIdentityResponseDataDueNow, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DueNow, true
+}
+
+// SetDueNow sets field value
+func (o *GetPayoutIdentityResponseData) SetDueNow(v []GetPayoutIdentityResponseDataDueNow) {
+	o.DueNow = v
+}
+
+// GetDueLater returns the DueLater field value
+func (o *GetPayoutIdentityResponseData) GetDueLater() []GetPayoutIdentityResponseDataDueNow {
+	if o == nil {
+		var ret []GetPayoutIdentityResponseDataDueNow
+		return ret
+	}
+
+	return o.DueLater
+}
+
+// GetDueLaterOk returns a tuple with the DueLater field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetDueLaterOk() ([]GetPayoutIdentityResponseDataDueNow, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DueLater, true
+}
+
+// SetDueLater sets field value
+func (o *GetPayoutIdentityResponseData) SetDueLater(v []GetPayoutIdentityResponseDataDueNow) {
+	o.DueLater = v
+}
+
+// GetInReview returns the InReview field value
+func (o *GetPayoutIdentityResponseData) GetInReview() []GetPayoutIdentityResponseDataDueNow {
+	if o == nil {
+		var ret []GetPayoutIdentityResponseDataDueNow
+		return ret
+	}
+
+	return o.InReview
+}
+
+// GetInReviewOk returns a tuple with the InReview field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetInReviewOk() ([]GetPayoutIdentityResponseDataDueNow, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InReview, true
+}
+
+// SetInReview sets field value
+func (o *GetPayoutIdentityResponseData) SetInReview(v []GetPayoutIdentityResponseDataDueNow) {
+	o.InReview = v
+}
+
+// GetPastDue returns the PastDue field value
+func (o *GetPayoutIdentityResponseData) GetPastDue() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.PastDue
+}
+
+// GetPastDueOk returns a tuple with the PastDue field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetPastDueOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PastDue, true
+}
+
+// SetPastDue sets field value
+func (o *GetPayoutIdentityResponseData) SetPastDue(v []string) {
+	o.PastDue = v
+}
+
+// GetCurrentlyDue returns the CurrentlyDue field value
+func (o *GetPayoutIdentityResponseData) GetCurrentlyDue() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.CurrentlyDue
+}
+
+// GetCurrentlyDueOk returns a tuple with the CurrentlyDue field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetCurrentlyDueOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CurrentlyDue, true
+}
+
+// SetCurrentlyDue sets field value
+func (o *GetPayoutIdentityResponseData) SetCurrentlyDue(v []string) {
+	o.CurrentlyDue = v
+}
+
+// GetEventuallyDue returns the EventuallyDue field value
+func (o *GetPayoutIdentityResponseData) GetEventuallyDue() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.EventuallyDue
+}
+
+// GetEventuallyDueOk returns a tuple with the EventuallyDue field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetEventuallyDueOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EventuallyDue, true
+}
+
+// SetEventuallyDue sets field value
+func (o *GetPayoutIdentityResponseData) SetEventuallyDue(v []string) {
+	o.EventuallyDue = v
+}
+
+// GetPendingVerification returns the PendingVerification field value
+func (o *GetPayoutIdentityResponseData) GetPendingVerification() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.PendingVerification
+}
+
+// GetPendingVerificationOk returns a tuple with the PendingVerification field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetPendingVerificationOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PendingVerification, true
+}
+
+// SetPendingVerification sets field value
+func (o *GetPayoutIdentityResponseData) SetPendingVerification(v []string) {
+	o.PendingVerification = v
+}
+
+// GetErrors returns the Errors field value
+func (o *GetPayoutIdentityResponseData) GetErrors() []GetPayoutIdentityResponseDataErrors {
+	if o == nil {
+		var ret []GetPayoutIdentityResponseDataErrors
+		return ret
+	}
+
+	return o.Errors
+}
+
+// GetErrorsOk returns a tuple with the Errors field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseData) GetErrorsOk() ([]GetPayoutIdentityResponseDataErrors, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Errors, true
+}
+
+// SetErrors sets field value
+func (o *GetPayoutIdentityResponseData) SetErrors(v []GetPayoutIdentityResponseDataErrors) {
+	o.Errors = v
+}
+
+// GetDisabledReason returns the DisabledReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutIdentityResponseData) GetDisabledReason() string {
+	if o == nil || o.DisabledReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisabledReason.Get()
+}
+
+// GetDisabledReasonOk returns a tuple with the DisabledReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutIdentityResponseData) GetDisabledReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DisabledReason.Get(), o.DisabledReason.IsSet()
+}
+
+// HasDisabledReason returns a boolean if a field has been set.
+func (o *GetPayoutIdentityResponseData) HasDisabledReason() bool {
+	if o != nil && o.DisabledReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabledReason gets a reference to the given NullableString and assigns it to the DisabledReason field.
+func (o *GetPayoutIdentityResponseData) SetDisabledReason(v string) {
+	o.DisabledReason.Set(&v)
+}
+// SetDisabledReasonNil sets the value for DisabledReason to be an explicit nil
+func (o *GetPayoutIdentityResponseData) SetDisabledReasonNil() {
+	o.DisabledReason.Set(nil)
+}
+
+// UnsetDisabledReason ensures that no value is present for DisabledReason, not even an explicit nil
+func (o *GetPayoutIdentityResponseData) UnsetDisabledReason() {
+	o.DisabledReason.Unset()
+}
+
+// GetDisabledReasonText returns the DisabledReasonText field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutIdentityResponseData) GetDisabledReasonText() string {
+	if o == nil || o.DisabledReasonText.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisabledReasonText.Get()
+}
+
+// GetDisabledReasonTextOk returns a tuple with the DisabledReasonText field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutIdentityResponseData) GetDisabledReasonTextOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DisabledReasonText.Get(), o.DisabledReasonText.IsSet()
+}
+
+// HasDisabledReasonText returns a boolean if a field has been set.
+func (o *GetPayoutIdentityResponseData) HasDisabledReasonText() bool {
+	if o != nil && o.DisabledReasonText.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabledReasonText gets a reference to the given NullableString and assigns it to the DisabledReasonText field.
+func (o *GetPayoutIdentityResponseData) SetDisabledReasonText(v string) {
+	o.DisabledReasonText.Set(&v)
+}
+// SetDisabledReasonTextNil sets the value for DisabledReasonText to be an explicit nil
+func (o *GetPayoutIdentityResponseData) SetDisabledReasonTextNil() {
+	o.DisabledReasonText.Set(nil)
+}
+
+// UnsetDisabledReasonText ensures that no value is present for DisabledReasonText, not even an explicit nil
+func (o *GetPayoutIdentityResponseData) UnsetDisabledReasonText() {
+	o.DisabledReasonText.Unset()
+}
+
+// GetCurrentDeadline returns the CurrentDeadline field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutIdentityResponseData) GetCurrentDeadline() string {
+	if o == nil || o.CurrentDeadline.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CurrentDeadline.Get()
+}
+
+// GetCurrentDeadlineOk returns a tuple with the CurrentDeadline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutIdentityResponseData) GetCurrentDeadlineOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CurrentDeadline.Get(), o.CurrentDeadline.IsSet()
+}
+
+// HasCurrentDeadline returns a boolean if a field has been set.
+func (o *GetPayoutIdentityResponseData) HasCurrentDeadline() bool {
+	if o != nil && o.CurrentDeadline.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentDeadline gets a reference to the given NullableString and assigns it to the CurrentDeadline field.
+func (o *GetPayoutIdentityResponseData) SetCurrentDeadline(v string) {
+	o.CurrentDeadline.Set(&v)
+}
+// SetCurrentDeadlineNil sets the value for CurrentDeadline to be an explicit nil
+func (o *GetPayoutIdentityResponseData) SetCurrentDeadlineNil() {
+	o.CurrentDeadline.Set(nil)
+}
+
+// UnsetCurrentDeadline ensures that no value is present for CurrentDeadline, not even an explicit nil
+func (o *GetPayoutIdentityResponseData) UnsetCurrentDeadline() {
+	o.CurrentDeadline.Unset()
+}
+
+// GetSyncedAt returns the SyncedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutIdentityResponseData) GetSyncedAt() string {
+	if o == nil || o.SyncedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SyncedAt.Get()
+}
+
+// GetSyncedAtOk returns a tuple with the SyncedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutIdentityResponseData) GetSyncedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SyncedAt.Get(), o.SyncedAt.IsSet()
+}
+
+// HasSyncedAt returns a boolean if a field has been set.
+func (o *GetPayoutIdentityResponseData) HasSyncedAt() bool {
+	if o != nil && o.SyncedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSyncedAt gets a reference to the given NullableString and assigns it to the SyncedAt field.
+func (o *GetPayoutIdentityResponseData) SetSyncedAt(v string) {
+	o.SyncedAt.Set(&v)
+}
+// SetSyncedAtNil sets the value for SyncedAt to be an explicit nil
+func (o *GetPayoutIdentityResponseData) SetSyncedAtNil() {
+	o.SyncedAt.Set(nil)
+}
+
+// UnsetSyncedAt ensures that no value is present for SyncedAt, not even an explicit nil
+func (o *GetPayoutIdentityResponseData) UnsetSyncedAt() {
+	o.SyncedAt.Unset()
+}
+
+func (o GetPayoutIdentityResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["hasAccount"] = o.HasAccount
+	}
+	if o.AccountSource.IsSet() {
+		toSerialize["accountSource"] = o.AccountSource.Get()
+	}
+	if true {
+		toSerialize["detailsSubmitted"] = o.DetailsSubmitted
+	}
+	if true {
+		toSerialize["payoutsEnabled"] = o.PayoutsEnabled
+	}
+	if true {
+		toSerialize["chargesEnabled"] = o.ChargesEnabled
+	}
+	if true {
+		toSerialize["dueNow"] = o.DueNow
+	}
+	if true {
+		toSerialize["dueLater"] = o.DueLater
+	}
+	if true {
+		toSerialize["inReview"] = o.InReview
+	}
+	if true {
+		toSerialize["pastDue"] = o.PastDue
+	}
+	if true {
+		toSerialize["currentlyDue"] = o.CurrentlyDue
+	}
+	if true {
+		toSerialize["eventuallyDue"] = o.EventuallyDue
+	}
+	if true {
+		toSerialize["pendingVerification"] = o.PendingVerification
+	}
+	if true {
+		toSerialize["errors"] = o.Errors
+	}
+	if o.DisabledReason.IsSet() {
+		toSerialize["disabledReason"] = o.DisabledReason.Get()
+	}
+	if o.DisabledReasonText.IsSet() {
+		toSerialize["disabledReasonText"] = o.DisabledReasonText.Get()
+	}
+	if o.CurrentDeadline.IsSet() {
+		toSerialize["currentDeadline"] = o.CurrentDeadline.Get()
+	}
+	if o.SyncedAt.IsSet() {
+		toSerialize["syncedAt"] = o.SyncedAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutIdentityResponseData struct {
+	value *GetPayoutIdentityResponseData
+	isSet bool
+}
+
+func (v NullableGetPayoutIdentityResponseData) Get() *GetPayoutIdentityResponseData {
+	return v.value
+}
+
+func (v *NullableGetPayoutIdentityResponseData) Set(val *GetPayoutIdentityResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutIdentityResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutIdentityResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutIdentityResponseData(val *GetPayoutIdentityResponseData) *NullableGetPayoutIdentityResponseData {
+	return &NullableGetPayoutIdentityResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutIdentityResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutIdentityResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutIdentityResponseDataDueNow struct for GetPayoutIdentityResponseDataDueNow
+type GetPayoutIdentityResponseDataDueNow struct {
+	// Every Stripe key this line stands for (a date of birth is three).
+	Keys []string `json:"keys"`
+	Label string `json:"label"`
+}
+
+// NewGetPayoutIdentityResponseDataDueNow instantiates a new GetPayoutIdentityResponseDataDueNow object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutIdentityResponseDataDueNow(keys []string, label string) *GetPayoutIdentityResponseDataDueNow {
+	this := GetPayoutIdentityResponseDataDueNow{}
+	this.Keys = keys
+	this.Label = label
+	return &this
+}
+
+// NewGetPayoutIdentityResponseDataDueNowWithDefaults instantiates a new GetPayoutIdentityResponseDataDueNow object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutIdentityResponseDataDueNowWithDefaults() *GetPayoutIdentityResponseDataDueNow {
+	this := GetPayoutIdentityResponseDataDueNow{}
+	return &this
+}
+
+// GetKeys returns the Keys field value
+func (o *GetPayoutIdentityResponseDataDueNow) GetKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Keys
+}
+
+// GetKeysOk returns a tuple with the Keys field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataDueNow) GetKeysOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Keys, true
+}
+
+// SetKeys sets field value
+func (o *GetPayoutIdentityResponseDataDueNow) SetKeys(v []string) {
+	o.Keys = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetPayoutIdentityResponseDataDueNow) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataDueNow) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetPayoutIdentityResponseDataDueNow) SetLabel(v string) {
+	o.Label = v
+}
+
+func (o GetPayoutIdentityResponseDataDueNow) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["keys"] = o.Keys
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutIdentityResponseDataDueNow struct {
+	value *GetPayoutIdentityResponseDataDueNow
+	isSet bool
+}
+
+func (v NullableGetPayoutIdentityResponseDataDueNow) Get() *GetPayoutIdentityResponseDataDueNow {
+	return v.value
+}
+
+func (v *NullableGetPayoutIdentityResponseDataDueNow) Set(val *GetPayoutIdentityResponseDataDueNow) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutIdentityResponseDataDueNow) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutIdentityResponseDataDueNow) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutIdentityResponseDataDueNow(val *GetPayoutIdentityResponseDataDueNow) *NullableGetPayoutIdentityResponseDataDueNow {
+	return &NullableGetPayoutIdentityResponseDataDueNow{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutIdentityResponseDataDueNow) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutIdentityResponseDataDueNow) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutIdentityResponseDataErrors struct for GetPayoutIdentityResponseDataErrors
+type GetPayoutIdentityResponseDataErrors struct {
+	Requirement string `json:"requirement"`
+	Label string `json:"label"`
+	Code string `json:"code"`
+	Reason string `json:"reason"`
+}
+
+// NewGetPayoutIdentityResponseDataErrors instantiates a new GetPayoutIdentityResponseDataErrors object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutIdentityResponseDataErrors(requirement string, label string, code string, reason string) *GetPayoutIdentityResponseDataErrors {
+	this := GetPayoutIdentityResponseDataErrors{}
+	this.Requirement = requirement
+	this.Label = label
+	this.Code = code
+	this.Reason = reason
+	return &this
+}
+
+// NewGetPayoutIdentityResponseDataErrorsWithDefaults instantiates a new GetPayoutIdentityResponseDataErrors object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutIdentityResponseDataErrorsWithDefaults() *GetPayoutIdentityResponseDataErrors {
+	this := GetPayoutIdentityResponseDataErrors{}
+	return &this
+}
+
+// GetRequirement returns the Requirement field value
+func (o *GetPayoutIdentityResponseDataErrors) GetRequirement() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Requirement
+}
+
+// GetRequirementOk returns a tuple with the Requirement field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataErrors) GetRequirementOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Requirement, true
+}
+
+// SetRequirement sets field value
+func (o *GetPayoutIdentityResponseDataErrors) SetRequirement(v string) {
+	o.Requirement = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetPayoutIdentityResponseDataErrors) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataErrors) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetPayoutIdentityResponseDataErrors) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetCode returns the Code field value
+func (o *GetPayoutIdentityResponseDataErrors) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataErrors) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *GetPayoutIdentityResponseDataErrors) SetCode(v string) {
+	o.Code = v
+}
+
+// GetReason returns the Reason field value
+func (o *GetPayoutIdentityResponseDataErrors) GetReason() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutIdentityResponseDataErrors) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Reason, true
+}
+
+// SetReason sets field value
+func (o *GetPayoutIdentityResponseDataErrors) SetReason(v string) {
+	o.Reason = v
+}
+
+func (o GetPayoutIdentityResponseDataErrors) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["requirement"] = o.Requirement
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["reason"] = o.Reason
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutIdentityResponseDataErrors struct {
+	value *GetPayoutIdentityResponseDataErrors
+	isSet bool
+}
+
+func (v NullableGetPayoutIdentityResponseDataErrors) Get() *GetPayoutIdentityResponseDataErrors {
+	return v.value
+}
+
+func (v *NullableGetPayoutIdentityResponseDataErrors) Set(val *GetPayoutIdentityResponseDataErrors) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutIdentityResponseDataErrors) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutIdentityResponseDataErrors) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutIdentityResponseDataErrors(val *GetPayoutIdentityResponseDataErrors) *NullableGetPayoutIdentityResponseDataErrors {
+	return &NullableGetPayoutIdentityResponseDataErrors{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutIdentityResponseDataErrors) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutIdentityResponseDataErrors) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponse struct for GetPayoutWalletResponse
+type GetPayoutWalletResponse struct {
+	Data GetPayoutWalletResponseData `json:"data"`
+}
+
+// NewGetPayoutWalletResponse instantiates a new GetPayoutWalletResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponse(data GetPayoutWalletResponseData) *GetPayoutWalletResponse {
+	this := GetPayoutWalletResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetPayoutWalletResponseWithDefaults instantiates a new GetPayoutWalletResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseWithDefaults() *GetPayoutWalletResponse {
+	this := GetPayoutWalletResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetPayoutWalletResponse) GetData() GetPayoutWalletResponseData {
+	if o == nil {
+		var ret GetPayoutWalletResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponse) GetDataOk() (*GetPayoutWalletResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetPayoutWalletResponse) SetData(v GetPayoutWalletResponseData) {
+	o.Data = v
+}
+
+func (o GetPayoutWalletResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponse struct {
+	value *GetPayoutWalletResponse
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponse) Get() *GetPayoutWalletResponse {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponse) Set(val *GetPayoutWalletResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponse(val *GetPayoutWalletResponse) *NullableGetPayoutWalletResponse {
+	return &NullableGetPayoutWalletResponse{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseData struct for GetPayoutWalletResponseData
+type GetPayoutWalletResponseData struct {
+	Connected bool `json:"connected"`
+	DefaultCountry *string `json:"defaultCountry,omitempty"`
+	AccountSource string `json:"accountSource"`
+	AccountId *string `json:"accountId,omitempty"`
+	Status *GetPayoutWalletResponseDataOneOf1Status `json:"status,omitempty"`
+	Message NullableString `json:"message,omitempty"`
+	Balance *GetPayoutWalletResponseDataOneOf1Balance `json:"balance,omitempty"`
+	Schedule *GetPayoutWalletResponseDataOneOf1Schedule `json:"schedule,omitempty"`
+	NextPayout NullableGetPayoutWalletResponseDataOneOf1NextPayout `json:"nextPayout,omitempty"`
+	Instant *GetPayoutWalletResponseDataOneOf1Instant `json:"instant,omitempty"`
+	Methods []GetPayoutWalletResponseDataOneOf1Methods `json:"methods,omitempty"`
+	Payouts []CreatePayoutPayoutResponseDataPayout `json:"payouts,omitempty"`
+	Transactions []GetPayoutWalletResponseDataOneOf1Transactions `json:"transactions,omitempty"`
+}
+
+// NewGetPayoutWalletResponseData instantiates a new GetPayoutWalletResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseData(connected bool, accountSource string) *GetPayoutWalletResponseData {
+	this := GetPayoutWalletResponseData{}
+	this.Connected = connected
+	this.AccountSource = accountSource
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataWithDefaults instantiates a new GetPayoutWalletResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataWithDefaults() *GetPayoutWalletResponseData {
+	this := GetPayoutWalletResponseData{}
+	return &this
+}
+
+// GetConnected returns the Connected field value
+func (o *GetPayoutWalletResponseData) GetConnected() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Connected
+}
+
+// GetConnectedOk returns a tuple with the Connected field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetConnectedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Connected, true
+}
+
+// SetConnected sets field value
+func (o *GetPayoutWalletResponseData) SetConnected(v bool) {
+	o.Connected = v
+}
+
+// GetDefaultCountry returns the DefaultCountry field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetDefaultCountry() string {
+	if o == nil || o.DefaultCountry == nil {
+		var ret string
+		return ret
+	}
+	return *o.DefaultCountry
+}
+
+// GetDefaultCountryOk returns a tuple with the DefaultCountry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetDefaultCountryOk() (*string, bool) {
+	if o == nil || o.DefaultCountry == nil {
+		return nil, false
+	}
+	return o.DefaultCountry, true
+}
+
+// HasDefaultCountry returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasDefaultCountry() bool {
+	if o != nil && o.DefaultCountry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCountry gets a reference to the given string and assigns it to the DefaultCountry field.
+func (o *GetPayoutWalletResponseData) SetDefaultCountry(v string) {
+	o.DefaultCountry = &v
+}
+
+// GetAccountSource returns the AccountSource field value
+func (o *GetPayoutWalletResponseData) GetAccountSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AccountSource
+}
+
+// GetAccountSourceOk returns a tuple with the AccountSource field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetAccountSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AccountSource, true
+}
+
+// SetAccountSource sets field value
+func (o *GetPayoutWalletResponseData) SetAccountSource(v string) {
+	o.AccountSource = v
+}
+
+// GetAccountId returns the AccountId field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetAccountId() string {
+	if o == nil || o.AccountId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AccountId
+}
+
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetAccountIdOk() (*string, bool) {
+	if o == nil || o.AccountId == nil {
+		return nil, false
+	}
+	return o.AccountId, true
+}
+
+// HasAccountId returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasAccountId() bool {
+	if o != nil && o.AccountId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountId gets a reference to the given string and assigns it to the AccountId field.
+func (o *GetPayoutWalletResponseData) SetAccountId(v string) {
+	o.AccountId = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetStatus() GetPayoutWalletResponseDataOneOf1Status {
+	if o == nil || o.Status == nil {
+		var ret GetPayoutWalletResponseDataOneOf1Status
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetStatusOk() (*GetPayoutWalletResponseDataOneOf1Status, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given GetPayoutWalletResponseDataOneOf1Status and assigns it to the Status field.
+func (o *GetPayoutWalletResponseData) SetStatus(v GetPayoutWalletResponseDataOneOf1Status) {
+	o.Status = &v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseData) GetMessage() string {
+	if o == nil || o.Message.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message.Get()
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseData) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Message.Get(), o.Message.IsSet()
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasMessage() bool {
+	if o != nil && o.Message.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+func (o *GetPayoutWalletResponseData) SetMessage(v string) {
+	o.Message.Set(&v)
+}
+// SetMessageNil sets the value for Message to be an explicit nil
+func (o *GetPayoutWalletResponseData) SetMessageNil() {
+	o.Message.Set(nil)
+}
+
+// UnsetMessage ensures that no value is present for Message, not even an explicit nil
+func (o *GetPayoutWalletResponseData) UnsetMessage() {
+	o.Message.Unset()
+}
+
+// GetBalance returns the Balance field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetBalance() GetPayoutWalletResponseDataOneOf1Balance {
+	if o == nil || o.Balance == nil {
+		var ret GetPayoutWalletResponseDataOneOf1Balance
+		return ret
+	}
+	return *o.Balance
+}
+
+// GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetBalanceOk() (*GetPayoutWalletResponseDataOneOf1Balance, bool) {
+	if o == nil || o.Balance == nil {
+		return nil, false
+	}
+	return o.Balance, true
+}
+
+// HasBalance returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasBalance() bool {
+	if o != nil && o.Balance != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBalance gets a reference to the given GetPayoutWalletResponseDataOneOf1Balance and assigns it to the Balance field.
+func (o *GetPayoutWalletResponseData) SetBalance(v GetPayoutWalletResponseDataOneOf1Balance) {
+	o.Balance = &v
+}
+
+// GetSchedule returns the Schedule field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetSchedule() GetPayoutWalletResponseDataOneOf1Schedule {
+	if o == nil || o.Schedule == nil {
+		var ret GetPayoutWalletResponseDataOneOf1Schedule
+		return ret
+	}
+	return *o.Schedule
+}
+
+// GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetScheduleOk() (*GetPayoutWalletResponseDataOneOf1Schedule, bool) {
+	if o == nil || o.Schedule == nil {
+		return nil, false
+	}
+	return o.Schedule, true
+}
+
+// HasSchedule returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasSchedule() bool {
+	if o != nil && o.Schedule != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchedule gets a reference to the given GetPayoutWalletResponseDataOneOf1Schedule and assigns it to the Schedule field.
+func (o *GetPayoutWalletResponseData) SetSchedule(v GetPayoutWalletResponseDataOneOf1Schedule) {
+	o.Schedule = &v
+}
+
+// GetNextPayout returns the NextPayout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseData) GetNextPayout() GetPayoutWalletResponseDataOneOf1NextPayout {
+	if o == nil || o.NextPayout.Get() == nil {
+		var ret GetPayoutWalletResponseDataOneOf1NextPayout
+		return ret
+	}
+	return *o.NextPayout.Get()
+}
+
+// GetNextPayoutOk returns a tuple with the NextPayout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseData) GetNextPayoutOk() (*GetPayoutWalletResponseDataOneOf1NextPayout, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NextPayout.Get(), o.NextPayout.IsSet()
+}
+
+// HasNextPayout returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasNextPayout() bool {
+	if o != nil && o.NextPayout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPayout gets a reference to the given NullableGetPayoutWalletResponseDataOneOf1NextPayout and assigns it to the NextPayout field.
+func (o *GetPayoutWalletResponseData) SetNextPayout(v GetPayoutWalletResponseDataOneOf1NextPayout) {
+	o.NextPayout.Set(&v)
+}
+// SetNextPayoutNil sets the value for NextPayout to be an explicit nil
+func (o *GetPayoutWalletResponseData) SetNextPayoutNil() {
+	o.NextPayout.Set(nil)
+}
+
+// UnsetNextPayout ensures that no value is present for NextPayout, not even an explicit nil
+func (o *GetPayoutWalletResponseData) UnsetNextPayout() {
+	o.NextPayout.Unset()
+}
+
+// GetInstant returns the Instant field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetInstant() GetPayoutWalletResponseDataOneOf1Instant {
+	if o == nil || o.Instant == nil {
+		var ret GetPayoutWalletResponseDataOneOf1Instant
+		return ret
+	}
+	return *o.Instant
+}
+
+// GetInstantOk returns a tuple with the Instant field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetInstantOk() (*GetPayoutWalletResponseDataOneOf1Instant, bool) {
+	if o == nil || o.Instant == nil {
+		return nil, false
+	}
+	return o.Instant, true
+}
+
+// HasInstant returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasInstant() bool {
+	if o != nil && o.Instant != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstant gets a reference to the given GetPayoutWalletResponseDataOneOf1Instant and assigns it to the Instant field.
+func (o *GetPayoutWalletResponseData) SetInstant(v GetPayoutWalletResponseDataOneOf1Instant) {
+	o.Instant = &v
+}
+
+// GetMethods returns the Methods field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetMethods() []GetPayoutWalletResponseDataOneOf1Methods {
+	if o == nil || o.Methods == nil {
+		var ret []GetPayoutWalletResponseDataOneOf1Methods
+		return ret
+	}
+	return o.Methods
+}
+
+// GetMethodsOk returns a tuple with the Methods field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetMethodsOk() ([]GetPayoutWalletResponseDataOneOf1Methods, bool) {
+	if o == nil || o.Methods == nil {
+		return nil, false
+	}
+	return o.Methods, true
+}
+
+// HasMethods returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasMethods() bool {
+	if o != nil && o.Methods != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMethods gets a reference to the given []GetPayoutWalletResponseDataOneOf1Methods and assigns it to the Methods field.
+func (o *GetPayoutWalletResponseData) SetMethods(v []GetPayoutWalletResponseDataOneOf1Methods) {
+	o.Methods = v
+}
+
+// GetPayouts returns the Payouts field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetPayouts() []CreatePayoutPayoutResponseDataPayout {
+	if o == nil || o.Payouts == nil {
+		var ret []CreatePayoutPayoutResponseDataPayout
+		return ret
+	}
+	return o.Payouts
+}
+
+// GetPayoutsOk returns a tuple with the Payouts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetPayoutsOk() ([]CreatePayoutPayoutResponseDataPayout, bool) {
+	if o == nil || o.Payouts == nil {
+		return nil, false
+	}
+	return o.Payouts, true
+}
+
+// HasPayouts returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasPayouts() bool {
+	if o != nil && o.Payouts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPayouts gets a reference to the given []CreatePayoutPayoutResponseDataPayout and assigns it to the Payouts field.
+func (o *GetPayoutWalletResponseData) SetPayouts(v []CreatePayoutPayoutResponseDataPayout) {
+	o.Payouts = v
+}
+
+// GetTransactions returns the Transactions field value if set, zero value otherwise.
+func (o *GetPayoutWalletResponseData) GetTransactions() []GetPayoutWalletResponseDataOneOf1Transactions {
+	if o == nil || o.Transactions == nil {
+		var ret []GetPayoutWalletResponseDataOneOf1Transactions
+		return ret
+	}
+	return o.Transactions
+}
+
+// GetTransactionsOk returns a tuple with the Transactions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseData) GetTransactionsOk() ([]GetPayoutWalletResponseDataOneOf1Transactions, bool) {
+	if o == nil || o.Transactions == nil {
+		return nil, false
+	}
+	return o.Transactions, true
+}
+
+// HasTransactions returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseData) HasTransactions() bool {
+	if o != nil && o.Transactions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransactions gets a reference to the given []GetPayoutWalletResponseDataOneOf1Transactions and assigns it to the Transactions field.
+func (o *GetPayoutWalletResponseData) SetTransactions(v []GetPayoutWalletResponseDataOneOf1Transactions) {
+	o.Transactions = v
+}
+
+func (o GetPayoutWalletResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["connected"] = o.Connected
+	}
+	if o.DefaultCountry != nil {
+		toSerialize["defaultCountry"] = o.DefaultCountry
+	}
+	if true {
+		toSerialize["accountSource"] = o.AccountSource
+	}
+	if o.AccountId != nil {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Message.IsSet() {
+		toSerialize["message"] = o.Message.Get()
+	}
+	if o.Balance != nil {
+		toSerialize["balance"] = o.Balance
+	}
+	if o.Schedule != nil {
+		toSerialize["schedule"] = o.Schedule
+	}
+	if o.NextPayout.IsSet() {
+		toSerialize["nextPayout"] = o.NextPayout.Get()
+	}
+	if o.Instant != nil {
+		toSerialize["instant"] = o.Instant
+	}
+	if o.Methods != nil {
+		toSerialize["methods"] = o.Methods
+	}
+	if o.Payouts != nil {
+		toSerialize["payouts"] = o.Payouts
+	}
+	if o.Transactions != nil {
+		toSerialize["transactions"] = o.Transactions
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseData struct {
+	value *GetPayoutWalletResponseData
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseData) Get() *GetPayoutWalletResponseData {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseData) Set(val *GetPayoutWalletResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseData(val *GetPayoutWalletResponseData) *NullableGetPayoutWalletResponseData {
+	return &NullableGetPayoutWalletResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Balance struct for GetPayoutWalletResponseDataOneOf1Balance
+type GetPayoutWalletResponseDataOneOf1Balance struct {
+	AvailableCents float32 `json:"availableCents"`
+	PendingCents float32 `json:"pendingCents"`
+	InstantAvailableCents float32 `json:"instantAvailableCents"`
+	Currency string `json:"currency"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Balance instantiates a new GetPayoutWalletResponseDataOneOf1Balance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Balance(availableCents float32, pendingCents float32, instantAvailableCents float32, currency string) *GetPayoutWalletResponseDataOneOf1Balance {
+	this := GetPayoutWalletResponseDataOneOf1Balance{}
+	this.AvailableCents = availableCents
+	this.PendingCents = pendingCents
+	this.InstantAvailableCents = instantAvailableCents
+	this.Currency = currency
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1BalanceWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Balance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1BalanceWithDefaults() *GetPayoutWalletResponseDataOneOf1Balance {
+	this := GetPayoutWalletResponseDataOneOf1Balance{}
+	return &this
+}
+
+// GetAvailableCents returns the AvailableCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetAvailableCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AvailableCents
+}
+
+// GetAvailableCentsOk returns a tuple with the AvailableCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetAvailableCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AvailableCents, true
+}
+
+// SetAvailableCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) SetAvailableCents(v float32) {
+	o.AvailableCents = v
+}
+
+// GetPendingCents returns the PendingCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetPendingCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PendingCents
+}
+
+// GetPendingCentsOk returns a tuple with the PendingCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetPendingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PendingCents, true
+}
+
+// SetPendingCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) SetPendingCents(v float32) {
+	o.PendingCents = v
+}
+
+// GetInstantAvailableCents returns the InstantAvailableCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetInstantAvailableCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.InstantAvailableCents
+}
+
+// GetInstantAvailableCentsOk returns a tuple with the InstantAvailableCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetInstantAvailableCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InstantAvailableCents, true
+}
+
+// SetInstantAvailableCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) SetInstantAvailableCents(v float32) {
+	o.InstantAvailableCents = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Balance) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Balance) SetCurrency(v string) {
+	o.Currency = v
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Balance) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["availableCents"] = o.AvailableCents
+	}
+	if true {
+		toSerialize["pendingCents"] = o.PendingCents
+	}
+	if true {
+		toSerialize["instantAvailableCents"] = o.InstantAvailableCents
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Balance struct {
+	value *GetPayoutWalletResponseDataOneOf1Balance
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Balance) Get() *GetPayoutWalletResponseDataOneOf1Balance {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Balance) Set(val *GetPayoutWalletResponseDataOneOf1Balance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Balance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Balance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Balance(val *GetPayoutWalletResponseDataOneOf1Balance) *NullableGetPayoutWalletResponseDataOneOf1Balance {
+	return &NullableGetPayoutWalletResponseDataOneOf1Balance{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Balance) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Balance) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Instant struct for GetPayoutWalletResponseDataOneOf1Instant
+type GetPayoutWalletResponseDataOneOf1Instant struct {
+	// Instant payouts possible right now: account active, USD, an eligible destination, money to move.
+	Available bool `json:"available"`
+	// Why not, in words; null when available.
+	Reason NullableString `json:"reason,omitempty"`
+	MaxCents float32 `json:"maxCents"`
+	FeeCents float32 `json:"feeCents"`
+	// The rate in words, e.g. \"1.5% (min $0.50)\".
+	FeeLabel string `json:"feeLabel"`
+	NetCents float32 `json:"netCents"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Instant instantiates a new GetPayoutWalletResponseDataOneOf1Instant object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Instant(available bool, maxCents float32, feeCents float32, feeLabel string, netCents float32) *GetPayoutWalletResponseDataOneOf1Instant {
+	this := GetPayoutWalletResponseDataOneOf1Instant{}
+	this.Available = available
+	this.MaxCents = maxCents
+	this.FeeCents = feeCents
+	this.FeeLabel = feeLabel
+	this.NetCents = netCents
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1InstantWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Instant object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1InstantWithDefaults() *GetPayoutWalletResponseDataOneOf1Instant {
+	this := GetPayoutWalletResponseDataOneOf1Instant{}
+	return &this
+}
+
+// GetAvailable returns the Available field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetAvailable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Available
+}
+
+// GetAvailableOk returns a tuple with the Available field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetAvailableOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Available, true
+}
+
+// SetAvailable sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetAvailable(v bool) {
+	o.Available = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Instant) UnsetReason() {
+	o.Reason.Unset()
+}
+
+// GetMaxCents returns the MaxCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetMaxCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaxCents
+}
+
+// GetMaxCentsOk returns a tuple with the MaxCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetMaxCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxCents, true
+}
+
+// SetMaxCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetMaxCents(v float32) {
+	o.MaxCents = v
+}
+
+// GetFeeCents returns the FeeCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FeeCents
+}
+
+// GetFeeCentsOk returns a tuple with the FeeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCents, true
+}
+
+// SetFeeCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetFeeCents(v float32) {
+	o.FeeCents = v
+}
+
+// GetFeeLabel returns the FeeLabel field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetFeeLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FeeLabel
+}
+
+// GetFeeLabelOk returns a tuple with the FeeLabel field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetFeeLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeLabel, true
+}
+
+// SetFeeLabel sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetFeeLabel(v string) {
+	o.FeeLabel = v
+}
+
+// GetNetCents returns the NetCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetNetCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetCents
+}
+
+// GetNetCentsOk returns a tuple with the NetCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Instant) GetNetCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NetCents, true
+}
+
+// SetNetCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Instant) SetNetCents(v float32) {
+	o.NetCents = v
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Instant) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["available"] = o.Available
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	if true {
+		toSerialize["maxCents"] = o.MaxCents
+	}
+	if true {
+		toSerialize["feeCents"] = o.FeeCents
+	}
+	if true {
+		toSerialize["feeLabel"] = o.FeeLabel
+	}
+	if true {
+		toSerialize["netCents"] = o.NetCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Instant struct {
+	value *GetPayoutWalletResponseDataOneOf1Instant
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Instant) Get() *GetPayoutWalletResponseDataOneOf1Instant {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Instant) Set(val *GetPayoutWalletResponseDataOneOf1Instant) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Instant) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Instant) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Instant(val *GetPayoutWalletResponseDataOneOf1Instant) *NullableGetPayoutWalletResponseDataOneOf1Instant {
+	return &NullableGetPayoutWalletResponseDataOneOf1Instant{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Instant) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Instant) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Methods struct for GetPayoutWalletResponseDataOneOf1Methods
+type GetPayoutWalletResponseDataOneOf1Methods struct {
+	Id string `json:"id"`
+	Kind string `json:"kind"`
+	// \"Chase •••• 6789\" / \"Visa debit •••• 4242\".
+	Label string `json:"label"`
+	Last4 NullableString `json:"last4,omitempty"`
+	Currency NullableString `json:"currency,omitempty"`
+	IsDefault bool `json:"isDefault"`
+	// Stripe says this destination accepts `method: instant`.
+	InstantEligible bool `json:"instantEligible"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Methods instantiates a new GetPayoutWalletResponseDataOneOf1Methods object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Methods(id string, kind string, label string, isDefault bool, instantEligible bool) *GetPayoutWalletResponseDataOneOf1Methods {
+	this := GetPayoutWalletResponseDataOneOf1Methods{}
+	this.Id = id
+	this.Kind = kind
+	this.Label = label
+	this.IsDefault = isDefault
+	this.InstantEligible = instantEligible
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1MethodsWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Methods object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1MethodsWithDefaults() *GetPayoutWalletResponseDataOneOf1Methods {
+	this := GetPayoutWalletResponseDataOneOf1Methods{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetId(v string) {
+	o.Id = v
+}
+
+// GetKind returns the Kind field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetLast4 returns the Last4 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetLast4() string {
+	if o == nil || o.Last4.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Last4.Get()
+}
+
+// GetLast4Ok returns a tuple with the Last4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetLast4Ok() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Last4.Get(), o.Last4.IsSet()
+}
+
+// HasLast4 returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) HasLast4() bool {
+	if o != nil && o.Last4.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLast4 gets a reference to the given NullableString and assigns it to the Last4 field.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetLast4(v string) {
+	o.Last4.Set(&v)
+}
+// SetLast4Nil sets the value for Last4 to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetLast4Nil() {
+	o.Last4.Set(nil)
+}
+
+// UnsetLast4 ensures that no value is present for Last4, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Methods) UnsetLast4() {
+	o.Last4.Unset()
+}
+
+// GetCurrency returns the Currency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetCurrency() string {
+	if o == nil || o.Currency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Currency.Get()
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Currency.Get(), o.Currency.IsSet()
+}
+
+// HasCurrency returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) HasCurrency() bool {
+	if o != nil && o.Currency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrency gets a reference to the given NullableString and assigns it to the Currency field.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetCurrency(v string) {
+	o.Currency.Set(&v)
+}
+// SetCurrencyNil sets the value for Currency to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetCurrencyNil() {
+	o.Currency.Set(nil)
+}
+
+// UnsetCurrency ensures that no value is present for Currency, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Methods) UnsetCurrency() {
+	o.Currency.Unset()
+}
+
+// GetIsDefault returns the IsDefault field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetIsDefault() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDefault
+}
+
+// GetIsDefaultOk returns a tuple with the IsDefault field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetIsDefaultOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsDefault, true
+}
+
+// SetIsDefault sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetIsDefault(v bool) {
+	o.IsDefault = v
+}
+
+// GetInstantEligible returns the InstantEligible field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetInstantEligible() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InstantEligible
+}
+
+// GetInstantEligibleOk returns a tuple with the InstantEligible field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Methods) GetInstantEligibleOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InstantEligible, true
+}
+
+// SetInstantEligible sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Methods) SetInstantEligible(v bool) {
+	o.InstantEligible = v
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Methods) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if o.Last4.IsSet() {
+		toSerialize["last4"] = o.Last4.Get()
+	}
+	if o.Currency.IsSet() {
+		toSerialize["currency"] = o.Currency.Get()
+	}
+	if true {
+		toSerialize["isDefault"] = o.IsDefault
+	}
+	if true {
+		toSerialize["instantEligible"] = o.InstantEligible
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Methods struct {
+	value *GetPayoutWalletResponseDataOneOf1Methods
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Methods) Get() *GetPayoutWalletResponseDataOneOf1Methods {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Methods) Set(val *GetPayoutWalletResponseDataOneOf1Methods) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Methods) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Methods) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Methods(val *GetPayoutWalletResponseDataOneOf1Methods) *NullableGetPayoutWalletResponseDataOneOf1Methods {
+	return &NullableGetPayoutWalletResponseDataOneOf1Methods{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Methods) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Methods) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1NextPayout struct for GetPayoutWalletResponseDataOneOf1NextPayout
+type GetPayoutWalletResponseDataOneOf1NextPayout struct {
+	Date string `json:"date"`
+	// `scheduled` = a payout Stripe already created; `estimated` = from the schedule.
+	Source string `json:"source"`
+	AmountCents NullableFloat32 `json:"amountCents,omitempty"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1NextPayout instantiates a new GetPayoutWalletResponseDataOneOf1NextPayout object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1NextPayout(date string, source string) *GetPayoutWalletResponseDataOneOf1NextPayout {
+	this := GetPayoutWalletResponseDataOneOf1NextPayout{}
+	this.Date = date
+	this.Source = source
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1NextPayoutWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1NextPayout object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1NextPayoutWithDefaults() *GetPayoutWalletResponseDataOneOf1NextPayout {
+	this := GetPayoutWalletResponseDataOneOf1NextPayout{}
+	return &this
+}
+
+// GetDate returns the Date field value
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Date, true
+}
+
+// SetDate sets field value
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) SetDate(v string) {
+	o.Date = v
+}
+
+// GetSource returns the Source field value
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) SetSource(v string) {
+	o.Source = v
+}
+
+// GetAmountCents returns the AmountCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetAmountCents() float32 {
+	if o == nil || o.AmountCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AmountCents.Get()
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) GetAmountCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AmountCents.Get(), o.AmountCents.IsSet()
+}
+
+// HasAmountCents returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) HasAmountCents() bool {
+	if o != nil && o.AmountCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAmountCents gets a reference to the given NullableFloat32 and assigns it to the AmountCents field.
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) SetAmountCents(v float32) {
+	o.AmountCents.Set(&v)
+}
+// SetAmountCentsNil sets the value for AmountCents to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) SetAmountCentsNil() {
+	o.AmountCents.Set(nil)
+}
+
+// UnsetAmountCents ensures that no value is present for AmountCents, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1NextPayout) UnsetAmountCents() {
+	o.AmountCents.Unset()
+}
+
+func (o GetPayoutWalletResponseDataOneOf1NextPayout) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["date"] = o.Date
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if o.AmountCents.IsSet() {
+		toSerialize["amountCents"] = o.AmountCents.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1NextPayout struct {
+	value *GetPayoutWalletResponseDataOneOf1NextPayout
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1NextPayout) Get() *GetPayoutWalletResponseDataOneOf1NextPayout {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1NextPayout) Set(val *GetPayoutWalletResponseDataOneOf1NextPayout) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1NextPayout) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1NextPayout) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1NextPayout(val *GetPayoutWalletResponseDataOneOf1NextPayout) *NullableGetPayoutWalletResponseDataOneOf1NextPayout {
+	return &NullableGetPayoutWalletResponseDataOneOf1NextPayout{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1NextPayout) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1NextPayout) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Schedule struct for GetPayoutWalletResponseDataOneOf1Schedule
+type GetPayoutWalletResponseDataOneOf1Schedule struct {
+	Interval string `json:"interval"`
+	// Days a charge waits before it becomes available (Stripe's rolling delay).
+	DelayDays NullableFloat32 `json:"delayDays,omitempty"`
+	WeeklyAnchor NullableString `json:"weeklyAnchor,omitempty"`
+	MonthlyAnchor NullableFloat32 `json:"monthlyAnchor,omitempty"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Schedule instantiates a new GetPayoutWalletResponseDataOneOf1Schedule object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Schedule(interval string) *GetPayoutWalletResponseDataOneOf1Schedule {
+	this := GetPayoutWalletResponseDataOneOf1Schedule{}
+	this.Interval = interval
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1ScheduleWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Schedule object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1ScheduleWithDefaults() *GetPayoutWalletResponseDataOneOf1Schedule {
+	this := GetPayoutWalletResponseDataOneOf1Schedule{}
+	return &this
+}
+
+// GetInterval returns the Interval field value
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetInterval() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetIntervalOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Interval, true
+}
+
+// SetInterval sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetInterval(v string) {
+	o.Interval = v
+}
+
+// GetDelayDays returns the DelayDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetDelayDays() float32 {
+	if o == nil || o.DelayDays.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DelayDays.Get()
+}
+
+// GetDelayDaysOk returns a tuple with the DelayDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetDelayDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DelayDays.Get(), o.DelayDays.IsSet()
+}
+
+// HasDelayDays returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) HasDelayDays() bool {
+	if o != nil && o.DelayDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDelayDays gets a reference to the given NullableFloat32 and assigns it to the DelayDays field.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetDelayDays(v float32) {
+	o.DelayDays.Set(&v)
+}
+// SetDelayDaysNil sets the value for DelayDays to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetDelayDaysNil() {
+	o.DelayDays.Set(nil)
+}
+
+// UnsetDelayDays ensures that no value is present for DelayDays, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) UnsetDelayDays() {
+	o.DelayDays.Unset()
+}
+
+// GetWeeklyAnchor returns the WeeklyAnchor field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetWeeklyAnchor() string {
+	if o == nil || o.WeeklyAnchor.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.WeeklyAnchor.Get()
+}
+
+// GetWeeklyAnchorOk returns a tuple with the WeeklyAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetWeeklyAnchorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WeeklyAnchor.Get(), o.WeeklyAnchor.IsSet()
+}
+
+// HasWeeklyAnchor returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) HasWeeklyAnchor() bool {
+	if o != nil && o.WeeklyAnchor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWeeklyAnchor gets a reference to the given NullableString and assigns it to the WeeklyAnchor field.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetWeeklyAnchor(v string) {
+	o.WeeklyAnchor.Set(&v)
+}
+// SetWeeklyAnchorNil sets the value for WeeklyAnchor to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetWeeklyAnchorNil() {
+	o.WeeklyAnchor.Set(nil)
+}
+
+// UnsetWeeklyAnchor ensures that no value is present for WeeklyAnchor, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) UnsetWeeklyAnchor() {
+	o.WeeklyAnchor.Unset()
+}
+
+// GetMonthlyAnchor returns the MonthlyAnchor field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetMonthlyAnchor() float32 {
+	if o == nil || o.MonthlyAnchor.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MonthlyAnchor.Get()
+}
+
+// GetMonthlyAnchorOk returns a tuple with the MonthlyAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) GetMonthlyAnchorOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MonthlyAnchor.Get(), o.MonthlyAnchor.IsSet()
+}
+
+// HasMonthlyAnchor returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) HasMonthlyAnchor() bool {
+	if o != nil && o.MonthlyAnchor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMonthlyAnchor gets a reference to the given NullableFloat32 and assigns it to the MonthlyAnchor field.
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetMonthlyAnchor(v float32) {
+	o.MonthlyAnchor.Set(&v)
+}
+// SetMonthlyAnchorNil sets the value for MonthlyAnchor to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) SetMonthlyAnchorNil() {
+	o.MonthlyAnchor.Set(nil)
+}
+
+// UnsetMonthlyAnchor ensures that no value is present for MonthlyAnchor, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Schedule) UnsetMonthlyAnchor() {
+	o.MonthlyAnchor.Unset()
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Schedule) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["interval"] = o.Interval
+	}
+	if o.DelayDays.IsSet() {
+		toSerialize["delayDays"] = o.DelayDays.Get()
+	}
+	if o.WeeklyAnchor.IsSet() {
+		toSerialize["weeklyAnchor"] = o.WeeklyAnchor.Get()
+	}
+	if o.MonthlyAnchor.IsSet() {
+		toSerialize["monthlyAnchor"] = o.MonthlyAnchor.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Schedule struct {
+	value *GetPayoutWalletResponseDataOneOf1Schedule
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Schedule) Get() *GetPayoutWalletResponseDataOneOf1Schedule {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Schedule) Set(val *GetPayoutWalletResponseDataOneOf1Schedule) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Schedule) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Schedule) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Schedule(val *GetPayoutWalletResponseDataOneOf1Schedule) *NullableGetPayoutWalletResponseDataOneOf1Schedule {
+	return &NullableGetPayoutWalletResponseDataOneOf1Schedule{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Schedule) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Schedule) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Status struct for GetPayoutWalletResponseDataOneOf1Status
+type GetPayoutWalletResponseDataOneOf1Status struct {
+	Status string `json:"status"`
+	PayoutsEnabled bool `json:"payoutsEnabled"`
+	ChargesEnabled bool `json:"chargesEnabled"`
+	// `capabilities.transfers === 'active'` — the capability every Crossly payout uses.
+	TransfersActive bool `json:"transfersActive"`
+	DetailsSubmitted bool `json:"detailsSubmitted"`
+	TaxReporting1099kReady bool `json:"taxReporting1099kReady"`
+	// ISO 3166-1 alpha-2, upper case.
+	Country NullableString `json:"country,omitempty"`
+	Agreement string `json:"agreement"`
+	// Settlement currency, upper case (USD, GBP, EUR…).
+	DefaultCurrency NullableString `json:"defaultCurrency,omitempty"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Status instantiates a new GetPayoutWalletResponseDataOneOf1Status object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Status(status string, payoutsEnabled bool, chargesEnabled bool, transfersActive bool, detailsSubmitted bool, taxReporting1099kReady bool, agreement string) *GetPayoutWalletResponseDataOneOf1Status {
+	this := GetPayoutWalletResponseDataOneOf1Status{}
+	this.Status = status
+	this.PayoutsEnabled = payoutsEnabled
+	this.ChargesEnabled = chargesEnabled
+	this.TransfersActive = transfersActive
+	this.DetailsSubmitted = detailsSubmitted
+	this.TaxReporting1099kReady = taxReporting1099kReady
+	this.Agreement = agreement
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1StatusWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Status object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1StatusWithDefaults() *GetPayoutWalletResponseDataOneOf1Status {
+	this := GetPayoutWalletResponseDataOneOf1Status{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetPayoutsEnabled returns the PayoutsEnabled field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetPayoutsEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PayoutsEnabled
+}
+
+// GetPayoutsEnabledOk returns a tuple with the PayoutsEnabled field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetPayoutsEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PayoutsEnabled, true
+}
+
+// SetPayoutsEnabled sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetPayoutsEnabled(v bool) {
+	o.PayoutsEnabled = v
+}
+
+// GetChargesEnabled returns the ChargesEnabled field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetChargesEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ChargesEnabled
+}
+
+// GetChargesEnabledOk returns a tuple with the ChargesEnabled field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetChargesEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ChargesEnabled, true
+}
+
+// SetChargesEnabled sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetChargesEnabled(v bool) {
+	o.ChargesEnabled = v
+}
+
+// GetTransfersActive returns the TransfersActive field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetTransfersActive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.TransfersActive
+}
+
+// GetTransfersActiveOk returns a tuple with the TransfersActive field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetTransfersActiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TransfersActive, true
+}
+
+// SetTransfersActive sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetTransfersActive(v bool) {
+	o.TransfersActive = v
+}
+
+// GetDetailsSubmitted returns the DetailsSubmitted field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetDetailsSubmitted() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DetailsSubmitted
+}
+
+// GetDetailsSubmittedOk returns a tuple with the DetailsSubmitted field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetDetailsSubmittedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DetailsSubmitted, true
+}
+
+// SetDetailsSubmitted sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetDetailsSubmitted(v bool) {
+	o.DetailsSubmitted = v
+}
+
+// GetTaxReporting1099kReady returns the TaxReporting1099kReady field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetTaxReporting1099kReady() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.TaxReporting1099kReady
+}
+
+// GetTaxReporting1099kReadyOk returns a tuple with the TaxReporting1099kReady field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetTaxReporting1099kReadyOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TaxReporting1099kReady, true
+}
+
+// SetTaxReporting1099kReady sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetTaxReporting1099kReady(v bool) {
+	o.TaxReporting1099kReady = v
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetCountry() string {
+	if o == nil || o.Country.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Country.Get()
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetCountryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Country.Get(), o.Country.IsSet()
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetCountry(v string) {
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetCountryNil() {
+	o.Country.Set(nil)
+}
+
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Status) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetAgreement returns the Agreement field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetAgreement() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Agreement
+}
+
+// GetAgreementOk returns a tuple with the Agreement field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetAgreementOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Agreement, true
+}
+
+// SetAgreement sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetAgreement(v string) {
+	o.Agreement = v
+}
+
+// GetDefaultCurrency returns the DefaultCurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetDefaultCurrency() string {
+	if o == nil || o.DefaultCurrency.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DefaultCurrency.Get()
+}
+
+// GetDefaultCurrencyOk returns a tuple with the DefaultCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Status) GetDefaultCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DefaultCurrency.Get(), o.DefaultCurrency.IsSet()
+}
+
+// HasDefaultCurrency returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Status) HasDefaultCurrency() bool {
+	if o != nil && o.DefaultCurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCurrency gets a reference to the given NullableString and assigns it to the DefaultCurrency field.
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetDefaultCurrency(v string) {
+	o.DefaultCurrency.Set(&v)
+}
+// SetDefaultCurrencyNil sets the value for DefaultCurrency to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Status) SetDefaultCurrencyNil() {
+	o.DefaultCurrency.Set(nil)
+}
+
+// UnsetDefaultCurrency ensures that no value is present for DefaultCurrency, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Status) UnsetDefaultCurrency() {
+	o.DefaultCurrency.Unset()
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Status) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["payoutsEnabled"] = o.PayoutsEnabled
+	}
+	if true {
+		toSerialize["chargesEnabled"] = o.ChargesEnabled
+	}
+	if true {
+		toSerialize["transfersActive"] = o.TransfersActive
+	}
+	if true {
+		toSerialize["detailsSubmitted"] = o.DetailsSubmitted
+	}
+	if true {
+		toSerialize["taxReporting1099kReady"] = o.TaxReporting1099kReady
+	}
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
+	if true {
+		toSerialize["agreement"] = o.Agreement
+	}
+	if o.DefaultCurrency.IsSet() {
+		toSerialize["defaultCurrency"] = o.DefaultCurrency.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Status struct {
+	value *GetPayoutWalletResponseDataOneOf1Status
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Status) Get() *GetPayoutWalletResponseDataOneOf1Status {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Status) Set(val *GetPayoutWalletResponseDataOneOf1Status) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Status) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Status) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Status(val *GetPayoutWalletResponseDataOneOf1Status) *NullableGetPayoutWalletResponseDataOneOf1Status {
+	return &NullableGetPayoutWalletResponseDataOneOf1Status{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Status) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Status) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetPayoutWalletResponseDataOneOf1Transactions struct for GetPayoutWalletResponseDataOneOf1Transactions
+type GetPayoutWalletResponseDataOneOf1Transactions struct {
+	Id string `json:"id"`
+	// Stripe balance-transaction type: charge, payment, transfer, payout, refund, adjustment, stripe_fee…
+	Type string `json:"type"`
+	Description NullableString `json:"description,omitempty"`
+	AmountCents float32 `json:"amountCents"`
+	FeeCents float32 `json:"feeCents"`
+	NetCents float32 `json:"netCents"`
+	Currency string `json:"currency"`
+	// `available` or `pending`.
+	Status string `json:"status"`
+	CreatedAt string `json:"createdAt"`
+	AvailableOn string `json:"availableOn"`
+}
+
+// NewGetPayoutWalletResponseDataOneOf1Transactions instantiates a new GetPayoutWalletResponseDataOneOf1Transactions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetPayoutWalletResponseDataOneOf1Transactions(id string, type_ string, amountCents float32, feeCents float32, netCents float32, currency string, status string, createdAt string, availableOn string) *GetPayoutWalletResponseDataOneOf1Transactions {
+	this := GetPayoutWalletResponseDataOneOf1Transactions{}
+	this.Id = id
+	this.Type = type_
+	this.AmountCents = amountCents
+	this.FeeCents = feeCents
+	this.NetCents = netCents
+	this.Currency = currency
+	this.Status = status
+	this.CreatedAt = createdAt
+	this.AvailableOn = availableOn
+	return &this
+}
+
+// NewGetPayoutWalletResponseDataOneOf1TransactionsWithDefaults instantiates a new GetPayoutWalletResponseDataOneOf1Transactions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetPayoutWalletResponseDataOneOf1TransactionsWithDefaults() *GetPayoutWalletResponseDataOneOf1Transactions {
+	this := GetPayoutWalletResponseDataOneOf1Transactions{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetId(v string) {
+	o.Id = v
+}
+
+// GetType returns the Type field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetType(v string) {
+	o.Type = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetAmountCents returns the AmountCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetAmountCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AmountCents
+}
+
+// GetAmountCentsOk returns a tuple with the AmountCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetAmountCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AmountCents, true
+}
+
+// SetAmountCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetAmountCents(v float32) {
+	o.AmountCents = v
+}
+
+// GetFeeCents returns the FeeCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FeeCents
+}
+
+// GetFeeCentsOk returns a tuple with the FeeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCents, true
+}
+
+// SetFeeCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetFeeCents(v float32) {
+	o.FeeCents = v
+}
+
+// GetNetCents returns the NetCents field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetNetCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NetCents
+}
+
+// GetNetCentsOk returns a tuple with the NetCents field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetNetCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.NetCents, true
+}
+
+// SetNetCents sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetNetCents(v float32) {
+	o.NetCents = v
+}
+
+// GetCurrency returns the Currency field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
+// SetCurrency sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetCurrency(v string) {
+	o.Currency = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetAvailableOn returns the AvailableOn field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetAvailableOn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AvailableOn
+}
+
+// GetAvailableOnOk returns a tuple with the AvailableOn field value
+// and a boolean to check if the value has been set.
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) GetAvailableOnOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AvailableOn, true
+}
+
+// SetAvailableOn sets field value
+func (o *GetPayoutWalletResponseDataOneOf1Transactions) SetAvailableOn(v string) {
+	o.AvailableOn = v
+}
+
+func (o GetPayoutWalletResponseDataOneOf1Transactions) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if true {
+		toSerialize["amountCents"] = o.AmountCents
+	}
+	if true {
+		toSerialize["feeCents"] = o.FeeCents
+	}
+	if true {
+		toSerialize["netCents"] = o.NetCents
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["availableOn"] = o.AvailableOn
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetPayoutWalletResponseDataOneOf1Transactions struct {
+	value *GetPayoutWalletResponseDataOneOf1Transactions
+	isSet bool
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Transactions) Get() *GetPayoutWalletResponseDataOneOf1Transactions {
+	return v.value
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Transactions) Set(val *GetPayoutWalletResponseDataOneOf1Transactions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Transactions) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Transactions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetPayoutWalletResponseDataOneOf1Transactions(val *GetPayoutWalletResponseDataOneOf1Transactions) *NullableGetPayoutWalletResponseDataOneOf1Transactions {
+	return &NullableGetPayoutWalletResponseDataOneOf1Transactions{value: val, isSet: true}
+}
+
+func (v NullableGetPayoutWalletResponseDataOneOf1Transactions) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetPayoutWalletResponseDataOneOf1Transactions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -1817,6 +6419,351 @@ func (v NullableListPayoutCompareResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListPayoutCompareResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdatePayoutScheduleRequest struct for UpdatePayoutScheduleRequest
+type UpdatePayoutScheduleRequest struct {
+	Interval string `json:"interval"`
+	WeeklyAnchor *string `json:"weeklyAnchor,omitempty"`
+	MonthlyAnchor *int32 `json:"monthlyAnchor,omitempty"`
+}
+
+// NewUpdatePayoutScheduleRequest instantiates a new UpdatePayoutScheduleRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdatePayoutScheduleRequest(interval string) *UpdatePayoutScheduleRequest {
+	this := UpdatePayoutScheduleRequest{}
+	this.Interval = interval
+	return &this
+}
+
+// NewUpdatePayoutScheduleRequestWithDefaults instantiates a new UpdatePayoutScheduleRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdatePayoutScheduleRequestWithDefaults() *UpdatePayoutScheduleRequest {
+	this := UpdatePayoutScheduleRequest{}
+	return &this
+}
+
+// GetInterval returns the Interval field value
+func (o *UpdatePayoutScheduleRequest) GetInterval() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field value
+// and a boolean to check if the value has been set.
+func (o *UpdatePayoutScheduleRequest) GetIntervalOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Interval, true
+}
+
+// SetInterval sets field value
+func (o *UpdatePayoutScheduleRequest) SetInterval(v string) {
+	o.Interval = v
+}
+
+// GetWeeklyAnchor returns the WeeklyAnchor field value if set, zero value otherwise.
+func (o *UpdatePayoutScheduleRequest) GetWeeklyAnchor() string {
+	if o == nil || o.WeeklyAnchor == nil {
+		var ret string
+		return ret
+	}
+	return *o.WeeklyAnchor
+}
+
+// GetWeeklyAnchorOk returns a tuple with the WeeklyAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePayoutScheduleRequest) GetWeeklyAnchorOk() (*string, bool) {
+	if o == nil || o.WeeklyAnchor == nil {
+		return nil, false
+	}
+	return o.WeeklyAnchor, true
+}
+
+// HasWeeklyAnchor returns a boolean if a field has been set.
+func (o *UpdatePayoutScheduleRequest) HasWeeklyAnchor() bool {
+	if o != nil && o.WeeklyAnchor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWeeklyAnchor gets a reference to the given string and assigns it to the WeeklyAnchor field.
+func (o *UpdatePayoutScheduleRequest) SetWeeklyAnchor(v string) {
+	o.WeeklyAnchor = &v
+}
+
+// GetMonthlyAnchor returns the MonthlyAnchor field value if set, zero value otherwise.
+func (o *UpdatePayoutScheduleRequest) GetMonthlyAnchor() int32 {
+	if o == nil || o.MonthlyAnchor == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MonthlyAnchor
+}
+
+// GetMonthlyAnchorOk returns a tuple with the MonthlyAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePayoutScheduleRequest) GetMonthlyAnchorOk() (*int32, bool) {
+	if o == nil || o.MonthlyAnchor == nil {
+		return nil, false
+	}
+	return o.MonthlyAnchor, true
+}
+
+// HasMonthlyAnchor returns a boolean if a field has been set.
+func (o *UpdatePayoutScheduleRequest) HasMonthlyAnchor() bool {
+	if o != nil && o.MonthlyAnchor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonthlyAnchor gets a reference to the given int32 and assigns it to the MonthlyAnchor field.
+func (o *UpdatePayoutScheduleRequest) SetMonthlyAnchor(v int32) {
+	o.MonthlyAnchor = &v
+}
+
+func (o UpdatePayoutScheduleRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["interval"] = o.Interval
+	}
+	if o.WeeklyAnchor != nil {
+		toSerialize["weeklyAnchor"] = o.WeeklyAnchor
+	}
+	if o.MonthlyAnchor != nil {
+		toSerialize["monthlyAnchor"] = o.MonthlyAnchor
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdatePayoutScheduleRequest struct {
+	value *UpdatePayoutScheduleRequest
+	isSet bool
+}
+
+func (v NullableUpdatePayoutScheduleRequest) Get() *UpdatePayoutScheduleRequest {
+	return v.value
+}
+
+func (v *NullableUpdatePayoutScheduleRequest) Set(val *UpdatePayoutScheduleRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdatePayoutScheduleRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdatePayoutScheduleRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdatePayoutScheduleRequest(val *UpdatePayoutScheduleRequest) *NullableUpdatePayoutScheduleRequest {
+	return &NullableUpdatePayoutScheduleRequest{value: val, isSet: true}
+}
+
+func (v NullableUpdatePayoutScheduleRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdatePayoutScheduleRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdatePayoutScheduleResponse struct for UpdatePayoutScheduleResponse
+type UpdatePayoutScheduleResponse struct {
+	Data UpdatePayoutScheduleResponseData `json:"data"`
+}
+
+// NewUpdatePayoutScheduleResponse instantiates a new UpdatePayoutScheduleResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdatePayoutScheduleResponse(data UpdatePayoutScheduleResponseData) *UpdatePayoutScheduleResponse {
+	this := UpdatePayoutScheduleResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewUpdatePayoutScheduleResponseWithDefaults instantiates a new UpdatePayoutScheduleResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdatePayoutScheduleResponseWithDefaults() *UpdatePayoutScheduleResponse {
+	this := UpdatePayoutScheduleResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *UpdatePayoutScheduleResponse) GetData() UpdatePayoutScheduleResponseData {
+	if o == nil {
+		var ret UpdatePayoutScheduleResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *UpdatePayoutScheduleResponse) GetDataOk() (*UpdatePayoutScheduleResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *UpdatePayoutScheduleResponse) SetData(v UpdatePayoutScheduleResponseData) {
+	o.Data = v
+}
+
+func (o UpdatePayoutScheduleResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdatePayoutScheduleResponse struct {
+	value *UpdatePayoutScheduleResponse
+	isSet bool
+}
+
+func (v NullableUpdatePayoutScheduleResponse) Get() *UpdatePayoutScheduleResponse {
+	return v.value
+}
+
+func (v *NullableUpdatePayoutScheduleResponse) Set(val *UpdatePayoutScheduleResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdatePayoutScheduleResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdatePayoutScheduleResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdatePayoutScheduleResponse(val *UpdatePayoutScheduleResponse) *NullableUpdatePayoutScheduleResponse {
+	return &NullableUpdatePayoutScheduleResponse{value: val, isSet: true}
+}
+
+func (v NullableUpdatePayoutScheduleResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdatePayoutScheduleResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdatePayoutScheduleResponseData struct for UpdatePayoutScheduleResponseData
+type UpdatePayoutScheduleResponseData struct {
+	Schedule GetPayoutWalletResponseDataOneOf1Schedule `json:"schedule"`
+}
+
+// NewUpdatePayoutScheduleResponseData instantiates a new UpdatePayoutScheduleResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdatePayoutScheduleResponseData(schedule GetPayoutWalletResponseDataOneOf1Schedule) *UpdatePayoutScheduleResponseData {
+	this := UpdatePayoutScheduleResponseData{}
+	this.Schedule = schedule
+	return &this
+}
+
+// NewUpdatePayoutScheduleResponseDataWithDefaults instantiates a new UpdatePayoutScheduleResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdatePayoutScheduleResponseDataWithDefaults() *UpdatePayoutScheduleResponseData {
+	this := UpdatePayoutScheduleResponseData{}
+	return &this
+}
+
+// GetSchedule returns the Schedule field value
+func (o *UpdatePayoutScheduleResponseData) GetSchedule() GetPayoutWalletResponseDataOneOf1Schedule {
+	if o == nil {
+		var ret GetPayoutWalletResponseDataOneOf1Schedule
+		return ret
+	}
+
+	return o.Schedule
+}
+
+// GetScheduleOk returns a tuple with the Schedule field value
+// and a boolean to check if the value has been set.
+func (o *UpdatePayoutScheduleResponseData) GetScheduleOk() (*GetPayoutWalletResponseDataOneOf1Schedule, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Schedule, true
+}
+
+// SetSchedule sets field value
+func (o *UpdatePayoutScheduleResponseData) SetSchedule(v GetPayoutWalletResponseDataOneOf1Schedule) {
+	o.Schedule = v
+}
+
+func (o UpdatePayoutScheduleResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["schedule"] = o.Schedule
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdatePayoutScheduleResponseData struct {
+	value *UpdatePayoutScheduleResponseData
+	isSet bool
+}
+
+func (v NullableUpdatePayoutScheduleResponseData) Get() *UpdatePayoutScheduleResponseData {
+	return v.value
+}
+
+func (v *NullableUpdatePayoutScheduleResponseData) Set(val *UpdatePayoutScheduleResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdatePayoutScheduleResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdatePayoutScheduleResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdatePayoutScheduleResponseData(val *UpdatePayoutScheduleResponseData) *NullableUpdatePayoutScheduleResponseData {
+	return &NullableUpdatePayoutScheduleResponseData{value: val, isSet: true}
+}
+
+func (v NullableUpdatePayoutScheduleResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdatePayoutScheduleResponseData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

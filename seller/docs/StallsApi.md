@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateStallBook**](StallsApi.md#CreateStallBook) | **Post** /v1/stalls/book | Book and pay for a pop-up stall: { street, spotIndex, rail, unit: \&quot;day\&quot;, startDate, days } or { ..., unit: \&quot;event\&quot;, eventIds }, optional booth { canopy, pattern, lights, counter, piece } (premium values need holding; checked before paying). Paid up front; full-access token and Idempotency-Key required.
 [**CreateStallBookingCancel**](StallsApi.md#CreateStallBookingCancel) | **Post** /v1/stalls/bookings/{id}/cancel | Cancel a stall before it opens: a full refund on the rail it was paid on. Final once it has opened.
+[**GetStallBookingCounter**](StallsApi.md#GetStallBookingCounter) | **Get** /v1/stalls/bookings/{id}/counter | A stall counter: the listings you picked (in order), its booth kind and capacity.
 [**GetStallQuote**](StallsApi.md#GetStallQuote) | **Get** /v1/stalls/quote | Quote a stall: street, spot, and either unit&#x3D;day with start (YYYY-MM-DD) and days, or unit&#x3D;event with events (comma-separated event ids). Returns the line items in cents, the rails the spot accepts and whether it is bookable.
+[**GetStallStreetAerial**](StallsApi.md#GetStallStreetAerial) | **Get** /v1/stalls/streets/{slug}/aerial | A street from above for booking: every spot with its owner, booth size, counter capacity and price, the street events, and who is booked on each date.
+[**ListStallListingSearch**](StallsApi.md#ListStallListingSearch) | **Get** /v1/stalls/listing-search | Search ANY of your live Crossly listings for a stall counter or convention booth: q, category, min, max (cents), street (marks what its terms allow), limit, offset.
 [**ListStallMine**](StallsApi.md#ListStallMine) | **Get** /v1/stalls/mine | Your stall bookings, newest first, with visits, offers and sales while the stall was up.
 [**ListStreetEvents**](StallsApi.md#ListStreetEvents) | **Get** /v1/streets/{slug}/events | Current and upcoming street events (Night Market, Swap Meet) on a street, soonest first.
 [**ListStreetStalls**](StallsApi.md#ListStreetStalls) | **Get** /v1/streets/{slug}/stalls | Today&#39;s pop-up stalls on a street (each with its live listings, awning, sign and seller), plus the spots still free today. meta carries the street, the phase (day / night_market / swap_meet) and the free spots.
@@ -139,6 +142,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetStallBookingCounter
+
+> GetStallBookingCounterResponse GetStallBookingCounter(ctx, id).Execute()
+
+A stall counter: the listings you picked (in order), its booth kind and capacity.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StallsApi.GetStallBookingCounter(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StallsApi.GetStallBookingCounter``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetStallBookingCounter`: GetStallBookingCounterResponse
+    fmt.Fprintf(os.Stdout, "Response from `StallsApi.GetStallBookingCounter`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStallBookingCounterRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetStallBookingCounterResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetStallQuote
 
 > GetStallQuoteResponse GetStallQuote(ctx).Street(street).Spot(spot).Unit(unit).Start(start).Days(days).Events(events).Execute()
@@ -198,6 +268,131 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetStallQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetStallStreetAerial
+
+> GetStallStreetAerialResponse GetStallStreetAerial(ctx, slug).Execute()
+
+A street from above for booking: every spot with its owner, booth size, counter capacity and price, the street events, and who is booked on each date.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StallsApi.GetStallStreetAerial(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StallsApi.GetStallStreetAerial``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetStallStreetAerial`: GetStallStreetAerialResponse
+    fmt.Fprintf(os.Stdout, "Response from `StallsApi.GetStallStreetAerial`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStallStreetAerialRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetStallStreetAerialResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListStallListingSearch
+
+> ListStallListingSearchResponse ListStallListingSearch(ctx).Execute()
+
+Search ANY of your live Crossly listings for a stall counter or convention booth: q, category, min, max (cents), street (marks what its terms allow), limit, offset.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StallsApi.ListStallListingSearch(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StallsApi.ListStallListingSearch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListStallListingSearch`: ListStallListingSearchResponse
+    fmt.Fprintf(os.Stdout, "Response from `StallsApi.ListStallListingSearch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListStallListingSearchRequest struct via the builder pattern
+
+
+### Return type
+
+**ListStallListingSearchResponse**
 
 ### Authorization
 

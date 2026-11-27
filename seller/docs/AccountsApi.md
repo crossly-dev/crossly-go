@@ -5,11 +5,13 @@ All URIs are relative to *https://crossly.net/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAccount**](AccountsApi.md#CreateAccount) | **Post** /v1/accounts | Connect a new platform account (kicks off OAuth or extension handshake).
+[**CreateConnectionCardnexusApiKey**](AccountsApi.md#CreateConnectionCardnexusApiKey) | **Post** /v1/connections/cardnexus/api-key | Connect CardNexus with a personal API key (validated live before it is stored).
 [**CreateConnectionEmailImap**](AccountsApi.md#CreateConnectionEmailImap) | **Post** /v1/connections/email/imap | Add an IMAP mailbox connection.
 [**CreateConnectionEmailImapTest**](AccountsApi.md#CreateConnectionEmailImapTest) | **Post** /v1/connections/email/imap/test | Validate IMAP credentials without persisting.
+[**CreateConnectionLightspeedXToken**](AccountsApi.md#CreateConnectionLightspeedXToken) | **Post** /v1/connections/lightspeed_x/token | Connect Lightspeed X-Series with a personal token (Setup → Personal tokens, Plus plan) and the store prefix.
 [**CreateConnectionRequest**](AccountsApi.md#CreateConnectionRequest) | **Post** /v1/connections/{platform}/request | Express interest in a request_only platform.
 [**CreatePlatformAccountConnect**](AccountsApi.md#CreatePlatformAccountConnect) | **Post** /v1/platform-accounts/{platform}/connect | Revive or initiate connection for a cookie platform.
-[**CreatePlatformAccountDisconnect**](AccountsApi.md#CreatePlatformAccountDisconnect) | **Post** /v1/platform-accounts/{platform}/disconnect | Archive every active account row for a platform.
+[**CreatePlatformAccountDisconnect**](AccountsApi.md#CreatePlatformAccountDisconnect) | **Post** /v1/platform-accounts/{platform}/disconnect | Disconnect every account of a platform (archives the rows and deletes their stored sessions).
 [**CreatePlatformAccountHistoryImport**](AccountsApi.md#CreatePlatformAccountHistoryImport) | **Post** /v1/platform-accounts/{platform}/history-import | Set how far back to backfill order history + active listings for a platform, and run it now.
 [**CreatePlatformAccountRefreshStatus**](AccountsApi.md#CreatePlatformAccountRefreshStatus) | **Post** /v1/platform-accounts/refresh-status | Run on-demand healthchecks across cookie accounts.
 [**DeleteAccount**](AccountsApi.md#DeleteAccount) | **Delete** /v1/accounts/{id} | Disconnect a platform account.
@@ -17,11 +19,14 @@ Method | HTTP request | Description
 [**DeleteConnectionEmailImap**](AccountsApi.md#DeleteConnectionEmailImap) | **Delete** /v1/connections/email/imap/{id} | Remove an IMAP mailbox connection.
 [**GetConnectionEmail**](AccountsApi.md#GetConnectionEmail) | **Get** /v1/connections/email | List IMAP and email-OAuth connections.
 [**GetConnectionExtensionOnline**](AccountsApi.md#GetConnectionExtensionOnline) | **Get** /v1/connections/extension-online | Check if the browser extension is online.
+[**GetConnectionPolicyManagementOption**](AccountsApi.md#GetConnectionPolicyManagementOption) | **Get** /v1/connections/policy-management/{connectionId}/options/{source} | List the live options a marketplace policy field offers (e.g. Allegro delivery methods).
 [**GetOauthInit**](AccountsApi.md#GetOauthInit) | **Get** /v1/oauth/{platform}/init | Return the OAuth authorize URL for an API-track platform.
 [**GetPlatformLimit**](AccountsApi.md#GetPlatformLimit) | **Get** /v1/platforms/limits | eBay free-tier + Etsy fees aggregate.
 [**ListAccounts**](AccountsApi.md#ListAccounts) | **Get** /v1/accounts | List your connected platform accounts.
+[**ListConnectionPolicyManagement**](AccountsApi.md#ListConnectionPolicyManagement) | **Get** /v1/connections/policy-management | List eBay and Etsy accounts with whether Crossly manages their policies.
 [**ListConnections**](AccountsApi.md#ListConnections) | **Get** /v1/connections | List OAuth-connected API platforms.
 [**UpdateConnectionEmailImap**](AccountsApi.md#UpdateConnectionEmailImap) | **Patch** /v1/connections/email/imap/{id} | Edit an IMAP mailbox connection.
+[**UpdateConnectionPolicyManagement**](AccountsApi.md#UpdateConnectionPolicyManagement) | **Put** /v1/connections/policy-management/{connectionId} | Turn Crossly policy management on or off for one eBay or Etsy account.
 [**UpdatePlatformPreference**](AccountsApi.md#UpdatePlatformPreference) | **Patch** /v1/platforms/{platform}/preferences | Update per-platform connection preferences.
 
 
@@ -70,6 +75,64 @@ Other parameters are passed through a pointer to a apiCreateAccountRequest struc
 ### Return type
 
 **CreateAccountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateConnectionCardnexusApiKey
+
+> CreateConnectionCardnexusApiKeyResponse CreateConnectionCardnexusApiKey(ctx).Execute()
+
+Connect CardNexus with a personal API key (validated live before it is stored).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountsApi.CreateConnectionCardnexusApiKey(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AccountsApi.CreateConnectionCardnexusApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateConnectionCardnexusApiKey`: CreateConnectionCardnexusApiKeyResponse
+    fmt.Fprintf(os.Stdout, "Response from `AccountsApi.CreateConnectionCardnexusApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateConnectionCardnexusApiKeyRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateConnectionCardnexusApiKeyResponse**
 
 ### Authorization
 
@@ -194,6 +257,69 @@ Other parameters are passed through a pointer to a apiCreateConnectionEmailImapT
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateConnectionLightspeedXToken
+
+> CreateConnectionLightspeedXTokenResponse CreateConnectionLightspeedXToken(ctx).CreateConnectionLightspeedXTokenRequest(createConnectionLightspeedXTokenRequest).Execute()
+
+Connect Lightspeed X-Series with a personal token (Setup → Personal tokens, Plus plan) and the store prefix.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createConnectionLightspeedXTokenRequest := *openapiclient.NewCreateConnectionLightspeedXTokenRequest("DomainPrefix_example", "AccessToken_example") // CreateConnectionLightspeedXTokenRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountsApi.CreateConnectionLightspeedXToken(context.Background()).CreateConnectionLightspeedXTokenRequest(createConnectionLightspeedXTokenRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AccountsApi.CreateConnectionLightspeedXToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateConnectionLightspeedXToken`: CreateConnectionLightspeedXTokenResponse
+    fmt.Fprintf(os.Stdout, "Response from `AccountsApi.CreateConnectionLightspeedXToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateConnectionLightspeedXTokenRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createConnectionLightspeedXTokenRequest** | **CreateConnectionLightspeedXTokenRequest** |  | 
+
+### Return type
+
+**CreateConnectionLightspeedXTokenResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -338,7 +464,7 @@ Name | Type | Description  | Notes
 
 > CreatePlatformAccountDisconnectResponse CreatePlatformAccountDisconnect(ctx, platform).Execute()
 
-Archive every active account row for a platform.
+Disconnect every account of a platform (archives the rows and deletes their stored sessions).
 
 ### Example
 
@@ -845,6 +971,78 @@ Other parameters are passed through a pointer to a apiGetConnectionExtensionOnli
 [[Back to README]](../README.md)
 
 
+## GetConnectionPolicyManagementOption
+
+> GetConnectionPolicyManagementOptionResponse GetConnectionPolicyManagementOption(ctx, connectionId, source).Execute()
+
+List the live options a marketplace policy field offers (e.g. Allegro delivery methods).
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    connectionId := "connectionId_example" // string | 
+    source := "source_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountsApi.GetConnectionPolicyManagementOption(context.Background(), connectionId, source).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AccountsApi.GetConnectionPolicyManagementOption``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetConnectionPolicyManagementOption`: GetConnectionPolicyManagementOptionResponse
+    fmt.Fprintf(os.Stdout, "Response from `AccountsApi.GetConnectionPolicyManagementOption`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**connectionId** | **string** |  | 
+**source** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetConnectionPolicyManagementOptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**GetConnectionPolicyManagementOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetOauthInit
 
 > GetOauthInitResponse GetOauthInit(ctx, platform).Shop(shop).Region(region).SiteUrl(siteUrl).Execute()
@@ -1036,6 +1234,66 @@ Other parameters are passed through a pointer to a apiListAccountsRequest struct
 [[Back to README]](../README.md)
 
 
+## ListConnectionPolicyManagement
+
+> ListConnectionPolicyManagementResponse ListConnectionPolicyManagement(ctx).Execute()
+
+List eBay and Etsy accounts with whether Crossly manages their policies.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountsApi.ListConnectionPolicyManagement(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AccountsApi.ListConnectionPolicyManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListConnectionPolicyManagement`: ListConnectionPolicyManagementResponse
+    fmt.Fprintf(os.Stdout, "Response from `AccountsApi.ListConnectionPolicyManagement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListConnectionPolicyManagementRequest struct via the builder pattern
+
+
+### Return type
+
+**ListConnectionPolicyManagementResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListConnections
 
 > ListConnectionsResponse ListConnections(ctx).Execute()
@@ -1147,6 +1405,75 @@ Name | Type | Description  | Notes
 ### Return type
 
 **SuccessResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateConnectionPolicyManagement
+
+> ListConnectionPolicyManagementItem UpdateConnectionPolicyManagement(ctx, connectionId).Execute()
+
+Turn Crossly policy management on or off for one eBay or Etsy account.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    connectionId := "connectionId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AccountsApi.UpdateConnectionPolicyManagement(context.Background(), connectionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AccountsApi.UpdateConnectionPolicyManagement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateConnectionPolicyManagement`: ListConnectionPolicyManagementItem
+    fmt.Fprintf(os.Stdout, "Response from `AccountsApi.UpdateConnectionPolicyManagement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**connectionId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateConnectionPolicyManagementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListConnectionPolicyManagementItem**
 
 ### Authorization
 

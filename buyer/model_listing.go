@@ -257,19 +257,19 @@ func (v *NullableCreateBuyerListingSplitResponseData) UnmarshalJSON(src []byte) 
 // CreateBuyerListingSplitResponseDataShares struct for CreateBuyerListingSplitResponseDataShares
 type CreateBuyerListingSplitResponseDataShares struct {
 	Token string `json:"token"`
-	Position float32 `json:"position"`
 	ShareCents float32 `json:"shareCents"`
+	Position float32 `json:"position"`
 }
 
 // NewCreateBuyerListingSplitResponseDataShares instantiates a new CreateBuyerListingSplitResponseDataShares object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerListingSplitResponseDataShares(token string, position float32, shareCents float32) *CreateBuyerListingSplitResponseDataShares {
+func NewCreateBuyerListingSplitResponseDataShares(token string, shareCents float32, position float32) *CreateBuyerListingSplitResponseDataShares {
 	this := CreateBuyerListingSplitResponseDataShares{}
 	this.Token = token
-	this.Position = position
 	this.ShareCents = shareCents
+	this.Position = position
 	return &this
 }
 
@@ -305,30 +305,6 @@ func (o *CreateBuyerListingSplitResponseDataShares) SetToken(v string) {
 	o.Token = v
 }
 
-// GetPosition returns the Position field value
-func (o *CreateBuyerListingSplitResponseDataShares) GetPosition() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Position
-}
-
-// GetPositionOk returns a tuple with the Position field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerListingSplitResponseDataShares) GetPositionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Position, true
-}
-
-// SetPosition sets field value
-func (o *CreateBuyerListingSplitResponseDataShares) SetPosition(v float32) {
-	o.Position = v
-}
-
 // GetShareCents returns the ShareCents field value
 func (o *CreateBuyerListingSplitResponseDataShares) GetShareCents() float32 {
 	if o == nil {
@@ -353,16 +329,40 @@ func (o *CreateBuyerListingSplitResponseDataShares) SetShareCents(v float32) {
 	o.ShareCents = v
 }
 
+// GetPosition returns the Position field value
+func (o *CreateBuyerListingSplitResponseDataShares) GetPosition() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Position
+}
+
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerListingSplitResponseDataShares) GetPositionOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Position, true
+}
+
+// SetPosition sets field value
+func (o *CreateBuyerListingSplitResponseDataShares) SetPosition(v float32) {
+	o.Position = v
+}
+
 func (o CreateBuyerListingSplitResponseDataShares) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["token"] = o.Token
 	}
 	if true {
-		toSerialize["position"] = o.Position
+		toSerialize["shareCents"] = o.ShareCents
 	}
 	if true {
-		toSerialize["shareCents"] = o.ShareCents
+		toSerialize["position"] = o.Position
 	}
 	return json.Marshal(toSerialize)
 }
@@ -993,8 +993,8 @@ func (v *NullableGetBuyerListingBoughtTogetherResponseData) UnmarshalJSON(src []
 
 // GetBuyerListingBoughtTogetherResponseDataItems struct for GetBuyerListingBoughtTogetherResponseDataItems
 type GetBuyerListingBoughtTogetherResponseDataItems struct {
-	Title NullableString `json:"title,omitempty"`
 	Slug string `json:"slug"`
+	Title NullableString `json:"title,omitempty"`
 	PriceCents float32 `json:"priceCents"`
 	Image NullableString `json:"image,omitempty"`
 	SameSeller bool `json:"sameSeller"`
@@ -1018,6 +1018,30 @@ func NewGetBuyerListingBoughtTogetherResponseDataItems(slug string, priceCents f
 func NewGetBuyerListingBoughtTogetherResponseDataItemsWithDefaults() *GetBuyerListingBoughtTogetherResponseDataItems {
 	this := GetBuyerListingBoughtTogetherResponseDataItems{}
 	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *GetBuyerListingBoughtTogetherResponseDataItems) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingBoughtTogetherResponseDataItems) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *GetBuyerListingBoughtTogetherResponseDataItems) SetSlug(v string) {
+	o.Slug = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1060,30 +1084,6 @@ func (o *GetBuyerListingBoughtTogetherResponseDataItems) SetTitleNil() {
 // UnsetTitle ensures that no value is present for Title, not even an explicit nil
 func (o *GetBuyerListingBoughtTogetherResponseDataItems) UnsetTitle() {
 	o.Title.Unset()
-}
-
-// GetSlug returns the Slug field value
-func (o *GetBuyerListingBoughtTogetherResponseDataItems) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingBoughtTogetherResponseDataItems) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *GetBuyerListingBoughtTogetherResponseDataItems) SetSlug(v string) {
-	o.Slug = v
 }
 
 // GetPriceCents returns the PriceCents field value
@@ -1178,11 +1178,11 @@ func (o *GetBuyerListingBoughtTogetherResponseDataItems) SetSameSeller(v bool) {
 
 func (o GetBuyerListingBoughtTogetherResponseDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Title.IsSet() {
-		toSerialize["title"] = o.Title.Get()
-	}
 	if true {
 		toSerialize["slug"] = o.Slug
+	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
 	}
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
@@ -1343,29 +1343,29 @@ func (v *NullableGetBuyerListingBreakResponse) UnmarshalJSON(src []byte) error {
 // GetBuyerListingBreakResponseData struct for GetBuyerListingBreakResponseData
 type GetBuyerListingBreakResponseData struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
 	Title string `json:"title"`
+	Format string `json:"format"`
+	Status string `json:"status"`
 	Slug NullableString `json:"slug,omitempty"`
 	PriceCents float32 `json:"priceCents"`
-	Format string `json:"format"`
-	Seed NullableString `json:"seed,omitempty"`
-	SeedCommit string `json:"seedCommit"`
 	SpotsLeft float32 `json:"spotsLeft"`
+	SeedCommit string `json:"seedCommit"`
+	Seed NullableString `json:"seed,omitempty"`
 }
 
 // NewGetBuyerListingBreakResponseData instantiates a new GetBuyerListingBreakResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingBreakResponseData(id string, status string, title string, priceCents float32, format string, seedCommit string, spotsLeft float32) *GetBuyerListingBreakResponseData {
+func NewGetBuyerListingBreakResponseData(id string, title string, format string, status string, priceCents float32, spotsLeft float32, seedCommit string) *GetBuyerListingBreakResponseData {
 	this := GetBuyerListingBreakResponseData{}
 	this.Id = id
-	this.Status = status
 	this.Title = title
-	this.PriceCents = priceCents
 	this.Format = format
-	this.SeedCommit = seedCommit
+	this.Status = status
+	this.PriceCents = priceCents
 	this.SpotsLeft = spotsLeft
+	this.SeedCommit = seedCommit
 	return &this
 }
 
@@ -1401,30 +1401,6 @@ func (o *GetBuyerListingBreakResponseData) SetId(v string) {
 	o.Id = v
 }
 
-// GetStatus returns the Status field value
-func (o *GetBuyerListingBreakResponseData) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingBreakResponseData) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetBuyerListingBreakResponseData) SetStatus(v string) {
-	o.Status = v
-}
-
 // GetTitle returns the Title field value
 func (o *GetBuyerListingBreakResponseData) GetTitle() string {
 	if o == nil {
@@ -1447,6 +1423,54 @@ func (o *GetBuyerListingBreakResponseData) GetTitleOk() (*string, bool) {
 // SetTitle sets field value
 func (o *GetBuyerListingBreakResponseData) SetTitle(v string) {
 	o.Title = v
+}
+
+// GetFormat returns the Format field value
+func (o *GetBuyerListingBreakResponseData) GetFormat() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingBreakResponseData) GetFormatOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Format, true
+}
+
+// SetFormat sets field value
+func (o *GetBuyerListingBreakResponseData) SetFormat(v string) {
+	o.Format = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetBuyerListingBreakResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingBreakResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetBuyerListingBreakResponseData) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetSlug returns the Slug field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1515,28 +1539,52 @@ func (o *GetBuyerListingBreakResponseData) SetPriceCents(v float32) {
 	o.PriceCents = v
 }
 
-// GetFormat returns the Format field value
-func (o *GetBuyerListingBreakResponseData) GetFormat() string {
+// GetSpotsLeft returns the SpotsLeft field value
+func (o *GetBuyerListingBreakResponseData) GetSpotsLeft() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SpotsLeft
+}
+
+// GetSpotsLeftOk returns a tuple with the SpotsLeft field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingBreakResponseData) GetSpotsLeftOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SpotsLeft, true
+}
+
+// SetSpotsLeft sets field value
+func (o *GetBuyerListingBreakResponseData) SetSpotsLeft(v float32) {
+	o.SpotsLeft = v
+}
+
+// GetSeedCommit returns the SeedCommit field value
+func (o *GetBuyerListingBreakResponseData) GetSeedCommit() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Format
+	return o.SeedCommit
 }
 
-// GetFormatOk returns a tuple with the Format field value
+// GetSeedCommitOk returns a tuple with the SeedCommit field value
 // and a boolean to check if the value has been set.
-func (o *GetBuyerListingBreakResponseData) GetFormatOk() (*string, bool) {
+func (o *GetBuyerListingBreakResponseData) GetSeedCommitOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Format, true
+	return &o.SeedCommit, true
 }
 
-// SetFormat sets field value
-func (o *GetBuyerListingBreakResponseData) SetFormat(v string) {
-	o.Format = v
+// SetSeedCommit sets field value
+func (o *GetBuyerListingBreakResponseData) SetSeedCommit(v string) {
+	o.SeedCommit = v
 }
 
 // GetSeed returns the Seed field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1581,64 +1629,19 @@ func (o *GetBuyerListingBreakResponseData) UnsetSeed() {
 	o.Seed.Unset()
 }
 
-// GetSeedCommit returns the SeedCommit field value
-func (o *GetBuyerListingBreakResponseData) GetSeedCommit() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SeedCommit
-}
-
-// GetSeedCommitOk returns a tuple with the SeedCommit field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingBreakResponseData) GetSeedCommitOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SeedCommit, true
-}
-
-// SetSeedCommit sets field value
-func (o *GetBuyerListingBreakResponseData) SetSeedCommit(v string) {
-	o.SeedCommit = v
-}
-
-// GetSpotsLeft returns the SpotsLeft field value
-func (o *GetBuyerListingBreakResponseData) GetSpotsLeft() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.SpotsLeft
-}
-
-// GetSpotsLeftOk returns a tuple with the SpotsLeft field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingBreakResponseData) GetSpotsLeftOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SpotsLeft, true
-}
-
-// SetSpotsLeft sets field value
-func (o *GetBuyerListingBreakResponseData) SetSpotsLeft(v float32) {
-	o.SpotsLeft = v
-}
-
 func (o GetBuyerListingBreakResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["title"] = o.Title
 	}
 	if true {
-		toSerialize["title"] = o.Title
+		toSerialize["format"] = o.Format
+	}
+	if true {
+		toSerialize["status"] = o.Status
 	}
 	if o.Slug.IsSet() {
 		toSerialize["slug"] = o.Slug.Get()
@@ -1647,16 +1650,13 @@ func (o GetBuyerListingBreakResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["priceCents"] = o.PriceCents
 	}
 	if true {
-		toSerialize["format"] = o.Format
-	}
-	if o.Seed.IsSet() {
-		toSerialize["seed"] = o.Seed.Get()
+		toSerialize["spotsLeft"] = o.SpotsLeft
 	}
 	if true {
 		toSerialize["seedCommit"] = o.SeedCommit
 	}
-	if true {
-		toSerialize["spotsLeft"] = o.SpotsLeft
+	if o.Seed.IsSet() {
+		toSerialize["seed"] = o.Seed.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2538,19 +2538,19 @@ func (v *NullableGetBuyerListingFitResponseData) UnmarshalJSON(src []byte) error
 // GetBuyerListingFitResponseDataChart struct for GetBuyerListingFitResponseDataChart
 type GetBuyerListingFitResponseDataChart struct {
 	Kind string `json:"kind"`
-	Rows []GetBuyerListingFitResponseDataChartRows `json:"rows"`
 	KindLabel string `json:"kindLabel"`
+	Rows []GetBuyerListingFitResponseDataChartRows `json:"rows"`
 }
 
 // NewGetBuyerListingFitResponseDataChart instantiates a new GetBuyerListingFitResponseDataChart object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingFitResponseDataChart(kind string, rows []GetBuyerListingFitResponseDataChartRows, kindLabel string) *GetBuyerListingFitResponseDataChart {
+func NewGetBuyerListingFitResponseDataChart(kind string, kindLabel string, rows []GetBuyerListingFitResponseDataChartRows) *GetBuyerListingFitResponseDataChart {
 	this := GetBuyerListingFitResponseDataChart{}
 	this.Kind = kind
-	this.Rows = rows
 	this.KindLabel = kindLabel
+	this.Rows = rows
 	return &this
 }
 
@@ -2586,30 +2586,6 @@ func (o *GetBuyerListingFitResponseDataChart) SetKind(v string) {
 	o.Kind = v
 }
 
-// GetRows returns the Rows field value
-func (o *GetBuyerListingFitResponseDataChart) GetRows() []GetBuyerListingFitResponseDataChartRows {
-	if o == nil {
-		var ret []GetBuyerListingFitResponseDataChartRows
-		return ret
-	}
-
-	return o.Rows
-}
-
-// GetRowsOk returns a tuple with the Rows field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingFitResponseDataChart) GetRowsOk() ([]GetBuyerListingFitResponseDataChartRows, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Rows, true
-}
-
-// SetRows sets field value
-func (o *GetBuyerListingFitResponseDataChart) SetRows(v []GetBuyerListingFitResponseDataChartRows) {
-	o.Rows = v
-}
-
 // GetKindLabel returns the KindLabel field value
 func (o *GetBuyerListingFitResponseDataChart) GetKindLabel() string {
 	if o == nil {
@@ -2634,16 +2610,40 @@ func (o *GetBuyerListingFitResponseDataChart) SetKindLabel(v string) {
 	o.KindLabel = v
 }
 
+// GetRows returns the Rows field value
+func (o *GetBuyerListingFitResponseDataChart) GetRows() []GetBuyerListingFitResponseDataChartRows {
+	if o == nil {
+		var ret []GetBuyerListingFitResponseDataChartRows
+		return ret
+	}
+
+	return o.Rows
+}
+
+// GetRowsOk returns a tuple with the Rows field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingFitResponseDataChart) GetRowsOk() ([]GetBuyerListingFitResponseDataChartRows, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rows, true
+}
+
+// SetRows sets field value
+func (o *GetBuyerListingFitResponseDataChart) SetRows(v []GetBuyerListingFitResponseDataChartRows) {
+	o.Rows = v
+}
+
 func (o GetBuyerListingFitResponseDataChart) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["kind"] = o.Kind
 	}
 	if true {
-		toSerialize["rows"] = o.Rows
+		toSerialize["kindLabel"] = o.KindLabel
 	}
 	if true {
-		toSerialize["kindLabel"] = o.KindLabel
+		toSerialize["rows"] = o.Rows
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2686,8 +2686,8 @@ func (v *NullableGetBuyerListingFitResponseDataChart) UnmarshalJSON(src []byte) 
 
 // GetBuyerListingFitResponseDataChartRows struct for GetBuyerListingFitResponseDataChartRows
 type GetBuyerListingFitResponseDataChartRows struct {
-	Label string `json:"label"`
 	Key string `json:"key"`
+	Label string `json:"label"`
 	Inches float32 `json:"inches"`
 }
 
@@ -2695,10 +2695,10 @@ type GetBuyerListingFitResponseDataChartRows struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingFitResponseDataChartRows(label string, key string, inches float32) *GetBuyerListingFitResponseDataChartRows {
+func NewGetBuyerListingFitResponseDataChartRows(key string, label string, inches float32) *GetBuyerListingFitResponseDataChartRows {
 	this := GetBuyerListingFitResponseDataChartRows{}
-	this.Label = label
 	this.Key = key
+	this.Label = label
 	this.Inches = inches
 	return &this
 }
@@ -2709,30 +2709,6 @@ func NewGetBuyerListingFitResponseDataChartRows(label string, key string, inches
 func NewGetBuyerListingFitResponseDataChartRowsWithDefaults() *GetBuyerListingFitResponseDataChartRows {
 	this := GetBuyerListingFitResponseDataChartRows{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *GetBuyerListingFitResponseDataChartRows) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingFitResponseDataChartRows) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerListingFitResponseDataChartRows) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetKey returns the Key field value
@@ -2757,6 +2733,30 @@ func (o *GetBuyerListingFitResponseDataChartRows) GetKeyOk() (*string, bool) {
 // SetKey sets field value
 func (o *GetBuyerListingFitResponseDataChartRows) SetKey(v string) {
 	o.Key = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetBuyerListingFitResponseDataChartRows) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingFitResponseDataChartRows) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerListingFitResponseDataChartRows) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetInches returns the Inches field value
@@ -2786,10 +2786,10 @@ func (o *GetBuyerListingFitResponseDataChartRows) SetInches(v float32) {
 func (o GetBuyerListingFitResponseDataChartRows) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["label"] = o.Label
+		toSerialize["key"] = o.Key
 	}
 	if true {
-		toSerialize["key"] = o.Key
+		toSerialize["label"] = o.Label
 	}
 	if true {
 		toSerialize["inches"] = o.Inches
@@ -2835,8 +2835,8 @@ func (v *NullableGetBuyerListingFitResponseDataChartRows) UnmarshalJSON(src []by
 
 // GetBuyerListingFitResponseDataComparisons struct for GetBuyerListingFitResponseDataComparisons
 type GetBuyerListingFitResponseDataComparisons struct {
-	Label string `json:"label"`
 	RefId string `json:"refId"`
+	Label string `json:"label"`
 	Result GetBuyerListingFitResponseDataComparisonsResult `json:"result"`
 }
 
@@ -2844,10 +2844,10 @@ type GetBuyerListingFitResponseDataComparisons struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingFitResponseDataComparisons(label string, refId string, result GetBuyerListingFitResponseDataComparisonsResult) *GetBuyerListingFitResponseDataComparisons {
+func NewGetBuyerListingFitResponseDataComparisons(refId string, label string, result GetBuyerListingFitResponseDataComparisonsResult) *GetBuyerListingFitResponseDataComparisons {
 	this := GetBuyerListingFitResponseDataComparisons{}
-	this.Label = label
 	this.RefId = refId
+	this.Label = label
 	this.Result = result
 	return &this
 }
@@ -2858,30 +2858,6 @@ func NewGetBuyerListingFitResponseDataComparisons(label string, refId string, re
 func NewGetBuyerListingFitResponseDataComparisonsWithDefaults() *GetBuyerListingFitResponseDataComparisons {
 	this := GetBuyerListingFitResponseDataComparisons{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *GetBuyerListingFitResponseDataComparisons) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingFitResponseDataComparisons) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerListingFitResponseDataComparisons) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetRefId returns the RefId field value
@@ -2906,6 +2882,30 @@ func (o *GetBuyerListingFitResponseDataComparisons) GetRefIdOk() (*string, bool)
 // SetRefId sets field value
 func (o *GetBuyerListingFitResponseDataComparisons) SetRefId(v string) {
 	o.RefId = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetBuyerListingFitResponseDataComparisons) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingFitResponseDataComparisons) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerListingFitResponseDataComparisons) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetResult returns the Result field value
@@ -2935,10 +2935,10 @@ func (o *GetBuyerListingFitResponseDataComparisons) SetResult(v GetBuyerListingF
 func (o GetBuyerListingFitResponseDataComparisons) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["label"] = o.Label
+		toSerialize["refId"] = o.RefId
 	}
 	if true {
-		toSerialize["refId"] = o.RefId
+		toSerialize["label"] = o.Label
 	}
 	if true {
 		toSerialize["result"] = o.Result
@@ -3556,22 +3556,22 @@ func (v *NullableGetBuyerListingImpactResponse) UnmarshalJSON(src []byte) error 
 
 // GetBuyerListingImpactResponseData struct for GetBuyerListingImpactResponseData
 type GetBuyerListingImpactResponseData struct {
-	Source string `json:"source"`
-	Label string `json:"label"`
 	Key string `json:"key"`
+	Label string `json:"label"`
 	Co2Kg NullableFloat32 `json:"co2Kg,omitempty"`
 	WaterL NullableFloat32 `json:"waterL,omitempty"`
+	Source string `json:"source"`
 }
 
 // NewGetBuyerListingImpactResponseData instantiates a new GetBuyerListingImpactResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingImpactResponseData(source string, label string, key string) *GetBuyerListingImpactResponseData {
+func NewGetBuyerListingImpactResponseData(key string, label string, source string) *GetBuyerListingImpactResponseData {
 	this := GetBuyerListingImpactResponseData{}
-	this.Source = source
-	this.Label = label
 	this.Key = key
+	this.Label = label
+	this.Source = source
 	return &this
 }
 
@@ -3581,54 +3581,6 @@ func NewGetBuyerListingImpactResponseData(source string, label string, key strin
 func NewGetBuyerListingImpactResponseDataWithDefaults() *GetBuyerListingImpactResponseData {
 	this := GetBuyerListingImpactResponseData{}
 	return &this
-}
-
-// GetSource returns the Source field value
-func (o *GetBuyerListingImpactResponseData) GetSource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingImpactResponseData) GetSourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Source, true
-}
-
-// SetSource sets field value
-func (o *GetBuyerListingImpactResponseData) SetSource(v string) {
-	o.Source = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetBuyerListingImpactResponseData) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingImpactResponseData) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetBuyerListingImpactResponseData) SetLabel(v string) {
-	o.Label = v
 }
 
 // GetKey returns the Key field value
@@ -3653,6 +3605,30 @@ func (o *GetBuyerListingImpactResponseData) GetKeyOk() (*string, bool) {
 // SetKey sets field value
 func (o *GetBuyerListingImpactResponseData) SetKey(v string) {
 	o.Key = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetBuyerListingImpactResponseData) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingImpactResponseData) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetBuyerListingImpactResponseData) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetCo2Kg returns the Co2Kg field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3739,22 +3715,46 @@ func (o *GetBuyerListingImpactResponseData) UnsetWaterL() {
 	o.WaterL.Unset()
 }
 
+// GetSource returns the Source field value
+func (o *GetBuyerListingImpactResponseData) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingImpactResponseData) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *GetBuyerListingImpactResponseData) SetSource(v string) {
+	o.Source = v
+}
+
 func (o GetBuyerListingImpactResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["source"] = o.Source
+		toSerialize["key"] = o.Key
 	}
 	if true {
 		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["key"] = o.Key
 	}
 	if o.Co2Kg.IsSet() {
 		toSerialize["co2Kg"] = o.Co2Kg.Get()
 	}
 	if o.WaterL.IsSet() {
 		toSerialize["waterL"] = o.WaterL.Get()
+	}
+	if true {
+		toSerialize["source"] = o.Source
 	}
 	return json.Marshal(toSerialize)
 }
@@ -4448,23 +4448,23 @@ type GetBuyerListingResaleValueResponseData struct {
 	Brand string `json:"brand"`
 	Category string `json:"category"`
 	MedianCents float32 `json:"medianCents"`
-	BuybackDays float32 `json:"buybackDays"`
-	BuybackCents NullableFloat32 `json:"buybackCents,omitempty"`
 	Comps float32 `json:"comps"`
 	KeepsPct NullableFloat32 `json:"keepsPct,omitempty"`
+	BuybackCents NullableFloat32 `json:"buybackCents,omitempty"`
+	BuybackDays float32 `json:"buybackDays"`
 }
 
 // NewGetBuyerListingResaleValueResponseData instantiates a new GetBuyerListingResaleValueResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingResaleValueResponseData(brand string, category string, medianCents float32, buybackDays float32, comps float32) *GetBuyerListingResaleValueResponseData {
+func NewGetBuyerListingResaleValueResponseData(brand string, category string, medianCents float32, comps float32, buybackDays float32) *GetBuyerListingResaleValueResponseData {
 	this := GetBuyerListingResaleValueResponseData{}
 	this.Brand = brand
 	this.Category = category
 	this.MedianCents = medianCents
-	this.BuybackDays = buybackDays
 	this.Comps = comps
+	this.BuybackDays = buybackDays
 	return &this
 }
 
@@ -4548,72 +4548,6 @@ func (o *GetBuyerListingResaleValueResponseData) SetMedianCents(v float32) {
 	o.MedianCents = v
 }
 
-// GetBuybackDays returns the BuybackDays field value
-func (o *GetBuyerListingResaleValueResponseData) GetBuybackDays() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.BuybackDays
-}
-
-// GetBuybackDaysOk returns a tuple with the BuybackDays field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingResaleValueResponseData) GetBuybackDaysOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BuybackDays, true
-}
-
-// SetBuybackDays sets field value
-func (o *GetBuyerListingResaleValueResponseData) SetBuybackDays(v float32) {
-	o.BuybackDays = v
-}
-
-// GetBuybackCents returns the BuybackCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetBuyerListingResaleValueResponseData) GetBuybackCents() float32 {
-	if o == nil || o.BuybackCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.BuybackCents.Get()
-}
-
-// GetBuybackCentsOk returns a tuple with the BuybackCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetBuyerListingResaleValueResponseData) GetBuybackCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.BuybackCents.Get(), o.BuybackCents.IsSet()
-}
-
-// HasBuybackCents returns a boolean if a field has been set.
-func (o *GetBuyerListingResaleValueResponseData) HasBuybackCents() bool {
-	if o != nil && o.BuybackCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBuybackCents gets a reference to the given NullableFloat32 and assigns it to the BuybackCents field.
-func (o *GetBuyerListingResaleValueResponseData) SetBuybackCents(v float32) {
-	o.BuybackCents.Set(&v)
-}
-// SetBuybackCentsNil sets the value for BuybackCents to be an explicit nil
-func (o *GetBuyerListingResaleValueResponseData) SetBuybackCentsNil() {
-	o.BuybackCents.Set(nil)
-}
-
-// UnsetBuybackCents ensures that no value is present for BuybackCents, not even an explicit nil
-func (o *GetBuyerListingResaleValueResponseData) UnsetBuybackCents() {
-	o.BuybackCents.Unset()
-}
-
 // GetComps returns the Comps field value
 func (o *GetBuyerListingResaleValueResponseData) GetComps() float32 {
 	if o == nil {
@@ -4680,6 +4614,72 @@ func (o *GetBuyerListingResaleValueResponseData) UnsetKeepsPct() {
 	o.KeepsPct.Unset()
 }
 
+// GetBuybackCents returns the BuybackCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetBuyerListingResaleValueResponseData) GetBuybackCents() float32 {
+	if o == nil || o.BuybackCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.BuybackCents.Get()
+}
+
+// GetBuybackCentsOk returns a tuple with the BuybackCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetBuyerListingResaleValueResponseData) GetBuybackCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuybackCents.Get(), o.BuybackCents.IsSet()
+}
+
+// HasBuybackCents returns a boolean if a field has been set.
+func (o *GetBuyerListingResaleValueResponseData) HasBuybackCents() bool {
+	if o != nil && o.BuybackCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuybackCents gets a reference to the given NullableFloat32 and assigns it to the BuybackCents field.
+func (o *GetBuyerListingResaleValueResponseData) SetBuybackCents(v float32) {
+	o.BuybackCents.Set(&v)
+}
+// SetBuybackCentsNil sets the value for BuybackCents to be an explicit nil
+func (o *GetBuyerListingResaleValueResponseData) SetBuybackCentsNil() {
+	o.BuybackCents.Set(nil)
+}
+
+// UnsetBuybackCents ensures that no value is present for BuybackCents, not even an explicit nil
+func (o *GetBuyerListingResaleValueResponseData) UnsetBuybackCents() {
+	o.BuybackCents.Unset()
+}
+
+// GetBuybackDays returns the BuybackDays field value
+func (o *GetBuyerListingResaleValueResponseData) GetBuybackDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BuybackDays
+}
+
+// GetBuybackDaysOk returns a tuple with the BuybackDays field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingResaleValueResponseData) GetBuybackDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BuybackDays, true
+}
+
+// SetBuybackDays sets field value
+func (o *GetBuyerListingResaleValueResponseData) SetBuybackDays(v float32) {
+	o.BuybackDays = v
+}
+
 func (o GetBuyerListingResaleValueResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -4692,16 +4692,16 @@ func (o GetBuyerListingResaleValueResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["medianCents"] = o.MedianCents
 	}
 	if true {
-		toSerialize["buybackDays"] = o.BuybackDays
+		toSerialize["comps"] = o.Comps
+	}
+	if o.KeepsPct.IsSet() {
+		toSerialize["keepsPct"] = o.KeepsPct.Get()
 	}
 	if o.BuybackCents.IsSet() {
 		toSerialize["buybackCents"] = o.BuybackCents.Get()
 	}
 	if true {
-		toSerialize["comps"] = o.Comps
-	}
-	if o.KeepsPct.IsSet() {
-		toSerialize["keepsPct"] = o.KeepsPct.Get()
+		toSerialize["buybackDays"] = o.BuybackDays
 	}
 	return json.Marshal(toSerialize)
 }
@@ -4852,9 +4852,9 @@ func (v *NullableGetBuyerListingSubscribeOfferResponse) UnmarshalJSON(src []byte
 
 // GetBuyerListingSubscribeOfferResponseData struct for GetBuyerListingSubscribeOfferResponseData
 type GetBuyerListingSubscribeOfferResponseData struct {
-	PriceCents float32 `json:"priceCents"`
 	DiscountBps float32 `json:"discountBps"`
 	Intervals []float32 `json:"intervals"`
+	PriceCents float32 `json:"priceCents"`
 	SubscribePriceCents float32 `json:"subscribePriceCents"`
 }
 
@@ -4862,11 +4862,11 @@ type GetBuyerListingSubscribeOfferResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerListingSubscribeOfferResponseData(priceCents float32, discountBps float32, intervals []float32, subscribePriceCents float32) *GetBuyerListingSubscribeOfferResponseData {
+func NewGetBuyerListingSubscribeOfferResponseData(discountBps float32, intervals []float32, priceCents float32, subscribePriceCents float32) *GetBuyerListingSubscribeOfferResponseData {
 	this := GetBuyerListingSubscribeOfferResponseData{}
-	this.PriceCents = priceCents
 	this.DiscountBps = discountBps
 	this.Intervals = intervals
+	this.PriceCents = priceCents
 	this.SubscribePriceCents = subscribePriceCents
 	return &this
 }
@@ -4877,30 +4877,6 @@ func NewGetBuyerListingSubscribeOfferResponseData(priceCents float32, discountBp
 func NewGetBuyerListingSubscribeOfferResponseDataWithDefaults() *GetBuyerListingSubscribeOfferResponseData {
 	this := GetBuyerListingSubscribeOfferResponseData{}
 	return &this
-}
-
-// GetPriceCents returns the PriceCents field value
-func (o *GetBuyerListingSubscribeOfferResponseData) GetPriceCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PriceCents
-}
-
-// GetPriceCentsOk returns a tuple with the PriceCents field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerListingSubscribeOfferResponseData) GetPriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceCents, true
-}
-
-// SetPriceCents sets field value
-func (o *GetBuyerListingSubscribeOfferResponseData) SetPriceCents(v float32) {
-	o.PriceCents = v
 }
 
 // GetDiscountBps returns the DiscountBps field value
@@ -4951,6 +4927,30 @@ func (o *GetBuyerListingSubscribeOfferResponseData) SetIntervals(v []float32) {
 	o.Intervals = v
 }
 
+// GetPriceCents returns the PriceCents field value
+func (o *GetBuyerListingSubscribeOfferResponseData) GetPriceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PriceCents
+}
+
+// GetPriceCentsOk returns a tuple with the PriceCents field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerListingSubscribeOfferResponseData) GetPriceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PriceCents, true
+}
+
+// SetPriceCents sets field value
+func (o *GetBuyerListingSubscribeOfferResponseData) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
 // GetSubscribePriceCents returns the SubscribePriceCents field value
 func (o *GetBuyerListingSubscribeOfferResponseData) GetSubscribePriceCents() float32 {
 	if o == nil {
@@ -4978,13 +4978,13 @@ func (o *GetBuyerListingSubscribeOfferResponseData) SetSubscribePriceCents(v flo
 func (o GetBuyerListingSubscribeOfferResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["priceCents"] = o.PriceCents
-	}
-	if true {
 		toSerialize["discountBps"] = o.DiscountBps
 	}
 	if true {
 		toSerialize["intervals"] = o.Intervals
+	}
+	if true {
+		toSerialize["priceCents"] = o.PriceCents
 	}
 	if true {
 		toSerialize["subscribePriceCents"] = o.SubscribePriceCents
@@ -5527,26 +5527,26 @@ func (v *NullableListBuyerListingQuickQuestionsResponse) UnmarshalJSON(src []byt
 // ListBuyerListingSellerReviewsItem struct for ListBuyerListingSellerReviewsItem
 type ListBuyerListingSellerReviewsItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Item ListBuyerListingSellerReviewsItemItem `json:"item"`
-	Body NullableString `json:"body,omitempty"`
 	Rating float32 `json:"rating"`
-	SellerReply NullableString `json:"sellerReply,omitempty"`
+	Body NullableString `json:"body,omitempty"`
 	Media []ListBuyerListingSellerReviewsItemMedia `json:"media"`
+	SellerReply NullableString `json:"sellerReply,omitempty"`
 	Reviewer NullableString `json:"reviewer,omitempty"`
+	Item ListBuyerListingSellerReviewsItemItem `json:"item"`
+	CreatedAt string `json:"createdAt"`
 }
 
 // NewListBuyerListingSellerReviewsItem instantiates a new ListBuyerListingSellerReviewsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerListingSellerReviewsItem(id string, createdAt string, item ListBuyerListingSellerReviewsItemItem, rating float32, media []ListBuyerListingSellerReviewsItemMedia) *ListBuyerListingSellerReviewsItem {
+func NewListBuyerListingSellerReviewsItem(id string, rating float32, media []ListBuyerListingSellerReviewsItemMedia, item ListBuyerListingSellerReviewsItemItem, createdAt string) *ListBuyerListingSellerReviewsItem {
 	this := ListBuyerListingSellerReviewsItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
-	this.Item = item
 	this.Rating = rating
 	this.Media = media
+	this.Item = item
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -5582,52 +5582,28 @@ func (o *ListBuyerListingSellerReviewsItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerListingSellerReviewsItem) GetCreatedAt() string {
+// GetRating returns the Rating field value
+func (o *ListBuyerListingSellerReviewsItem) GetRating() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.Rating
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetRatingOk returns a tuple with the Rating field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerListingSellerReviewsItem) GetCreatedAtOk() (*string, bool) {
+func (o *ListBuyerListingSellerReviewsItem) GetRatingOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.Rating, true
 }
 
-// SetCreatedAt sets field value
-func (o *ListBuyerListingSellerReviewsItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
-// GetItem returns the Item field value
-func (o *ListBuyerListingSellerReviewsItem) GetItem() ListBuyerListingSellerReviewsItemItem {
-	if o == nil {
-		var ret ListBuyerListingSellerReviewsItemItem
-		return ret
-	}
-
-	return o.Item
-}
-
-// GetItemOk returns a tuple with the Item field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerListingSellerReviewsItem) GetItemOk() (*ListBuyerListingSellerReviewsItemItem, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Item, true
-}
-
-// SetItem sets field value
-func (o *ListBuyerListingSellerReviewsItem) SetItem(v ListBuyerListingSellerReviewsItemItem) {
-	o.Item = v
+// SetRating sets field value
+func (o *ListBuyerListingSellerReviewsItem) SetRating(v float32) {
+	o.Rating = v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -5672,28 +5648,28 @@ func (o *ListBuyerListingSellerReviewsItem) UnsetBody() {
 	o.Body.Unset()
 }
 
-// GetRating returns the Rating field value
-func (o *ListBuyerListingSellerReviewsItem) GetRating() float32 {
+// GetMedia returns the Media field value
+func (o *ListBuyerListingSellerReviewsItem) GetMedia() []ListBuyerListingSellerReviewsItemMedia {
 	if o == nil {
-		var ret float32
+		var ret []ListBuyerListingSellerReviewsItemMedia
 		return ret
 	}
 
-	return o.Rating
+	return o.Media
 }
 
-// GetRatingOk returns a tuple with the Rating field value
+// GetMediaOk returns a tuple with the Media field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerListingSellerReviewsItem) GetRatingOk() (*float32, bool) {
+func (o *ListBuyerListingSellerReviewsItem) GetMediaOk() ([]ListBuyerListingSellerReviewsItemMedia, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Rating, true
+	return o.Media, true
 }
 
-// SetRating sets field value
-func (o *ListBuyerListingSellerReviewsItem) SetRating(v float32) {
-	o.Rating = v
+// SetMedia sets field value
+func (o *ListBuyerListingSellerReviewsItem) SetMedia(v []ListBuyerListingSellerReviewsItemMedia) {
+	o.Media = v
 }
 
 // GetSellerReply returns the SellerReply field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -5738,30 +5714,6 @@ func (o *ListBuyerListingSellerReviewsItem) UnsetSellerReply() {
 	o.SellerReply.Unset()
 }
 
-// GetMedia returns the Media field value
-func (o *ListBuyerListingSellerReviewsItem) GetMedia() []ListBuyerListingSellerReviewsItemMedia {
-	if o == nil {
-		var ret []ListBuyerListingSellerReviewsItemMedia
-		return ret
-	}
-
-	return o.Media
-}
-
-// GetMediaOk returns a tuple with the Media field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerListingSellerReviewsItem) GetMediaOk() ([]ListBuyerListingSellerReviewsItemMedia, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Media, true
-}
-
-// SetMedia sets field value
-func (o *ListBuyerListingSellerReviewsItem) SetMedia(v []ListBuyerListingSellerReviewsItemMedia) {
-	o.Media = v
-}
-
 // GetReviewer returns the Reviewer field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerListingSellerReviewsItem) GetReviewer() string {
 	if o == nil || o.Reviewer.Get() == nil {
@@ -5804,31 +5756,79 @@ func (o *ListBuyerListingSellerReviewsItem) UnsetReviewer() {
 	o.Reviewer.Unset()
 }
 
+// GetItem returns the Item field value
+func (o *ListBuyerListingSellerReviewsItem) GetItem() ListBuyerListingSellerReviewsItemItem {
+	if o == nil {
+		var ret ListBuyerListingSellerReviewsItemItem
+		return ret
+	}
+
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerListingSellerReviewsItem) GetItemOk() (*ListBuyerListingSellerReviewsItemItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Item, true
+}
+
+// SetItem sets field value
+func (o *ListBuyerListingSellerReviewsItem) SetItem(v ListBuyerListingSellerReviewsItemItem) {
+	o.Item = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerListingSellerReviewsItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerListingSellerReviewsItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerListingSellerReviewsItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
 func (o ListBuyerListingSellerReviewsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["item"] = o.Item
+		toSerialize["rating"] = o.Rating
 	}
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
 	}
 	if true {
-		toSerialize["rating"] = o.Rating
+		toSerialize["media"] = o.Media
 	}
 	if o.SellerReply.IsSet() {
 		toSerialize["sellerReply"] = o.SellerReply.Get()
 	}
-	if true {
-		toSerialize["media"] = o.Media
-	}
 	if o.Reviewer.IsSet() {
 		toSerialize["reviewer"] = o.Reviewer.Get()
+	}
+	if true {
+		toSerialize["item"] = o.Item
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -6025,18 +6025,18 @@ func (v *NullableListBuyerListingSellerReviewsItemItem) UnmarshalJSON(src []byte
 
 // ListBuyerListingSellerReviewsItemMedia struct for ListBuyerListingSellerReviewsItemMedia
 type ListBuyerListingSellerReviewsItemMedia struct {
-	Url string `json:"url"`
 	Kind string `json:"kind"`
+	Url string `json:"url"`
 }
 
 // NewListBuyerListingSellerReviewsItemMedia instantiates a new ListBuyerListingSellerReviewsItemMedia object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerListingSellerReviewsItemMedia(url string, kind string) *ListBuyerListingSellerReviewsItemMedia {
+func NewListBuyerListingSellerReviewsItemMedia(kind string, url string) *ListBuyerListingSellerReviewsItemMedia {
 	this := ListBuyerListingSellerReviewsItemMedia{}
-	this.Url = url
 	this.Kind = kind
+	this.Url = url
 	return &this
 }
 
@@ -6046,30 +6046,6 @@ func NewListBuyerListingSellerReviewsItemMedia(url string, kind string) *ListBuy
 func NewListBuyerListingSellerReviewsItemMediaWithDefaults() *ListBuyerListingSellerReviewsItemMedia {
 	this := ListBuyerListingSellerReviewsItemMedia{}
 	return &this
-}
-
-// GetUrl returns the Url field value
-func (o *ListBuyerListingSellerReviewsItemMedia) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerListingSellerReviewsItemMedia) GetUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *ListBuyerListingSellerReviewsItemMedia) SetUrl(v string) {
-	o.Url = v
 }
 
 // GetKind returns the Kind field value
@@ -6096,13 +6072,37 @@ func (o *ListBuyerListingSellerReviewsItemMedia) SetKind(v string) {
 	o.Kind = v
 }
 
+// GetUrl returns the Url field value
+func (o *ListBuyerListingSellerReviewsItemMedia) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerListingSellerReviewsItemMedia) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *ListBuyerListingSellerReviewsItemMedia) SetUrl(v string) {
+	o.Url = v
+}
+
 func (o ListBuyerListingSellerReviewsItemMedia) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["url"] = o.Url
+		toSerialize["kind"] = o.Kind
 	}
 	if true {
-		toSerialize["kind"] = o.Kind
+		toSerialize["url"] = o.Url
 	}
 	return json.Marshal(toSerialize)
 }

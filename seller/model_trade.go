@@ -233,18 +233,18 @@ type CreateTradeBlockEvolutionRecipeResponseRecipe struct {
 	Active bool `json:"active"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Note NullableString `json:"note,omitempty"`
+	Version float32 `json:"version"`
 	ReviewedAt NullableTime `json:"reviewedAt,omitempty"`
+	Note NullableString `json:"note,omitempty"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
+	OutputCosmeticId string `json:"outputCosmeticId"`
 	InputAVariantId string `json:"inputAVariantId"`
 	InputACondition NullableString `json:"inputACondition,omitempty"`
 	InputAGradeKey NullableString `json:"inputAGradeKey,omitempty"`
 	InputBVariantId NullableString `json:"inputBVariantId,omitempty"`
 	InputBCondition NullableString `json:"inputBCondition,omitempty"`
 	InputBGradeKey NullableString `json:"inputBGradeKey,omitempty"`
-	OutputCosmeticId string `json:"outputCosmeticId"`
-	Version float32 `json:"version"`
 	FrozenAt NullableTime `json:"frozenAt,omitempty"`
 }
 
@@ -252,18 +252,18 @@ type CreateTradeBlockEvolutionRecipeResponseRecipe struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTradeBlockEvolutionRecipeResponseRecipe(id string, name string, active bool, createdAt time.Time, updatedAt time.Time, merchantId string, creatorSubjectId string, inputAVariantId string, outputCosmeticId string, version float32) *CreateTradeBlockEvolutionRecipeResponseRecipe {
+func NewCreateTradeBlockEvolutionRecipeResponseRecipe(id string, name string, active bool, createdAt time.Time, updatedAt time.Time, version float32, merchantId string, creatorSubjectId string, outputCosmeticId string, inputAVariantId string) *CreateTradeBlockEvolutionRecipeResponseRecipe {
 	this := CreateTradeBlockEvolutionRecipeResponseRecipe{}
 	this.Id = id
 	this.Name = name
 	this.Active = active
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
+	this.Version = version
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
-	this.InputAVariantId = inputAVariantId
 	this.OutputCosmeticId = outputCosmeticId
-	this.Version = version
+	this.InputAVariantId = inputAVariantId
 	return &this
 }
 
@@ -395,46 +395,28 @@ func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetUpdatedAt(v time.Time
 	o.UpdatedAt = v
 }
 
-// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetNote() string {
-	if o == nil || o.Note.Get() == nil {
-		var ret string
+// GetVersion returns the Version field value
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetVersion() float32 {
+	if o == nil {
+		var ret float32
 		return ret
 	}
-	return *o.Note.Get()
+
+	return o.Version
 }
 
-// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetNoteOk() (*string, bool) {
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetVersionOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Note.Get(), o.Note.IsSet()
+	return &o.Version, true
 }
 
-// HasNote returns a boolean if a field has been set.
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) HasNote() bool {
-	if o != nil && o.Note.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNote gets a reference to the given NullableString and assigns it to the Note field.
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetNote(v string) {
-	o.Note.Set(&v)
-}
-// SetNoteNil sets the value for Note to be an explicit nil
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetNoteNil() {
-	o.Note.Set(nil)
-}
-
-// UnsetNote ensures that no value is present for Note, not even an explicit nil
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) UnsetNote() {
-	o.Note.Unset()
+// SetVersion sets field value
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetVersion(v float32) {
+	o.Version = v
 }
 
 // GetReviewedAt returns the ReviewedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -477,6 +459,48 @@ func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetReviewedAtNil() {
 // UnsetReviewedAt ensures that no value is present for ReviewedAt, not even an explicit nil
 func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) UnsetReviewedAt() {
 	o.ReviewedAt.Unset()
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) UnsetNote() {
+	o.Note.Unset()
 }
 
 // GetMerchantId returns the MerchantId field value
@@ -525,6 +549,30 @@ func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetCreatorSubjectIdOk() 
 // SetCreatorSubjectId sets field value
 func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetCreatorSubjectId(v string) {
 	o.CreatorSubjectId = v
+}
+
+// GetOutputCosmeticId returns the OutputCosmeticId field value
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetOutputCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OutputCosmeticId
+}
+
+// GetOutputCosmeticIdOk returns a tuple with the OutputCosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetOutputCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OutputCosmeticId, true
+}
+
+// SetOutputCosmeticId sets field value
+func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetOutputCosmeticId(v string) {
+	o.OutputCosmeticId = v
 }
 
 // GetInputAVariantId returns the InputAVariantId field value
@@ -761,54 +809,6 @@ func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) UnsetInputBGradeKey() {
 	o.InputBGradeKey.Unset()
 }
 
-// GetOutputCosmeticId returns the OutputCosmeticId field value
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetOutputCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OutputCosmeticId
-}
-
-// GetOutputCosmeticIdOk returns a tuple with the OutputCosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetOutputCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OutputCosmeticId, true
-}
-
-// SetOutputCosmeticId sets field value
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetOutputCosmeticId(v string) {
-	o.OutputCosmeticId = v
-}
-
-// GetVersion returns the Version field value
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetVersion() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetVersionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) SetVersion(v float32) {
-	o.Version = v
-}
-
 // GetFrozenAt returns the FrozenAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTradeBlockEvolutionRecipeResponseRecipe) GetFrozenAt() time.Time {
 	if o == nil || o.FrozenAt.Get() == nil {
@@ -868,17 +868,23 @@ func (o CreateTradeBlockEvolutionRecipeResponseRecipe) MarshalJSON() ([]byte, er
 	if true {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
-	if o.Note.IsSet() {
-		toSerialize["note"] = o.Note.Get()
+	if true {
+		toSerialize["version"] = o.Version
 	}
 	if o.ReviewedAt.IsSet() {
 		toSerialize["reviewedAt"] = o.ReviewedAt.Get()
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
 	}
 	if true {
 		toSerialize["merchantId"] = o.MerchantId
 	}
 	if true {
 		toSerialize["creatorSubjectId"] = o.CreatorSubjectId
+	}
+	if true {
+		toSerialize["outputCosmeticId"] = o.OutputCosmeticId
 	}
 	if true {
 		toSerialize["inputAVariantId"] = o.InputAVariantId
@@ -897,12 +903,6 @@ func (o CreateTradeBlockEvolutionRecipeResponseRecipe) MarshalJSON() ([]byte, er
 	}
 	if o.InputBGradeKey.IsSet() {
 		toSerialize["inputBGradeKey"] = o.InputBGradeKey.Get()
-	}
-	if true {
-		toSerialize["outputCosmeticId"] = o.OutputCosmeticId
-	}
-	if true {
-		toSerialize["version"] = o.Version
 	}
 	if o.FrozenAt.IsSet() {
 		toSerialize["frozenAt"] = o.FrozenAt.Get()
@@ -1274,32 +1274,32 @@ type CreateTradeBlockSetRecipeResponseRecipe struct {
 	Active bool `json:"active"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	Note NullableString `json:"note,omitempty"`
+	Version float32 `json:"version"`
 	ReviewedAt NullableTime `json:"reviewedAt,omitempty"`
+	Note NullableString `json:"note,omitempty"`
+	Members []CreateTradeBlockSetRecipeResponseRecipeMembers `json:"members"`
 	MerchantId string `json:"merchantId"`
 	CreatorSubjectId string `json:"creatorSubjectId"`
 	OutputCosmeticId string `json:"outputCosmeticId"`
-	Version float32 `json:"version"`
 	FrozenAt NullableTime `json:"frozenAt,omitempty"`
-	Members []CreateTradeBlockSetRecipeResponseRecipeMembers `json:"members"`
 }
 
 // NewCreateTradeBlockSetRecipeResponseRecipe instantiates a new CreateTradeBlockSetRecipeResponseRecipe object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTradeBlockSetRecipeResponseRecipe(id string, name string, active bool, createdAt time.Time, updatedAt time.Time, merchantId string, creatorSubjectId string, outputCosmeticId string, version float32, members []CreateTradeBlockSetRecipeResponseRecipeMembers) *CreateTradeBlockSetRecipeResponseRecipe {
+func NewCreateTradeBlockSetRecipeResponseRecipe(id string, name string, active bool, createdAt time.Time, updatedAt time.Time, version float32, members []CreateTradeBlockSetRecipeResponseRecipeMembers, merchantId string, creatorSubjectId string, outputCosmeticId string) *CreateTradeBlockSetRecipeResponseRecipe {
 	this := CreateTradeBlockSetRecipeResponseRecipe{}
 	this.Id = id
 	this.Name = name
 	this.Active = active
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
+	this.Version = version
+	this.Members = members
 	this.MerchantId = merchantId
 	this.CreatorSubjectId = creatorSubjectId
 	this.OutputCosmeticId = outputCosmeticId
-	this.Version = version
-	this.Members = members
 	return &this
 }
 
@@ -1431,46 +1431,28 @@ func (o *CreateTradeBlockSetRecipeResponseRecipe) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetNote() string {
-	if o == nil || o.Note.Get() == nil {
-		var ret string
+// GetVersion returns the Version field value
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetVersion() float32 {
+	if o == nil {
+		var ret float32
 		return ret
 	}
-	return *o.Note.Get()
+
+	return o.Version
 }
 
-// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetNoteOk() (*string, bool) {
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetVersionOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Note.Get(), o.Note.IsSet()
+	return &o.Version, true
 }
 
-// HasNote returns a boolean if a field has been set.
-func (o *CreateTradeBlockSetRecipeResponseRecipe) HasNote() bool {
-	if o != nil && o.Note.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNote gets a reference to the given NullableString and assigns it to the Note field.
-func (o *CreateTradeBlockSetRecipeResponseRecipe) SetNote(v string) {
-	o.Note.Set(&v)
-}
-// SetNoteNil sets the value for Note to be an explicit nil
-func (o *CreateTradeBlockSetRecipeResponseRecipe) SetNoteNil() {
-	o.Note.Set(nil)
-}
-
-// UnsetNote ensures that no value is present for Note, not even an explicit nil
-func (o *CreateTradeBlockSetRecipeResponseRecipe) UnsetNote() {
-	o.Note.Unset()
+// SetVersion sets field value
+func (o *CreateTradeBlockSetRecipeResponseRecipe) SetVersion(v float32) {
+	o.Version = v
 }
 
 // GetReviewedAt returns the ReviewedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1513,6 +1495,72 @@ func (o *CreateTradeBlockSetRecipeResponseRecipe) SetReviewedAtNil() {
 // UnsetReviewedAt ensures that no value is present for ReviewedAt, not even an explicit nil
 func (o *CreateTradeBlockSetRecipeResponseRecipe) UnsetReviewedAt() {
 	o.ReviewedAt.Unset()
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *CreateTradeBlockSetRecipeResponseRecipe) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *CreateTradeBlockSetRecipeResponseRecipe) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *CreateTradeBlockSetRecipeResponseRecipe) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *CreateTradeBlockSetRecipeResponseRecipe) UnsetNote() {
+	o.Note.Unset()
+}
+
+// GetMembers returns the Members field value
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetMembers() []CreateTradeBlockSetRecipeResponseRecipeMembers {
+	if o == nil {
+		var ret []CreateTradeBlockSetRecipeResponseRecipeMembers
+		return ret
+	}
+
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value
+// and a boolean to check if the value has been set.
+func (o *CreateTradeBlockSetRecipeResponseRecipe) GetMembersOk() ([]CreateTradeBlockSetRecipeResponseRecipeMembers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// SetMembers sets field value
+func (o *CreateTradeBlockSetRecipeResponseRecipe) SetMembers(v []CreateTradeBlockSetRecipeResponseRecipeMembers) {
+	o.Members = v
 }
 
 // GetMerchantId returns the MerchantId field value
@@ -1587,30 +1635,6 @@ func (o *CreateTradeBlockSetRecipeResponseRecipe) SetOutputCosmeticId(v string) 
 	o.OutputCosmeticId = v
 }
 
-// GetVersion returns the Version field value
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetVersion() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetVersionOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *CreateTradeBlockSetRecipeResponseRecipe) SetVersion(v float32) {
-	o.Version = v
-}
-
 // GetFrozenAt returns the FrozenAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTradeBlockSetRecipeResponseRecipe) GetFrozenAt() time.Time {
 	if o == nil || o.FrozenAt.Get() == nil {
@@ -1653,30 +1677,6 @@ func (o *CreateTradeBlockSetRecipeResponseRecipe) UnsetFrozenAt() {
 	o.FrozenAt.Unset()
 }
 
-// GetMembers returns the Members field value
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetMembers() []CreateTradeBlockSetRecipeResponseRecipeMembers {
-	if o == nil {
-		var ret []CreateTradeBlockSetRecipeResponseRecipeMembers
-		return ret
-	}
-
-	return o.Members
-}
-
-// GetMembersOk returns a tuple with the Members field value
-// and a boolean to check if the value has been set.
-func (o *CreateTradeBlockSetRecipeResponseRecipe) GetMembersOk() ([]CreateTradeBlockSetRecipeResponseRecipeMembers, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Members, true
-}
-
-// SetMembers sets field value
-func (o *CreateTradeBlockSetRecipeResponseRecipe) SetMembers(v []CreateTradeBlockSetRecipeResponseRecipeMembers) {
-	o.Members = v
-}
-
 func (o CreateTradeBlockSetRecipeResponseRecipe) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1694,11 +1694,17 @@ func (o CreateTradeBlockSetRecipeResponseRecipe) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
-	if o.Note.IsSet() {
-		toSerialize["note"] = o.Note.Get()
+	if true {
+		toSerialize["version"] = o.Version
 	}
 	if o.ReviewedAt.IsSet() {
 		toSerialize["reviewedAt"] = o.ReviewedAt.Get()
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	if true {
+		toSerialize["members"] = o.Members
 	}
 	if true {
 		toSerialize["merchantId"] = o.MerchantId
@@ -1709,14 +1715,8 @@ func (o CreateTradeBlockSetRecipeResponseRecipe) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["outputCosmeticId"] = o.OutputCosmeticId
 	}
-	if true {
-		toSerialize["version"] = o.Version
-	}
 	if o.FrozenAt.IsSet() {
 		toSerialize["frozenAt"] = o.FrozenAt.Get()
-	}
-	if true {
-		toSerialize["members"] = o.Members
 	}
 	return json.Marshal(toSerialize)
 }

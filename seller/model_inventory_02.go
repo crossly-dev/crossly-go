@@ -15,6 +15,2828 @@ import (
 	"time"
 )
 
+// ListInventoryItem struct for ListInventoryItem
+type ListInventoryItem struct {
+	Id string `json:"id"`
+	Brand NullableString `json:"brand,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	UserId string `json:"userId"`
+	Status string `json:"status"`
+	Notes NullableString `json:"notes,omitempty"`
+	Source string `json:"source"`
+	Sku NullableString `json:"sku,omitempty"`
+	Quantity float32 `json:"quantity"`
+	QuantityAvailable float32 `json:"quantityAvailable"`
+	QuantityReserved float32 `json:"quantityReserved"`
+	WholesaleReserve float32 `json:"wholesaleReserve"`
+	QuantitySold float32 `json:"quantitySold"`
+	OriginalPrice NullableString `json:"originalPrice,omitempty"`
+	Condition NullableString `json:"condition,omitempty"`
+	Size NullableString `json:"size,omitempty"`
+	Material NullableString `json:"material,omitempty"`
+	Style NullableString `json:"style,omitempty"`
+	Pattern NullableString `json:"pattern,omitempty"`
+	Department NullableString `json:"department,omitempty"`
+	Gender NullableString `json:"gender,omitempty"`
+	ItemType NullableString `json:"itemType,omitempty"`
+	SizeSystem NullableString `json:"sizeSystem,omitempty"`
+	Color []string `json:"color"`
+	DefaultTitle string `json:"defaultTitle"`
+	Images []string `json:"images"`
+	VideoUrl NullableString `json:"videoUrl,omitempty"`
+	ProvenanceReceiptId NullableString `json:"provenanceReceiptId,omitempty"`
+	Tags []string `json:"tags"`
+	Labels []string `json:"labels"`
+	CustomLabel NullableString `json:"customLabel,omitempty"`
+	WarehouseLocation NullableString `json:"warehouseLocation,omitempty"`
+	StorageBin NullableString `json:"storageBin,omitempty"`
+	StorageNote NullableString `json:"storageNote,omitempty"`
+	MarketSkuId NullableString `json:"marketSkuId,omitempty"`
+	MarketVariantId NullableString `json:"marketVariantId,omitempty"`
+	GradeKey NullableString `json:"gradeKey,omitempty"`
+	VaultSellFrom NullableString `json:"vaultSellFrom,omitempty"`
+	Grading NullableCreateBulkBatchItemResponseGrading `json:"grading,omitempty"`
+	FirstListedAt NullableTime `json:"firstListedAt,omitempty"`
+	IncludeTaxInLanded bool `json:"includeTaxInLanded"`
+	CostBasisCents NullableFloat32 `json:"costBasisCents,omitempty"`
+	Supplier NullableListInventoryItemSupplier `json:"supplier,omitempty"`
+	PriceFloorCents NullableFloat32 `json:"priceFloorCents,omitempty"`
+	FloorIsNet bool `json:"floorIsNet"`
+	AcquiredAt NullableTime `json:"acquiredAt,omitempty"`
+	AcquiredSource NullableString `json:"acquiredSource,omitempty"`
+	WeightLb NullableString `json:"weightLb,omitempty"`
+	WeightOz NullableString `json:"weightOz,omitempty"`
+	DimensionLIn NullableString `json:"dimensionLIn,omitempty"`
+	DimensionWIn NullableString `json:"dimensionWIn,omitempty"`
+	DimensionHIn NullableString `json:"dimensionHIn,omitempty"`
+	AllowanceAppId NullableString `json:"allowanceAppId,omitempty"`
+	Category NullableMainSub `json:"category,omitempty"`
+}
+
+// NewListInventoryItem instantiates a new ListInventoryItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInventoryItem(id string, createdAt time.Time, updatedAt time.Time, userId string, status string, source string, quantity float32, quantityAvailable float32, quantityReserved float32, wholesaleReserve float32, quantitySold float32, color []string, defaultTitle string, images []string, tags []string, labels []string, includeTaxInLanded bool, floorIsNet bool) *ListInventoryItem {
+	this := ListInventoryItem{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
+	this.UserId = userId
+	this.Status = status
+	this.Source = source
+	this.Quantity = quantity
+	this.QuantityAvailable = quantityAvailable
+	this.QuantityReserved = quantityReserved
+	this.WholesaleReserve = wholesaleReserve
+	this.QuantitySold = quantitySold
+	this.Color = color
+	this.DefaultTitle = defaultTitle
+	this.Images = images
+	this.Tags = tags
+	this.Labels = labels
+	this.IncludeTaxInLanded = includeTaxInLanded
+	this.FloorIsNet = floorIsNet
+	return &this
+}
+
+// NewListInventoryItemWithDefaults instantiates a new ListInventoryItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInventoryItemWithDefaults() *ListInventoryItem {
+	this := ListInventoryItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListInventoryItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListInventoryItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetBrand returns the Brand field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetBrand() string {
+	if o == nil || o.Brand.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Brand.Get()
+}
+
+// GetBrandOk returns a tuple with the Brand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetBrandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Brand.Get(), o.Brand.IsSet()
+}
+
+// HasBrand returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasBrand() bool {
+	if o != nil && o.Brand.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand gets a reference to the given NullableString and assigns it to the Brand field.
+func (o *ListInventoryItem) SetBrand(v string) {
+	o.Brand.Set(&v)
+}
+// SetBrandNil sets the value for Brand to be an explicit nil
+func (o *ListInventoryItem) SetBrandNil() {
+	o.Brand.Set(nil)
+}
+
+// UnsetBrand ensures that no value is present for Brand, not even an explicit nil
+func (o *ListInventoryItem) UnsetBrand() {
+	o.Brand.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListInventoryItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListInventoryItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *ListInventoryItem) GetUpdatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *ListInventoryItem) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *ListInventoryItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListInventoryItem) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListInventoryItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListInventoryItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetNotes() string {
+	if o == nil || o.Notes.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Notes.Get()
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes.Get(), o.Notes.IsSet()
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasNotes() bool {
+	if o != nil && o.Notes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
+func (o *ListInventoryItem) SetNotes(v string) {
+	o.Notes.Set(&v)
+}
+// SetNotesNil sets the value for Notes to be an explicit nil
+func (o *ListInventoryItem) SetNotesNil() {
+	o.Notes.Set(nil)
+}
+
+// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
+func (o *ListInventoryItem) UnsetNotes() {
+	o.Notes.Unset()
+}
+
+// GetSource returns the Source field value
+func (o *ListInventoryItem) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *ListInventoryItem) SetSource(v string) {
+	o.Source = v
+}
+
+// GetSku returns the Sku field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetSku() string {
+	if o == nil || o.Sku.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sku.Get()
+}
+
+// GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetSkuOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Sku.Get(), o.Sku.IsSet()
+}
+
+// HasSku returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasSku() bool {
+	if o != nil && o.Sku.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSku gets a reference to the given NullableString and assigns it to the Sku field.
+func (o *ListInventoryItem) SetSku(v string) {
+	o.Sku.Set(&v)
+}
+// SetSkuNil sets the value for Sku to be an explicit nil
+func (o *ListInventoryItem) SetSkuNil() {
+	o.Sku.Set(nil)
+}
+
+// UnsetSku ensures that no value is present for Sku, not even an explicit nil
+func (o *ListInventoryItem) UnsetSku() {
+	o.Sku.Unset()
+}
+
+// GetQuantity returns the Quantity field value
+func (o *ListInventoryItem) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *ListInventoryItem) SetQuantity(v float32) {
+	o.Quantity = v
+}
+
+// GetQuantityAvailable returns the QuantityAvailable field value
+func (o *ListInventoryItem) GetQuantityAvailable() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.QuantityAvailable
+}
+
+// GetQuantityAvailableOk returns a tuple with the QuantityAvailable field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetQuantityAvailableOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.QuantityAvailable, true
+}
+
+// SetQuantityAvailable sets field value
+func (o *ListInventoryItem) SetQuantityAvailable(v float32) {
+	o.QuantityAvailable = v
+}
+
+// GetQuantityReserved returns the QuantityReserved field value
+func (o *ListInventoryItem) GetQuantityReserved() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.QuantityReserved
+}
+
+// GetQuantityReservedOk returns a tuple with the QuantityReserved field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetQuantityReservedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.QuantityReserved, true
+}
+
+// SetQuantityReserved sets field value
+func (o *ListInventoryItem) SetQuantityReserved(v float32) {
+	o.QuantityReserved = v
+}
+
+// GetWholesaleReserve returns the WholesaleReserve field value
+func (o *ListInventoryItem) GetWholesaleReserve() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WholesaleReserve
+}
+
+// GetWholesaleReserveOk returns a tuple with the WholesaleReserve field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetWholesaleReserveOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WholesaleReserve, true
+}
+
+// SetWholesaleReserve sets field value
+func (o *ListInventoryItem) SetWholesaleReserve(v float32) {
+	o.WholesaleReserve = v
+}
+
+// GetQuantitySold returns the QuantitySold field value
+func (o *ListInventoryItem) GetQuantitySold() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.QuantitySold
+}
+
+// GetQuantitySoldOk returns a tuple with the QuantitySold field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetQuantitySoldOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.QuantitySold, true
+}
+
+// SetQuantitySold sets field value
+func (o *ListInventoryItem) SetQuantitySold(v float32) {
+	o.QuantitySold = v
+}
+
+// GetOriginalPrice returns the OriginalPrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetOriginalPrice() string {
+	if o == nil || o.OriginalPrice.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OriginalPrice.Get()
+}
+
+// GetOriginalPriceOk returns a tuple with the OriginalPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetOriginalPriceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OriginalPrice.Get(), o.OriginalPrice.IsSet()
+}
+
+// HasOriginalPrice returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasOriginalPrice() bool {
+	if o != nil && o.OriginalPrice.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOriginalPrice gets a reference to the given NullableString and assigns it to the OriginalPrice field.
+func (o *ListInventoryItem) SetOriginalPrice(v string) {
+	o.OriginalPrice.Set(&v)
+}
+// SetOriginalPriceNil sets the value for OriginalPrice to be an explicit nil
+func (o *ListInventoryItem) SetOriginalPriceNil() {
+	o.OriginalPrice.Set(nil)
+}
+
+// UnsetOriginalPrice ensures that no value is present for OriginalPrice, not even an explicit nil
+func (o *ListInventoryItem) UnsetOriginalPrice() {
+	o.OriginalPrice.Unset()
+}
+
+// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetCondition() string {
+	if o == nil || o.Condition.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Condition.Get()
+}
+
+// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetConditionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Condition.Get(), o.Condition.IsSet()
+}
+
+// HasCondition returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasCondition() bool {
+	if o != nil && o.Condition.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCondition gets a reference to the given NullableString and assigns it to the Condition field.
+func (o *ListInventoryItem) SetCondition(v string) {
+	o.Condition.Set(&v)
+}
+// SetConditionNil sets the value for Condition to be an explicit nil
+func (o *ListInventoryItem) SetConditionNil() {
+	o.Condition.Set(nil)
+}
+
+// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
+func (o *ListInventoryItem) UnsetCondition() {
+	o.Condition.Unset()
+}
+
+// GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetSize() string {
+	if o == nil || o.Size.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Size.Get()
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetSizeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Size.Get(), o.Size.IsSet()
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasSize() bool {
+	if o != nil && o.Size.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given NullableString and assigns it to the Size field.
+func (o *ListInventoryItem) SetSize(v string) {
+	o.Size.Set(&v)
+}
+// SetSizeNil sets the value for Size to be an explicit nil
+func (o *ListInventoryItem) SetSizeNil() {
+	o.Size.Set(nil)
+}
+
+// UnsetSize ensures that no value is present for Size, not even an explicit nil
+func (o *ListInventoryItem) UnsetSize() {
+	o.Size.Unset()
+}
+
+// GetMaterial returns the Material field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetMaterial() string {
+	if o == nil || o.Material.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Material.Get()
+}
+
+// GetMaterialOk returns a tuple with the Material field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetMaterialOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Material.Get(), o.Material.IsSet()
+}
+
+// HasMaterial returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasMaterial() bool {
+	if o != nil && o.Material.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaterial gets a reference to the given NullableString and assigns it to the Material field.
+func (o *ListInventoryItem) SetMaterial(v string) {
+	o.Material.Set(&v)
+}
+// SetMaterialNil sets the value for Material to be an explicit nil
+func (o *ListInventoryItem) SetMaterialNil() {
+	o.Material.Set(nil)
+}
+
+// UnsetMaterial ensures that no value is present for Material, not even an explicit nil
+func (o *ListInventoryItem) UnsetMaterial() {
+	o.Material.Unset()
+}
+
+// GetStyle returns the Style field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetStyle() string {
+	if o == nil || o.Style.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Style.Get()
+}
+
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetStyleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Style.Get(), o.Style.IsSet()
+}
+
+// HasStyle returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasStyle() bool {
+	if o != nil && o.Style.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStyle gets a reference to the given NullableString and assigns it to the Style field.
+func (o *ListInventoryItem) SetStyle(v string) {
+	o.Style.Set(&v)
+}
+// SetStyleNil sets the value for Style to be an explicit nil
+func (o *ListInventoryItem) SetStyleNil() {
+	o.Style.Set(nil)
+}
+
+// UnsetStyle ensures that no value is present for Style, not even an explicit nil
+func (o *ListInventoryItem) UnsetStyle() {
+	o.Style.Unset()
+}
+
+// GetPattern returns the Pattern field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetPattern() string {
+	if o == nil || o.Pattern.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Pattern.Get()
+}
+
+// GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetPatternOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Pattern.Get(), o.Pattern.IsSet()
+}
+
+// HasPattern returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasPattern() bool {
+	if o != nil && o.Pattern.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPattern gets a reference to the given NullableString and assigns it to the Pattern field.
+func (o *ListInventoryItem) SetPattern(v string) {
+	o.Pattern.Set(&v)
+}
+// SetPatternNil sets the value for Pattern to be an explicit nil
+func (o *ListInventoryItem) SetPatternNil() {
+	o.Pattern.Set(nil)
+}
+
+// UnsetPattern ensures that no value is present for Pattern, not even an explicit nil
+func (o *ListInventoryItem) UnsetPattern() {
+	o.Pattern.Unset()
+}
+
+// GetDepartment returns the Department field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetDepartment() string {
+	if o == nil || o.Department.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Department.Get()
+}
+
+// GetDepartmentOk returns a tuple with the Department field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetDepartmentOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Department.Get(), o.Department.IsSet()
+}
+
+// HasDepartment returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasDepartment() bool {
+	if o != nil && o.Department.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDepartment gets a reference to the given NullableString and assigns it to the Department field.
+func (o *ListInventoryItem) SetDepartment(v string) {
+	o.Department.Set(&v)
+}
+// SetDepartmentNil sets the value for Department to be an explicit nil
+func (o *ListInventoryItem) SetDepartmentNil() {
+	o.Department.Set(nil)
+}
+
+// UnsetDepartment ensures that no value is present for Department, not even an explicit nil
+func (o *ListInventoryItem) UnsetDepartment() {
+	o.Department.Unset()
+}
+
+// GetGender returns the Gender field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetGender() string {
+	if o == nil || o.Gender.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Gender.Get()
+}
+
+// GetGenderOk returns a tuple with the Gender field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetGenderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Gender.Get(), o.Gender.IsSet()
+}
+
+// HasGender returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasGender() bool {
+	if o != nil && o.Gender.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGender gets a reference to the given NullableString and assigns it to the Gender field.
+func (o *ListInventoryItem) SetGender(v string) {
+	o.Gender.Set(&v)
+}
+// SetGenderNil sets the value for Gender to be an explicit nil
+func (o *ListInventoryItem) SetGenderNil() {
+	o.Gender.Set(nil)
+}
+
+// UnsetGender ensures that no value is present for Gender, not even an explicit nil
+func (o *ListInventoryItem) UnsetGender() {
+	o.Gender.Unset()
+}
+
+// GetItemType returns the ItemType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetItemType() string {
+	if o == nil || o.ItemType.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemType.Get()
+}
+
+// GetItemTypeOk returns a tuple with the ItemType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetItemTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemType.Get(), o.ItemType.IsSet()
+}
+
+// HasItemType returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasItemType() bool {
+	if o != nil && o.ItemType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemType gets a reference to the given NullableString and assigns it to the ItemType field.
+func (o *ListInventoryItem) SetItemType(v string) {
+	o.ItemType.Set(&v)
+}
+// SetItemTypeNil sets the value for ItemType to be an explicit nil
+func (o *ListInventoryItem) SetItemTypeNil() {
+	o.ItemType.Set(nil)
+}
+
+// UnsetItemType ensures that no value is present for ItemType, not even an explicit nil
+func (o *ListInventoryItem) UnsetItemType() {
+	o.ItemType.Unset()
+}
+
+// GetSizeSystem returns the SizeSystem field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetSizeSystem() string {
+	if o == nil || o.SizeSystem.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SizeSystem.Get()
+}
+
+// GetSizeSystemOk returns a tuple with the SizeSystem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetSizeSystemOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SizeSystem.Get(), o.SizeSystem.IsSet()
+}
+
+// HasSizeSystem returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasSizeSystem() bool {
+	if o != nil && o.SizeSystem.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSizeSystem gets a reference to the given NullableString and assigns it to the SizeSystem field.
+func (o *ListInventoryItem) SetSizeSystem(v string) {
+	o.SizeSystem.Set(&v)
+}
+// SetSizeSystemNil sets the value for SizeSystem to be an explicit nil
+func (o *ListInventoryItem) SetSizeSystemNil() {
+	o.SizeSystem.Set(nil)
+}
+
+// UnsetSizeSystem ensures that no value is present for SizeSystem, not even an explicit nil
+func (o *ListInventoryItem) UnsetSizeSystem() {
+	o.SizeSystem.Unset()
+}
+
+// GetColor returns the Color field value
+func (o *ListInventoryItem) GetColor() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Color
+}
+
+// GetColorOk returns a tuple with the Color field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetColorOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Color, true
+}
+
+// SetColor sets field value
+func (o *ListInventoryItem) SetColor(v []string) {
+	o.Color = v
+}
+
+// GetDefaultTitle returns the DefaultTitle field value
+func (o *ListInventoryItem) GetDefaultTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DefaultTitle
+}
+
+// GetDefaultTitleOk returns a tuple with the DefaultTitle field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetDefaultTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DefaultTitle, true
+}
+
+// SetDefaultTitle sets field value
+func (o *ListInventoryItem) SetDefaultTitle(v string) {
+	o.DefaultTitle = v
+}
+
+// GetImages returns the Images field value
+func (o *ListInventoryItem) GetImages() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Images
+}
+
+// GetImagesOk returns a tuple with the Images field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetImagesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Images, true
+}
+
+// SetImages sets field value
+func (o *ListInventoryItem) SetImages(v []string) {
+	o.Images = v
+}
+
+// GetVideoUrl returns the VideoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetVideoUrl() string {
+	if o == nil || o.VideoUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VideoUrl.Get()
+}
+
+// GetVideoUrlOk returns a tuple with the VideoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetVideoUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VideoUrl.Get(), o.VideoUrl.IsSet()
+}
+
+// HasVideoUrl returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasVideoUrl() bool {
+	if o != nil && o.VideoUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoUrl gets a reference to the given NullableString and assigns it to the VideoUrl field.
+func (o *ListInventoryItem) SetVideoUrl(v string) {
+	o.VideoUrl.Set(&v)
+}
+// SetVideoUrlNil sets the value for VideoUrl to be an explicit nil
+func (o *ListInventoryItem) SetVideoUrlNil() {
+	o.VideoUrl.Set(nil)
+}
+
+// UnsetVideoUrl ensures that no value is present for VideoUrl, not even an explicit nil
+func (o *ListInventoryItem) UnsetVideoUrl() {
+	o.VideoUrl.Unset()
+}
+
+// GetProvenanceReceiptId returns the ProvenanceReceiptId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetProvenanceReceiptId() string {
+	if o == nil || o.ProvenanceReceiptId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProvenanceReceiptId.Get()
+}
+
+// GetProvenanceReceiptIdOk returns a tuple with the ProvenanceReceiptId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetProvenanceReceiptIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ProvenanceReceiptId.Get(), o.ProvenanceReceiptId.IsSet()
+}
+
+// HasProvenanceReceiptId returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasProvenanceReceiptId() bool {
+	if o != nil && o.ProvenanceReceiptId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProvenanceReceiptId gets a reference to the given NullableString and assigns it to the ProvenanceReceiptId field.
+func (o *ListInventoryItem) SetProvenanceReceiptId(v string) {
+	o.ProvenanceReceiptId.Set(&v)
+}
+// SetProvenanceReceiptIdNil sets the value for ProvenanceReceiptId to be an explicit nil
+func (o *ListInventoryItem) SetProvenanceReceiptIdNil() {
+	o.ProvenanceReceiptId.Set(nil)
+}
+
+// UnsetProvenanceReceiptId ensures that no value is present for ProvenanceReceiptId, not even an explicit nil
+func (o *ListInventoryItem) UnsetProvenanceReceiptId() {
+	o.ProvenanceReceiptId.Unset()
+}
+
+// GetTags returns the Tags field value
+func (o *ListInventoryItem) GetTags() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetTagsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// SetTags sets field value
+func (o *ListInventoryItem) SetTags(v []string) {
+	o.Tags = v
+}
+
+// GetLabels returns the Labels field value
+func (o *ListInventoryItem) GetLabels() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetLabelsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// SetLabels sets field value
+func (o *ListInventoryItem) SetLabels(v []string) {
+	o.Labels = v
+}
+
+// GetCustomLabel returns the CustomLabel field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetCustomLabel() string {
+	if o == nil || o.CustomLabel.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomLabel.Get()
+}
+
+// GetCustomLabelOk returns a tuple with the CustomLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetCustomLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CustomLabel.Get(), o.CustomLabel.IsSet()
+}
+
+// HasCustomLabel returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasCustomLabel() bool {
+	if o != nil && o.CustomLabel.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomLabel gets a reference to the given NullableString and assigns it to the CustomLabel field.
+func (o *ListInventoryItem) SetCustomLabel(v string) {
+	o.CustomLabel.Set(&v)
+}
+// SetCustomLabelNil sets the value for CustomLabel to be an explicit nil
+func (o *ListInventoryItem) SetCustomLabelNil() {
+	o.CustomLabel.Set(nil)
+}
+
+// UnsetCustomLabel ensures that no value is present for CustomLabel, not even an explicit nil
+func (o *ListInventoryItem) UnsetCustomLabel() {
+	o.CustomLabel.Unset()
+}
+
+// GetWarehouseLocation returns the WarehouseLocation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetWarehouseLocation() string {
+	if o == nil || o.WarehouseLocation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.WarehouseLocation.Get()
+}
+
+// GetWarehouseLocationOk returns a tuple with the WarehouseLocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetWarehouseLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WarehouseLocation.Get(), o.WarehouseLocation.IsSet()
+}
+
+// HasWarehouseLocation returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasWarehouseLocation() bool {
+	if o != nil && o.WarehouseLocation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWarehouseLocation gets a reference to the given NullableString and assigns it to the WarehouseLocation field.
+func (o *ListInventoryItem) SetWarehouseLocation(v string) {
+	o.WarehouseLocation.Set(&v)
+}
+// SetWarehouseLocationNil sets the value for WarehouseLocation to be an explicit nil
+func (o *ListInventoryItem) SetWarehouseLocationNil() {
+	o.WarehouseLocation.Set(nil)
+}
+
+// UnsetWarehouseLocation ensures that no value is present for WarehouseLocation, not even an explicit nil
+func (o *ListInventoryItem) UnsetWarehouseLocation() {
+	o.WarehouseLocation.Unset()
+}
+
+// GetStorageBin returns the StorageBin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetStorageBin() string {
+	if o == nil || o.StorageBin.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StorageBin.Get()
+}
+
+// GetStorageBinOk returns a tuple with the StorageBin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetStorageBinOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StorageBin.Get(), o.StorageBin.IsSet()
+}
+
+// HasStorageBin returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasStorageBin() bool {
+	if o != nil && o.StorageBin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStorageBin gets a reference to the given NullableString and assigns it to the StorageBin field.
+func (o *ListInventoryItem) SetStorageBin(v string) {
+	o.StorageBin.Set(&v)
+}
+// SetStorageBinNil sets the value for StorageBin to be an explicit nil
+func (o *ListInventoryItem) SetStorageBinNil() {
+	o.StorageBin.Set(nil)
+}
+
+// UnsetStorageBin ensures that no value is present for StorageBin, not even an explicit nil
+func (o *ListInventoryItem) UnsetStorageBin() {
+	o.StorageBin.Unset()
+}
+
+// GetStorageNote returns the StorageNote field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetStorageNote() string {
+	if o == nil || o.StorageNote.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StorageNote.Get()
+}
+
+// GetStorageNoteOk returns a tuple with the StorageNote field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetStorageNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StorageNote.Get(), o.StorageNote.IsSet()
+}
+
+// HasStorageNote returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasStorageNote() bool {
+	if o != nil && o.StorageNote.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStorageNote gets a reference to the given NullableString and assigns it to the StorageNote field.
+func (o *ListInventoryItem) SetStorageNote(v string) {
+	o.StorageNote.Set(&v)
+}
+// SetStorageNoteNil sets the value for StorageNote to be an explicit nil
+func (o *ListInventoryItem) SetStorageNoteNil() {
+	o.StorageNote.Set(nil)
+}
+
+// UnsetStorageNote ensures that no value is present for StorageNote, not even an explicit nil
+func (o *ListInventoryItem) UnsetStorageNote() {
+	o.StorageNote.Unset()
+}
+
+// GetMarketSkuId returns the MarketSkuId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetMarketSkuId() string {
+	if o == nil || o.MarketSkuId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MarketSkuId.Get()
+}
+
+// GetMarketSkuIdOk returns a tuple with the MarketSkuId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetMarketSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MarketSkuId.Get(), o.MarketSkuId.IsSet()
+}
+
+// HasMarketSkuId returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasMarketSkuId() bool {
+	if o != nil && o.MarketSkuId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketSkuId gets a reference to the given NullableString and assigns it to the MarketSkuId field.
+func (o *ListInventoryItem) SetMarketSkuId(v string) {
+	o.MarketSkuId.Set(&v)
+}
+// SetMarketSkuIdNil sets the value for MarketSkuId to be an explicit nil
+func (o *ListInventoryItem) SetMarketSkuIdNil() {
+	o.MarketSkuId.Set(nil)
+}
+
+// UnsetMarketSkuId ensures that no value is present for MarketSkuId, not even an explicit nil
+func (o *ListInventoryItem) UnsetMarketSkuId() {
+	o.MarketSkuId.Unset()
+}
+
+// GetMarketVariantId returns the MarketVariantId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetMarketVariantId() string {
+	if o == nil || o.MarketVariantId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.MarketVariantId.Get()
+}
+
+// GetMarketVariantIdOk returns a tuple with the MarketVariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetMarketVariantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MarketVariantId.Get(), o.MarketVariantId.IsSet()
+}
+
+// HasMarketVariantId returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasMarketVariantId() bool {
+	if o != nil && o.MarketVariantId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketVariantId gets a reference to the given NullableString and assigns it to the MarketVariantId field.
+func (o *ListInventoryItem) SetMarketVariantId(v string) {
+	o.MarketVariantId.Set(&v)
+}
+// SetMarketVariantIdNil sets the value for MarketVariantId to be an explicit nil
+func (o *ListInventoryItem) SetMarketVariantIdNil() {
+	o.MarketVariantId.Set(nil)
+}
+
+// UnsetMarketVariantId ensures that no value is present for MarketVariantId, not even an explicit nil
+func (o *ListInventoryItem) UnsetMarketVariantId() {
+	o.MarketVariantId.Unset()
+}
+
+// GetGradeKey returns the GradeKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetGradeKey() string {
+	if o == nil || o.GradeKey.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.GradeKey.Get()
+}
+
+// GetGradeKeyOk returns a tuple with the GradeKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetGradeKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.GradeKey.Get(), o.GradeKey.IsSet()
+}
+
+// HasGradeKey returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasGradeKey() bool {
+	if o != nil && o.GradeKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGradeKey gets a reference to the given NullableString and assigns it to the GradeKey field.
+func (o *ListInventoryItem) SetGradeKey(v string) {
+	o.GradeKey.Set(&v)
+}
+// SetGradeKeyNil sets the value for GradeKey to be an explicit nil
+func (o *ListInventoryItem) SetGradeKeyNil() {
+	o.GradeKey.Set(nil)
+}
+
+// UnsetGradeKey ensures that no value is present for GradeKey, not even an explicit nil
+func (o *ListInventoryItem) UnsetGradeKey() {
+	o.GradeKey.Unset()
+}
+
+// GetVaultSellFrom returns the VaultSellFrom field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetVaultSellFrom() string {
+	if o == nil || o.VaultSellFrom.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VaultSellFrom.Get()
+}
+
+// GetVaultSellFromOk returns a tuple with the VaultSellFrom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetVaultSellFromOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VaultSellFrom.Get(), o.VaultSellFrom.IsSet()
+}
+
+// HasVaultSellFrom returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasVaultSellFrom() bool {
+	if o != nil && o.VaultSellFrom.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVaultSellFrom gets a reference to the given NullableString and assigns it to the VaultSellFrom field.
+func (o *ListInventoryItem) SetVaultSellFrom(v string) {
+	o.VaultSellFrom.Set(&v)
+}
+// SetVaultSellFromNil sets the value for VaultSellFrom to be an explicit nil
+func (o *ListInventoryItem) SetVaultSellFromNil() {
+	o.VaultSellFrom.Set(nil)
+}
+
+// UnsetVaultSellFrom ensures that no value is present for VaultSellFrom, not even an explicit nil
+func (o *ListInventoryItem) UnsetVaultSellFrom() {
+	o.VaultSellFrom.Unset()
+}
+
+// GetGrading returns the Grading field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetGrading() CreateBulkBatchItemResponseGrading {
+	if o == nil || o.Grading.Get() == nil {
+		var ret CreateBulkBatchItemResponseGrading
+		return ret
+	}
+	return *o.Grading.Get()
+}
+
+// GetGradingOk returns a tuple with the Grading field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetGradingOk() (*CreateBulkBatchItemResponseGrading, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Grading.Get(), o.Grading.IsSet()
+}
+
+// HasGrading returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasGrading() bool {
+	if o != nil && o.Grading.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGrading gets a reference to the given NullableCreateBulkBatchItemResponseGrading and assigns it to the Grading field.
+func (o *ListInventoryItem) SetGrading(v CreateBulkBatchItemResponseGrading) {
+	o.Grading.Set(&v)
+}
+// SetGradingNil sets the value for Grading to be an explicit nil
+func (o *ListInventoryItem) SetGradingNil() {
+	o.Grading.Set(nil)
+}
+
+// UnsetGrading ensures that no value is present for Grading, not even an explicit nil
+func (o *ListInventoryItem) UnsetGrading() {
+	o.Grading.Unset()
+}
+
+// GetFirstListedAt returns the FirstListedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetFirstListedAt() time.Time {
+	if o == nil || o.FirstListedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.FirstListedAt.Get()
+}
+
+// GetFirstListedAtOk returns a tuple with the FirstListedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetFirstListedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.FirstListedAt.Get(), o.FirstListedAt.IsSet()
+}
+
+// HasFirstListedAt returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasFirstListedAt() bool {
+	if o != nil && o.FirstListedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstListedAt gets a reference to the given NullableTime and assigns it to the FirstListedAt field.
+func (o *ListInventoryItem) SetFirstListedAt(v time.Time) {
+	o.FirstListedAt.Set(&v)
+}
+// SetFirstListedAtNil sets the value for FirstListedAt to be an explicit nil
+func (o *ListInventoryItem) SetFirstListedAtNil() {
+	o.FirstListedAt.Set(nil)
+}
+
+// UnsetFirstListedAt ensures that no value is present for FirstListedAt, not even an explicit nil
+func (o *ListInventoryItem) UnsetFirstListedAt() {
+	o.FirstListedAt.Unset()
+}
+
+// GetIncludeTaxInLanded returns the IncludeTaxInLanded field value
+func (o *ListInventoryItem) GetIncludeTaxInLanded() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IncludeTaxInLanded
+}
+
+// GetIncludeTaxInLandedOk returns a tuple with the IncludeTaxInLanded field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetIncludeTaxInLandedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IncludeTaxInLanded, true
+}
+
+// SetIncludeTaxInLanded sets field value
+func (o *ListInventoryItem) SetIncludeTaxInLanded(v bool) {
+	o.IncludeTaxInLanded = v
+}
+
+// GetCostBasisCents returns the CostBasisCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetCostBasisCents() float32 {
+	if o == nil || o.CostBasisCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CostBasisCents.Get()
+}
+
+// GetCostBasisCentsOk returns a tuple with the CostBasisCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetCostBasisCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CostBasisCents.Get(), o.CostBasisCents.IsSet()
+}
+
+// HasCostBasisCents returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasCostBasisCents() bool {
+	if o != nil && o.CostBasisCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCostBasisCents gets a reference to the given NullableFloat32 and assigns it to the CostBasisCents field.
+func (o *ListInventoryItem) SetCostBasisCents(v float32) {
+	o.CostBasisCents.Set(&v)
+}
+// SetCostBasisCentsNil sets the value for CostBasisCents to be an explicit nil
+func (o *ListInventoryItem) SetCostBasisCentsNil() {
+	o.CostBasisCents.Set(nil)
+}
+
+// UnsetCostBasisCents ensures that no value is present for CostBasisCents, not even an explicit nil
+func (o *ListInventoryItem) UnsetCostBasisCents() {
+	o.CostBasisCents.Unset()
+}
+
+// GetSupplier returns the Supplier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetSupplier() ListInventoryItemSupplier {
+	if o == nil || o.Supplier.Get() == nil {
+		var ret ListInventoryItemSupplier
+		return ret
+	}
+	return *o.Supplier.Get()
+}
+
+// GetSupplierOk returns a tuple with the Supplier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetSupplierOk() (*ListInventoryItemSupplier, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Supplier.Get(), o.Supplier.IsSet()
+}
+
+// HasSupplier returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasSupplier() bool {
+	if o != nil && o.Supplier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSupplier gets a reference to the given NullableListInventoryItemSupplier and assigns it to the Supplier field.
+func (o *ListInventoryItem) SetSupplier(v ListInventoryItemSupplier) {
+	o.Supplier.Set(&v)
+}
+// SetSupplierNil sets the value for Supplier to be an explicit nil
+func (o *ListInventoryItem) SetSupplierNil() {
+	o.Supplier.Set(nil)
+}
+
+// UnsetSupplier ensures that no value is present for Supplier, not even an explicit nil
+func (o *ListInventoryItem) UnsetSupplier() {
+	o.Supplier.Unset()
+}
+
+// GetPriceFloorCents returns the PriceFloorCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetPriceFloorCents() float32 {
+	if o == nil || o.PriceFloorCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PriceFloorCents.Get()
+}
+
+// GetPriceFloorCentsOk returns a tuple with the PriceFloorCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetPriceFloorCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PriceFloorCents.Get(), o.PriceFloorCents.IsSet()
+}
+
+// HasPriceFloorCents returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasPriceFloorCents() bool {
+	if o != nil && o.PriceFloorCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceFloorCents gets a reference to the given NullableFloat32 and assigns it to the PriceFloorCents field.
+func (o *ListInventoryItem) SetPriceFloorCents(v float32) {
+	o.PriceFloorCents.Set(&v)
+}
+// SetPriceFloorCentsNil sets the value for PriceFloorCents to be an explicit nil
+func (o *ListInventoryItem) SetPriceFloorCentsNil() {
+	o.PriceFloorCents.Set(nil)
+}
+
+// UnsetPriceFloorCents ensures that no value is present for PriceFloorCents, not even an explicit nil
+func (o *ListInventoryItem) UnsetPriceFloorCents() {
+	o.PriceFloorCents.Unset()
+}
+
+// GetFloorIsNet returns the FloorIsNet field value
+func (o *ListInventoryItem) GetFloorIsNet() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.FloorIsNet
+}
+
+// GetFloorIsNetOk returns a tuple with the FloorIsNet field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItem) GetFloorIsNetOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FloorIsNet, true
+}
+
+// SetFloorIsNet sets field value
+func (o *ListInventoryItem) SetFloorIsNet(v bool) {
+	o.FloorIsNet = v
+}
+
+// GetAcquiredAt returns the AcquiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetAcquiredAt() time.Time {
+	if o == nil || o.AcquiredAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AcquiredAt.Get()
+}
+
+// GetAcquiredAtOk returns a tuple with the AcquiredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetAcquiredAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AcquiredAt.Get(), o.AcquiredAt.IsSet()
+}
+
+// HasAcquiredAt returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasAcquiredAt() bool {
+	if o != nil && o.AcquiredAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAcquiredAt gets a reference to the given NullableTime and assigns it to the AcquiredAt field.
+func (o *ListInventoryItem) SetAcquiredAt(v time.Time) {
+	o.AcquiredAt.Set(&v)
+}
+// SetAcquiredAtNil sets the value for AcquiredAt to be an explicit nil
+func (o *ListInventoryItem) SetAcquiredAtNil() {
+	o.AcquiredAt.Set(nil)
+}
+
+// UnsetAcquiredAt ensures that no value is present for AcquiredAt, not even an explicit nil
+func (o *ListInventoryItem) UnsetAcquiredAt() {
+	o.AcquiredAt.Unset()
+}
+
+// GetAcquiredSource returns the AcquiredSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetAcquiredSource() string {
+	if o == nil || o.AcquiredSource.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AcquiredSource.Get()
+}
+
+// GetAcquiredSourceOk returns a tuple with the AcquiredSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetAcquiredSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AcquiredSource.Get(), o.AcquiredSource.IsSet()
+}
+
+// HasAcquiredSource returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasAcquiredSource() bool {
+	if o != nil && o.AcquiredSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAcquiredSource gets a reference to the given NullableString and assigns it to the AcquiredSource field.
+func (o *ListInventoryItem) SetAcquiredSource(v string) {
+	o.AcquiredSource.Set(&v)
+}
+// SetAcquiredSourceNil sets the value for AcquiredSource to be an explicit nil
+func (o *ListInventoryItem) SetAcquiredSourceNil() {
+	o.AcquiredSource.Set(nil)
+}
+
+// UnsetAcquiredSource ensures that no value is present for AcquiredSource, not even an explicit nil
+func (o *ListInventoryItem) UnsetAcquiredSource() {
+	o.AcquiredSource.Unset()
+}
+
+// GetWeightLb returns the WeightLb field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetWeightLb() string {
+	if o == nil || o.WeightLb.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.WeightLb.Get()
+}
+
+// GetWeightLbOk returns a tuple with the WeightLb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetWeightLbOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WeightLb.Get(), o.WeightLb.IsSet()
+}
+
+// HasWeightLb returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasWeightLb() bool {
+	if o != nil && o.WeightLb.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWeightLb gets a reference to the given NullableString and assigns it to the WeightLb field.
+func (o *ListInventoryItem) SetWeightLb(v string) {
+	o.WeightLb.Set(&v)
+}
+// SetWeightLbNil sets the value for WeightLb to be an explicit nil
+func (o *ListInventoryItem) SetWeightLbNil() {
+	o.WeightLb.Set(nil)
+}
+
+// UnsetWeightLb ensures that no value is present for WeightLb, not even an explicit nil
+func (o *ListInventoryItem) UnsetWeightLb() {
+	o.WeightLb.Unset()
+}
+
+// GetWeightOz returns the WeightOz field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetWeightOz() string {
+	if o == nil || o.WeightOz.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.WeightOz.Get()
+}
+
+// GetWeightOzOk returns a tuple with the WeightOz field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetWeightOzOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WeightOz.Get(), o.WeightOz.IsSet()
+}
+
+// HasWeightOz returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasWeightOz() bool {
+	if o != nil && o.WeightOz.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWeightOz gets a reference to the given NullableString and assigns it to the WeightOz field.
+func (o *ListInventoryItem) SetWeightOz(v string) {
+	o.WeightOz.Set(&v)
+}
+// SetWeightOzNil sets the value for WeightOz to be an explicit nil
+func (o *ListInventoryItem) SetWeightOzNil() {
+	o.WeightOz.Set(nil)
+}
+
+// UnsetWeightOz ensures that no value is present for WeightOz, not even an explicit nil
+func (o *ListInventoryItem) UnsetWeightOz() {
+	o.WeightOz.Unset()
+}
+
+// GetDimensionLIn returns the DimensionLIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetDimensionLIn() string {
+	if o == nil || o.DimensionLIn.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DimensionLIn.Get()
+}
+
+// GetDimensionLInOk returns a tuple with the DimensionLIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetDimensionLInOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DimensionLIn.Get(), o.DimensionLIn.IsSet()
+}
+
+// HasDimensionLIn returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasDimensionLIn() bool {
+	if o != nil && o.DimensionLIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDimensionLIn gets a reference to the given NullableString and assigns it to the DimensionLIn field.
+func (o *ListInventoryItem) SetDimensionLIn(v string) {
+	o.DimensionLIn.Set(&v)
+}
+// SetDimensionLInNil sets the value for DimensionLIn to be an explicit nil
+func (o *ListInventoryItem) SetDimensionLInNil() {
+	o.DimensionLIn.Set(nil)
+}
+
+// UnsetDimensionLIn ensures that no value is present for DimensionLIn, not even an explicit nil
+func (o *ListInventoryItem) UnsetDimensionLIn() {
+	o.DimensionLIn.Unset()
+}
+
+// GetDimensionWIn returns the DimensionWIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetDimensionWIn() string {
+	if o == nil || o.DimensionWIn.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DimensionWIn.Get()
+}
+
+// GetDimensionWInOk returns a tuple with the DimensionWIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetDimensionWInOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DimensionWIn.Get(), o.DimensionWIn.IsSet()
+}
+
+// HasDimensionWIn returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasDimensionWIn() bool {
+	if o != nil && o.DimensionWIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDimensionWIn gets a reference to the given NullableString and assigns it to the DimensionWIn field.
+func (o *ListInventoryItem) SetDimensionWIn(v string) {
+	o.DimensionWIn.Set(&v)
+}
+// SetDimensionWInNil sets the value for DimensionWIn to be an explicit nil
+func (o *ListInventoryItem) SetDimensionWInNil() {
+	o.DimensionWIn.Set(nil)
+}
+
+// UnsetDimensionWIn ensures that no value is present for DimensionWIn, not even an explicit nil
+func (o *ListInventoryItem) UnsetDimensionWIn() {
+	o.DimensionWIn.Unset()
+}
+
+// GetDimensionHIn returns the DimensionHIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetDimensionHIn() string {
+	if o == nil || o.DimensionHIn.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DimensionHIn.Get()
+}
+
+// GetDimensionHInOk returns a tuple with the DimensionHIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetDimensionHInOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DimensionHIn.Get(), o.DimensionHIn.IsSet()
+}
+
+// HasDimensionHIn returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasDimensionHIn() bool {
+	if o != nil && o.DimensionHIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDimensionHIn gets a reference to the given NullableString and assigns it to the DimensionHIn field.
+func (o *ListInventoryItem) SetDimensionHIn(v string) {
+	o.DimensionHIn.Set(&v)
+}
+// SetDimensionHInNil sets the value for DimensionHIn to be an explicit nil
+func (o *ListInventoryItem) SetDimensionHInNil() {
+	o.DimensionHIn.Set(nil)
+}
+
+// UnsetDimensionHIn ensures that no value is present for DimensionHIn, not even an explicit nil
+func (o *ListInventoryItem) UnsetDimensionHIn() {
+	o.DimensionHIn.Unset()
+}
+
+// GetAllowanceAppId returns the AllowanceAppId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetAllowanceAppId() string {
+	if o == nil || o.AllowanceAppId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AllowanceAppId.Get()
+}
+
+// GetAllowanceAppIdOk returns a tuple with the AllowanceAppId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetAllowanceAppIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AllowanceAppId.Get(), o.AllowanceAppId.IsSet()
+}
+
+// HasAllowanceAppId returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasAllowanceAppId() bool {
+	if o != nil && o.AllowanceAppId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowanceAppId gets a reference to the given NullableString and assigns it to the AllowanceAppId field.
+func (o *ListInventoryItem) SetAllowanceAppId(v string) {
+	o.AllowanceAppId.Set(&v)
+}
+// SetAllowanceAppIdNil sets the value for AllowanceAppId to be an explicit nil
+func (o *ListInventoryItem) SetAllowanceAppIdNil() {
+	o.AllowanceAppId.Set(nil)
+}
+
+// UnsetAllowanceAppId ensures that no value is present for AllowanceAppId, not even an explicit nil
+func (o *ListInventoryItem) UnsetAllowanceAppId() {
+	o.AllowanceAppId.Unset()
+}
+
+// GetCategory returns the Category field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItem) GetCategory() MainSub {
+	if o == nil || o.Category.Get() == nil {
+		var ret MainSub
+		return ret
+	}
+	return *o.Category.Get()
+}
+
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItem) GetCategoryOk() (*MainSub, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Category.Get(), o.Category.IsSet()
+}
+
+// HasCategory returns a boolean if a field has been set.
+func (o *ListInventoryItem) HasCategory() bool {
+	if o != nil && o.Category.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given NullableMainSub and assigns it to the Category field.
+func (o *ListInventoryItem) SetCategory(v MainSub) {
+	o.Category.Set(&v)
+}
+// SetCategoryNil sets the value for Category to be an explicit nil
+func (o *ListInventoryItem) SetCategoryNil() {
+	o.Category.Set(nil)
+}
+
+// UnsetCategory ensures that no value is present for Category, not even an explicit nil
+func (o *ListInventoryItem) UnsetCategory() {
+	o.Category.Unset()
+}
+
+func (o ListInventoryItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.Brand.IsSet() {
+		toSerialize["brand"] = o.Brand.Get()
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Notes.IsSet() {
+		toSerialize["notes"] = o.Notes.Get()
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if o.Sku.IsSet() {
+		toSerialize["sku"] = o.Sku.Get()
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if true {
+		toSerialize["quantityAvailable"] = o.QuantityAvailable
+	}
+	if true {
+		toSerialize["quantityReserved"] = o.QuantityReserved
+	}
+	if true {
+		toSerialize["wholesaleReserve"] = o.WholesaleReserve
+	}
+	if true {
+		toSerialize["quantitySold"] = o.QuantitySold
+	}
+	if o.OriginalPrice.IsSet() {
+		toSerialize["originalPrice"] = o.OriginalPrice.Get()
+	}
+	if o.Condition.IsSet() {
+		toSerialize["condition"] = o.Condition.Get()
+	}
+	if o.Size.IsSet() {
+		toSerialize["size"] = o.Size.Get()
+	}
+	if o.Material.IsSet() {
+		toSerialize["material"] = o.Material.Get()
+	}
+	if o.Style.IsSet() {
+		toSerialize["style"] = o.Style.Get()
+	}
+	if o.Pattern.IsSet() {
+		toSerialize["pattern"] = o.Pattern.Get()
+	}
+	if o.Department.IsSet() {
+		toSerialize["department"] = o.Department.Get()
+	}
+	if o.Gender.IsSet() {
+		toSerialize["gender"] = o.Gender.Get()
+	}
+	if o.ItemType.IsSet() {
+		toSerialize["itemType"] = o.ItemType.Get()
+	}
+	if o.SizeSystem.IsSet() {
+		toSerialize["sizeSystem"] = o.SizeSystem.Get()
+	}
+	if true {
+		toSerialize["color"] = o.Color
+	}
+	if true {
+		toSerialize["defaultTitle"] = o.DefaultTitle
+	}
+	if true {
+		toSerialize["images"] = o.Images
+	}
+	if o.VideoUrl.IsSet() {
+		toSerialize["videoUrl"] = o.VideoUrl.Get()
+	}
+	if o.ProvenanceReceiptId.IsSet() {
+		toSerialize["provenanceReceiptId"] = o.ProvenanceReceiptId.Get()
+	}
+	if true {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.CustomLabel.IsSet() {
+		toSerialize["customLabel"] = o.CustomLabel.Get()
+	}
+	if o.WarehouseLocation.IsSet() {
+		toSerialize["warehouseLocation"] = o.WarehouseLocation.Get()
+	}
+	if o.StorageBin.IsSet() {
+		toSerialize["storageBin"] = o.StorageBin.Get()
+	}
+	if o.StorageNote.IsSet() {
+		toSerialize["storageNote"] = o.StorageNote.Get()
+	}
+	if o.MarketSkuId.IsSet() {
+		toSerialize["marketSkuId"] = o.MarketSkuId.Get()
+	}
+	if o.MarketVariantId.IsSet() {
+		toSerialize["marketVariantId"] = o.MarketVariantId.Get()
+	}
+	if o.GradeKey.IsSet() {
+		toSerialize["gradeKey"] = o.GradeKey.Get()
+	}
+	if o.VaultSellFrom.IsSet() {
+		toSerialize["vaultSellFrom"] = o.VaultSellFrom.Get()
+	}
+	if o.Grading.IsSet() {
+		toSerialize["grading"] = o.Grading.Get()
+	}
+	if o.FirstListedAt.IsSet() {
+		toSerialize["firstListedAt"] = o.FirstListedAt.Get()
+	}
+	if true {
+		toSerialize["includeTaxInLanded"] = o.IncludeTaxInLanded
+	}
+	if o.CostBasisCents.IsSet() {
+		toSerialize["costBasisCents"] = o.CostBasisCents.Get()
+	}
+	if o.Supplier.IsSet() {
+		toSerialize["supplier"] = o.Supplier.Get()
+	}
+	if o.PriceFloorCents.IsSet() {
+		toSerialize["priceFloorCents"] = o.PriceFloorCents.Get()
+	}
+	if true {
+		toSerialize["floorIsNet"] = o.FloorIsNet
+	}
+	if o.AcquiredAt.IsSet() {
+		toSerialize["acquiredAt"] = o.AcquiredAt.Get()
+	}
+	if o.AcquiredSource.IsSet() {
+		toSerialize["acquiredSource"] = o.AcquiredSource.Get()
+	}
+	if o.WeightLb.IsSet() {
+		toSerialize["weightLb"] = o.WeightLb.Get()
+	}
+	if o.WeightOz.IsSet() {
+		toSerialize["weightOz"] = o.WeightOz.Get()
+	}
+	if o.DimensionLIn.IsSet() {
+		toSerialize["dimensionLIn"] = o.DimensionLIn.Get()
+	}
+	if o.DimensionWIn.IsSet() {
+		toSerialize["dimensionWIn"] = o.DimensionWIn.Get()
+	}
+	if o.DimensionHIn.IsSet() {
+		toSerialize["dimensionHIn"] = o.DimensionHIn.Get()
+	}
+	if o.AllowanceAppId.IsSet() {
+		toSerialize["allowanceAppId"] = o.AllowanceAppId.Get()
+	}
+	if o.Category.IsSet() {
+		toSerialize["category"] = o.Category.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListInventoryItem struct {
+	value *ListInventoryItem
+	isSet bool
+}
+
+func (v NullableListInventoryItem) Get() *ListInventoryItem {
+	return v.value
+}
+
+func (v *NullableListInventoryItem) Set(val *ListInventoryItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInventoryItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInventoryItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInventoryItem(val *ListInventoryItem) *NullableListInventoryItem {
+	return &NullableListInventoryItem{value: val, isSet: true}
+}
+
+func (v NullableListInventoryItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInventoryItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListInventoryItemSupplier struct for ListInventoryItemSupplier
+type ListInventoryItemSupplier struct {
+	// e.g. \"walmart\", \"amazon\", \"acme-wholesale\".
+	Name string `json:"name"`
+	// retailer (sells to consumers) or wholesale (distributor/manufacturer). Undeclared reads as retailer.
+	Kind NullableString `json:"kind,omitempty"`
+	ProductUrl NullableString `json:"productUrl,omitempty"`
+	ProductId NullableString `json:"productId,omitempty"`
+	Sku NullableString `json:"sku,omitempty"`
+	// Business days from order to the supplier shipping it.
+	HandlingTimeDays NullableFloat32 `json:"handlingTimeDays,omitempty"`
+	// Where the supplier ships from: ISO 3166 country, optionally with a region (\"US\", \"US-CA\", \"CN\").
+	ShipFromRegion NullableString `json:"shipFromRegion,omitempty"`
+}
+
+// NewListInventoryItemSupplier instantiates a new ListInventoryItemSupplier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInventoryItemSupplier(name string) *ListInventoryItemSupplier {
+	this := ListInventoryItemSupplier{}
+	this.Name = name
+	return &this
+}
+
+// NewListInventoryItemSupplierWithDefaults instantiates a new ListInventoryItemSupplier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInventoryItemSupplierWithDefaults() *ListInventoryItemSupplier {
+	this := ListInventoryItemSupplier{}
+	return &this
+}
+
+// GetName returns the Name field value
+func (o *ListInventoryItemSupplier) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryItemSupplier) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListInventoryItemSupplier) SetName(v string) {
+	o.Name = v
+}
+
+// GetKind returns the Kind field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetKind() string {
+	if o == nil || o.Kind.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Kind.Get()
+}
+
+// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Kind.Get(), o.Kind.IsSet()
+}
+
+// HasKind returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasKind() bool {
+	if o != nil && o.Kind.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKind gets a reference to the given NullableString and assigns it to the Kind field.
+func (o *ListInventoryItemSupplier) SetKind(v string) {
+	o.Kind.Set(&v)
+}
+// SetKindNil sets the value for Kind to be an explicit nil
+func (o *ListInventoryItemSupplier) SetKindNil() {
+	o.Kind.Set(nil)
+}
+
+// UnsetKind ensures that no value is present for Kind, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetKind() {
+	o.Kind.Unset()
+}
+
+// GetProductUrl returns the ProductUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetProductUrl() string {
+	if o == nil || o.ProductUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProductUrl.Get()
+}
+
+// GetProductUrlOk returns a tuple with the ProductUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetProductUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ProductUrl.Get(), o.ProductUrl.IsSet()
+}
+
+// HasProductUrl returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasProductUrl() bool {
+	if o != nil && o.ProductUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProductUrl gets a reference to the given NullableString and assigns it to the ProductUrl field.
+func (o *ListInventoryItemSupplier) SetProductUrl(v string) {
+	o.ProductUrl.Set(&v)
+}
+// SetProductUrlNil sets the value for ProductUrl to be an explicit nil
+func (o *ListInventoryItemSupplier) SetProductUrlNil() {
+	o.ProductUrl.Set(nil)
+}
+
+// UnsetProductUrl ensures that no value is present for ProductUrl, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetProductUrl() {
+	o.ProductUrl.Unset()
+}
+
+// GetProductId returns the ProductId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetProductId() string {
+	if o == nil || o.ProductId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProductId.Get()
+}
+
+// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetProductIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ProductId.Get(), o.ProductId.IsSet()
+}
+
+// HasProductId returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasProductId() bool {
+	if o != nil && o.ProductId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProductId gets a reference to the given NullableString and assigns it to the ProductId field.
+func (o *ListInventoryItemSupplier) SetProductId(v string) {
+	o.ProductId.Set(&v)
+}
+// SetProductIdNil sets the value for ProductId to be an explicit nil
+func (o *ListInventoryItemSupplier) SetProductIdNil() {
+	o.ProductId.Set(nil)
+}
+
+// UnsetProductId ensures that no value is present for ProductId, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetProductId() {
+	o.ProductId.Unset()
+}
+
+// GetSku returns the Sku field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetSku() string {
+	if o == nil || o.Sku.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sku.Get()
+}
+
+// GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetSkuOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Sku.Get(), o.Sku.IsSet()
+}
+
+// HasSku returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasSku() bool {
+	if o != nil && o.Sku.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSku gets a reference to the given NullableString and assigns it to the Sku field.
+func (o *ListInventoryItemSupplier) SetSku(v string) {
+	o.Sku.Set(&v)
+}
+// SetSkuNil sets the value for Sku to be an explicit nil
+func (o *ListInventoryItemSupplier) SetSkuNil() {
+	o.Sku.Set(nil)
+}
+
+// UnsetSku ensures that no value is present for Sku, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetSku() {
+	o.Sku.Unset()
+}
+
+// GetHandlingTimeDays returns the HandlingTimeDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetHandlingTimeDays() float32 {
+	if o == nil || o.HandlingTimeDays.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.HandlingTimeDays.Get()
+}
+
+// GetHandlingTimeDaysOk returns a tuple with the HandlingTimeDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetHandlingTimeDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.HandlingTimeDays.Get(), o.HandlingTimeDays.IsSet()
+}
+
+// HasHandlingTimeDays returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasHandlingTimeDays() bool {
+	if o != nil && o.HandlingTimeDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHandlingTimeDays gets a reference to the given NullableFloat32 and assigns it to the HandlingTimeDays field.
+func (o *ListInventoryItemSupplier) SetHandlingTimeDays(v float32) {
+	o.HandlingTimeDays.Set(&v)
+}
+// SetHandlingTimeDaysNil sets the value for HandlingTimeDays to be an explicit nil
+func (o *ListInventoryItemSupplier) SetHandlingTimeDaysNil() {
+	o.HandlingTimeDays.Set(nil)
+}
+
+// UnsetHandlingTimeDays ensures that no value is present for HandlingTimeDays, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetHandlingTimeDays() {
+	o.HandlingTimeDays.Unset()
+}
+
+// GetShipFromRegion returns the ShipFromRegion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListInventoryItemSupplier) GetShipFromRegion() string {
+	if o == nil || o.ShipFromRegion.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShipFromRegion.Get()
+}
+
+// GetShipFromRegionOk returns a tuple with the ShipFromRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListInventoryItemSupplier) GetShipFromRegionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShipFromRegion.Get(), o.ShipFromRegion.IsSet()
+}
+
+// HasShipFromRegion returns a boolean if a field has been set.
+func (o *ListInventoryItemSupplier) HasShipFromRegion() bool {
+	if o != nil && o.ShipFromRegion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShipFromRegion gets a reference to the given NullableString and assigns it to the ShipFromRegion field.
+func (o *ListInventoryItemSupplier) SetShipFromRegion(v string) {
+	o.ShipFromRegion.Set(&v)
+}
+// SetShipFromRegionNil sets the value for ShipFromRegion to be an explicit nil
+func (o *ListInventoryItemSupplier) SetShipFromRegionNil() {
+	o.ShipFromRegion.Set(nil)
+}
+
+// UnsetShipFromRegion ensures that no value is present for ShipFromRegion, not even an explicit nil
+func (o *ListInventoryItemSupplier) UnsetShipFromRegion() {
+	o.ShipFromRegion.Unset()
+}
+
+func (o ListInventoryItemSupplier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Kind.IsSet() {
+		toSerialize["kind"] = o.Kind.Get()
+	}
+	if o.ProductUrl.IsSet() {
+		toSerialize["productUrl"] = o.ProductUrl.Get()
+	}
+	if o.ProductId.IsSet() {
+		toSerialize["productId"] = o.ProductId.Get()
+	}
+	if o.Sku.IsSet() {
+		toSerialize["sku"] = o.Sku.Get()
+	}
+	if o.HandlingTimeDays.IsSet() {
+		toSerialize["handlingTimeDays"] = o.HandlingTimeDays.Get()
+	}
+	if o.ShipFromRegion.IsSet() {
+		toSerialize["shipFromRegion"] = o.ShipFromRegion.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListInventoryItemSupplier struct {
+	value *ListInventoryItemSupplier
+	isSet bool
+}
+
+func (v NullableListInventoryItemSupplier) Get() *ListInventoryItemSupplier {
+	return v.value
+}
+
+func (v *NullableListInventoryItemSupplier) Set(val *ListInventoryItemSupplier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInventoryItemSupplier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInventoryItemSupplier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInventoryItemSupplier(val *ListInventoryItemSupplier) *NullableListInventoryItemSupplier {
+	return &NullableListInventoryItemSupplier{value: val, isSet: true}
+}
+
+func (v NullableListInventoryItemSupplier) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInventoryItemSupplier) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListInventoryResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListInventoryResponse struct {
+	// The rows.
+	Data []ListInventoryItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListInventoryResponse instantiates a new ListInventoryResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInventoryResponse(data []ListInventoryItem) *ListInventoryResponse {
+	this := ListInventoryResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListInventoryResponseWithDefaults instantiates a new ListInventoryResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInventoryResponseWithDefaults() *ListInventoryResponse {
+	this := ListInventoryResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListInventoryResponse) GetData() []ListInventoryItem {
+	if o == nil {
+		var ret []ListInventoryItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListInventoryResponse) GetDataOk() ([]ListInventoryItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListInventoryResponse) SetData(v []ListInventoryItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListInventoryResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInventoryResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListInventoryResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListInventoryResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListInventoryResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInventoryResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListInventoryResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListInventoryResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListInventoryResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListInventoryResponse struct {
+	value *ListInventoryResponse
+	isSet bool
+}
+
+func (v NullableListInventoryResponse) Get() *ListInventoryResponse {
+	return v.value
+}
+
+func (v *NullableListInventoryResponse) Set(val *ListInventoryResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInventoryResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInventoryResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInventoryResponse(val *ListInventoryResponse) *NullableListInventoryResponse {
+	return &NullableListInventoryResponse{value: val, isSet: true}
+}
+
+func (v NullableListInventoryResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInventoryResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListInventoryUnitsItem struct for ListInventoryUnitsItem
 type ListInventoryUnitsItem struct {
 	Id string `json:"id"`

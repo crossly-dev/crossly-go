@@ -500,9 +500,9 @@ func (v *NullableGetBuyerPackFairnessResponse) UnmarshalJSON(src []byte) error {
 
 // GetBuyerPackFairnessResponseData struct for GetBuyerPackFairnessResponseData
 type GetBuyerPackFairnessResponseData struct {
-	Nonce float32 `json:"nonce"`
 	ServerSeedHash string `json:"serverSeedHash"`
 	ClientSeed string `json:"clientSeed"`
+	Nonce float32 `json:"nonce"`
 	Revealed []GetBuyerPackFairnessResponseDataRevealed `json:"revealed"`
 }
 
@@ -510,11 +510,11 @@ type GetBuyerPackFairnessResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerPackFairnessResponseData(nonce float32, serverSeedHash string, clientSeed string, revealed []GetBuyerPackFairnessResponseDataRevealed) *GetBuyerPackFairnessResponseData {
+func NewGetBuyerPackFairnessResponseData(serverSeedHash string, clientSeed string, nonce float32, revealed []GetBuyerPackFairnessResponseDataRevealed) *GetBuyerPackFairnessResponseData {
 	this := GetBuyerPackFairnessResponseData{}
-	this.Nonce = nonce
 	this.ServerSeedHash = serverSeedHash
 	this.ClientSeed = clientSeed
+	this.Nonce = nonce
 	this.Revealed = revealed
 	return &this
 }
@@ -525,30 +525,6 @@ func NewGetBuyerPackFairnessResponseData(nonce float32, serverSeedHash string, c
 func NewGetBuyerPackFairnessResponseDataWithDefaults() *GetBuyerPackFairnessResponseData {
 	this := GetBuyerPackFairnessResponseData{}
 	return &this
-}
-
-// GetNonce returns the Nonce field value
-func (o *GetBuyerPackFairnessResponseData) GetNonce() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Nonce
-}
-
-// GetNonceOk returns a tuple with the Nonce field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPackFairnessResponseData) GetNonceOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Nonce, true
-}
-
-// SetNonce sets field value
-func (o *GetBuyerPackFairnessResponseData) SetNonce(v float32) {
-	o.Nonce = v
 }
 
 // GetServerSeedHash returns the ServerSeedHash field value
@@ -599,6 +575,30 @@ func (o *GetBuyerPackFairnessResponseData) SetClientSeed(v string) {
 	o.ClientSeed = v
 }
 
+// GetNonce returns the Nonce field value
+func (o *GetBuyerPackFairnessResponseData) GetNonce() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Nonce
+}
+
+// GetNonceOk returns a tuple with the Nonce field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPackFairnessResponseData) GetNonceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Nonce, true
+}
+
+// SetNonce sets field value
+func (o *GetBuyerPackFairnessResponseData) SetNonce(v float32) {
+	o.Nonce = v
+}
+
 // GetRevealed returns the Revealed field value
 func (o *GetBuyerPackFairnessResponseData) GetRevealed() []GetBuyerPackFairnessResponseDataRevealed {
 	if o == nil {
@@ -626,13 +626,13 @@ func (o *GetBuyerPackFairnessResponseData) SetRevealed(v []GetBuyerPackFairnessR
 func (o GetBuyerPackFairnessResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["nonce"] = o.Nonce
-	}
-	if true {
 		toSerialize["serverSeedHash"] = o.ServerSeedHash
 	}
 	if true {
 		toSerialize["clientSeed"] = o.ClientSeed
+	}
+	if true {
+		toSerialize["nonce"] = o.Nonce
 	}
 	if true {
 		toSerialize["revealed"] = o.Revealed
@@ -679,25 +679,25 @@ func (v *NullableGetBuyerPackFairnessResponseData) UnmarshalJSON(src []byte) err
 // GetBuyerPackFairnessResponseDataRevealed struct for GetBuyerPackFairnessResponseDataRevealed
 type GetBuyerPackFairnessResponseDataRevealed struct {
 	Id string `json:"id"`
-	Nonce float32 `json:"nonce"`
-	RevealedAt string `json:"revealedAt"`
 	ServerSeed string `json:"serverSeed"`
 	ServerSeedHash string `json:"serverSeedHash"`
 	ClientSeed string `json:"clientSeed"`
+	Nonce float32 `json:"nonce"`
+	RevealedAt string `json:"revealedAt"`
 }
 
 // NewGetBuyerPackFairnessResponseDataRevealed instantiates a new GetBuyerPackFairnessResponseDataRevealed object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetBuyerPackFairnessResponseDataRevealed(id string, nonce float32, revealedAt string, serverSeed string, serverSeedHash string, clientSeed string) *GetBuyerPackFairnessResponseDataRevealed {
+func NewGetBuyerPackFairnessResponseDataRevealed(id string, serverSeed string, serverSeedHash string, clientSeed string, nonce float32, revealedAt string) *GetBuyerPackFairnessResponseDataRevealed {
 	this := GetBuyerPackFairnessResponseDataRevealed{}
 	this.Id = id
-	this.Nonce = nonce
-	this.RevealedAt = revealedAt
 	this.ServerSeed = serverSeed
 	this.ServerSeedHash = serverSeedHash
 	this.ClientSeed = clientSeed
+	this.Nonce = nonce
+	this.RevealedAt = revealedAt
 	return &this
 }
 
@@ -731,54 +731,6 @@ func (o *GetBuyerPackFairnessResponseDataRevealed) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *GetBuyerPackFairnessResponseDataRevealed) SetId(v string) {
 	o.Id = v
-}
-
-// GetNonce returns the Nonce field value
-func (o *GetBuyerPackFairnessResponseDataRevealed) GetNonce() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Nonce
-}
-
-// GetNonceOk returns a tuple with the Nonce field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPackFairnessResponseDataRevealed) GetNonceOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Nonce, true
-}
-
-// SetNonce sets field value
-func (o *GetBuyerPackFairnessResponseDataRevealed) SetNonce(v float32) {
-	o.Nonce = v
-}
-
-// GetRevealedAt returns the RevealedAt field value
-func (o *GetBuyerPackFairnessResponseDataRevealed) GetRevealedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RevealedAt
-}
-
-// GetRevealedAtOk returns a tuple with the RevealedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetBuyerPackFairnessResponseDataRevealed) GetRevealedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RevealedAt, true
-}
-
-// SetRevealedAt sets field value
-func (o *GetBuyerPackFairnessResponseDataRevealed) SetRevealedAt(v string) {
-	o.RevealedAt = v
 }
 
 // GetServerSeed returns the ServerSeed field value
@@ -853,16 +805,58 @@ func (o *GetBuyerPackFairnessResponseDataRevealed) SetClientSeed(v string) {
 	o.ClientSeed = v
 }
 
+// GetNonce returns the Nonce field value
+func (o *GetBuyerPackFairnessResponseDataRevealed) GetNonce() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Nonce
+}
+
+// GetNonceOk returns a tuple with the Nonce field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPackFairnessResponseDataRevealed) GetNonceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Nonce, true
+}
+
+// SetNonce sets field value
+func (o *GetBuyerPackFairnessResponseDataRevealed) SetNonce(v float32) {
+	o.Nonce = v
+}
+
+// GetRevealedAt returns the RevealedAt field value
+func (o *GetBuyerPackFairnessResponseDataRevealed) GetRevealedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RevealedAt
+}
+
+// GetRevealedAtOk returns a tuple with the RevealedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetBuyerPackFairnessResponseDataRevealed) GetRevealedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RevealedAt, true
+}
+
+// SetRevealedAt sets field value
+func (o *GetBuyerPackFairnessResponseDataRevealed) SetRevealedAt(v string) {
+	o.RevealedAt = v
+}
+
 func (o GetBuyerPackFairnessResponseDataRevealed) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["nonce"] = o.Nonce
-	}
-	if true {
-		toSerialize["revealedAt"] = o.RevealedAt
 	}
 	if true {
 		toSerialize["serverSeed"] = o.ServerSeed
@@ -872,6 +866,12 @@ func (o GetBuyerPackFairnessResponseDataRevealed) MarshalJSON() ([]byte, error) 
 	}
 	if true {
 		toSerialize["clientSeed"] = o.ClientSeed
+	}
+	if true {
+		toSerialize["nonce"] = o.Nonce
+	}
+	if true {
+		toSerialize["revealedAt"] = o.RevealedAt
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1006,32 +1006,32 @@ func (v *NullableGetBuyerPackResponse) UnmarshalJSON(src []byte) error {
 // ListBuyerPackOpeningsItem struct for ListBuyerPackOpeningsItem
 type ListBuyerPackOpeningsItem struct {
 	Id string `json:"id"`
+	PackTitle string `json:"packTitle"`
+	PackSlug string `json:"packSlug"`
 	Status string `json:"status"`
 	PriceCents float32 `json:"priceCents"`
-	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	VaultItemId NullableString `json:"vaultItemId,omitempty"`
-	OpenedAt NullableString `json:"openedAt,omitempty"`
-	TierName NullableString `json:"tierName,omitempty"`
 	ValueCents NullableFloat32 `json:"valueCents,omitempty"`
 	BuybackCents NullableFloat32 `json:"buybackCents,omitempty"`
 	ItemTitle NullableString `json:"itemTitle,omitempty"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	TierName NullableString `json:"tierName,omitempty"`
+	VaultItemId NullableString `json:"vaultItemId,omitempty"`
+	OpenedAt NullableString `json:"openedAt,omitempty"`
 	Proof ListBuyerPackOpeningsItemProof `json:"proof"`
-	PackTitle string `json:"packTitle"`
-	PackSlug string `json:"packSlug"`
 }
 
 // NewListBuyerPackOpeningsItem instantiates a new ListBuyerPackOpeningsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerPackOpeningsItem(id string, status string, priceCents float32, proof ListBuyerPackOpeningsItemProof, packTitle string, packSlug string) *ListBuyerPackOpeningsItem {
+func NewListBuyerPackOpeningsItem(id string, packTitle string, packSlug string, status string, priceCents float32, proof ListBuyerPackOpeningsItemProof) *ListBuyerPackOpeningsItem {
 	this := ListBuyerPackOpeningsItem{}
 	this.Id = id
+	this.PackTitle = packTitle
+	this.PackSlug = packSlug
 	this.Status = status
 	this.PriceCents = priceCents
 	this.Proof = proof
-	this.PackTitle = packTitle
-	this.PackSlug = packSlug
 	return &this
 }
 
@@ -1065,6 +1065,54 @@ func (o *ListBuyerPackOpeningsItem) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *ListBuyerPackOpeningsItem) SetId(v string) {
 	o.Id = v
+}
+
+// GetPackTitle returns the PackTitle field value
+func (o *ListBuyerPackOpeningsItem) GetPackTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PackTitle
+}
+
+// GetPackTitleOk returns a tuple with the PackTitle field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPackOpeningsItem) GetPackTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PackTitle, true
+}
+
+// SetPackTitle sets field value
+func (o *ListBuyerPackOpeningsItem) SetPackTitle(v string) {
+	o.PackTitle = v
+}
+
+// GetPackSlug returns the PackSlug field value
+func (o *ListBuyerPackOpeningsItem) GetPackSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PackSlug
+}
+
+// GetPackSlugOk returns a tuple with the PackSlug field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPackOpeningsItem) GetPackSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PackSlug, true
+}
+
+// SetPackSlug sets field value
+func (o *ListBuyerPackOpeningsItem) SetPackSlug(v string) {
+	o.PackSlug = v
 }
 
 // GetStatus returns the Status field value
@@ -1113,174 +1161,6 @@ func (o *ListBuyerPackOpeningsItem) GetPriceCentsOk() (*float32, bool) {
 // SetPriceCents sets field value
 func (o *ListBuyerPackOpeningsItem) SetPriceCents(v float32) {
 	o.PriceCents = v
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItem) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImageUrl.Get()
-}
-
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItem) GetImageUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
-}
-
-// HasImageUrl returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItem) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *ListBuyerPackOpeningsItem) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *ListBuyerPackOpeningsItem) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *ListBuyerPackOpeningsItem) UnsetImageUrl() {
-	o.ImageUrl.Unset()
-}
-
-// GetVaultItemId returns the VaultItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItem) GetVaultItemId() string {
-	if o == nil || o.VaultItemId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.VaultItemId.Get()
-}
-
-// GetVaultItemIdOk returns a tuple with the VaultItemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItem) GetVaultItemIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.VaultItemId.Get(), o.VaultItemId.IsSet()
-}
-
-// HasVaultItemId returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItem) HasVaultItemId() bool {
-	if o != nil && o.VaultItemId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVaultItemId gets a reference to the given NullableString and assigns it to the VaultItemId field.
-func (o *ListBuyerPackOpeningsItem) SetVaultItemId(v string) {
-	o.VaultItemId.Set(&v)
-}
-// SetVaultItemIdNil sets the value for VaultItemId to be an explicit nil
-func (o *ListBuyerPackOpeningsItem) SetVaultItemIdNil() {
-	o.VaultItemId.Set(nil)
-}
-
-// UnsetVaultItemId ensures that no value is present for VaultItemId, not even an explicit nil
-func (o *ListBuyerPackOpeningsItem) UnsetVaultItemId() {
-	o.VaultItemId.Unset()
-}
-
-// GetOpenedAt returns the OpenedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItem) GetOpenedAt() string {
-	if o == nil || o.OpenedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.OpenedAt.Get()
-}
-
-// GetOpenedAtOk returns a tuple with the OpenedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItem) GetOpenedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.OpenedAt.Get(), o.OpenedAt.IsSet()
-}
-
-// HasOpenedAt returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItem) HasOpenedAt() bool {
-	if o != nil && o.OpenedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOpenedAt gets a reference to the given NullableString and assigns it to the OpenedAt field.
-func (o *ListBuyerPackOpeningsItem) SetOpenedAt(v string) {
-	o.OpenedAt.Set(&v)
-}
-// SetOpenedAtNil sets the value for OpenedAt to be an explicit nil
-func (o *ListBuyerPackOpeningsItem) SetOpenedAtNil() {
-	o.OpenedAt.Set(nil)
-}
-
-// UnsetOpenedAt ensures that no value is present for OpenedAt, not even an explicit nil
-func (o *ListBuyerPackOpeningsItem) UnsetOpenedAt() {
-	o.OpenedAt.Unset()
-}
-
-// GetTierName returns the TierName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItem) GetTierName() string {
-	if o == nil || o.TierName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TierName.Get()
-}
-
-// GetTierNameOk returns a tuple with the TierName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItem) GetTierNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TierName.Get(), o.TierName.IsSet()
-}
-
-// HasTierName returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItem) HasTierName() bool {
-	if o != nil && o.TierName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTierName gets a reference to the given NullableString and assigns it to the TierName field.
-func (o *ListBuyerPackOpeningsItem) SetTierName(v string) {
-	o.TierName.Set(&v)
-}
-// SetTierNameNil sets the value for TierName to be an explicit nil
-func (o *ListBuyerPackOpeningsItem) SetTierNameNil() {
-	o.TierName.Set(nil)
-}
-
-// UnsetTierName ensures that no value is present for TierName, not even an explicit nil
-func (o *ListBuyerPackOpeningsItem) UnsetTierName() {
-	o.TierName.Unset()
 }
 
 // GetValueCents returns the ValueCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1409,6 +1289,174 @@ func (o *ListBuyerPackOpeningsItem) UnsetItemTitle() {
 	o.ItemTitle.Unset()
 }
 
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItem) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItem) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItem) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *ListBuyerPackOpeningsItem) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *ListBuyerPackOpeningsItem) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *ListBuyerPackOpeningsItem) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetTierName returns the TierName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItem) GetTierName() string {
+	if o == nil || o.TierName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TierName.Get()
+}
+
+// GetTierNameOk returns a tuple with the TierName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItem) GetTierNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TierName.Get(), o.TierName.IsSet()
+}
+
+// HasTierName returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItem) HasTierName() bool {
+	if o != nil && o.TierName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTierName gets a reference to the given NullableString and assigns it to the TierName field.
+func (o *ListBuyerPackOpeningsItem) SetTierName(v string) {
+	o.TierName.Set(&v)
+}
+// SetTierNameNil sets the value for TierName to be an explicit nil
+func (o *ListBuyerPackOpeningsItem) SetTierNameNil() {
+	o.TierName.Set(nil)
+}
+
+// UnsetTierName ensures that no value is present for TierName, not even an explicit nil
+func (o *ListBuyerPackOpeningsItem) UnsetTierName() {
+	o.TierName.Unset()
+}
+
+// GetVaultItemId returns the VaultItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItem) GetVaultItemId() string {
+	if o == nil || o.VaultItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VaultItemId.Get()
+}
+
+// GetVaultItemIdOk returns a tuple with the VaultItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItem) GetVaultItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VaultItemId.Get(), o.VaultItemId.IsSet()
+}
+
+// HasVaultItemId returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItem) HasVaultItemId() bool {
+	if o != nil && o.VaultItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVaultItemId gets a reference to the given NullableString and assigns it to the VaultItemId field.
+func (o *ListBuyerPackOpeningsItem) SetVaultItemId(v string) {
+	o.VaultItemId.Set(&v)
+}
+// SetVaultItemIdNil sets the value for VaultItemId to be an explicit nil
+func (o *ListBuyerPackOpeningsItem) SetVaultItemIdNil() {
+	o.VaultItemId.Set(nil)
+}
+
+// UnsetVaultItemId ensures that no value is present for VaultItemId, not even an explicit nil
+func (o *ListBuyerPackOpeningsItem) UnsetVaultItemId() {
+	o.VaultItemId.Unset()
+}
+
+// GetOpenedAt returns the OpenedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItem) GetOpenedAt() string {
+	if o == nil || o.OpenedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OpenedAt.Get()
+}
+
+// GetOpenedAtOk returns a tuple with the OpenedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItem) GetOpenedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OpenedAt.Get(), o.OpenedAt.IsSet()
+}
+
+// HasOpenedAt returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItem) HasOpenedAt() bool {
+	if o != nil && o.OpenedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenedAt gets a reference to the given NullableString and assigns it to the OpenedAt field.
+func (o *ListBuyerPackOpeningsItem) SetOpenedAt(v string) {
+	o.OpenedAt.Set(&v)
+}
+// SetOpenedAtNil sets the value for OpenedAt to be an explicit nil
+func (o *ListBuyerPackOpeningsItem) SetOpenedAtNil() {
+	o.OpenedAt.Set(nil)
+}
+
+// UnsetOpenedAt ensures that no value is present for OpenedAt, not even an explicit nil
+func (o *ListBuyerPackOpeningsItem) UnsetOpenedAt() {
+	o.OpenedAt.Unset()
+}
+
 // GetProof returns the Proof field value
 func (o *ListBuyerPackOpeningsItem) GetProof() ListBuyerPackOpeningsItemProof {
 	if o == nil {
@@ -1433,76 +1481,22 @@ func (o *ListBuyerPackOpeningsItem) SetProof(v ListBuyerPackOpeningsItemProof) {
 	o.Proof = v
 }
 
-// GetPackTitle returns the PackTitle field value
-func (o *ListBuyerPackOpeningsItem) GetPackTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PackTitle
-}
-
-// GetPackTitleOk returns a tuple with the PackTitle field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPackOpeningsItem) GetPackTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PackTitle, true
-}
-
-// SetPackTitle sets field value
-func (o *ListBuyerPackOpeningsItem) SetPackTitle(v string) {
-	o.PackTitle = v
-}
-
-// GetPackSlug returns the PackSlug field value
-func (o *ListBuyerPackOpeningsItem) GetPackSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PackSlug
-}
-
-// GetPackSlugOk returns a tuple with the PackSlug field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPackOpeningsItem) GetPackSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PackSlug, true
-}
-
-// SetPackSlug sets field value
-func (o *ListBuyerPackOpeningsItem) SetPackSlug(v string) {
-	o.PackSlug = v
-}
-
 func (o ListBuyerPackOpeningsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
+		toSerialize["packTitle"] = o.PackTitle
+	}
+	if true {
+		toSerialize["packSlug"] = o.PackSlug
+	}
+	if true {
 		toSerialize["status"] = o.Status
 	}
 	if true {
 		toSerialize["priceCents"] = o.PriceCents
-	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
-	}
-	if o.VaultItemId.IsSet() {
-		toSerialize["vaultItemId"] = o.VaultItemId.Get()
-	}
-	if o.OpenedAt.IsSet() {
-		toSerialize["openedAt"] = o.OpenedAt.Get()
-	}
-	if o.TierName.IsSet() {
-		toSerialize["tierName"] = o.TierName.Get()
 	}
 	if o.ValueCents.IsSet() {
 		toSerialize["valueCents"] = o.ValueCents.Get()
@@ -1513,14 +1507,20 @@ func (o ListBuyerPackOpeningsItem) MarshalJSON() ([]byte, error) {
 	if o.ItemTitle.IsSet() {
 		toSerialize["itemTitle"] = o.ItemTitle.Get()
 	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.TierName.IsSet() {
+		toSerialize["tierName"] = o.TierName.Get()
+	}
+	if o.VaultItemId.IsSet() {
+		toSerialize["vaultItemId"] = o.VaultItemId.Get()
+	}
+	if o.OpenedAt.IsSet() {
+		toSerialize["openedAt"] = o.OpenedAt.Get()
+	}
 	if true {
 		toSerialize["proof"] = o.Proof
-	}
-	if true {
-		toSerialize["packTitle"] = o.PackTitle
-	}
-	if true {
-		toSerialize["packSlug"] = o.PackSlug
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1563,25 +1563,25 @@ func (v *NullableListBuyerPackOpeningsItem) UnmarshalJSON(src []byte) error {
 
 // ListBuyerPackOpeningsItemProof struct for ListBuyerPackOpeningsItemProof
 type ListBuyerPackOpeningsItemProof struct {
-	Nonce float32 `json:"nonce"`
-	TierId NullableString `json:"tierId,omitempty"`
-	ServerSeed NullableString `json:"serverSeed,omitempty"`
 	ServerSeedHash string `json:"serverSeedHash"`
+	ServerSeed NullableString `json:"serverSeed,omitempty"`
 	ClientSeed string `json:"clientSeed"`
-	PoolItemId NullableString `json:"poolItemId,omitempty"`
+	Nonce float32 `json:"nonce"`
 	TierItemIds []string `json:"tierItemIds,omitempty"`
 	TierWeights []ListBuyerPackOpeningsItemProofTierWeights `json:"tierWeights,omitempty"`
+	TierId NullableString `json:"tierId,omitempty"`
+	PoolItemId NullableString `json:"poolItemId,omitempty"`
 }
 
 // NewListBuyerPackOpeningsItemProof instantiates a new ListBuyerPackOpeningsItemProof object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerPackOpeningsItemProof(nonce float32, serverSeedHash string, clientSeed string) *ListBuyerPackOpeningsItemProof {
+func NewListBuyerPackOpeningsItemProof(serverSeedHash string, clientSeed string, nonce float32) *ListBuyerPackOpeningsItemProof {
 	this := ListBuyerPackOpeningsItemProof{}
-	this.Nonce = nonce
 	this.ServerSeedHash = serverSeedHash
 	this.ClientSeed = clientSeed
+	this.Nonce = nonce
 	return &this
 }
 
@@ -1593,70 +1593,28 @@ func NewListBuyerPackOpeningsItemProofWithDefaults() *ListBuyerPackOpeningsItemP
 	return &this
 }
 
-// GetNonce returns the Nonce field value
-func (o *ListBuyerPackOpeningsItemProof) GetNonce() float32 {
+// GetServerSeedHash returns the ServerSeedHash field value
+func (o *ListBuyerPackOpeningsItemProof) GetServerSeedHash() string {
 	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Nonce
-}
-
-// GetNonceOk returns a tuple with the Nonce field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPackOpeningsItemProof) GetNonceOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Nonce, true
-}
-
-// SetNonce sets field value
-func (o *ListBuyerPackOpeningsItemProof) SetNonce(v float32) {
-	o.Nonce = v
-}
-
-// GetTierId returns the TierId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItemProof) GetTierId() string {
-	if o == nil || o.TierId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.TierId.Get()
+
+	return o.ServerSeedHash
 }
 
-// GetTierIdOk returns a tuple with the TierId field value if set, nil otherwise
+// GetServerSeedHashOk returns a tuple with the ServerSeedHash field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItemProof) GetTierIdOk() (*string, bool) {
+func (o *ListBuyerPackOpeningsItemProof) GetServerSeedHashOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.TierId.Get(), o.TierId.IsSet()
+	return &o.ServerSeedHash, true
 }
 
-// HasTierId returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItemProof) HasTierId() bool {
-	if o != nil && o.TierId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTierId gets a reference to the given NullableString and assigns it to the TierId field.
-func (o *ListBuyerPackOpeningsItemProof) SetTierId(v string) {
-	o.TierId.Set(&v)
-}
-// SetTierIdNil sets the value for TierId to be an explicit nil
-func (o *ListBuyerPackOpeningsItemProof) SetTierIdNil() {
-	o.TierId.Set(nil)
-}
-
-// UnsetTierId ensures that no value is present for TierId, not even an explicit nil
-func (o *ListBuyerPackOpeningsItemProof) UnsetTierId() {
-	o.TierId.Unset()
+// SetServerSeedHash sets field value
+func (o *ListBuyerPackOpeningsItemProof) SetServerSeedHash(v string) {
+	o.ServerSeedHash = v
 }
 
 // GetServerSeed returns the ServerSeed field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1701,30 +1659,6 @@ func (o *ListBuyerPackOpeningsItemProof) UnsetServerSeed() {
 	o.ServerSeed.Unset()
 }
 
-// GetServerSeedHash returns the ServerSeedHash field value
-func (o *ListBuyerPackOpeningsItemProof) GetServerSeedHash() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServerSeedHash
-}
-
-// GetServerSeedHashOk returns a tuple with the ServerSeedHash field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPackOpeningsItemProof) GetServerSeedHashOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ServerSeedHash, true
-}
-
-// SetServerSeedHash sets field value
-func (o *ListBuyerPackOpeningsItemProof) SetServerSeedHash(v string) {
-	o.ServerSeedHash = v
-}
-
 // GetClientSeed returns the ClientSeed field value
 func (o *ListBuyerPackOpeningsItemProof) GetClientSeed() string {
 	if o == nil {
@@ -1749,46 +1683,28 @@ func (o *ListBuyerPackOpeningsItemProof) SetClientSeed(v string) {
 	o.ClientSeed = v
 }
 
-// GetPoolItemId returns the PoolItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerPackOpeningsItemProof) GetPoolItemId() string {
-	if o == nil || o.PoolItemId.Get() == nil {
-		var ret string
+// GetNonce returns the Nonce field value
+func (o *ListBuyerPackOpeningsItemProof) GetNonce() float32 {
+	if o == nil {
+		var ret float32
 		return ret
 	}
-	return *o.PoolItemId.Get()
+
+	return o.Nonce
 }
 
-// GetPoolItemIdOk returns a tuple with the PoolItemId field value if set, nil otherwise
+// GetNonceOk returns a tuple with the Nonce field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerPackOpeningsItemProof) GetPoolItemIdOk() (*string, bool) {
+func (o *ListBuyerPackOpeningsItemProof) GetNonceOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.PoolItemId.Get(), o.PoolItemId.IsSet()
+	return &o.Nonce, true
 }
 
-// HasPoolItemId returns a boolean if a field has been set.
-func (o *ListBuyerPackOpeningsItemProof) HasPoolItemId() bool {
-	if o != nil && o.PoolItemId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPoolItemId gets a reference to the given NullableString and assigns it to the PoolItemId field.
-func (o *ListBuyerPackOpeningsItemProof) SetPoolItemId(v string) {
-	o.PoolItemId.Set(&v)
-}
-// SetPoolItemIdNil sets the value for PoolItemId to be an explicit nil
-func (o *ListBuyerPackOpeningsItemProof) SetPoolItemIdNil() {
-	o.PoolItemId.Set(nil)
-}
-
-// UnsetPoolItemId ensures that no value is present for PoolItemId, not even an explicit nil
-func (o *ListBuyerPackOpeningsItemProof) UnsetPoolItemId() {
-	o.PoolItemId.Unset()
+// SetNonce sets field value
+func (o *ListBuyerPackOpeningsItemProof) SetNonce(v float32) {
+	o.Nonce = v
 }
 
 // GetTierItemIds returns the TierItemIds field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1857,31 +1773,115 @@ func (o *ListBuyerPackOpeningsItemProof) SetTierWeights(v []ListBuyerPackOpening
 	o.TierWeights = v
 }
 
+// GetTierId returns the TierId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItemProof) GetTierId() string {
+	if o == nil || o.TierId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TierId.Get()
+}
+
+// GetTierIdOk returns a tuple with the TierId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItemProof) GetTierIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TierId.Get(), o.TierId.IsSet()
+}
+
+// HasTierId returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItemProof) HasTierId() bool {
+	if o != nil && o.TierId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTierId gets a reference to the given NullableString and assigns it to the TierId field.
+func (o *ListBuyerPackOpeningsItemProof) SetTierId(v string) {
+	o.TierId.Set(&v)
+}
+// SetTierIdNil sets the value for TierId to be an explicit nil
+func (o *ListBuyerPackOpeningsItemProof) SetTierIdNil() {
+	o.TierId.Set(nil)
+}
+
+// UnsetTierId ensures that no value is present for TierId, not even an explicit nil
+func (o *ListBuyerPackOpeningsItemProof) UnsetTierId() {
+	o.TierId.Unset()
+}
+
+// GetPoolItemId returns the PoolItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerPackOpeningsItemProof) GetPoolItemId() string {
+	if o == nil || o.PoolItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PoolItemId.Get()
+}
+
+// GetPoolItemIdOk returns a tuple with the PoolItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerPackOpeningsItemProof) GetPoolItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PoolItemId.Get(), o.PoolItemId.IsSet()
+}
+
+// HasPoolItemId returns a boolean if a field has been set.
+func (o *ListBuyerPackOpeningsItemProof) HasPoolItemId() bool {
+	if o != nil && o.PoolItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPoolItemId gets a reference to the given NullableString and assigns it to the PoolItemId field.
+func (o *ListBuyerPackOpeningsItemProof) SetPoolItemId(v string) {
+	o.PoolItemId.Set(&v)
+}
+// SetPoolItemIdNil sets the value for PoolItemId to be an explicit nil
+func (o *ListBuyerPackOpeningsItemProof) SetPoolItemIdNil() {
+	o.PoolItemId.Set(nil)
+}
+
+// UnsetPoolItemId ensures that no value is present for PoolItemId, not even an explicit nil
+func (o *ListBuyerPackOpeningsItemProof) UnsetPoolItemId() {
+	o.PoolItemId.Unset()
+}
+
 func (o ListBuyerPackOpeningsItemProof) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["nonce"] = o.Nonce
-	}
-	if o.TierId.IsSet() {
-		toSerialize["tierId"] = o.TierId.Get()
+		toSerialize["serverSeedHash"] = o.ServerSeedHash
 	}
 	if o.ServerSeed.IsSet() {
 		toSerialize["serverSeed"] = o.ServerSeed.Get()
 	}
 	if true {
-		toSerialize["serverSeedHash"] = o.ServerSeedHash
-	}
-	if true {
 		toSerialize["clientSeed"] = o.ClientSeed
 	}
-	if o.PoolItemId.IsSet() {
-		toSerialize["poolItemId"] = o.PoolItemId.Get()
+	if true {
+		toSerialize["nonce"] = o.Nonce
 	}
 	if o.TierItemIds != nil {
 		toSerialize["tierItemIds"] = o.TierItemIds
 	}
 	if o.TierWeights != nil {
 		toSerialize["tierWeights"] = o.TierWeights
+	}
+	if o.TierId.IsSet() {
+		toSerialize["tierId"] = o.TierId.Get()
+	}
+	if o.PoolItemId.IsSet() {
+		toSerialize["poolItemId"] = o.PoolItemId.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2210,15 +2210,15 @@ func (v *NullableListBuyerPackOpeningsResponse) UnmarshalJSON(src []byte) error 
 // ListBuyerPacksItem struct for ListBuyerPacksItem
 type ListBuyerPacksItem struct {
 	Id string `json:"id"`
-	Status string `json:"status"`
-	Description NullableString `json:"description,omitempty"`
-	Title string `json:"title"`
 	Slug string `json:"slug"`
-	PriceCents float32 `json:"priceCents"`
+	Title string `json:"title"`
+	Description NullableString `json:"description,omitempty"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	Tiers []ListBuyerPacksItemTiers `json:"tiers"`
+	PriceCents float32 `json:"priceCents"`
+	Status string `json:"status"`
 	BuybackBps float32 `json:"buybackBps"`
 	BuybackDays float32 `json:"buybackDays"`
+	Tiers []ListBuyerPacksItemTiers `json:"tiers"`
 	ExpectedValueCents float32 `json:"expectedValueCents"`
 	Openable bool `json:"openable"`
 	Chase []ListBuyerPacksItemChase `json:"chase"`
@@ -2228,16 +2228,16 @@ type ListBuyerPacksItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerPacksItem(id string, status string, title string, slug string, priceCents float32, tiers []ListBuyerPacksItemTiers, buybackBps float32, buybackDays float32, expectedValueCents float32, openable bool, chase []ListBuyerPacksItemChase) *ListBuyerPacksItem {
+func NewListBuyerPacksItem(id string, slug string, title string, priceCents float32, status string, buybackBps float32, buybackDays float32, tiers []ListBuyerPacksItemTiers, expectedValueCents float32, openable bool, chase []ListBuyerPacksItemChase) *ListBuyerPacksItem {
 	this := ListBuyerPacksItem{}
 	this.Id = id
-	this.Status = status
-	this.Title = title
 	this.Slug = slug
+	this.Title = title
 	this.PriceCents = priceCents
-	this.Tiers = tiers
+	this.Status = status
 	this.BuybackBps = buybackBps
 	this.BuybackDays = buybackDays
+	this.Tiers = tiers
 	this.ExpectedValueCents = expectedValueCents
 	this.Openable = openable
 	this.Chase = chase
@@ -2276,28 +2276,52 @@ func (o *ListBuyerPacksItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetStatus returns the Status field value
-func (o *ListBuyerPacksItem) GetStatus() string {
+// GetSlug returns the Slug field value
+func (o *ListBuyerPacksItem) GetSlug() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.Slug
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItem) GetStatusOk() (*string, bool) {
+func (o *ListBuyerPacksItem) GetSlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.Slug, true
 }
 
-// SetStatus sets field value
-func (o *ListBuyerPacksItem) SetStatus(v string) {
-	o.Status = v
+// SetSlug sets field value
+func (o *ListBuyerPacksItem) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetTitle returns the Title field value
+func (o *ListBuyerPacksItem) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPacksItem) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ListBuyerPacksItem) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2342,78 +2366,6 @@ func (o *ListBuyerPacksItem) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetTitle returns the Title field value
-func (o *ListBuyerPacksItem) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItem) GetTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ListBuyerPacksItem) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetSlug returns the Slug field value
-func (o *ListBuyerPacksItem) GetSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Slug
-}
-
-// GetSlugOk returns a tuple with the Slug field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItem) GetSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Slug, true
-}
-
-// SetSlug sets field value
-func (o *ListBuyerPacksItem) SetSlug(v string) {
-	o.Slug = v
-}
-
-// GetPriceCents returns the PriceCents field value
-func (o *ListBuyerPacksItem) GetPriceCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PriceCents
-}
-
-// GetPriceCentsOk returns a tuple with the PriceCents field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItem) GetPriceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PriceCents, true
-}
-
-// SetPriceCents sets field value
-func (o *ListBuyerPacksItem) SetPriceCents(v float32) {
-	o.PriceCents = v
-}
-
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListBuyerPacksItem) GetImageUrl() string {
 	if o == nil || o.ImageUrl.Get() == nil {
@@ -2456,28 +2408,52 @@ func (o *ListBuyerPacksItem) UnsetImageUrl() {
 	o.ImageUrl.Unset()
 }
 
-// GetTiers returns the Tiers field value
-func (o *ListBuyerPacksItem) GetTiers() []ListBuyerPacksItemTiers {
+// GetPriceCents returns the PriceCents field value
+func (o *ListBuyerPacksItem) GetPriceCents() float32 {
 	if o == nil {
-		var ret []ListBuyerPacksItemTiers
+		var ret float32
 		return ret
 	}
 
-	return o.Tiers
+	return o.PriceCents
 }
 
-// GetTiersOk returns a tuple with the Tiers field value
+// GetPriceCentsOk returns a tuple with the PriceCents field value
 // and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItem) GetTiersOk() ([]ListBuyerPacksItemTiers, bool) {
+func (o *ListBuyerPacksItem) GetPriceCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Tiers, true
+	return &o.PriceCents, true
 }
 
-// SetTiers sets field value
-func (o *ListBuyerPacksItem) SetTiers(v []ListBuyerPacksItemTiers) {
-	o.Tiers = v
+// SetPriceCents sets field value
+func (o *ListBuyerPacksItem) SetPriceCents(v float32) {
+	o.PriceCents = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListBuyerPacksItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPacksItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListBuyerPacksItem) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetBuybackBps returns the BuybackBps field value
@@ -2526,6 +2502,30 @@ func (o *ListBuyerPacksItem) GetBuybackDaysOk() (*float32, bool) {
 // SetBuybackDays sets field value
 func (o *ListBuyerPacksItem) SetBuybackDays(v float32) {
 	o.BuybackDays = v
+}
+
+// GetTiers returns the Tiers field value
+func (o *ListBuyerPacksItem) GetTiers() []ListBuyerPacksItemTiers {
+	if o == nil {
+		var ret []ListBuyerPacksItemTiers
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPacksItem) GetTiersOk() ([]ListBuyerPacksItemTiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *ListBuyerPacksItem) SetTiers(v []ListBuyerPacksItemTiers) {
+	o.Tiers = v
 }
 
 // GetExpectedValueCents returns the ExpectedValueCents field value
@@ -2606,31 +2606,31 @@ func (o ListBuyerPacksItem) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+		toSerialize["slug"] = o.Slug
 	}
 	if true {
 		toSerialize["title"] = o.Title
 	}
-	if true {
-		toSerialize["slug"] = o.Slug
-	}
-	if true {
-		toSerialize["priceCents"] = o.PriceCents
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.ImageUrl.IsSet() {
 		toSerialize["imageUrl"] = o.ImageUrl.Get()
 	}
 	if true {
-		toSerialize["tiers"] = o.Tiers
+		toSerialize["priceCents"] = o.PriceCents
+	}
+	if true {
+		toSerialize["status"] = o.Status
 	}
 	if true {
 		toSerialize["buybackBps"] = o.BuybackBps
 	}
 	if true {
 		toSerialize["buybackDays"] = o.BuybackDays
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
 	}
 	if true {
 		toSerialize["expectedValueCents"] = o.ExpectedValueCents
@@ -2896,10 +2896,10 @@ func (v *NullableListBuyerPacksItemChase) UnmarshalJSON(src []byte) error {
 type ListBuyerPacksItemTiers struct {
 	Id string `json:"id"`
 	Name string `json:"name"`
-	Available float32 `json:"available"`
-	MinValueCents NullableFloat32 `json:"minValueCents,omitempty"`
 	Weight float32 `json:"weight"`
 	OddsPct float32 `json:"oddsPct"`
+	Available float32 `json:"available"`
+	MinValueCents NullableFloat32 `json:"minValueCents,omitempty"`
 	MaxValueCents NullableFloat32 `json:"maxValueCents,omitempty"`
 	AvgValueCents float32 `json:"avgValueCents"`
 }
@@ -2908,13 +2908,13 @@ type ListBuyerPacksItemTiers struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerPacksItemTiers(id string, name string, available float32, weight float32, oddsPct float32, avgValueCents float32) *ListBuyerPacksItemTiers {
+func NewListBuyerPacksItemTiers(id string, name string, weight float32, oddsPct float32, available float32, avgValueCents float32) *ListBuyerPacksItemTiers {
 	this := ListBuyerPacksItemTiers{}
 	this.Id = id
 	this.Name = name
-	this.Available = available
 	this.Weight = weight
 	this.OddsPct = oddsPct
+	this.Available = available
 	this.AvgValueCents = avgValueCents
 	return &this
 }
@@ -2973,6 +2973,54 @@ func (o *ListBuyerPacksItemTiers) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *ListBuyerPacksItemTiers) SetName(v string) {
 	o.Name = v
+}
+
+// GetWeight returns the Weight field value
+func (o *ListBuyerPacksItemTiers) GetWeight() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Weight
+}
+
+// GetWeightOk returns a tuple with the Weight field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPacksItemTiers) GetWeightOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Weight, true
+}
+
+// SetWeight sets field value
+func (o *ListBuyerPacksItemTiers) SetWeight(v float32) {
+	o.Weight = v
+}
+
+// GetOddsPct returns the OddsPct field value
+func (o *ListBuyerPacksItemTiers) GetOddsPct() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.OddsPct
+}
+
+// GetOddsPctOk returns a tuple with the OddsPct field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerPacksItemTiers) GetOddsPctOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OddsPct, true
+}
+
+// SetOddsPct sets field value
+func (o *ListBuyerPacksItemTiers) SetOddsPct(v float32) {
+	o.OddsPct = v
 }
 
 // GetAvailable returns the Available field value
@@ -3039,54 +3087,6 @@ func (o *ListBuyerPacksItemTiers) SetMinValueCentsNil() {
 // UnsetMinValueCents ensures that no value is present for MinValueCents, not even an explicit nil
 func (o *ListBuyerPacksItemTiers) UnsetMinValueCents() {
 	o.MinValueCents.Unset()
-}
-
-// GetWeight returns the Weight field value
-func (o *ListBuyerPacksItemTiers) GetWeight() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Weight
-}
-
-// GetWeightOk returns a tuple with the Weight field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItemTiers) GetWeightOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Weight, true
-}
-
-// SetWeight sets field value
-func (o *ListBuyerPacksItemTiers) SetWeight(v float32) {
-	o.Weight = v
-}
-
-// GetOddsPct returns the OddsPct field value
-func (o *ListBuyerPacksItemTiers) GetOddsPct() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.OddsPct
-}
-
-// GetOddsPctOk returns a tuple with the OddsPct field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerPacksItemTiers) GetOddsPctOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OddsPct, true
-}
-
-// SetOddsPct sets field value
-func (o *ListBuyerPacksItemTiers) SetOddsPct(v float32) {
-	o.OddsPct = v
 }
 
 // GetMaxValueCents returns the MaxValueCents field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3164,16 +3164,16 @@ func (o ListBuyerPacksItemTiers) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	if true {
-		toSerialize["available"] = o.Available
-	}
-	if o.MinValueCents.IsSet() {
-		toSerialize["minValueCents"] = o.MinValueCents.Get()
-	}
-	if true {
 		toSerialize["weight"] = o.Weight
 	}
 	if true {
 		toSerialize["oddsPct"] = o.OddsPct
+	}
+	if true {
+		toSerialize["available"] = o.Available
+	}
+	if o.MinValueCents.IsSet() {
+		toSerialize["minValueCents"] = o.MinValueCents.Get()
 	}
 	if o.MaxValueCents.IsSet() {
 		toSerialize["maxValueCents"] = o.MaxValueCents.Get()

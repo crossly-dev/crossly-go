@@ -768,15 +768,15 @@ func (v *NullableCreateCosmCosmeticBuyCbxResponseData) UnmarshalJSON(src []byte)
 type CreateCosmCosmeticBuyCbxResponseDataOwnership struct {
 	Id string `json:"id"`
 	AcquiredAt time.Time `json:"acquiredAt"`
-	RetiredAt NullableTime `json:"retiredAt,omitempty"`
-	MerchantId string `json:"merchantId"`
 	CosmeticId string `json:"cosmeticId"`
+	MerchantId string `json:"merchantId"`
+	RetiredAt NullableTime `json:"retiredAt,omitempty"`
 	SubjectId string `json:"subjectId"`
-	LedgerId NullableString `json:"ledgerId,omitempty"`
-	EditionNumber NullableFloat32 `json:"editionNumber,omitempty"`
 	AcquiredVia string `json:"acquiredVia"`
 	Bound bool `json:"bound"`
 	PaidCents NullableFloat32 `json:"paidCents,omitempty"`
+	LedgerId NullableString `json:"ledgerId,omitempty"`
+	EditionNumber NullableFloat32 `json:"editionNumber,omitempty"`
 	PaymentRef NullableString `json:"paymentRef,omitempty"`
 	RetiredReason NullableString `json:"retiredReason,omitempty"`
 	RequestRef NullableString `json:"requestRef,omitempty"`
@@ -786,12 +786,12 @@ type CreateCosmCosmeticBuyCbxResponseDataOwnership struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCosmCosmeticBuyCbxResponseDataOwnership(id string, acquiredAt time.Time, merchantId string, cosmeticId string, subjectId string, acquiredVia string, bound bool) *CreateCosmCosmeticBuyCbxResponseDataOwnership {
+func NewCreateCosmCosmeticBuyCbxResponseDataOwnership(id string, acquiredAt time.Time, cosmeticId string, merchantId string, subjectId string, acquiredVia string, bound bool) *CreateCosmCosmeticBuyCbxResponseDataOwnership {
 	this := CreateCosmCosmeticBuyCbxResponseDataOwnership{}
 	this.Id = id
 	this.AcquiredAt = acquiredAt
-	this.MerchantId = merchantId
 	this.CosmeticId = cosmeticId
+	this.MerchantId = merchantId
 	this.SubjectId = subjectId
 	this.AcquiredVia = acquiredVia
 	this.Bound = bound
@@ -854,6 +854,54 @@ func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetAcquiredAt(v time.Tim
 	o.AcquiredAt = v
 }
 
+// GetCosmeticId returns the CosmeticId field value
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetCosmeticId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CosmeticId
+}
+
+// GetCosmeticIdOk returns a tuple with the CosmeticId field value
+// and a boolean to check if the value has been set.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetCosmeticIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CosmeticId, true
+}
+
+// SetCosmeticId sets field value
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetCosmeticId(v string) {
+	o.CosmeticId = v
+}
+
+// GetMerchantId returns the MerchantId field value
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetMerchantId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MerchantId
+}
+
+// GetMerchantIdOk returns a tuple with the MerchantId field value
+// and a boolean to check if the value has been set.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetMerchantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MerchantId, true
+}
+
+// SetMerchantId sets field value
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetMerchantId(v string) {
+	o.MerchantId = v
+}
+
 // GetRetiredAt returns the RetiredAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetRetiredAt() time.Time {
 	if o == nil || o.RetiredAt.Get() == nil {
@@ -896,54 +944,6 @@ func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetRetiredAt() {
 	o.RetiredAt.Unset()
 }
 
-// GetMerchantId returns the MerchantId field value
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetMerchantId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.MerchantId
-}
-
-// GetMerchantIdOk returns a tuple with the MerchantId field value
-// and a boolean to check if the value has been set.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetMerchantIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MerchantId, true
-}
-
-// SetMerchantId sets field value
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetMerchantId(v string) {
-	o.MerchantId = v
-}
-
-// GetCosmeticId returns the CosmeticId field value
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetCosmeticId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CosmeticId
-}
-
-// GetCosmeticIdOk returns a tuple with the CosmeticId field value
-// and a boolean to check if the value has been set.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetCosmeticIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CosmeticId, true
-}
-
-// SetCosmeticId sets field value
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetCosmeticId(v string) {
-	o.CosmeticId = v
-}
-
 // GetSubjectId returns the SubjectId field value
 func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetSubjectId() string {
 	if o == nil {
@@ -966,90 +966,6 @@ func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetSubjectIdOk() (*strin
 // SetSubjectId sets field value
 func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetSubjectId(v string) {
 	o.SubjectId = v
-}
-
-// GetLedgerId returns the LedgerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetLedgerId() string {
-	if o == nil || o.LedgerId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LedgerId.Get()
-}
-
-// GetLedgerIdOk returns a tuple with the LedgerId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetLedgerIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LedgerId.Get(), o.LedgerId.IsSet()
-}
-
-// HasLedgerId returns a boolean if a field has been set.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) HasLedgerId() bool {
-	if o != nil && o.LedgerId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLedgerId gets a reference to the given NullableString and assigns it to the LedgerId field.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetLedgerId(v string) {
-	o.LedgerId.Set(&v)
-}
-// SetLedgerIdNil sets the value for LedgerId to be an explicit nil
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetLedgerIdNil() {
-	o.LedgerId.Set(nil)
-}
-
-// UnsetLedgerId ensures that no value is present for LedgerId, not even an explicit nil
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetLedgerId() {
-	o.LedgerId.Unset()
-}
-
-// GetEditionNumber returns the EditionNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetEditionNumber() float32 {
-	if o == nil || o.EditionNumber.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.EditionNumber.Get()
-}
-
-// GetEditionNumberOk returns a tuple with the EditionNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetEditionNumberOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.EditionNumber.Get(), o.EditionNumber.IsSet()
-}
-
-// HasEditionNumber returns a boolean if a field has been set.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) HasEditionNumber() bool {
-	if o != nil && o.EditionNumber.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditionNumber gets a reference to the given NullableFloat32 and assigns it to the EditionNumber field.
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetEditionNumber(v float32) {
-	o.EditionNumber.Set(&v)
-}
-// SetEditionNumberNil sets the value for EditionNumber to be an explicit nil
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetEditionNumberNil() {
-	o.EditionNumber.Set(nil)
-}
-
-// UnsetEditionNumber ensures that no value is present for EditionNumber, not even an explicit nil
-func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetEditionNumber() {
-	o.EditionNumber.Unset()
 }
 
 // GetAcquiredVia returns the AcquiredVia field value
@@ -1140,6 +1056,90 @@ func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetPaidCentsNil() {
 // UnsetPaidCents ensures that no value is present for PaidCents, not even an explicit nil
 func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetPaidCents() {
 	o.PaidCents.Unset()
+}
+
+// GetLedgerId returns the LedgerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetLedgerId() string {
+	if o == nil || o.LedgerId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LedgerId.Get()
+}
+
+// GetLedgerIdOk returns a tuple with the LedgerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetLedgerIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LedgerId.Get(), o.LedgerId.IsSet()
+}
+
+// HasLedgerId returns a boolean if a field has been set.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) HasLedgerId() bool {
+	if o != nil && o.LedgerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLedgerId gets a reference to the given NullableString and assigns it to the LedgerId field.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetLedgerId(v string) {
+	o.LedgerId.Set(&v)
+}
+// SetLedgerIdNil sets the value for LedgerId to be an explicit nil
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetLedgerIdNil() {
+	o.LedgerId.Set(nil)
+}
+
+// UnsetLedgerId ensures that no value is present for LedgerId, not even an explicit nil
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetLedgerId() {
+	o.LedgerId.Unset()
+}
+
+// GetEditionNumber returns the EditionNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetEditionNumber() float32 {
+	if o == nil || o.EditionNumber.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.EditionNumber.Get()
+}
+
+// GetEditionNumberOk returns a tuple with the EditionNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) GetEditionNumberOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EditionNumber.Get(), o.EditionNumber.IsSet()
+}
+
+// HasEditionNumber returns a boolean if a field has been set.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) HasEditionNumber() bool {
+	if o != nil && o.EditionNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditionNumber gets a reference to the given NullableFloat32 and assigns it to the EditionNumber field.
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetEditionNumber(v float32) {
+	o.EditionNumber.Set(&v)
+}
+// SetEditionNumberNil sets the value for EditionNumber to be an explicit nil
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) SetEditionNumberNil() {
+	o.EditionNumber.Set(nil)
+}
+
+// UnsetEditionNumber ensures that no value is present for EditionNumber, not even an explicit nil
+func (o *CreateCosmCosmeticBuyCbxResponseDataOwnership) UnsetEditionNumber() {
+	o.EditionNumber.Unset()
 }
 
 // GetPaymentRef returns the PaymentRef field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1276,23 +1276,17 @@ func (o CreateCosmCosmeticBuyCbxResponseDataOwnership) MarshalJSON() ([]byte, er
 	if true {
 		toSerialize["acquiredAt"] = o.AcquiredAt
 	}
-	if o.RetiredAt.IsSet() {
-		toSerialize["retiredAt"] = o.RetiredAt.Get()
-	}
-	if true {
-		toSerialize["merchantId"] = o.MerchantId
-	}
 	if true {
 		toSerialize["cosmeticId"] = o.CosmeticId
 	}
 	if true {
+		toSerialize["merchantId"] = o.MerchantId
+	}
+	if o.RetiredAt.IsSet() {
+		toSerialize["retiredAt"] = o.RetiredAt.Get()
+	}
+	if true {
 		toSerialize["subjectId"] = o.SubjectId
-	}
-	if o.LedgerId.IsSet() {
-		toSerialize["ledgerId"] = o.LedgerId.Get()
-	}
-	if o.EditionNumber.IsSet() {
-		toSerialize["editionNumber"] = o.EditionNumber.Get()
 	}
 	if true {
 		toSerialize["acquiredVia"] = o.AcquiredVia
@@ -1302,6 +1296,12 @@ func (o CreateCosmCosmeticBuyCbxResponseDataOwnership) MarshalJSON() ([]byte, er
 	}
 	if o.PaidCents.IsSet() {
 		toSerialize["paidCents"] = o.PaidCents.Get()
+	}
+	if o.LedgerId.IsSet() {
+		toSerialize["ledgerId"] = o.LedgerId.Get()
+	}
+	if o.EditionNumber.IsSet() {
+		toSerialize["editionNumber"] = o.EditionNumber.Get()
 	}
 	if o.PaymentRef.IsSet() {
 		toSerialize["paymentRef"] = o.PaymentRef.Get()

@@ -108,8 +108,8 @@ func (v *NullableCreateBuyerWishlistInviteResponse) UnmarshalJSON(src []byte) er
 
 // CreateBuyerWishlistInviteResponseData struct for CreateBuyerWishlistInviteResponseData
 type CreateBuyerWishlistInviteResponseData struct {
-	Url string `json:"url"`
 	Token string `json:"token"`
+	Url string `json:"url"`
 	ExpiresAt string `json:"expiresAt"`
 }
 
@@ -117,10 +117,10 @@ type CreateBuyerWishlistInviteResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBuyerWishlistInviteResponseData(url string, token string, expiresAt string) *CreateBuyerWishlistInviteResponseData {
+func NewCreateBuyerWishlistInviteResponseData(token string, url string, expiresAt string) *CreateBuyerWishlistInviteResponseData {
 	this := CreateBuyerWishlistInviteResponseData{}
-	this.Url = url
 	this.Token = token
+	this.Url = url
 	this.ExpiresAt = expiresAt
 	return &this
 }
@@ -131,30 +131,6 @@ func NewCreateBuyerWishlistInviteResponseData(url string, token string, expiresA
 func NewCreateBuyerWishlistInviteResponseDataWithDefaults() *CreateBuyerWishlistInviteResponseData {
 	this := CreateBuyerWishlistInviteResponseData{}
 	return &this
-}
-
-// GetUrl returns the Url field value
-func (o *CreateBuyerWishlistInviteResponseData) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *CreateBuyerWishlistInviteResponseData) GetUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *CreateBuyerWishlistInviteResponseData) SetUrl(v string) {
-	o.Url = v
 }
 
 // GetToken returns the Token field value
@@ -179,6 +155,30 @@ func (o *CreateBuyerWishlistInviteResponseData) GetTokenOk() (*string, bool) {
 // SetToken sets field value
 func (o *CreateBuyerWishlistInviteResponseData) SetToken(v string) {
 	o.Token = v
+}
+
+// GetUrl returns the Url field value
+func (o *CreateBuyerWishlistInviteResponseData) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *CreateBuyerWishlistInviteResponseData) GetUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *CreateBuyerWishlistInviteResponseData) SetUrl(v string) {
+	o.Url = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value
@@ -208,10 +208,10 @@ func (o *CreateBuyerWishlistInviteResponseData) SetExpiresAt(v string) {
 func (o CreateBuyerWishlistInviteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["url"] = o.Url
+		toSerialize["token"] = o.Token
 	}
 	if true {
-		toSerialize["token"] = o.Token
+		toSerialize["url"] = o.Url
 	}
 	if true {
 		toSerialize["expiresAt"] = o.ExpiresAt
@@ -1834,8 +1834,8 @@ func (v *NullableListBuyerWishlistItemsResponse) UnmarshalJSON(src []byte) error
 
 // ListBuyerWishlistMembersItem struct for ListBuyerWishlistMembersItem
 type ListBuyerWishlistMembersItem struct {
-	Name string `json:"name"`
 	UserId string `json:"userId"`
+	Name string `json:"name"`
 	JoinedAt string `json:"joinedAt"`
 }
 
@@ -1843,10 +1843,10 @@ type ListBuyerWishlistMembersItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerWishlistMembersItem(name string, userId string, joinedAt string) *ListBuyerWishlistMembersItem {
+func NewListBuyerWishlistMembersItem(userId string, name string, joinedAt string) *ListBuyerWishlistMembersItem {
 	this := ListBuyerWishlistMembersItem{}
-	this.Name = name
 	this.UserId = userId
+	this.Name = name
 	this.JoinedAt = joinedAt
 	return &this
 }
@@ -1857,30 +1857,6 @@ func NewListBuyerWishlistMembersItem(name string, userId string, joinedAt string
 func NewListBuyerWishlistMembersItemWithDefaults() *ListBuyerWishlistMembersItem {
 	this := ListBuyerWishlistMembersItem{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *ListBuyerWishlistMembersItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerWishlistMembersItem) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ListBuyerWishlistMembersItem) SetName(v string) {
-	o.Name = v
 }
 
 // GetUserId returns the UserId field value
@@ -1905,6 +1881,30 @@ func (o *ListBuyerWishlistMembersItem) GetUserIdOk() (*string, bool) {
 // SetUserId sets field value
 func (o *ListBuyerWishlistMembersItem) SetUserId(v string) {
 	o.UserId = v
+}
+
+// GetName returns the Name field value
+func (o *ListBuyerWishlistMembersItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerWishlistMembersItem) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ListBuyerWishlistMembersItem) SetName(v string) {
+	o.Name = v
 }
 
 // GetJoinedAt returns the JoinedAt field value
@@ -1934,10 +1934,10 @@ func (o *ListBuyerWishlistMembersItem) SetJoinedAt(v string) {
 func (o ListBuyerWishlistMembersItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["name"] = o.Name
+		toSerialize["userId"] = o.UserId
 	}
 	if true {
-		toSerialize["userId"] = o.UserId
+		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["joinedAt"] = o.JoinedAt
@@ -2692,8 +2692,8 @@ type UpdateBuyerWishlistResponseData struct {
 	ShareUrl NullableString `json:"shareUrl,omitempty"`
 	Id string `json:"id"`
 	Name string `json:"name"`
-	CreatedAt string `json:"createdAt"`
 	IsPublic bool `json:"isPublic"`
+	CreatedAt string `json:"createdAt"`
 	ShareToken NullableString `json:"shareToken,omitempty"`
 }
 
@@ -2701,12 +2701,12 @@ type UpdateBuyerWishlistResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateBuyerWishlistResponseData(id string, name string, createdAt string, isPublic bool) *UpdateBuyerWishlistResponseData {
+func NewUpdateBuyerWishlistResponseData(id string, name string, isPublic bool, createdAt string) *UpdateBuyerWishlistResponseData {
 	this := UpdateBuyerWishlistResponseData{}
 	this.Id = id
 	this.Name = name
-	this.CreatedAt = createdAt
 	this.IsPublic = isPublic
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -2808,30 +2808,6 @@ func (o *UpdateBuyerWishlistResponseData) SetName(v string) {
 	o.Name = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *UpdateBuyerWishlistResponseData) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *UpdateBuyerWishlistResponseData) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *UpdateBuyerWishlistResponseData) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
 // GetIsPublic returns the IsPublic field value
 func (o *UpdateBuyerWishlistResponseData) GetIsPublic() bool {
 	if o == nil {
@@ -2854,6 +2830,30 @@ func (o *UpdateBuyerWishlistResponseData) GetIsPublicOk() (*bool, bool) {
 // SetIsPublic sets field value
 func (o *UpdateBuyerWishlistResponseData) SetIsPublic(v bool) {
 	o.IsPublic = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *UpdateBuyerWishlistResponseData) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *UpdateBuyerWishlistResponseData) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *UpdateBuyerWishlistResponseData) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 // GetShareToken returns the ShareToken field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2910,10 +2910,10 @@ func (o UpdateBuyerWishlistResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["name"] = o.Name
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["isPublic"] = o.IsPublic
 	}
 	if true {
-		toSerialize["isPublic"] = o.IsPublic
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if o.ShareToken.IsSet() {
 		toSerialize["shareToken"] = o.ShareToken.Get()

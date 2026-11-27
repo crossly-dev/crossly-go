@@ -1956,12 +1956,17 @@ type ApiGetBuyerCatalogListingShippingRequest struct {
 	ApiService *BuyerCatalogApiService
 	slug string
 	zip *string
+	state *string
 	country *string
 	quantity *int32
 }
 
 func (r ApiGetBuyerCatalogListingShippingRequest) Zip(zip string) ApiGetBuyerCatalogListingShippingRequest {
 	r.zip = &zip
+	return r
+}
+func (r ApiGetBuyerCatalogListingShippingRequest) State(state string) ApiGetBuyerCatalogListingShippingRequest {
+	r.state = &state
 	return r
 }
 func (r ApiGetBuyerCatalogListingShippingRequest) Country(country string) ApiGetBuyerCatalogListingShippingRequest {
@@ -1980,7 +1985,7 @@ func (r ApiGetBuyerCatalogListingShippingRequest) Execute() (*GetBuyerCatalogLis
 /*
 GetBuyerCatalogListingShipping Shipping services and prices to a destination.
 
-Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote. `shipsToCountry: false` means the seller does not ship there. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote.
+Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote; `state` is optional. `shipsToCountry: false` means the seller does not ship there (`noShipMessage` says why); `partial: true` means a ZIP or postcode could change the answer. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote. A seller on "buyer pays: calculated" prices each allowed carrier service from the live label rate for this parcel plus their handling fee (rates cached 15 minutes): those services carry `carrier` and `carrierService`, and `calculatedAtCheckout: true` means a ZIP is needed first.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param slug
@@ -2018,6 +2023,9 @@ func (a *BuyerCatalogApiService) GetBuyerCatalogListingShippingExecute(r ApiGetB
 
 	if r.zip != nil {
 		localVarQueryParams.Add("zip", parameterToString(*r.zip, ""))
+	}
+	if r.state != nil {
+		localVarQueryParams.Add("state", parameterToString(*r.state, ""))
 	}
 	if r.country != nil {
 		localVarQueryParams.Add("country", parameterToString(*r.country, ""))

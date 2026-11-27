@@ -191,7 +191,7 @@ type ApiCreateBreakCancelRequest struct {
 }
 
 
-func (r ApiCreateBreakCancelRequest) Execute() (*CreateBreakCancelResponse, *http.Response, error) {
+func (r ApiCreateBreakCancelRequest) Execute() (*UpdateGroupBuyResponse, *http.Response, error) {
 	return r.ApiService.CreateBreakCancelExecute(r)
 }
 
@@ -211,13 +211,13 @@ func (a *BreaksApiService) CreateBreakCancel(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return CreateBreakCancelResponse
-func (a *BreaksApiService) CreateBreakCancelExecute(r ApiCreateBreakCancelRequest) (*CreateBreakCancelResponse, *http.Response, error) {
+//  @return UpdateGroupBuyResponse
+func (a *BreaksApiService) CreateBreakCancelExecute(r ApiCreateBreakCancelRequest) (*UpdateGroupBuyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateBreakCancelResponse
+		localVarReturnValue  *UpdateGroupBuyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BreaksApiService.CreateBreakCancel")
@@ -513,7 +513,7 @@ type ApiCreateBreakOpenedRequest struct {
 }
 
 
-func (r ApiCreateBreakOpenedRequest) Execute() (*CreateBreakCancelResponse, *http.Response, error) {
+func (r ApiCreateBreakOpenedRequest) Execute() (*UpdateGroupBuyResponse, *http.Response, error) {
 	return r.ApiService.CreateBreakOpenedExecute(r)
 }
 
@@ -533,13 +533,13 @@ func (a *BreaksApiService) CreateBreakOpened(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return CreateBreakCancelResponse
-func (a *BreaksApiService) CreateBreakOpenedExecute(r ApiCreateBreakOpenedRequest) (*CreateBreakCancelResponse, *http.Response, error) {
+//  @return UpdateGroupBuyResponse
+func (a *BreaksApiService) CreateBreakOpenedExecute(r ApiCreateBreakOpenedRequest) (*UpdateGroupBuyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateBreakCancelResponse
+		localVarReturnValue  *UpdateGroupBuyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BreaksApiService.CreateBreakOpened")
@@ -675,7 +675,7 @@ type ApiCreateBreakSpotHitRequest struct {
 }
 
 
-func (r ApiCreateBreakSpotHitRequest) Execute() (*CreateBreakCancelResponse, *http.Response, error) {
+func (r ApiCreateBreakSpotHitRequest) Execute() (*UpdateGroupBuyResponse, *http.Response, error) {
 	return r.ApiService.CreateBreakSpotHitExecute(r)
 }
 
@@ -697,13 +697,13 @@ func (a *BreaksApiService) CreateBreakSpotHit(ctx context.Context, id string, sp
 }
 
 // Execute executes the request
-//  @return CreateBreakCancelResponse
-func (a *BreaksApiService) CreateBreakSpotHitExecute(r ApiCreateBreakSpotHitRequest) (*CreateBreakCancelResponse, *http.Response, error) {
+//  @return UpdateGroupBuyResponse
+func (a *BreaksApiService) CreateBreakSpotHitExecute(r ApiCreateBreakSpotHitRequest) (*UpdateGroupBuyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateBreakCancelResponse
+		localVarReturnValue  *UpdateGroupBuyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BreaksApiService.CreateBreakSpotHit")

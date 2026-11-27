@@ -421,6 +421,150 @@ func (v *NullableCreateCustomerRefreshProfileResponsePlatforms) UnmarshalJSON(sr
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetCustomerNoteResponse struct for GetCustomerNoteResponse
+type GetCustomerNoteResponse struct {
+	Notes *string `json:"notes,omitempty"`
+	UpdatedAt NullableTime `json:"updatedAt,omitempty"`
+}
+
+// NewGetCustomerNoteResponse instantiates a new GetCustomerNoteResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetCustomerNoteResponse() *GetCustomerNoteResponse {
+	this := GetCustomerNoteResponse{}
+	return &this
+}
+
+// NewGetCustomerNoteResponseWithDefaults instantiates a new GetCustomerNoteResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetCustomerNoteResponseWithDefaults() *GetCustomerNoteResponse {
+	this := GetCustomerNoteResponse{}
+	return &this
+}
+
+// GetNotes returns the Notes field value if set, zero value otherwise.
+func (o *GetCustomerNoteResponse) GetNotes() string {
+	if o == nil || o.Notes == nil {
+		var ret string
+		return ret
+	}
+	return *o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCustomerNoteResponse) GetNotesOk() (*string, bool) {
+	if o == nil || o.Notes == nil {
+		return nil, false
+	}
+	return o.Notes, true
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *GetCustomerNoteResponse) HasNotes() bool {
+	if o != nil && o.Notes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNotes gets a reference to the given string and assigns it to the Notes field.
+func (o *GetCustomerNoteResponse) SetNotes(v string) {
+	o.Notes = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetCustomerNoteResponse) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt.Get()
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetCustomerNoteResponse) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.UpdatedAt.Get(), o.UpdatedAt.IsSet()
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *GetCustomerNoteResponse) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given NullableTime and assigns it to the UpdatedAt field.
+func (o *GetCustomerNoteResponse) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt.Set(&v)
+}
+// SetUpdatedAtNil sets the value for UpdatedAt to be an explicit nil
+func (o *GetCustomerNoteResponse) SetUpdatedAtNil() {
+	o.UpdatedAt.Set(nil)
+}
+
+// UnsetUpdatedAt ensures that no value is present for UpdatedAt, not even an explicit nil
+func (o *GetCustomerNoteResponse) UnsetUpdatedAt() {
+	o.UpdatedAt.Unset()
+}
+
+func (o GetCustomerNoteResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Notes != nil {
+		toSerialize["notes"] = o.Notes
+	}
+	if o.UpdatedAt.IsSet() {
+		toSerialize["updatedAt"] = o.UpdatedAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetCustomerNoteResponse struct {
+	value *GetCustomerNoteResponse
+	isSet bool
+}
+
+func (v NullableGetCustomerNoteResponse) Get() *GetCustomerNoteResponse {
+	return v.value
+}
+
+func (v *NullableGetCustomerNoteResponse) Set(val *GetCustomerNoteResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetCustomerNoteResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetCustomerNoteResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetCustomerNoteResponse(val *GetCustomerNoteResponse) *NullableGetCustomerNoteResponse {
+	return &NullableGetCustomerNoteResponse{value: val, isSet: true}
+}
+
+func (v NullableGetCustomerNoteResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetCustomerNoteResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetCustomerResponse struct for GetCustomerResponse
 type GetCustomerResponse struct {
 	NormalizedHandle string `json:"normalizedHandle"`
@@ -431,13 +575,15 @@ type GetCustomerResponse struct {
 	Contact GetCustomerResponseContact `json:"contact"`
 	Profiles []GetCustomerResponseProfiles `json:"profiles"`
 	Stats GetCustomerResponseStats `json:"stats"`
+	Notes string `json:"notes"`
+	NotesUpdatedAt NullableString `json:"notesUpdatedAt,omitempty"`
 }
 
 // NewGetCustomerResponse instantiates a new GetCustomerResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCustomerResponse(normalizedHandle string, platforms []string, totalOrders float32, totalSpent float32, orders []GetCustomerResponseOrders, contact GetCustomerResponseContact, profiles []GetCustomerResponseProfiles, stats GetCustomerResponseStats) *GetCustomerResponse {
+func NewGetCustomerResponse(normalizedHandle string, platforms []string, totalOrders float32, totalSpent float32, orders []GetCustomerResponseOrders, contact GetCustomerResponseContact, profiles []GetCustomerResponseProfiles, stats GetCustomerResponseStats, notes string) *GetCustomerResponse {
 	this := GetCustomerResponse{}
 	this.NormalizedHandle = normalizedHandle
 	this.Platforms = platforms
@@ -447,6 +593,7 @@ func NewGetCustomerResponse(normalizedHandle string, platforms []string, totalOr
 	this.Contact = contact
 	this.Profiles = profiles
 	this.Stats = stats
+	this.Notes = notes
 	return &this
 }
 
@@ -650,6 +797,72 @@ func (o *GetCustomerResponse) SetStats(v GetCustomerResponseStats) {
 	o.Stats = v
 }
 
+// GetNotes returns the Notes field value
+func (o *GetCustomerResponse) GetNotes() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *GetCustomerResponse) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *GetCustomerResponse) SetNotes(v string) {
+	o.Notes = v
+}
+
+// GetNotesUpdatedAt returns the NotesUpdatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetCustomerResponse) GetNotesUpdatedAt() string {
+	if o == nil || o.NotesUpdatedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.NotesUpdatedAt.Get()
+}
+
+// GetNotesUpdatedAtOk returns a tuple with the NotesUpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetCustomerResponse) GetNotesUpdatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NotesUpdatedAt.Get(), o.NotesUpdatedAt.IsSet()
+}
+
+// HasNotesUpdatedAt returns a boolean if a field has been set.
+func (o *GetCustomerResponse) HasNotesUpdatedAt() bool {
+	if o != nil && o.NotesUpdatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotesUpdatedAt gets a reference to the given NullableString and assigns it to the NotesUpdatedAt field.
+func (o *GetCustomerResponse) SetNotesUpdatedAt(v string) {
+	o.NotesUpdatedAt.Set(&v)
+}
+// SetNotesUpdatedAtNil sets the value for NotesUpdatedAt to be an explicit nil
+func (o *GetCustomerResponse) SetNotesUpdatedAtNil() {
+	o.NotesUpdatedAt.Set(nil)
+}
+
+// UnsetNotesUpdatedAt ensures that no value is present for NotesUpdatedAt, not even an explicit nil
+func (o *GetCustomerResponse) UnsetNotesUpdatedAt() {
+	o.NotesUpdatedAt.Unset()
+}
+
 func (o GetCustomerResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -675,6 +888,12 @@ func (o GetCustomerResponse) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["stats"] = o.Stats
+	}
+	if true {
+		toSerialize["notes"] = o.Notes
+	}
+	if o.NotesUpdatedAt.IsSet() {
+		toSerialize["notesUpdatedAt"] = o.NotesUpdatedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -3812,6 +4031,97 @@ func (v NullableListCustomersResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListCustomersResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// UpdateCustomerNoteRequest struct for UpdateCustomerNoteRequest
+type UpdateCustomerNoteRequest struct {
+	Notes string `json:"notes"`
+}
+
+// NewUpdateCustomerNoteRequest instantiates a new UpdateCustomerNoteRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateCustomerNoteRequest(notes string) *UpdateCustomerNoteRequest {
+	this := UpdateCustomerNoteRequest{}
+	this.Notes = notes
+	return &this
+}
+
+// NewUpdateCustomerNoteRequestWithDefaults instantiates a new UpdateCustomerNoteRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateCustomerNoteRequestWithDefaults() *UpdateCustomerNoteRequest {
+	this := UpdateCustomerNoteRequest{}
+	return &this
+}
+
+// GetNotes returns the Notes field value
+func (o *UpdateCustomerNoteRequest) GetNotes() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *UpdateCustomerNoteRequest) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *UpdateCustomerNoteRequest) SetNotes(v string) {
+	o.Notes = v
+}
+
+func (o UpdateCustomerNoteRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["notes"] = o.Notes
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableUpdateCustomerNoteRequest struct {
+	value *UpdateCustomerNoteRequest
+	isSet bool
+}
+
+func (v NullableUpdateCustomerNoteRequest) Get() *UpdateCustomerNoteRequest {
+	return v.value
+}
+
+func (v *NullableUpdateCustomerNoteRequest) Set(val *UpdateCustomerNoteRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateCustomerNoteRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateCustomerNoteRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateCustomerNoteRequest(val *UpdateCustomerNoteRequest) *NullableUpdateCustomerNoteRequest {
+	return &NullableUpdateCustomerNoteRequest{value: val, isSet: true}
+}
+
+func (v NullableUpdateCustomerNoteRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateCustomerNoteRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

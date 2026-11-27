@@ -12,2132 +12,625 @@ package crossly
 
 import (
 	"encoding/json"
-	"time"
 )
 
-// GetVaultMarketMarketModelResponseCall struct for GetVaultMarketMarketModelResponseCall
-type GetVaultMarketMarketModelResponseCall struct {
-	Id string `json:"id"`
-	Kind string `json:"kind"`
-	OpensAt string `json:"opensAt"`
-	// The published close; the real one is up to 5 s either side of it, at random.
-	ClosesAt string `json:"closesAt"`
-	CloseJitterSeconds float32 `json:"closeJitterSeconds"`
-	IndicativeCents NullableFloat32 `json:"indicativeCents,omitempty"`
-	IndicativeVolume NullableFloat32 `json:"indicativeVolume,omitempty"`
-	ImbalanceSide NullableString `json:"imbalanceSide,omitempty"`
-	IndicativeAt NullableString `json:"indicativeAt,omitempty"`
-	Band NullableGetVaultMarketMarketModelResponseCallBand `json:"band,omitempty"`
+// GetVaultMarketGradingSignalResponseGraders struct for GetVaultMarketGradingSignalResponseGraders
+type GetVaultMarketGradingSignalResponseGraders struct {
+	GraderSlug string `json:"graderSlug"`
+	GraderName string `json:"graderName"`
+	CostCents NullableFloat32 `json:"costCents,omitempty"`
+	Via NullableString `json:"via,omitempty"`
+	RunId NullableString `json:"runId,omitempty"`
+	BreakEvenGradeKey NullableString `json:"breakEvenGradeKey,omitempty"`
+	WorthIt NullableBool `json:"worthIt,omitempty"`
 }
 
-// NewGetVaultMarketMarketModelResponseCall instantiates a new GetVaultMarketMarketModelResponseCall object
+// NewGetVaultMarketGradingSignalResponseGraders instantiates a new GetVaultMarketGradingSignalResponseGraders object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseCall(id string, kind string, opensAt string, closesAt string, closeJitterSeconds float32) *GetVaultMarketMarketModelResponseCall {
-	this := GetVaultMarketMarketModelResponseCall{}
-	this.Id = id
-	this.Kind = kind
-	this.OpensAt = opensAt
-	this.ClosesAt = closesAt
-	this.CloseJitterSeconds = closeJitterSeconds
+func NewGetVaultMarketGradingSignalResponseGraders(graderSlug string, graderName string) *GetVaultMarketGradingSignalResponseGraders {
+	this := GetVaultMarketGradingSignalResponseGraders{}
+	this.GraderSlug = graderSlug
+	this.GraderName = graderName
 	return &this
 }
 
-// NewGetVaultMarketMarketModelResponseCallWithDefaults instantiates a new GetVaultMarketMarketModelResponseCall object
+// NewGetVaultMarketGradingSignalResponseGradersWithDefaults instantiates a new GetVaultMarketGradingSignalResponseGraders object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseCallWithDefaults() *GetVaultMarketMarketModelResponseCall {
-	this := GetVaultMarketMarketModelResponseCall{}
+func NewGetVaultMarketGradingSignalResponseGradersWithDefaults() *GetVaultMarketGradingSignalResponseGraders {
+	this := GetVaultMarketGradingSignalResponseGraders{}
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *GetVaultMarketMarketModelResponseCall) GetId() string {
+// GetGraderSlug returns the GraderSlug field value
+func (o *GetVaultMarketGradingSignalResponseGraders) GetGraderSlug() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Id
+	return o.GraderSlug
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetGraderSlugOk returns a tuple with the GraderSlug field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCall) GetIdOk() (*string, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetGraderSlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.GraderSlug, true
 }
 
-// SetId sets field value
-func (o *GetVaultMarketMarketModelResponseCall) SetId(v string) {
-	o.Id = v
+// SetGraderSlug sets field value
+func (o *GetVaultMarketGradingSignalResponseGraders) SetGraderSlug(v string) {
+	o.GraderSlug = v
 }
 
-// GetKind returns the Kind field value
-func (o *GetVaultMarketMarketModelResponseCall) GetKind() string {
+// GetGraderName returns the GraderName field value
+func (o *GetVaultMarketGradingSignalResponseGraders) GetGraderName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Kind
+	return o.GraderName
 }
 
-// GetKindOk returns a tuple with the Kind field value
+// GetGraderNameOk returns a tuple with the GraderName field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCall) GetKindOk() (*string, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetGraderNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Kind, true
+	return &o.GraderName, true
 }
 
-// SetKind sets field value
-func (o *GetVaultMarketMarketModelResponseCall) SetKind(v string) {
-	o.Kind = v
+// SetGraderName sets field value
+func (o *GetVaultMarketGradingSignalResponseGraders) SetGraderName(v string) {
+	o.GraderName = v
 }
 
-// GetOpensAt returns the OpensAt field value
-func (o *GetVaultMarketMarketModelResponseCall) GetOpensAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OpensAt
-}
-
-// GetOpensAtOk returns a tuple with the OpensAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCall) GetOpensAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OpensAt, true
-}
-
-// SetOpensAt sets field value
-func (o *GetVaultMarketMarketModelResponseCall) SetOpensAt(v string) {
-	o.OpensAt = v
-}
-
-// GetClosesAt returns the ClosesAt field value
-func (o *GetVaultMarketMarketModelResponseCall) GetClosesAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClosesAt
-}
-
-// GetClosesAtOk returns a tuple with the ClosesAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCall) GetClosesAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ClosesAt, true
-}
-
-// SetClosesAt sets field value
-func (o *GetVaultMarketMarketModelResponseCall) SetClosesAt(v string) {
-	o.ClosesAt = v
-}
-
-// GetCloseJitterSeconds returns the CloseJitterSeconds field value
-func (o *GetVaultMarketMarketModelResponseCall) GetCloseJitterSeconds() float32 {
-	if o == nil {
+// GetCostCents returns the CostCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketGradingSignalResponseGraders) GetCostCents() float32 {
+	if o == nil || o.CostCents.Get() == nil {
 		var ret float32
 		return ret
 	}
-
-	return o.CloseJitterSeconds
+	return *o.CostCents.Get()
 }
 
-// GetCloseJitterSecondsOk returns a tuple with the CloseJitterSeconds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCall) GetCloseJitterSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CloseJitterSeconds, true
-}
-
-// SetCloseJitterSeconds sets field value
-func (o *GetVaultMarketMarketModelResponseCall) SetCloseJitterSeconds(v float32) {
-	o.CloseJitterSeconds = v
-}
-
-// GetIndicativeCents returns the IndicativeCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeCents() float32 {
-	if o == nil || o.IndicativeCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.IndicativeCents.Get()
-}
-
-// GetIndicativeCentsOk returns a tuple with the IndicativeCents field value if set, nil otherwise
+// GetCostCentsOk returns a tuple with the CostCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeCentsOk() (*float32, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetCostCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.IndicativeCents.Get(), o.IndicativeCents.IsSet()
+	return o.CostCents.Get(), o.CostCents.IsSet()
 }
 
-// HasIndicativeCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseCall) HasIndicativeCents() bool {
-	if o != nil && o.IndicativeCents.IsSet() {
+// HasCostCents returns a boolean if a field has been set.
+func (o *GetVaultMarketGradingSignalResponseGraders) HasCostCents() bool {
+	if o != nil && o.CostCents.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIndicativeCents gets a reference to the given NullableFloat32 and assigns it to the IndicativeCents field.
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeCents(v float32) {
-	o.IndicativeCents.Set(&v)
+// SetCostCents gets a reference to the given NullableFloat32 and assigns it to the CostCents field.
+func (o *GetVaultMarketGradingSignalResponseGraders) SetCostCents(v float32) {
+	o.CostCents.Set(&v)
 }
-// SetIndicativeCentsNil sets the value for IndicativeCents to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeCentsNil() {
-	o.IndicativeCents.Set(nil)
-}
-
-// UnsetIndicativeCents ensures that no value is present for IndicativeCents, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) UnsetIndicativeCents() {
-	o.IndicativeCents.Unset()
+// SetCostCentsNil sets the value for CostCents to be an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) SetCostCentsNil() {
+	o.CostCents.Set(nil)
 }
 
-// GetIndicativeVolume returns the IndicativeVolume field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeVolume() float32 {
-	if o == nil || o.IndicativeVolume.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.IndicativeVolume.Get()
+// UnsetCostCents ensures that no value is present for CostCents, not even an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) UnsetCostCents() {
+	o.CostCents.Unset()
 }
 
-// GetIndicativeVolumeOk returns a tuple with the IndicativeVolume field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeVolumeOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.IndicativeVolume.Get(), o.IndicativeVolume.IsSet()
-}
-
-// HasIndicativeVolume returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseCall) HasIndicativeVolume() bool {
-	if o != nil && o.IndicativeVolume.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIndicativeVolume gets a reference to the given NullableFloat32 and assigns it to the IndicativeVolume field.
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeVolume(v float32) {
-	o.IndicativeVolume.Set(&v)
-}
-// SetIndicativeVolumeNil sets the value for IndicativeVolume to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeVolumeNil() {
-	o.IndicativeVolume.Set(nil)
-}
-
-// UnsetIndicativeVolume ensures that no value is present for IndicativeVolume, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) UnsetIndicativeVolume() {
-	o.IndicativeVolume.Unset()
-}
-
-// GetImbalanceSide returns the ImbalanceSide field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseCall) GetImbalanceSide() string {
-	if o == nil || o.ImbalanceSide.Get() == nil {
+// GetVia returns the Via field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketGradingSignalResponseGraders) GetVia() string {
+	if o == nil || o.Via.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ImbalanceSide.Get()
+	return *o.Via.Get()
 }
 
-// GetImbalanceSideOk returns a tuple with the ImbalanceSide field value if set, nil otherwise
+// GetViaOk returns a tuple with the Via field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseCall) GetImbalanceSideOk() (*string, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetViaOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ImbalanceSide.Get(), o.ImbalanceSide.IsSet()
+	return o.Via.Get(), o.Via.IsSet()
 }
 
-// HasImbalanceSide returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseCall) HasImbalanceSide() bool {
-	if o != nil && o.ImbalanceSide.IsSet() {
+// HasVia returns a boolean if a field has been set.
+func (o *GetVaultMarketGradingSignalResponseGraders) HasVia() bool {
+	if o != nil && o.Via.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetImbalanceSide gets a reference to the given NullableString and assigns it to the ImbalanceSide field.
-func (o *GetVaultMarketMarketModelResponseCall) SetImbalanceSide(v string) {
-	o.ImbalanceSide.Set(&v)
+// SetVia gets a reference to the given NullableString and assigns it to the Via field.
+func (o *GetVaultMarketGradingSignalResponseGraders) SetVia(v string) {
+	o.Via.Set(&v)
 }
-// SetImbalanceSideNil sets the value for ImbalanceSide to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) SetImbalanceSideNil() {
-	o.ImbalanceSide.Set(nil)
-}
-
-// UnsetImbalanceSide ensures that no value is present for ImbalanceSide, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) UnsetImbalanceSide() {
-	o.ImbalanceSide.Unset()
+// SetViaNil sets the value for Via to be an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) SetViaNil() {
+	o.Via.Set(nil)
 }
 
-// GetIndicativeAt returns the IndicativeAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeAt() string {
-	if o == nil || o.IndicativeAt.Get() == nil {
+// UnsetVia ensures that no value is present for Via, not even an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) UnsetVia() {
+	o.Via.Unset()
+}
+
+// GetRunId returns the RunId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketGradingSignalResponseGraders) GetRunId() string {
+	if o == nil || o.RunId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.IndicativeAt.Get()
+	return *o.RunId.Get()
 }
 
-// GetIndicativeAtOk returns a tuple with the IndicativeAt field value if set, nil otherwise
+// GetRunIdOk returns a tuple with the RunId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseCall) GetIndicativeAtOk() (*string, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetRunIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.IndicativeAt.Get(), o.IndicativeAt.IsSet()
+	return o.RunId.Get(), o.RunId.IsSet()
 }
 
-// HasIndicativeAt returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseCall) HasIndicativeAt() bool {
-	if o != nil && o.IndicativeAt.IsSet() {
+// HasRunId returns a boolean if a field has been set.
+func (o *GetVaultMarketGradingSignalResponseGraders) HasRunId() bool {
+	if o != nil && o.RunId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIndicativeAt gets a reference to the given NullableString and assigns it to the IndicativeAt field.
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeAt(v string) {
-	o.IndicativeAt.Set(&v)
+// SetRunId gets a reference to the given NullableString and assigns it to the RunId field.
+func (o *GetVaultMarketGradingSignalResponseGraders) SetRunId(v string) {
+	o.RunId.Set(&v)
 }
-// SetIndicativeAtNil sets the value for IndicativeAt to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) SetIndicativeAtNil() {
-	o.IndicativeAt.Set(nil)
-}
-
-// UnsetIndicativeAt ensures that no value is present for IndicativeAt, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) UnsetIndicativeAt() {
-	o.IndicativeAt.Unset()
+// SetRunIdNil sets the value for RunId to be an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) SetRunIdNil() {
+	o.RunId.Set(nil)
 }
 
-// GetBand returns the Band field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseCall) GetBand() GetVaultMarketMarketModelResponseCallBand {
-	if o == nil || o.Band.Get() == nil {
-		var ret GetVaultMarketMarketModelResponseCallBand
-		return ret
-	}
-	return *o.Band.Get()
+// UnsetRunId ensures that no value is present for RunId, not even an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) UnsetRunId() {
+	o.RunId.Unset()
 }
 
-// GetBandOk returns a tuple with the Band field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseCall) GetBandOk() (*GetVaultMarketMarketModelResponseCallBand, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Band.Get(), o.Band.IsSet()
-}
-
-// HasBand returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseCall) HasBand() bool {
-	if o != nil && o.Band.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBand gets a reference to the given NullableGetVaultMarketMarketModelResponseCallBand and assigns it to the Band field.
-func (o *GetVaultMarketMarketModelResponseCall) SetBand(v GetVaultMarketMarketModelResponseCallBand) {
-	o.Band.Set(&v)
-}
-// SetBandNil sets the value for Band to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) SetBandNil() {
-	o.Band.Set(nil)
-}
-
-// UnsetBand ensures that no value is present for Band, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseCall) UnsetBand() {
-	o.Band.Unset()
-}
-
-func (o GetVaultMarketMarketModelResponseCall) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["opensAt"] = o.OpensAt
-	}
-	if true {
-		toSerialize["closesAt"] = o.ClosesAt
-	}
-	if true {
-		toSerialize["closeJitterSeconds"] = o.CloseJitterSeconds
-	}
-	if o.IndicativeCents.IsSet() {
-		toSerialize["indicativeCents"] = o.IndicativeCents.Get()
-	}
-	if o.IndicativeVolume.IsSet() {
-		toSerialize["indicativeVolume"] = o.IndicativeVolume.Get()
-	}
-	if o.ImbalanceSide.IsSet() {
-		toSerialize["imbalanceSide"] = o.ImbalanceSide.Get()
-	}
-	if o.IndicativeAt.IsSet() {
-		toSerialize["indicativeAt"] = o.IndicativeAt.Get()
-	}
-	if o.Band.IsSet() {
-		toSerialize["band"] = o.Band.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketModelResponseCall struct {
-	value *GetVaultMarketMarketModelResponseCall
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCall) Get() *GetVaultMarketMarketModelResponseCall {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCall) Set(val *GetVaultMarketMarketModelResponseCall) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCall) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCall) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseCall(val *GetVaultMarketMarketModelResponseCall) *NullableGetVaultMarketMarketModelResponseCall {
-	return &NullableGetVaultMarketMarketModelResponseCall{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCall) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCall) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketModelResponseCallBand struct for GetVaultMarketMarketModelResponseCallBand
-type GetVaultMarketMarketModelResponseCallBand struct {
-	LowerCents float32 `json:"lowerCents"`
-	UpperCents float32 `json:"upperCents"`
-}
-
-// NewGetVaultMarketMarketModelResponseCallBand instantiates a new GetVaultMarketMarketModelResponseCallBand object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseCallBand(lowerCents float32, upperCents float32) *GetVaultMarketMarketModelResponseCallBand {
-	this := GetVaultMarketMarketModelResponseCallBand{}
-	this.LowerCents = lowerCents
-	this.UpperCents = upperCents
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseCallBandWithDefaults instantiates a new GetVaultMarketMarketModelResponseCallBand object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseCallBandWithDefaults() *GetVaultMarketMarketModelResponseCallBand {
-	this := GetVaultMarketMarketModelResponseCallBand{}
-	return &this
-}
-
-// GetLowerCents returns the LowerCents field value
-func (o *GetVaultMarketMarketModelResponseCallBand) GetLowerCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.LowerCents
-}
-
-// GetLowerCentsOk returns a tuple with the LowerCents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCallBand) GetLowerCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LowerCents, true
-}
-
-// SetLowerCents sets field value
-func (o *GetVaultMarketMarketModelResponseCallBand) SetLowerCents(v float32) {
-	o.LowerCents = v
-}
-
-// GetUpperCents returns the UpperCents field value
-func (o *GetVaultMarketMarketModelResponseCallBand) GetUpperCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UpperCents
-}
-
-// GetUpperCentsOk returns a tuple with the UpperCents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseCallBand) GetUpperCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpperCents, true
-}
-
-// SetUpperCents sets field value
-func (o *GetVaultMarketMarketModelResponseCallBand) SetUpperCents(v float32) {
-	o.UpperCents = v
-}
-
-func (o GetVaultMarketMarketModelResponseCallBand) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["lowerCents"] = o.LowerCents
-	}
-	if true {
-		toSerialize["upperCents"] = o.UpperCents
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketModelResponseCallBand struct {
-	value *GetVaultMarketMarketModelResponseCallBand
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCallBand) Get() *GetVaultMarketMarketModelResponseCallBand {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCallBand) Set(val *GetVaultMarketMarketModelResponseCallBand) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCallBand) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCallBand) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseCallBand(val *GetVaultMarketMarketModelResponseCallBand) *NullableGetVaultMarketMarketModelResponseCallBand {
-	return &NullableGetVaultMarketMarketModelResponseCallBand{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseCallBand) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseCallBand) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketModelResponseHalt struct for GetVaultMarketMarketModelResponseHalt
-type GetVaultMarketMarketModelResponseHalt struct {
-	Reason string `json:"reason"`
-	Until NullableTime `json:"until,omitempty"`
-}
-
-// NewGetVaultMarketMarketModelResponseHalt instantiates a new GetVaultMarketMarketModelResponseHalt object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseHalt(reason string) *GetVaultMarketMarketModelResponseHalt {
-	this := GetVaultMarketMarketModelResponseHalt{}
-	this.Reason = reason
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseHaltWithDefaults instantiates a new GetVaultMarketMarketModelResponseHalt object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseHaltWithDefaults() *GetVaultMarketMarketModelResponseHalt {
-	this := GetVaultMarketMarketModelResponseHalt{}
-	return &this
-}
-
-// GetReason returns the Reason field value
-func (o *GetVaultMarketMarketModelResponseHalt) GetReason() string {
-	if o == nil {
+// GetBreakEvenGradeKey returns the BreakEvenGradeKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketGradingSignalResponseGraders) GetBreakEvenGradeKey() string {
+	if o == nil || o.BreakEvenGradeKey.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Reason
+	return *o.BreakEvenGradeKey.Get()
 }
 
-// GetReasonOk returns a tuple with the Reason field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseHalt) GetReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Reason, true
-}
-
-// SetReason sets field value
-func (o *GetVaultMarketMarketModelResponseHalt) SetReason(v string) {
-	o.Reason = v
-}
-
-// GetUntil returns the Until field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseHalt) GetUntil() time.Time {
-	if o == nil || o.Until.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.Until.Get()
-}
-
-// GetUntilOk returns a tuple with the Until field value if set, nil otherwise
+// GetBreakEvenGradeKeyOk returns a tuple with the BreakEvenGradeKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseHalt) GetUntilOk() (*time.Time, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetBreakEvenGradeKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Until.Get(), o.Until.IsSet()
+	return o.BreakEvenGradeKey.Get(), o.BreakEvenGradeKey.IsSet()
 }
 
-// HasUntil returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseHalt) HasUntil() bool {
-	if o != nil && o.Until.IsSet() {
+// HasBreakEvenGradeKey returns a boolean if a field has been set.
+func (o *GetVaultMarketGradingSignalResponseGraders) HasBreakEvenGradeKey() bool {
+	if o != nil && o.BreakEvenGradeKey.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUntil gets a reference to the given NullableTime and assigns it to the Until field.
-func (o *GetVaultMarketMarketModelResponseHalt) SetUntil(v time.Time) {
-	o.Until.Set(&v)
+// SetBreakEvenGradeKey gets a reference to the given NullableString and assigns it to the BreakEvenGradeKey field.
+func (o *GetVaultMarketGradingSignalResponseGraders) SetBreakEvenGradeKey(v string) {
+	o.BreakEvenGradeKey.Set(&v)
 }
-// SetUntilNil sets the value for Until to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseHalt) SetUntilNil() {
-	o.Until.Set(nil)
-}
-
-// UnsetUntil ensures that no value is present for Until, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseHalt) UnsetUntil() {
-	o.Until.Unset()
+// SetBreakEvenGradeKeyNil sets the value for BreakEvenGradeKey to be an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) SetBreakEvenGradeKeyNil() {
+	o.BreakEvenGradeKey.Set(nil)
 }
 
-func (o GetVaultMarketMarketModelResponseHalt) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["reason"] = o.Reason
-	}
-	if o.Until.IsSet() {
-		toSerialize["until"] = o.Until.Get()
-	}
-	return json.Marshal(toSerialize)
+// UnsetBreakEvenGradeKey ensures that no value is present for BreakEvenGradeKey, not even an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) UnsetBreakEvenGradeKey() {
+	o.BreakEvenGradeKey.Unset()
 }
 
-type NullableGetVaultMarketMarketModelResponseHalt struct {
-	value *GetVaultMarketMarketModelResponseHalt
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseHalt) Get() *GetVaultMarketMarketModelResponseHalt {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseHalt) Set(val *GetVaultMarketMarketModelResponseHalt) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseHalt) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseHalt) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseHalt(val *GetVaultMarketMarketModelResponseHalt) *NullableGetVaultMarketMarketModelResponseHalt {
-	return &NullableGetVaultMarketMarketModelResponseHalt{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseHalt) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseHalt) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketModelResponseLuld struct for GetVaultMarketMarketModelResponseLuld
-type GetVaultMarketMarketModelResponseLuld struct {
-	ReferenceCents NullableFloat32 `json:"referenceCents,omitempty"`
-	Band NullableGetVaultMarketMarketModelResponseLuldBand `json:"band,omitempty"`
-	Opening bool `json:"opening"`
-	Phase string `json:"phase"`
-	LimitSince NullableString `json:"limitSince,omitempty"`
-	PausedUntil NullableString `json:"pausedUntil,omitempty"`
-}
-
-// NewGetVaultMarketMarketModelResponseLuld instantiates a new GetVaultMarketMarketModelResponseLuld object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseLuld(opening bool, phase string) *GetVaultMarketMarketModelResponseLuld {
-	this := GetVaultMarketMarketModelResponseLuld{}
-	this.Opening = opening
-	this.Phase = phase
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseLuldWithDefaults instantiates a new GetVaultMarketMarketModelResponseLuld object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseLuldWithDefaults() *GetVaultMarketMarketModelResponseLuld {
-	this := GetVaultMarketMarketModelResponseLuld{}
-	return &this
-}
-
-// GetReferenceCents returns the ReferenceCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseLuld) GetReferenceCents() float32 {
-	if o == nil || o.ReferenceCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ReferenceCents.Get()
-}
-
-// GetReferenceCentsOk returns a tuple with the ReferenceCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseLuld) GetReferenceCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReferenceCents.Get(), o.ReferenceCents.IsSet()
-}
-
-// HasReferenceCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) HasReferenceCents() bool {
-	if o != nil && o.ReferenceCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReferenceCents gets a reference to the given NullableFloat32 and assigns it to the ReferenceCents field.
-func (o *GetVaultMarketMarketModelResponseLuld) SetReferenceCents(v float32) {
-	o.ReferenceCents.Set(&v)
-}
-// SetReferenceCentsNil sets the value for ReferenceCents to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) SetReferenceCentsNil() {
-	o.ReferenceCents.Set(nil)
-}
-
-// UnsetReferenceCents ensures that no value is present for ReferenceCents, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) UnsetReferenceCents() {
-	o.ReferenceCents.Unset()
-}
-
-// GetBand returns the Band field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseLuld) GetBand() GetVaultMarketMarketModelResponseLuldBand {
-	if o == nil || o.Band.Get() == nil {
-		var ret GetVaultMarketMarketModelResponseLuldBand
-		return ret
-	}
-	return *o.Band.Get()
-}
-
-// GetBandOk returns a tuple with the Band field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseLuld) GetBandOk() (*GetVaultMarketMarketModelResponseLuldBand, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Band.Get(), o.Band.IsSet()
-}
-
-// HasBand returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) HasBand() bool {
-	if o != nil && o.Band.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBand gets a reference to the given NullableGetVaultMarketMarketModelResponseLuldBand and assigns it to the Band field.
-func (o *GetVaultMarketMarketModelResponseLuld) SetBand(v GetVaultMarketMarketModelResponseLuldBand) {
-	o.Band.Set(&v)
-}
-// SetBandNil sets the value for Band to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) SetBandNil() {
-	o.Band.Set(nil)
-}
-
-// UnsetBand ensures that no value is present for Band, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) UnsetBand() {
-	o.Band.Unset()
-}
-
-// GetOpening returns the Opening field value
-func (o *GetVaultMarketMarketModelResponseLuld) GetOpening() bool {
-	if o == nil {
+// GetWorthIt returns the WorthIt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketGradingSignalResponseGraders) GetWorthIt() bool {
+	if o == nil || o.WorthIt.Get() == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Opening
+	return *o.WorthIt.Get()
 }
 
-// GetOpeningOk returns a tuple with the Opening field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) GetOpeningOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Opening, true
-}
-
-// SetOpening sets field value
-func (o *GetVaultMarketMarketModelResponseLuld) SetOpening(v bool) {
-	o.Opening = v
-}
-
-// GetPhase returns the Phase field value
-func (o *GetVaultMarketMarketModelResponseLuld) GetPhase() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Phase
-}
-
-// GetPhaseOk returns a tuple with the Phase field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) GetPhaseOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Phase, true
-}
-
-// SetPhase sets field value
-func (o *GetVaultMarketMarketModelResponseLuld) SetPhase(v string) {
-	o.Phase = v
-}
-
-// GetLimitSince returns the LimitSince field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseLuld) GetLimitSince() string {
-	if o == nil || o.LimitSince.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LimitSince.Get()
-}
-
-// GetLimitSinceOk returns a tuple with the LimitSince field value if set, nil otherwise
+// GetWorthItOk returns a tuple with the WorthIt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseLuld) GetLimitSinceOk() (*string, bool) {
+func (o *GetVaultMarketGradingSignalResponseGraders) GetWorthItOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.LimitSince.Get(), o.LimitSince.IsSet()
+	return o.WorthIt.Get(), o.WorthIt.IsSet()
 }
 
-// HasLimitSince returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) HasLimitSince() bool {
-	if o != nil && o.LimitSince.IsSet() {
+// HasWorthIt returns a boolean if a field has been set.
+func (o *GetVaultMarketGradingSignalResponseGraders) HasWorthIt() bool {
+	if o != nil && o.WorthIt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLimitSince gets a reference to the given NullableString and assigns it to the LimitSince field.
-func (o *GetVaultMarketMarketModelResponseLuld) SetLimitSince(v string) {
-	o.LimitSince.Set(&v)
+// SetWorthIt gets a reference to the given NullableBool and assigns it to the WorthIt field.
+func (o *GetVaultMarketGradingSignalResponseGraders) SetWorthIt(v bool) {
+	o.WorthIt.Set(&v)
 }
-// SetLimitSinceNil sets the value for LimitSince to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) SetLimitSinceNil() {
-	o.LimitSince.Set(nil)
-}
-
-// UnsetLimitSince ensures that no value is present for LimitSince, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) UnsetLimitSince() {
-	o.LimitSince.Unset()
+// SetWorthItNil sets the value for WorthIt to be an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) SetWorthItNil() {
+	o.WorthIt.Set(nil)
 }
 
-// GetPausedUntil returns the PausedUntil field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseLuld) GetPausedUntil() string {
-	if o == nil || o.PausedUntil.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PausedUntil.Get()
+// UnsetWorthIt ensures that no value is present for WorthIt, not even an explicit nil
+func (o *GetVaultMarketGradingSignalResponseGraders) UnsetWorthIt() {
+	o.WorthIt.Unset()
 }
 
-// GetPausedUntilOk returns a tuple with the PausedUntil field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseLuld) GetPausedUntilOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PausedUntil.Get(), o.PausedUntil.IsSet()
-}
-
-// HasPausedUntil returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseLuld) HasPausedUntil() bool {
-	if o != nil && o.PausedUntil.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPausedUntil gets a reference to the given NullableString and assigns it to the PausedUntil field.
-func (o *GetVaultMarketMarketModelResponseLuld) SetPausedUntil(v string) {
-	o.PausedUntil.Set(&v)
-}
-// SetPausedUntilNil sets the value for PausedUntil to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) SetPausedUntilNil() {
-	o.PausedUntil.Set(nil)
-}
-
-// UnsetPausedUntil ensures that no value is present for PausedUntil, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseLuld) UnsetPausedUntil() {
-	o.PausedUntil.Unset()
-}
-
-func (o GetVaultMarketMarketModelResponseLuld) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketGradingSignalResponseGraders) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ReferenceCents.IsSet() {
-		toSerialize["referenceCents"] = o.ReferenceCents.Get()
-	}
-	if o.Band.IsSet() {
-		toSerialize["band"] = o.Band.Get()
+	if true {
+		toSerialize["graderSlug"] = o.GraderSlug
 	}
 	if true {
-		toSerialize["opening"] = o.Opening
+		toSerialize["graderName"] = o.GraderName
 	}
-	if true {
-		toSerialize["phase"] = o.Phase
+	if o.CostCents.IsSet() {
+		toSerialize["costCents"] = o.CostCents.Get()
 	}
-	if o.LimitSince.IsSet() {
-		toSerialize["limitSince"] = o.LimitSince.Get()
+	if o.Via.IsSet() {
+		toSerialize["via"] = o.Via.Get()
 	}
-	if o.PausedUntil.IsSet() {
-		toSerialize["pausedUntil"] = o.PausedUntil.Get()
+	if o.RunId.IsSet() {
+		toSerialize["runId"] = o.RunId.Get()
+	}
+	if o.BreakEvenGradeKey.IsSet() {
+		toSerialize["breakEvenGradeKey"] = o.BreakEvenGradeKey.Get()
+	}
+	if o.WorthIt.IsSet() {
+		toSerialize["worthIt"] = o.WorthIt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketMarketModelResponseLuld struct {
-	value *GetVaultMarketMarketModelResponseLuld
+type NullableGetVaultMarketGradingSignalResponseGraders struct {
+	value *GetVaultMarketGradingSignalResponseGraders
 	isSet bool
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuld) Get() *GetVaultMarketMarketModelResponseLuld {
+func (v NullableGetVaultMarketGradingSignalResponseGraders) Get() *GetVaultMarketGradingSignalResponseGraders {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuld) Set(val *GetVaultMarketMarketModelResponseLuld) {
+func (v *NullableGetVaultMarketGradingSignalResponseGraders) Set(val *GetVaultMarketGradingSignalResponseGraders) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuld) IsSet() bool {
+func (v NullableGetVaultMarketGradingSignalResponseGraders) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuld) Unset() {
+func (v *NullableGetVaultMarketGradingSignalResponseGraders) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketMarketModelResponseLuld(val *GetVaultMarketMarketModelResponseLuld) *NullableGetVaultMarketMarketModelResponseLuld {
-	return &NullableGetVaultMarketMarketModelResponseLuld{value: val, isSet: true}
+func NewNullableGetVaultMarketGradingSignalResponseGraders(val *GetVaultMarketGradingSignalResponseGraders) *NullableGetVaultMarketGradingSignalResponseGraders {
+	return &NullableGetVaultMarketGradingSignalResponseGraders{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuld) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketGradingSignalResponseGraders) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuld) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketGradingSignalResponseGraders) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketMarketModelResponseLuldBand struct for GetVaultMarketMarketModelResponseLuldBand
-type GetVaultMarketMarketModelResponseLuldBand struct {
-	ReferenceCents float32 `json:"referenceCents"`
-	BandBps float32 `json:"bandBps"`
-	LowerCents float32 `json:"lowerCents"`
-	UpperCents float32 `json:"upperCents"`
+// GetVaultMarketHallLoanResponse struct for GetVaultMarketHallLoanResponse
+type GetVaultMarketHallLoanResponse struct {
+	Exhibition GetVaultMarketHallLoanResponseExhibition `json:"exhibition"`
+	Rules GetVaultMarketHallLoanResponseRules `json:"rules"`
+	Reputation GetVaultMarketHallLoanResponseReputation `json:"reputation"`
+	Loans []GetVaultMarketHallLoanResponseLoans `json:"loans"`
+	Eligible []GetVaultMarketHallLoanResponseEligible `json:"eligible"`
 }
 
-// NewGetVaultMarketMarketModelResponseLuldBand instantiates a new GetVaultMarketMarketModelResponseLuldBand object
+// NewGetVaultMarketHallLoanResponse instantiates a new GetVaultMarketHallLoanResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseLuldBand(referenceCents float32, bandBps float32, lowerCents float32, upperCents float32) *GetVaultMarketMarketModelResponseLuldBand {
-	this := GetVaultMarketMarketModelResponseLuldBand{}
-	this.ReferenceCents = referenceCents
-	this.BandBps = bandBps
-	this.LowerCents = lowerCents
-	this.UpperCents = upperCents
+func NewGetVaultMarketHallLoanResponse(exhibition GetVaultMarketHallLoanResponseExhibition, rules GetVaultMarketHallLoanResponseRules, reputation GetVaultMarketHallLoanResponseReputation, loans []GetVaultMarketHallLoanResponseLoans, eligible []GetVaultMarketHallLoanResponseEligible) *GetVaultMarketHallLoanResponse {
+	this := GetVaultMarketHallLoanResponse{}
+	this.Exhibition = exhibition
+	this.Rules = rules
+	this.Reputation = reputation
+	this.Loans = loans
+	this.Eligible = eligible
 	return &this
 }
 
-// NewGetVaultMarketMarketModelResponseLuldBandWithDefaults instantiates a new GetVaultMarketMarketModelResponseLuldBand object
+// NewGetVaultMarketHallLoanResponseWithDefaults instantiates a new GetVaultMarketHallLoanResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseLuldBandWithDefaults() *GetVaultMarketMarketModelResponseLuldBand {
-	this := GetVaultMarketMarketModelResponseLuldBand{}
+func NewGetVaultMarketHallLoanResponseWithDefaults() *GetVaultMarketHallLoanResponse {
+	this := GetVaultMarketHallLoanResponse{}
 	return &this
 }
 
-// GetReferenceCents returns the ReferenceCents field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetReferenceCents() float32 {
+// GetExhibition returns the Exhibition field value
+func (o *GetVaultMarketHallLoanResponse) GetExhibition() GetVaultMarketHallLoanResponseExhibition {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHallLoanResponseExhibition
 		return ret
 	}
 
-	return o.ReferenceCents
+	return o.Exhibition
 }
 
-// GetReferenceCentsOk returns a tuple with the ReferenceCents field value
+// GetExhibitionOk returns a tuple with the Exhibition field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetReferenceCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponse) GetExhibitionOk() (*GetVaultMarketHallLoanResponseExhibition, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ReferenceCents, true
+	return &o.Exhibition, true
 }
 
-// SetReferenceCents sets field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) SetReferenceCents(v float32) {
-	o.ReferenceCents = v
+// SetExhibition sets field value
+func (o *GetVaultMarketHallLoanResponse) SetExhibition(v GetVaultMarketHallLoanResponseExhibition) {
+	o.Exhibition = v
 }
 
-// GetBandBps returns the BandBps field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetBandBps() float32 {
+// GetRules returns the Rules field value
+func (o *GetVaultMarketHallLoanResponse) GetRules() GetVaultMarketHallLoanResponseRules {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHallLoanResponseRules
 		return ret
 	}
 
-	return o.BandBps
+	return o.Rules
 }
 
-// GetBandBpsOk returns a tuple with the BandBps field value
+// GetRulesOk returns a tuple with the Rules field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetBandBpsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponse) GetRulesOk() (*GetVaultMarketHallLoanResponseRules, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.BandBps, true
+	return &o.Rules, true
 }
 
-// SetBandBps sets field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) SetBandBps(v float32) {
-	o.BandBps = v
+// SetRules sets field value
+func (o *GetVaultMarketHallLoanResponse) SetRules(v GetVaultMarketHallLoanResponseRules) {
+	o.Rules = v
 }
 
-// GetLowerCents returns the LowerCents field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetLowerCents() float32 {
+// GetReputation returns the Reputation field value
+func (o *GetVaultMarketHallLoanResponse) GetReputation() GetVaultMarketHallLoanResponseReputation {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHallLoanResponseReputation
 		return ret
 	}
 
-	return o.LowerCents
+	return o.Reputation
 }
 
-// GetLowerCentsOk returns a tuple with the LowerCents field value
+// GetReputationOk returns a tuple with the Reputation field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetLowerCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponse) GetReputationOk() (*GetVaultMarketHallLoanResponseReputation, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.LowerCents, true
+	return &o.Reputation, true
 }
 
-// SetLowerCents sets field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) SetLowerCents(v float32) {
-	o.LowerCents = v
+// SetReputation sets field value
+func (o *GetVaultMarketHallLoanResponse) SetReputation(v GetVaultMarketHallLoanResponseReputation) {
+	o.Reputation = v
 }
 
-// GetUpperCents returns the UpperCents field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetUpperCents() float32 {
+// GetLoans returns the Loans field value
+func (o *GetVaultMarketHallLoanResponse) GetLoans() []GetVaultMarketHallLoanResponseLoans {
 	if o == nil {
-		var ret float32
+		var ret []GetVaultMarketHallLoanResponseLoans
 		return ret
 	}
 
-	return o.UpperCents
+	return o.Loans
 }
 
-// GetUpperCentsOk returns a tuple with the UpperCents field value
+// GetLoansOk returns a tuple with the Loans field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseLuldBand) GetUpperCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponse) GetLoansOk() ([]GetVaultMarketHallLoanResponseLoans, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UpperCents, true
+	return o.Loans, true
 }
 
-// SetUpperCents sets field value
-func (o *GetVaultMarketMarketModelResponseLuldBand) SetUpperCents(v float32) {
-	o.UpperCents = v
+// SetLoans sets field value
+func (o *GetVaultMarketHallLoanResponse) SetLoans(v []GetVaultMarketHallLoanResponseLoans) {
+	o.Loans = v
 }
 
-func (o GetVaultMarketMarketModelResponseLuldBand) MarshalJSON() ([]byte, error) {
+// GetEligible returns the Eligible field value
+func (o *GetVaultMarketHallLoanResponse) GetEligible() []GetVaultMarketHallLoanResponseEligible {
+	if o == nil {
+		var ret []GetVaultMarketHallLoanResponseEligible
+		return ret
+	}
+
+	return o.Eligible
+}
+
+// GetEligibleOk returns a tuple with the Eligible field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponse) GetEligibleOk() ([]GetVaultMarketHallLoanResponseEligible, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Eligible, true
+}
+
+// SetEligible sets field value
+func (o *GetVaultMarketHallLoanResponse) SetEligible(v []GetVaultMarketHallLoanResponseEligible) {
+	o.Eligible = v
+}
+
+func (o GetVaultMarketHallLoanResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["referenceCents"] = o.ReferenceCents
+		toSerialize["exhibition"] = o.Exhibition
 	}
 	if true {
-		toSerialize["bandBps"] = o.BandBps
+		toSerialize["rules"] = o.Rules
 	}
 	if true {
-		toSerialize["lowerCents"] = o.LowerCents
+		toSerialize["reputation"] = o.Reputation
 	}
 	if true {
-		toSerialize["upperCents"] = o.UpperCents
+		toSerialize["loans"] = o.Loans
+	}
+	if true {
+		toSerialize["eligible"] = o.Eligible
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketMarketModelResponseLuldBand struct {
-	value *GetVaultMarketMarketModelResponseLuldBand
+type NullableGetVaultMarketHallLoanResponse struct {
+	value *GetVaultMarketHallLoanResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuldBand) Get() *GetVaultMarketMarketModelResponseLuldBand {
+func (v NullableGetVaultMarketHallLoanResponse) Get() *GetVaultMarketHallLoanResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuldBand) Set(val *GetVaultMarketMarketModelResponseLuldBand) {
+func (v *NullableGetVaultMarketHallLoanResponse) Set(val *GetVaultMarketHallLoanResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuldBand) IsSet() bool {
+func (v NullableGetVaultMarketHallLoanResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuldBand) Unset() {
+func (v *NullableGetVaultMarketHallLoanResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketMarketModelResponseLuldBand(val *GetVaultMarketMarketModelResponseLuldBand) *NullableGetVaultMarketMarketModelResponseLuldBand {
-	return &NullableGetVaultMarketMarketModelResponseLuldBand{value: val, isSet: true}
+func NewNullableGetVaultMarketHallLoanResponse(val *GetVaultMarketHallLoanResponse) *NullableGetVaultMarketHallLoanResponse {
+	return &NullableGetVaultMarketHallLoanResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketMarketModelResponseLuldBand) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHallLoanResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketMarketModelResponseLuldBand) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHallLoanResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketMarketModelResponseNextCall struct for GetVaultMarketMarketModelResponseNextCall
-type GetVaultMarketMarketModelResponseNextCall struct {
-	Kind string `json:"kind"`
-	ClosesAt string `json:"closesAt"`
-}
-
-// NewGetVaultMarketMarketModelResponseNextCall instantiates a new GetVaultMarketMarketModelResponseNextCall object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseNextCall(kind string, closesAt string) *GetVaultMarketMarketModelResponseNextCall {
-	this := GetVaultMarketMarketModelResponseNextCall{}
-	this.Kind = kind
-	this.ClosesAt = closesAt
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseNextCallWithDefaults instantiates a new GetVaultMarketMarketModelResponseNextCall object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseNextCallWithDefaults() *GetVaultMarketMarketModelResponseNextCall {
-	this := GetVaultMarketMarketModelResponseNextCall{}
-	return &this
-}
-
-// GetKind returns the Kind field value
-func (o *GetVaultMarketMarketModelResponseNextCall) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseNextCall) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *GetVaultMarketMarketModelResponseNextCall) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetClosesAt returns the ClosesAt field value
-func (o *GetVaultMarketMarketModelResponseNextCall) GetClosesAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClosesAt
-}
-
-// GetClosesAtOk returns a tuple with the ClosesAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseNextCall) GetClosesAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ClosesAt, true
-}
-
-// SetClosesAt sets field value
-func (o *GetVaultMarketMarketModelResponseNextCall) SetClosesAt(v string) {
-	o.ClosesAt = v
-}
-
-func (o GetVaultMarketMarketModelResponseNextCall) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["closesAt"] = o.ClosesAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketModelResponseNextCall struct {
-	value *GetVaultMarketMarketModelResponseNextCall
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseNextCall) Get() *GetVaultMarketMarketModelResponseNextCall {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseNextCall) Set(val *GetVaultMarketMarketModelResponseNextCall) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseNextCall) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseNextCall) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseNextCall(val *GetVaultMarketMarketModelResponseNextCall) *NullableGetVaultMarketMarketModelResponseNextCall {
-	return &NullableGetVaultMarketMarketModelResponseNextCall{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseNextCall) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseNextCall) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketModelResponseRisk struct for GetVaultMarketMarketModelResponseRisk
-type GetVaultMarketMarketModelResponseRisk struct {
-	Leverage bool `json:"leverage"`
-	Shorts bool `json:"shorts"`
-	MarkRisk bool `json:"markRisk"`
-}
-
-// NewGetVaultMarketMarketModelResponseRisk instantiates a new GetVaultMarketMarketModelResponseRisk object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseRisk(leverage bool, shorts bool, markRisk bool) *GetVaultMarketMarketModelResponseRisk {
-	this := GetVaultMarketMarketModelResponseRisk{}
-	this.Leverage = leverage
-	this.Shorts = shorts
-	this.MarkRisk = markRisk
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseRiskWithDefaults instantiates a new GetVaultMarketMarketModelResponseRisk object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseRiskWithDefaults() *GetVaultMarketMarketModelResponseRisk {
-	this := GetVaultMarketMarketModelResponseRisk{}
-	return &this
-}
-
-// GetLeverage returns the Leverage field value
-func (o *GetVaultMarketMarketModelResponseRisk) GetLeverage() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Leverage
-}
-
-// GetLeverageOk returns a tuple with the Leverage field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseRisk) GetLeverageOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Leverage, true
-}
-
-// SetLeverage sets field value
-func (o *GetVaultMarketMarketModelResponseRisk) SetLeverage(v bool) {
-	o.Leverage = v
-}
-
-// GetShorts returns the Shorts field value
-func (o *GetVaultMarketMarketModelResponseRisk) GetShorts() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Shorts
-}
-
-// GetShortsOk returns a tuple with the Shorts field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseRisk) GetShortsOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Shorts, true
-}
-
-// SetShorts sets field value
-func (o *GetVaultMarketMarketModelResponseRisk) SetShorts(v bool) {
-	o.Shorts = v
-}
-
-// GetMarkRisk returns the MarkRisk field value
-func (o *GetVaultMarketMarketModelResponseRisk) GetMarkRisk() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.MarkRisk
-}
-
-// GetMarkRiskOk returns a tuple with the MarkRisk field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseRisk) GetMarkRiskOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MarkRisk, true
-}
-
-// SetMarkRisk sets field value
-func (o *GetVaultMarketMarketModelResponseRisk) SetMarkRisk(v bool) {
-	o.MarkRisk = v
-}
-
-func (o GetVaultMarketMarketModelResponseRisk) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["leverage"] = o.Leverage
-	}
-	if true {
-		toSerialize["shorts"] = o.Shorts
-	}
-	if true {
-		toSerialize["markRisk"] = o.MarkRisk
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketModelResponseRisk struct {
-	value *GetVaultMarketMarketModelResponseRisk
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseRisk) Get() *GetVaultMarketMarketModelResponseRisk {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseRisk) Set(val *GetVaultMarketMarketModelResponseRisk) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseRisk) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseRisk) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseRisk(val *GetVaultMarketMarketModelResponseRisk) *NullableGetVaultMarketMarketModelResponseRisk {
-	return &NullableGetVaultMarketMarketModelResponseRisk{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseRisk) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseRisk) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketModelResponseUpcoming struct for GetVaultMarketMarketModelResponseUpcoming
-type GetVaultMarketMarketModelResponseUpcoming struct {
-	Id string `json:"id"`
-	Kind string `json:"kind"`
-	OpensAt string `json:"opensAt"`
-	// The published close; the real one is up to 5 s either side of it, at random.
-	ClosesAt string `json:"closesAt"`
-	CloseJitterSeconds float32 `json:"closeJitterSeconds"`
-	IndicativeCents NullableFloat32 `json:"indicativeCents,omitempty"`
-	IndicativeVolume NullableFloat32 `json:"indicativeVolume,omitempty"`
-	ImbalanceSide NullableString `json:"imbalanceSide,omitempty"`
-	IndicativeAt NullableString `json:"indicativeAt,omitempty"`
-	Band NullableGetVaultMarketMarketModelResponseCallBand `json:"band,omitempty"`
-}
-
-// NewGetVaultMarketMarketModelResponseUpcoming instantiates a new GetVaultMarketMarketModelResponseUpcoming object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketModelResponseUpcoming(id string, kind string, opensAt string, closesAt string, closeJitterSeconds float32) *GetVaultMarketMarketModelResponseUpcoming {
-	this := GetVaultMarketMarketModelResponseUpcoming{}
-	this.Id = id
-	this.Kind = kind
-	this.OpensAt = opensAt
-	this.ClosesAt = closesAt
-	this.CloseJitterSeconds = closeJitterSeconds
-	return &this
-}
-
-// NewGetVaultMarketMarketModelResponseUpcomingWithDefaults instantiates a new GetVaultMarketMarketModelResponseUpcoming object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketModelResponseUpcomingWithDefaults() *GetVaultMarketMarketModelResponseUpcoming {
-	this := GetVaultMarketMarketModelResponseUpcoming{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetId(v string) {
-	o.Id = v
-}
-
-// GetKind returns the Kind field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetOpensAt returns the OpensAt field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetOpensAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OpensAt
-}
-
-// GetOpensAtOk returns a tuple with the OpensAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetOpensAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OpensAt, true
-}
-
-// SetOpensAt sets field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetOpensAt(v string) {
-	o.OpensAt = v
-}
-
-// GetClosesAt returns the ClosesAt field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetClosesAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClosesAt
-}
-
-// GetClosesAtOk returns a tuple with the ClosesAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetClosesAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ClosesAt, true
-}
-
-// SetClosesAt sets field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetClosesAt(v string) {
-	o.ClosesAt = v
-}
-
-// GetCloseJitterSeconds returns the CloseJitterSeconds field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetCloseJitterSeconds() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.CloseJitterSeconds
-}
-
-// GetCloseJitterSecondsOk returns a tuple with the CloseJitterSeconds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetCloseJitterSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CloseJitterSeconds, true
-}
-
-// SetCloseJitterSeconds sets field value
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetCloseJitterSeconds(v float32) {
-	o.CloseJitterSeconds = v
-}
-
-// GetIndicativeCents returns the IndicativeCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeCents() float32 {
-	if o == nil || o.IndicativeCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.IndicativeCents.Get()
-}
-
-// GetIndicativeCentsOk returns a tuple with the IndicativeCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.IndicativeCents.Get(), o.IndicativeCents.IsSet()
-}
-
-// HasIndicativeCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) HasIndicativeCents() bool {
-	if o != nil && o.IndicativeCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIndicativeCents gets a reference to the given NullableFloat32 and assigns it to the IndicativeCents field.
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeCents(v float32) {
-	o.IndicativeCents.Set(&v)
-}
-// SetIndicativeCentsNil sets the value for IndicativeCents to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeCentsNil() {
-	o.IndicativeCents.Set(nil)
-}
-
-// UnsetIndicativeCents ensures that no value is present for IndicativeCents, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) UnsetIndicativeCents() {
-	o.IndicativeCents.Unset()
-}
-
-// GetIndicativeVolume returns the IndicativeVolume field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeVolume() float32 {
-	if o == nil || o.IndicativeVolume.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.IndicativeVolume.Get()
-}
-
-// GetIndicativeVolumeOk returns a tuple with the IndicativeVolume field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeVolumeOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.IndicativeVolume.Get(), o.IndicativeVolume.IsSet()
-}
-
-// HasIndicativeVolume returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) HasIndicativeVolume() bool {
-	if o != nil && o.IndicativeVolume.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIndicativeVolume gets a reference to the given NullableFloat32 and assigns it to the IndicativeVolume field.
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeVolume(v float32) {
-	o.IndicativeVolume.Set(&v)
-}
-// SetIndicativeVolumeNil sets the value for IndicativeVolume to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeVolumeNil() {
-	o.IndicativeVolume.Set(nil)
-}
-
-// UnsetIndicativeVolume ensures that no value is present for IndicativeVolume, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) UnsetIndicativeVolume() {
-	o.IndicativeVolume.Unset()
-}
-
-// GetImbalanceSide returns the ImbalanceSide field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetImbalanceSide() string {
-	if o == nil || o.ImbalanceSide.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImbalanceSide.Get()
-}
-
-// GetImbalanceSideOk returns a tuple with the ImbalanceSide field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetImbalanceSideOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImbalanceSide.Get(), o.ImbalanceSide.IsSet()
-}
-
-// HasImbalanceSide returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) HasImbalanceSide() bool {
-	if o != nil && o.ImbalanceSide.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImbalanceSide gets a reference to the given NullableString and assigns it to the ImbalanceSide field.
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetImbalanceSide(v string) {
-	o.ImbalanceSide.Set(&v)
-}
-// SetImbalanceSideNil sets the value for ImbalanceSide to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetImbalanceSideNil() {
-	o.ImbalanceSide.Set(nil)
-}
-
-// UnsetImbalanceSide ensures that no value is present for ImbalanceSide, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) UnsetImbalanceSide() {
-	o.ImbalanceSide.Unset()
-}
-
-// GetIndicativeAt returns the IndicativeAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeAt() string {
-	if o == nil || o.IndicativeAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.IndicativeAt.Get()
-}
-
-// GetIndicativeAtOk returns a tuple with the IndicativeAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetIndicativeAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.IndicativeAt.Get(), o.IndicativeAt.IsSet()
-}
-
-// HasIndicativeAt returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) HasIndicativeAt() bool {
-	if o != nil && o.IndicativeAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIndicativeAt gets a reference to the given NullableString and assigns it to the IndicativeAt field.
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeAt(v string) {
-	o.IndicativeAt.Set(&v)
-}
-// SetIndicativeAtNil sets the value for IndicativeAt to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetIndicativeAtNil() {
-	o.IndicativeAt.Set(nil)
-}
-
-// UnsetIndicativeAt ensures that no value is present for IndicativeAt, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) UnsetIndicativeAt() {
-	o.IndicativeAt.Unset()
-}
-
-// GetBand returns the Band field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetBand() GetVaultMarketMarketModelResponseCallBand {
-	if o == nil || o.Band.Get() == nil {
-		var ret GetVaultMarketMarketModelResponseCallBand
-		return ret
-	}
-	return *o.Band.Get()
-}
-
-// GetBandOk returns a tuple with the Band field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketModelResponseUpcoming) GetBandOk() (*GetVaultMarketMarketModelResponseCallBand, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Band.Get(), o.Band.IsSet()
-}
-
-// HasBand returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketModelResponseUpcoming) HasBand() bool {
-	if o != nil && o.Band.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBand gets a reference to the given NullableGetVaultMarketMarketModelResponseCallBand and assigns it to the Band field.
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetBand(v GetVaultMarketMarketModelResponseCallBand) {
-	o.Band.Set(&v)
-}
-// SetBandNil sets the value for Band to be an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) SetBandNil() {
-	o.Band.Set(nil)
-}
-
-// UnsetBand ensures that no value is present for Band, not even an explicit nil
-func (o *GetVaultMarketMarketModelResponseUpcoming) UnsetBand() {
-	o.Band.Unset()
-}
-
-func (o GetVaultMarketMarketModelResponseUpcoming) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["opensAt"] = o.OpensAt
-	}
-	if true {
-		toSerialize["closesAt"] = o.ClosesAt
-	}
-	if true {
-		toSerialize["closeJitterSeconds"] = o.CloseJitterSeconds
-	}
-	if o.IndicativeCents.IsSet() {
-		toSerialize["indicativeCents"] = o.IndicativeCents.Get()
-	}
-	if o.IndicativeVolume.IsSet() {
-		toSerialize["indicativeVolume"] = o.IndicativeVolume.Get()
-	}
-	if o.ImbalanceSide.IsSet() {
-		toSerialize["imbalanceSide"] = o.ImbalanceSide.Get()
-	}
-	if o.IndicativeAt.IsSet() {
-		toSerialize["indicativeAt"] = o.IndicativeAt.Get()
-	}
-	if o.Band.IsSet() {
-		toSerialize["band"] = o.Band.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketModelResponseUpcoming struct {
-	value *GetVaultMarketMarketModelResponseUpcoming
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketModelResponseUpcoming) Get() *GetVaultMarketMarketModelResponseUpcoming {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseUpcoming) Set(val *GetVaultMarketMarketModelResponseUpcoming) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketModelResponseUpcoming) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseUpcoming) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketModelResponseUpcoming(val *GetVaultMarketMarketModelResponseUpcoming) *NullableGetVaultMarketMarketModelResponseUpcoming {
-	return &NullableGetVaultMarketMarketModelResponseUpcoming{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketModelResponseUpcoming) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketModelResponseUpcoming) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponse struct for GetVaultMarketMarketResponse
-type GetVaultMarketMarketResponse struct {
-	Mark GetVaultMarketMarketResponseMark `json:"mark"`
-	MarkRead GetVaultMarketMarketResponseMarkRead `json:"markRead"`
-	History []GetVaultMarketMarketResponseHistory `json:"history"`
-	Lending GetVaultMarketMarketResponseLending `json:"lending"`
-	Tier GetVaultMarketMarketResponseTier `json:"tier"`
-	OpenInterest GetVaultMarketMarketResponseOpenInterest `json:"openInterest"`
-	Auctions []GetVaultMarketMarketResponseAuctions `json:"auctions"`
-	Label string `json:"label"`
+// GetVaultMarketHallLoanResponseEligible struct for GetVaultMarketHallLoanResponseEligible
+type GetVaultMarketHallLoanResponseEligible struct {
+	VaultItemId string `json:"vaultItemId"`
 	SkuId string `json:"skuId"`
-	SkuName NullableString `json:"skuName,omitempty"`
+	Name string `json:"name"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	Key ListVaultMarketOpeningItemKey `json:"key"`
-	BookKey string `json:"bookKey"`
+	Grade NullableString `json:"grade,omitempty"`
+	CanLend bool `json:"canLend"`
+	Blocker NullableString `json:"blocker,omitempty"`
+	Next CreateVaultMarketHallLoanResponseNext `json:"next"`
 }
 
-// NewGetVaultMarketMarketResponse instantiates a new GetVaultMarketMarketResponse object
+// NewGetVaultMarketHallLoanResponseEligible instantiates a new GetVaultMarketHallLoanResponseEligible object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponse(mark GetVaultMarketMarketResponseMark, markRead GetVaultMarketMarketResponseMarkRead, history []GetVaultMarketMarketResponseHistory, lending GetVaultMarketMarketResponseLending, tier GetVaultMarketMarketResponseTier, openInterest GetVaultMarketMarketResponseOpenInterest, auctions []GetVaultMarketMarketResponseAuctions, label string, skuId string, key ListVaultMarketOpeningItemKey, bookKey string) *GetVaultMarketMarketResponse {
-	this := GetVaultMarketMarketResponse{}
-	this.Mark = mark
-	this.MarkRead = markRead
-	this.History = history
-	this.Lending = lending
-	this.Tier = tier
-	this.OpenInterest = openInterest
-	this.Auctions = auctions
-	this.Label = label
+func NewGetVaultMarketHallLoanResponseEligible(vaultItemId string, skuId string, name string, canLend bool, next CreateVaultMarketHallLoanResponseNext) *GetVaultMarketHallLoanResponseEligible {
+	this := GetVaultMarketHallLoanResponseEligible{}
+	this.VaultItemId = vaultItemId
 	this.SkuId = skuId
-	this.Key = key
-	this.BookKey = bookKey
+	this.Name = name
+	this.CanLend = canLend
+	this.Next = next
 	return &this
 }
 
-// NewGetVaultMarketMarketResponseWithDefaults instantiates a new GetVaultMarketMarketResponse object
+// NewGetVaultMarketHallLoanResponseEligibleWithDefaults instantiates a new GetVaultMarketHallLoanResponseEligible object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseWithDefaults() *GetVaultMarketMarketResponse {
-	this := GetVaultMarketMarketResponse{}
+func NewGetVaultMarketHallLoanResponseEligibleWithDefaults() *GetVaultMarketHallLoanResponseEligible {
+	this := GetVaultMarketHallLoanResponseEligible{}
 	return &this
 }
 
-// GetMark returns the Mark field value
-func (o *GetVaultMarketMarketResponse) GetMark() GetVaultMarketMarketResponseMark {
-	if o == nil {
-		var ret GetVaultMarketMarketResponseMark
-		return ret
-	}
-
-	return o.Mark
-}
-
-// GetMarkOk returns a tuple with the Mark field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetMarkOk() (*GetVaultMarketMarketResponseMark, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Mark, true
-}
-
-// SetMark sets field value
-func (o *GetVaultMarketMarketResponse) SetMark(v GetVaultMarketMarketResponseMark) {
-	o.Mark = v
-}
-
-// GetMarkRead returns the MarkRead field value
-func (o *GetVaultMarketMarketResponse) GetMarkRead() GetVaultMarketMarketResponseMarkRead {
-	if o == nil {
-		var ret GetVaultMarketMarketResponseMarkRead
-		return ret
-	}
-
-	return o.MarkRead
-}
-
-// GetMarkReadOk returns a tuple with the MarkRead field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetMarkReadOk() (*GetVaultMarketMarketResponseMarkRead, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MarkRead, true
-}
-
-// SetMarkRead sets field value
-func (o *GetVaultMarketMarketResponse) SetMarkRead(v GetVaultMarketMarketResponseMarkRead) {
-	o.MarkRead = v
-}
-
-// GetHistory returns the History field value
-func (o *GetVaultMarketMarketResponse) GetHistory() []GetVaultMarketMarketResponseHistory {
-	if o == nil {
-		var ret []GetVaultMarketMarketResponseHistory
-		return ret
-	}
-
-	return o.History
-}
-
-// GetHistoryOk returns a tuple with the History field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetHistoryOk() ([]GetVaultMarketMarketResponseHistory, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.History, true
-}
-
-// SetHistory sets field value
-func (o *GetVaultMarketMarketResponse) SetHistory(v []GetVaultMarketMarketResponseHistory) {
-	o.History = v
-}
-
-// GetLending returns the Lending field value
-func (o *GetVaultMarketMarketResponse) GetLending() GetVaultMarketMarketResponseLending {
-	if o == nil {
-		var ret GetVaultMarketMarketResponseLending
-		return ret
-	}
-
-	return o.Lending
-}
-
-// GetLendingOk returns a tuple with the Lending field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetLendingOk() (*GetVaultMarketMarketResponseLending, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Lending, true
-}
-
-// SetLending sets field value
-func (o *GetVaultMarketMarketResponse) SetLending(v GetVaultMarketMarketResponseLending) {
-	o.Lending = v
-}
-
-// GetTier returns the Tier field value
-func (o *GetVaultMarketMarketResponse) GetTier() GetVaultMarketMarketResponseTier {
-	if o == nil {
-		var ret GetVaultMarketMarketResponseTier
-		return ret
-	}
-
-	return o.Tier
-}
-
-// GetTierOk returns a tuple with the Tier field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetTierOk() (*GetVaultMarketMarketResponseTier, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Tier, true
-}
-
-// SetTier sets field value
-func (o *GetVaultMarketMarketResponse) SetTier(v GetVaultMarketMarketResponseTier) {
-	o.Tier = v
-}
-
-// GetOpenInterest returns the OpenInterest field value
-func (o *GetVaultMarketMarketResponse) GetOpenInterest() GetVaultMarketMarketResponseOpenInterest {
-	if o == nil {
-		var ret GetVaultMarketMarketResponseOpenInterest
-		return ret
-	}
-
-	return o.OpenInterest
-}
-
-// GetOpenInterestOk returns a tuple with the OpenInterest field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetOpenInterestOk() (*GetVaultMarketMarketResponseOpenInterest, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OpenInterest, true
-}
-
-// SetOpenInterest sets field value
-func (o *GetVaultMarketMarketResponse) SetOpenInterest(v GetVaultMarketMarketResponseOpenInterest) {
-	o.OpenInterest = v
-}
-
-// GetAuctions returns the Auctions field value
-func (o *GetVaultMarketMarketResponse) GetAuctions() []GetVaultMarketMarketResponseAuctions {
-	if o == nil {
-		var ret []GetVaultMarketMarketResponseAuctions
-		return ret
-	}
-
-	return o.Auctions
-}
-
-// GetAuctionsOk returns a tuple with the Auctions field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetAuctionsOk() ([]GetVaultMarketMarketResponseAuctions, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Auctions, true
-}
-
-// SetAuctions sets field value
-func (o *GetVaultMarketMarketResponse) SetAuctions(v []GetVaultMarketMarketResponseAuctions) {
-	o.Auctions = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetVaultMarketMarketResponse) GetLabel() string {
+// GetVaultItemId returns the VaultItemId field value
+func (o *GetVaultMarketHallLoanResponseEligible) GetVaultItemId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Label
+	return o.VaultItemId
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetVaultItemIdOk returns a tuple with the VaultItemId field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetLabelOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseEligible) GetVaultItemIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Label, true
+	return &o.VaultItemId, true
 }
 
-// SetLabel sets field value
-func (o *GetVaultMarketMarketResponse) SetLabel(v string) {
-	o.Label = v
+// SetVaultItemId sets field value
+func (o *GetVaultMarketHallLoanResponseEligible) SetVaultItemId(v string) {
+	o.VaultItemId = v
 }
 
 // GetSkuId returns the SkuId field value
-func (o *GetVaultMarketMarketResponse) GetSkuId() string {
+func (o *GetVaultMarketHallLoanResponseEligible) GetSkuId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -2148,7 +641,7 @@ func (o *GetVaultMarketMarketResponse) GetSkuId() string {
 
 // GetSkuIdOk returns a tuple with the SkuId field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetSkuIdOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseEligible) GetSkuIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2156,2329 +649,12 @@ func (o *GetVaultMarketMarketResponse) GetSkuIdOk() (*string, bool) {
 }
 
 // SetSkuId sets field value
-func (o *GetVaultMarketMarketResponse) SetSkuId(v string) {
+func (o *GetVaultMarketHallLoanResponseEligible) SetSkuId(v string) {
 	o.SkuId = v
 }
 
-// GetSkuName returns the SkuName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponse) GetSkuName() string {
-	if o == nil || o.SkuName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SkuName.Get()
-}
-
-// GetSkuNameOk returns a tuple with the SkuName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponse) GetSkuNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SkuName.Get(), o.SkuName.IsSet()
-}
-
-// HasSkuName returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponse) HasSkuName() bool {
-	if o != nil && o.SkuName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSkuName gets a reference to the given NullableString and assigns it to the SkuName field.
-func (o *GetVaultMarketMarketResponse) SetSkuName(v string) {
-	o.SkuName.Set(&v)
-}
-// SetSkuNameNil sets the value for SkuName to be an explicit nil
-func (o *GetVaultMarketMarketResponse) SetSkuNameNil() {
-	o.SkuName.Set(nil)
-}
-
-// UnsetSkuName ensures that no value is present for SkuName, not even an explicit nil
-func (o *GetVaultMarketMarketResponse) UnsetSkuName() {
-	o.SkuName.Unset()
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponse) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImageUrl.Get()
-}
-
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponse) GetImageUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
-}
-
-// HasImageUrl returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponse) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *GetVaultMarketMarketResponse) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *GetVaultMarketMarketResponse) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *GetVaultMarketMarketResponse) UnsetImageUrl() {
-	o.ImageUrl.Unset()
-}
-
-// GetKey returns the Key field value
-func (o *GetVaultMarketMarketResponse) GetKey() ListVaultMarketOpeningItemKey {
-	if o == nil {
-		var ret ListVaultMarketOpeningItemKey
-		return ret
-	}
-
-	return o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetKeyOk() (*ListVaultMarketOpeningItemKey, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Key, true
-}
-
-// SetKey sets field value
-func (o *GetVaultMarketMarketResponse) SetKey(v ListVaultMarketOpeningItemKey) {
-	o.Key = v
-}
-
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketMarketResponse) GetBookKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BookKey
-}
-
-// GetBookKeyOk returns a tuple with the BookKey field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponse) GetBookKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BookKey, true
-}
-
-// SetBookKey sets field value
-func (o *GetVaultMarketMarketResponse) SetBookKey(v string) {
-	o.BookKey = v
-}
-
-func (o GetVaultMarketMarketResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mark"] = o.Mark
-	}
-	if true {
-		toSerialize["markRead"] = o.MarkRead
-	}
-	if true {
-		toSerialize["history"] = o.History
-	}
-	if true {
-		toSerialize["lending"] = o.Lending
-	}
-	if true {
-		toSerialize["tier"] = o.Tier
-	}
-	if true {
-		toSerialize["openInterest"] = o.OpenInterest
-	}
-	if true {
-		toSerialize["auctions"] = o.Auctions
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["skuId"] = o.SkuId
-	}
-	if o.SkuName.IsSet() {
-		toSerialize["skuName"] = o.SkuName.Get()
-	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
-	}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["bookKey"] = o.BookKey
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponse struct {
-	value *GetVaultMarketMarketResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponse) Get() *GetVaultMarketMarketResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponse) Set(val *GetVaultMarketMarketResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponse(val *GetVaultMarketMarketResponse) *NullableGetVaultMarketMarketResponse {
-	return &NullableGetVaultMarketMarketResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseAuctions struct for GetVaultMarketMarketResponseAuctions
-type GetVaultMarketMarketResponseAuctions struct {
-	Id string `json:"id"`
-	Kind string `json:"kind"`
-	EndsAt time.Time `json:"endsAt"`
-}
-
-// NewGetVaultMarketMarketResponseAuctions instantiates a new GetVaultMarketMarketResponseAuctions object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseAuctions(id string, kind string, endsAt time.Time) *GetVaultMarketMarketResponseAuctions {
-	this := GetVaultMarketMarketResponseAuctions{}
-	this.Id = id
-	this.Kind = kind
-	this.EndsAt = endsAt
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseAuctionsWithDefaults instantiates a new GetVaultMarketMarketResponseAuctions object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseAuctionsWithDefaults() *GetVaultMarketMarketResponseAuctions {
-	this := GetVaultMarketMarketResponseAuctions{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetVaultMarketMarketResponseAuctions) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseAuctions) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetVaultMarketMarketResponseAuctions) SetId(v string) {
-	o.Id = v
-}
-
-// GetKind returns the Kind field value
-func (o *GetVaultMarketMarketResponseAuctions) GetKind() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Kind
-}
-
-// GetKindOk returns a tuple with the Kind field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseAuctions) GetKindOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Kind, true
-}
-
-// SetKind sets field value
-func (o *GetVaultMarketMarketResponseAuctions) SetKind(v string) {
-	o.Kind = v
-}
-
-// GetEndsAt returns the EndsAt field value
-func (o *GetVaultMarketMarketResponseAuctions) GetEndsAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.EndsAt
-}
-
-// GetEndsAtOk returns a tuple with the EndsAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseAuctions) GetEndsAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EndsAt, true
-}
-
-// SetEndsAt sets field value
-func (o *GetVaultMarketMarketResponseAuctions) SetEndsAt(v time.Time) {
-	o.EndsAt = v
-}
-
-func (o GetVaultMarketMarketResponseAuctions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["kind"] = o.Kind
-	}
-	if true {
-		toSerialize["endsAt"] = o.EndsAt
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseAuctions struct {
-	value *GetVaultMarketMarketResponseAuctions
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseAuctions) Get() *GetVaultMarketMarketResponseAuctions {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseAuctions) Set(val *GetVaultMarketMarketResponseAuctions) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseAuctions) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseAuctions) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseAuctions(val *GetVaultMarketMarketResponseAuctions) *NullableGetVaultMarketMarketResponseAuctions {
-	return &NullableGetVaultMarketMarketResponseAuctions{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseAuctions) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseAuctions) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseHistory struct for GetVaultMarketMarketResponseHistory
-type GetVaultMarketMarketResponseHistory struct {
-	Day string `json:"day"`
-	Cents NullableFloat32 `json:"cents,omitempty"`
-	Quality string `json:"quality"`
-}
-
-// NewGetVaultMarketMarketResponseHistory instantiates a new GetVaultMarketMarketResponseHistory object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseHistory(day string, quality string) *GetVaultMarketMarketResponseHistory {
-	this := GetVaultMarketMarketResponseHistory{}
-	this.Day = day
-	this.Quality = quality
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseHistoryWithDefaults instantiates a new GetVaultMarketMarketResponseHistory object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseHistoryWithDefaults() *GetVaultMarketMarketResponseHistory {
-	this := GetVaultMarketMarketResponseHistory{}
-	return &this
-}
-
-// GetDay returns the Day field value
-func (o *GetVaultMarketMarketResponseHistory) GetDay() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Day
-}
-
-// GetDayOk returns a tuple with the Day field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseHistory) GetDayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Day, true
-}
-
-// SetDay sets field value
-func (o *GetVaultMarketMarketResponseHistory) SetDay(v string) {
-	o.Day = v
-}
-
-// GetCents returns the Cents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseHistory) GetCents() float32 {
-	if o == nil || o.Cents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Cents.Get()
-}
-
-// GetCentsOk returns a tuple with the Cents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseHistory) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Cents.Get(), o.Cents.IsSet()
-}
-
-// HasCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseHistory) HasCents() bool {
-	if o != nil && o.Cents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCents gets a reference to the given NullableFloat32 and assigns it to the Cents field.
-func (o *GetVaultMarketMarketResponseHistory) SetCents(v float32) {
-	o.Cents.Set(&v)
-}
-// SetCentsNil sets the value for Cents to be an explicit nil
-func (o *GetVaultMarketMarketResponseHistory) SetCentsNil() {
-	o.Cents.Set(nil)
-}
-
-// UnsetCents ensures that no value is present for Cents, not even an explicit nil
-func (o *GetVaultMarketMarketResponseHistory) UnsetCents() {
-	o.Cents.Unset()
-}
-
-// GetQuality returns the Quality field value
-func (o *GetVaultMarketMarketResponseHistory) GetQuality() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Quality
-}
-
-// GetQualityOk returns a tuple with the Quality field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseHistory) GetQualityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quality, true
-}
-
-// SetQuality sets field value
-func (o *GetVaultMarketMarketResponseHistory) SetQuality(v string) {
-	o.Quality = v
-}
-
-func (o GetVaultMarketMarketResponseHistory) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["day"] = o.Day
-	}
-	if o.Cents.IsSet() {
-		toSerialize["cents"] = o.Cents.Get()
-	}
-	if true {
-		toSerialize["quality"] = o.Quality
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseHistory struct {
-	value *GetVaultMarketMarketResponseHistory
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseHistory) Get() *GetVaultMarketMarketResponseHistory {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseHistory) Set(val *GetVaultMarketMarketResponseHistory) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseHistory) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseHistory) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseHistory(val *GetVaultMarketMarketResponseHistory) *NullableGetVaultMarketMarketResponseHistory {
-	return &NullableGetVaultMarketMarketResponseHistory{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseHistory) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseHistory) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseLending struct for GetVaultMarketMarketResponseLending
-type GetVaultMarketMarketResponseLending struct {
-	Stock float32 `json:"stock"`
-	Lent float32 `json:"lent"`
-	Lendable float32 `json:"lendable"`
-	Room float32 `json:"room"`
-	UtilBps float32 `json:"utilBps"`
-	AprBps float32 `json:"aprBps"`
-}
-
-// NewGetVaultMarketMarketResponseLending instantiates a new GetVaultMarketMarketResponseLending object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseLending(stock float32, lent float32, lendable float32, room float32, utilBps float32, aprBps float32) *GetVaultMarketMarketResponseLending {
-	this := GetVaultMarketMarketResponseLending{}
-	this.Stock = stock
-	this.Lent = lent
-	this.Lendable = lendable
-	this.Room = room
-	this.UtilBps = utilBps
-	this.AprBps = aprBps
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseLendingWithDefaults instantiates a new GetVaultMarketMarketResponseLending object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseLendingWithDefaults() *GetVaultMarketMarketResponseLending {
-	this := GetVaultMarketMarketResponseLending{}
-	return &this
-}
-
-// GetStock returns the Stock field value
-func (o *GetVaultMarketMarketResponseLending) GetStock() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Stock
-}
-
-// GetStockOk returns a tuple with the Stock field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetStockOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Stock, true
-}
-
-// SetStock sets field value
-func (o *GetVaultMarketMarketResponseLending) SetStock(v float32) {
-	o.Stock = v
-}
-
-// GetLent returns the Lent field value
-func (o *GetVaultMarketMarketResponseLending) GetLent() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Lent
-}
-
-// GetLentOk returns a tuple with the Lent field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetLentOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Lent, true
-}
-
-// SetLent sets field value
-func (o *GetVaultMarketMarketResponseLending) SetLent(v float32) {
-	o.Lent = v
-}
-
-// GetLendable returns the Lendable field value
-func (o *GetVaultMarketMarketResponseLending) GetLendable() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Lendable
-}
-
-// GetLendableOk returns a tuple with the Lendable field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetLendableOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Lendable, true
-}
-
-// SetLendable sets field value
-func (o *GetVaultMarketMarketResponseLending) SetLendable(v float32) {
-	o.Lendable = v
-}
-
-// GetRoom returns the Room field value
-func (o *GetVaultMarketMarketResponseLending) GetRoom() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Room
-}
-
-// GetRoomOk returns a tuple with the Room field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetRoomOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Room, true
-}
-
-// SetRoom sets field value
-func (o *GetVaultMarketMarketResponseLending) SetRoom(v float32) {
-	o.Room = v
-}
-
-// GetUtilBps returns the UtilBps field value
-func (o *GetVaultMarketMarketResponseLending) GetUtilBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UtilBps
-}
-
-// GetUtilBpsOk returns a tuple with the UtilBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetUtilBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UtilBps, true
-}
-
-// SetUtilBps sets field value
-func (o *GetVaultMarketMarketResponseLending) SetUtilBps(v float32) {
-	o.UtilBps = v
-}
-
-// GetAprBps returns the AprBps field value
-func (o *GetVaultMarketMarketResponseLending) GetAprBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.AprBps
-}
-
-// GetAprBpsOk returns a tuple with the AprBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseLending) GetAprBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.AprBps, true
-}
-
-// SetAprBps sets field value
-func (o *GetVaultMarketMarketResponseLending) SetAprBps(v float32) {
-	o.AprBps = v
-}
-
-func (o GetVaultMarketMarketResponseLending) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["stock"] = o.Stock
-	}
-	if true {
-		toSerialize["lent"] = o.Lent
-	}
-	if true {
-		toSerialize["lendable"] = o.Lendable
-	}
-	if true {
-		toSerialize["room"] = o.Room
-	}
-	if true {
-		toSerialize["utilBps"] = o.UtilBps
-	}
-	if true {
-		toSerialize["aprBps"] = o.AprBps
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseLending struct {
-	value *GetVaultMarketMarketResponseLending
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseLending) Get() *GetVaultMarketMarketResponseLending {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseLending) Set(val *GetVaultMarketMarketResponseLending) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseLending) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseLending) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseLending(val *GetVaultMarketMarketResponseLending) *NullableGetVaultMarketMarketResponseLending {
-	return &NullableGetVaultMarketMarketResponseLending{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseLending) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseLending) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseMark struct for GetVaultMarketMarketResponseMark
-type GetVaultMarketMarketResponseMark struct {
-	BookKey string `json:"bookKey"`
-	MarkCents NullableFloat32 `json:"markCents,omitempty"`
-	Source string `json:"source"`
-	Change24hBps NullableFloat32 `json:"change24hBps,omitempty"`
-	Change7dBps NullableFloat32 `json:"change7dBps,omitempty"`
-	At string `json:"at"`
-	Quality string `json:"quality"`
-	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
-	UsableForRisk bool `json:"usableForRisk"`
-	Seasoned bool `json:"seasoned"`
-}
-
-// NewGetVaultMarketMarketResponseMark instantiates a new GetVaultMarketMarketResponseMark object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseMark(bookKey string, source string, at string, quality string, usableForRisk bool, seasoned bool) *GetVaultMarketMarketResponseMark {
-	this := GetVaultMarketMarketResponseMark{}
-	this.BookKey = bookKey
-	this.Source = source
-	this.At = at
-	this.Quality = quality
-	this.UsableForRisk = usableForRisk
-	this.Seasoned = seasoned
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseMarkWithDefaults instantiates a new GetVaultMarketMarketResponseMark object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseMarkWithDefaults() *GetVaultMarketMarketResponseMark {
-	this := GetVaultMarketMarketResponseMark{}
-	return &this
-}
-
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketMarketResponseMark) GetBookKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BookKey
-}
-
-// GetBookKeyOk returns a tuple with the BookKey field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetBookKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BookKey, true
-}
-
-// SetBookKey sets field value
-func (o *GetVaultMarketMarketResponseMark) SetBookKey(v string) {
-	o.BookKey = v
-}
-
-// GetMarkCents returns the MarkCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMark) GetMarkCents() float32 {
-	if o == nil || o.MarkCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.MarkCents.Get()
-}
-
-// GetMarkCentsOk returns a tuple with the MarkCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMark) GetMarkCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.MarkCents.Get(), o.MarkCents.IsSet()
-}
-
-// HasMarkCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMark) HasMarkCents() bool {
-	if o != nil && o.MarkCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMarkCents gets a reference to the given NullableFloat32 and assigns it to the MarkCents field.
-func (o *GetVaultMarketMarketResponseMark) SetMarkCents(v float32) {
-	o.MarkCents.Set(&v)
-}
-// SetMarkCentsNil sets the value for MarkCents to be an explicit nil
-func (o *GetVaultMarketMarketResponseMark) SetMarkCentsNil() {
-	o.MarkCents.Set(nil)
-}
-
-// UnsetMarkCents ensures that no value is present for MarkCents, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMark) UnsetMarkCents() {
-	o.MarkCents.Unset()
-}
-
-// GetSource returns the Source field value
-func (o *GetVaultMarketMarketResponseMark) GetSource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetSourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Source, true
-}
-
-// SetSource sets field value
-func (o *GetVaultMarketMarketResponseMark) SetSource(v string) {
-	o.Source = v
-}
-
-// GetChange24hBps returns the Change24hBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMark) GetChange24hBps() float32 {
-	if o == nil || o.Change24hBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Change24hBps.Get()
-}
-
-// GetChange24hBpsOk returns a tuple with the Change24hBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMark) GetChange24hBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Change24hBps.Get(), o.Change24hBps.IsSet()
-}
-
-// HasChange24hBps returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMark) HasChange24hBps() bool {
-	if o != nil && o.Change24hBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetChange24hBps gets a reference to the given NullableFloat32 and assigns it to the Change24hBps field.
-func (o *GetVaultMarketMarketResponseMark) SetChange24hBps(v float32) {
-	o.Change24hBps.Set(&v)
-}
-// SetChange24hBpsNil sets the value for Change24hBps to be an explicit nil
-func (o *GetVaultMarketMarketResponseMark) SetChange24hBpsNil() {
-	o.Change24hBps.Set(nil)
-}
-
-// UnsetChange24hBps ensures that no value is present for Change24hBps, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMark) UnsetChange24hBps() {
-	o.Change24hBps.Unset()
-}
-
-// GetChange7dBps returns the Change7dBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMark) GetChange7dBps() float32 {
-	if o == nil || o.Change7dBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Change7dBps.Get()
-}
-
-// GetChange7dBpsOk returns a tuple with the Change7dBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMark) GetChange7dBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Change7dBps.Get(), o.Change7dBps.IsSet()
-}
-
-// HasChange7dBps returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMark) HasChange7dBps() bool {
-	if o != nil && o.Change7dBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetChange7dBps gets a reference to the given NullableFloat32 and assigns it to the Change7dBps field.
-func (o *GetVaultMarketMarketResponseMark) SetChange7dBps(v float32) {
-	o.Change7dBps.Set(&v)
-}
-// SetChange7dBpsNil sets the value for Change7dBps to be an explicit nil
-func (o *GetVaultMarketMarketResponseMark) SetChange7dBpsNil() {
-	o.Change7dBps.Set(nil)
-}
-
-// UnsetChange7dBps ensures that no value is present for Change7dBps, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMark) UnsetChange7dBps() {
-	o.Change7dBps.Unset()
-}
-
-// GetAt returns the At field value
-func (o *GetVaultMarketMarketResponseMark) GetAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *GetVaultMarketMarketResponseMark) SetAt(v string) {
-	o.At = v
-}
-
-// GetQuality returns the Quality field value
-func (o *GetVaultMarketMarketResponseMark) GetQuality() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Quality
-}
-
-// GetQualityOk returns a tuple with the Quality field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetQualityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quality, true
-}
-
-// SetQuality sets field value
-func (o *GetVaultMarketMarketResponseMark) SetQuality(v string) {
-	o.Quality = v
-}
-
-// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMark) GetConfidenceBps() float32 {
-	if o == nil || o.ConfidenceBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ConfidenceBps.Get()
-}
-
-// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMark) GetConfidenceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
-}
-
-// HasConfidenceBps returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMark) HasConfidenceBps() bool {
-	if o != nil && o.ConfidenceBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
-func (o *GetVaultMarketMarketResponseMark) SetConfidenceBps(v float32) {
-	o.ConfidenceBps.Set(&v)
-}
-// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
-func (o *GetVaultMarketMarketResponseMark) SetConfidenceBpsNil() {
-	o.ConfidenceBps.Set(nil)
-}
-
-// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMark) UnsetConfidenceBps() {
-	o.ConfidenceBps.Unset()
-}
-
-// GetUsableForRisk returns the UsableForRisk field value
-func (o *GetVaultMarketMarketResponseMark) GetUsableForRisk() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.UsableForRisk
-}
-
-// GetUsableForRiskOk returns a tuple with the UsableForRisk field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetUsableForRiskOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UsableForRisk, true
-}
-
-// SetUsableForRisk sets field value
-func (o *GetVaultMarketMarketResponseMark) SetUsableForRisk(v bool) {
-	o.UsableForRisk = v
-}
-
-// GetSeasoned returns the Seasoned field value
-func (o *GetVaultMarketMarketResponseMark) GetSeasoned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Seasoned
-}
-
-// GetSeasonedOk returns a tuple with the Seasoned field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMark) GetSeasonedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Seasoned, true
-}
-
-// SetSeasoned sets field value
-func (o *GetVaultMarketMarketResponseMark) SetSeasoned(v bool) {
-	o.Seasoned = v
-}
-
-func (o GetVaultMarketMarketResponseMark) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["bookKey"] = o.BookKey
-	}
-	if o.MarkCents.IsSet() {
-		toSerialize["markCents"] = o.MarkCents.Get()
-	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if o.Change24hBps.IsSet() {
-		toSerialize["change24hBps"] = o.Change24hBps.Get()
-	}
-	if o.Change7dBps.IsSet() {
-		toSerialize["change7dBps"] = o.Change7dBps.Get()
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	if true {
-		toSerialize["quality"] = o.Quality
-	}
-	if o.ConfidenceBps.IsSet() {
-		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
-	}
-	if true {
-		toSerialize["usableForRisk"] = o.UsableForRisk
-	}
-	if true {
-		toSerialize["seasoned"] = o.Seasoned
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseMark struct {
-	value *GetVaultMarketMarketResponseMark
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseMark) Get() *GetVaultMarketMarketResponseMark {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseMark) Set(val *GetVaultMarketMarketResponseMark) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseMark) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseMark) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseMark(val *GetVaultMarketMarketResponseMark) *NullableGetVaultMarketMarketResponseMark {
-	return &NullableGetVaultMarketMarketResponseMark{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseMark) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseMark) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseMarkRead struct for GetVaultMarketMarketResponseMarkRead
-type GetVaultMarketMarketResponseMarkRead struct {
-	Cents NullableFloat32 `json:"cents,omitempty"`
-	Quality string `json:"quality"`
-	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
-	AsOf NullableTime `json:"asOf,omitempty"`
-	Source string `json:"source"`
-	Seasoned bool `json:"seasoned"`
-	UsableForRisk bool `json:"usableForRisk"`
-	// Whether the mark may back a loan at all (C marks carry 0 LTV).
-	LtvAllowed bool `json:"ltvAllowed"`
-	ImpliedFrom NullableGetVaultMarketMarkResponseImpliedFrom `json:"impliedFrom,omitempty"`
-}
-
-// NewGetVaultMarketMarketResponseMarkRead instantiates a new GetVaultMarketMarketResponseMarkRead object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseMarkRead(quality string, source string, seasoned bool, usableForRisk bool, ltvAllowed bool) *GetVaultMarketMarketResponseMarkRead {
-	this := GetVaultMarketMarketResponseMarkRead{}
-	this.Quality = quality
-	this.Source = source
-	this.Seasoned = seasoned
-	this.UsableForRisk = usableForRisk
-	this.LtvAllowed = ltvAllowed
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseMarkReadWithDefaults instantiates a new GetVaultMarketMarketResponseMarkRead object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseMarkReadWithDefaults() *GetVaultMarketMarketResponseMarkRead {
-	this := GetVaultMarketMarketResponseMarkRead{}
-	return &this
-}
-
-// GetCents returns the Cents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMarkRead) GetCents() float32 {
-	if o == nil || o.Cents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Cents.Get()
-}
-
-// GetCentsOk returns a tuple with the Cents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMarkRead) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Cents.Get(), o.Cents.IsSet()
-}
-
-// HasCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) HasCents() bool {
-	if o != nil && o.Cents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCents gets a reference to the given NullableFloat32 and assigns it to the Cents field.
-func (o *GetVaultMarketMarketResponseMarkRead) SetCents(v float32) {
-	o.Cents.Set(&v)
-}
-// SetCentsNil sets the value for Cents to be an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) SetCentsNil() {
-	o.Cents.Set(nil)
-}
-
-// UnsetCents ensures that no value is present for Cents, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) UnsetCents() {
-	o.Cents.Unset()
-}
-
-// GetQuality returns the Quality field value
-func (o *GetVaultMarketMarketResponseMarkRead) GetQuality() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Quality
-}
-
-// GetQualityOk returns a tuple with the Quality field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) GetQualityOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Quality, true
-}
-
-// SetQuality sets field value
-func (o *GetVaultMarketMarketResponseMarkRead) SetQuality(v string) {
-	o.Quality = v
-}
-
-// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMarkRead) GetConfidenceBps() float32 {
-	if o == nil || o.ConfidenceBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ConfidenceBps.Get()
-}
-
-// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMarkRead) GetConfidenceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
-}
-
-// HasConfidenceBps returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) HasConfidenceBps() bool {
-	if o != nil && o.ConfidenceBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
-func (o *GetVaultMarketMarketResponseMarkRead) SetConfidenceBps(v float32) {
-	o.ConfidenceBps.Set(&v)
-}
-// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) SetConfidenceBpsNil() {
-	o.ConfidenceBps.Set(nil)
-}
-
-// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) UnsetConfidenceBps() {
-	o.ConfidenceBps.Unset()
-}
-
-// GetAsOf returns the AsOf field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMarkRead) GetAsOf() time.Time {
-	if o == nil || o.AsOf.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.AsOf.Get()
-}
-
-// GetAsOfOk returns a tuple with the AsOf field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMarkRead) GetAsOfOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AsOf.Get(), o.AsOf.IsSet()
-}
-
-// HasAsOf returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) HasAsOf() bool {
-	if o != nil && o.AsOf.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAsOf gets a reference to the given NullableTime and assigns it to the AsOf field.
-func (o *GetVaultMarketMarketResponseMarkRead) SetAsOf(v time.Time) {
-	o.AsOf.Set(&v)
-}
-// SetAsOfNil sets the value for AsOf to be an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) SetAsOfNil() {
-	o.AsOf.Set(nil)
-}
-
-// UnsetAsOf ensures that no value is present for AsOf, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) UnsetAsOf() {
-	o.AsOf.Unset()
-}
-
-// GetSource returns the Source field value
-func (o *GetVaultMarketMarketResponseMarkRead) GetSource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) GetSourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Source, true
-}
-
-// SetSource sets field value
-func (o *GetVaultMarketMarketResponseMarkRead) SetSource(v string) {
-	o.Source = v
-}
-
-// GetSeasoned returns the Seasoned field value
-func (o *GetVaultMarketMarketResponseMarkRead) GetSeasoned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Seasoned
-}
-
-// GetSeasonedOk returns a tuple with the Seasoned field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) GetSeasonedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Seasoned, true
-}
-
-// SetSeasoned sets field value
-func (o *GetVaultMarketMarketResponseMarkRead) SetSeasoned(v bool) {
-	o.Seasoned = v
-}
-
-// GetUsableForRisk returns the UsableForRisk field value
-func (o *GetVaultMarketMarketResponseMarkRead) GetUsableForRisk() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.UsableForRisk
-}
-
-// GetUsableForRiskOk returns a tuple with the UsableForRisk field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) GetUsableForRiskOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UsableForRisk, true
-}
-
-// SetUsableForRisk sets field value
-func (o *GetVaultMarketMarketResponseMarkRead) SetUsableForRisk(v bool) {
-	o.UsableForRisk = v
-}
-
-// GetLtvAllowed returns the LtvAllowed field value
-func (o *GetVaultMarketMarketResponseMarkRead) GetLtvAllowed() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.LtvAllowed
-}
-
-// GetLtvAllowedOk returns a tuple with the LtvAllowed field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) GetLtvAllowedOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LtvAllowed, true
-}
-
-// SetLtvAllowed sets field value
-func (o *GetVaultMarketMarketResponseMarkRead) SetLtvAllowed(v bool) {
-	o.LtvAllowed = v
-}
-
-// GetImpliedFrom returns the ImpliedFrom field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseMarkRead) GetImpliedFrom() GetVaultMarketMarkResponseImpliedFrom {
-	if o == nil || o.ImpliedFrom.Get() == nil {
-		var ret GetVaultMarketMarkResponseImpliedFrom
-		return ret
-	}
-	return *o.ImpliedFrom.Get()
-}
-
-// GetImpliedFromOk returns a tuple with the ImpliedFrom field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseMarkRead) GetImpliedFromOk() (*GetVaultMarketMarkResponseImpliedFrom, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImpliedFrom.Get(), o.ImpliedFrom.IsSet()
-}
-
-// HasImpliedFrom returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseMarkRead) HasImpliedFrom() bool {
-	if o != nil && o.ImpliedFrom.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImpliedFrom gets a reference to the given NullableGetVaultMarketMarkResponseImpliedFrom and assigns it to the ImpliedFrom field.
-func (o *GetVaultMarketMarketResponseMarkRead) SetImpliedFrom(v GetVaultMarketMarkResponseImpliedFrom) {
-	o.ImpliedFrom.Set(&v)
-}
-// SetImpliedFromNil sets the value for ImpliedFrom to be an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) SetImpliedFromNil() {
-	o.ImpliedFrom.Set(nil)
-}
-
-// UnsetImpliedFrom ensures that no value is present for ImpliedFrom, not even an explicit nil
-func (o *GetVaultMarketMarketResponseMarkRead) UnsetImpliedFrom() {
-	o.ImpliedFrom.Unset()
-}
-
-func (o GetVaultMarketMarketResponseMarkRead) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Cents.IsSet() {
-		toSerialize["cents"] = o.Cents.Get()
-	}
-	if true {
-		toSerialize["quality"] = o.Quality
-	}
-	if o.ConfidenceBps.IsSet() {
-		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
-	}
-	if o.AsOf.IsSet() {
-		toSerialize["asOf"] = o.AsOf.Get()
-	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if true {
-		toSerialize["seasoned"] = o.Seasoned
-	}
-	if true {
-		toSerialize["usableForRisk"] = o.UsableForRisk
-	}
-	if true {
-		toSerialize["ltvAllowed"] = o.LtvAllowed
-	}
-	if o.ImpliedFrom.IsSet() {
-		toSerialize["impliedFrom"] = o.ImpliedFrom.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseMarkRead struct {
-	value *GetVaultMarketMarketResponseMarkRead
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseMarkRead) Get() *GetVaultMarketMarketResponseMarkRead {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseMarkRead) Set(val *GetVaultMarketMarketResponseMarkRead) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseMarkRead) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseMarkRead) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseMarkRead(val *GetVaultMarketMarketResponseMarkRead) *NullableGetVaultMarketMarketResponseMarkRead {
-	return &NullableGetVaultMarketMarketResponseMarkRead{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseMarkRead) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseMarkRead) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseOpenInterest struct for GetVaultMarketMarketResponseOpenInterest
-type GetVaultMarketMarketResponseOpenInterest struct {
-	Shorts float32 `json:"shorts"`
-	Longs float32 `json:"longs"`
-}
-
-// NewGetVaultMarketMarketResponseOpenInterest instantiates a new GetVaultMarketMarketResponseOpenInterest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseOpenInterest(shorts float32, longs float32) *GetVaultMarketMarketResponseOpenInterest {
-	this := GetVaultMarketMarketResponseOpenInterest{}
-	this.Shorts = shorts
-	this.Longs = longs
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseOpenInterestWithDefaults instantiates a new GetVaultMarketMarketResponseOpenInterest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseOpenInterestWithDefaults() *GetVaultMarketMarketResponseOpenInterest {
-	this := GetVaultMarketMarketResponseOpenInterest{}
-	return &this
-}
-
-// GetShorts returns the Shorts field value
-func (o *GetVaultMarketMarketResponseOpenInterest) GetShorts() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Shorts
-}
-
-// GetShortsOk returns a tuple with the Shorts field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseOpenInterest) GetShortsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Shorts, true
-}
-
-// SetShorts sets field value
-func (o *GetVaultMarketMarketResponseOpenInterest) SetShorts(v float32) {
-	o.Shorts = v
-}
-
-// GetLongs returns the Longs field value
-func (o *GetVaultMarketMarketResponseOpenInterest) GetLongs() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Longs
-}
-
-// GetLongsOk returns a tuple with the Longs field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseOpenInterest) GetLongsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Longs, true
-}
-
-// SetLongs sets field value
-func (o *GetVaultMarketMarketResponseOpenInterest) SetLongs(v float32) {
-	o.Longs = v
-}
-
-func (o GetVaultMarketMarketResponseOpenInterest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["shorts"] = o.Shorts
-	}
-	if true {
-		toSerialize["longs"] = o.Longs
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseOpenInterest struct {
-	value *GetVaultMarketMarketResponseOpenInterest
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseOpenInterest) Get() *GetVaultMarketMarketResponseOpenInterest {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseOpenInterest) Set(val *GetVaultMarketMarketResponseOpenInterest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseOpenInterest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseOpenInterest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseOpenInterest(val *GetVaultMarketMarketResponseOpenInterest) *NullableGetVaultMarketMarketResponseOpenInterest {
-	return &NullableGetVaultMarketMarketResponseOpenInterest{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseOpenInterest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseOpenInterest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMarketResponseTier struct for GetVaultMarketMarketResponseTier
-type GetVaultMarketMarketResponseTier struct {
-	Tier string `json:"tier"`
-	// Short collateral to open, over the mark (proceeds included).
-	ShortInitialBps float32 `json:"shortInitialBps"`
-	ShortMaintenanceBps float32 `json:"shortMaintenanceBps"`
-	// A leveraged long's maintenance equity share.
-	LongMaintenanceEquityBps float32 `json:"longMaintenanceEquityBps"`
-	// The most leverage this key allows (x100).
-	MaxLeverageX100 float32 `json:"maxLeverageX100"`
-	// Whether units may be lent / leverage used at all.
-	Tradable bool `json:"tradable"`
-	Trades30d float32 `json:"trades30d"`
-	VaultUnits float32 `json:"vaultUnits"`
-	Counterparties30d float32 `json:"counterparties30d"`
-	LiquidityTier NullableString `json:"liquidityTier,omitempty"`
-	Shortable bool `json:"shortable"`
-	Leverable bool `json:"leverable"`
-}
-
-// NewGetVaultMarketMarketResponseTier instantiates a new GetVaultMarketMarketResponseTier object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMarketResponseTier(tier string, shortInitialBps float32, shortMaintenanceBps float32, longMaintenanceEquityBps float32, maxLeverageX100 float32, tradable bool, trades30d float32, vaultUnits float32, counterparties30d float32, shortable bool, leverable bool) *GetVaultMarketMarketResponseTier {
-	this := GetVaultMarketMarketResponseTier{}
-	this.Tier = tier
-	this.ShortInitialBps = shortInitialBps
-	this.ShortMaintenanceBps = shortMaintenanceBps
-	this.LongMaintenanceEquityBps = longMaintenanceEquityBps
-	this.MaxLeverageX100 = maxLeverageX100
-	this.Tradable = tradable
-	this.Trades30d = trades30d
-	this.VaultUnits = vaultUnits
-	this.Counterparties30d = counterparties30d
-	this.Shortable = shortable
-	this.Leverable = leverable
-	return &this
-}
-
-// NewGetVaultMarketMarketResponseTierWithDefaults instantiates a new GetVaultMarketMarketResponseTier object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMarketResponseTierWithDefaults() *GetVaultMarketMarketResponseTier {
-	this := GetVaultMarketMarketResponseTier{}
-	return &this
-}
-
-// GetTier returns the Tier field value
-func (o *GetVaultMarketMarketResponseTier) GetTier() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Tier
-}
-
-// GetTierOk returns a tuple with the Tier field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetTierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Tier, true
-}
-
-// SetTier sets field value
-func (o *GetVaultMarketMarketResponseTier) SetTier(v string) {
-	o.Tier = v
-}
-
-// GetShortInitialBps returns the ShortInitialBps field value
-func (o *GetVaultMarketMarketResponseTier) GetShortInitialBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ShortInitialBps
-}
-
-// GetShortInitialBpsOk returns a tuple with the ShortInitialBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetShortInitialBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ShortInitialBps, true
-}
-
-// SetShortInitialBps sets field value
-func (o *GetVaultMarketMarketResponseTier) SetShortInitialBps(v float32) {
-	o.ShortInitialBps = v
-}
-
-// GetShortMaintenanceBps returns the ShortMaintenanceBps field value
-func (o *GetVaultMarketMarketResponseTier) GetShortMaintenanceBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.ShortMaintenanceBps
-}
-
-// GetShortMaintenanceBpsOk returns a tuple with the ShortMaintenanceBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetShortMaintenanceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ShortMaintenanceBps, true
-}
-
-// SetShortMaintenanceBps sets field value
-func (o *GetVaultMarketMarketResponseTier) SetShortMaintenanceBps(v float32) {
-	o.ShortMaintenanceBps = v
-}
-
-// GetLongMaintenanceEquityBps returns the LongMaintenanceEquityBps field value
-func (o *GetVaultMarketMarketResponseTier) GetLongMaintenanceEquityBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.LongMaintenanceEquityBps
-}
-
-// GetLongMaintenanceEquityBpsOk returns a tuple with the LongMaintenanceEquityBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetLongMaintenanceEquityBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LongMaintenanceEquityBps, true
-}
-
-// SetLongMaintenanceEquityBps sets field value
-func (o *GetVaultMarketMarketResponseTier) SetLongMaintenanceEquityBps(v float32) {
-	o.LongMaintenanceEquityBps = v
-}
-
-// GetMaxLeverageX100 returns the MaxLeverageX100 field value
-func (o *GetVaultMarketMarketResponseTier) GetMaxLeverageX100() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MaxLeverageX100
-}
-
-// GetMaxLeverageX100Ok returns a tuple with the MaxLeverageX100 field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetMaxLeverageX100Ok() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MaxLeverageX100, true
-}
-
-// SetMaxLeverageX100 sets field value
-func (o *GetVaultMarketMarketResponseTier) SetMaxLeverageX100(v float32) {
-	o.MaxLeverageX100 = v
-}
-
-// GetTradable returns the Tradable field value
-func (o *GetVaultMarketMarketResponseTier) GetTradable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Tradable
-}
-
-// GetTradableOk returns a tuple with the Tradable field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetTradableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Tradable, true
-}
-
-// SetTradable sets field value
-func (o *GetVaultMarketMarketResponseTier) SetTradable(v bool) {
-	o.Tradable = v
-}
-
-// GetTrades30d returns the Trades30d field value
-func (o *GetVaultMarketMarketResponseTier) GetTrades30d() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Trades30d
-}
-
-// GetTrades30dOk returns a tuple with the Trades30d field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetTrades30dOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Trades30d, true
-}
-
-// SetTrades30d sets field value
-func (o *GetVaultMarketMarketResponseTier) SetTrades30d(v float32) {
-	o.Trades30d = v
-}
-
-// GetVaultUnits returns the VaultUnits field value
-func (o *GetVaultMarketMarketResponseTier) GetVaultUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.VaultUnits
-}
-
-// GetVaultUnitsOk returns a tuple with the VaultUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetVaultUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.VaultUnits, true
-}
-
-// SetVaultUnits sets field value
-func (o *GetVaultMarketMarketResponseTier) SetVaultUnits(v float32) {
-	o.VaultUnits = v
-}
-
-// GetCounterparties30d returns the Counterparties30d field value
-func (o *GetVaultMarketMarketResponseTier) GetCounterparties30d() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Counterparties30d
-}
-
-// GetCounterparties30dOk returns a tuple with the Counterparties30d field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetCounterparties30dOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Counterparties30d, true
-}
-
-// SetCounterparties30d sets field value
-func (o *GetVaultMarketMarketResponseTier) SetCounterparties30d(v float32) {
-	o.Counterparties30d = v
-}
-
-// GetLiquidityTier returns the LiquidityTier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMarketResponseTier) GetLiquidityTier() string {
-	if o == nil || o.LiquidityTier.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LiquidityTier.Get()
-}
-
-// GetLiquidityTierOk returns a tuple with the LiquidityTier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMarketResponseTier) GetLiquidityTierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LiquidityTier.Get(), o.LiquidityTier.IsSet()
-}
-
-// HasLiquidityTier returns a boolean if a field has been set.
-func (o *GetVaultMarketMarketResponseTier) HasLiquidityTier() bool {
-	if o != nil && o.LiquidityTier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLiquidityTier gets a reference to the given NullableString and assigns it to the LiquidityTier field.
-func (o *GetVaultMarketMarketResponseTier) SetLiquidityTier(v string) {
-	o.LiquidityTier.Set(&v)
-}
-// SetLiquidityTierNil sets the value for LiquidityTier to be an explicit nil
-func (o *GetVaultMarketMarketResponseTier) SetLiquidityTierNil() {
-	o.LiquidityTier.Set(nil)
-}
-
-// UnsetLiquidityTier ensures that no value is present for LiquidityTier, not even an explicit nil
-func (o *GetVaultMarketMarketResponseTier) UnsetLiquidityTier() {
-	o.LiquidityTier.Unset()
-}
-
-// GetShortable returns the Shortable field value
-func (o *GetVaultMarketMarketResponseTier) GetShortable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Shortable
-}
-
-// GetShortableOk returns a tuple with the Shortable field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetShortableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Shortable, true
-}
-
-// SetShortable sets field value
-func (o *GetVaultMarketMarketResponseTier) SetShortable(v bool) {
-	o.Shortable = v
-}
-
-// GetLeverable returns the Leverable field value
-func (o *GetVaultMarketMarketResponseTier) GetLeverable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Leverable
-}
-
-// GetLeverableOk returns a tuple with the Leverable field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMarketResponseTier) GetLeverableOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Leverable, true
-}
-
-// SetLeverable sets field value
-func (o *GetVaultMarketMarketResponseTier) SetLeverable(v bool) {
-	o.Leverable = v
-}
-
-func (o GetVaultMarketMarketResponseTier) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["tier"] = o.Tier
-	}
-	if true {
-		toSerialize["shortInitialBps"] = o.ShortInitialBps
-	}
-	if true {
-		toSerialize["shortMaintenanceBps"] = o.ShortMaintenanceBps
-	}
-	if true {
-		toSerialize["longMaintenanceEquityBps"] = o.LongMaintenanceEquityBps
-	}
-	if true {
-		toSerialize["maxLeverageX100"] = o.MaxLeverageX100
-	}
-	if true {
-		toSerialize["tradable"] = o.Tradable
-	}
-	if true {
-		toSerialize["trades30d"] = o.Trades30d
-	}
-	if true {
-		toSerialize["vaultUnits"] = o.VaultUnits
-	}
-	if true {
-		toSerialize["counterparties30d"] = o.Counterparties30d
-	}
-	if o.LiquidityTier.IsSet() {
-		toSerialize["liquidityTier"] = o.LiquidityTier.Get()
-	}
-	if true {
-		toSerialize["shortable"] = o.Shortable
-	}
-	if true {
-		toSerialize["leverable"] = o.Leverable
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMarketResponseTier struct {
-	value *GetVaultMarketMarketResponseTier
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMarketResponseTier) Get() *GetVaultMarketMarketResponseTier {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMarketResponseTier) Set(val *GetVaultMarketMarketResponseTier) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMarketResponseTier) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMarketResponseTier) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMarketResponseTier(val *GetVaultMarketMarketResponseTier) *NullableGetVaultMarketMarketResponseTier {
-	return &NullableGetVaultMarketMarketResponseTier{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMarketResponseTier) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMarketResponseTier) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmKeyResponse struct for GetVaultMarketMmKeyResponse
-type GetVaultMarketMmKeyResponse struct {
-	BookKey string `json:"bookKey"`
-	Dmm NullableGetVaultMarketMmKeyResponseDmm `json:"dmm,omitempty"`
-	LpCount float32 `json:"lpCount"`
-}
-
-// NewGetVaultMarketMmKeyResponse instantiates a new GetVaultMarketMmKeyResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmKeyResponse(bookKey string, lpCount float32) *GetVaultMarketMmKeyResponse {
-	this := GetVaultMarketMmKeyResponse{}
-	this.BookKey = bookKey
-	this.LpCount = lpCount
-	return &this
-}
-
-// NewGetVaultMarketMmKeyResponseWithDefaults instantiates a new GetVaultMarketMmKeyResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmKeyResponseWithDefaults() *GetVaultMarketMmKeyResponse {
-	this := GetVaultMarketMmKeyResponse{}
-	return &this
-}
-
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketMmKeyResponse) GetBookKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BookKey
-}
-
-// GetBookKeyOk returns a tuple with the BookKey field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmKeyResponse) GetBookKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BookKey, true
-}
-
-// SetBookKey sets field value
-func (o *GetVaultMarketMmKeyResponse) SetBookKey(v string) {
-	o.BookKey = v
-}
-
-// GetDmm returns the Dmm field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmKeyResponse) GetDmm() GetVaultMarketMmKeyResponseDmm {
-	if o == nil || o.Dmm.Get() == nil {
-		var ret GetVaultMarketMmKeyResponseDmm
-		return ret
-	}
-	return *o.Dmm.Get()
-}
-
-// GetDmmOk returns a tuple with the Dmm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmKeyResponse) GetDmmOk() (*GetVaultMarketMmKeyResponseDmm, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Dmm.Get(), o.Dmm.IsSet()
-}
-
-// HasDmm returns a boolean if a field has been set.
-func (o *GetVaultMarketMmKeyResponse) HasDmm() bool {
-	if o != nil && o.Dmm.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDmm gets a reference to the given NullableGetVaultMarketMmKeyResponseDmm and assigns it to the Dmm field.
-func (o *GetVaultMarketMmKeyResponse) SetDmm(v GetVaultMarketMmKeyResponseDmm) {
-	o.Dmm.Set(&v)
-}
-// SetDmmNil sets the value for Dmm to be an explicit nil
-func (o *GetVaultMarketMmKeyResponse) SetDmmNil() {
-	o.Dmm.Set(nil)
-}
-
-// UnsetDmm ensures that no value is present for Dmm, not even an explicit nil
-func (o *GetVaultMarketMmKeyResponse) UnsetDmm() {
-	o.Dmm.Unset()
-}
-
-// GetLpCount returns the LpCount field value
-func (o *GetVaultMarketMmKeyResponse) GetLpCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.LpCount
-}
-
-// GetLpCountOk returns a tuple with the LpCount field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmKeyResponse) GetLpCountOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LpCount, true
-}
-
-// SetLpCount sets field value
-func (o *GetVaultMarketMmKeyResponse) SetLpCount(v float32) {
-	o.LpCount = v
-}
-
-func (o GetVaultMarketMmKeyResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["bookKey"] = o.BookKey
-	}
-	if o.Dmm.IsSet() {
-		toSerialize["dmm"] = o.Dmm.Get()
-	}
-	if true {
-		toSerialize["lpCount"] = o.LpCount
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmKeyResponse struct {
-	value *GetVaultMarketMmKeyResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmKeyResponse) Get() *GetVaultMarketMmKeyResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmKeyResponse) Set(val *GetVaultMarketMmKeyResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmKeyResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmKeyResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmKeyResponse(val *GetVaultMarketMmKeyResponse) *NullableGetVaultMarketMmKeyResponse {
-	return &NullableGetVaultMarketMmKeyResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmKeyResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmKeyResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmKeyResponseDmm struct for GetVaultMarketMmKeyResponseDmm
-type GetVaultMarketMmKeyResponseDmm struct {
-	Name string `json:"name"`
-	Meeting bool `json:"meeting"`
-}
-
-// NewGetVaultMarketMmKeyResponseDmm instantiates a new GetVaultMarketMmKeyResponseDmm object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmKeyResponseDmm(name string, meeting bool) *GetVaultMarketMmKeyResponseDmm {
-	this := GetVaultMarketMmKeyResponseDmm{}
-	this.Name = name
-	this.Meeting = meeting
-	return &this
-}
-
-// NewGetVaultMarketMmKeyResponseDmmWithDefaults instantiates a new GetVaultMarketMmKeyResponseDmm object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmKeyResponseDmmWithDefaults() *GetVaultMarketMmKeyResponseDmm {
-	this := GetVaultMarketMmKeyResponseDmm{}
-	return &this
-}
-
 // GetName returns the Name field value
-func (o *GetVaultMarketMmKeyResponseDmm) GetName() string {
+func (o *GetVaultMarketHallLoanResponseEligible) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -4489,7 +665,7 @@ func (o *GetVaultMarketMmKeyResponseDmm) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmKeyResponseDmm) GetNameOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseEligible) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -4497,2750 +673,306 @@ func (o *GetVaultMarketMmKeyResponseDmm) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *GetVaultMarketMmKeyResponseDmm) SetName(v string) {
+func (o *GetVaultMarketHallLoanResponseEligible) SetName(v string) {
 	o.Name = v
 }
 
-// GetMeeting returns the Meeting field value
-func (o *GetVaultMarketMmKeyResponseDmm) GetMeeting() bool {
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseEligible) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseEligible) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseEligible) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetVaultMarketHallLoanResponseEligible) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetGrade returns the Grade field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseEligible) GetGrade() string {
+	if o == nil || o.Grade.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Grade.Get()
+}
+
+// GetGradeOk returns a tuple with the Grade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseEligible) GetGradeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Grade.Get(), o.Grade.IsSet()
+}
+
+// HasGrade returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseEligible) HasGrade() bool {
+	if o != nil && o.Grade.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGrade gets a reference to the given NullableString and assigns it to the Grade field.
+func (o *GetVaultMarketHallLoanResponseEligible) SetGrade(v string) {
+	o.Grade.Set(&v)
+}
+// SetGradeNil sets the value for Grade to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) SetGradeNil() {
+	o.Grade.Set(nil)
+}
+
+// UnsetGrade ensures that no value is present for Grade, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) UnsetGrade() {
+	o.Grade.Unset()
+}
+
+// GetCanLend returns the CanLend field value
+func (o *GetVaultMarketHallLoanResponseEligible) GetCanLend() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.Meeting
+	return o.CanLend
 }
 
-// GetMeetingOk returns a tuple with the Meeting field value
+// GetCanLendOk returns a tuple with the CanLend field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmKeyResponseDmm) GetMeetingOk() (*bool, bool) {
+func (o *GetVaultMarketHallLoanResponseEligible) GetCanLendOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Meeting, true
+	return &o.CanLend, true
 }
 
-// SetMeeting sets field value
-func (o *GetVaultMarketMmKeyResponseDmm) SetMeeting(v bool) {
-	o.Meeting = v
+// SetCanLend sets field value
+func (o *GetVaultMarketHallLoanResponseEligible) SetCanLend(v bool) {
+	o.CanLend = v
 }
 
-func (o GetVaultMarketMmKeyResponseDmm) MarshalJSON() ([]byte, error) {
+// GetBlocker returns the Blocker field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseEligible) GetBlocker() string {
+	if o == nil || o.Blocker.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Blocker.Get()
+}
+
+// GetBlockerOk returns a tuple with the Blocker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseEligible) GetBlockerOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Blocker.Get(), o.Blocker.IsSet()
+}
+
+// HasBlocker returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseEligible) HasBlocker() bool {
+	if o != nil && o.Blocker.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBlocker gets a reference to the given NullableString and assigns it to the Blocker field.
+func (o *GetVaultMarketHallLoanResponseEligible) SetBlocker(v string) {
+	o.Blocker.Set(&v)
+}
+// SetBlockerNil sets the value for Blocker to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) SetBlockerNil() {
+	o.Blocker.Set(nil)
+}
+
+// UnsetBlocker ensures that no value is present for Blocker, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseEligible) UnsetBlocker() {
+	o.Blocker.Unset()
+}
+
+// GetNext returns the Next field value
+func (o *GetVaultMarketHallLoanResponseEligible) GetNext() CreateVaultMarketHallLoanResponseNext {
+	if o == nil {
+		var ret CreateVaultMarketHallLoanResponseNext
+		return ret
+	}
+
+	return o.Next
+}
+
+// GetNextOk returns a tuple with the Next field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseEligible) GetNextOk() (*CreateVaultMarketHallLoanResponseNext, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Next, true
+}
+
+// SetNext sets field value
+func (o *GetVaultMarketHallLoanResponseEligible) SetNext(v CreateVaultMarketHallLoanResponseNext) {
+	o.Next = v
+}
+
+func (o GetVaultMarketHallLoanResponseEligible) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["vaultItemId"] = o.VaultItemId
+	}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.Grade.IsSet() {
+		toSerialize["grade"] = o.Grade.Get()
+	}
 	if true {
-		toSerialize["meeting"] = o.Meeting
+		toSerialize["canLend"] = o.CanLend
+	}
+	if o.Blocker.IsSet() {
+		toSerialize["blocker"] = o.Blocker.Get()
+	}
+	if true {
+		toSerialize["next"] = o.Next
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketMmKeyResponseDmm struct {
-	value *GetVaultMarketMmKeyResponseDmm
+type NullableGetVaultMarketHallLoanResponseEligible struct {
+	value *GetVaultMarketHallLoanResponseEligible
 	isSet bool
 }
 
-func (v NullableGetVaultMarketMmKeyResponseDmm) Get() *GetVaultMarketMmKeyResponseDmm {
+func (v NullableGetVaultMarketHallLoanResponseEligible) Get() *GetVaultMarketHallLoanResponseEligible {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketMmKeyResponseDmm) Set(val *GetVaultMarketMmKeyResponseDmm) {
+func (v *NullableGetVaultMarketHallLoanResponseEligible) Set(val *GetVaultMarketHallLoanResponseEligible) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketMmKeyResponseDmm) IsSet() bool {
+func (v NullableGetVaultMarketHallLoanResponseEligible) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketMmKeyResponseDmm) Unset() {
+func (v *NullableGetVaultMarketHallLoanResponseEligible) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketMmKeyResponseDmm(val *GetVaultMarketMmKeyResponseDmm) *NullableGetVaultMarketMmKeyResponseDmm {
-	return &NullableGetVaultMarketMmKeyResponseDmm{value: val, isSet: true}
+func NewNullableGetVaultMarketHallLoanResponseEligible(val *GetVaultMarketHallLoanResponseEligible) *NullableGetVaultMarketHallLoanResponseEligible {
+	return &NullableGetVaultMarketHallLoanResponseEligible{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketMmKeyResponseDmm) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHallLoanResponseEligible) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketMmKeyResponseDmm) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHallLoanResponseEligible) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketMmMmpResponse struct for GetVaultMarketMmMmpResponse
-type GetVaultMarketMmMmpResponse struct {
-	Enabled bool `json:"enabled"`
-	WindowSeconds float32 `json:"windowSeconds"`
-	MaxUnits NullableFloat32 `json:"maxUnits,omitempty"`
-	MaxNotionalCents NullableFloat32 `json:"maxNotionalCents,omitempty"`
-	FreezeSeconds float32 `json:"freezeSeconds"`
-	Frozen bool `json:"frozen"`
-	FrozenUntil NullableString `json:"frozenUntil,omitempty"`
-	Trips float32 `json:"trips"`
-	LastTripAt NullableString `json:"lastTripAt,omitempty"`
-}
-
-// NewGetVaultMarketMmMmpResponse instantiates a new GetVaultMarketMmMmpResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmMmpResponse(enabled bool, windowSeconds float32, freezeSeconds float32, frozen bool, trips float32) *GetVaultMarketMmMmpResponse {
-	this := GetVaultMarketMmMmpResponse{}
-	this.Enabled = enabled
-	this.WindowSeconds = windowSeconds
-	this.FreezeSeconds = freezeSeconds
-	this.Frozen = frozen
-	this.Trips = trips
-	return &this
-}
-
-// NewGetVaultMarketMmMmpResponseWithDefaults instantiates a new GetVaultMarketMmMmpResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmMmpResponseWithDefaults() *GetVaultMarketMmMmpResponse {
-	this := GetVaultMarketMmMmpResponse{}
-	return &this
-}
-
-// GetEnabled returns the Enabled field value
-func (o *GetVaultMarketMmMmpResponse) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmMmpResponse) GetEnabledOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *GetVaultMarketMmMmpResponse) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetWindowSeconds returns the WindowSeconds field value
-func (o *GetVaultMarketMmMmpResponse) GetWindowSeconds() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.WindowSeconds
-}
-
-// GetWindowSecondsOk returns a tuple with the WindowSeconds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmMmpResponse) GetWindowSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.WindowSeconds, true
-}
-
-// SetWindowSeconds sets field value
-func (o *GetVaultMarketMmMmpResponse) SetWindowSeconds(v float32) {
-	o.WindowSeconds = v
-}
-
-// GetMaxUnits returns the MaxUnits field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmMmpResponse) GetMaxUnits() float32 {
-	if o == nil || o.MaxUnits.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.MaxUnits.Get()
-}
-
-// GetMaxUnitsOk returns a tuple with the MaxUnits field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmMmpResponse) GetMaxUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.MaxUnits.Get(), o.MaxUnits.IsSet()
-}
-
-// HasMaxUnits returns a boolean if a field has been set.
-func (o *GetVaultMarketMmMmpResponse) HasMaxUnits() bool {
-	if o != nil && o.MaxUnits.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxUnits gets a reference to the given NullableFloat32 and assigns it to the MaxUnits field.
-func (o *GetVaultMarketMmMmpResponse) SetMaxUnits(v float32) {
-	o.MaxUnits.Set(&v)
-}
-// SetMaxUnitsNil sets the value for MaxUnits to be an explicit nil
-func (o *GetVaultMarketMmMmpResponse) SetMaxUnitsNil() {
-	o.MaxUnits.Set(nil)
-}
-
-// UnsetMaxUnits ensures that no value is present for MaxUnits, not even an explicit nil
-func (o *GetVaultMarketMmMmpResponse) UnsetMaxUnits() {
-	o.MaxUnits.Unset()
-}
-
-// GetMaxNotionalCents returns the MaxNotionalCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmMmpResponse) GetMaxNotionalCents() float32 {
-	if o == nil || o.MaxNotionalCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.MaxNotionalCents.Get()
-}
-
-// GetMaxNotionalCentsOk returns a tuple with the MaxNotionalCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmMmpResponse) GetMaxNotionalCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.MaxNotionalCents.Get(), o.MaxNotionalCents.IsSet()
-}
-
-// HasMaxNotionalCents returns a boolean if a field has been set.
-func (o *GetVaultMarketMmMmpResponse) HasMaxNotionalCents() bool {
-	if o != nil && o.MaxNotionalCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxNotionalCents gets a reference to the given NullableFloat32 and assigns it to the MaxNotionalCents field.
-func (o *GetVaultMarketMmMmpResponse) SetMaxNotionalCents(v float32) {
-	o.MaxNotionalCents.Set(&v)
-}
-// SetMaxNotionalCentsNil sets the value for MaxNotionalCents to be an explicit nil
-func (o *GetVaultMarketMmMmpResponse) SetMaxNotionalCentsNil() {
-	o.MaxNotionalCents.Set(nil)
-}
-
-// UnsetMaxNotionalCents ensures that no value is present for MaxNotionalCents, not even an explicit nil
-func (o *GetVaultMarketMmMmpResponse) UnsetMaxNotionalCents() {
-	o.MaxNotionalCents.Unset()
-}
-
-// GetFreezeSeconds returns the FreezeSeconds field value
-func (o *GetVaultMarketMmMmpResponse) GetFreezeSeconds() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.FreezeSeconds
-}
-
-// GetFreezeSecondsOk returns a tuple with the FreezeSeconds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmMmpResponse) GetFreezeSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.FreezeSeconds, true
-}
-
-// SetFreezeSeconds sets field value
-func (o *GetVaultMarketMmMmpResponse) SetFreezeSeconds(v float32) {
-	o.FreezeSeconds = v
-}
-
-// GetFrozen returns the Frozen field value
-func (o *GetVaultMarketMmMmpResponse) GetFrozen() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Frozen
-}
-
-// GetFrozenOk returns a tuple with the Frozen field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmMmpResponse) GetFrozenOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Frozen, true
-}
-
-// SetFrozen sets field value
-func (o *GetVaultMarketMmMmpResponse) SetFrozen(v bool) {
-	o.Frozen = v
-}
-
-// GetFrozenUntil returns the FrozenUntil field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmMmpResponse) GetFrozenUntil() string {
-	if o == nil || o.FrozenUntil.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.FrozenUntil.Get()
-}
-
-// GetFrozenUntilOk returns a tuple with the FrozenUntil field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmMmpResponse) GetFrozenUntilOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.FrozenUntil.Get(), o.FrozenUntil.IsSet()
-}
-
-// HasFrozenUntil returns a boolean if a field has been set.
-func (o *GetVaultMarketMmMmpResponse) HasFrozenUntil() bool {
-	if o != nil && o.FrozenUntil.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFrozenUntil gets a reference to the given NullableString and assigns it to the FrozenUntil field.
-func (o *GetVaultMarketMmMmpResponse) SetFrozenUntil(v string) {
-	o.FrozenUntil.Set(&v)
-}
-// SetFrozenUntilNil sets the value for FrozenUntil to be an explicit nil
-func (o *GetVaultMarketMmMmpResponse) SetFrozenUntilNil() {
-	o.FrozenUntil.Set(nil)
-}
-
-// UnsetFrozenUntil ensures that no value is present for FrozenUntil, not even an explicit nil
-func (o *GetVaultMarketMmMmpResponse) UnsetFrozenUntil() {
-	o.FrozenUntil.Unset()
-}
-
-// GetTrips returns the Trips field value
-func (o *GetVaultMarketMmMmpResponse) GetTrips() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Trips
-}
-
-// GetTripsOk returns a tuple with the Trips field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmMmpResponse) GetTripsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Trips, true
-}
-
-// SetTrips sets field value
-func (o *GetVaultMarketMmMmpResponse) SetTrips(v float32) {
-	o.Trips = v
-}
-
-// GetLastTripAt returns the LastTripAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmMmpResponse) GetLastTripAt() string {
-	if o == nil || o.LastTripAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.LastTripAt.Get()
-}
-
-// GetLastTripAtOk returns a tuple with the LastTripAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmMmpResponse) GetLastTripAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastTripAt.Get(), o.LastTripAt.IsSet()
-}
-
-// HasLastTripAt returns a boolean if a field has been set.
-func (o *GetVaultMarketMmMmpResponse) HasLastTripAt() bool {
-	if o != nil && o.LastTripAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastTripAt gets a reference to the given NullableString and assigns it to the LastTripAt field.
-func (o *GetVaultMarketMmMmpResponse) SetLastTripAt(v string) {
-	o.LastTripAt.Set(&v)
-}
-// SetLastTripAtNil sets the value for LastTripAt to be an explicit nil
-func (o *GetVaultMarketMmMmpResponse) SetLastTripAtNil() {
-	o.LastTripAt.Set(nil)
-}
-
-// UnsetLastTripAt ensures that no value is present for LastTripAt, not even an explicit nil
-func (o *GetVaultMarketMmMmpResponse) UnsetLastTripAt() {
-	o.LastTripAt.Unset()
-}
-
-func (o GetVaultMarketMmMmpResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if true {
-		toSerialize["windowSeconds"] = o.WindowSeconds
-	}
-	if o.MaxUnits.IsSet() {
-		toSerialize["maxUnits"] = o.MaxUnits.Get()
-	}
-	if o.MaxNotionalCents.IsSet() {
-		toSerialize["maxNotionalCents"] = o.MaxNotionalCents.Get()
-	}
-	if true {
-		toSerialize["freezeSeconds"] = o.FreezeSeconds
-	}
-	if true {
-		toSerialize["frozen"] = o.Frozen
-	}
-	if o.FrozenUntil.IsSet() {
-		toSerialize["frozenUntil"] = o.FrozenUntil.Get()
-	}
-	if true {
-		toSerialize["trips"] = o.Trips
-	}
-	if o.LastTripAt.IsSet() {
-		toSerialize["lastTripAt"] = o.LastTripAt.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmMmpResponse struct {
-	value *GetVaultMarketMmMmpResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmMmpResponse) Get() *GetVaultMarketMmMmpResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmMmpResponse) Set(val *GetVaultMarketMmMmpResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmMmpResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmMmpResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmMmpResponse(val *GetVaultMarketMmMmpResponse) *NullableGetVaultMarketMmMmpResponse {
-	return &NullableGetVaultMarketMmMmpResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmMmpResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmMmpResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponse struct for GetVaultMarketMmResponse
-type GetVaultMarketMmResponse struct {
-	Programs []CreateVaultMarketMmLpResponse `json:"programs"`
-	Obligations []GetVaultMarketMmResponseObligations `json:"obligations"`
-	Rebates []GetVaultMarketMmResponseRebates `json:"rebates"`
-	Rules GetVaultMarketMmResponseRules `json:"rules"`
-}
-
-// NewGetVaultMarketMmResponse instantiates a new GetVaultMarketMmResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponse(programs []CreateVaultMarketMmLpResponse, obligations []GetVaultMarketMmResponseObligations, rebates []GetVaultMarketMmResponseRebates, rules GetVaultMarketMmResponseRules) *GetVaultMarketMmResponse {
-	this := GetVaultMarketMmResponse{}
-	this.Programs = programs
-	this.Obligations = obligations
-	this.Rebates = rebates
-	this.Rules = rules
-	return &this
-}
-
-// NewGetVaultMarketMmResponseWithDefaults instantiates a new GetVaultMarketMmResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseWithDefaults() *GetVaultMarketMmResponse {
-	this := GetVaultMarketMmResponse{}
-	return &this
-}
-
-// GetPrograms returns the Programs field value
-func (o *GetVaultMarketMmResponse) GetPrograms() []CreateVaultMarketMmLpResponse {
-	if o == nil {
-		var ret []CreateVaultMarketMmLpResponse
-		return ret
-	}
-
-	return o.Programs
-}
-
-// GetProgramsOk returns a tuple with the Programs field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponse) GetProgramsOk() ([]CreateVaultMarketMmLpResponse, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Programs, true
-}
-
-// SetPrograms sets field value
-func (o *GetVaultMarketMmResponse) SetPrograms(v []CreateVaultMarketMmLpResponse) {
-	o.Programs = v
-}
-
-// GetObligations returns the Obligations field value
-func (o *GetVaultMarketMmResponse) GetObligations() []GetVaultMarketMmResponseObligations {
-	if o == nil {
-		var ret []GetVaultMarketMmResponseObligations
-		return ret
-	}
-
-	return o.Obligations
-}
-
-// GetObligationsOk returns a tuple with the Obligations field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponse) GetObligationsOk() ([]GetVaultMarketMmResponseObligations, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Obligations, true
-}
-
-// SetObligations sets field value
-func (o *GetVaultMarketMmResponse) SetObligations(v []GetVaultMarketMmResponseObligations) {
-	o.Obligations = v
-}
-
-// GetRebates returns the Rebates field value
-func (o *GetVaultMarketMmResponse) GetRebates() []GetVaultMarketMmResponseRebates {
-	if o == nil {
-		var ret []GetVaultMarketMmResponseRebates
-		return ret
-	}
-
-	return o.Rebates
-}
-
-// GetRebatesOk returns a tuple with the Rebates field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponse) GetRebatesOk() ([]GetVaultMarketMmResponseRebates, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Rebates, true
-}
-
-// SetRebates sets field value
-func (o *GetVaultMarketMmResponse) SetRebates(v []GetVaultMarketMmResponseRebates) {
-	o.Rebates = v
-}
-
-// GetRules returns the Rules field value
-func (o *GetVaultMarketMmResponse) GetRules() GetVaultMarketMmResponseRules {
-	if o == nil {
-		var ret GetVaultMarketMmResponseRules
-		return ret
-	}
-
-	return o.Rules
-}
-
-// GetRulesOk returns a tuple with the Rules field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponse) GetRulesOk() (*GetVaultMarketMmResponseRules, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Rules, true
-}
-
-// SetRules sets field value
-func (o *GetVaultMarketMmResponse) SetRules(v GetVaultMarketMmResponseRules) {
-	o.Rules = v
-}
-
-func (o GetVaultMarketMmResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["programs"] = o.Programs
-	}
-	if true {
-		toSerialize["obligations"] = o.Obligations
-	}
-	if true {
-		toSerialize["rebates"] = o.Rebates
-	}
-	if true {
-		toSerialize["rules"] = o.Rules
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponse struct {
-	value *GetVaultMarketMmResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponse) Get() *GetVaultMarketMmResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponse) Set(val *GetVaultMarketMmResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponse(val *GetVaultMarketMmResponse) *NullableGetVaultMarketMmResponse {
-	return &NullableGetVaultMarketMmResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponseObligations struct for GetVaultMarketMmResponseObligations
-type GetVaultMarketMmResponseObligations struct {
-	CoveragePct NullableFloat32 `json:"coveragePct,omitempty"`
-	UpdatedAt time.Time `json:"updatedAt"`
-	UserId string `json:"userId"`
-	Day string `json:"day"`
-	Reasons []string `json:"reasons,omitempty"`
-	Tier NullableString `json:"tier,omitempty"`
-	BookKey string `json:"bookKey"`
-	Level NullableString `json:"level,omitempty"`
-	Program string `json:"program"`
-	Samples float32 `json:"samples"`
-	InSpread float32 `json:"inSpread"`
-	InHalfSpread float32 `json:"inHalfSpread"`
-	CallsTotal float32 `json:"callsTotal"`
-	CallsJoined float32 `json:"callsJoined"`
-	RfqInvited float32 `json:"rfqInvited"`
-	RfqAnsweredFast float32 `json:"rfqAnsweredFast"`
-	Met NullableBool `json:"met,omitempty"`
-	CoverageBps NullableFloat32 `json:"coverageBps,omitempty"`
-}
-
-// NewGetVaultMarketMmResponseObligations instantiates a new GetVaultMarketMmResponseObligations object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponseObligations(updatedAt time.Time, userId string, day string, bookKey string, program string, samples float32, inSpread float32, inHalfSpread float32, callsTotal float32, callsJoined float32, rfqInvited float32, rfqAnsweredFast float32) *GetVaultMarketMmResponseObligations {
-	this := GetVaultMarketMmResponseObligations{}
-	this.UpdatedAt = updatedAt
-	this.UserId = userId
-	this.Day = day
-	this.BookKey = bookKey
-	this.Program = program
-	this.Samples = samples
-	this.InSpread = inSpread
-	this.InHalfSpread = inHalfSpread
-	this.CallsTotal = callsTotal
-	this.CallsJoined = callsJoined
-	this.RfqInvited = rfqInvited
-	this.RfqAnsweredFast = rfqAnsweredFast
-	return &this
-}
-
-// NewGetVaultMarketMmResponseObligationsWithDefaults instantiates a new GetVaultMarketMmResponseObligations object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseObligationsWithDefaults() *GetVaultMarketMmResponseObligations {
-	this := GetVaultMarketMmResponseObligations{}
-	return &this
-}
-
-// GetCoveragePct returns the CoveragePct field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetCoveragePct() float32 {
-	if o == nil || o.CoveragePct.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CoveragePct.Get()
-}
-
-// GetCoveragePctOk returns a tuple with the CoveragePct field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetCoveragePctOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CoveragePct.Get(), o.CoveragePct.IsSet()
-}
-
-// HasCoveragePct returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasCoveragePct() bool {
-	if o != nil && o.CoveragePct.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCoveragePct gets a reference to the given NullableFloat32 and assigns it to the CoveragePct field.
-func (o *GetVaultMarketMmResponseObligations) SetCoveragePct(v float32) {
-	o.CoveragePct.Set(&v)
-}
-// SetCoveragePctNil sets the value for CoveragePct to be an explicit nil
-func (o *GetVaultMarketMmResponseObligations) SetCoveragePctNil() {
-	o.CoveragePct.Set(nil)
-}
-
-// UnsetCoveragePct ensures that no value is present for CoveragePct, not even an explicit nil
-func (o *GetVaultMarketMmResponseObligations) UnsetCoveragePct() {
-	o.CoveragePct.Unset()
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *GetVaultMarketMmResponseObligations) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *GetVaultMarketMmResponseObligations) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
-}
-
-// GetUserId returns the UserId field value
-func (o *GetVaultMarketMmResponseObligations) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UserId, true
-}
-
-// SetUserId sets field value
-func (o *GetVaultMarketMmResponseObligations) SetUserId(v string) {
-	o.UserId = v
-}
-
-// GetDay returns the Day field value
-func (o *GetVaultMarketMmResponseObligations) GetDay() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Day
-}
-
-// GetDayOk returns a tuple with the Day field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetDayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Day, true
-}
-
-// SetDay sets field value
-func (o *GetVaultMarketMmResponseObligations) SetDay(v string) {
-	o.Day = v
-}
-
-// GetReasons returns the Reasons field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetReasons() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Reasons
-}
-
-// GetReasonsOk returns a tuple with the Reasons field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetReasonsOk() ([]string, bool) {
-	if o == nil || o.Reasons == nil {
-		return nil, false
-	}
-	return o.Reasons, true
-}
-
-// HasReasons returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasReasons() bool {
-	if o != nil && o.Reasons != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetReasons gets a reference to the given []string and assigns it to the Reasons field.
-func (o *GetVaultMarketMmResponseObligations) SetReasons(v []string) {
-	o.Reasons = v
-}
-
-// GetTier returns the Tier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetTier() string {
-	if o == nil || o.Tier.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Tier.Get()
-}
-
-// GetTierOk returns a tuple with the Tier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetTierOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Tier.Get(), o.Tier.IsSet()
-}
-
-// HasTier returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasTier() bool {
-	if o != nil && o.Tier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTier gets a reference to the given NullableString and assigns it to the Tier field.
-func (o *GetVaultMarketMmResponseObligations) SetTier(v string) {
-	o.Tier.Set(&v)
-}
-// SetTierNil sets the value for Tier to be an explicit nil
-func (o *GetVaultMarketMmResponseObligations) SetTierNil() {
-	o.Tier.Set(nil)
-}
-
-// UnsetTier ensures that no value is present for Tier, not even an explicit nil
-func (o *GetVaultMarketMmResponseObligations) UnsetTier() {
-	o.Tier.Unset()
-}
-
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketMmResponseObligations) GetBookKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BookKey
-}
-
-// GetBookKeyOk returns a tuple with the BookKey field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetBookKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BookKey, true
-}
-
-// SetBookKey sets field value
-func (o *GetVaultMarketMmResponseObligations) SetBookKey(v string) {
-	o.BookKey = v
-}
-
-// GetLevel returns the Level field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetLevel() string {
-	if o == nil || o.Level.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Level.Get()
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetLevelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Level.Get(), o.Level.IsSet()
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasLevel() bool {
-	if o != nil && o.Level.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given NullableString and assigns it to the Level field.
-func (o *GetVaultMarketMmResponseObligations) SetLevel(v string) {
-	o.Level.Set(&v)
-}
-// SetLevelNil sets the value for Level to be an explicit nil
-func (o *GetVaultMarketMmResponseObligations) SetLevelNil() {
-	o.Level.Set(nil)
-}
-
-// UnsetLevel ensures that no value is present for Level, not even an explicit nil
-func (o *GetVaultMarketMmResponseObligations) UnsetLevel() {
-	o.Level.Unset()
-}
-
-// GetProgram returns the Program field value
-func (o *GetVaultMarketMmResponseObligations) GetProgram() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Program
-}
-
-// GetProgramOk returns a tuple with the Program field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetProgramOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Program, true
-}
-
-// SetProgram sets field value
-func (o *GetVaultMarketMmResponseObligations) SetProgram(v string) {
-	o.Program = v
-}
-
-// GetSamples returns the Samples field value
-func (o *GetVaultMarketMmResponseObligations) GetSamples() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Samples
-}
-
-// GetSamplesOk returns a tuple with the Samples field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetSamplesOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Samples, true
-}
-
-// SetSamples sets field value
-func (o *GetVaultMarketMmResponseObligations) SetSamples(v float32) {
-	o.Samples = v
-}
-
-// GetInSpread returns the InSpread field value
-func (o *GetVaultMarketMmResponseObligations) GetInSpread() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.InSpread
-}
-
-// GetInSpreadOk returns a tuple with the InSpread field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetInSpreadOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.InSpread, true
-}
-
-// SetInSpread sets field value
-func (o *GetVaultMarketMmResponseObligations) SetInSpread(v float32) {
-	o.InSpread = v
-}
-
-// GetInHalfSpread returns the InHalfSpread field value
-func (o *GetVaultMarketMmResponseObligations) GetInHalfSpread() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.InHalfSpread
-}
-
-// GetInHalfSpreadOk returns a tuple with the InHalfSpread field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetInHalfSpreadOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.InHalfSpread, true
-}
-
-// SetInHalfSpread sets field value
-func (o *GetVaultMarketMmResponseObligations) SetInHalfSpread(v float32) {
-	o.InHalfSpread = v
-}
-
-// GetCallsTotal returns the CallsTotal field value
-func (o *GetVaultMarketMmResponseObligations) GetCallsTotal() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.CallsTotal
-}
-
-// GetCallsTotalOk returns a tuple with the CallsTotal field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetCallsTotalOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CallsTotal, true
-}
-
-// SetCallsTotal sets field value
-func (o *GetVaultMarketMmResponseObligations) SetCallsTotal(v float32) {
-	o.CallsTotal = v
-}
-
-// GetCallsJoined returns the CallsJoined field value
-func (o *GetVaultMarketMmResponseObligations) GetCallsJoined() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.CallsJoined
-}
-
-// GetCallsJoinedOk returns a tuple with the CallsJoined field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetCallsJoinedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CallsJoined, true
-}
-
-// SetCallsJoined sets field value
-func (o *GetVaultMarketMmResponseObligations) SetCallsJoined(v float32) {
-	o.CallsJoined = v
-}
-
-// GetRfqInvited returns the RfqInvited field value
-func (o *GetVaultMarketMmResponseObligations) GetRfqInvited() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RfqInvited
-}
-
-// GetRfqInvitedOk returns a tuple with the RfqInvited field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetRfqInvitedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RfqInvited, true
-}
-
-// SetRfqInvited sets field value
-func (o *GetVaultMarketMmResponseObligations) SetRfqInvited(v float32) {
-	o.RfqInvited = v
-}
-
-// GetRfqAnsweredFast returns the RfqAnsweredFast field value
-func (o *GetVaultMarketMmResponseObligations) GetRfqAnsweredFast() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RfqAnsweredFast
-}
-
-// GetRfqAnsweredFastOk returns a tuple with the RfqAnsweredFast field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseObligations) GetRfqAnsweredFastOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RfqAnsweredFast, true
-}
-
-// SetRfqAnsweredFast sets field value
-func (o *GetVaultMarketMmResponseObligations) SetRfqAnsweredFast(v float32) {
-	o.RfqAnsweredFast = v
-}
-
-// GetMet returns the Met field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetMet() bool {
-	if o == nil || o.Met.Get() == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Met.Get()
-}
-
-// GetMetOk returns a tuple with the Met field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetMetOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Met.Get(), o.Met.IsSet()
-}
-
-// HasMet returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasMet() bool {
-	if o != nil && o.Met.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMet gets a reference to the given NullableBool and assigns it to the Met field.
-func (o *GetVaultMarketMmResponseObligations) SetMet(v bool) {
-	o.Met.Set(&v)
-}
-// SetMetNil sets the value for Met to be an explicit nil
-func (o *GetVaultMarketMmResponseObligations) SetMetNil() {
-	o.Met.Set(nil)
-}
-
-// UnsetMet ensures that no value is present for Met, not even an explicit nil
-func (o *GetVaultMarketMmResponseObligations) UnsetMet() {
-	o.Met.Unset()
-}
-
-// GetCoverageBps returns the CoverageBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseObligations) GetCoverageBps() float32 {
-	if o == nil || o.CoverageBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CoverageBps.Get()
-}
-
-// GetCoverageBpsOk returns a tuple with the CoverageBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseObligations) GetCoverageBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CoverageBps.Get(), o.CoverageBps.IsSet()
-}
-
-// HasCoverageBps returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseObligations) HasCoverageBps() bool {
-	if o != nil && o.CoverageBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCoverageBps gets a reference to the given NullableFloat32 and assigns it to the CoverageBps field.
-func (o *GetVaultMarketMmResponseObligations) SetCoverageBps(v float32) {
-	o.CoverageBps.Set(&v)
-}
-// SetCoverageBpsNil sets the value for CoverageBps to be an explicit nil
-func (o *GetVaultMarketMmResponseObligations) SetCoverageBpsNil() {
-	o.CoverageBps.Set(nil)
-}
-
-// UnsetCoverageBps ensures that no value is present for CoverageBps, not even an explicit nil
-func (o *GetVaultMarketMmResponseObligations) UnsetCoverageBps() {
-	o.CoverageBps.Unset()
-}
-
-func (o GetVaultMarketMmResponseObligations) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CoveragePct.IsSet() {
-		toSerialize["coveragePct"] = o.CoveragePct.Get()
-	}
-	if true {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
-	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["day"] = o.Day
-	}
-	if o.Reasons != nil {
-		toSerialize["reasons"] = o.Reasons
-	}
-	if o.Tier.IsSet() {
-		toSerialize["tier"] = o.Tier.Get()
-	}
-	if true {
-		toSerialize["bookKey"] = o.BookKey
-	}
-	if o.Level.IsSet() {
-		toSerialize["level"] = o.Level.Get()
-	}
-	if true {
-		toSerialize["program"] = o.Program
-	}
-	if true {
-		toSerialize["samples"] = o.Samples
-	}
-	if true {
-		toSerialize["inSpread"] = o.InSpread
-	}
-	if true {
-		toSerialize["inHalfSpread"] = o.InHalfSpread
-	}
-	if true {
-		toSerialize["callsTotal"] = o.CallsTotal
-	}
-	if true {
-		toSerialize["callsJoined"] = o.CallsJoined
-	}
-	if true {
-		toSerialize["rfqInvited"] = o.RfqInvited
-	}
-	if true {
-		toSerialize["rfqAnsweredFast"] = o.RfqAnsweredFast
-	}
-	if o.Met.IsSet() {
-		toSerialize["met"] = o.Met.Get()
-	}
-	if o.CoverageBps.IsSet() {
-		toSerialize["coverageBps"] = o.CoverageBps.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponseObligations struct {
-	value *GetVaultMarketMmResponseObligations
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponseObligations) Get() *GetVaultMarketMmResponseObligations {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponseObligations) Set(val *GetVaultMarketMmResponseObligations) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponseObligations) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponseObligations) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponseObligations(val *GetVaultMarketMmResponseObligations) *NullableGetVaultMarketMmResponseObligations {
-	return &NullableGetVaultMarketMmResponseObligations{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponseObligations) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponseObligations) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponseRebates struct for GetVaultMarketMmResponseRebates
-type GetVaultMarketMmResponseRebates struct {
-	Id string `json:"id"`
-	Period string `json:"period"`
-	BookKey string `json:"bookKey"`
-	Program string `json:"program"`
-	Cents float32 `json:"cents"`
-	Status string `json:"status"`
-	PaidAt NullableString `json:"paidAt,omitempty"`
-}
-
-// NewGetVaultMarketMmResponseRebates instantiates a new GetVaultMarketMmResponseRebates object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponseRebates(id string, period string, bookKey string, program string, cents float32, status string) *GetVaultMarketMmResponseRebates {
-	this := GetVaultMarketMmResponseRebates{}
-	this.Id = id
-	this.Period = period
-	this.BookKey = bookKey
-	this.Program = program
-	this.Cents = cents
-	this.Status = status
-	return &this
-}
-
-// NewGetVaultMarketMmResponseRebatesWithDefaults instantiates a new GetVaultMarketMmResponseRebates object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseRebatesWithDefaults() *GetVaultMarketMmResponseRebates {
-	this := GetVaultMarketMmResponseRebates{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetVaultMarketMmResponseRebates) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetVaultMarketMmResponseRebates) SetId(v string) {
-	o.Id = v
-}
-
-// GetPeriod returns the Period field value
-func (o *GetVaultMarketMmResponseRebates) GetPeriod() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Period
-}
-
-// GetPeriodOk returns a tuple with the Period field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetPeriodOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Period, true
-}
-
-// SetPeriod sets field value
-func (o *GetVaultMarketMmResponseRebates) SetPeriod(v string) {
-	o.Period = v
-}
-
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketMmResponseRebates) GetBookKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BookKey
-}
-
-// GetBookKeyOk returns a tuple with the BookKey field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetBookKeyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.BookKey, true
-}
-
-// SetBookKey sets field value
-func (o *GetVaultMarketMmResponseRebates) SetBookKey(v string) {
-	o.BookKey = v
-}
-
-// GetProgram returns the Program field value
-func (o *GetVaultMarketMmResponseRebates) GetProgram() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Program
-}
-
-// GetProgramOk returns a tuple with the Program field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetProgramOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Program, true
-}
-
-// SetProgram sets field value
-func (o *GetVaultMarketMmResponseRebates) SetProgram(v string) {
-	o.Program = v
-}
-
-// GetCents returns the Cents field value
-func (o *GetVaultMarketMmResponseRebates) GetCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Cents
-}
-
-// GetCentsOk returns a tuple with the Cents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cents, true
-}
-
-// SetCents sets field value
-func (o *GetVaultMarketMmResponseRebates) SetCents(v float32) {
-	o.Cents = v
-}
-
-// GetStatus returns the Status field value
-func (o *GetVaultMarketMmResponseRebates) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRebates) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetVaultMarketMmResponseRebates) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetPaidAt returns the PaidAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketMmResponseRebates) GetPaidAt() string {
-	if o == nil || o.PaidAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PaidAt.Get()
-}
-
-// GetPaidAtOk returns a tuple with the PaidAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketMmResponseRebates) GetPaidAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PaidAt.Get(), o.PaidAt.IsSet()
-}
-
-// HasPaidAt returns a boolean if a field has been set.
-func (o *GetVaultMarketMmResponseRebates) HasPaidAt() bool {
-	if o != nil && o.PaidAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPaidAt gets a reference to the given NullableString and assigns it to the PaidAt field.
-func (o *GetVaultMarketMmResponseRebates) SetPaidAt(v string) {
-	o.PaidAt.Set(&v)
-}
-// SetPaidAtNil sets the value for PaidAt to be an explicit nil
-func (o *GetVaultMarketMmResponseRebates) SetPaidAtNil() {
-	o.PaidAt.Set(nil)
-}
-
-// UnsetPaidAt ensures that no value is present for PaidAt, not even an explicit nil
-func (o *GetVaultMarketMmResponseRebates) UnsetPaidAt() {
-	o.PaidAt.Unset()
-}
-
-func (o GetVaultMarketMmResponseRebates) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["period"] = o.Period
-	}
-	if true {
-		toSerialize["bookKey"] = o.BookKey
-	}
-	if true {
-		toSerialize["program"] = o.Program
-	}
-	if true {
-		toSerialize["cents"] = o.Cents
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.PaidAt.IsSet() {
-		toSerialize["paidAt"] = o.PaidAt.Get()
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponseRebates struct {
-	value *GetVaultMarketMmResponseRebates
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponseRebates) Get() *GetVaultMarketMmResponseRebates {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponseRebates) Set(val *GetVaultMarketMmResponseRebates) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponseRebates) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponseRebates) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponseRebates(val *GetVaultMarketMmResponseRebates) *NullableGetVaultMarketMmResponseRebates {
-	return &NullableGetVaultMarketMmResponseRebates{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponseRebates) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponseRebates) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponseRules struct for GetVaultMarketMmResponseRules
-type GetVaultMarketMmResponseRules struct {
-	SpreadCapBps GetVaultMarketMmResponseRulesSpreadCapBps `json:"spreadCapBps"`
-	DmmUptimeBps GetVaultMarketMmResponseRulesSpreadCapBps `json:"dmmUptimeBps"`
-	LpCoverageBps GetVaultMarketMmResponseRulesLpCoverageBps `json:"lpCoverageBps"`
-	RfqAnswerSeconds float32 `json:"rfqAnswerSeconds"`
-	RfqAnswerRateBps float32 `json:"rfqAnswerRateBps"`
-}
-
-// NewGetVaultMarketMmResponseRules instantiates a new GetVaultMarketMmResponseRules object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponseRules(spreadCapBps GetVaultMarketMmResponseRulesSpreadCapBps, dmmUptimeBps GetVaultMarketMmResponseRulesSpreadCapBps, lpCoverageBps GetVaultMarketMmResponseRulesLpCoverageBps, rfqAnswerSeconds float32, rfqAnswerRateBps float32) *GetVaultMarketMmResponseRules {
-	this := GetVaultMarketMmResponseRules{}
-	this.SpreadCapBps = spreadCapBps
-	this.DmmUptimeBps = dmmUptimeBps
-	this.LpCoverageBps = lpCoverageBps
-	this.RfqAnswerSeconds = rfqAnswerSeconds
-	this.RfqAnswerRateBps = rfqAnswerRateBps
-	return &this
-}
-
-// NewGetVaultMarketMmResponseRulesWithDefaults instantiates a new GetVaultMarketMmResponseRules object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseRulesWithDefaults() *GetVaultMarketMmResponseRules {
-	this := GetVaultMarketMmResponseRules{}
-	return &this
-}
-
-// GetSpreadCapBps returns the SpreadCapBps field value
-func (o *GetVaultMarketMmResponseRules) GetSpreadCapBps() GetVaultMarketMmResponseRulesSpreadCapBps {
-	if o == nil {
-		var ret GetVaultMarketMmResponseRulesSpreadCapBps
-		return ret
-	}
-
-	return o.SpreadCapBps
-}
-
-// GetSpreadCapBpsOk returns a tuple with the SpreadCapBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRules) GetSpreadCapBpsOk() (*GetVaultMarketMmResponseRulesSpreadCapBps, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SpreadCapBps, true
-}
-
-// SetSpreadCapBps sets field value
-func (o *GetVaultMarketMmResponseRules) SetSpreadCapBps(v GetVaultMarketMmResponseRulesSpreadCapBps) {
-	o.SpreadCapBps = v
-}
-
-// GetDmmUptimeBps returns the DmmUptimeBps field value
-func (o *GetVaultMarketMmResponseRules) GetDmmUptimeBps() GetVaultMarketMmResponseRulesSpreadCapBps {
-	if o == nil {
-		var ret GetVaultMarketMmResponseRulesSpreadCapBps
-		return ret
-	}
-
-	return o.DmmUptimeBps
-}
-
-// GetDmmUptimeBpsOk returns a tuple with the DmmUptimeBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRules) GetDmmUptimeBpsOk() (*GetVaultMarketMmResponseRulesSpreadCapBps, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.DmmUptimeBps, true
-}
-
-// SetDmmUptimeBps sets field value
-func (o *GetVaultMarketMmResponseRules) SetDmmUptimeBps(v GetVaultMarketMmResponseRulesSpreadCapBps) {
-	o.DmmUptimeBps = v
-}
-
-// GetLpCoverageBps returns the LpCoverageBps field value
-func (o *GetVaultMarketMmResponseRules) GetLpCoverageBps() GetVaultMarketMmResponseRulesLpCoverageBps {
-	if o == nil {
-		var ret GetVaultMarketMmResponseRulesLpCoverageBps
-		return ret
-	}
-
-	return o.LpCoverageBps
-}
-
-// GetLpCoverageBpsOk returns a tuple with the LpCoverageBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRules) GetLpCoverageBpsOk() (*GetVaultMarketMmResponseRulesLpCoverageBps, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LpCoverageBps, true
-}
-
-// SetLpCoverageBps sets field value
-func (o *GetVaultMarketMmResponseRules) SetLpCoverageBps(v GetVaultMarketMmResponseRulesLpCoverageBps) {
-	o.LpCoverageBps = v
-}
-
-// GetRfqAnswerSeconds returns the RfqAnswerSeconds field value
-func (o *GetVaultMarketMmResponseRules) GetRfqAnswerSeconds() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RfqAnswerSeconds
-}
-
-// GetRfqAnswerSecondsOk returns a tuple with the RfqAnswerSeconds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRules) GetRfqAnswerSecondsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RfqAnswerSeconds, true
-}
-
-// SetRfqAnswerSeconds sets field value
-func (o *GetVaultMarketMmResponseRules) SetRfqAnswerSeconds(v float32) {
-	o.RfqAnswerSeconds = v
-}
-
-// GetRfqAnswerRateBps returns the RfqAnswerRateBps field value
-func (o *GetVaultMarketMmResponseRules) GetRfqAnswerRateBps() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RfqAnswerRateBps
-}
-
-// GetRfqAnswerRateBpsOk returns a tuple with the RfqAnswerRateBps field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRules) GetRfqAnswerRateBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RfqAnswerRateBps, true
-}
-
-// SetRfqAnswerRateBps sets field value
-func (o *GetVaultMarketMmResponseRules) SetRfqAnswerRateBps(v float32) {
-	o.RfqAnswerRateBps = v
-}
-
-func (o GetVaultMarketMmResponseRules) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["spreadCapBps"] = o.SpreadCapBps
-	}
-	if true {
-		toSerialize["dmmUptimeBps"] = o.DmmUptimeBps
-	}
-	if true {
-		toSerialize["lpCoverageBps"] = o.LpCoverageBps
-	}
-	if true {
-		toSerialize["rfqAnswerSeconds"] = o.RfqAnswerSeconds
-	}
-	if true {
-		toSerialize["rfqAnswerRateBps"] = o.RfqAnswerRateBps
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponseRules struct {
-	value *GetVaultMarketMmResponseRules
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponseRules) Get() *GetVaultMarketMmResponseRules {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponseRules) Set(val *GetVaultMarketMmResponseRules) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponseRules) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponseRules) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponseRules(val *GetVaultMarketMmResponseRules) *NullableGetVaultMarketMmResponseRules {
-	return &NullableGetVaultMarketMmResponseRules{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponseRules) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponseRules) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponseRulesLpCoverageBps struct for GetVaultMarketMmResponseRulesLpCoverageBps
-type GetVaultMarketMmResponseRulesLpCoverageBps struct {
-	Basic float32 `json:"basic"`
-	Plus float32 `json:"plus"`
-}
-
-// NewGetVaultMarketMmResponseRulesLpCoverageBps instantiates a new GetVaultMarketMmResponseRulesLpCoverageBps object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponseRulesLpCoverageBps(basic float32, plus float32) *GetVaultMarketMmResponseRulesLpCoverageBps {
-	this := GetVaultMarketMmResponseRulesLpCoverageBps{}
-	this.Basic = basic
-	this.Plus = plus
-	return &this
-}
-
-// NewGetVaultMarketMmResponseRulesLpCoverageBpsWithDefaults instantiates a new GetVaultMarketMmResponseRulesLpCoverageBps object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseRulesLpCoverageBpsWithDefaults() *GetVaultMarketMmResponseRulesLpCoverageBps {
-	this := GetVaultMarketMmResponseRulesLpCoverageBps{}
-	return &this
-}
-
-// GetBasic returns the Basic field value
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) GetBasic() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Basic
-}
-
-// GetBasicOk returns a tuple with the Basic field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) GetBasicOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Basic, true
-}
-
-// SetBasic sets field value
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) SetBasic(v float32) {
-	o.Basic = v
-}
-
-// GetPlus returns the Plus field value
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) GetPlus() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Plus
-}
-
-// GetPlusOk returns a tuple with the Plus field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) GetPlusOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Plus, true
-}
-
-// SetPlus sets field value
-func (o *GetVaultMarketMmResponseRulesLpCoverageBps) SetPlus(v float32) {
-	o.Plus = v
-}
-
-func (o GetVaultMarketMmResponseRulesLpCoverageBps) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["basic"] = o.Basic
-	}
-	if true {
-		toSerialize["plus"] = o.Plus
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponseRulesLpCoverageBps struct {
-	value *GetVaultMarketMmResponseRulesLpCoverageBps
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponseRulesLpCoverageBps) Get() *GetVaultMarketMmResponseRulesLpCoverageBps {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesLpCoverageBps) Set(val *GetVaultMarketMmResponseRulesLpCoverageBps) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponseRulesLpCoverageBps) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesLpCoverageBps) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponseRulesLpCoverageBps(val *GetVaultMarketMmResponseRulesLpCoverageBps) *NullableGetVaultMarketMmResponseRulesLpCoverageBps {
-	return &NullableGetVaultMarketMmResponseRulesLpCoverageBps{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponseRulesLpCoverageBps) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesLpCoverageBps) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketMmResponseRulesSpreadCapBps struct for GetVaultMarketMmResponseRulesSpreadCapBps
-type GetVaultMarketMmResponseRulesSpreadCapBps struct {
-	A float32 `json:"A"`
-	B float32 `json:"B"`
-	C float32 `json:"C"`
-	D float32 `json:"D"`
-}
-
-// NewGetVaultMarketMmResponseRulesSpreadCapBps instantiates a new GetVaultMarketMmResponseRulesSpreadCapBps object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketMmResponseRulesSpreadCapBps(a float32, b float32, c float32, d float32) *GetVaultMarketMmResponseRulesSpreadCapBps {
-	this := GetVaultMarketMmResponseRulesSpreadCapBps{}
-	this.A = a
-	this.B = b
-	this.C = c
-	this.D = d
-	return &this
-}
-
-// NewGetVaultMarketMmResponseRulesSpreadCapBpsWithDefaults instantiates a new GetVaultMarketMmResponseRulesSpreadCapBps object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketMmResponseRulesSpreadCapBpsWithDefaults() *GetVaultMarketMmResponseRulesSpreadCapBps {
-	this := GetVaultMarketMmResponseRulesSpreadCapBps{}
-	return &this
-}
-
-// GetA returns the A field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetA() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.A
-}
-
-// GetAOk returns a tuple with the A field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetAOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.A, true
-}
-
-// SetA sets field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) SetA(v float32) {
-	o.A = v
-}
-
-// GetB returns the B field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetB() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.B
-}
-
-// GetBOk returns a tuple with the B field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetBOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.B, true
-}
-
-// SetB sets field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) SetB(v float32) {
-	o.B = v
-}
-
-// GetC returns the C field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetC() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.C
-}
-
-// GetCOk returns a tuple with the C field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetCOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.C, true
-}
-
-// SetC sets field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) SetC(v float32) {
-	o.C = v
-}
-
-// GetD returns the D field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetD() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.D
-}
-
-// GetDOk returns a tuple with the D field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) GetDOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.D, true
-}
-
-// SetD sets field value
-func (o *GetVaultMarketMmResponseRulesSpreadCapBps) SetD(v float32) {
-	o.D = v
-}
-
-func (o GetVaultMarketMmResponseRulesSpreadCapBps) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["A"] = o.A
-	}
-	if true {
-		toSerialize["B"] = o.B
-	}
-	if true {
-		toSerialize["C"] = o.C
-	}
-	if true {
-		toSerialize["D"] = o.D
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketMmResponseRulesSpreadCapBps struct {
-	value *GetVaultMarketMmResponseRulesSpreadCapBps
-	isSet bool
-}
-
-func (v NullableGetVaultMarketMmResponseRulesSpreadCapBps) Get() *GetVaultMarketMmResponseRulesSpreadCapBps {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesSpreadCapBps) Set(val *GetVaultMarketMmResponseRulesSpreadCapBps) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketMmResponseRulesSpreadCapBps) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesSpreadCapBps) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketMmResponseRulesSpreadCapBps(val *GetVaultMarketMmResponseRulesSpreadCapBps) *NullableGetVaultMarketMmResponseRulesSpreadCapBps {
-	return &NullableGetVaultMarketMmResponseRulesSpreadCapBps{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketMmResponseRulesSpreadCapBps) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketMmResponseRulesSpreadCapBps) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketModeResponse struct for GetVaultMarketModeResponse
-type GetVaultMarketModeResponse struct {
-	Mode string `json:"mode"`
-	Source string `json:"source"`
-	At string `json:"at"`
-	SignedIn bool `json:"signedIn"`
-	Explain GetVaultMarketModeResponseExplain `json:"explain"`
-}
-
-// NewGetVaultMarketModeResponse instantiates a new GetVaultMarketModeResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketModeResponse(mode string, source string, at string, signedIn bool, explain GetVaultMarketModeResponseExplain) *GetVaultMarketModeResponse {
-	this := GetVaultMarketModeResponse{}
-	this.Mode = mode
-	this.Source = source
-	this.At = at
-	this.SignedIn = signedIn
-	this.Explain = explain
-	return &this
-}
-
-// NewGetVaultMarketModeResponseWithDefaults instantiates a new GetVaultMarketModeResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketModeResponseWithDefaults() *GetVaultMarketModeResponse {
-	this := GetVaultMarketModeResponse{}
-	return &this
-}
-
-// GetMode returns the Mode field value
-func (o *GetVaultMarketModeResponse) GetMode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponse) GetModeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Mode, true
-}
-
-// SetMode sets field value
-func (o *GetVaultMarketModeResponse) SetMode(v string) {
-	o.Mode = v
-}
-
-// GetSource returns the Source field value
-func (o *GetVaultMarketModeResponse) GetSource() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponse) GetSourceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Source, true
-}
-
-// SetSource sets field value
-func (o *GetVaultMarketModeResponse) SetSource(v string) {
-	o.Source = v
-}
-
-// GetAt returns the At field value
-func (o *GetVaultMarketModeResponse) GetAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponse) GetAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *GetVaultMarketModeResponse) SetAt(v string) {
-	o.At = v
-}
-
-// GetSignedIn returns the SignedIn field value
-func (o *GetVaultMarketModeResponse) GetSignedIn() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.SignedIn
-}
-
-// GetSignedInOk returns a tuple with the SignedIn field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponse) GetSignedInOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SignedIn, true
-}
-
-// SetSignedIn sets field value
-func (o *GetVaultMarketModeResponse) SetSignedIn(v bool) {
-	o.SignedIn = v
-}
-
-// GetExplain returns the Explain field value
-func (o *GetVaultMarketModeResponse) GetExplain() GetVaultMarketModeResponseExplain {
-	if o == nil {
-		var ret GetVaultMarketModeResponseExplain
-		return ret
-	}
-
-	return o.Explain
-}
-
-// GetExplainOk returns a tuple with the Explain field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponse) GetExplainOk() (*GetVaultMarketModeResponseExplain, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Explain, true
-}
-
-// SetExplain sets field value
-func (o *GetVaultMarketModeResponse) SetExplain(v GetVaultMarketModeResponseExplain) {
-	o.Explain = v
-}
-
-func (o GetVaultMarketModeResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mode"] = o.Mode
-	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	if true {
-		toSerialize["signedIn"] = o.SignedIn
-	}
-	if true {
-		toSerialize["explain"] = o.Explain
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketModeResponse struct {
-	value *GetVaultMarketModeResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketModeResponse) Get() *GetVaultMarketModeResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketModeResponse) Set(val *GetVaultMarketModeResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketModeResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketModeResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketModeResponse(val *GetVaultMarketModeResponse) *NullableGetVaultMarketModeResponse {
-	return &NullableGetVaultMarketModeResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketModeResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketModeResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketModeResponseExplain struct for GetVaultMarketModeResponseExplain
-type GetVaultMarketModeResponseExplain struct {
-	Pro string `json:"pro"`
-	Simple string `json:"simple"`
-}
-
-// NewGetVaultMarketModeResponseExplain instantiates a new GetVaultMarketModeResponseExplain object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketModeResponseExplain(pro string, simple string) *GetVaultMarketModeResponseExplain {
-	this := GetVaultMarketModeResponseExplain{}
-	this.Pro = pro
-	this.Simple = simple
-	return &this
-}
-
-// NewGetVaultMarketModeResponseExplainWithDefaults instantiates a new GetVaultMarketModeResponseExplain object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketModeResponseExplainWithDefaults() *GetVaultMarketModeResponseExplain {
-	this := GetVaultMarketModeResponseExplain{}
-	return &this
-}
-
-// GetPro returns the Pro field value
-func (o *GetVaultMarketModeResponseExplain) GetPro() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Pro
-}
-
-// GetProOk returns a tuple with the Pro field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponseExplain) GetProOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Pro, true
-}
-
-// SetPro sets field value
-func (o *GetVaultMarketModeResponseExplain) SetPro(v string) {
-	o.Pro = v
-}
-
-// GetSimple returns the Simple field value
-func (o *GetVaultMarketModeResponseExplain) GetSimple() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Simple
-}
-
-// GetSimpleOk returns a tuple with the Simple field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketModeResponseExplain) GetSimpleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Simple, true
-}
-
-// SetSimple sets field value
-func (o *GetVaultMarketModeResponseExplain) SetSimple(v string) {
-	o.Simple = v
-}
-
-func (o GetVaultMarketModeResponseExplain) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["pro"] = o.Pro
-	}
-	if true {
-		toSerialize["simple"] = o.Simple
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketModeResponseExplain struct {
-	value *GetVaultMarketModeResponseExplain
-	isSet bool
-}
-
-func (v NullableGetVaultMarketModeResponseExplain) Get() *GetVaultMarketModeResponseExplain {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketModeResponseExplain) Set(val *GetVaultMarketModeResponseExplain) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketModeResponseExplain) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketModeResponseExplain) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketModeResponseExplain(val *GetVaultMarketModeResponseExplain) *NullableGetVaultMarketModeResponseExplain {
-	return &NullableGetVaultMarketModeResponseExplain{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketModeResponseExplain) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketModeResponseExplain) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketNavResponse struct for GetVaultMarketNavResponse
-type GetVaultMarketNavResponse struct {
-	Account CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount `json:"account"`
-	AsOf string `json:"asOf"`
-	Currency string `json:"currency"`
-	Totals GetVaultMarketNavResponseTotals `json:"totals"`
-	Holdings []GetVaultMarketNavResponseHoldings `json:"holdings"`
-	Policy []string `json:"policy"`
-}
-
-// NewGetVaultMarketNavResponse instantiates a new GetVaultMarketNavResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketNavResponse(account CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount, asOf string, currency string, totals GetVaultMarketNavResponseTotals, holdings []GetVaultMarketNavResponseHoldings, policy []string) *GetVaultMarketNavResponse {
-	this := GetVaultMarketNavResponse{}
-	this.Account = account
-	this.AsOf = asOf
-	this.Currency = currency
-	this.Totals = totals
-	this.Holdings = holdings
-	this.Policy = policy
-	return &this
-}
-
-// NewGetVaultMarketNavResponseWithDefaults instantiates a new GetVaultMarketNavResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseWithDefaults() *GetVaultMarketNavResponse {
-	this := GetVaultMarketNavResponse{}
-	return &this
-}
-
-// GetAccount returns the Account field value
-func (o *GetVaultMarketNavResponse) GetAccount() CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount {
-	if o == nil {
-		var ret CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount
-		return ret
-	}
-
-	return o.Account
-}
-
-// GetAccountOk returns a tuple with the Account field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetAccountOk() (*CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Account, true
-}
-
-// SetAccount sets field value
-func (o *GetVaultMarketNavResponse) SetAccount(v CreateVaultMarketPortfolioMarginEnrollResponseOneOfAccount) {
-	o.Account = v
-}
-
-// GetAsOf returns the AsOf field value
-func (o *GetVaultMarketNavResponse) GetAsOf() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AsOf
-}
-
-// GetAsOfOk returns a tuple with the AsOf field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetAsOfOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.AsOf, true
-}
-
-// SetAsOf sets field value
-func (o *GetVaultMarketNavResponse) SetAsOf(v string) {
-	o.AsOf = v
-}
-
-// GetCurrency returns the Currency field value
-func (o *GetVaultMarketNavResponse) GetCurrency() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Currency
-}
-
-// GetCurrencyOk returns a tuple with the Currency field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetCurrencyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Currency, true
-}
-
-// SetCurrency sets field value
-func (o *GetVaultMarketNavResponse) SetCurrency(v string) {
-	o.Currency = v
-}
-
-// GetTotals returns the Totals field value
-func (o *GetVaultMarketNavResponse) GetTotals() GetVaultMarketNavResponseTotals {
-	if o == nil {
-		var ret GetVaultMarketNavResponseTotals
-		return ret
-	}
-
-	return o.Totals
-}
-
-// GetTotalsOk returns a tuple with the Totals field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetTotalsOk() (*GetVaultMarketNavResponseTotals, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Totals, true
-}
-
-// SetTotals sets field value
-func (o *GetVaultMarketNavResponse) SetTotals(v GetVaultMarketNavResponseTotals) {
-	o.Totals = v
-}
-
-// GetHoldings returns the Holdings field value
-func (o *GetVaultMarketNavResponse) GetHoldings() []GetVaultMarketNavResponseHoldings {
-	if o == nil {
-		var ret []GetVaultMarketNavResponseHoldings
-		return ret
-	}
-
-	return o.Holdings
-}
-
-// GetHoldingsOk returns a tuple with the Holdings field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetHoldingsOk() ([]GetVaultMarketNavResponseHoldings, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Holdings, true
-}
-
-// SetHoldings sets field value
-func (o *GetVaultMarketNavResponse) SetHoldings(v []GetVaultMarketNavResponseHoldings) {
-	o.Holdings = v
-}
-
-// GetPolicy returns the Policy field value
-func (o *GetVaultMarketNavResponse) GetPolicy() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Policy
-}
-
-// GetPolicyOk returns a tuple with the Policy field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponse) GetPolicyOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Policy, true
-}
-
-// SetPolicy sets field value
-func (o *GetVaultMarketNavResponse) SetPolicy(v []string) {
-	o.Policy = v
-}
-
-func (o GetVaultMarketNavResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["account"] = o.Account
-	}
-	if true {
-		toSerialize["asOf"] = o.AsOf
-	}
-	if true {
-		toSerialize["currency"] = o.Currency
-	}
-	if true {
-		toSerialize["totals"] = o.Totals
-	}
-	if true {
-		toSerialize["holdings"] = o.Holdings
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketNavResponse struct {
-	value *GetVaultMarketNavResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketNavResponse) Get() *GetVaultMarketNavResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketNavResponse) Set(val *GetVaultMarketNavResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketNavResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketNavResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketNavResponse(val *GetVaultMarketNavResponse) *NullableGetVaultMarketNavResponse {
-	return &NullableGetVaultMarketNavResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketNavResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketNavResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketNavResponseHoldings struct for GetVaultMarketNavResponseHoldings
-type GetVaultMarketNavResponseHoldings struct {
-	BookKey string `json:"bookKey"`
+// GetVaultMarketHallLoanResponseExhibition struct for GetVaultMarketHallLoanResponseExhibition
+type GetVaultMarketHallLoanResponseExhibition struct {
+	Key string `json:"key"`
 	Title string `json:"title"`
-	Category NullableString `json:"category,omitempty"`
-	Grader NullableString `json:"grader,omitempty"`
-	Units float32 `json:"units"`
-	SellableUnits float32 `json:"sellableUnits"`
-	PledgedUnits float32 `json:"pledgedUnits"`
-	LentUnits float32 `json:"lentUnits"`
-	InsuredValueCents NullableFloat32 `json:"insuredValueCents,omitempty"`
-	Mark GetVaultMarketNavResponseHoldingsMark `json:"mark"`
-	Asc820 GetVaultMarketNavResponseHoldingsAsc820 `json:"asc820"`
-	MarkValueCents float32 `json:"markValueCents"`
-	Bid GetVaultMarketNavResponseHoldingsBid `json:"bid"`
-	Liquidation GetVaultMarketNavResponseHoldingsLiquidation `json:"liquidation"`
-	AdministratorMark NullableGetVaultMarketNavResponseHoldingsAdministratorMark `json:"administratorMark,omitempty"`
+	CategorySlug string `json:"categorySlug"`
+	EndsAt string `json:"endsAt"`
+	Next string `json:"next"`
 }
 
-// NewGetVaultMarketNavResponseHoldings instantiates a new GetVaultMarketNavResponseHoldings object
+// NewGetVaultMarketHallLoanResponseExhibition instantiates a new GetVaultMarketHallLoanResponseExhibition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldings(bookKey string, title string, units float32, sellableUnits float32, pledgedUnits float32, lentUnits float32, mark GetVaultMarketNavResponseHoldingsMark, asc820 GetVaultMarketNavResponseHoldingsAsc820, markValueCents float32, bid GetVaultMarketNavResponseHoldingsBid, liquidation GetVaultMarketNavResponseHoldingsLiquidation) *GetVaultMarketNavResponseHoldings {
-	this := GetVaultMarketNavResponseHoldings{}
-	this.BookKey = bookKey
+func NewGetVaultMarketHallLoanResponseExhibition(key string, title string, categorySlug string, endsAt string, next string) *GetVaultMarketHallLoanResponseExhibition {
+	this := GetVaultMarketHallLoanResponseExhibition{}
+	this.Key = key
 	this.Title = title
-	this.Units = units
-	this.SellableUnits = sellableUnits
-	this.PledgedUnits = pledgedUnits
-	this.LentUnits = lentUnits
-	this.Mark = mark
-	this.Asc820 = asc820
-	this.MarkValueCents = markValueCents
-	this.Bid = bid
-	this.Liquidation = liquidation
+	this.CategorySlug = categorySlug
+	this.EndsAt = endsAt
+	this.Next = next
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsWithDefaults instantiates a new GetVaultMarketNavResponseHoldings object
+// NewGetVaultMarketHallLoanResponseExhibitionWithDefaults instantiates a new GetVaultMarketHallLoanResponseExhibition object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsWithDefaults() *GetVaultMarketNavResponseHoldings {
-	this := GetVaultMarketNavResponseHoldings{}
+func NewGetVaultMarketHallLoanResponseExhibitionWithDefaults() *GetVaultMarketHallLoanResponseExhibition {
+	this := GetVaultMarketHallLoanResponseExhibition{}
 	return &this
 }
 
-// GetBookKey returns the BookKey field value
-func (o *GetVaultMarketNavResponseHoldings) GetBookKey() string {
+// GetKey returns the Key field value
+func (o *GetVaultMarketHallLoanResponseExhibition) GetKey() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BookKey
+	return o.Key
 }
 
-// GetBookKeyOk returns a tuple with the BookKey field value
+// GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetBookKeyOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.BookKey, true
+	return &o.Key, true
 }
 
-// SetBookKey sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetBookKey(v string) {
-	o.BookKey = v
+// SetKey sets field value
+func (o *GetVaultMarketHallLoanResponseExhibition) SetKey(v string) {
+	o.Key = v
 }
 
 // GetTitle returns the Title field value
-func (o *GetVaultMarketNavResponseHoldings) GetTitle() string {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -7251,7 +983,7 @@ func (o *GetVaultMarketNavResponseHoldings) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetTitleOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetTitleOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -7259,511 +991,798 @@ func (o *GetVaultMarketNavResponseHoldings) GetTitleOk() (*string, bool) {
 }
 
 // SetTitle sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetTitle(v string) {
+func (o *GetVaultMarketHallLoanResponseExhibition) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetCategory returns the Category field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldings) GetCategory() string {
-	if o == nil || o.Category.Get() == nil {
+// GetCategorySlug returns the CategorySlug field value
+func (o *GetVaultMarketHallLoanResponseExhibition) GetCategorySlug() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Category.Get()
+
+	return o.CategorySlug
 }
 
-// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
+// GetCategorySlugOk returns a tuple with the CategorySlug field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldings) GetCategoryOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetCategorySlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Category.Get(), o.Category.IsSet()
+	return &o.CategorySlug, true
 }
 
-// HasCategory returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldings) HasCategory() bool {
-	if o != nil && o.Category.IsSet() {
-		return true
-	}
-
-	return false
+// SetCategorySlug sets field value
+func (o *GetVaultMarketHallLoanResponseExhibition) SetCategorySlug(v string) {
+	o.CategorySlug = v
 }
 
-// SetCategory gets a reference to the given NullableString and assigns it to the Category field.
-func (o *GetVaultMarketNavResponseHoldings) SetCategory(v string) {
-	o.Category.Set(&v)
-}
-// SetCategoryNil sets the value for Category to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) SetCategoryNil() {
-	o.Category.Set(nil)
-}
-
-// UnsetCategory ensures that no value is present for Category, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) UnsetCategory() {
-	o.Category.Unset()
-}
-
-// GetGrader returns the Grader field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldings) GetGrader() string {
-	if o == nil || o.Grader.Get() == nil {
+// GetEndsAt returns the EndsAt field value
+func (o *GetVaultMarketHallLoanResponseExhibition) GetEndsAt() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Grader.Get()
+
+	return o.EndsAt
 }
 
-// GetGraderOk returns a tuple with the Grader field value if set, nil otherwise
+// GetEndsAtOk returns a tuple with the EndsAt field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldings) GetGraderOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetEndsAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Grader.Get(), o.Grader.IsSet()
+	return &o.EndsAt, true
 }
 
-// HasGrader returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldings) HasGrader() bool {
-	if o != nil && o.Grader.IsSet() {
-		return true
-	}
-
-	return false
+// SetEndsAt sets field value
+func (o *GetVaultMarketHallLoanResponseExhibition) SetEndsAt(v string) {
+	o.EndsAt = v
 }
 
-// SetGrader gets a reference to the given NullableString and assigns it to the Grader field.
-func (o *GetVaultMarketNavResponseHoldings) SetGrader(v string) {
-	o.Grader.Set(&v)
-}
-// SetGraderNil sets the value for Grader to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) SetGraderNil() {
-	o.Grader.Set(nil)
-}
-
-// UnsetGrader ensures that no value is present for Grader, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) UnsetGrader() {
-	o.Grader.Unset()
-}
-
-// GetUnits returns the Units field value
-func (o *GetVaultMarketNavResponseHoldings) GetUnits() float32 {
+// GetNext returns the Next field value
+func (o *GetVaultMarketHallLoanResponseExhibition) GetNext() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.Units
+	return o.Next
 }
 
-// GetUnitsOk returns a tuple with the Units field value
+// GetNextOk returns a tuple with the Next field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetUnitsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponseExhibition) GetNextOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Units, true
+	return &o.Next, true
 }
 
-// SetUnits sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetUnits(v float32) {
-	o.Units = v
+// SetNext sets field value
+func (o *GetVaultMarketHallLoanResponseExhibition) SetNext(v string) {
+	o.Next = v
 }
 
-// GetSellableUnits returns the SellableUnits field value
-func (o *GetVaultMarketNavResponseHoldings) GetSellableUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.SellableUnits
-}
-
-// GetSellableUnitsOk returns a tuple with the SellableUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetSellableUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SellableUnits, true
-}
-
-// SetSellableUnits sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetSellableUnits(v float32) {
-	o.SellableUnits = v
-}
-
-// GetPledgedUnits returns the PledgedUnits field value
-func (o *GetVaultMarketNavResponseHoldings) GetPledgedUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.PledgedUnits
-}
-
-// GetPledgedUnitsOk returns a tuple with the PledgedUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetPledgedUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.PledgedUnits, true
-}
-
-// SetPledgedUnits sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetPledgedUnits(v float32) {
-	o.PledgedUnits = v
-}
-
-// GetLentUnits returns the LentUnits field value
-func (o *GetVaultMarketNavResponseHoldings) GetLentUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.LentUnits
-}
-
-// GetLentUnitsOk returns a tuple with the LentUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetLentUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LentUnits, true
-}
-
-// SetLentUnits sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetLentUnits(v float32) {
-	o.LentUnits = v
-}
-
-// GetInsuredValueCents returns the InsuredValueCents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldings) GetInsuredValueCents() float32 {
-	if o == nil || o.InsuredValueCents.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.InsuredValueCents.Get()
-}
-
-// GetInsuredValueCentsOk returns a tuple with the InsuredValueCents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldings) GetInsuredValueCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.InsuredValueCents.Get(), o.InsuredValueCents.IsSet()
-}
-
-// HasInsuredValueCents returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldings) HasInsuredValueCents() bool {
-	if o != nil && o.InsuredValueCents.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetInsuredValueCents gets a reference to the given NullableFloat32 and assigns it to the InsuredValueCents field.
-func (o *GetVaultMarketNavResponseHoldings) SetInsuredValueCents(v float32) {
-	o.InsuredValueCents.Set(&v)
-}
-// SetInsuredValueCentsNil sets the value for InsuredValueCents to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) SetInsuredValueCentsNil() {
-	o.InsuredValueCents.Set(nil)
-}
-
-// UnsetInsuredValueCents ensures that no value is present for InsuredValueCents, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) UnsetInsuredValueCents() {
-	o.InsuredValueCents.Unset()
-}
-
-// GetMark returns the Mark field value
-func (o *GetVaultMarketNavResponseHoldings) GetMark() GetVaultMarketNavResponseHoldingsMark {
-	if o == nil {
-		var ret GetVaultMarketNavResponseHoldingsMark
-		return ret
-	}
-
-	return o.Mark
-}
-
-// GetMarkOk returns a tuple with the Mark field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetMarkOk() (*GetVaultMarketNavResponseHoldingsMark, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Mark, true
-}
-
-// SetMark sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetMark(v GetVaultMarketNavResponseHoldingsMark) {
-	o.Mark = v
-}
-
-// GetAsc820 returns the Asc820 field value
-func (o *GetVaultMarketNavResponseHoldings) GetAsc820() GetVaultMarketNavResponseHoldingsAsc820 {
-	if o == nil {
-		var ret GetVaultMarketNavResponseHoldingsAsc820
-		return ret
-	}
-
-	return o.Asc820
-}
-
-// GetAsc820Ok returns a tuple with the Asc820 field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetAsc820Ok() (*GetVaultMarketNavResponseHoldingsAsc820, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Asc820, true
-}
-
-// SetAsc820 sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetAsc820(v GetVaultMarketNavResponseHoldingsAsc820) {
-	o.Asc820 = v
-}
-
-// GetMarkValueCents returns the MarkValueCents field value
-func (o *GetVaultMarketNavResponseHoldings) GetMarkValueCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.MarkValueCents
-}
-
-// GetMarkValueCentsOk returns a tuple with the MarkValueCents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetMarkValueCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MarkValueCents, true
-}
-
-// SetMarkValueCents sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetMarkValueCents(v float32) {
-	o.MarkValueCents = v
-}
-
-// GetBid returns the Bid field value
-func (o *GetVaultMarketNavResponseHoldings) GetBid() GetVaultMarketNavResponseHoldingsBid {
-	if o == nil {
-		var ret GetVaultMarketNavResponseHoldingsBid
-		return ret
-	}
-
-	return o.Bid
-}
-
-// GetBidOk returns a tuple with the Bid field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetBidOk() (*GetVaultMarketNavResponseHoldingsBid, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Bid, true
-}
-
-// SetBid sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetBid(v GetVaultMarketNavResponseHoldingsBid) {
-	o.Bid = v
-}
-
-// GetLiquidation returns the Liquidation field value
-func (o *GetVaultMarketNavResponseHoldings) GetLiquidation() GetVaultMarketNavResponseHoldingsLiquidation {
-	if o == nil {
-		var ret GetVaultMarketNavResponseHoldingsLiquidation
-		return ret
-	}
-
-	return o.Liquidation
-}
-
-// GetLiquidationOk returns a tuple with the Liquidation field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldings) GetLiquidationOk() (*GetVaultMarketNavResponseHoldingsLiquidation, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Liquidation, true
-}
-
-// SetLiquidation sets field value
-func (o *GetVaultMarketNavResponseHoldings) SetLiquidation(v GetVaultMarketNavResponseHoldingsLiquidation) {
-	o.Liquidation = v
-}
-
-// GetAdministratorMark returns the AdministratorMark field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldings) GetAdministratorMark() GetVaultMarketNavResponseHoldingsAdministratorMark {
-	if o == nil || o.AdministratorMark.Get() == nil {
-		var ret GetVaultMarketNavResponseHoldingsAdministratorMark
-		return ret
-	}
-	return *o.AdministratorMark.Get()
-}
-
-// GetAdministratorMarkOk returns a tuple with the AdministratorMark field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldings) GetAdministratorMarkOk() (*GetVaultMarketNavResponseHoldingsAdministratorMark, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AdministratorMark.Get(), o.AdministratorMark.IsSet()
-}
-
-// HasAdministratorMark returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldings) HasAdministratorMark() bool {
-	if o != nil && o.AdministratorMark.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAdministratorMark gets a reference to the given NullableGetVaultMarketNavResponseHoldingsAdministratorMark and assigns it to the AdministratorMark field.
-func (o *GetVaultMarketNavResponseHoldings) SetAdministratorMark(v GetVaultMarketNavResponseHoldingsAdministratorMark) {
-	o.AdministratorMark.Set(&v)
-}
-// SetAdministratorMarkNil sets the value for AdministratorMark to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) SetAdministratorMarkNil() {
-	o.AdministratorMark.Set(nil)
-}
-
-// UnsetAdministratorMark ensures that no value is present for AdministratorMark, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldings) UnsetAdministratorMark() {
-	o.AdministratorMark.Unset()
-}
-
-func (o GetVaultMarketNavResponseHoldings) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketHallLoanResponseExhibition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["bookKey"] = o.BookKey
+		toSerialize["key"] = o.Key
 	}
 	if true {
 		toSerialize["title"] = o.Title
 	}
-	if o.Category.IsSet() {
-		toSerialize["category"] = o.Category.Get()
-	}
-	if o.Grader.IsSet() {
-		toSerialize["grader"] = o.Grader.Get()
+	if true {
+		toSerialize["categorySlug"] = o.CategorySlug
 	}
 	if true {
-		toSerialize["units"] = o.Units
+		toSerialize["endsAt"] = o.EndsAt
 	}
 	if true {
-		toSerialize["sellableUnits"] = o.SellableUnits
-	}
-	if true {
-		toSerialize["pledgedUnits"] = o.PledgedUnits
-	}
-	if true {
-		toSerialize["lentUnits"] = o.LentUnits
-	}
-	if o.InsuredValueCents.IsSet() {
-		toSerialize["insuredValueCents"] = o.InsuredValueCents.Get()
-	}
-	if true {
-		toSerialize["mark"] = o.Mark
-	}
-	if true {
-		toSerialize["asc820"] = o.Asc820
-	}
-	if true {
-		toSerialize["markValueCents"] = o.MarkValueCents
-	}
-	if true {
-		toSerialize["bid"] = o.Bid
-	}
-	if true {
-		toSerialize["liquidation"] = o.Liquidation
-	}
-	if o.AdministratorMark.IsSet() {
-		toSerialize["administratorMark"] = o.AdministratorMark.Get()
+		toSerialize["next"] = o.Next
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldings struct {
-	value *GetVaultMarketNavResponseHoldings
+type NullableGetVaultMarketHallLoanResponseExhibition struct {
+	value *GetVaultMarketHallLoanResponseExhibition
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldings) Get() *GetVaultMarketNavResponseHoldings {
+func (v NullableGetVaultMarketHallLoanResponseExhibition) Get() *GetVaultMarketHallLoanResponseExhibition {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldings) Set(val *GetVaultMarketNavResponseHoldings) {
+func (v *NullableGetVaultMarketHallLoanResponseExhibition) Set(val *GetVaultMarketHallLoanResponseExhibition) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldings) IsSet() bool {
+func (v NullableGetVaultMarketHallLoanResponseExhibition) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldings) Unset() {
+func (v *NullableGetVaultMarketHallLoanResponseExhibition) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldings(val *GetVaultMarketNavResponseHoldings) *NullableGetVaultMarketNavResponseHoldings {
-	return &NullableGetVaultMarketNavResponseHoldings{value: val, isSet: true}
+func NewNullableGetVaultMarketHallLoanResponseExhibition(val *GetVaultMarketHallLoanResponseExhibition) *NullableGetVaultMarketHallLoanResponseExhibition {
+	return &NullableGetVaultMarketHallLoanResponseExhibition{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldings) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHallLoanResponseExhibition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldings) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHallLoanResponseExhibition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseHoldingsAdministratorMark struct for GetVaultMarketNavResponseHoldingsAdministratorMark
-type GetVaultMarketNavResponseHoldingsAdministratorMark struct {
-	Label string `json:"label"`
-	Cents float32 `json:"cents"`
-	Day string `json:"day"`
-	Administrator string `json:"administrator"`
+// GetVaultMarketHallLoanResponseLoans struct for GetVaultMarketHallLoanResponseLoans
+type GetVaultMarketHallLoanResponseLoans struct {
+	Id string `json:"id"`
+	VaultItemId string `json:"vaultItemId"`
+	SkuId string `json:"skuId"`
+	Name string `json:"name"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Grade NullableString `json:"grade,omitempty"`
+	Credit string `json:"credit"`
+	Status string `json:"status"`
+	EndedReason NullableString `json:"endedReason,omitempty"`
+	Since string `json:"since"`
+	EndedAt NullableString `json:"endedAt,omitempty"`
+	OnShowNow bool `json:"onShowNow"`
+	ShowingUntil NullableString `json:"showingUntil,omitempty"`
+	Exhibitions float32 `json:"exhibitions"`
+	Next CreateVaultMarketHallLoanResponseNext `json:"next"`
+	Badge NullableGetVaultMarketHallLoanResponseLoansBadge `json:"badge,omitempty"`
 }
 
-// NewGetVaultMarketNavResponseHoldingsAdministratorMark instantiates a new GetVaultMarketNavResponseHoldingsAdministratorMark object
+// NewGetVaultMarketHallLoanResponseLoans instantiates a new GetVaultMarketHallLoanResponseLoans object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldingsAdministratorMark(label string, cents float32, day string, administrator string) *GetVaultMarketNavResponseHoldingsAdministratorMark {
-	this := GetVaultMarketNavResponseHoldingsAdministratorMark{}
-	this.Label = label
-	this.Cents = cents
-	this.Day = day
-	this.Administrator = administrator
+func NewGetVaultMarketHallLoanResponseLoans(id string, vaultItemId string, skuId string, name string, credit string, status string, since string, onShowNow bool, exhibitions float32, next CreateVaultMarketHallLoanResponseNext) *GetVaultMarketHallLoanResponseLoans {
+	this := GetVaultMarketHallLoanResponseLoans{}
+	this.Id = id
+	this.VaultItemId = vaultItemId
+	this.SkuId = skuId
+	this.Name = name
+	this.Credit = credit
+	this.Status = status
+	this.Since = since
+	this.OnShowNow = onShowNow
+	this.Exhibitions = exhibitions
+	this.Next = next
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsAdministratorMarkWithDefaults instantiates a new GetVaultMarketNavResponseHoldingsAdministratorMark object
+// NewGetVaultMarketHallLoanResponseLoansWithDefaults instantiates a new GetVaultMarketHallLoanResponseLoans object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsAdministratorMarkWithDefaults() *GetVaultMarketNavResponseHoldingsAdministratorMark {
-	this := GetVaultMarketNavResponseHoldingsAdministratorMark{}
+func NewGetVaultMarketHallLoanResponseLoansWithDefaults() *GetVaultMarketHallLoanResponseLoans {
+	this := GetVaultMarketHallLoanResponseLoans{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetId(v string) {
+	o.Id = v
+}
+
+// GetVaultItemId returns the VaultItemId field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetVaultItemId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VaultItemId
+}
+
+// GetVaultItemIdOk returns a tuple with the VaultItemId field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetVaultItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VaultItemId, true
+}
+
+// SetVaultItemId sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetVaultItemId(v string) {
+	o.VaultItemId = v
+}
+
+// GetSkuId returns the SkuId field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetSkuId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SkuId
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SkuId, true
+}
+
+// SetSkuId sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetSkuId(v string) {
+	o.SkuId = v
+}
+
+// GetName returns the Name field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetName(v string) {
+	o.Name = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetGrade returns the Grade field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetGrade() string {
+	if o == nil || o.Grade.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Grade.Get()
+}
+
+// GetGradeOk returns a tuple with the Grade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetGradeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Grade.Get(), o.Grade.IsSet()
+}
+
+// HasGrade returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasGrade() bool {
+	if o != nil && o.Grade.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGrade gets a reference to the given NullableString and assigns it to the Grade field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetGrade(v string) {
+	o.Grade.Set(&v)
+}
+// SetGradeNil sets the value for Grade to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetGradeNil() {
+	o.Grade.Set(nil)
+}
+
+// UnsetGrade ensures that no value is present for Grade, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetGrade() {
+	o.Grade.Unset()
+}
+
+// GetCredit returns the Credit field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetCredit() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credit
+}
+
+// GetCreditOk returns a tuple with the Credit field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetCreditOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Credit, true
+}
+
+// SetCredit sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetCredit(v string) {
+	o.Credit = v
+}
+
+// GetStatus returns the Status field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetEndedReason returns the EndedReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetEndedReason() string {
+	if o == nil || o.EndedReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndedReason.Get()
+}
+
+// GetEndedReasonOk returns a tuple with the EndedReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetEndedReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedReason.Get(), o.EndedReason.IsSet()
+}
+
+// HasEndedReason returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasEndedReason() bool {
+	if o != nil && o.EndedReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedReason gets a reference to the given NullableString and assigns it to the EndedReason field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetEndedReason(v string) {
+	o.EndedReason.Set(&v)
+}
+// SetEndedReasonNil sets the value for EndedReason to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetEndedReasonNil() {
+	o.EndedReason.Set(nil)
+}
+
+// UnsetEndedReason ensures that no value is present for EndedReason, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetEndedReason() {
+	o.EndedReason.Unset()
+}
+
+// GetSince returns the Since field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetSince() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Since
+}
+
+// GetSinceOk returns a tuple with the Since field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetSinceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Since, true
+}
+
+// SetSince sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetSince(v string) {
+	o.Since = v
+}
+
+// GetEndedAt returns the EndedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetEndedAt() string {
+	if o == nil || o.EndedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndedAt.Get()
+}
+
+// GetEndedAtOk returns a tuple with the EndedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetEndedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EndedAt.Get(), o.EndedAt.IsSet()
+}
+
+// HasEndedAt returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasEndedAt() bool {
+	if o != nil && o.EndedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEndedAt gets a reference to the given NullableString and assigns it to the EndedAt field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetEndedAt(v string) {
+	o.EndedAt.Set(&v)
+}
+// SetEndedAtNil sets the value for EndedAt to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetEndedAtNil() {
+	o.EndedAt.Set(nil)
+}
+
+// UnsetEndedAt ensures that no value is present for EndedAt, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetEndedAt() {
+	o.EndedAt.Unset()
+}
+
+// GetOnShowNow returns the OnShowNow field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetOnShowNow() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.OnShowNow
+}
+
+// GetOnShowNowOk returns a tuple with the OnShowNow field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetOnShowNowOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OnShowNow, true
+}
+
+// SetOnShowNow sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetOnShowNow(v bool) {
+	o.OnShowNow = v
+}
+
+// GetShowingUntil returns the ShowingUntil field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetShowingUntil() string {
+	if o == nil || o.ShowingUntil.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShowingUntil.Get()
+}
+
+// GetShowingUntilOk returns a tuple with the ShowingUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetShowingUntilOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShowingUntil.Get(), o.ShowingUntil.IsSet()
+}
+
+// HasShowingUntil returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasShowingUntil() bool {
+	if o != nil && o.ShowingUntil.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShowingUntil gets a reference to the given NullableString and assigns it to the ShowingUntil field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetShowingUntil(v string) {
+	o.ShowingUntil.Set(&v)
+}
+// SetShowingUntilNil sets the value for ShowingUntil to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetShowingUntilNil() {
+	o.ShowingUntil.Set(nil)
+}
+
+// UnsetShowingUntil ensures that no value is present for ShowingUntil, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetShowingUntil() {
+	o.ShowingUntil.Unset()
+}
+
+// GetExhibitions returns the Exhibitions field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetExhibitions() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Exhibitions
+}
+
+// GetExhibitionsOk returns a tuple with the Exhibitions field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetExhibitionsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Exhibitions, true
+}
+
+// SetExhibitions sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetExhibitions(v float32) {
+	o.Exhibitions = v
+}
+
+// GetNext returns the Next field value
+func (o *GetVaultMarketHallLoanResponseLoans) GetNext() CreateVaultMarketHallLoanResponseNext {
+	if o == nil {
+		var ret CreateVaultMarketHallLoanResponseNext
+		return ret
+	}
+
+	return o.Next
+}
+
+// GetNextOk returns a tuple with the Next field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) GetNextOk() (*CreateVaultMarketHallLoanResponseNext, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Next, true
+}
+
+// SetNext sets field value
+func (o *GetVaultMarketHallLoanResponseLoans) SetNext(v CreateVaultMarketHallLoanResponseNext) {
+	o.Next = v
+}
+
+// GetBadge returns the Badge field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHallLoanResponseLoans) GetBadge() GetVaultMarketHallLoanResponseLoansBadge {
+	if o == nil || o.Badge.Get() == nil {
+		var ret GetVaultMarketHallLoanResponseLoansBadge
+		return ret
+	}
+	return *o.Badge.Get()
+}
+
+// GetBadgeOk returns a tuple with the Badge field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHallLoanResponseLoans) GetBadgeOk() (*GetVaultMarketHallLoanResponseLoansBadge, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Badge.Get(), o.Badge.IsSet()
+}
+
+// HasBadge returns a boolean if a field has been set.
+func (o *GetVaultMarketHallLoanResponseLoans) HasBadge() bool {
+	if o != nil && o.Badge.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBadge gets a reference to the given NullableGetVaultMarketHallLoanResponseLoansBadge and assigns it to the Badge field.
+func (o *GetVaultMarketHallLoanResponseLoans) SetBadge(v GetVaultMarketHallLoanResponseLoansBadge) {
+	o.Badge.Set(&v)
+}
+// SetBadgeNil sets the value for Badge to be an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) SetBadgeNil() {
+	o.Badge.Set(nil)
+}
+
+// UnsetBadge ensures that no value is present for Badge, not even an explicit nil
+func (o *GetVaultMarketHallLoanResponseLoans) UnsetBadge() {
+	o.Badge.Unset()
+}
+
+func (o GetVaultMarketHallLoanResponseLoans) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["vaultItemId"] = o.VaultItemId
+	}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.Grade.IsSet() {
+		toSerialize["grade"] = o.Grade.Get()
+	}
+	if true {
+		toSerialize["credit"] = o.Credit
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.EndedReason.IsSet() {
+		toSerialize["endedReason"] = o.EndedReason.Get()
+	}
+	if true {
+		toSerialize["since"] = o.Since
+	}
+	if o.EndedAt.IsSet() {
+		toSerialize["endedAt"] = o.EndedAt.Get()
+	}
+	if true {
+		toSerialize["onShowNow"] = o.OnShowNow
+	}
+	if o.ShowingUntil.IsSet() {
+		toSerialize["showingUntil"] = o.ShowingUntil.Get()
+	}
+	if true {
+		toSerialize["exhibitions"] = o.Exhibitions
+	}
+	if true {
+		toSerialize["next"] = o.Next
+	}
+	if o.Badge.IsSet() {
+		toSerialize["badge"] = o.Badge.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHallLoanResponseLoans struct {
+	value *GetVaultMarketHallLoanResponseLoans
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHallLoanResponseLoans) Get() *GetVaultMarketHallLoanResponseLoans {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseLoans) Set(val *GetVaultMarketHallLoanResponseLoans) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHallLoanResponseLoans) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseLoans) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHallLoanResponseLoans(val *GetVaultMarketHallLoanResponseLoans) *NullableGetVaultMarketHallLoanResponseLoans {
+	return &NullableGetVaultMarketHallLoanResponseLoans{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHallLoanResponseLoans) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseLoans) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHallLoanResponseLoansBadge struct for GetVaultMarketHallLoanResponseLoansBadge
+type GetVaultMarketHallLoanResponseLoansBadge struct {
+	Label string `json:"label"`
+	// One plain sentence under the badge.
+	Detail string `json:"detail"`
+	OnShowNow bool `json:"onShowNow"`
+	Exhibitions float32 `json:"exhibitions"`
+}
+
+// NewGetVaultMarketHallLoanResponseLoansBadge instantiates a new GetVaultMarketHallLoanResponseLoansBadge object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHallLoanResponseLoansBadge(label string, detail string, onShowNow bool, exhibitions float32) *GetVaultMarketHallLoanResponseLoansBadge {
+	this := GetVaultMarketHallLoanResponseLoansBadge{}
+	this.Label = label
+	this.Detail = detail
+	this.OnShowNow = onShowNow
+	this.Exhibitions = exhibitions
+	return &this
+}
+
+// NewGetVaultMarketHallLoanResponseLoansBadgeWithDefaults instantiates a new GetVaultMarketHallLoanResponseLoansBadge object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHallLoanResponseLoansBadgeWithDefaults() *GetVaultMarketHallLoanResponseLoansBadge {
+	this := GetVaultMarketHallLoanResponseLoansBadge{}
 	return &this
 }
 
 // GetLabel returns the Label field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetLabel() string {
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -7774,7 +1793,7 @@ func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetLabelOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetLabelOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -7782,685 +1801,2370 @@ func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetLabelOk() (*stri
 }
 
 // SetLabel sets field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) SetLabel(v string) {
+func (o *GetVaultMarketHallLoanResponseLoansBadge) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetCents returns the Cents field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetCents() float32 {
+// GetDetail returns the Detail field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetDetail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Detail
+}
+
+// GetDetailOk returns a tuple with the Detail field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetDetailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Detail, true
+}
+
+// SetDetail sets field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) SetDetail(v string) {
+	o.Detail = v
+}
+
+// GetOnShowNow returns the OnShowNow field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetOnShowNow() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.OnShowNow
+}
+
+// GetOnShowNowOk returns a tuple with the OnShowNow field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetOnShowNowOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OnShowNow, true
+}
+
+// SetOnShowNow sets field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) SetOnShowNow(v bool) {
+	o.OnShowNow = v
+}
+
+// GetExhibitions returns the Exhibitions field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetExhibitions() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Cents
+	return o.Exhibitions
 }
 
-// GetCentsOk returns a tuple with the Cents field value
+// GetExhibitionsOk returns a tuple with the Exhibitions field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHallLoanResponseLoansBadge) GetExhibitionsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Cents, true
+	return &o.Exhibitions, true
 }
 
-// SetCents sets field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) SetCents(v float32) {
-	o.Cents = v
+// SetExhibitions sets field value
+func (o *GetVaultMarketHallLoanResponseLoansBadge) SetExhibitions(v float32) {
+	o.Exhibitions = v
 }
 
-// GetDay returns the Day field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetDay() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Day
-}
-
-// GetDayOk returns a tuple with the Day field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetDayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Day, true
-}
-
-// SetDay sets field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) SetDay(v string) {
-	o.Day = v
-}
-
-// GetAdministrator returns the Administrator field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetAdministrator() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Administrator
-}
-
-// GetAdministratorOk returns a tuple with the Administrator field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) GetAdministratorOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Administrator, true
-}
-
-// SetAdministrator sets field value
-func (o *GetVaultMarketNavResponseHoldingsAdministratorMark) SetAdministrator(v string) {
-	o.Administrator = v
-}
-
-func (o GetVaultMarketNavResponseHoldingsAdministratorMark) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketHallLoanResponseLoansBadge) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["label"] = o.Label
 	}
 	if true {
-		toSerialize["cents"] = o.Cents
+		toSerialize["detail"] = o.Detail
 	}
 	if true {
-		toSerialize["day"] = o.Day
+		toSerialize["onShowNow"] = o.OnShowNow
 	}
 	if true {
-		toSerialize["administrator"] = o.Administrator
+		toSerialize["exhibitions"] = o.Exhibitions
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldingsAdministratorMark struct {
-	value *GetVaultMarketNavResponseHoldingsAdministratorMark
+type NullableGetVaultMarketHallLoanResponseLoansBadge struct {
+	value *GetVaultMarketHallLoanResponseLoansBadge
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAdministratorMark) Get() *GetVaultMarketNavResponseHoldingsAdministratorMark {
+func (v NullableGetVaultMarketHallLoanResponseLoansBadge) Get() *GetVaultMarketHallLoanResponseLoansBadge {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAdministratorMark) Set(val *GetVaultMarketNavResponseHoldingsAdministratorMark) {
+func (v *NullableGetVaultMarketHallLoanResponseLoansBadge) Set(val *GetVaultMarketHallLoanResponseLoansBadge) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAdministratorMark) IsSet() bool {
+func (v NullableGetVaultMarketHallLoanResponseLoansBadge) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAdministratorMark) Unset() {
+func (v *NullableGetVaultMarketHallLoanResponseLoansBadge) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldingsAdministratorMark(val *GetVaultMarketNavResponseHoldingsAdministratorMark) *NullableGetVaultMarketNavResponseHoldingsAdministratorMark {
-	return &NullableGetVaultMarketNavResponseHoldingsAdministratorMark{value: val, isSet: true}
+func NewNullableGetVaultMarketHallLoanResponseLoansBadge(val *GetVaultMarketHallLoanResponseLoansBadge) *NullableGetVaultMarketHallLoanResponseLoansBadge {
+	return &NullableGetVaultMarketHallLoanResponseLoansBadge{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAdministratorMark) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHallLoanResponseLoansBadge) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAdministratorMark) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHallLoanResponseLoansBadge) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseHoldingsAsc820 struct for GetVaultMarketNavResponseHoldingsAsc820
-type GetVaultMarketNavResponseHoldingsAsc820 struct {
-	Reason string `json:"reason"`
+// GetVaultMarketHallLoanResponseReputation struct for GetVaultMarketHallLoanResponseReputation
+type GetVaultMarketHallLoanResponseReputation struct {
+	ExhibitionsFinished float32 `json:"exhibitionsFinished"`
+	PointsEach float32 `json:"pointsEach"`
 }
 
-// NewGetVaultMarketNavResponseHoldingsAsc820 instantiates a new GetVaultMarketNavResponseHoldingsAsc820 object
+// NewGetVaultMarketHallLoanResponseReputation instantiates a new GetVaultMarketHallLoanResponseReputation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldingsAsc820(reason string) *GetVaultMarketNavResponseHoldingsAsc820 {
-	this := GetVaultMarketNavResponseHoldingsAsc820{}
-	this.Reason = reason
+func NewGetVaultMarketHallLoanResponseReputation(exhibitionsFinished float32, pointsEach float32) *GetVaultMarketHallLoanResponseReputation {
+	this := GetVaultMarketHallLoanResponseReputation{}
+	this.ExhibitionsFinished = exhibitionsFinished
+	this.PointsEach = pointsEach
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsAsc820WithDefaults instantiates a new GetVaultMarketNavResponseHoldingsAsc820 object
+// NewGetVaultMarketHallLoanResponseReputationWithDefaults instantiates a new GetVaultMarketHallLoanResponseReputation object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsAsc820WithDefaults() *GetVaultMarketNavResponseHoldingsAsc820 {
-	this := GetVaultMarketNavResponseHoldingsAsc820{}
+func NewGetVaultMarketHallLoanResponseReputationWithDefaults() *GetVaultMarketHallLoanResponseReputation {
+	this := GetVaultMarketHallLoanResponseReputation{}
 	return &this
 }
 
-// GetReason returns the Reason field value
-func (o *GetVaultMarketNavResponseHoldingsAsc820) GetReason() string {
+// GetExhibitionsFinished returns the ExhibitionsFinished field value
+func (o *GetVaultMarketHallLoanResponseReputation) GetExhibitionsFinished() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExhibitionsFinished
+}
+
+// GetExhibitionsFinishedOk returns a tuple with the ExhibitionsFinished field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseReputation) GetExhibitionsFinishedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExhibitionsFinished, true
+}
+
+// SetExhibitionsFinished sets field value
+func (o *GetVaultMarketHallLoanResponseReputation) SetExhibitionsFinished(v float32) {
+	o.ExhibitionsFinished = v
+}
+
+// GetPointsEach returns the PointsEach field value
+func (o *GetVaultMarketHallLoanResponseReputation) GetPointsEach() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PointsEach
+}
+
+// GetPointsEachOk returns a tuple with the PointsEach field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseReputation) GetPointsEachOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PointsEach, true
+}
+
+// SetPointsEach sets field value
+func (o *GetVaultMarketHallLoanResponseReputation) SetPointsEach(v float32) {
+	o.PointsEach = v
+}
+
+func (o GetVaultMarketHallLoanResponseReputation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["exhibitionsFinished"] = o.ExhibitionsFinished
+	}
+	if true {
+		toSerialize["pointsEach"] = o.PointsEach
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHallLoanResponseReputation struct {
+	value *GetVaultMarketHallLoanResponseReputation
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHallLoanResponseReputation) Get() *GetVaultMarketHallLoanResponseReputation {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseReputation) Set(val *GetVaultMarketHallLoanResponseReputation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHallLoanResponseReputation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseReputation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHallLoanResponseReputation(val *GetVaultMarketHallLoanResponseReputation) *NullableGetVaultMarketHallLoanResponseReputation {
+	return &NullableGetVaultMarketHallLoanResponseReputation{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHallLoanResponseReputation) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHallLoanResponseReputation) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHallLoanResponseRules struct for GetVaultMarketHallLoanResponseRules
+type GetVaultMarketHallLoanResponseRules struct {
+	MaxLive float32 `json:"maxLive"`
+	ShownPerHolder float32 `json:"shownPerHolder"`
+	RepPoints float32 `json:"repPoints"`
+	Text string `json:"text"`
+}
+
+// NewGetVaultMarketHallLoanResponseRules instantiates a new GetVaultMarketHallLoanResponseRules object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHallLoanResponseRules(maxLive float32, shownPerHolder float32, repPoints float32, text string) *GetVaultMarketHallLoanResponseRules {
+	this := GetVaultMarketHallLoanResponseRules{}
+	this.MaxLive = maxLive
+	this.ShownPerHolder = shownPerHolder
+	this.RepPoints = repPoints
+	this.Text = text
+	return &this
+}
+
+// NewGetVaultMarketHallLoanResponseRulesWithDefaults instantiates a new GetVaultMarketHallLoanResponseRules object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHallLoanResponseRulesWithDefaults() *GetVaultMarketHallLoanResponseRules {
+	this := GetVaultMarketHallLoanResponseRules{}
+	return &this
+}
+
+// GetMaxLive returns the MaxLive field value
+func (o *GetVaultMarketHallLoanResponseRules) GetMaxLive() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaxLive
+}
+
+// GetMaxLiveOk returns a tuple with the MaxLive field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseRules) GetMaxLiveOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxLive, true
+}
+
+// SetMaxLive sets field value
+func (o *GetVaultMarketHallLoanResponseRules) SetMaxLive(v float32) {
+	o.MaxLive = v
+}
+
+// GetShownPerHolder returns the ShownPerHolder field value
+func (o *GetVaultMarketHallLoanResponseRules) GetShownPerHolder() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShownPerHolder
+}
+
+// GetShownPerHolderOk returns a tuple with the ShownPerHolder field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseRules) GetShownPerHolderOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShownPerHolder, true
+}
+
+// SetShownPerHolder sets field value
+func (o *GetVaultMarketHallLoanResponseRules) SetShownPerHolder(v float32) {
+	o.ShownPerHolder = v
+}
+
+// GetRepPoints returns the RepPoints field value
+func (o *GetVaultMarketHallLoanResponseRules) GetRepPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RepPoints
+}
+
+// GetRepPointsOk returns a tuple with the RepPoints field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHallLoanResponseRules) GetRepPointsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RepPoints, true
+}
+
+// SetRepPoints sets field value
+func (o *GetVaultMarketHallLoanResponseRules) SetRepPoints(v float32) {
+	o.RepPoints = v
+}
+
+// GetText returns the Text field value
+func (o *GetVaultMarketHallLoanResponseRules) GetText() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Reason
+	return o.Text
 }
 
-// GetReasonOk returns a tuple with the Reason field value
+// GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsAsc820) GetReasonOk() (*string, bool) {
+func (o *GetVaultMarketHallLoanResponseRules) GetTextOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Reason, true
+	return &o.Text, true
 }
 
-// SetReason sets field value
-func (o *GetVaultMarketNavResponseHoldingsAsc820) SetReason(v string) {
-	o.Reason = v
+// SetText sets field value
+func (o *GetVaultMarketHallLoanResponseRules) SetText(v string) {
+	o.Text = v
 }
 
-func (o GetVaultMarketNavResponseHoldingsAsc820) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketHallLoanResponseRules) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["reason"] = o.Reason
+		toSerialize["maxLive"] = o.MaxLive
+	}
+	if true {
+		toSerialize["shownPerHolder"] = o.ShownPerHolder
+	}
+	if true {
+		toSerialize["repPoints"] = o.RepPoints
+	}
+	if true {
+		toSerialize["text"] = o.Text
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldingsAsc820 struct {
-	value *GetVaultMarketNavResponseHoldingsAsc820
+type NullableGetVaultMarketHallLoanResponseRules struct {
+	value *GetVaultMarketHallLoanResponseRules
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAsc820) Get() *GetVaultMarketNavResponseHoldingsAsc820 {
+func (v NullableGetVaultMarketHallLoanResponseRules) Get() *GetVaultMarketHallLoanResponseRules {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAsc820) Set(val *GetVaultMarketNavResponseHoldingsAsc820) {
+func (v *NullableGetVaultMarketHallLoanResponseRules) Set(val *GetVaultMarketHallLoanResponseRules) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAsc820) IsSet() bool {
+func (v NullableGetVaultMarketHallLoanResponseRules) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAsc820) Unset() {
+func (v *NullableGetVaultMarketHallLoanResponseRules) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldingsAsc820(val *GetVaultMarketNavResponseHoldingsAsc820) *NullableGetVaultMarketNavResponseHoldingsAsc820 {
-	return &NullableGetVaultMarketNavResponseHoldingsAsc820{value: val, isSet: true}
+func NewNullableGetVaultMarketHallLoanResponseRules(val *GetVaultMarketHallLoanResponseRules) *NullableGetVaultMarketHallLoanResponseRules {
+	return &NullableGetVaultMarketHallLoanResponseRules{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsAsc820) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHallLoanResponseRules) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsAsc820) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHallLoanResponseRules) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseHoldingsBid struct for GetVaultMarketNavResponseHoldingsBid
-type GetVaultMarketNavResponseHoldingsBid struct {
-	BestCents float32 `json:"bestCents"`
-	DepthUnits float32 `json:"depthUnits"`
-	ProceedsCents float32 `json:"proceedsCents"`
-	UnitsFilled float32 `json:"unitsFilled"`
+// GetVaultMarketHealthResponse struct for GetVaultMarketHealthResponse
+type GetVaultMarketHealthResponse struct {
+	AsOf string `json:"asOf"`
+	Disclosure string `json:"disclosure"`
+	Totals GetVaultMarketHealthResponseTotals `json:"totals"`
+	Concentration GetVaultMarketHealthResponseConcentration `json:"concentration"`
+	Liquidity GetVaultMarketHealthResponseLiquidity `json:"liquidity"`
+	Stress GetVaultMarketHealthResponseStress `json:"stress"`
+	Marks GetVaultMarketHealthResponseMarks `json:"marks"`
+	Notes []string `json:"notes"`
+	// The items a what-if can be run on, largest first.
+	Items []GetVaultMarketHealthResponseItems `json:"items"`
+	Hedges GetVaultMarketHealthResponseHedges `json:"hedges"`
 }
 
-// NewGetVaultMarketNavResponseHoldingsBid instantiates a new GetVaultMarketNavResponseHoldingsBid object
+// NewGetVaultMarketHealthResponse instantiates a new GetVaultMarketHealthResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldingsBid(bestCents float32, depthUnits float32, proceedsCents float32, unitsFilled float32) *GetVaultMarketNavResponseHoldingsBid {
-	this := GetVaultMarketNavResponseHoldingsBid{}
-	this.BestCents = bestCents
-	this.DepthUnits = depthUnits
-	this.ProceedsCents = proceedsCents
-	this.UnitsFilled = unitsFilled
+func NewGetVaultMarketHealthResponse(asOf string, disclosure string, totals GetVaultMarketHealthResponseTotals, concentration GetVaultMarketHealthResponseConcentration, liquidity GetVaultMarketHealthResponseLiquidity, stress GetVaultMarketHealthResponseStress, marks GetVaultMarketHealthResponseMarks, notes []string, items []GetVaultMarketHealthResponseItems, hedges GetVaultMarketHealthResponseHedges) *GetVaultMarketHealthResponse {
+	this := GetVaultMarketHealthResponse{}
+	this.AsOf = asOf
+	this.Disclosure = disclosure
+	this.Totals = totals
+	this.Concentration = concentration
+	this.Liquidity = liquidity
+	this.Stress = stress
+	this.Marks = marks
+	this.Notes = notes
+	this.Items = items
+	this.Hedges = hedges
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsBidWithDefaults instantiates a new GetVaultMarketNavResponseHoldingsBid object
+// NewGetVaultMarketHealthResponseWithDefaults instantiates a new GetVaultMarketHealthResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsBidWithDefaults() *GetVaultMarketNavResponseHoldingsBid {
-	this := GetVaultMarketNavResponseHoldingsBid{}
+func NewGetVaultMarketHealthResponseWithDefaults() *GetVaultMarketHealthResponse {
+	this := GetVaultMarketHealthResponse{}
 	return &this
 }
 
-// GetBestCents returns the BestCents field value
-func (o *GetVaultMarketNavResponseHoldingsBid) GetBestCents() float32 {
+// GetAsOf returns the AsOf field value
+func (o *GetVaultMarketHealthResponse) GetAsOf() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.BestCents
+	return o.AsOf
 }
 
-// GetBestCentsOk returns a tuple with the BestCents field value
+// GetAsOfOk returns a tuple with the AsOf field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsBid) GetBestCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponse) GetAsOfOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.BestCents, true
+	return &o.AsOf, true
 }
 
-// SetBestCents sets field value
-func (o *GetVaultMarketNavResponseHoldingsBid) SetBestCents(v float32) {
-	o.BestCents = v
+// SetAsOf sets field value
+func (o *GetVaultMarketHealthResponse) SetAsOf(v string) {
+	o.AsOf = v
 }
 
-// GetDepthUnits returns the DepthUnits field value
-func (o *GetVaultMarketNavResponseHoldingsBid) GetDepthUnits() float32 {
+// GetDisclosure returns the Disclosure field value
+func (o *GetVaultMarketHealthResponse) GetDisclosure() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.DepthUnits
+	return o.Disclosure
 }
 
-// GetDepthUnitsOk returns a tuple with the DepthUnits field value
+// GetDisclosureOk returns a tuple with the Disclosure field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsBid) GetDepthUnitsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponse) GetDisclosureOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.DepthUnits, true
+	return &o.Disclosure, true
 }
 
-// SetDepthUnits sets field value
-func (o *GetVaultMarketNavResponseHoldingsBid) SetDepthUnits(v float32) {
-	o.DepthUnits = v
+// SetDisclosure sets field value
+func (o *GetVaultMarketHealthResponse) SetDisclosure(v string) {
+	o.Disclosure = v
 }
 
-// GetProceedsCents returns the ProceedsCents field value
-func (o *GetVaultMarketNavResponseHoldingsBid) GetProceedsCents() float32 {
+// GetTotals returns the Totals field value
+func (o *GetVaultMarketHealthResponse) GetTotals() GetVaultMarketHealthResponseTotals {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseTotals
 		return ret
 	}
 
-	return o.ProceedsCents
+	return o.Totals
 }
 
-// GetProceedsCentsOk returns a tuple with the ProceedsCents field value
+// GetTotalsOk returns a tuple with the Totals field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsBid) GetProceedsCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponse) GetTotalsOk() (*GetVaultMarketHealthResponseTotals, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ProceedsCents, true
+	return &o.Totals, true
 }
 
-// SetProceedsCents sets field value
-func (o *GetVaultMarketNavResponseHoldingsBid) SetProceedsCents(v float32) {
-	o.ProceedsCents = v
+// SetTotals sets field value
+func (o *GetVaultMarketHealthResponse) SetTotals(v GetVaultMarketHealthResponseTotals) {
+	o.Totals = v
 }
 
-// GetUnitsFilled returns the UnitsFilled field value
-func (o *GetVaultMarketNavResponseHoldingsBid) GetUnitsFilled() float32 {
+// GetConcentration returns the Concentration field value
+func (o *GetVaultMarketHealthResponse) GetConcentration() GetVaultMarketHealthResponseConcentration {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseConcentration
 		return ret
 	}
 
-	return o.UnitsFilled
+	return o.Concentration
 }
 
-// GetUnitsFilledOk returns a tuple with the UnitsFilled field value
+// GetConcentrationOk returns a tuple with the Concentration field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsBid) GetUnitsFilledOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponse) GetConcentrationOk() (*GetVaultMarketHealthResponseConcentration, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UnitsFilled, true
+	return &o.Concentration, true
 }
 
-// SetUnitsFilled sets field value
-func (o *GetVaultMarketNavResponseHoldingsBid) SetUnitsFilled(v float32) {
-	o.UnitsFilled = v
+// SetConcentration sets field value
+func (o *GetVaultMarketHealthResponse) SetConcentration(v GetVaultMarketHealthResponseConcentration) {
+	o.Concentration = v
 }
 
-func (o GetVaultMarketNavResponseHoldingsBid) MarshalJSON() ([]byte, error) {
+// GetLiquidity returns the Liquidity field value
+func (o *GetVaultMarketHealthResponse) GetLiquidity() GetVaultMarketHealthResponseLiquidity {
+	if o == nil {
+		var ret GetVaultMarketHealthResponseLiquidity
+		return ret
+	}
+
+	return o.Liquidity
+}
+
+// GetLiquidityOk returns a tuple with the Liquidity field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetLiquidityOk() (*GetVaultMarketHealthResponseLiquidity, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Liquidity, true
+}
+
+// SetLiquidity sets field value
+func (o *GetVaultMarketHealthResponse) SetLiquidity(v GetVaultMarketHealthResponseLiquidity) {
+	o.Liquidity = v
+}
+
+// GetStress returns the Stress field value
+func (o *GetVaultMarketHealthResponse) GetStress() GetVaultMarketHealthResponseStress {
+	if o == nil {
+		var ret GetVaultMarketHealthResponseStress
+		return ret
+	}
+
+	return o.Stress
+}
+
+// GetStressOk returns a tuple with the Stress field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetStressOk() (*GetVaultMarketHealthResponseStress, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Stress, true
+}
+
+// SetStress sets field value
+func (o *GetVaultMarketHealthResponse) SetStress(v GetVaultMarketHealthResponseStress) {
+	o.Stress = v
+}
+
+// GetMarks returns the Marks field value
+func (o *GetVaultMarketHealthResponse) GetMarks() GetVaultMarketHealthResponseMarks {
+	if o == nil {
+		var ret GetVaultMarketHealthResponseMarks
+		return ret
+	}
+
+	return o.Marks
+}
+
+// GetMarksOk returns a tuple with the Marks field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetMarksOk() (*GetVaultMarketHealthResponseMarks, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Marks, true
+}
+
+// SetMarks sets field value
+func (o *GetVaultMarketHealthResponse) SetMarks(v GetVaultMarketHealthResponseMarks) {
+	o.Marks = v
+}
+
+// GetNotes returns the Notes field value
+func (o *GetVaultMarketHealthResponse) GetNotes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetNotesOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *GetVaultMarketHealthResponse) SetNotes(v []string) {
+	o.Notes = v
+}
+
+// GetItems returns the Items field value
+func (o *GetVaultMarketHealthResponse) GetItems() []GetVaultMarketHealthResponseItems {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseItems
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetItemsOk() ([]GetVaultMarketHealthResponseItems, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *GetVaultMarketHealthResponse) SetItems(v []GetVaultMarketHealthResponseItems) {
+	o.Items = v
+}
+
+// GetHedges returns the Hedges field value
+func (o *GetVaultMarketHealthResponse) GetHedges() GetVaultMarketHealthResponseHedges {
+	if o == nil {
+		var ret GetVaultMarketHealthResponseHedges
+		return ret
+	}
+
+	return o.Hedges
+}
+
+// GetHedgesOk returns a tuple with the Hedges field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponse) GetHedgesOk() (*GetVaultMarketHealthResponseHedges, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Hedges, true
+}
+
+// SetHedges sets field value
+func (o *GetVaultMarketHealthResponse) SetHedges(v GetVaultMarketHealthResponseHedges) {
+	o.Hedges = v
+}
+
+func (o GetVaultMarketHealthResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["bestCents"] = o.BestCents
+		toSerialize["asOf"] = o.AsOf
 	}
 	if true {
-		toSerialize["depthUnits"] = o.DepthUnits
+		toSerialize["disclosure"] = o.Disclosure
 	}
 	if true {
-		toSerialize["proceedsCents"] = o.ProceedsCents
+		toSerialize["totals"] = o.Totals
 	}
 	if true {
-		toSerialize["unitsFilled"] = o.UnitsFilled
+		toSerialize["concentration"] = o.Concentration
+	}
+	if true {
+		toSerialize["liquidity"] = o.Liquidity
+	}
+	if true {
+		toSerialize["stress"] = o.Stress
+	}
+	if true {
+		toSerialize["marks"] = o.Marks
+	}
+	if true {
+		toSerialize["notes"] = o.Notes
+	}
+	if true {
+		toSerialize["items"] = o.Items
+	}
+	if true {
+		toSerialize["hedges"] = o.Hedges
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldingsBid struct {
-	value *GetVaultMarketNavResponseHoldingsBid
+type NullableGetVaultMarketHealthResponse struct {
+	value *GetVaultMarketHealthResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsBid) Get() *GetVaultMarketNavResponseHoldingsBid {
+func (v NullableGetVaultMarketHealthResponse) Get() *GetVaultMarketHealthResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsBid) Set(val *GetVaultMarketNavResponseHoldingsBid) {
+func (v *NullableGetVaultMarketHealthResponse) Set(val *GetVaultMarketHealthResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsBid) IsSet() bool {
+func (v NullableGetVaultMarketHealthResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsBid) Unset() {
+func (v *NullableGetVaultMarketHealthResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldingsBid(val *GetVaultMarketNavResponseHoldingsBid) *NullableGetVaultMarketNavResponseHoldingsBid {
-	return &NullableGetVaultMarketNavResponseHoldingsBid{value: val, isSet: true}
+func NewNullableGetVaultMarketHealthResponse(val *GetVaultMarketHealthResponse) *NullableGetVaultMarketHealthResponse {
+	return &NullableGetVaultMarketHealthResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsBid) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHealthResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsBid) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHealthResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseHoldingsLiquidation struct for GetVaultMarketNavResponseHoldingsLiquidation
-type GetVaultMarketNavResponseHoldingsLiquidation struct {
-	AdvUnits float32 `json:"advUnits"`
-	ProceedsCents float32 `json:"proceedsCents"`
-	UnitsSold float32 `json:"unitsSold"`
-	UnitsUnsold float32 `json:"unitsUnsold"`
-	PaceCapUnits float32 `json:"paceCapUnits"`
+// GetVaultMarketHealthResponseConcentration struct for GetVaultMarketHealthResponseConcentration
+type GetVaultMarketHealthResponseConcentration struct {
+	TotalCents float32 `json:"totalCents"`
+	SingleItem GetVaultMarketHealthResponseConcentrationSingleItem `json:"singleItem"`
+	ByCategory GetVaultMarketHealthResponseConcentrationByCategory `json:"byCategory"`
+	ByGrade GetVaultMarketHealthResponseConcentrationByCategory `json:"byGrade"`
+	ByGrader GetVaultMarketHealthResponseConcentrationByCategory `json:"byGrader"`
 }
 
-// NewGetVaultMarketNavResponseHoldingsLiquidation instantiates a new GetVaultMarketNavResponseHoldingsLiquidation object
+// NewGetVaultMarketHealthResponseConcentration instantiates a new GetVaultMarketHealthResponseConcentration object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldingsLiquidation(advUnits float32, proceedsCents float32, unitsSold float32, unitsUnsold float32, paceCapUnits float32) *GetVaultMarketNavResponseHoldingsLiquidation {
-	this := GetVaultMarketNavResponseHoldingsLiquidation{}
-	this.AdvUnits = advUnits
-	this.ProceedsCents = proceedsCents
-	this.UnitsSold = unitsSold
-	this.UnitsUnsold = unitsUnsold
-	this.PaceCapUnits = paceCapUnits
+func NewGetVaultMarketHealthResponseConcentration(totalCents float32, singleItem GetVaultMarketHealthResponseConcentrationSingleItem, byCategory GetVaultMarketHealthResponseConcentrationByCategory, byGrade GetVaultMarketHealthResponseConcentrationByCategory, byGrader GetVaultMarketHealthResponseConcentrationByCategory) *GetVaultMarketHealthResponseConcentration {
+	this := GetVaultMarketHealthResponseConcentration{}
+	this.TotalCents = totalCents
+	this.SingleItem = singleItem
+	this.ByCategory = byCategory
+	this.ByGrade = byGrade
+	this.ByGrader = byGrader
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsLiquidationWithDefaults instantiates a new GetVaultMarketNavResponseHoldingsLiquidation object
+// NewGetVaultMarketHealthResponseConcentrationWithDefaults instantiates a new GetVaultMarketHealthResponseConcentration object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsLiquidationWithDefaults() *GetVaultMarketNavResponseHoldingsLiquidation {
-	this := GetVaultMarketNavResponseHoldingsLiquidation{}
+func NewGetVaultMarketHealthResponseConcentrationWithDefaults() *GetVaultMarketHealthResponseConcentration {
+	this := GetVaultMarketHealthResponseConcentration{}
 	return &this
 }
 
-// GetAdvUnits returns the AdvUnits field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetAdvUnits() float32 {
+// GetTotalCents returns the TotalCents field value
+func (o *GetVaultMarketHealthResponseConcentration) GetTotalCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.AdvUnits
+	return o.TotalCents
 }
 
-// GetAdvUnitsOk returns a tuple with the AdvUnits field value
+// GetTotalCentsOk returns a tuple with the TotalCents field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetAdvUnitsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentration) GetTotalCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.AdvUnits, true
+	return &o.TotalCents, true
 }
 
-// SetAdvUnits sets field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) SetAdvUnits(v float32) {
-	o.AdvUnits = v
+// SetTotalCents sets field value
+func (o *GetVaultMarketHealthResponseConcentration) SetTotalCents(v float32) {
+	o.TotalCents = v
 }
 
-// GetProceedsCents returns the ProceedsCents field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetProceedsCents() float32 {
+// GetSingleItem returns the SingleItem field value
+func (o *GetVaultMarketHealthResponseConcentration) GetSingleItem() GetVaultMarketHealthResponseConcentrationSingleItem {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseConcentrationSingleItem
 		return ret
 	}
 
-	return o.ProceedsCents
+	return o.SingleItem
 }
 
-// GetProceedsCentsOk returns a tuple with the ProceedsCents field value
+// GetSingleItemOk returns a tuple with the SingleItem field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetProceedsCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentration) GetSingleItemOk() (*GetVaultMarketHealthResponseConcentrationSingleItem, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ProceedsCents, true
+	return &o.SingleItem, true
 }
 
-// SetProceedsCents sets field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) SetProceedsCents(v float32) {
-	o.ProceedsCents = v
+// SetSingleItem sets field value
+func (o *GetVaultMarketHealthResponseConcentration) SetSingleItem(v GetVaultMarketHealthResponseConcentrationSingleItem) {
+	o.SingleItem = v
 }
 
-// GetUnitsSold returns the UnitsSold field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetUnitsSold() float32 {
+// GetByCategory returns the ByCategory field value
+func (o *GetVaultMarketHealthResponseConcentration) GetByCategory() GetVaultMarketHealthResponseConcentrationByCategory {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseConcentrationByCategory
 		return ret
 	}
 
-	return o.UnitsSold
+	return o.ByCategory
 }
 
-// GetUnitsSoldOk returns a tuple with the UnitsSold field value
+// GetByCategoryOk returns a tuple with the ByCategory field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetUnitsSoldOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentration) GetByCategoryOk() (*GetVaultMarketHealthResponseConcentrationByCategory, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UnitsSold, true
+	return &o.ByCategory, true
 }
 
-// SetUnitsSold sets field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) SetUnitsSold(v float32) {
-	o.UnitsSold = v
+// SetByCategory sets field value
+func (o *GetVaultMarketHealthResponseConcentration) SetByCategory(v GetVaultMarketHealthResponseConcentrationByCategory) {
+	o.ByCategory = v
 }
 
-// GetUnitsUnsold returns the UnitsUnsold field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetUnitsUnsold() float32 {
+// GetByGrade returns the ByGrade field value
+func (o *GetVaultMarketHealthResponseConcentration) GetByGrade() GetVaultMarketHealthResponseConcentrationByCategory {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseConcentrationByCategory
 		return ret
 	}
 
-	return o.UnitsUnsold
+	return o.ByGrade
 }
 
-// GetUnitsUnsoldOk returns a tuple with the UnitsUnsold field value
+// GetByGradeOk returns a tuple with the ByGrade field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetUnitsUnsoldOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentration) GetByGradeOk() (*GetVaultMarketHealthResponseConcentrationByCategory, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UnitsUnsold, true
+	return &o.ByGrade, true
 }
 
-// SetUnitsUnsold sets field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) SetUnitsUnsold(v float32) {
-	o.UnitsUnsold = v
+// SetByGrade sets field value
+func (o *GetVaultMarketHealthResponseConcentration) SetByGrade(v GetVaultMarketHealthResponseConcentrationByCategory) {
+	o.ByGrade = v
 }
 
-// GetPaceCapUnits returns the PaceCapUnits field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetPaceCapUnits() float32 {
+// GetByGrader returns the ByGrader field value
+func (o *GetVaultMarketHealthResponseConcentration) GetByGrader() GetVaultMarketHealthResponseConcentrationByCategory {
 	if o == nil {
-		var ret float32
+		var ret GetVaultMarketHealthResponseConcentrationByCategory
 		return ret
 	}
 
-	return o.PaceCapUnits
+	return o.ByGrader
 }
 
-// GetPaceCapUnitsOk returns a tuple with the PaceCapUnits field value
+// GetByGraderOk returns a tuple with the ByGrader field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) GetPaceCapUnitsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentration) GetByGraderOk() (*GetVaultMarketHealthResponseConcentrationByCategory, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.PaceCapUnits, true
+	return &o.ByGrader, true
 }
 
-// SetPaceCapUnits sets field value
-func (o *GetVaultMarketNavResponseHoldingsLiquidation) SetPaceCapUnits(v float32) {
-	o.PaceCapUnits = v
+// SetByGrader sets field value
+func (o *GetVaultMarketHealthResponseConcentration) SetByGrader(v GetVaultMarketHealthResponseConcentrationByCategory) {
+	o.ByGrader = v
 }
 
-func (o GetVaultMarketNavResponseHoldingsLiquidation) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketHealthResponseConcentration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["advUnits"] = o.AdvUnits
+		toSerialize["totalCents"] = o.TotalCents
 	}
 	if true {
-		toSerialize["proceedsCents"] = o.ProceedsCents
+		toSerialize["singleItem"] = o.SingleItem
 	}
 	if true {
-		toSerialize["unitsSold"] = o.UnitsSold
+		toSerialize["byCategory"] = o.ByCategory
 	}
 	if true {
-		toSerialize["unitsUnsold"] = o.UnitsUnsold
+		toSerialize["byGrade"] = o.ByGrade
 	}
 	if true {
-		toSerialize["paceCapUnits"] = o.PaceCapUnits
+		toSerialize["byGrader"] = o.ByGrader
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldingsLiquidation struct {
-	value *GetVaultMarketNavResponseHoldingsLiquidation
+type NullableGetVaultMarketHealthResponseConcentration struct {
+	value *GetVaultMarketHealthResponseConcentration
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsLiquidation) Get() *GetVaultMarketNavResponseHoldingsLiquidation {
+func (v NullableGetVaultMarketHealthResponseConcentration) Get() *GetVaultMarketHealthResponseConcentration {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsLiquidation) Set(val *GetVaultMarketNavResponseHoldingsLiquidation) {
+func (v *NullableGetVaultMarketHealthResponseConcentration) Set(val *GetVaultMarketHealthResponseConcentration) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsLiquidation) IsSet() bool {
+func (v NullableGetVaultMarketHealthResponseConcentration) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsLiquidation) Unset() {
+func (v *NullableGetVaultMarketHealthResponseConcentration) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldingsLiquidation(val *GetVaultMarketNavResponseHoldingsLiquidation) *NullableGetVaultMarketNavResponseHoldingsLiquidation {
-	return &NullableGetVaultMarketNavResponseHoldingsLiquidation{value: val, isSet: true}
+func NewNullableGetVaultMarketHealthResponseConcentration(val *GetVaultMarketHealthResponseConcentration) *NullableGetVaultMarketHealthResponseConcentration {
+	return &NullableGetVaultMarketHealthResponseConcentration{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsLiquidation) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHealthResponseConcentration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsLiquidation) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHealthResponseConcentration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseHoldingsMark struct for GetVaultMarketNavResponseHoldingsMark
-type GetVaultMarketNavResponseHoldingsMark struct {
-	Cents NullableFloat32 `json:"cents,omitempty"`
-	Quality string `json:"quality"`
-	Source string `json:"source"`
-	Trades float32 `json:"trades"`
-	Day NullableString `json:"day,omitempty"`
-	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
+// GetVaultMarketHealthResponseConcentrationByCategory struct for GetVaultMarketHealthResponseConcentrationByCategory
+type GetVaultMarketHealthResponseConcentrationByCategory struct {
+	Groups []map[string]interface{} `json:"groups"`
+	Hhi float32 `json:"hhi"`
+	Band string `json:"band"`
+	EffectiveCount NullableFloat32 `json:"effectiveCount,omitempty"`
+	LargestShareBps float32 `json:"largestShareBps"`
 }
 
-// NewGetVaultMarketNavResponseHoldingsMark instantiates a new GetVaultMarketNavResponseHoldingsMark object
+// NewGetVaultMarketHealthResponseConcentrationByCategory instantiates a new GetVaultMarketHealthResponseConcentrationByCategory object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseHoldingsMark(quality string, source string, trades float32) *GetVaultMarketNavResponseHoldingsMark {
-	this := GetVaultMarketNavResponseHoldingsMark{}
-	this.Quality = quality
-	this.Source = source
-	this.Trades = trades
+func NewGetVaultMarketHealthResponseConcentrationByCategory(groups []map[string]interface{}, hhi float32, band string, largestShareBps float32) *GetVaultMarketHealthResponseConcentrationByCategory {
+	this := GetVaultMarketHealthResponseConcentrationByCategory{}
+	this.Groups = groups
+	this.Hhi = hhi
+	this.Band = band
+	this.LargestShareBps = largestShareBps
 	return &this
 }
 
-// NewGetVaultMarketNavResponseHoldingsMarkWithDefaults instantiates a new GetVaultMarketNavResponseHoldingsMark object
+// NewGetVaultMarketHealthResponseConcentrationByCategoryWithDefaults instantiates a new GetVaultMarketHealthResponseConcentrationByCategory object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseHoldingsMarkWithDefaults() *GetVaultMarketNavResponseHoldingsMark {
-	this := GetVaultMarketNavResponseHoldingsMark{}
+func NewGetVaultMarketHealthResponseConcentrationByCategoryWithDefaults() *GetVaultMarketHealthResponseConcentrationByCategory {
+	this := GetVaultMarketHealthResponseConcentrationByCategory{}
 	return &this
 }
 
-// GetCents returns the Cents field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldingsMark) GetCents() float32 {
-	if o == nil || o.Cents.Get() == nil {
+// GetGroups returns the Groups field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetGroups() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Groups
+}
+
+// GetGroupsOk returns a tuple with the Groups field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetGroupsOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Groups, true
+}
+
+// SetGroups sets field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetGroups(v []map[string]interface{}) {
+	o.Groups = v
+}
+
+// GetHhi returns the Hhi field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetHhi() float32 {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.Cents.Get()
+
+	return o.Hhi
 }
 
-// GetCentsOk returns a tuple with the Cents field value if set, nil otherwise
+// GetHhiOk returns a tuple with the Hhi field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetHhiOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Hhi, true
+}
+
+// SetHhi sets field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetHhi(v float32) {
+	o.Hhi = v
+}
+
+// GetBand returns the Band field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetBand() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Band
+}
+
+// GetBandOk returns a tuple with the Band field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetBandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Band, true
+}
+
+// SetBand sets field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetBand(v string) {
+	o.Band = v
+}
+
+// GetEffectiveCount returns the EffectiveCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetEffectiveCount() float32 {
+	if o == nil || o.EffectiveCount.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.EffectiveCount.Get()
+}
+
+// GetEffectiveCountOk returns a tuple with the EffectiveCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldingsMark) GetCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetEffectiveCountOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Cents.Get(), o.Cents.IsSet()
+	return o.EffectiveCount.Get(), o.EffectiveCount.IsSet()
 }
 
-// HasCents returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) HasCents() bool {
-	if o != nil && o.Cents.IsSet() {
+// HasEffectiveCount returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) HasEffectiveCount() bool {
+	if o != nil && o.EffectiveCount.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCents gets a reference to the given NullableFloat32 and assigns it to the Cents field.
-func (o *GetVaultMarketNavResponseHoldingsMark) SetCents(v float32) {
-	o.Cents.Set(&v)
+// SetEffectiveCount gets a reference to the given NullableFloat32 and assigns it to the EffectiveCount field.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetEffectiveCount(v float32) {
+	o.EffectiveCount.Set(&v)
 }
-// SetCentsNil sets the value for Cents to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) SetCentsNil() {
-	o.Cents.Set(nil)
+// SetEffectiveCountNil sets the value for EffectiveCount to be an explicit nil
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetEffectiveCountNil() {
+	o.EffectiveCount.Set(nil)
 }
 
-// UnsetCents ensures that no value is present for Cents, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) UnsetCents() {
-	o.Cents.Unset()
+// UnsetEffectiveCount ensures that no value is present for EffectiveCount, not even an explicit nil
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) UnsetEffectiveCount() {
+	o.EffectiveCount.Unset()
+}
+
+// GetLargestShareBps returns the LargestShareBps field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetLargestShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LargestShareBps
+}
+
+// GetLargestShareBpsOk returns a tuple with the LargestShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) GetLargestShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LargestShareBps, true
+}
+
+// SetLargestShareBps sets field value
+func (o *GetVaultMarketHealthResponseConcentrationByCategory) SetLargestShareBps(v float32) {
+	o.LargestShareBps = v
+}
+
+func (o GetVaultMarketHealthResponseConcentrationByCategory) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["groups"] = o.Groups
+	}
+	if true {
+		toSerialize["hhi"] = o.Hhi
+	}
+	if true {
+		toSerialize["band"] = o.Band
+	}
+	if o.EffectiveCount.IsSet() {
+		toSerialize["effectiveCount"] = o.EffectiveCount.Get()
+	}
+	if true {
+		toSerialize["largestShareBps"] = o.LargestShareBps
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseConcentrationByCategory struct {
+	value *GetVaultMarketHealthResponseConcentrationByCategory
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationByCategory) Get() *GetVaultMarketHealthResponseConcentrationByCategory {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationByCategory) Set(val *GetVaultMarketHealthResponseConcentrationByCategory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationByCategory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationByCategory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseConcentrationByCategory(val *GetVaultMarketHealthResponseConcentrationByCategory) *NullableGetVaultMarketHealthResponseConcentrationByCategory {
+	return &NullableGetVaultMarketHealthResponseConcentrationByCategory{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationByCategory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationByCategory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseConcentrationSingleItem struct for GetVaultMarketHealthResponseConcentrationSingleItem
+type GetVaultMarketHealthResponseConcentrationSingleItem struct {
+	Hhi float32 `json:"hhi"`
+	Band string `json:"band"`
+	BandText string `json:"bandText"`
+	EffectiveCount NullableFloat32 `json:"effectiveCount,omitempty"`
+	LargestShareBps float32 `json:"largestShareBps"`
+	Top []map[string]interface{} `json:"top"`
+}
+
+// NewGetVaultMarketHealthResponseConcentrationSingleItem instantiates a new GetVaultMarketHealthResponseConcentrationSingleItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseConcentrationSingleItem(hhi float32, band string, bandText string, largestShareBps float32, top []map[string]interface{}) *GetVaultMarketHealthResponseConcentrationSingleItem {
+	this := GetVaultMarketHealthResponseConcentrationSingleItem{}
+	this.Hhi = hhi
+	this.Band = band
+	this.BandText = bandText
+	this.LargestShareBps = largestShareBps
+	this.Top = top
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseConcentrationSingleItemWithDefaults instantiates a new GetVaultMarketHealthResponseConcentrationSingleItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseConcentrationSingleItemWithDefaults() *GetVaultMarketHealthResponseConcentrationSingleItem {
+	this := GetVaultMarketHealthResponseConcentrationSingleItem{}
+	return &this
+}
+
+// GetHhi returns the Hhi field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetHhi() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Hhi
+}
+
+// GetHhiOk returns a tuple with the Hhi field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetHhiOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Hhi, true
+}
+
+// SetHhi sets field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetHhi(v float32) {
+	o.Hhi = v
+}
+
+// GetBand returns the Band field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetBand() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Band
+}
+
+// GetBandOk returns a tuple with the Band field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetBandOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Band, true
+}
+
+// SetBand sets field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetBand(v string) {
+	o.Band = v
+}
+
+// GetBandText returns the BandText field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetBandText() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BandText
+}
+
+// GetBandTextOk returns a tuple with the BandText field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetBandTextOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BandText, true
+}
+
+// SetBandText sets field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetBandText(v string) {
+	o.BandText = v
+}
+
+// GetEffectiveCount returns the EffectiveCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetEffectiveCount() float32 {
+	if o == nil || o.EffectiveCount.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.EffectiveCount.Get()
+}
+
+// GetEffectiveCountOk returns a tuple with the EffectiveCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetEffectiveCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.EffectiveCount.Get(), o.EffectiveCount.IsSet()
+}
+
+// HasEffectiveCount returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) HasEffectiveCount() bool {
+	if o != nil && o.EffectiveCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEffectiveCount gets a reference to the given NullableFloat32 and assigns it to the EffectiveCount field.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetEffectiveCount(v float32) {
+	o.EffectiveCount.Set(&v)
+}
+// SetEffectiveCountNil sets the value for EffectiveCount to be an explicit nil
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetEffectiveCountNil() {
+	o.EffectiveCount.Set(nil)
+}
+
+// UnsetEffectiveCount ensures that no value is present for EffectiveCount, not even an explicit nil
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) UnsetEffectiveCount() {
+	o.EffectiveCount.Unset()
+}
+
+// GetLargestShareBps returns the LargestShareBps field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetLargestShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.LargestShareBps
+}
+
+// GetLargestShareBpsOk returns a tuple with the LargestShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetLargestShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LargestShareBps, true
+}
+
+// SetLargestShareBps sets field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetLargestShareBps(v float32) {
+	o.LargestShareBps = v
+}
+
+// GetTop returns the Top field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetTop() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Top
+}
+
+// GetTopOk returns a tuple with the Top field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) GetTopOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Top, true
+}
+
+// SetTop sets field value
+func (o *GetVaultMarketHealthResponseConcentrationSingleItem) SetTop(v []map[string]interface{}) {
+	o.Top = v
+}
+
+func (o GetVaultMarketHealthResponseConcentrationSingleItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["hhi"] = o.Hhi
+	}
+	if true {
+		toSerialize["band"] = o.Band
+	}
+	if true {
+		toSerialize["bandText"] = o.BandText
+	}
+	if o.EffectiveCount.IsSet() {
+		toSerialize["effectiveCount"] = o.EffectiveCount.Get()
+	}
+	if true {
+		toSerialize["largestShareBps"] = o.LargestShareBps
+	}
+	if true {
+		toSerialize["top"] = o.Top
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseConcentrationSingleItem struct {
+	value *GetVaultMarketHealthResponseConcentrationSingleItem
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationSingleItem) Get() *GetVaultMarketHealthResponseConcentrationSingleItem {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationSingleItem) Set(val *GetVaultMarketHealthResponseConcentrationSingleItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationSingleItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationSingleItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseConcentrationSingleItem(val *GetVaultMarketHealthResponseConcentrationSingleItem) *NullableGetVaultMarketHealthResponseConcentrationSingleItem {
+	return &NullableGetVaultMarketHealthResponseConcentrationSingleItem{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseConcentrationSingleItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseConcentrationSingleItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseHedges struct for GetVaultMarketHealthResponseHedges
+type GetVaultMarketHealthResponseHedges struct {
+	ProtectivePuts []GetVaultMarketHealthResponseHedgesProtectivePuts `json:"protectivePuts"`
+	CoveredCalls []GetVaultMarketHealthResponseHedgesProtectivePuts `json:"coveredCalls"`
+	ByKey []GetVaultMarketHealthResponseHedgesByKey `json:"byKey"`
+	Note string `json:"note"`
+}
+
+// NewGetVaultMarketHealthResponseHedges instantiates a new GetVaultMarketHealthResponseHedges object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseHedges(protectivePuts []GetVaultMarketHealthResponseHedgesProtectivePuts, coveredCalls []GetVaultMarketHealthResponseHedgesProtectivePuts, byKey []GetVaultMarketHealthResponseHedgesByKey, note string) *GetVaultMarketHealthResponseHedges {
+	this := GetVaultMarketHealthResponseHedges{}
+	this.ProtectivePuts = protectivePuts
+	this.CoveredCalls = coveredCalls
+	this.ByKey = byKey
+	this.Note = note
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseHedgesWithDefaults instantiates a new GetVaultMarketHealthResponseHedges object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseHedgesWithDefaults() *GetVaultMarketHealthResponseHedges {
+	this := GetVaultMarketHealthResponseHedges{}
+	return &this
+}
+
+// GetProtectivePuts returns the ProtectivePuts field value
+func (o *GetVaultMarketHealthResponseHedges) GetProtectivePuts() []GetVaultMarketHealthResponseHedgesProtectivePuts {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseHedgesProtectivePuts
+		return ret
+	}
+
+	return o.ProtectivePuts
+}
+
+// GetProtectivePutsOk returns a tuple with the ProtectivePuts field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedges) GetProtectivePutsOk() ([]GetVaultMarketHealthResponseHedgesProtectivePuts, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ProtectivePuts, true
+}
+
+// SetProtectivePuts sets field value
+func (o *GetVaultMarketHealthResponseHedges) SetProtectivePuts(v []GetVaultMarketHealthResponseHedgesProtectivePuts) {
+	o.ProtectivePuts = v
+}
+
+// GetCoveredCalls returns the CoveredCalls field value
+func (o *GetVaultMarketHealthResponseHedges) GetCoveredCalls() []GetVaultMarketHealthResponseHedgesProtectivePuts {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseHedgesProtectivePuts
+		return ret
+	}
+
+	return o.CoveredCalls
+}
+
+// GetCoveredCallsOk returns a tuple with the CoveredCalls field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedges) GetCoveredCallsOk() ([]GetVaultMarketHealthResponseHedgesProtectivePuts, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CoveredCalls, true
+}
+
+// SetCoveredCalls sets field value
+func (o *GetVaultMarketHealthResponseHedges) SetCoveredCalls(v []GetVaultMarketHealthResponseHedgesProtectivePuts) {
+	o.CoveredCalls = v
+}
+
+// GetByKey returns the ByKey field value
+func (o *GetVaultMarketHealthResponseHedges) GetByKey() []GetVaultMarketHealthResponseHedgesByKey {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseHedgesByKey
+		return ret
+	}
+
+	return o.ByKey
+}
+
+// GetByKeyOk returns a tuple with the ByKey field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedges) GetByKeyOk() ([]GetVaultMarketHealthResponseHedgesByKey, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ByKey, true
+}
+
+// SetByKey sets field value
+func (o *GetVaultMarketHealthResponseHedges) SetByKey(v []GetVaultMarketHealthResponseHedgesByKey) {
+	o.ByKey = v
+}
+
+// GetNote returns the Note field value
+func (o *GetVaultMarketHealthResponseHedges) GetNote() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedges) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Note, true
+}
+
+// SetNote sets field value
+func (o *GetVaultMarketHealthResponseHedges) SetNote(v string) {
+	o.Note = v
+}
+
+func (o GetVaultMarketHealthResponseHedges) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["protectivePuts"] = o.ProtectivePuts
+	}
+	if true {
+		toSerialize["coveredCalls"] = o.CoveredCalls
+	}
+	if true {
+		toSerialize["byKey"] = o.ByKey
+	}
+	if true {
+		toSerialize["note"] = o.Note
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseHedges struct {
+	value *GetVaultMarketHealthResponseHedges
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseHedges) Get() *GetVaultMarketHealthResponseHedges {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedges) Set(val *GetVaultMarketHealthResponseHedges) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseHedges) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedges) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseHedges(val *GetVaultMarketHealthResponseHedges) *NullableGetVaultMarketHealthResponseHedges {
+	return &NullableGetVaultMarketHealthResponseHedges{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseHedges) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedges) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseHedgesByKey struct for GetVaultMarketHealthResponseHedgesByKey
+type GetVaultMarketHealthResponseHedgesByKey struct {
+	BookKey string `json:"bookKey"`
+	FlooredUnits float32 `json:"flooredUnits"`
+	FloorCents NullableFloat32 `json:"floorCents,omitempty"`
+	CappedUnits float32 `json:"cappedUnits"`
+	CapCents NullableFloat32 `json:"capCents,omitempty"`
+}
+
+// NewGetVaultMarketHealthResponseHedgesByKey instantiates a new GetVaultMarketHealthResponseHedgesByKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseHedgesByKey(bookKey string, flooredUnits float32, cappedUnits float32) *GetVaultMarketHealthResponseHedgesByKey {
+	this := GetVaultMarketHealthResponseHedgesByKey{}
+	this.BookKey = bookKey
+	this.FlooredUnits = flooredUnits
+	this.CappedUnits = cappedUnits
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseHedgesByKeyWithDefaults instantiates a new GetVaultMarketHealthResponseHedgesByKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseHedgesByKeyWithDefaults() *GetVaultMarketHealthResponseHedgesByKey {
+	this := GetVaultMarketHealthResponseHedgesByKey{}
+	return &this
+}
+
+// GetBookKey returns the BookKey field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetBookKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookKey
+}
+
+// GetBookKeyOk returns a tuple with the BookKey field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetBookKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookKey, true
+}
+
+// SetBookKey sets field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetBookKey(v string) {
+	o.BookKey = v
+}
+
+// GetFlooredUnits returns the FlooredUnits field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetFlooredUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FlooredUnits
+}
+
+// GetFlooredUnitsOk returns a tuple with the FlooredUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetFlooredUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FlooredUnits, true
+}
+
+// SetFlooredUnits sets field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetFlooredUnits(v float32) {
+	o.FlooredUnits = v
+}
+
+// GetFloorCents returns the FloorCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetFloorCents() float32 {
+	if o == nil || o.FloorCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.FloorCents.Get()
+}
+
+// GetFloorCentsOk returns a tuple with the FloorCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetFloorCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.FloorCents.Get(), o.FloorCents.IsSet()
+}
+
+// HasFloorCents returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseHedgesByKey) HasFloorCents() bool {
+	if o != nil && o.FloorCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFloorCents gets a reference to the given NullableFloat32 and assigns it to the FloorCents field.
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetFloorCents(v float32) {
+	o.FloorCents.Set(&v)
+}
+// SetFloorCentsNil sets the value for FloorCents to be an explicit nil
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetFloorCentsNil() {
+	o.FloorCents.Set(nil)
+}
+
+// UnsetFloorCents ensures that no value is present for FloorCents, not even an explicit nil
+func (o *GetVaultMarketHealthResponseHedgesByKey) UnsetFloorCents() {
+	o.FloorCents.Unset()
+}
+
+// GetCappedUnits returns the CappedUnits field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetCappedUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CappedUnits
+}
+
+// GetCappedUnitsOk returns a tuple with the CappedUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetCappedUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CappedUnits, true
+}
+
+// SetCappedUnits sets field value
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetCappedUnits(v float32) {
+	o.CappedUnits = v
+}
+
+// GetCapCents returns the CapCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetCapCents() float32 {
+	if o == nil || o.CapCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CapCents.Get()
+}
+
+// GetCapCentsOk returns a tuple with the CapCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthResponseHedgesByKey) GetCapCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CapCents.Get(), o.CapCents.IsSet()
+}
+
+// HasCapCents returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseHedgesByKey) HasCapCents() bool {
+	if o != nil && o.CapCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCapCents gets a reference to the given NullableFloat32 and assigns it to the CapCents field.
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetCapCents(v float32) {
+	o.CapCents.Set(&v)
+}
+// SetCapCentsNil sets the value for CapCents to be an explicit nil
+func (o *GetVaultMarketHealthResponseHedgesByKey) SetCapCentsNil() {
+	o.CapCents.Set(nil)
+}
+
+// UnsetCapCents ensures that no value is present for CapCents, not even an explicit nil
+func (o *GetVaultMarketHealthResponseHedgesByKey) UnsetCapCents() {
+	o.CapCents.Unset()
+}
+
+func (o GetVaultMarketHealthResponseHedgesByKey) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bookKey"] = o.BookKey
+	}
+	if true {
+		toSerialize["flooredUnits"] = o.FlooredUnits
+	}
+	if o.FloorCents.IsSet() {
+		toSerialize["floorCents"] = o.FloorCents.Get()
+	}
+	if true {
+		toSerialize["cappedUnits"] = o.CappedUnits
+	}
+	if o.CapCents.IsSet() {
+		toSerialize["capCents"] = o.CapCents.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseHedgesByKey struct {
+	value *GetVaultMarketHealthResponseHedgesByKey
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesByKey) Get() *GetVaultMarketHealthResponseHedgesByKey {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesByKey) Set(val *GetVaultMarketHealthResponseHedgesByKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesByKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesByKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseHedgesByKey(val *GetVaultMarketHealthResponseHedgesByKey) *NullableGetVaultMarketHealthResponseHedgesByKey {
+	return &NullableGetVaultMarketHealthResponseHedgesByKey{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesByKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesByKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseHedgesProtectivePuts struct for GetVaultMarketHealthResponseHedgesProtectivePuts
+type GetVaultMarketHealthResponseHedgesProtectivePuts struct {
+	Kind string `json:"kind"`
+	BookKey string `json:"bookKey"`
+	Symbol string `json:"symbol"`
+	QtyMilli float32 `json:"qtyMilli"`
+	StrikeCents float32 `json:"strikeCents"`
+	ExpiryDay string `json:"expiryDay"`
+}
+
+// NewGetVaultMarketHealthResponseHedgesProtectivePuts instantiates a new GetVaultMarketHealthResponseHedgesProtectivePuts object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseHedgesProtectivePuts(kind string, bookKey string, symbol string, qtyMilli float32, strikeCents float32, expiryDay string) *GetVaultMarketHealthResponseHedgesProtectivePuts {
+	this := GetVaultMarketHealthResponseHedgesProtectivePuts{}
+	this.Kind = kind
+	this.BookKey = bookKey
+	this.Symbol = symbol
+	this.QtyMilli = qtyMilli
+	this.StrikeCents = strikeCents
+	this.ExpiryDay = expiryDay
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseHedgesProtectivePutsWithDefaults instantiates a new GetVaultMarketHealthResponseHedgesProtectivePuts object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseHedgesProtectivePutsWithDefaults() *GetVaultMarketHealthResponseHedgesProtectivePuts {
+	this := GetVaultMarketHealthResponseHedgesProtectivePuts{}
+	return &this
+}
+
+// GetKind returns the Kind field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetBookKey returns the BookKey field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetBookKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookKey
+}
+
+// GetBookKeyOk returns a tuple with the BookKey field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetBookKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookKey, true
+}
+
+// SetBookKey sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetBookKey(v string) {
+	o.BookKey = v
+}
+
+// GetSymbol returns the Symbol field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetSymbol() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Symbol
+}
+
+// GetSymbolOk returns a tuple with the Symbol field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetSymbolOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Symbol, true
+}
+
+// SetSymbol sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetSymbol(v string) {
+	o.Symbol = v
+}
+
+// GetQtyMilli returns the QtyMilli field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetQtyMilli() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.QtyMilli
+}
+
+// GetQtyMilliOk returns a tuple with the QtyMilli field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetQtyMilliOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.QtyMilli, true
+}
+
+// SetQtyMilli sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetQtyMilli(v float32) {
+	o.QtyMilli = v
+}
+
+// GetStrikeCents returns the StrikeCents field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetStrikeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.StrikeCents
+}
+
+// GetStrikeCentsOk returns a tuple with the StrikeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetStrikeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StrikeCents, true
+}
+
+// SetStrikeCents sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetStrikeCents(v float32) {
+	o.StrikeCents = v
+}
+
+// GetExpiryDay returns the ExpiryDay field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetExpiryDay() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ExpiryDay
+}
+
+// GetExpiryDayOk returns a tuple with the ExpiryDay field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) GetExpiryDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiryDay, true
+}
+
+// SetExpiryDay sets field value
+func (o *GetVaultMarketHealthResponseHedgesProtectivePuts) SetExpiryDay(v string) {
+	o.ExpiryDay = v
+}
+
+func (o GetVaultMarketHealthResponseHedgesProtectivePuts) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["bookKey"] = o.BookKey
+	}
+	if true {
+		toSerialize["symbol"] = o.Symbol
+	}
+	if true {
+		toSerialize["qtyMilli"] = o.QtyMilli
+	}
+	if true {
+		toSerialize["strikeCents"] = o.StrikeCents
+	}
+	if true {
+		toSerialize["expiryDay"] = o.ExpiryDay
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseHedgesProtectivePuts struct {
+	value *GetVaultMarketHealthResponseHedgesProtectivePuts
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesProtectivePuts) Get() *GetVaultMarketHealthResponseHedgesProtectivePuts {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesProtectivePuts) Set(val *GetVaultMarketHealthResponseHedgesProtectivePuts) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesProtectivePuts) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesProtectivePuts) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseHedgesProtectivePuts(val *GetVaultMarketHealthResponseHedgesProtectivePuts) *NullableGetVaultMarketHealthResponseHedgesProtectivePuts {
+	return &NullableGetVaultMarketHealthResponseHedgesProtectivePuts{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseHedgesProtectivePuts) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseHedgesProtectivePuts) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseItems struct for GetVaultMarketHealthResponseItems
+type GetVaultMarketHealthResponseItems struct {
+	BookKey string `json:"bookKey"`
+	Title string `json:"title"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	Category string `json:"category"`
+	Grade string `json:"grade"`
+	Units float32 `json:"units"`
+	MarkCents NullableFloat32 `json:"markCents,omitempty"`
+	Quality string `json:"quality"`
+	Tier string `json:"tier"`
+	ValueCents float32 `json:"valueCents"`
+}
+
+// NewGetVaultMarketHealthResponseItems instantiates a new GetVaultMarketHealthResponseItems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseItems(bookKey string, title string, category string, grade string, units float32, quality string, tier string, valueCents float32) *GetVaultMarketHealthResponseItems {
+	this := GetVaultMarketHealthResponseItems{}
+	this.BookKey = bookKey
+	this.Title = title
+	this.Category = category
+	this.Grade = grade
+	this.Units = units
+	this.Quality = quality
+	this.Tier = tier
+	this.ValueCents = valueCents
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseItemsWithDefaults instantiates a new GetVaultMarketHealthResponseItems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseItemsWithDefaults() *GetVaultMarketHealthResponseItems {
+	this := GetVaultMarketHealthResponseItems{}
+	return &this
+}
+
+// GetBookKey returns the BookKey field value
+func (o *GetVaultMarketHealthResponseItems) GetBookKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookKey
+}
+
+// GetBookKeyOk returns a tuple with the BookKey field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseItems) GetBookKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookKey, true
+}
+
+// SetBookKey sets field value
+func (o *GetVaultMarketHealthResponseItems) SetBookKey(v string) {
+	o.BookKey = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetVaultMarketHealthResponseItems) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseItems) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetVaultMarketHealthResponseItems) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseItems) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthResponseItems) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseItems) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetVaultMarketHealthResponseItems) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetVaultMarketHealthResponseItems) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetVaultMarketHealthResponseItems) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetCategory returns the Category field value
+func (o *GetVaultMarketHealthResponseItems) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseItems) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *GetVaultMarketHealthResponseItems) SetCategory(v string) {
+	o.Category = v
+}
+
+// GetGrade returns the Grade field value
+func (o *GetVaultMarketHealthResponseItems) GetGrade() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Grade
+}
+
+// GetGradeOk returns a tuple with the Grade field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseItems) GetGradeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Grade, true
+}
+
+// SetGrade sets field value
+func (o *GetVaultMarketHealthResponseItems) SetGrade(v string) {
+	o.Grade = v
+}
+
+// GetUnits returns the Units field value
+func (o *GetVaultMarketHealthResponseItems) GetUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseItems) GetUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Units, true
+}
+
+// SetUnits sets field value
+func (o *GetVaultMarketHealthResponseItems) SetUnits(v float32) {
+	o.Units = v
+}
+
+// GetMarkCents returns the MarkCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthResponseItems) GetMarkCents() float32 {
+	if o == nil || o.MarkCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MarkCents.Get()
+}
+
+// GetMarkCentsOk returns a tuple with the MarkCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthResponseItems) GetMarkCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MarkCents.Get(), o.MarkCents.IsSet()
+}
+
+// HasMarkCents returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthResponseItems) HasMarkCents() bool {
+	if o != nil && o.MarkCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarkCents gets a reference to the given NullableFloat32 and assigns it to the MarkCents field.
+func (o *GetVaultMarketHealthResponseItems) SetMarkCents(v float32) {
+	o.MarkCents.Set(&v)
+}
+// SetMarkCentsNil sets the value for MarkCents to be an explicit nil
+func (o *GetVaultMarketHealthResponseItems) SetMarkCentsNil() {
+	o.MarkCents.Set(nil)
+}
+
+// UnsetMarkCents ensures that no value is present for MarkCents, not even an explicit nil
+func (o *GetVaultMarketHealthResponseItems) UnsetMarkCents() {
+	o.MarkCents.Unset()
 }
 
 // GetQuality returns the Quality field value
-func (o *GetVaultMarketNavResponseHoldingsMark) GetQuality() string {
+func (o *GetVaultMarketHealthResponseItems) GetQuality() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -8471,7 +4175,7 @@ func (o *GetVaultMarketNavResponseHoldingsMark) GetQuality() string {
 
 // GetQualityOk returns a tuple with the Quality field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) GetQualityOk() (*string, bool) {
+func (o *GetVaultMarketHealthResponseItems) GetQualityOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -8479,451 +4183,469 @@ func (o *GetVaultMarketNavResponseHoldingsMark) GetQualityOk() (*string, bool) {
 }
 
 // SetQuality sets field value
-func (o *GetVaultMarketNavResponseHoldingsMark) SetQuality(v string) {
+func (o *GetVaultMarketHealthResponseItems) SetQuality(v string) {
 	o.Quality = v
 }
 
-// GetSource returns the Source field value
-func (o *GetVaultMarketNavResponseHoldingsMark) GetSource() string {
+// GetTier returns the Tier field value
+func (o *GetVaultMarketHealthResponseItems) GetTier() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Source
+	return o.Tier
 }
 
-// GetSourceOk returns a tuple with the Source field value
+// GetTierOk returns a tuple with the Tier field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) GetSourceOk() (*string, bool) {
+func (o *GetVaultMarketHealthResponseItems) GetTierOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Source, true
+	return &o.Tier, true
 }
 
-// SetSource sets field value
-func (o *GetVaultMarketNavResponseHoldingsMark) SetSource(v string) {
-	o.Source = v
+// SetTier sets field value
+func (o *GetVaultMarketHealthResponseItems) SetTier(v string) {
+	o.Tier = v
 }
 
-// GetTrades returns the Trades field value
-func (o *GetVaultMarketNavResponseHoldingsMark) GetTrades() float32 {
+// GetValueCents returns the ValueCents field value
+func (o *GetVaultMarketHealthResponseItems) GetValueCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Trades
+	return o.ValueCents
 }
 
-// GetTradesOk returns a tuple with the Trades field value
+// GetValueCentsOk returns a tuple with the ValueCents field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) GetTradesOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseItems) GetValueCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Trades, true
+	return &o.ValueCents, true
 }
 
-// SetTrades sets field value
-func (o *GetVaultMarketNavResponseHoldingsMark) SetTrades(v float32) {
-	o.Trades = v
+// SetValueCents sets field value
+func (o *GetVaultMarketHealthResponseItems) SetValueCents(v float32) {
+	o.ValueCents = v
 }
 
-// GetDay returns the Day field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldingsMark) GetDay() string {
-	if o == nil || o.Day.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Day.Get()
-}
-
-// GetDayOk returns a tuple with the Day field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldingsMark) GetDayOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Day.Get(), o.Day.IsSet()
-}
-
-// HasDay returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) HasDay() bool {
-	if o != nil && o.Day.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDay gets a reference to the given NullableString and assigns it to the Day field.
-func (o *GetVaultMarketNavResponseHoldingsMark) SetDay(v string) {
-	o.Day.Set(&v)
-}
-// SetDayNil sets the value for Day to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) SetDayNil() {
-	o.Day.Set(nil)
-}
-
-// UnsetDay ensures that no value is present for Day, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) UnsetDay() {
-	o.Day.Unset()
-}
-
-// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseHoldingsMark) GetConfidenceBps() float32 {
-	if o == nil || o.ConfidenceBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ConfidenceBps.Get()
-}
-
-// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseHoldingsMark) GetConfidenceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
-}
-
-// HasConfidenceBps returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseHoldingsMark) HasConfidenceBps() bool {
-	if o != nil && o.ConfidenceBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
-func (o *GetVaultMarketNavResponseHoldingsMark) SetConfidenceBps(v float32) {
-	o.ConfidenceBps.Set(&v)
-}
-// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) SetConfidenceBpsNil() {
-	o.ConfidenceBps.Set(nil)
-}
-
-// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
-func (o *GetVaultMarketNavResponseHoldingsMark) UnsetConfidenceBps() {
-	o.ConfidenceBps.Unset()
-}
-
-func (o GetVaultMarketNavResponseHoldingsMark) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketHealthResponseItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Cents.IsSet() {
-		toSerialize["cents"] = o.Cents.Get()
+	if true {
+		toSerialize["bookKey"] = o.BookKey
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["grade"] = o.Grade
+	}
+	if true {
+		toSerialize["units"] = o.Units
+	}
+	if o.MarkCents.IsSet() {
+		toSerialize["markCents"] = o.MarkCents.Get()
 	}
 	if true {
 		toSerialize["quality"] = o.Quality
 	}
 	if true {
-		toSerialize["source"] = o.Source
+		toSerialize["tier"] = o.Tier
 	}
 	if true {
-		toSerialize["trades"] = o.Trades
-	}
-	if o.Day.IsSet() {
-		toSerialize["day"] = o.Day.Get()
-	}
-	if o.ConfidenceBps.IsSet() {
-		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
+		toSerialize["valueCents"] = o.ValueCents
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseHoldingsMark struct {
-	value *GetVaultMarketNavResponseHoldingsMark
+type NullableGetVaultMarketHealthResponseItems struct {
+	value *GetVaultMarketHealthResponseItems
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsMark) Get() *GetVaultMarketNavResponseHoldingsMark {
+func (v NullableGetVaultMarketHealthResponseItems) Get() *GetVaultMarketHealthResponseItems {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsMark) Set(val *GetVaultMarketNavResponseHoldingsMark) {
+func (v *NullableGetVaultMarketHealthResponseItems) Set(val *GetVaultMarketHealthResponseItems) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsMark) IsSet() bool {
+func (v NullableGetVaultMarketHealthResponseItems) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsMark) Unset() {
+func (v *NullableGetVaultMarketHealthResponseItems) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseHoldingsMark(val *GetVaultMarketNavResponseHoldingsMark) *NullableGetVaultMarketNavResponseHoldingsMark {
-	return &NullableGetVaultMarketNavResponseHoldingsMark{value: val, isSet: true}
+func NewNullableGetVaultMarketHealthResponseItems(val *GetVaultMarketHealthResponseItems) *NullableGetVaultMarketHealthResponseItems {
+	return &NullableGetVaultMarketHealthResponseItems{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseHoldingsMark) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHealthResponseItems) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseHoldingsMark) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHealthResponseItems) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseTotals struct for GetVaultMarketNavResponseTotals
-type GetVaultMarketNavResponseTotals struct {
-	AdministratorNav NullableGetVaultMarketNavResponseTotalsAdministratorNav `json:"administratorNav,omitempty"`
-	Level2Cents float32 `json:"level2Cents"`
-	Level3Cents float32 `json:"level3Cents"`
-	MarkNavCents float32 `json:"markNavCents"`
-	BidNavCents float32 `json:"bidNavCents"`
-	LiquidationNavCents float32 `json:"liquidationNavCents"`
-	OnLoanAtMarkCents float32 `json:"onLoanAtMarkCents"`
-	UnmarkedUnits float32 `json:"unmarkedUnits"`
-	Units float32 `json:"units"`
+// GetVaultMarketHealthResponseLiquidity struct for GetVaultMarketHealthResponseLiquidity
+type GetVaultMarketHealthResponseLiquidity struct {
+	TotalCents float32 `json:"totalCents"`
+	Tiers []GetVaultMarketHealthResponseLiquidityTiers `json:"tiers"`
+	ContinuousShareBps float32 `json:"continuousShareBps"`
+	AuctionShareBps float32 `json:"auctionShareBps"`
+	ListingsOnlyShareBps float32 `json:"listingsOnlyShareBps"`
 }
 
-// NewGetVaultMarketNavResponseTotals instantiates a new GetVaultMarketNavResponseTotals object
+// NewGetVaultMarketHealthResponseLiquidity instantiates a new GetVaultMarketHealthResponseLiquidity object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseTotals(level2Cents float32, level3Cents float32, markNavCents float32, bidNavCents float32, liquidationNavCents float32, onLoanAtMarkCents float32, unmarkedUnits float32, units float32) *GetVaultMarketNavResponseTotals {
-	this := GetVaultMarketNavResponseTotals{}
-	this.Level2Cents = level2Cents
-	this.Level3Cents = level3Cents
-	this.MarkNavCents = markNavCents
-	this.BidNavCents = bidNavCents
-	this.LiquidationNavCents = liquidationNavCents
-	this.OnLoanAtMarkCents = onLoanAtMarkCents
-	this.UnmarkedUnits = unmarkedUnits
-	this.Units = units
+func NewGetVaultMarketHealthResponseLiquidity(totalCents float32, tiers []GetVaultMarketHealthResponseLiquidityTiers, continuousShareBps float32, auctionShareBps float32, listingsOnlyShareBps float32) *GetVaultMarketHealthResponseLiquidity {
+	this := GetVaultMarketHealthResponseLiquidity{}
+	this.TotalCents = totalCents
+	this.Tiers = tiers
+	this.ContinuousShareBps = continuousShareBps
+	this.AuctionShareBps = auctionShareBps
+	this.ListingsOnlyShareBps = listingsOnlyShareBps
 	return &this
 }
 
-// NewGetVaultMarketNavResponseTotalsWithDefaults instantiates a new GetVaultMarketNavResponseTotals object
+// NewGetVaultMarketHealthResponseLiquidityWithDefaults instantiates a new GetVaultMarketHealthResponseLiquidity object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseTotalsWithDefaults() *GetVaultMarketNavResponseTotals {
-	this := GetVaultMarketNavResponseTotals{}
+func NewGetVaultMarketHealthResponseLiquidityWithDefaults() *GetVaultMarketHealthResponseLiquidity {
+	this := GetVaultMarketHealthResponseLiquidity{}
 	return &this
 }
 
-// GetAdministratorNav returns the AdministratorNav field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketNavResponseTotals) GetAdministratorNav() GetVaultMarketNavResponseTotalsAdministratorNav {
-	if o == nil || o.AdministratorNav.Get() == nil {
-		var ret GetVaultMarketNavResponseTotalsAdministratorNav
-		return ret
-	}
-	return *o.AdministratorNav.Get()
-}
-
-// GetAdministratorNavOk returns a tuple with the AdministratorNav field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketNavResponseTotals) GetAdministratorNavOk() (*GetVaultMarketNavResponseTotalsAdministratorNav, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.AdministratorNav.Get(), o.AdministratorNav.IsSet()
-}
-
-// HasAdministratorNav returns a boolean if a field has been set.
-func (o *GetVaultMarketNavResponseTotals) HasAdministratorNav() bool {
-	if o != nil && o.AdministratorNav.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAdministratorNav gets a reference to the given NullableGetVaultMarketNavResponseTotalsAdministratorNav and assigns it to the AdministratorNav field.
-func (o *GetVaultMarketNavResponseTotals) SetAdministratorNav(v GetVaultMarketNavResponseTotalsAdministratorNav) {
-	o.AdministratorNav.Set(&v)
-}
-// SetAdministratorNavNil sets the value for AdministratorNav to be an explicit nil
-func (o *GetVaultMarketNavResponseTotals) SetAdministratorNavNil() {
-	o.AdministratorNav.Set(nil)
-}
-
-// UnsetAdministratorNav ensures that no value is present for AdministratorNav, not even an explicit nil
-func (o *GetVaultMarketNavResponseTotals) UnsetAdministratorNav() {
-	o.AdministratorNav.Unset()
-}
-
-// GetLevel2Cents returns the Level2Cents field value
-func (o *GetVaultMarketNavResponseTotals) GetLevel2Cents() float32 {
+// GetTotalCents returns the TotalCents field value
+func (o *GetVaultMarketHealthResponseLiquidity) GetTotalCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Level2Cents
+	return o.TotalCents
 }
 
-// GetLevel2CentsOk returns a tuple with the Level2Cents field value
+// GetTotalCentsOk returns a tuple with the TotalCents field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetLevel2CentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidity) GetTotalCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Level2Cents, true
+	return &o.TotalCents, true
 }
 
-// SetLevel2Cents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetLevel2Cents(v float32) {
-	o.Level2Cents = v
+// SetTotalCents sets field value
+func (o *GetVaultMarketHealthResponseLiquidity) SetTotalCents(v float32) {
+	o.TotalCents = v
 }
 
-// GetLevel3Cents returns the Level3Cents field value
-func (o *GetVaultMarketNavResponseTotals) GetLevel3Cents() float32 {
+// GetTiers returns the Tiers field value
+func (o *GetVaultMarketHealthResponseLiquidity) GetTiers() []GetVaultMarketHealthResponseLiquidityTiers {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseLiquidityTiers
+		return ret
+	}
+
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidity) GetTiersOk() ([]GetVaultMarketHealthResponseLiquidityTiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// SetTiers sets field value
+func (o *GetVaultMarketHealthResponseLiquidity) SetTiers(v []GetVaultMarketHealthResponseLiquidityTiers) {
+	o.Tiers = v
+}
+
+// GetContinuousShareBps returns the ContinuousShareBps field value
+func (o *GetVaultMarketHealthResponseLiquidity) GetContinuousShareBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Level3Cents
+	return o.ContinuousShareBps
 }
 
-// GetLevel3CentsOk returns a tuple with the Level3Cents field value
+// GetContinuousShareBpsOk returns a tuple with the ContinuousShareBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetLevel3CentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidity) GetContinuousShareBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Level3Cents, true
+	return &o.ContinuousShareBps, true
 }
 
-// SetLevel3Cents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetLevel3Cents(v float32) {
-	o.Level3Cents = v
+// SetContinuousShareBps sets field value
+func (o *GetVaultMarketHealthResponseLiquidity) SetContinuousShareBps(v float32) {
+	o.ContinuousShareBps = v
 }
 
-// GetMarkNavCents returns the MarkNavCents field value
-func (o *GetVaultMarketNavResponseTotals) GetMarkNavCents() float32 {
+// GetAuctionShareBps returns the AuctionShareBps field value
+func (o *GetVaultMarketHealthResponseLiquidity) GetAuctionShareBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.MarkNavCents
+	return o.AuctionShareBps
 }
 
-// GetMarkNavCentsOk returns a tuple with the MarkNavCents field value
+// GetAuctionShareBpsOk returns a tuple with the AuctionShareBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetMarkNavCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidity) GetAuctionShareBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.MarkNavCents, true
+	return &o.AuctionShareBps, true
 }
 
-// SetMarkNavCents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetMarkNavCents(v float32) {
-	o.MarkNavCents = v
+// SetAuctionShareBps sets field value
+func (o *GetVaultMarketHealthResponseLiquidity) SetAuctionShareBps(v float32) {
+	o.AuctionShareBps = v
 }
 
-// GetBidNavCents returns the BidNavCents field value
-func (o *GetVaultMarketNavResponseTotals) GetBidNavCents() float32 {
+// GetListingsOnlyShareBps returns the ListingsOnlyShareBps field value
+func (o *GetVaultMarketHealthResponseLiquidity) GetListingsOnlyShareBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.BidNavCents
+	return o.ListingsOnlyShareBps
 }
 
-// GetBidNavCentsOk returns a tuple with the BidNavCents field value
+// GetListingsOnlyShareBpsOk returns a tuple with the ListingsOnlyShareBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetBidNavCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidity) GetListingsOnlyShareBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.BidNavCents, true
+	return &o.ListingsOnlyShareBps, true
 }
 
-// SetBidNavCents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetBidNavCents(v float32) {
-	o.BidNavCents = v
+// SetListingsOnlyShareBps sets field value
+func (o *GetVaultMarketHealthResponseLiquidity) SetListingsOnlyShareBps(v float32) {
+	o.ListingsOnlyShareBps = v
 }
 
-// GetLiquidationNavCents returns the LiquidationNavCents field value
-func (o *GetVaultMarketNavResponseTotals) GetLiquidationNavCents() float32 {
+func (o GetVaultMarketHealthResponseLiquidity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalCents"] = o.TotalCents
+	}
+	if true {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if true {
+		toSerialize["continuousShareBps"] = o.ContinuousShareBps
+	}
+	if true {
+		toSerialize["auctionShareBps"] = o.AuctionShareBps
+	}
+	if true {
+		toSerialize["listingsOnlyShareBps"] = o.ListingsOnlyShareBps
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseLiquidity struct {
+	value *GetVaultMarketHealthResponseLiquidity
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidity) Get() *GetVaultMarketHealthResponseLiquidity {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidity) Set(val *GetVaultMarketHealthResponseLiquidity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseLiquidity(val *GetVaultMarketHealthResponseLiquidity) *NullableGetVaultMarketHealthResponseLiquidity {
+	return &NullableGetVaultMarketHealthResponseLiquidity{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidity) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidity) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseLiquidityTiers struct for GetVaultMarketHealthResponseLiquidityTiers
+type GetVaultMarketHealthResponseLiquidityTiers struct {
+	Tier string `json:"tier"`
+	Label string `json:"label"`
+	Explainer string `json:"explainer"`
+	Items float32 `json:"items"`
+	Units float32 `json:"units"`
+	ValueCents float32 `json:"valueCents"`
+	ShareBps float32 `json:"shareBps"`
+}
+
+// NewGetVaultMarketHealthResponseLiquidityTiers instantiates a new GetVaultMarketHealthResponseLiquidityTiers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseLiquidityTiers(tier string, label string, explainer string, items float32, units float32, valueCents float32, shareBps float32) *GetVaultMarketHealthResponseLiquidityTiers {
+	this := GetVaultMarketHealthResponseLiquidityTiers{}
+	this.Tier = tier
+	this.Label = label
+	this.Explainer = explainer
+	this.Items = items
+	this.Units = units
+	this.ValueCents = valueCents
+	this.ShareBps = shareBps
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseLiquidityTiersWithDefaults instantiates a new GetVaultMarketHealthResponseLiquidityTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseLiquidityTiersWithDefaults() *GetVaultMarketHealthResponseLiquidityTiers {
+	this := GetVaultMarketHealthResponseLiquidityTiers{}
+	return &this
+}
+
+// GetTier returns the Tier field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetTier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tier
+}
+
+// GetTierOk returns a tuple with the Tier field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetTierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tier, true
+}
+
+// SetTier sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetTier(v string) {
+	o.Tier = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetExplainer returns the Explainer field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetExplainer() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Explainer
+}
+
+// GetExplainerOk returns a tuple with the Explainer field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetExplainerOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Explainer, true
+}
+
+// SetExplainer sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetExplainer(v string) {
+	o.Explainer = v
+}
+
+// GetItems returns the Items field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetItems() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.LiquidationNavCents
+	return o.Items
 }
 
-// GetLiquidationNavCentsOk returns a tuple with the LiquidationNavCents field value
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetLiquidationNavCentsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetItemsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.LiquidationNavCents, true
+	return &o.Items, true
 }
 
-// SetLiquidationNavCents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetLiquidationNavCents(v float32) {
-	o.LiquidationNavCents = v
-}
-
-// GetOnLoanAtMarkCents returns the OnLoanAtMarkCents field value
-func (o *GetVaultMarketNavResponseTotals) GetOnLoanAtMarkCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.OnLoanAtMarkCents
-}
-
-// GetOnLoanAtMarkCentsOk returns a tuple with the OnLoanAtMarkCents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetOnLoanAtMarkCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.OnLoanAtMarkCents, true
-}
-
-// SetOnLoanAtMarkCents sets field value
-func (o *GetVaultMarketNavResponseTotals) SetOnLoanAtMarkCents(v float32) {
-	o.OnLoanAtMarkCents = v
-}
-
-// GetUnmarkedUnits returns the UnmarkedUnits field value
-func (o *GetVaultMarketNavResponseTotals) GetUnmarkedUnits() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.UnmarkedUnits
-}
-
-// GetUnmarkedUnitsOk returns a tuple with the UnmarkedUnits field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetUnmarkedUnitsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UnmarkedUnits, true
-}
-
-// SetUnmarkedUnits sets field value
-func (o *GetVaultMarketNavResponseTotals) SetUnmarkedUnits(v float32) {
-	o.UnmarkedUnits = v
+// SetItems sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetItems(v float32) {
+	o.Items = v
 }
 
 // GetUnits returns the Units field value
-func (o *GetVaultMarketNavResponseTotals) GetUnits() float32 {
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetUnits() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -8934,7 +4656,7 @@ func (o *GetVaultMarketNavResponseTotals) GetUnits() float32 {
 
 // GetUnitsOk returns a tuple with the Units field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotals) GetUnitsOk() (*float32, bool) {
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetUnitsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -8942,35 +4664,2623 @@ func (o *GetVaultMarketNavResponseTotals) GetUnitsOk() (*float32, bool) {
 }
 
 // SetUnits sets field value
-func (o *GetVaultMarketNavResponseTotals) SetUnits(v float32) {
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetUnits(v float32) {
 	o.Units = v
 }
 
-func (o GetVaultMarketNavResponseTotals) MarshalJSON() ([]byte, error) {
+// GetValueCents returns the ValueCents field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetShareBps returns the ShareBps field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareBps
+}
+
+// GetShareBpsOk returns a tuple with the ShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseLiquidityTiers) GetShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareBps, true
+}
+
+// SetShareBps sets field value
+func (o *GetVaultMarketHealthResponseLiquidityTiers) SetShareBps(v float32) {
+	o.ShareBps = v
+}
+
+func (o GetVaultMarketHealthResponseLiquidityTiers) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AdministratorNav.IsSet() {
-		toSerialize["administratorNav"] = o.AdministratorNav.Get()
+	if true {
+		toSerialize["tier"] = o.Tier
 	}
 	if true {
-		toSerialize["level2Cents"] = o.Level2Cents
+		toSerialize["label"] = o.Label
 	}
 	if true {
-		toSerialize["level3Cents"] = o.Level3Cents
+		toSerialize["explainer"] = o.Explainer
 	}
 	if true {
-		toSerialize["markNavCents"] = o.MarkNavCents
+		toSerialize["items"] = o.Items
 	}
 	if true {
-		toSerialize["bidNavCents"] = o.BidNavCents
+		toSerialize["units"] = o.Units
 	}
 	if true {
-		toSerialize["liquidationNavCents"] = o.LiquidationNavCents
+		toSerialize["valueCents"] = o.ValueCents
 	}
 	if true {
-		toSerialize["onLoanAtMarkCents"] = o.OnLoanAtMarkCents
+		toSerialize["shareBps"] = o.ShareBps
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseLiquidityTiers struct {
+	value *GetVaultMarketHealthResponseLiquidityTiers
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidityTiers) Get() *GetVaultMarketHealthResponseLiquidityTiers {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidityTiers) Set(val *GetVaultMarketHealthResponseLiquidityTiers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidityTiers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidityTiers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseLiquidityTiers(val *GetVaultMarketHealthResponseLiquidityTiers) *NullableGetVaultMarketHealthResponseLiquidityTiers {
+	return &NullableGetVaultMarketHealthResponseLiquidityTiers{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseLiquidityTiers) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseLiquidityTiers) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseMarks struct for GetVaultMarketHealthResponseMarks
+type GetVaultMarketHealthResponseMarks struct {
+	TotalCents float32 `json:"totalCents"`
+	Parts []GetVaultMarketHealthResponseMarksParts `json:"parts"`
+	ReliableShareBps float32 `json:"reliableShareBps"`
+	UnmarkedUnits float32 `json:"unmarkedUnits"`
+}
+
+// NewGetVaultMarketHealthResponseMarks instantiates a new GetVaultMarketHealthResponseMarks object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseMarks(totalCents float32, parts []GetVaultMarketHealthResponseMarksParts, reliableShareBps float32, unmarkedUnits float32) *GetVaultMarketHealthResponseMarks {
+	this := GetVaultMarketHealthResponseMarks{}
+	this.TotalCents = totalCents
+	this.Parts = parts
+	this.ReliableShareBps = reliableShareBps
+	this.UnmarkedUnits = unmarkedUnits
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseMarksWithDefaults instantiates a new GetVaultMarketHealthResponseMarks object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseMarksWithDefaults() *GetVaultMarketHealthResponseMarks {
+	this := GetVaultMarketHealthResponseMarks{}
+	return &this
+}
+
+// GetTotalCents returns the TotalCents field value
+func (o *GetVaultMarketHealthResponseMarks) GetTotalCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalCents
+}
+
+// GetTotalCentsOk returns a tuple with the TotalCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarks) GetTotalCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TotalCents, true
+}
+
+// SetTotalCents sets field value
+func (o *GetVaultMarketHealthResponseMarks) SetTotalCents(v float32) {
+	o.TotalCents = v
+}
+
+// GetParts returns the Parts field value
+func (o *GetVaultMarketHealthResponseMarks) GetParts() []GetVaultMarketHealthResponseMarksParts {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseMarksParts
+		return ret
+	}
+
+	return o.Parts
+}
+
+// GetPartsOk returns a tuple with the Parts field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarks) GetPartsOk() ([]GetVaultMarketHealthResponseMarksParts, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Parts, true
+}
+
+// SetParts sets field value
+func (o *GetVaultMarketHealthResponseMarks) SetParts(v []GetVaultMarketHealthResponseMarksParts) {
+	o.Parts = v
+}
+
+// GetReliableShareBps returns the ReliableShareBps field value
+func (o *GetVaultMarketHealthResponseMarks) GetReliableShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ReliableShareBps
+}
+
+// GetReliableShareBpsOk returns a tuple with the ReliableShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarks) GetReliableShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ReliableShareBps, true
+}
+
+// SetReliableShareBps sets field value
+func (o *GetVaultMarketHealthResponseMarks) SetReliableShareBps(v float32) {
+	o.ReliableShareBps = v
+}
+
+// GetUnmarkedUnits returns the UnmarkedUnits field value
+func (o *GetVaultMarketHealthResponseMarks) GetUnmarkedUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.UnmarkedUnits
+}
+
+// GetUnmarkedUnitsOk returns a tuple with the UnmarkedUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarks) GetUnmarkedUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnmarkedUnits, true
+}
+
+// SetUnmarkedUnits sets field value
+func (o *GetVaultMarketHealthResponseMarks) SetUnmarkedUnits(v float32) {
+	o.UnmarkedUnits = v
+}
+
+func (o GetVaultMarketHealthResponseMarks) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalCents"] = o.TotalCents
+	}
+	if true {
+		toSerialize["parts"] = o.Parts
+	}
+	if true {
+		toSerialize["reliableShareBps"] = o.ReliableShareBps
 	}
 	if true {
 		toSerialize["unmarkedUnits"] = o.UnmarkedUnits
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseMarks struct {
+	value *GetVaultMarketHealthResponseMarks
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseMarks) Get() *GetVaultMarketHealthResponseMarks {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarks) Set(val *GetVaultMarketHealthResponseMarks) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseMarks) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarks) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseMarks(val *GetVaultMarketHealthResponseMarks) *NullableGetVaultMarketHealthResponseMarks {
+	return &NullableGetVaultMarketHealthResponseMarks{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseMarks) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarks) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseMarksParts struct for GetVaultMarketHealthResponseMarksParts
+type GetVaultMarketHealthResponseMarksParts struct {
+	Items float32 `json:"items"`
+	Units float32 `json:"units"`
+	ValueCents float32 `json:"valueCents"`
+	ShareBps float32 `json:"shareBps"`
+	Label string `json:"label"`
+	Text string `json:"text"`
+	Quality string `json:"quality"`
+}
+
+// NewGetVaultMarketHealthResponseMarksParts instantiates a new GetVaultMarketHealthResponseMarksParts object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseMarksParts(items float32, units float32, valueCents float32, shareBps float32, label string, text string, quality string) *GetVaultMarketHealthResponseMarksParts {
+	this := GetVaultMarketHealthResponseMarksParts{}
+	this.Items = items
+	this.Units = units
+	this.ValueCents = valueCents
+	this.ShareBps = shareBps
+	this.Label = label
+	this.Text = text
+	this.Quality = quality
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseMarksPartsWithDefaults instantiates a new GetVaultMarketHealthResponseMarksParts object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseMarksPartsWithDefaults() *GetVaultMarketHealthResponseMarksParts {
+	this := GetVaultMarketHealthResponseMarksParts{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetItems() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetItemsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Items, true
+}
+
+// SetItems sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetItems(v float32) {
+	o.Items = v
+}
+
+// GetUnits returns the Units field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Units, true
+}
+
+// SetUnits sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetUnits(v float32) {
+	o.Units = v
+}
+
+// GetValueCents returns the ValueCents field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetShareBps returns the ShareBps field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareBps
+}
+
+// GetShareBpsOk returns a tuple with the ShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareBps, true
+}
+
+// SetShareBps sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetShareBps(v float32) {
+	o.ShareBps = v
+}
+
+// GetLabel returns the Label field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetText returns the Text field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetText() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Text
+}
+
+// GetTextOk returns a tuple with the Text field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetTextOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Text, true
+}
+
+// SetText sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetText(v string) {
+	o.Text = v
+}
+
+// GetQuality returns the Quality field value
+func (o *GetVaultMarketHealthResponseMarksParts) GetQuality() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Quality
+}
+
+// GetQualityOk returns a tuple with the Quality field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseMarksParts) GetQualityOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quality, true
+}
+
+// SetQuality sets field value
+func (o *GetVaultMarketHealthResponseMarksParts) SetQuality(v string) {
+	o.Quality = v
+}
+
+func (o GetVaultMarketHealthResponseMarksParts) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["items"] = o.Items
+	}
+	if true {
+		toSerialize["units"] = o.Units
+	}
+	if true {
+		toSerialize["valueCents"] = o.ValueCents
+	}
+	if true {
+		toSerialize["shareBps"] = o.ShareBps
+	}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["text"] = o.Text
+	}
+	if true {
+		toSerialize["quality"] = o.Quality
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseMarksParts struct {
+	value *GetVaultMarketHealthResponseMarksParts
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseMarksParts) Get() *GetVaultMarketHealthResponseMarksParts {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarksParts) Set(val *GetVaultMarketHealthResponseMarksParts) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseMarksParts) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarksParts) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseMarksParts(val *GetVaultMarketHealthResponseMarksParts) *NullableGetVaultMarketHealthResponseMarksParts {
+	return &NullableGetVaultMarketHealthResponseMarksParts{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseMarksParts) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseMarksParts) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseStress struct for GetVaultMarketHealthResponseStress
+type GetVaultMarketHealthResponseStress struct {
+	Label string `json:"label"`
+	ShocksBps []float32 `json:"shocksBps"`
+	TotalCents float32 `json:"totalCents"`
+	Rows []GetVaultMarketHealthResponseStressRows `json:"rows"`
+	Everything GetVaultMarketHealthResponseStressEverything `json:"everything"`
+}
+
+// NewGetVaultMarketHealthResponseStress instantiates a new GetVaultMarketHealthResponseStress object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseStress(label string, shocksBps []float32, totalCents float32, rows []GetVaultMarketHealthResponseStressRows, everything GetVaultMarketHealthResponseStressEverything) *GetVaultMarketHealthResponseStress {
+	this := GetVaultMarketHealthResponseStress{}
+	this.Label = label
+	this.ShocksBps = shocksBps
+	this.TotalCents = totalCents
+	this.Rows = rows
+	this.Everything = everything
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseStressWithDefaults instantiates a new GetVaultMarketHealthResponseStress object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseStressWithDefaults() *GetVaultMarketHealthResponseStress {
+	this := GetVaultMarketHealthResponseStress{}
+	return &this
+}
+
+// GetLabel returns the Label field value
+func (o *GetVaultMarketHealthResponseStress) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStress) GetLabelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *GetVaultMarketHealthResponseStress) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetShocksBps returns the ShocksBps field value
+func (o *GetVaultMarketHealthResponseStress) GetShocksBps() []float32 {
+	if o == nil {
+		var ret []float32
+		return ret
+	}
+
+	return o.ShocksBps
+}
+
+// GetShocksBpsOk returns a tuple with the ShocksBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStress) GetShocksBpsOk() ([]float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShocksBps, true
+}
+
+// SetShocksBps sets field value
+func (o *GetVaultMarketHealthResponseStress) SetShocksBps(v []float32) {
+	o.ShocksBps = v
+}
+
+// GetTotalCents returns the TotalCents field value
+func (o *GetVaultMarketHealthResponseStress) GetTotalCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalCents
+}
+
+// GetTotalCentsOk returns a tuple with the TotalCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStress) GetTotalCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TotalCents, true
+}
+
+// SetTotalCents sets field value
+func (o *GetVaultMarketHealthResponseStress) SetTotalCents(v float32) {
+	o.TotalCents = v
+}
+
+// GetRows returns the Rows field value
+func (o *GetVaultMarketHealthResponseStress) GetRows() []GetVaultMarketHealthResponseStressRows {
+	if o == nil {
+		var ret []GetVaultMarketHealthResponseStressRows
+		return ret
+	}
+
+	return o.Rows
+}
+
+// GetRowsOk returns a tuple with the Rows field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStress) GetRowsOk() ([]GetVaultMarketHealthResponseStressRows, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Rows, true
+}
+
+// SetRows sets field value
+func (o *GetVaultMarketHealthResponseStress) SetRows(v []GetVaultMarketHealthResponseStressRows) {
+	o.Rows = v
+}
+
+// GetEverything returns the Everything field value
+func (o *GetVaultMarketHealthResponseStress) GetEverything() GetVaultMarketHealthResponseStressEverything {
+	if o == nil {
+		var ret GetVaultMarketHealthResponseStressEverything
+		return ret
+	}
+
+	return o.Everything
+}
+
+// GetEverythingOk returns a tuple with the Everything field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStress) GetEverythingOk() (*GetVaultMarketHealthResponseStressEverything, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Everything, true
+}
+
+// SetEverything sets field value
+func (o *GetVaultMarketHealthResponseStress) SetEverything(v GetVaultMarketHealthResponseStressEverything) {
+	o.Everything = v
+}
+
+func (o GetVaultMarketHealthResponseStress) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["label"] = o.Label
+	}
+	if true {
+		toSerialize["shocksBps"] = o.ShocksBps
+	}
+	if true {
+		toSerialize["totalCents"] = o.TotalCents
+	}
+	if true {
+		toSerialize["rows"] = o.Rows
+	}
+	if true {
+		toSerialize["everything"] = o.Everything
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseStress struct {
+	value *GetVaultMarketHealthResponseStress
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseStress) Get() *GetVaultMarketHealthResponseStress {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseStress) Set(val *GetVaultMarketHealthResponseStress) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseStress) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseStress) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseStress(val *GetVaultMarketHealthResponseStress) *NullableGetVaultMarketHealthResponseStress {
+	return &NullableGetVaultMarketHealthResponseStress{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseStress) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseStress) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseStressEverything struct for GetVaultMarketHealthResponseStressEverything
+type GetVaultMarketHealthResponseStressEverything struct {
+	ExposureCents float32 `json:"exposureCents"`
+	Cells []map[string]interface{} `json:"cells"`
+}
+
+// NewGetVaultMarketHealthResponseStressEverything instantiates a new GetVaultMarketHealthResponseStressEverything object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseStressEverything(exposureCents float32, cells []map[string]interface{}) *GetVaultMarketHealthResponseStressEverything {
+	this := GetVaultMarketHealthResponseStressEverything{}
+	this.ExposureCents = exposureCents
+	this.Cells = cells
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseStressEverythingWithDefaults instantiates a new GetVaultMarketHealthResponseStressEverything object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseStressEverythingWithDefaults() *GetVaultMarketHealthResponseStressEverything {
+	this := GetVaultMarketHealthResponseStressEverything{}
+	return &this
+}
+
+// GetExposureCents returns the ExposureCents field value
+func (o *GetVaultMarketHealthResponseStressEverything) GetExposureCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExposureCents
+}
+
+// GetExposureCentsOk returns a tuple with the ExposureCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressEverything) GetExposureCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExposureCents, true
+}
+
+// SetExposureCents sets field value
+func (o *GetVaultMarketHealthResponseStressEverything) SetExposureCents(v float32) {
+	o.ExposureCents = v
+}
+
+// GetCells returns the Cells field value
+func (o *GetVaultMarketHealthResponseStressEverything) GetCells() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Cells
+}
+
+// GetCellsOk returns a tuple with the Cells field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressEverything) GetCellsOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Cells, true
+}
+
+// SetCells sets field value
+func (o *GetVaultMarketHealthResponseStressEverything) SetCells(v []map[string]interface{}) {
+	o.Cells = v
+}
+
+func (o GetVaultMarketHealthResponseStressEverything) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["exposureCents"] = o.ExposureCents
+	}
+	if true {
+		toSerialize["cells"] = o.Cells
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseStressEverything struct {
+	value *GetVaultMarketHealthResponseStressEverything
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseStressEverything) Get() *GetVaultMarketHealthResponseStressEverything {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressEverything) Set(val *GetVaultMarketHealthResponseStressEverything) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseStressEverything) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressEverything) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseStressEverything(val *GetVaultMarketHealthResponseStressEverything) *NullableGetVaultMarketHealthResponseStressEverything {
+	return &NullableGetVaultMarketHealthResponseStressEverything{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseStressEverything) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressEverything) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseStressRows struct for GetVaultMarketHealthResponseStressRows
+type GetVaultMarketHealthResponseStressRows struct {
+	Category string `json:"category"`
+	ExposureCents float32 `json:"exposureCents"`
+	ShareBps float32 `json:"shareBps"`
+	Cells []map[string]interface{} `json:"cells"`
+}
+
+// NewGetVaultMarketHealthResponseStressRows instantiates a new GetVaultMarketHealthResponseStressRows object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseStressRows(category string, exposureCents float32, shareBps float32, cells []map[string]interface{}) *GetVaultMarketHealthResponseStressRows {
+	this := GetVaultMarketHealthResponseStressRows{}
+	this.Category = category
+	this.ExposureCents = exposureCents
+	this.ShareBps = shareBps
+	this.Cells = cells
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseStressRowsWithDefaults instantiates a new GetVaultMarketHealthResponseStressRows object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseStressRowsWithDefaults() *GetVaultMarketHealthResponseStressRows {
+	this := GetVaultMarketHealthResponseStressRows{}
+	return &this
+}
+
+// GetCategory returns the Category field value
+func (o *GetVaultMarketHealthResponseStressRows) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressRows) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *GetVaultMarketHealthResponseStressRows) SetCategory(v string) {
+	o.Category = v
+}
+
+// GetExposureCents returns the ExposureCents field value
+func (o *GetVaultMarketHealthResponseStressRows) GetExposureCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExposureCents
+}
+
+// GetExposureCentsOk returns a tuple with the ExposureCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressRows) GetExposureCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExposureCents, true
+}
+
+// SetExposureCents sets field value
+func (o *GetVaultMarketHealthResponseStressRows) SetExposureCents(v float32) {
+	o.ExposureCents = v
+}
+
+// GetShareBps returns the ShareBps field value
+func (o *GetVaultMarketHealthResponseStressRows) GetShareBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareBps
+}
+
+// GetShareBpsOk returns a tuple with the ShareBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressRows) GetShareBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareBps, true
+}
+
+// SetShareBps sets field value
+func (o *GetVaultMarketHealthResponseStressRows) SetShareBps(v float32) {
+	o.ShareBps = v
+}
+
+// GetCells returns the Cells field value
+func (o *GetVaultMarketHealthResponseStressRows) GetCells() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Cells
+}
+
+// GetCellsOk returns a tuple with the Cells field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseStressRows) GetCellsOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Cells, true
+}
+
+// SetCells sets field value
+func (o *GetVaultMarketHealthResponseStressRows) SetCells(v []map[string]interface{}) {
+	o.Cells = v
+}
+
+func (o GetVaultMarketHealthResponseStressRows) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["exposureCents"] = o.ExposureCents
+	}
+	if true {
+		toSerialize["shareBps"] = o.ShareBps
+	}
+	if true {
+		toSerialize["cells"] = o.Cells
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseStressRows struct {
+	value *GetVaultMarketHealthResponseStressRows
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseStressRows) Get() *GetVaultMarketHealthResponseStressRows {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressRows) Set(val *GetVaultMarketHealthResponseStressRows) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseStressRows) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressRows) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseStressRows(val *GetVaultMarketHealthResponseStressRows) *NullableGetVaultMarketHealthResponseStressRows {
+	return &NullableGetVaultMarketHealthResponseStressRows{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseStressRows) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseStressRows) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthResponseTotals struct for GetVaultMarketHealthResponseTotals
+type GetVaultMarketHealthResponseTotals struct {
+	ValueCents float32 `json:"valueCents"`
+	Items float32 `json:"items"`
+	Units float32 `json:"units"`
+	UnitsOnLoan float32 `json:"unitsOnLoan"`
+	UnmarkedUnits float32 `json:"unmarkedUnits"`
+	// Units in the vault that are not on any market (no catalogue variant): not valued here.
+	UnlistedUnits float32 `json:"unlistedUnits"`
+}
+
+// NewGetVaultMarketHealthResponseTotals instantiates a new GetVaultMarketHealthResponseTotals object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthResponseTotals(valueCents float32, items float32, units float32, unitsOnLoan float32, unmarkedUnits float32, unlistedUnits float32) *GetVaultMarketHealthResponseTotals {
+	this := GetVaultMarketHealthResponseTotals{}
+	this.ValueCents = valueCents
+	this.Items = items
+	this.Units = units
+	this.UnitsOnLoan = unitsOnLoan
+	this.UnmarkedUnits = unmarkedUnits
+	this.UnlistedUnits = unlistedUnits
+	return &this
+}
+
+// NewGetVaultMarketHealthResponseTotalsWithDefaults instantiates a new GetVaultMarketHealthResponseTotals object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthResponseTotalsWithDefaults() *GetVaultMarketHealthResponseTotals {
+	this := GetVaultMarketHealthResponseTotals{}
+	return &this
+}
+
+// GetValueCents returns the ValueCents field value
+func (o *GetVaultMarketHealthResponseTotals) GetValueCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ValueCents
+}
+
+// GetValueCentsOk returns a tuple with the ValueCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetValueCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ValueCents, true
+}
+
+// SetValueCents sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetValueCents(v float32) {
+	o.ValueCents = v
+}
+
+// GetItems returns the Items field value
+func (o *GetVaultMarketHealthResponseTotals) GetItems() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetItemsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Items, true
+}
+
+// SetItems sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetItems(v float32) {
+	o.Items = v
+}
+
+// GetUnits returns the Units field value
+func (o *GetVaultMarketHealthResponseTotals) GetUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Units, true
+}
+
+// SetUnits sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetUnits(v float32) {
+	o.Units = v
+}
+
+// GetUnitsOnLoan returns the UnitsOnLoan field value
+func (o *GetVaultMarketHealthResponseTotals) GetUnitsOnLoan() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.UnitsOnLoan
+}
+
+// GetUnitsOnLoanOk returns a tuple with the UnitsOnLoan field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetUnitsOnLoanOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnitsOnLoan, true
+}
+
+// SetUnitsOnLoan sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetUnitsOnLoan(v float32) {
+	o.UnitsOnLoan = v
+}
+
+// GetUnmarkedUnits returns the UnmarkedUnits field value
+func (o *GetVaultMarketHealthResponseTotals) GetUnmarkedUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.UnmarkedUnits
+}
+
+// GetUnmarkedUnitsOk returns a tuple with the UnmarkedUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetUnmarkedUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnmarkedUnits, true
+}
+
+// SetUnmarkedUnits sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetUnmarkedUnits(v float32) {
+	o.UnmarkedUnits = v
+}
+
+// GetUnlistedUnits returns the UnlistedUnits field value
+func (o *GetVaultMarketHealthResponseTotals) GetUnlistedUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.UnlistedUnits
+}
+
+// GetUnlistedUnitsOk returns a tuple with the UnlistedUnits field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthResponseTotals) GetUnlistedUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnlistedUnits, true
+}
+
+// SetUnlistedUnits sets field value
+func (o *GetVaultMarketHealthResponseTotals) SetUnlistedUnits(v float32) {
+	o.UnlistedUnits = v
+}
+
+func (o GetVaultMarketHealthResponseTotals) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["valueCents"] = o.ValueCents
+	}
+	if true {
+		toSerialize["items"] = o.Items
+	}
+	if true {
+		toSerialize["units"] = o.Units
+	}
+	if true {
+		toSerialize["unitsOnLoan"] = o.UnitsOnLoan
+	}
+	if true {
+		toSerialize["unmarkedUnits"] = o.UnmarkedUnits
+	}
+	if true {
+		toSerialize["unlistedUnits"] = o.UnlistedUnits
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthResponseTotals struct {
+	value *GetVaultMarketHealthResponseTotals
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthResponseTotals) Get() *GetVaultMarketHealthResponseTotals {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthResponseTotals) Set(val *GetVaultMarketHealthResponseTotals) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthResponseTotals) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthResponseTotals) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthResponseTotals(val *GetVaultMarketHealthResponseTotals) *NullableGetVaultMarketHealthResponseTotals {
+	return &NullableGetVaultMarketHealthResponseTotals{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthResponseTotals) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthResponseTotals) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHealthWhatIfResponse struct for GetVaultMarketHealthWhatIfResponse
+type GetVaultMarketHealthWhatIfResponse struct {
+	BookKey string `json:"bookKey"`
+	Title string `json:"title"`
+	Category string `json:"category"`
+	Units float32 `json:"units"`
+	MarkCents NullableFloat32 `json:"markCents,omitempty"`
+	Quality string `json:"quality"`
+	MoveBps float32 `json:"moveBps"`
+	Priced bool `json:"priced"`
+	ItemBeforeCents float32 `json:"itemBeforeCents"`
+	ItemAfterCents float32 `json:"itemAfterCents"`
+	ChangeCents float32 `json:"changeCents"`
+	VaultBeforeCents float32 `json:"vaultBeforeCents"`
+	VaultAfterCents float32 `json:"vaultAfterCents"`
+	VaultChangeBps float32 `json:"vaultChangeBps"`
+	ShareBeforeBps float32 `json:"shareBeforeBps"`
+	ShareAfterBps float32 `json:"shareAfterBps"`
+	CategoryShareBeforeBps float32 `json:"categoryShareBeforeBps"`
+	CategoryShareAfterBps float32 `json:"categoryShareAfterBps"`
+	HhiBefore float32 `json:"hhiBefore"`
+	HhiAfter float32 `json:"hhiAfter"`
+	Note string `json:"note"`
+}
+
+// NewGetVaultMarketHealthWhatIfResponse instantiates a new GetVaultMarketHealthWhatIfResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHealthWhatIfResponse(bookKey string, title string, category string, units float32, quality string, moveBps float32, priced bool, itemBeforeCents float32, itemAfterCents float32, changeCents float32, vaultBeforeCents float32, vaultAfterCents float32, vaultChangeBps float32, shareBeforeBps float32, shareAfterBps float32, categoryShareBeforeBps float32, categoryShareAfterBps float32, hhiBefore float32, hhiAfter float32, note string) *GetVaultMarketHealthWhatIfResponse {
+	this := GetVaultMarketHealthWhatIfResponse{}
+	this.BookKey = bookKey
+	this.Title = title
+	this.Category = category
+	this.Units = units
+	this.Quality = quality
+	this.MoveBps = moveBps
+	this.Priced = priced
+	this.ItemBeforeCents = itemBeforeCents
+	this.ItemAfterCents = itemAfterCents
+	this.ChangeCents = changeCents
+	this.VaultBeforeCents = vaultBeforeCents
+	this.VaultAfterCents = vaultAfterCents
+	this.VaultChangeBps = vaultChangeBps
+	this.ShareBeforeBps = shareBeforeBps
+	this.ShareAfterBps = shareAfterBps
+	this.CategoryShareBeforeBps = categoryShareBeforeBps
+	this.CategoryShareAfterBps = categoryShareAfterBps
+	this.HhiBefore = hhiBefore
+	this.HhiAfter = hhiAfter
+	this.Note = note
+	return &this
+}
+
+// NewGetVaultMarketHealthWhatIfResponseWithDefaults instantiates a new GetVaultMarketHealthWhatIfResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHealthWhatIfResponseWithDefaults() *GetVaultMarketHealthWhatIfResponse {
+	this := GetVaultMarketHealthWhatIfResponse{}
+	return &this
+}
+
+// GetBookKey returns the BookKey field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetBookKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BookKey
+}
+
+// GetBookKeyOk returns a tuple with the BookKey field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetBookKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BookKey, true
+}
+
+// SetBookKey sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetBookKey(v string) {
+	o.BookKey = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetCategory returns the Category field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategory() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategoryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetCategory(v string) {
+	o.Category = v
+}
+
+// GetUnits returns the Units field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetUnits() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetUnitsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Units, true
+}
+
+// SetUnits sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetUnits(v float32) {
+	o.Units = v
+}
+
+// GetMarkCents returns the MarkCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHealthWhatIfResponse) GetMarkCents() float32 {
+	if o == nil || o.MarkCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MarkCents.Get()
+}
+
+// GetMarkCentsOk returns a tuple with the MarkCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHealthWhatIfResponse) GetMarkCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.MarkCents.Get(), o.MarkCents.IsSet()
+}
+
+// HasMarkCents returns a boolean if a field has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) HasMarkCents() bool {
+	if o != nil && o.MarkCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMarkCents gets a reference to the given NullableFloat32 and assigns it to the MarkCents field.
+func (o *GetVaultMarketHealthWhatIfResponse) SetMarkCents(v float32) {
+	o.MarkCents.Set(&v)
+}
+// SetMarkCentsNil sets the value for MarkCents to be an explicit nil
+func (o *GetVaultMarketHealthWhatIfResponse) SetMarkCentsNil() {
+	o.MarkCents.Set(nil)
+}
+
+// UnsetMarkCents ensures that no value is present for MarkCents, not even an explicit nil
+func (o *GetVaultMarketHealthWhatIfResponse) UnsetMarkCents() {
+	o.MarkCents.Unset()
+}
+
+// GetQuality returns the Quality field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetQuality() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Quality
+}
+
+// GetQualityOk returns a tuple with the Quality field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetQualityOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quality, true
+}
+
+// SetQuality sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetQuality(v string) {
+	o.Quality = v
+}
+
+// GetMoveBps returns the MoveBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetMoveBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MoveBps
+}
+
+// GetMoveBpsOk returns a tuple with the MoveBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetMoveBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MoveBps, true
+}
+
+// SetMoveBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetMoveBps(v float32) {
+	o.MoveBps = v
+}
+
+// GetPriced returns the Priced field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetPriced() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Priced
+}
+
+// GetPricedOk returns a tuple with the Priced field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetPricedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Priced, true
+}
+
+// SetPriced sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetPriced(v bool) {
+	o.Priced = v
+}
+
+// GetItemBeforeCents returns the ItemBeforeCents field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetItemBeforeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ItemBeforeCents
+}
+
+// GetItemBeforeCentsOk returns a tuple with the ItemBeforeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetItemBeforeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ItemBeforeCents, true
+}
+
+// SetItemBeforeCents sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetItemBeforeCents(v float32) {
+	o.ItemBeforeCents = v
+}
+
+// GetItemAfterCents returns the ItemAfterCents field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetItemAfterCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ItemAfterCents
+}
+
+// GetItemAfterCentsOk returns a tuple with the ItemAfterCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetItemAfterCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ItemAfterCents, true
+}
+
+// SetItemAfterCents sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetItemAfterCents(v float32) {
+	o.ItemAfterCents = v
+}
+
+// GetChangeCents returns the ChangeCents field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetChangeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ChangeCents
+}
+
+// GetChangeCentsOk returns a tuple with the ChangeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetChangeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ChangeCents, true
+}
+
+// SetChangeCents sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetChangeCents(v float32) {
+	o.ChangeCents = v
+}
+
+// GetVaultBeforeCents returns the VaultBeforeCents field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultBeforeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VaultBeforeCents
+}
+
+// GetVaultBeforeCentsOk returns a tuple with the VaultBeforeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultBeforeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VaultBeforeCents, true
+}
+
+// SetVaultBeforeCents sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetVaultBeforeCents(v float32) {
+	o.VaultBeforeCents = v
+}
+
+// GetVaultAfterCents returns the VaultAfterCents field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultAfterCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VaultAfterCents
+}
+
+// GetVaultAfterCentsOk returns a tuple with the VaultAfterCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultAfterCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VaultAfterCents, true
+}
+
+// SetVaultAfterCents sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetVaultAfterCents(v float32) {
+	o.VaultAfterCents = v
+}
+
+// GetVaultChangeBps returns the VaultChangeBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultChangeBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VaultChangeBps
+}
+
+// GetVaultChangeBpsOk returns a tuple with the VaultChangeBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetVaultChangeBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VaultChangeBps, true
+}
+
+// SetVaultChangeBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetVaultChangeBps(v float32) {
+	o.VaultChangeBps = v
+}
+
+// GetShareBeforeBps returns the ShareBeforeBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetShareBeforeBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareBeforeBps
+}
+
+// GetShareBeforeBpsOk returns a tuple with the ShareBeforeBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetShareBeforeBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareBeforeBps, true
+}
+
+// SetShareBeforeBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetShareBeforeBps(v float32) {
+	o.ShareBeforeBps = v
+}
+
+// GetShareAfterBps returns the ShareAfterBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetShareAfterBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShareAfterBps
+}
+
+// GetShareAfterBpsOk returns a tuple with the ShareAfterBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetShareAfterBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShareAfterBps, true
+}
+
+// SetShareAfterBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetShareAfterBps(v float32) {
+	o.ShareAfterBps = v
+}
+
+// GetCategoryShareBeforeBps returns the CategoryShareBeforeBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategoryShareBeforeBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CategoryShareBeforeBps
+}
+
+// GetCategoryShareBeforeBpsOk returns a tuple with the CategoryShareBeforeBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategoryShareBeforeBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CategoryShareBeforeBps, true
+}
+
+// SetCategoryShareBeforeBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetCategoryShareBeforeBps(v float32) {
+	o.CategoryShareBeforeBps = v
+}
+
+// GetCategoryShareAfterBps returns the CategoryShareAfterBps field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategoryShareAfterBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CategoryShareAfterBps
+}
+
+// GetCategoryShareAfterBpsOk returns a tuple with the CategoryShareAfterBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetCategoryShareAfterBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CategoryShareAfterBps, true
+}
+
+// SetCategoryShareAfterBps sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetCategoryShareAfterBps(v float32) {
+	o.CategoryShareAfterBps = v
+}
+
+// GetHhiBefore returns the HhiBefore field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetHhiBefore() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.HhiBefore
+}
+
+// GetHhiBeforeOk returns a tuple with the HhiBefore field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetHhiBeforeOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HhiBefore, true
+}
+
+// SetHhiBefore sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetHhiBefore(v float32) {
+	o.HhiBefore = v
+}
+
+// GetHhiAfter returns the HhiAfter field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetHhiAfter() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.HhiAfter
+}
+
+// GetHhiAfterOk returns a tuple with the HhiAfter field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetHhiAfterOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HhiAfter, true
+}
+
+// SetHhiAfter sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetHhiAfter(v float32) {
+	o.HhiAfter = v
+}
+
+// GetNote returns the Note field value
+func (o *GetVaultMarketHealthWhatIfResponse) GetNote() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHealthWhatIfResponse) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Note, true
+}
+
+// SetNote sets field value
+func (o *GetVaultMarketHealthWhatIfResponse) SetNote(v string) {
+	o.Note = v
+}
+
+func (o GetVaultMarketHealthWhatIfResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["bookKey"] = o.BookKey
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["units"] = o.Units
+	}
+	if o.MarkCents.IsSet() {
+		toSerialize["markCents"] = o.MarkCents.Get()
+	}
+	if true {
+		toSerialize["quality"] = o.Quality
+	}
+	if true {
+		toSerialize["moveBps"] = o.MoveBps
+	}
+	if true {
+		toSerialize["priced"] = o.Priced
+	}
+	if true {
+		toSerialize["itemBeforeCents"] = o.ItemBeforeCents
+	}
+	if true {
+		toSerialize["itemAfterCents"] = o.ItemAfterCents
+	}
+	if true {
+		toSerialize["changeCents"] = o.ChangeCents
+	}
+	if true {
+		toSerialize["vaultBeforeCents"] = o.VaultBeforeCents
+	}
+	if true {
+		toSerialize["vaultAfterCents"] = o.VaultAfterCents
+	}
+	if true {
+		toSerialize["vaultChangeBps"] = o.VaultChangeBps
+	}
+	if true {
+		toSerialize["shareBeforeBps"] = o.ShareBeforeBps
+	}
+	if true {
+		toSerialize["shareAfterBps"] = o.ShareAfterBps
+	}
+	if true {
+		toSerialize["categoryShareBeforeBps"] = o.CategoryShareBeforeBps
+	}
+	if true {
+		toSerialize["categoryShareAfterBps"] = o.CategoryShareAfterBps
+	}
+	if true {
+		toSerialize["hhiBefore"] = o.HhiBefore
+	}
+	if true {
+		toSerialize["hhiAfter"] = o.HhiAfter
+	}
+	if true {
+		toSerialize["note"] = o.Note
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHealthWhatIfResponse struct {
+	value *GetVaultMarketHealthWhatIfResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHealthWhatIfResponse) Get() *GetVaultMarketHealthWhatIfResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHealthWhatIfResponse) Set(val *GetVaultMarketHealthWhatIfResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHealthWhatIfResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHealthWhatIfResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHealthWhatIfResponse(val *GetVaultMarketHealthWhatIfResponse) *NullableGetVaultMarketHealthWhatIfResponse {
+	return &NullableGetVaultMarketHealthWhatIfResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHealthWhatIfResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHealthWhatIfResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHoldingInventoryItemResponse struct for GetVaultMarketHoldingInventoryItemResponse
+type GetVaultMarketHoldingInventoryItemResponse struct {
+	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+}
+
+// NewGetVaultMarketHoldingInventoryItemResponse instantiates a new GetVaultMarketHoldingInventoryItemResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHoldingInventoryItemResponse() *GetVaultMarketHoldingInventoryItemResponse {
+	this := GetVaultMarketHoldingInventoryItemResponse{}
+	return &this
+}
+
+// NewGetVaultMarketHoldingInventoryItemResponseWithDefaults instantiates a new GetVaultMarketHoldingInventoryItemResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHoldingInventoryItemResponseWithDefaults() *GetVaultMarketHoldingInventoryItemResponse {
+	this := GetVaultMarketHoldingInventoryItemResponse{}
+	return &this
+}
+
+// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHoldingInventoryItemResponse) GetInventoryItemId() string {
+	if o == nil || o.InventoryItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InventoryItemId.Get()
+}
+
+// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHoldingInventoryItemResponse) GetInventoryItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
+}
+
+// HasInventoryItemId returns a boolean if a field has been set.
+func (o *GetVaultMarketHoldingInventoryItemResponse) HasInventoryItemId() bool {
+	if o != nil && o.InventoryItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
+func (o *GetVaultMarketHoldingInventoryItemResponse) SetInventoryItemId(v string) {
+	o.InventoryItemId.Set(&v)
+}
+// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
+func (o *GetVaultMarketHoldingInventoryItemResponse) SetInventoryItemIdNil() {
+	o.InventoryItemId.Set(nil)
+}
+
+// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
+func (o *GetVaultMarketHoldingInventoryItemResponse) UnsetInventoryItemId() {
+	o.InventoryItemId.Unset()
+}
+
+func (o GetVaultMarketHoldingInventoryItemResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.InventoryItemId.IsSet() {
+		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHoldingInventoryItemResponse struct {
+	value *GetVaultMarketHoldingInventoryItemResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHoldingInventoryItemResponse) Get() *GetVaultMarketHoldingInventoryItemResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHoldingInventoryItemResponse) Set(val *GetVaultMarketHoldingInventoryItemResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHoldingInventoryItemResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHoldingInventoryItemResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHoldingInventoryItemResponse(val *GetVaultMarketHoldingInventoryItemResponse) *NullableGetVaultMarketHoldingInventoryItemResponse {
+	return &NullableGetVaultMarketHoldingInventoryItemResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHoldingInventoryItemResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHoldingInventoryItemResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHoldingWithdrawQuoteResponse struct for GetVaultMarketHoldingWithdrawQuoteResponse
+type GetVaultMarketHoldingWithdrawQuoteResponse struct {
+	Id string `json:"id"`
+	Standard GetVaultMarketHoldingWithdrawQuoteResponseStandard `json:"standard"`
+	Expedited GetVaultMarketHoldingWithdrawQuoteResponseStandard `json:"expedited"`
+}
+
+// NewGetVaultMarketHoldingWithdrawQuoteResponse instantiates a new GetVaultMarketHoldingWithdrawQuoteResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHoldingWithdrawQuoteResponse(id string, standard GetVaultMarketHoldingWithdrawQuoteResponseStandard, expedited GetVaultMarketHoldingWithdrawQuoteResponseStandard) *GetVaultMarketHoldingWithdrawQuoteResponse {
+	this := GetVaultMarketHoldingWithdrawQuoteResponse{}
+	this.Id = id
+	this.Standard = standard
+	this.Expedited = expedited
+	return &this
+}
+
+// NewGetVaultMarketHoldingWithdrawQuoteResponseWithDefaults instantiates a new GetVaultMarketHoldingWithdrawQuoteResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHoldingWithdrawQuoteResponseWithDefaults() *GetVaultMarketHoldingWithdrawQuoteResponse {
+	this := GetVaultMarketHoldingWithdrawQuoteResponse{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) SetId(v string) {
+	o.Id = v
+}
+
+// GetStandard returns the Standard field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetStandard() GetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	if o == nil {
+		var ret GetVaultMarketHoldingWithdrawQuoteResponseStandard
+		return ret
+	}
+
+	return o.Standard
+}
+
+// GetStandardOk returns a tuple with the Standard field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetStandardOk() (*GetVaultMarketHoldingWithdrawQuoteResponseStandard, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Standard, true
+}
+
+// SetStandard sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) SetStandard(v GetVaultMarketHoldingWithdrawQuoteResponseStandard) {
+	o.Standard = v
+}
+
+// GetExpedited returns the Expedited field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetExpedited() GetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	if o == nil {
+		var ret GetVaultMarketHoldingWithdrawQuoteResponseStandard
+		return ret
+	}
+
+	return o.Expedited
+}
+
+// GetExpeditedOk returns a tuple with the Expedited field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) GetExpeditedOk() (*GetVaultMarketHoldingWithdrawQuoteResponseStandard, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Expedited, true
+}
+
+// SetExpedited sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponse) SetExpedited(v GetVaultMarketHoldingWithdrawQuoteResponseStandard) {
+	o.Expedited = v
+}
+
+func (o GetVaultMarketHoldingWithdrawQuoteResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["standard"] = o.Standard
+	}
+	if true {
+		toSerialize["expedited"] = o.Expedited
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHoldingWithdrawQuoteResponse struct {
+	value *GetVaultMarketHoldingWithdrawQuoteResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponse) Get() *GetVaultMarketHoldingWithdrawQuoteResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponse) Set(val *GetVaultMarketHoldingWithdrawQuoteResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHoldingWithdrawQuoteResponse(val *GetVaultMarketHoldingWithdrawQuoteResponse) *NullableGetVaultMarketHoldingWithdrawQuoteResponse {
+	return &NullableGetVaultMarketHoldingWithdrawQuoteResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHoldingWithdrawQuoteResponseStandard struct for GetVaultMarketHoldingWithdrawQuoteResponseStandard
+type GetVaultMarketHoldingWithdrawQuoteResponseStandard struct {
+	ShippingCents float32 `json:"shippingCents"`
+	StorageCents float32 `json:"storageCents"`
+	EarlyWithdrawCents float32 `json:"earlyWithdrawCents"`
+	FeeCents float32 `json:"feeCents"`
+}
+
+// NewGetVaultMarketHoldingWithdrawQuoteResponseStandard instantiates a new GetVaultMarketHoldingWithdrawQuoteResponseStandard object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHoldingWithdrawQuoteResponseStandard(shippingCents float32, storageCents float32, earlyWithdrawCents float32, feeCents float32) *GetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	this := GetVaultMarketHoldingWithdrawQuoteResponseStandard{}
+	this.ShippingCents = shippingCents
+	this.StorageCents = storageCents
+	this.EarlyWithdrawCents = earlyWithdrawCents
+	this.FeeCents = feeCents
+	return &this
+}
+
+// NewGetVaultMarketHoldingWithdrawQuoteResponseStandardWithDefaults instantiates a new GetVaultMarketHoldingWithdrawQuoteResponseStandard object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHoldingWithdrawQuoteResponseStandardWithDefaults() *GetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	this := GetVaultMarketHoldingWithdrawQuoteResponseStandard{}
+	return &this
+}
+
+// GetShippingCents returns the ShippingCents field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetShippingCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ShippingCents
+}
+
+// GetShippingCentsOk returns a tuple with the ShippingCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetShippingCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShippingCents, true
+}
+
+// SetShippingCents sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) SetShippingCents(v float32) {
+	o.ShippingCents = v
+}
+
+// GetStorageCents returns the StorageCents field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetStorageCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.StorageCents
+}
+
+// GetStorageCentsOk returns a tuple with the StorageCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetStorageCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.StorageCents, true
+}
+
+// SetStorageCents sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) SetStorageCents(v float32) {
+	o.StorageCents = v
+}
+
+// GetEarlyWithdrawCents returns the EarlyWithdrawCents field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetEarlyWithdrawCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.EarlyWithdrawCents
+}
+
+// GetEarlyWithdrawCentsOk returns a tuple with the EarlyWithdrawCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetEarlyWithdrawCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.EarlyWithdrawCents, true
+}
+
+// SetEarlyWithdrawCents sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) SetEarlyWithdrawCents(v float32) {
+	o.EarlyWithdrawCents = v
+}
+
+// GetFeeCents returns the FeeCents field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetFeeCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.FeeCents
+}
+
+// GetFeeCentsOk returns a tuple with the FeeCents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) GetFeeCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCents, true
+}
+
+// SetFeeCents sets field value
+func (o *GetVaultMarketHoldingWithdrawQuoteResponseStandard) SetFeeCents(v float32) {
+	o.FeeCents = v
+}
+
+func (o GetVaultMarketHoldingWithdrawQuoteResponseStandard) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["shippingCents"] = o.ShippingCents
+	}
+	if true {
+		toSerialize["storageCents"] = o.StorageCents
+	}
+	if true {
+		toSerialize["earlyWithdrawCents"] = o.EarlyWithdrawCents
+	}
+	if true {
+		toSerialize["feeCents"] = o.FeeCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard struct {
+	value *GetVaultMarketHoldingWithdrawQuoteResponseStandard
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) Get() *GetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) Set(val *GetVaultMarketHoldingWithdrawQuoteResponseStandard) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHoldingWithdrawQuoteResponseStandard(val *GetVaultMarketHoldingWithdrawQuoteResponseStandard) *NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard {
+	return &NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHoldingWithdrawQuoteResponseStandard) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketHomeUnitResponse struct for GetVaultMarketHomeUnitResponse
+type GetVaultMarketHomeUnitResponse struct {
+	Home GetVaultMarketHomeUnitResponseHome `json:"home"`
+	// The most units one home shows.
+	Max float32 `json:"max"`
+	Shown float32 `json:"shown"`
+	VisitorsSee float32 `json:"visitorsSee"`
+	// Plain words: who sees what, given the home's privacy.
+	Note string `json:"note"`
+	Units []GetVaultMarketHomeUnitResponseUnits `json:"units"`
+}
+
+// NewGetVaultMarketHomeUnitResponse instantiates a new GetVaultMarketHomeUnitResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketHomeUnitResponse(home GetVaultMarketHomeUnitResponseHome, max float32, shown float32, visitorsSee float32, note string, units []GetVaultMarketHomeUnitResponseUnits) *GetVaultMarketHomeUnitResponse {
+	this := GetVaultMarketHomeUnitResponse{}
+	this.Home = home
+	this.Max = max
+	this.Shown = shown
+	this.VisitorsSee = visitorsSee
+	this.Note = note
+	this.Units = units
+	return &this
+}
+
+// NewGetVaultMarketHomeUnitResponseWithDefaults instantiates a new GetVaultMarketHomeUnitResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketHomeUnitResponseWithDefaults() *GetVaultMarketHomeUnitResponse {
+	this := GetVaultMarketHomeUnitResponse{}
+	return &this
+}
+
+// GetHome returns the Home field value
+func (o *GetVaultMarketHomeUnitResponse) GetHome() GetVaultMarketHomeUnitResponseHome {
+	if o == nil {
+		var ret GetVaultMarketHomeUnitResponseHome
+		return ret
+	}
+
+	return o.Home
+}
+
+// GetHomeOk returns a tuple with the Home field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetHomeOk() (*GetVaultMarketHomeUnitResponseHome, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Home, true
+}
+
+// SetHome sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetHome(v GetVaultMarketHomeUnitResponseHome) {
+	o.Home = v
+}
+
+// GetMax returns the Max field value
+func (o *GetVaultMarketHomeUnitResponse) GetMax() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Max
+}
+
+// GetMaxOk returns a tuple with the Max field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetMaxOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Max, true
+}
+
+// SetMax sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetMax(v float32) {
+	o.Max = v
+}
+
+// GetShown returns the Shown field value
+func (o *GetVaultMarketHomeUnitResponse) GetShown() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Shown
+}
+
+// GetShownOk returns a tuple with the Shown field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetShownOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Shown, true
+}
+
+// SetShown sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetShown(v float32) {
+	o.Shown = v
+}
+
+// GetVisitorsSee returns the VisitorsSee field value
+func (o *GetVaultMarketHomeUnitResponse) GetVisitorsSee() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.VisitorsSee
+}
+
+// GetVisitorsSeeOk returns a tuple with the VisitorsSee field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetVisitorsSeeOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VisitorsSee, true
+}
+
+// SetVisitorsSee sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetVisitorsSee(v float32) {
+	o.VisitorsSee = v
+}
+
+// GetNote returns the Note field value
+func (o *GetVaultMarketHomeUnitResponse) GetNote() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Note, true
+}
+
+// SetNote sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetNote(v string) {
+	o.Note = v
+}
+
+// GetUnits returns the Units field value
+func (o *GetVaultMarketHomeUnitResponse) GetUnits() []GetVaultMarketHomeUnitResponseUnits {
+	if o == nil {
+		var ret []GetVaultMarketHomeUnitResponseUnits
+		return ret
+	}
+
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponse) GetUnitsOk() ([]GetVaultMarketHomeUnitResponseUnits, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Units, true
+}
+
+// SetUnits sets field value
+func (o *GetVaultMarketHomeUnitResponse) SetUnits(v []GetVaultMarketHomeUnitResponseUnits) {
+	o.Units = v
+}
+
+func (o GetVaultMarketHomeUnitResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["home"] = o.Home
+	}
+	if true {
+		toSerialize["max"] = o.Max
+	}
+	if true {
+		toSerialize["shown"] = o.Shown
+	}
+	if true {
+		toSerialize["visitorsSee"] = o.VisitorsSee
+	}
+	if true {
+		toSerialize["note"] = o.Note
 	}
 	if true {
 		toSerialize["units"] = o.Units
@@ -8978,441 +7288,671 @@ func (o GetVaultMarketNavResponseTotals) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseTotals struct {
-	value *GetVaultMarketNavResponseTotals
+type NullableGetVaultMarketHomeUnitResponse struct {
+	value *GetVaultMarketHomeUnitResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseTotals) Get() *GetVaultMarketNavResponseTotals {
+func (v NullableGetVaultMarketHomeUnitResponse) Get() *GetVaultMarketHomeUnitResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseTotals) Set(val *GetVaultMarketNavResponseTotals) {
+func (v *NullableGetVaultMarketHomeUnitResponse) Set(val *GetVaultMarketHomeUnitResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseTotals) IsSet() bool {
+func (v NullableGetVaultMarketHomeUnitResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseTotals) Unset() {
+func (v *NullableGetVaultMarketHomeUnitResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseTotals(val *GetVaultMarketNavResponseTotals) *NullableGetVaultMarketNavResponseTotals {
-	return &NullableGetVaultMarketNavResponseTotals{value: val, isSet: true}
+func NewNullableGetVaultMarketHomeUnitResponse(val *GetVaultMarketHomeUnitResponse) *NullableGetVaultMarketHomeUnitResponse {
+	return &NullableGetVaultMarketHomeUnitResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseTotals) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHomeUnitResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseTotals) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHomeUnitResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketNavResponseTotalsAdministratorNav struct for GetVaultMarketNavResponseTotalsAdministratorNav
-type GetVaultMarketNavResponseTotalsAdministratorNav struct {
-	Cents float32 `json:"cents"`
-	KeysPriced float32 `json:"keysPriced"`
-	Keys float32 `json:"keys"`
-	Label string `json:"label"`
+// GetVaultMarketHomeUnitResponseHome struct for GetVaultMarketHomeUnitResponseHome
+type GetVaultMarketHomeUnitResponseHome struct {
+	Slug string `json:"slug"`
+	Privacy string `json:"privacy"`
+	Path string `json:"path"`
 }
 
-// NewGetVaultMarketNavResponseTotalsAdministratorNav instantiates a new GetVaultMarketNavResponseTotalsAdministratorNav object
+// NewGetVaultMarketHomeUnitResponseHome instantiates a new GetVaultMarketHomeUnitResponseHome object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketNavResponseTotalsAdministratorNav(cents float32, keysPriced float32, keys float32, label string) *GetVaultMarketNavResponseTotalsAdministratorNav {
-	this := GetVaultMarketNavResponseTotalsAdministratorNav{}
-	this.Cents = cents
-	this.KeysPriced = keysPriced
-	this.Keys = keys
-	this.Label = label
+func NewGetVaultMarketHomeUnitResponseHome(slug string, privacy string, path string) *GetVaultMarketHomeUnitResponseHome {
+	this := GetVaultMarketHomeUnitResponseHome{}
+	this.Slug = slug
+	this.Privacy = privacy
+	this.Path = path
 	return &this
 }
 
-// NewGetVaultMarketNavResponseTotalsAdministratorNavWithDefaults instantiates a new GetVaultMarketNavResponseTotalsAdministratorNav object
+// NewGetVaultMarketHomeUnitResponseHomeWithDefaults instantiates a new GetVaultMarketHomeUnitResponseHome object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketNavResponseTotalsAdministratorNavWithDefaults() *GetVaultMarketNavResponseTotalsAdministratorNav {
-	this := GetVaultMarketNavResponseTotalsAdministratorNav{}
+func NewGetVaultMarketHomeUnitResponseHomeWithDefaults() *GetVaultMarketHomeUnitResponseHome {
+	this := GetVaultMarketHomeUnitResponseHome{}
 	return &this
 }
 
-// GetCents returns the Cents field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetCents() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Cents
-}
-
-// GetCentsOk returns a tuple with the Cents field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetCentsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Cents, true
-}
-
-// SetCents sets field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) SetCents(v float32) {
-	o.Cents = v
-}
-
-// GetKeysPriced returns the KeysPriced field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetKeysPriced() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.KeysPriced
-}
-
-// GetKeysPricedOk returns a tuple with the KeysPriced field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetKeysPricedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.KeysPriced, true
-}
-
-// SetKeysPriced sets field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) SetKeysPriced(v float32) {
-	o.KeysPriced = v
-}
-
-// GetKeys returns the Keys field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetKeys() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Keys
-}
-
-// GetKeysOk returns a tuple with the Keys field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetKeysOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Keys, true
-}
-
-// SetKeys sets field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) SetKeys(v float32) {
-	o.Keys = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetLabel() string {
+// GetSlug returns the Slug field value
+func (o *GetVaultMarketHomeUnitResponseHome) GetSlug() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Label
+	return o.Slug
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) GetLabelOk() (*string, bool) {
+func (o *GetVaultMarketHomeUnitResponseHome) GetSlugOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Label, true
+	return &o.Slug, true
 }
 
-// SetLabel sets field value
-func (o *GetVaultMarketNavResponseTotalsAdministratorNav) SetLabel(v string) {
-	o.Label = v
+// SetSlug sets field value
+func (o *GetVaultMarketHomeUnitResponseHome) SetSlug(v string) {
+	o.Slug = v
 }
 
-func (o GetVaultMarketNavResponseTotalsAdministratorNav) MarshalJSON() ([]byte, error) {
+// GetPrivacy returns the Privacy field value
+func (o *GetVaultMarketHomeUnitResponseHome) GetPrivacy() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Privacy
+}
+
+// GetPrivacyOk returns a tuple with the Privacy field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponseHome) GetPrivacyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Privacy, true
+}
+
+// SetPrivacy sets field value
+func (o *GetVaultMarketHomeUnitResponseHome) SetPrivacy(v string) {
+	o.Privacy = v
+}
+
+// GetPath returns the Path field value
+func (o *GetVaultMarketHomeUnitResponseHome) GetPath() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Path
+}
+
+// GetPathOk returns a tuple with the Path field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponseHome) GetPathOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Path, true
+}
+
+// SetPath sets field value
+func (o *GetVaultMarketHomeUnitResponseHome) SetPath(v string) {
+	o.Path = v
+}
+
+func (o GetVaultMarketHomeUnitResponseHome) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["cents"] = o.Cents
+		toSerialize["slug"] = o.Slug
 	}
 	if true {
-		toSerialize["keysPriced"] = o.KeysPriced
+		toSerialize["privacy"] = o.Privacy
 	}
 	if true {
-		toSerialize["keys"] = o.Keys
-	}
-	if true {
-		toSerialize["label"] = o.Label
+		toSerialize["path"] = o.Path
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketNavResponseTotalsAdministratorNav struct {
-	value *GetVaultMarketNavResponseTotalsAdministratorNav
+type NullableGetVaultMarketHomeUnitResponseHome struct {
+	value *GetVaultMarketHomeUnitResponseHome
 	isSet bool
 }
 
-func (v NullableGetVaultMarketNavResponseTotalsAdministratorNav) Get() *GetVaultMarketNavResponseTotalsAdministratorNav {
+func (v NullableGetVaultMarketHomeUnitResponseHome) Get() *GetVaultMarketHomeUnitResponseHome {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketNavResponseTotalsAdministratorNav) Set(val *GetVaultMarketNavResponseTotalsAdministratorNav) {
+func (v *NullableGetVaultMarketHomeUnitResponseHome) Set(val *GetVaultMarketHomeUnitResponseHome) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketNavResponseTotalsAdministratorNav) IsSet() bool {
+func (v NullableGetVaultMarketHomeUnitResponseHome) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketNavResponseTotalsAdministratorNav) Unset() {
+func (v *NullableGetVaultMarketHomeUnitResponseHome) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketNavResponseTotalsAdministratorNav(val *GetVaultMarketNavResponseTotalsAdministratorNav) *NullableGetVaultMarketNavResponseTotalsAdministratorNav {
-	return &NullableGetVaultMarketNavResponseTotalsAdministratorNav{value: val, isSet: true}
+func NewNullableGetVaultMarketHomeUnitResponseHome(val *GetVaultMarketHomeUnitResponseHome) *NullableGetVaultMarketHomeUnitResponseHome {
+	return &NullableGetVaultMarketHomeUnitResponseHome{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketNavResponseTotalsAdministratorNav) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketHomeUnitResponseHome) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketNavResponseTotalsAdministratorNav) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketHomeUnitResponseHome) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOracleBySlugResponse struct for GetVaultMarketOracleBySlugResponse
-type GetVaultMarketOracleBySlugResponse struct {
-	Message NullableString `json:"message,omitempty"`
-	Signature NullableString `json:"signature,omitempty"`
-	PublishTime string `json:"publishTime"`
-	AgeSec float32 `json:"ageSec"`
-	Fresh bool `json:"fresh"`
-	Id string `json:"id"`
-	IndexSlug string `json:"indexSlug"`
-	Network string `json:"network"`
-	FeedId string `json:"feedId"`
-	Status string `json:"status"`
-	Reason NullableString `json:"reason,omitempty"`
-	ReasonText NullableString `json:"reasonText,omitempty"`
-	Level NullableFloat32 `json:"level,omitempty"`
-	Price NullableString `json:"price,omitempty"`
-	Conf NullableString `json:"conf,omitempty"`
-	Exponent float32 `json:"exponent"`
-	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
-	StalenessSec NullableFloat32 `json:"stalenessSec,omitempty"`
-	CoverageBps NullableFloat32 `json:"coverageBps,omitempty"`
-	Keys NullableFloat32 `json:"keys,omitempty"`
-	Basis NullableString `json:"basis,omitempty"`
-	PublishTimeUs NullableFloat32 `json:"publishTimeUs,omitempty"`
-	Signer NullableString `json:"signer,omitempty"`
-	HttpStatus NullableFloat32 `json:"httpStatus,omitempty"`
-	Error NullableString `json:"error,omitempty"`
-	At string `json:"at"`
-	Feed string `json:"feed"`
-	Version string `json:"version"`
-	Label string `json:"label"`
+// GetVaultMarketHomeUnitResponseUnits struct for GetVaultMarketHomeUnitResponseUnits
+type GetVaultMarketHomeUnitResponseUnits struct {
+	VaultItemId string `json:"vaultItemId"`
+	Title string `json:"title"`
+	Grade NullableString `json:"grade,omitempty"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	// The unit's market (a book key), or null for an uncatalogued variant.
+	BookKey NullableString `json:"bookKey,omitempty"`
+	// It stands in your home now.
+	InHome bool `json:"inHome"`
+	// Visitors may see it (only ever true while it is in your home).
+	Visitors bool `json:"visitors"`
 }
 
-// NewGetVaultMarketOracleBySlugResponse instantiates a new GetVaultMarketOracleBySlugResponse object
+// NewGetVaultMarketHomeUnitResponseUnits instantiates a new GetVaultMarketHomeUnitResponseUnits object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOracleBySlugResponse(publishTime string, ageSec float32, fresh bool, id string, indexSlug string, network string, feedId string, status string, exponent float32, at string, feed string, version string, label string) *GetVaultMarketOracleBySlugResponse {
-	this := GetVaultMarketOracleBySlugResponse{}
-	this.PublishTime = publishTime
-	this.AgeSec = ageSec
-	this.Fresh = fresh
-	this.Id = id
-	this.IndexSlug = indexSlug
-	this.Network = network
-	this.FeedId = feedId
-	this.Status = status
-	this.Exponent = exponent
-	this.At = at
-	this.Feed = feed
-	this.Version = version
-	this.Label = label
+func NewGetVaultMarketHomeUnitResponseUnits(vaultItemId string, title string, inHome bool, visitors bool) *GetVaultMarketHomeUnitResponseUnits {
+	this := GetVaultMarketHomeUnitResponseUnits{}
+	this.VaultItemId = vaultItemId
+	this.Title = title
+	this.InHome = inHome
+	this.Visitors = visitors
 	return &this
 }
 
-// NewGetVaultMarketOracleBySlugResponseWithDefaults instantiates a new GetVaultMarketOracleBySlugResponse object
+// NewGetVaultMarketHomeUnitResponseUnitsWithDefaults instantiates a new GetVaultMarketHomeUnitResponseUnits object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleBySlugResponseWithDefaults() *GetVaultMarketOracleBySlugResponse {
-	this := GetVaultMarketOracleBySlugResponse{}
+func NewGetVaultMarketHomeUnitResponseUnitsWithDefaults() *GetVaultMarketHomeUnitResponseUnits {
+	this := GetVaultMarketHomeUnitResponseUnits{}
 	return &this
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetMessage() string {
-	if o == nil || o.Message.Get() == nil {
+// GetVaultItemId returns the VaultItemId field value
+func (o *GetVaultMarketHomeUnitResponseUnits) GetVaultItemId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message.Get()
+
+	return o.VaultItemId
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetVaultItemIdOk returns a tuple with the VaultItemId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetMessageOk() (*string, bool) {
+func (o *GetVaultMarketHomeUnitResponseUnits) GetVaultItemIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Message.Get(), o.Message.IsSet()
+	return &o.VaultItemId, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasMessage() bool {
-	if o != nil && o.Message.IsSet() {
+// SetVaultItemId sets field value
+func (o *GetVaultMarketHomeUnitResponseUnits) SetVaultItemId(v string) {
+	o.VaultItemId = v
+}
+
+// GetTitle returns the Title field value
+func (o *GetVaultMarketHomeUnitResponseUnits) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponseUnits) GetTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *GetVaultMarketHomeUnitResponseUnits) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetGrade returns the Grade field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHomeUnitResponseUnits) GetGrade() string {
+	if o == nil || o.Grade.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Grade.Get()
+}
+
+// GetGradeOk returns a tuple with the Grade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHomeUnitResponseUnits) GetGradeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Grade.Get(), o.Grade.IsSet()
+}
+
+// HasGrade returns a boolean if a field has been set.
+func (o *GetVaultMarketHomeUnitResponseUnits) HasGrade() bool {
+	if o != nil && o.Grade.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
-func (o *GetVaultMarketOracleBySlugResponse) SetMessage(v string) {
-	o.Message.Set(&v)
+// SetGrade gets a reference to the given NullableString and assigns it to the Grade field.
+func (o *GetVaultMarketHomeUnitResponseUnits) SetGrade(v string) {
+	o.Grade.Set(&v)
 }
-// SetMessageNil sets the value for Message to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetMessageNil() {
-	o.Message.Set(nil)
-}
-
-// UnsetMessage ensures that no value is present for Message, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetMessage() {
-	o.Message.Unset()
+// SetGradeNil sets the value for Grade to be an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) SetGradeNil() {
+	o.Grade.Set(nil)
 }
 
-// GetSignature returns the Signature field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetSignature() string {
-	if o == nil || o.Signature.Get() == nil {
+// UnsetGrade ensures that no value is present for Grade, not even an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) UnsetGrade() {
+	o.Grade.Unset()
+}
+
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHomeUnitResponseUnits) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Signature.Get()
+	return *o.ImageUrl.Get()
 }
 
-// GetSignatureOk returns a tuple with the Signature field value if set, nil otherwise
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetSignatureOk() (*string, bool) {
+func (o *GetVaultMarketHomeUnitResponseUnits) GetImageUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Signature.Get(), o.Signature.IsSet()
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
 }
 
-// HasSignature returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasSignature() bool {
-	if o != nil && o.Signature.IsSet() {
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetVaultMarketHomeUnitResponseUnits) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSignature gets a reference to the given NullableString and assigns it to the Signature field.
-func (o *GetVaultMarketOracleBySlugResponse) SetSignature(v string) {
-	o.Signature.Set(&v)
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetVaultMarketHomeUnitResponseUnits) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
 }
-// SetSignatureNil sets the value for Signature to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetSignatureNil() {
-	o.Signature.Set(nil)
-}
-
-// UnsetSignature ensures that no value is present for Signature, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetSignature() {
-	o.Signature.Unset()
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
 }
 
-// GetPublishTime returns the PublishTime field value
-func (o *GetVaultMarketOracleBySlugResponse) GetPublishTime() string {
-	if o == nil {
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
+// GetBookKey returns the BookKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketHomeUnitResponseUnits) GetBookKey() string {
+	if o == nil || o.BookKey.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.PublishTime
+	return *o.BookKey.Get()
 }
 
-// GetPublishTimeOk returns a tuple with the PublishTime field value
+// GetBookKeyOk returns a tuple with the BookKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetPublishTimeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketHomeUnitResponseUnits) GetBookKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.PublishTime, true
+	return o.BookKey.Get(), o.BookKey.IsSet()
 }
 
-// SetPublishTime sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetPublishTime(v string) {
-	o.PublishTime = v
-}
-
-// GetAgeSec returns the AgeSec field value
-func (o *GetVaultMarketOracleBySlugResponse) GetAgeSec() float32 {
-	if o == nil {
-		var ret float32
-		return ret
+// HasBookKey returns a boolean if a field has been set.
+func (o *GetVaultMarketHomeUnitResponseUnits) HasBookKey() bool {
+	if o != nil && o.BookKey.IsSet() {
+		return true
 	}
 
-	return o.AgeSec
+	return false
 }
 
-// GetAgeSecOk returns a tuple with the AgeSec field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetAgeSecOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.AgeSec, true
+// SetBookKey gets a reference to the given NullableString and assigns it to the BookKey field.
+func (o *GetVaultMarketHomeUnitResponseUnits) SetBookKey(v string) {
+	o.BookKey.Set(&v)
+}
+// SetBookKeyNil sets the value for BookKey to be an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) SetBookKeyNil() {
+	o.BookKey.Set(nil)
 }
 
-// SetAgeSec sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetAgeSec(v float32) {
-	o.AgeSec = v
+// UnsetBookKey ensures that no value is present for BookKey, not even an explicit nil
+func (o *GetVaultMarketHomeUnitResponseUnits) UnsetBookKey() {
+	o.BookKey.Unset()
 }
 
-// GetFresh returns the Fresh field value
-func (o *GetVaultMarketOracleBySlugResponse) GetFresh() bool {
+// GetInHome returns the InHome field value
+func (o *GetVaultMarketHomeUnitResponseUnits) GetInHome() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.Fresh
+	return o.InHome
 }
 
-// GetFreshOk returns a tuple with the Fresh field value
+// GetInHomeOk returns a tuple with the InHome field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetFreshOk() (*bool, bool) {
+func (o *GetVaultMarketHomeUnitResponseUnits) GetInHomeOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Fresh, true
+	return &o.InHome, true
 }
 
-// SetFresh sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetFresh(v bool) {
-	o.Fresh = v
+// SetInHome sets field value
+func (o *GetVaultMarketHomeUnitResponseUnits) SetInHome(v bool) {
+	o.InHome = v
+}
+
+// GetVisitors returns the Visitors field value
+func (o *GetVaultMarketHomeUnitResponseUnits) GetVisitors() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Visitors
+}
+
+// GetVisitorsOk returns a tuple with the Visitors field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketHomeUnitResponseUnits) GetVisitorsOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Visitors, true
+}
+
+// SetVisitors sets field value
+func (o *GetVaultMarketHomeUnitResponseUnits) SetVisitors(v bool) {
+	o.Visitors = v
+}
+
+func (o GetVaultMarketHomeUnitResponseUnits) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["vaultItemId"] = o.VaultItemId
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Grade.IsSet() {
+		toSerialize["grade"] = o.Grade.Get()
+	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
+	if o.BookKey.IsSet() {
+		toSerialize["bookKey"] = o.BookKey.Get()
+	}
+	if true {
+		toSerialize["inHome"] = o.InHome
+	}
+	if true {
+		toSerialize["visitors"] = o.Visitors
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketHomeUnitResponseUnits struct {
+	value *GetVaultMarketHomeUnitResponseUnits
+	isSet bool
+}
+
+func (v NullableGetVaultMarketHomeUnitResponseUnits) Get() *GetVaultMarketHomeUnitResponseUnits {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketHomeUnitResponseUnits) Set(val *GetVaultMarketHomeUnitResponseUnits) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketHomeUnitResponseUnits) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketHomeUnitResponseUnits) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketHomeUnitResponseUnits(val *GetVaultMarketHomeUnitResponseUnits) *NullableGetVaultMarketHomeUnitResponseUnits {
+	return &NullableGetVaultMarketHomeUnitResponseUnits{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketHomeUnitResponseUnits) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketHomeUnitResponseUnits) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexCalendarResponse struct for GetVaultMarketIndexCalendarResponse
+type GetVaultMarketIndexCalendarResponse struct {
+	MethodVersion string `json:"methodVersion"`
+	Cycles []GetVaultMarketIndexCalendarResponseCycles `json:"cycles"`
+}
+
+// NewGetVaultMarketIndexCalendarResponse instantiates a new GetVaultMarketIndexCalendarResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexCalendarResponse(methodVersion string, cycles []GetVaultMarketIndexCalendarResponseCycles) *GetVaultMarketIndexCalendarResponse {
+	this := GetVaultMarketIndexCalendarResponse{}
+	this.MethodVersion = methodVersion
+	this.Cycles = cycles
+	return &this
+}
+
+// NewGetVaultMarketIndexCalendarResponseWithDefaults instantiates a new GetVaultMarketIndexCalendarResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexCalendarResponseWithDefaults() *GetVaultMarketIndexCalendarResponse {
+	this := GetVaultMarketIndexCalendarResponse{}
+	return &this
+}
+
+// GetMethodVersion returns the MethodVersion field value
+func (o *GetVaultMarketIndexCalendarResponse) GetMethodVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MethodVersion
+}
+
+// GetMethodVersionOk returns a tuple with the MethodVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexCalendarResponse) GetMethodVersionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MethodVersion, true
+}
+
+// SetMethodVersion sets field value
+func (o *GetVaultMarketIndexCalendarResponse) SetMethodVersion(v string) {
+	o.MethodVersion = v
+}
+
+// GetCycles returns the Cycles field value
+func (o *GetVaultMarketIndexCalendarResponse) GetCycles() []GetVaultMarketIndexCalendarResponseCycles {
+	if o == nil {
+		var ret []GetVaultMarketIndexCalendarResponseCycles
+		return ret
+	}
+
+	return o.Cycles
+}
+
+// GetCyclesOk returns a tuple with the Cycles field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexCalendarResponse) GetCyclesOk() ([]GetVaultMarketIndexCalendarResponseCycles, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Cycles, true
+}
+
+// SetCycles sets field value
+func (o *GetVaultMarketIndexCalendarResponse) SetCycles(v []GetVaultMarketIndexCalendarResponseCycles) {
+	o.Cycles = v
+}
+
+func (o GetVaultMarketIndexCalendarResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["methodVersion"] = o.MethodVersion
+	}
+	if true {
+		toSerialize["cycles"] = o.Cycles
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexCalendarResponse struct {
+	value *GetVaultMarketIndexCalendarResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexCalendarResponse) Get() *GetVaultMarketIndexCalendarResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexCalendarResponse) Set(val *GetVaultMarketIndexCalendarResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexCalendarResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexCalendarResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexCalendarResponse(val *GetVaultMarketIndexCalendarResponse) *NullableGetVaultMarketIndexCalendarResponse {
+	return &NullableGetVaultMarketIndexCalendarResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexCalendarResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexCalendarResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexCalendarResponseCycles struct for GetVaultMarketIndexCalendarResponseCycles
+type GetVaultMarketIndexCalendarResponseCycles struct {
+	// e.g. \"2026-12\".
+	Id string `json:"id"`
+	// The day the screens are run on (2nd Friday): marks, trades and units as of its close.
+	ReferenceDay string `json:"referenceDay"`
+	// Changes are announced on this day (5 business days before the effective day).
+	AnnounceDay string `json:"announceDay"`
+	// The third Friday; the new membership applies from the day after its close.
+	LastOldCloseDay string `json:"lastOldCloseDay"`
+	// First day the new membership counts.
+	EffectiveDay string `json:"effectiveDay"`
+	// June and December: the Blue-chip 50 is also reviewed.
+	SemiAnnual bool `json:"semiAnnual"`
+}
+
+// NewGetVaultMarketIndexCalendarResponseCycles instantiates a new GetVaultMarketIndexCalendarResponseCycles object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexCalendarResponseCycles(id string, referenceDay string, announceDay string, lastOldCloseDay string, effectiveDay string, semiAnnual bool) *GetVaultMarketIndexCalendarResponseCycles {
+	this := GetVaultMarketIndexCalendarResponseCycles{}
+	this.Id = id
+	this.ReferenceDay = referenceDay
+	this.AnnounceDay = announceDay
+	this.LastOldCloseDay = lastOldCloseDay
+	this.EffectiveDay = effectiveDay
+	this.SemiAnnual = semiAnnual
+	return &this
+}
+
+// NewGetVaultMarketIndexCalendarResponseCyclesWithDefaults instantiates a new GetVaultMarketIndexCalendarResponseCycles object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexCalendarResponseCyclesWithDefaults() *GetVaultMarketIndexCalendarResponseCycles {
+	this := GetVaultMarketIndexCalendarResponseCycles{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *GetVaultMarketOracleBySlugResponse) GetId() string {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -9423,7 +7963,7 @@ func (o *GetVaultMarketOracleBySlugResponse) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetIdOk() (*string, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -9431,2261 +7971,964 @@ func (o *GetVaultMarketOracleBySlugResponse) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetId(v string) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetId(v string) {
 	o.Id = v
 }
 
-// GetIndexSlug returns the IndexSlug field value
-func (o *GetVaultMarketOracleBySlugResponse) GetIndexSlug() string {
+// GetReferenceDay returns the ReferenceDay field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetReferenceDay() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.IndexSlug
+	return o.ReferenceDay
 }
 
-// GetIndexSlugOk returns a tuple with the IndexSlug field value
+// GetReferenceDayOk returns a tuple with the ReferenceDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetIndexSlugOk() (*string, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetReferenceDayOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.IndexSlug, true
+	return &o.ReferenceDay, true
 }
 
-// SetIndexSlug sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetIndexSlug(v string) {
-	o.IndexSlug = v
+// SetReferenceDay sets field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetReferenceDay(v string) {
+	o.ReferenceDay = v
 }
 
-// GetNetwork returns the Network field value
-func (o *GetVaultMarketOracleBySlugResponse) GetNetwork() string {
+// GetAnnounceDay returns the AnnounceDay field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetAnnounceDay() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Network
+	return o.AnnounceDay
 }
 
-// GetNetworkOk returns a tuple with the Network field value
+// GetAnnounceDayOk returns a tuple with the AnnounceDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetNetworkOk() (*string, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetAnnounceDayOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Network, true
+	return &o.AnnounceDay, true
 }
 
-// SetNetwork sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetNetwork(v string) {
-	o.Network = v
+// SetAnnounceDay sets field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetAnnounceDay(v string) {
+	o.AnnounceDay = v
 }
 
-// GetFeedId returns the FeedId field value
-func (o *GetVaultMarketOracleBySlugResponse) GetFeedId() string {
+// GetLastOldCloseDay returns the LastOldCloseDay field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetLastOldCloseDay() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.FeedId
+	return o.LastOldCloseDay
 }
 
-// GetFeedIdOk returns a tuple with the FeedId field value
+// GetLastOldCloseDayOk returns a tuple with the LastOldCloseDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetFeedIdOk() (*string, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetLastOldCloseDayOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.FeedId, true
+	return &o.LastOldCloseDay, true
 }
 
-// SetFeedId sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetFeedId(v string) {
-	o.FeedId = v
+// SetLastOldCloseDay sets field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetLastOldCloseDay(v string) {
+	o.LastOldCloseDay = v
 }
 
-// GetStatus returns the Status field value
-func (o *GetVaultMarketOracleBySlugResponse) GetStatus() string {
+// GetEffectiveDay returns the EffectiveDay field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetEffectiveDay() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.EffectiveDay
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetEffectiveDayOk returns a tuple with the EffectiveDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetStatusOk() (*string, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetEffectiveDayOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.EffectiveDay, true
 }
 
-// SetStatus sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetStatus(v string) {
-	o.Status = v
+// SetEffectiveDay sets field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetEffectiveDay(v string) {
+	o.EffectiveDay = v
 }
 
-// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetReason() string {
-	if o == nil || o.Reason.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Reason.Get()
-}
-
-// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Reason.Get(), o.Reason.IsSet()
-}
-
-// HasReason returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasReason() bool {
-	if o != nil && o.Reason.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
-func (o *GetVaultMarketOracleBySlugResponse) SetReason(v string) {
-	o.Reason.Set(&v)
-}
-// SetReasonNil sets the value for Reason to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetReasonNil() {
-	o.Reason.Set(nil)
-}
-
-// UnsetReason ensures that no value is present for Reason, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetReason() {
-	o.Reason.Unset()
-}
-
-// GetReasonText returns the ReasonText field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetReasonText() string {
-	if o == nil || o.ReasonText.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReasonText.Get()
-}
-
-// GetReasonTextOk returns a tuple with the ReasonText field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetReasonTextOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReasonText.Get(), o.ReasonText.IsSet()
-}
-
-// HasReasonText returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasReasonText() bool {
-	if o != nil && o.ReasonText.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReasonText gets a reference to the given NullableString and assigns it to the ReasonText field.
-func (o *GetVaultMarketOracleBySlugResponse) SetReasonText(v string) {
-	o.ReasonText.Set(&v)
-}
-// SetReasonTextNil sets the value for ReasonText to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetReasonTextNil() {
-	o.ReasonText.Set(nil)
-}
-
-// UnsetReasonText ensures that no value is present for ReasonText, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetReasonText() {
-	o.ReasonText.Unset()
-}
-
-// GetLevel returns the Level field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetLevel() float32 {
-	if o == nil || o.Level.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Level.Get()
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetLevelOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Level.Get(), o.Level.IsSet()
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasLevel() bool {
-	if o != nil && o.Level.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given NullableFloat32 and assigns it to the Level field.
-func (o *GetVaultMarketOracleBySlugResponse) SetLevel(v float32) {
-	o.Level.Set(&v)
-}
-// SetLevelNil sets the value for Level to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetLevelNil() {
-	o.Level.Set(nil)
-}
-
-// UnsetLevel ensures that no value is present for Level, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetLevel() {
-	o.Level.Unset()
-}
-
-// GetPrice returns the Price field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetPrice() string {
-	if o == nil || o.Price.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Price.Get()
-}
-
-// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetPriceOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Price.Get(), o.Price.IsSet()
-}
-
-// HasPrice returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasPrice() bool {
-	if o != nil && o.Price.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPrice gets a reference to the given NullableString and assigns it to the Price field.
-func (o *GetVaultMarketOracleBySlugResponse) SetPrice(v string) {
-	o.Price.Set(&v)
-}
-// SetPriceNil sets the value for Price to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetPriceNil() {
-	o.Price.Set(nil)
-}
-
-// UnsetPrice ensures that no value is present for Price, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetPrice() {
-	o.Price.Unset()
-}
-
-// GetConf returns the Conf field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetConf() string {
-	if o == nil || o.Conf.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Conf.Get()
-}
-
-// GetConfOk returns a tuple with the Conf field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetConfOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Conf.Get(), o.Conf.IsSet()
-}
-
-// HasConf returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasConf() bool {
-	if o != nil && o.Conf.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConf gets a reference to the given NullableString and assigns it to the Conf field.
-func (o *GetVaultMarketOracleBySlugResponse) SetConf(v string) {
-	o.Conf.Set(&v)
-}
-// SetConfNil sets the value for Conf to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetConfNil() {
-	o.Conf.Set(nil)
-}
-
-// UnsetConf ensures that no value is present for Conf, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetConf() {
-	o.Conf.Unset()
-}
-
-// GetExponent returns the Exponent field value
-func (o *GetVaultMarketOracleBySlugResponse) GetExponent() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Exponent
-}
-
-// GetExponentOk returns a tuple with the Exponent field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetExponentOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Exponent, true
-}
-
-// SetExponent sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetExponent(v float32) {
-	o.Exponent = v
-}
-
-// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetConfidenceBps() float32 {
-	if o == nil || o.ConfidenceBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ConfidenceBps.Get()
-}
-
-// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetConfidenceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
-}
-
-// HasConfidenceBps returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasConfidenceBps() bool {
-	if o != nil && o.ConfidenceBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
-func (o *GetVaultMarketOracleBySlugResponse) SetConfidenceBps(v float32) {
-	o.ConfidenceBps.Set(&v)
-}
-// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetConfidenceBpsNil() {
-	o.ConfidenceBps.Set(nil)
-}
-
-// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetConfidenceBps() {
-	o.ConfidenceBps.Unset()
-}
-
-// GetStalenessSec returns the StalenessSec field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetStalenessSec() float32 {
-	if o == nil || o.StalenessSec.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.StalenessSec.Get()
-}
-
-// GetStalenessSecOk returns a tuple with the StalenessSec field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetStalenessSecOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.StalenessSec.Get(), o.StalenessSec.IsSet()
-}
-
-// HasStalenessSec returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasStalenessSec() bool {
-	if o != nil && o.StalenessSec.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStalenessSec gets a reference to the given NullableFloat32 and assigns it to the StalenessSec field.
-func (o *GetVaultMarketOracleBySlugResponse) SetStalenessSec(v float32) {
-	o.StalenessSec.Set(&v)
-}
-// SetStalenessSecNil sets the value for StalenessSec to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetStalenessSecNil() {
-	o.StalenessSec.Set(nil)
-}
-
-// UnsetStalenessSec ensures that no value is present for StalenessSec, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetStalenessSec() {
-	o.StalenessSec.Unset()
-}
-
-// GetCoverageBps returns the CoverageBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetCoverageBps() float32 {
-	if o == nil || o.CoverageBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.CoverageBps.Get()
-}
-
-// GetCoverageBpsOk returns a tuple with the CoverageBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetCoverageBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CoverageBps.Get(), o.CoverageBps.IsSet()
-}
-
-// HasCoverageBps returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasCoverageBps() bool {
-	if o != nil && o.CoverageBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCoverageBps gets a reference to the given NullableFloat32 and assigns it to the CoverageBps field.
-func (o *GetVaultMarketOracleBySlugResponse) SetCoverageBps(v float32) {
-	o.CoverageBps.Set(&v)
-}
-// SetCoverageBpsNil sets the value for CoverageBps to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetCoverageBpsNil() {
-	o.CoverageBps.Set(nil)
-}
-
-// UnsetCoverageBps ensures that no value is present for CoverageBps, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetCoverageBps() {
-	o.CoverageBps.Unset()
-}
-
-// GetKeys returns the Keys field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetKeys() float32 {
-	if o == nil || o.Keys.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Keys.Get()
-}
-
-// GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetKeysOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Keys.Get(), o.Keys.IsSet()
-}
-
-// HasKeys returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasKeys() bool {
-	if o != nil && o.Keys.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKeys gets a reference to the given NullableFloat32 and assigns it to the Keys field.
-func (o *GetVaultMarketOracleBySlugResponse) SetKeys(v float32) {
-	o.Keys.Set(&v)
-}
-// SetKeysNil sets the value for Keys to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetKeysNil() {
-	o.Keys.Set(nil)
-}
-
-// UnsetKeys ensures that no value is present for Keys, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetKeys() {
-	o.Keys.Unset()
-}
-
-// GetBasis returns the Basis field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetBasis() string {
-	if o == nil || o.Basis.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Basis.Get()
-}
-
-// GetBasisOk returns a tuple with the Basis field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetBasisOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Basis.Get(), o.Basis.IsSet()
-}
-
-// HasBasis returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasBasis() bool {
-	if o != nil && o.Basis.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetBasis gets a reference to the given NullableString and assigns it to the Basis field.
-func (o *GetVaultMarketOracleBySlugResponse) SetBasis(v string) {
-	o.Basis.Set(&v)
-}
-// SetBasisNil sets the value for Basis to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetBasisNil() {
-	o.Basis.Set(nil)
-}
-
-// UnsetBasis ensures that no value is present for Basis, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetBasis() {
-	o.Basis.Unset()
-}
-
-// GetPublishTimeUs returns the PublishTimeUs field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetPublishTimeUs() float32 {
-	if o == nil || o.PublishTimeUs.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.PublishTimeUs.Get()
-}
-
-// GetPublishTimeUsOk returns a tuple with the PublishTimeUs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetPublishTimeUsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PublishTimeUs.Get(), o.PublishTimeUs.IsSet()
-}
-
-// HasPublishTimeUs returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasPublishTimeUs() bool {
-	if o != nil && o.PublishTimeUs.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPublishTimeUs gets a reference to the given NullableFloat32 and assigns it to the PublishTimeUs field.
-func (o *GetVaultMarketOracleBySlugResponse) SetPublishTimeUs(v float32) {
-	o.PublishTimeUs.Set(&v)
-}
-// SetPublishTimeUsNil sets the value for PublishTimeUs to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetPublishTimeUsNil() {
-	o.PublishTimeUs.Set(nil)
-}
-
-// UnsetPublishTimeUs ensures that no value is present for PublishTimeUs, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetPublishTimeUs() {
-	o.PublishTimeUs.Unset()
-}
-
-// GetSigner returns the Signer field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetSigner() string {
-	if o == nil || o.Signer.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Signer.Get()
-}
-
-// GetSignerOk returns a tuple with the Signer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetSignerOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Signer.Get(), o.Signer.IsSet()
-}
-
-// HasSigner returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasSigner() bool {
-	if o != nil && o.Signer.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSigner gets a reference to the given NullableString and assigns it to the Signer field.
-func (o *GetVaultMarketOracleBySlugResponse) SetSigner(v string) {
-	o.Signer.Set(&v)
-}
-// SetSignerNil sets the value for Signer to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetSignerNil() {
-	o.Signer.Set(nil)
-}
-
-// UnsetSigner ensures that no value is present for Signer, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetSigner() {
-	o.Signer.Unset()
-}
-
-// GetHttpStatus returns the HttpStatus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetHttpStatus() float32 {
-	if o == nil || o.HttpStatus.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.HttpStatus.Get()
-}
-
-// GetHttpStatusOk returns a tuple with the HttpStatus field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetHttpStatusOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.HttpStatus.Get(), o.HttpStatus.IsSet()
-}
-
-// HasHttpStatus returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasHttpStatus() bool {
-	if o != nil && o.HttpStatus.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHttpStatus gets a reference to the given NullableFloat32 and assigns it to the HttpStatus field.
-func (o *GetVaultMarketOracleBySlugResponse) SetHttpStatus(v float32) {
-	o.HttpStatus.Set(&v)
-}
-// SetHttpStatusNil sets the value for HttpStatus to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetHttpStatusNil() {
-	o.HttpStatus.Set(nil)
-}
-
-// UnsetHttpStatus ensures that no value is present for HttpStatus, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetHttpStatus() {
-	o.HttpStatus.Unset()
-}
-
-// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleBySlugResponse) GetError() string {
-	if o == nil || o.Error.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Error.Get()
-}
-
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleBySlugResponse) GetErrorOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Error.Get(), o.Error.IsSet()
-}
-
-// HasError returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleBySlugResponse) HasError() bool {
-	if o != nil && o.Error.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetError gets a reference to the given NullableString and assigns it to the Error field.
-func (o *GetVaultMarketOracleBySlugResponse) SetError(v string) {
-	o.Error.Set(&v)
-}
-// SetErrorNil sets the value for Error to be an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) SetErrorNil() {
-	o.Error.Set(nil)
-}
-
-// UnsetError ensures that no value is present for Error, not even an explicit nil
-func (o *GetVaultMarketOracleBySlugResponse) UnsetError() {
-	o.Error.Unset()
-}
-
-// GetAt returns the At field value
-func (o *GetVaultMarketOracleBySlugResponse) GetAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.At
-}
-
-// GetAtOk returns a tuple with the At field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.At, true
-}
-
-// SetAt sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetAt(v string) {
-	o.At = v
-}
-
-// GetFeed returns the Feed field value
-func (o *GetVaultMarketOracleBySlugResponse) GetFeed() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Feed
-}
-
-// GetFeedOk returns a tuple with the Feed field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetFeedOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Feed, true
-}
-
-// SetFeed sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetFeed(v string) {
-	o.Feed = v
-}
-
-// GetVersion returns the Version field value
-func (o *GetVaultMarketOracleBySlugResponse) GetVersion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetVersionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetVersion(v string) {
-	o.Version = v
-}
-
-// GetLabel returns the Label field value
-func (o *GetVaultMarketOracleBySlugResponse) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleBySlugResponse) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetVaultMarketOracleBySlugResponse) SetLabel(v string) {
-	o.Label = v
-}
-
-func (o GetVaultMarketOracleBySlugResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Message.IsSet() {
-		toSerialize["message"] = o.Message.Get()
-	}
-	if o.Signature.IsSet() {
-		toSerialize["signature"] = o.Signature.Get()
-	}
-	if true {
-		toSerialize["publishTime"] = o.PublishTime
-	}
-	if true {
-		toSerialize["ageSec"] = o.AgeSec
-	}
-	if true {
-		toSerialize["fresh"] = o.Fresh
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["indexSlug"] = o.IndexSlug
-	}
-	if true {
-		toSerialize["network"] = o.Network
-	}
-	if true {
-		toSerialize["feedId"] = o.FeedId
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.Reason.IsSet() {
-		toSerialize["reason"] = o.Reason.Get()
-	}
-	if o.ReasonText.IsSet() {
-		toSerialize["reasonText"] = o.ReasonText.Get()
-	}
-	if o.Level.IsSet() {
-		toSerialize["level"] = o.Level.Get()
-	}
-	if o.Price.IsSet() {
-		toSerialize["price"] = o.Price.Get()
-	}
-	if o.Conf.IsSet() {
-		toSerialize["conf"] = o.Conf.Get()
-	}
-	if true {
-		toSerialize["exponent"] = o.Exponent
-	}
-	if o.ConfidenceBps.IsSet() {
-		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
-	}
-	if o.StalenessSec.IsSet() {
-		toSerialize["stalenessSec"] = o.StalenessSec.Get()
-	}
-	if o.CoverageBps.IsSet() {
-		toSerialize["coverageBps"] = o.CoverageBps.Get()
-	}
-	if o.Keys.IsSet() {
-		toSerialize["keys"] = o.Keys.Get()
-	}
-	if o.Basis.IsSet() {
-		toSerialize["basis"] = o.Basis.Get()
-	}
-	if o.PublishTimeUs.IsSet() {
-		toSerialize["publishTimeUs"] = o.PublishTimeUs.Get()
-	}
-	if o.Signer.IsSet() {
-		toSerialize["signer"] = o.Signer.Get()
-	}
-	if o.HttpStatus.IsSet() {
-		toSerialize["httpStatus"] = o.HttpStatus.Get()
-	}
-	if o.Error.IsSet() {
-		toSerialize["error"] = o.Error.Get()
-	}
-	if true {
-		toSerialize["at"] = o.At
-	}
-	if true {
-		toSerialize["feed"] = o.Feed
-	}
-	if true {
-		toSerialize["version"] = o.Version
-	}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketOracleBySlugResponse struct {
-	value *GetVaultMarketOracleBySlugResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketOracleBySlugResponse) Get() *GetVaultMarketOracleBySlugResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketOracleBySlugResponse) Set(val *GetVaultMarketOracleBySlugResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketOracleBySlugResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketOracleBySlugResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketOracleBySlugResponse(val *GetVaultMarketOracleBySlugResponse) *NullableGetVaultMarketOracleBySlugResponse {
-	return &NullableGetVaultMarketOracleBySlugResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketOracleBySlugResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketOracleBySlugResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketOracleResponse struct for GetVaultMarketOracleResponse
-type GetVaultMarketOracleResponse struct {
-	Label string `json:"label"`
-	NotReadBack string `json:"notReadBack"`
-	Open bool `json:"open"`
-	Missing []string `json:"missing"`
-	Problem NullableString `json:"problem,omitempty"`
-	Network NullableString `json:"network,omitempty"`
-	PythMode NullableString `json:"pythMode,omitempty"`
-	Signer NullableString `json:"signer,omitempty"`
-	EverySec float32 `json:"everySec"`
-	Version string `json:"version"`
-	Rules GetVaultMarketOracleResponseRules `json:"rules"`
-	Feeds []GetVaultMarketOracleResponseFeeds `json:"feeds"`
-	Last24h GetVaultMarketOracleResponseLast24h `json:"last24h"`
-}
-
-// NewGetVaultMarketOracleResponse instantiates a new GetVaultMarketOracleResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketOracleResponse(label string, notReadBack string, open bool, missing []string, everySec float32, version string, rules GetVaultMarketOracleResponseRules, feeds []GetVaultMarketOracleResponseFeeds, last24h GetVaultMarketOracleResponseLast24h) *GetVaultMarketOracleResponse {
-	this := GetVaultMarketOracleResponse{}
-	this.Label = label
-	this.NotReadBack = notReadBack
-	this.Open = open
-	this.Missing = missing
-	this.EverySec = everySec
-	this.Version = version
-	this.Rules = rules
-	this.Feeds = feeds
-	this.Last24h = last24h
-	return &this
-}
-
-// NewGetVaultMarketOracleResponseWithDefaults instantiates a new GetVaultMarketOracleResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleResponseWithDefaults() *GetVaultMarketOracleResponse {
-	this := GetVaultMarketOracleResponse{}
-	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *GetVaultMarketOracleResponse) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetLabelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *GetVaultMarketOracleResponse) SetLabel(v string) {
-	o.Label = v
-}
-
-// GetNotReadBack returns the NotReadBack field value
-func (o *GetVaultMarketOracleResponse) GetNotReadBack() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.NotReadBack
-}
-
-// GetNotReadBackOk returns a tuple with the NotReadBack field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetNotReadBackOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.NotReadBack, true
-}
-
-// SetNotReadBack sets field value
-func (o *GetVaultMarketOracleResponse) SetNotReadBack(v string) {
-	o.NotReadBack = v
-}
-
-// GetOpen returns the Open field value
-func (o *GetVaultMarketOracleResponse) GetOpen() bool {
+// GetSemiAnnual returns the SemiAnnual field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetSemiAnnual() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.Open
+	return o.SemiAnnual
 }
 
-// GetOpenOk returns a tuple with the Open field value
+// GetSemiAnnualOk returns a tuple with the SemiAnnual field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetOpenOk() (*bool, bool) {
+func (o *GetVaultMarketIndexCalendarResponseCycles) GetSemiAnnualOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Open, true
+	return &o.SemiAnnual, true
 }
 
-// SetOpen sets field value
-func (o *GetVaultMarketOracleResponse) SetOpen(v bool) {
-	o.Open = v
+// SetSemiAnnual sets field value
+func (o *GetVaultMarketIndexCalendarResponseCycles) SetSemiAnnual(v bool) {
+	o.SemiAnnual = v
 }
 
-// GetMissing returns the Missing field value
-func (o *GetVaultMarketOracleResponse) GetMissing() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Missing
-}
-
-// GetMissingOk returns a tuple with the Missing field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetMissingOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Missing, true
-}
-
-// SetMissing sets field value
-func (o *GetVaultMarketOracleResponse) SetMissing(v []string) {
-	o.Missing = v
-}
-
-// GetProblem returns the Problem field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponse) GetProblem() string {
-	if o == nil || o.Problem.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Problem.Get()
-}
-
-// GetProblemOk returns a tuple with the Problem field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponse) GetProblemOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Problem.Get(), o.Problem.IsSet()
-}
-
-// HasProblem returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponse) HasProblem() bool {
-	if o != nil && o.Problem.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProblem gets a reference to the given NullableString and assigns it to the Problem field.
-func (o *GetVaultMarketOracleResponse) SetProblem(v string) {
-	o.Problem.Set(&v)
-}
-// SetProblemNil sets the value for Problem to be an explicit nil
-func (o *GetVaultMarketOracleResponse) SetProblemNil() {
-	o.Problem.Set(nil)
-}
-
-// UnsetProblem ensures that no value is present for Problem, not even an explicit nil
-func (o *GetVaultMarketOracleResponse) UnsetProblem() {
-	o.Problem.Unset()
-}
-
-// GetNetwork returns the Network field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponse) GetNetwork() string {
-	if o == nil || o.Network.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Network.Get()
-}
-
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponse) GetNetworkOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Network.Get(), o.Network.IsSet()
-}
-
-// HasNetwork returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponse) HasNetwork() bool {
-	if o != nil && o.Network.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given NullableString and assigns it to the Network field.
-func (o *GetVaultMarketOracleResponse) SetNetwork(v string) {
-	o.Network.Set(&v)
-}
-// SetNetworkNil sets the value for Network to be an explicit nil
-func (o *GetVaultMarketOracleResponse) SetNetworkNil() {
-	o.Network.Set(nil)
-}
-
-// UnsetNetwork ensures that no value is present for Network, not even an explicit nil
-func (o *GetVaultMarketOracleResponse) UnsetNetwork() {
-	o.Network.Unset()
-}
-
-// GetPythMode returns the PythMode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponse) GetPythMode() string {
-	if o == nil || o.PythMode.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.PythMode.Get()
-}
-
-// GetPythModeOk returns a tuple with the PythMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponse) GetPythModeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.PythMode.Get(), o.PythMode.IsSet()
-}
-
-// HasPythMode returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponse) HasPythMode() bool {
-	if o != nil && o.PythMode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPythMode gets a reference to the given NullableString and assigns it to the PythMode field.
-func (o *GetVaultMarketOracleResponse) SetPythMode(v string) {
-	o.PythMode.Set(&v)
-}
-// SetPythModeNil sets the value for PythMode to be an explicit nil
-func (o *GetVaultMarketOracleResponse) SetPythModeNil() {
-	o.PythMode.Set(nil)
-}
-
-// UnsetPythMode ensures that no value is present for PythMode, not even an explicit nil
-func (o *GetVaultMarketOracleResponse) UnsetPythMode() {
-	o.PythMode.Unset()
-}
-
-// GetSigner returns the Signer field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponse) GetSigner() string {
-	if o == nil || o.Signer.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Signer.Get()
-}
-
-// GetSignerOk returns a tuple with the Signer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponse) GetSignerOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Signer.Get(), o.Signer.IsSet()
-}
-
-// HasSigner returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponse) HasSigner() bool {
-	if o != nil && o.Signer.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSigner gets a reference to the given NullableString and assigns it to the Signer field.
-func (o *GetVaultMarketOracleResponse) SetSigner(v string) {
-	o.Signer.Set(&v)
-}
-// SetSignerNil sets the value for Signer to be an explicit nil
-func (o *GetVaultMarketOracleResponse) SetSignerNil() {
-	o.Signer.Set(nil)
-}
-
-// UnsetSigner ensures that no value is present for Signer, not even an explicit nil
-func (o *GetVaultMarketOracleResponse) UnsetSigner() {
-	o.Signer.Unset()
-}
-
-// GetEverySec returns the EverySec field value
-func (o *GetVaultMarketOracleResponse) GetEverySec() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.EverySec
-}
-
-// GetEverySecOk returns a tuple with the EverySec field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetEverySecOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EverySec, true
-}
-
-// SetEverySec sets field value
-func (o *GetVaultMarketOracleResponse) SetEverySec(v float32) {
-	o.EverySec = v
-}
-
-// GetVersion returns the Version field value
-func (o *GetVaultMarketOracleResponse) GetVersion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetVersionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *GetVaultMarketOracleResponse) SetVersion(v string) {
-	o.Version = v
-}
-
-// GetRules returns the Rules field value
-func (o *GetVaultMarketOracleResponse) GetRules() GetVaultMarketOracleResponseRules {
-	if o == nil {
-		var ret GetVaultMarketOracleResponseRules
-		return ret
-	}
-
-	return o.Rules
-}
-
-// GetRulesOk returns a tuple with the Rules field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetRulesOk() (*GetVaultMarketOracleResponseRules, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Rules, true
-}
-
-// SetRules sets field value
-func (o *GetVaultMarketOracleResponse) SetRules(v GetVaultMarketOracleResponseRules) {
-	o.Rules = v
-}
-
-// GetFeeds returns the Feeds field value
-func (o *GetVaultMarketOracleResponse) GetFeeds() []GetVaultMarketOracleResponseFeeds {
-	if o == nil {
-		var ret []GetVaultMarketOracleResponseFeeds
-		return ret
-	}
-
-	return o.Feeds
-}
-
-// GetFeedsOk returns a tuple with the Feeds field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetFeedsOk() ([]GetVaultMarketOracleResponseFeeds, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Feeds, true
-}
-
-// SetFeeds sets field value
-func (o *GetVaultMarketOracleResponse) SetFeeds(v []GetVaultMarketOracleResponseFeeds) {
-	o.Feeds = v
-}
-
-// GetLast24h returns the Last24h field value
-func (o *GetVaultMarketOracleResponse) GetLast24h() GetVaultMarketOracleResponseLast24h {
-	if o == nil {
-		var ret GetVaultMarketOracleResponseLast24h
-		return ret
-	}
-
-	return o.Last24h
-}
-
-// GetLast24hOk returns a tuple with the Last24h field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponse) GetLast24hOk() (*GetVaultMarketOracleResponseLast24h, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Last24h, true
-}
-
-// SetLast24h sets field value
-func (o *GetVaultMarketOracleResponse) SetLast24h(v GetVaultMarketOracleResponseLast24h) {
-	o.Last24h = v
-}
-
-func (o GetVaultMarketOracleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["label"] = o.Label
-	}
-	if true {
-		toSerialize["notReadBack"] = o.NotReadBack
-	}
-	if true {
-		toSerialize["open"] = o.Open
-	}
-	if true {
-		toSerialize["missing"] = o.Missing
-	}
-	if o.Problem.IsSet() {
-		toSerialize["problem"] = o.Problem.Get()
-	}
-	if o.Network.IsSet() {
-		toSerialize["network"] = o.Network.Get()
-	}
-	if o.PythMode.IsSet() {
-		toSerialize["pythMode"] = o.PythMode.Get()
-	}
-	if o.Signer.IsSet() {
-		toSerialize["signer"] = o.Signer.Get()
-	}
-	if true {
-		toSerialize["everySec"] = o.EverySec
-	}
-	if true {
-		toSerialize["version"] = o.Version
-	}
-	if true {
-		toSerialize["rules"] = o.Rules
-	}
-	if true {
-		toSerialize["feeds"] = o.Feeds
-	}
-	if true {
-		toSerialize["last24h"] = o.Last24h
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketOracleResponse struct {
-	value *GetVaultMarketOracleResponse
-	isSet bool
-}
-
-func (v NullableGetVaultMarketOracleResponse) Get() *GetVaultMarketOracleResponse {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketOracleResponse) Set(val *GetVaultMarketOracleResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketOracleResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketOracleResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketOracleResponse(val *GetVaultMarketOracleResponse) *NullableGetVaultMarketOracleResponse {
-	return &NullableGetVaultMarketOracleResponse{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketOracleResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketOracleResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketOracleResponseFeeds struct for GetVaultMarketOracleResponseFeeds
-type GetVaultMarketOracleResponseFeeds struct {
-	Id string `json:"id"`
-	IndexSlug string `json:"indexSlug"`
-	Network string `json:"network"`
-	FeedId string `json:"feedId"`
-	Exponent float32 `json:"exponent"`
-	Status string `json:"status"`
-	Latest NullableGetVaultMarketOracleResponseFeedsLatest `json:"latest,omitempty"`
-}
-
-// NewGetVaultMarketOracleResponseFeeds instantiates a new GetVaultMarketOracleResponseFeeds object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketOracleResponseFeeds(id string, indexSlug string, network string, feedId string, exponent float32, status string) *GetVaultMarketOracleResponseFeeds {
-	this := GetVaultMarketOracleResponseFeeds{}
-	this.Id = id
-	this.IndexSlug = indexSlug
-	this.Network = network
-	this.FeedId = feedId
-	this.Exponent = exponent
-	this.Status = status
-	return &this
-}
-
-// NewGetVaultMarketOracleResponseFeedsWithDefaults instantiates a new GetVaultMarketOracleResponseFeeds object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleResponseFeedsWithDefaults() *GetVaultMarketOracleResponseFeeds {
-	this := GetVaultMarketOracleResponseFeeds{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *GetVaultMarketOracleResponseFeeds) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetId(v string) {
-	o.Id = v
-}
-
-// GetIndexSlug returns the IndexSlug field value
-func (o *GetVaultMarketOracleResponseFeeds) GetIndexSlug() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.IndexSlug
-}
-
-// GetIndexSlugOk returns a tuple with the IndexSlug field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetIndexSlugOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IndexSlug, true
-}
-
-// SetIndexSlug sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetIndexSlug(v string) {
-	o.IndexSlug = v
-}
-
-// GetNetwork returns the Network field value
-func (o *GetVaultMarketOracleResponseFeeds) GetNetwork() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Network
-}
-
-// GetNetworkOk returns a tuple with the Network field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetNetworkOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Network, true
-}
-
-// SetNetwork sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetNetwork(v string) {
-	o.Network = v
-}
-
-// GetFeedId returns the FeedId field value
-func (o *GetVaultMarketOracleResponseFeeds) GetFeedId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FeedId
-}
-
-// GetFeedIdOk returns a tuple with the FeedId field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetFeedIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.FeedId, true
-}
-
-// SetFeedId sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetFeedId(v string) {
-	o.FeedId = v
-}
-
-// GetExponent returns the Exponent field value
-func (o *GetVaultMarketOracleResponseFeeds) GetExponent() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Exponent
-}
-
-// GetExponentOk returns a tuple with the Exponent field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetExponentOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Exponent, true
-}
-
-// SetExponent sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetExponent(v float32) {
-	o.Exponent = v
-}
-
-// GetStatus returns the Status field value
-func (o *GetVaultMarketOracleResponseFeeds) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeeds) GetStatusOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *GetVaultMarketOracleResponseFeeds) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetLatest returns the Latest field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeeds) GetLatest() GetVaultMarketOracleResponseFeedsLatest {
-	if o == nil || o.Latest.Get() == nil {
-		var ret GetVaultMarketOracleResponseFeedsLatest
-		return ret
-	}
-	return *o.Latest.Get()
-}
-
-// GetLatestOk returns a tuple with the Latest field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeeds) GetLatestOk() (*GetVaultMarketOracleResponseFeedsLatest, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Latest.Get(), o.Latest.IsSet()
-}
-
-// HasLatest returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeeds) HasLatest() bool {
-	if o != nil && o.Latest.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLatest gets a reference to the given NullableGetVaultMarketOracleResponseFeedsLatest and assigns it to the Latest field.
-func (o *GetVaultMarketOracleResponseFeeds) SetLatest(v GetVaultMarketOracleResponseFeedsLatest) {
-	o.Latest.Set(&v)
-}
-// SetLatestNil sets the value for Latest to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeeds) SetLatestNil() {
-	o.Latest.Set(nil)
-}
-
-// UnsetLatest ensures that no value is present for Latest, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeeds) UnsetLatest() {
-	o.Latest.Unset()
-}
-
-func (o GetVaultMarketOracleResponseFeeds) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexCalendarResponseCycles) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["indexSlug"] = o.IndexSlug
+		toSerialize["referenceDay"] = o.ReferenceDay
 	}
 	if true {
-		toSerialize["network"] = o.Network
+		toSerialize["announceDay"] = o.AnnounceDay
 	}
 	if true {
-		toSerialize["feedId"] = o.FeedId
+		toSerialize["lastOldCloseDay"] = o.LastOldCloseDay
 	}
 	if true {
-		toSerialize["exponent"] = o.Exponent
+		toSerialize["effectiveDay"] = o.EffectiveDay
 	}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.Latest.IsSet() {
-		toSerialize["latest"] = o.Latest.Get()
+		toSerialize["semiAnnual"] = o.SemiAnnual
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketOracleResponseFeeds struct {
-	value *GetVaultMarketOracleResponseFeeds
+type NullableGetVaultMarketIndexCalendarResponseCycles struct {
+	value *GetVaultMarketIndexCalendarResponseCycles
 	isSet bool
 }
 
-func (v NullableGetVaultMarketOracleResponseFeeds) Get() *GetVaultMarketOracleResponseFeeds {
+func (v NullableGetVaultMarketIndexCalendarResponseCycles) Get() *GetVaultMarketIndexCalendarResponseCycles {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeeds) Set(val *GetVaultMarketOracleResponseFeeds) {
+func (v *NullableGetVaultMarketIndexCalendarResponseCycles) Set(val *GetVaultMarketIndexCalendarResponseCycles) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketOracleResponseFeeds) IsSet() bool {
+func (v NullableGetVaultMarketIndexCalendarResponseCycles) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeeds) Unset() {
+func (v *NullableGetVaultMarketIndexCalendarResponseCycles) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketOracleResponseFeeds(val *GetVaultMarketOracleResponseFeeds) *NullableGetVaultMarketOracleResponseFeeds {
-	return &NullableGetVaultMarketOracleResponseFeeds{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexCalendarResponseCycles(val *GetVaultMarketIndexCalendarResponseCycles) *NullableGetVaultMarketIndexCalendarResponseCycles {
+	return &NullableGetVaultMarketIndexCalendarResponseCycles{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketOracleResponseFeeds) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexCalendarResponseCycles) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeeds) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexCalendarResponseCycles) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOracleResponseFeedsLatest struct for GetVaultMarketOracleResponseFeedsLatest
-type GetVaultMarketOracleResponseFeedsLatest struct {
-	Status string `json:"status"`
-	Reason NullableString `json:"reason,omitempty"`
-	ReasonText NullableString `json:"reasonText,omitempty"`
-	Level NullableFloat32 `json:"level,omitempty"`
-	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
-	StalenessSec NullableFloat32 `json:"stalenessSec,omitempty"`
-	At string `json:"at"`
+// GetVaultMarketIndexFeedFundingResponse struct for GetVaultMarketIndexFeedFundingResponse
+type GetVaultMarketIndexFeedFundingResponse struct {
+	Index GetVaultMarketIndexFeedFundingResponseIndex `json:"index"`
+	Level GetVaultMarketIndexFeedFundingResponseLevel `json:"level"`
+	PremiumBps float32 `json:"premiumBps"`
+	InterestBps float32 `json:"interestBps"`
+	Funding GetVaultMarketIndexFeedFundingResponseFunding `json:"funding"`
+	SettledBy string `json:"settledBy"`
+	Note string `json:"note"`
 }
 
-// NewGetVaultMarketOracleResponseFeedsLatest instantiates a new GetVaultMarketOracleResponseFeedsLatest object
+// NewGetVaultMarketIndexFeedFundingResponse instantiates a new GetVaultMarketIndexFeedFundingResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOracleResponseFeedsLatest(status string, at string) *GetVaultMarketOracleResponseFeedsLatest {
-	this := GetVaultMarketOracleResponseFeedsLatest{}
-	this.Status = status
-	this.At = at
+func NewGetVaultMarketIndexFeedFundingResponse(index GetVaultMarketIndexFeedFundingResponseIndex, level GetVaultMarketIndexFeedFundingResponseLevel, premiumBps float32, interestBps float32, funding GetVaultMarketIndexFeedFundingResponseFunding, settledBy string, note string) *GetVaultMarketIndexFeedFundingResponse {
+	this := GetVaultMarketIndexFeedFundingResponse{}
+	this.Index = index
+	this.Level = level
+	this.PremiumBps = premiumBps
+	this.InterestBps = interestBps
+	this.Funding = funding
+	this.SettledBy = settledBy
+	this.Note = note
 	return &this
 }
 
-// NewGetVaultMarketOracleResponseFeedsLatestWithDefaults instantiates a new GetVaultMarketOracleResponseFeedsLatest object
+// NewGetVaultMarketIndexFeedFundingResponseWithDefaults instantiates a new GetVaultMarketIndexFeedFundingResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleResponseFeedsLatestWithDefaults() *GetVaultMarketOracleResponseFeedsLatest {
-	this := GetVaultMarketOracleResponseFeedsLatest{}
+func NewGetVaultMarketIndexFeedFundingResponseWithDefaults() *GetVaultMarketIndexFeedFundingResponse {
+	this := GetVaultMarketIndexFeedFundingResponse{}
 	return &this
 }
 
-// GetStatus returns the Status field value
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetStatus() string {
+// GetIndex returns the Index field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetIndex() GetVaultMarketIndexFeedFundingResponseIndex {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseIndex
+		return ret
+	}
+
+	return o.Index
+}
+
+// GetIndexOk returns a tuple with the Index field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponse) GetIndexOk() (*GetVaultMarketIndexFeedFundingResponseIndex, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Index, true
+}
+
+// SetIndex sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetIndex(v GetVaultMarketIndexFeedFundingResponseIndex) {
+	o.Index = v
+}
+
+// GetLevel returns the Level field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetLevel() GetVaultMarketIndexFeedFundingResponseLevel {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseLevel
+		return ret
+	}
+
+	return o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponse) GetLevelOk() (*GetVaultMarketIndexFeedFundingResponseLevel, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Level, true
+}
+
+// SetLevel sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetLevel(v GetVaultMarketIndexFeedFundingResponseLevel) {
+	o.Level = v
+}
+
+// GetPremiumBps returns the PremiumBps field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetPremiumBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PremiumBps
+}
+
+// GetPremiumBpsOk returns a tuple with the PremiumBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponse) GetPremiumBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PremiumBps, true
+}
+
+// SetPremiumBps sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetPremiumBps(v float32) {
+	o.PremiumBps = v
+}
+
+// GetInterestBps returns the InterestBps field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetInterestBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.InterestBps
+}
+
+// GetInterestBpsOk returns a tuple with the InterestBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponse) GetInterestBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InterestBps, true
+}
+
+// SetInterestBps sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetInterestBps(v float32) {
+	o.InterestBps = v
+}
+
+// GetFunding returns the Funding field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetFunding() GetVaultMarketIndexFeedFundingResponseFunding {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseFunding
+		return ret
+	}
+
+	return o.Funding
+}
+
+// GetFundingOk returns a tuple with the Funding field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponse) GetFundingOk() (*GetVaultMarketIndexFeedFundingResponseFunding, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Funding, true
+}
+
+// SetFunding sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetFunding(v GetVaultMarketIndexFeedFundingResponseFunding) {
+	o.Funding = v
+}
+
+// GetSettledBy returns the SettledBy field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetSettledBy() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.SettledBy
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetSettledByOk returns a tuple with the SettledBy field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetStatusOk() (*string, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponse) GetSettledByOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.SettledBy, true
 }
 
-// SetStatus sets field value
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetStatus(v string) {
-	o.Status = v
+// SetSettledBy sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetSettledBy(v string) {
+	o.SettledBy = v
 }
 
-// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetReason() string {
-	if o == nil || o.Reason.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Reason.Get()
-}
-
-// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetReasonOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Reason.Get(), o.Reason.IsSet()
-}
-
-// HasReason returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) HasReason() bool {
-	if o != nil && o.Reason.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetReason(v string) {
-	o.Reason.Set(&v)
-}
-// SetReasonNil sets the value for Reason to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetReasonNil() {
-	o.Reason.Set(nil)
-}
-
-// UnsetReason ensures that no value is present for Reason, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) UnsetReason() {
-	o.Reason.Unset()
-}
-
-// GetReasonText returns the ReasonText field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetReasonText() string {
-	if o == nil || o.ReasonText.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ReasonText.Get()
-}
-
-// GetReasonTextOk returns a tuple with the ReasonText field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetReasonTextOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ReasonText.Get(), o.ReasonText.IsSet()
-}
-
-// HasReasonText returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) HasReasonText() bool {
-	if o != nil && o.ReasonText.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetReasonText gets a reference to the given NullableString and assigns it to the ReasonText field.
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetReasonText(v string) {
-	o.ReasonText.Set(&v)
-}
-// SetReasonTextNil sets the value for ReasonText to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetReasonTextNil() {
-	o.ReasonText.Set(nil)
-}
-
-// UnsetReasonText ensures that no value is present for ReasonText, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) UnsetReasonText() {
-	o.ReasonText.Unset()
-}
-
-// GetLevel returns the Level field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetLevel() float32 {
-	if o == nil || o.Level.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Level.Get()
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetLevelOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Level.Get(), o.Level.IsSet()
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) HasLevel() bool {
-	if o != nil && o.Level.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given NullableFloat32 and assigns it to the Level field.
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetLevel(v float32) {
-	o.Level.Set(&v)
-}
-// SetLevelNil sets the value for Level to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetLevelNil() {
-	o.Level.Set(nil)
-}
-
-// UnsetLevel ensures that no value is present for Level, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) UnsetLevel() {
-	o.Level.Unset()
-}
-
-// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetConfidenceBps() float32 {
-	if o == nil || o.ConfidenceBps.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ConfidenceBps.Get()
-}
-
-// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetConfidenceBpsOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
-}
-
-// HasConfidenceBps returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) HasConfidenceBps() bool {
-	if o != nil && o.ConfidenceBps.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetConfidenceBps(v float32) {
-	o.ConfidenceBps.Set(&v)
-}
-// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetConfidenceBpsNil() {
-	o.ConfidenceBps.Set(nil)
-}
-
-// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) UnsetConfidenceBps() {
-	o.ConfidenceBps.Unset()
-}
-
-// GetStalenessSec returns the StalenessSec field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetStalenessSec() float32 {
-	if o == nil || o.StalenessSec.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.StalenessSec.Get()
-}
-
-// GetStalenessSecOk returns a tuple with the StalenessSec field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetStalenessSecOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.StalenessSec.Get(), o.StalenessSec.IsSet()
-}
-
-// HasStalenessSec returns a boolean if a field has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) HasStalenessSec() bool {
-	if o != nil && o.StalenessSec.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStalenessSec gets a reference to the given NullableFloat32 and assigns it to the StalenessSec field.
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetStalenessSec(v float32) {
-	o.StalenessSec.Set(&v)
-}
-// SetStalenessSecNil sets the value for StalenessSec to be an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetStalenessSecNil() {
-	o.StalenessSec.Set(nil)
-}
-
-// UnsetStalenessSec ensures that no value is present for StalenessSec, not even an explicit nil
-func (o *GetVaultMarketOracleResponseFeedsLatest) UnsetStalenessSec() {
-	o.StalenessSec.Unset()
-}
-
-// GetAt returns the At field value
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetAt() string {
+// GetNote returns the Note field value
+func (o *GetVaultMarketIndexFeedFundingResponse) GetNote() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.At
+	return o.Note
 }
 
-// GetAtOk returns a tuple with the At field value
+// GetNoteOk returns a tuple with the Note field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseFeedsLatest) GetAtOk() (*string, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponse) GetNoteOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.At, true
+	return &o.Note, true
 }
 
-// SetAt sets field value
-func (o *GetVaultMarketOracleResponseFeedsLatest) SetAt(v string) {
-	o.At = v
+// SetNote sets field value
+func (o *GetVaultMarketIndexFeedFundingResponse) SetNote(v string) {
+	o.Note = v
 }
 
-func (o GetVaultMarketOracleResponseFeedsLatest) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexFeedFundingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["status"] = o.Status
-	}
-	if o.Reason.IsSet() {
-		toSerialize["reason"] = o.Reason.Get()
-	}
-	if o.ReasonText.IsSet() {
-		toSerialize["reasonText"] = o.ReasonText.Get()
-	}
-	if o.Level.IsSet() {
-		toSerialize["level"] = o.Level.Get()
-	}
-	if o.ConfidenceBps.IsSet() {
-		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
-	}
-	if o.StalenessSec.IsSet() {
-		toSerialize["stalenessSec"] = o.StalenessSec.Get()
+		toSerialize["index"] = o.Index
 	}
 	if true {
-		toSerialize["at"] = o.At
+		toSerialize["level"] = o.Level
+	}
+	if true {
+		toSerialize["premiumBps"] = o.PremiumBps
+	}
+	if true {
+		toSerialize["interestBps"] = o.InterestBps
+	}
+	if true {
+		toSerialize["funding"] = o.Funding
+	}
+	if true {
+		toSerialize["settledBy"] = o.SettledBy
+	}
+	if true {
+		toSerialize["note"] = o.Note
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketOracleResponseFeedsLatest struct {
-	value *GetVaultMarketOracleResponseFeedsLatest
+type NullableGetVaultMarketIndexFeedFundingResponse struct {
+	value *GetVaultMarketIndexFeedFundingResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketOracleResponseFeedsLatest) Get() *GetVaultMarketOracleResponseFeedsLatest {
+func (v NullableGetVaultMarketIndexFeedFundingResponse) Get() *GetVaultMarketIndexFeedFundingResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeedsLatest) Set(val *GetVaultMarketOracleResponseFeedsLatest) {
+func (v *NullableGetVaultMarketIndexFeedFundingResponse) Set(val *GetVaultMarketIndexFeedFundingResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketOracleResponseFeedsLatest) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedFundingResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeedsLatest) Unset() {
+func (v *NullableGetVaultMarketIndexFeedFundingResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketOracleResponseFeedsLatest(val *GetVaultMarketOracleResponseFeedsLatest) *NullableGetVaultMarketOracleResponseFeedsLatest {
-	return &NullableGetVaultMarketOracleResponseFeedsLatest{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedFundingResponse(val *GetVaultMarketIndexFeedFundingResponse) *NullableGetVaultMarketIndexFeedFundingResponse {
+	return &NullableGetVaultMarketIndexFeedFundingResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketOracleResponseFeedsLatest) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedFundingResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketOracleResponseFeedsLatest) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedFundingResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOracleResponseLast24h struct for GetVaultMarketOracleResponseLast24h
-type GetVaultMarketOracleResponseLast24h struct {
-	Published float32 `json:"published"`
-	Skipped float32 `json:"skipped"`
-	Failed float32 `json:"failed"`
+// GetVaultMarketIndexFeedFundingResponseFunding struct for GetVaultMarketIndexFeedFundingResponseFunding
+type GetVaultMarketIndexFeedFundingResponseFunding struct {
+	RateBps float32 `json:"rateBps"`
+	HourlyBps float32 `json:"hourlyBps"`
+	Capped bool `json:"capped"`
 }
 
-// NewGetVaultMarketOracleResponseLast24h instantiates a new GetVaultMarketOracleResponseLast24h object
+// NewGetVaultMarketIndexFeedFundingResponseFunding instantiates a new GetVaultMarketIndexFeedFundingResponseFunding object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOracleResponseLast24h(published float32, skipped float32, failed float32) *GetVaultMarketOracleResponseLast24h {
-	this := GetVaultMarketOracleResponseLast24h{}
-	this.Published = published
-	this.Skipped = skipped
-	this.Failed = failed
+func NewGetVaultMarketIndexFeedFundingResponseFunding(rateBps float32, hourlyBps float32, capped bool) *GetVaultMarketIndexFeedFundingResponseFunding {
+	this := GetVaultMarketIndexFeedFundingResponseFunding{}
+	this.RateBps = rateBps
+	this.HourlyBps = hourlyBps
+	this.Capped = capped
 	return &this
 }
 
-// NewGetVaultMarketOracleResponseLast24hWithDefaults instantiates a new GetVaultMarketOracleResponseLast24h object
+// NewGetVaultMarketIndexFeedFundingResponseFundingWithDefaults instantiates a new GetVaultMarketIndexFeedFundingResponseFunding object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleResponseLast24hWithDefaults() *GetVaultMarketOracleResponseLast24h {
-	this := GetVaultMarketOracleResponseLast24h{}
+func NewGetVaultMarketIndexFeedFundingResponseFundingWithDefaults() *GetVaultMarketIndexFeedFundingResponseFunding {
+	this := GetVaultMarketIndexFeedFundingResponseFunding{}
 	return &this
 }
 
-// GetPublished returns the Published field value
-func (o *GetVaultMarketOracleResponseLast24h) GetPublished() float32 {
+// GetRateBps returns the RateBps field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetRateBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Published
+	return o.RateBps
 }
 
-// GetPublishedOk returns a tuple with the Published field value
+// GetRateBpsOk returns a tuple with the RateBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseLast24h) GetPublishedOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetRateBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Published, true
+	return &o.RateBps, true
 }
 
-// SetPublished sets field value
-func (o *GetVaultMarketOracleResponseLast24h) SetPublished(v float32) {
-	o.Published = v
+// SetRateBps sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) SetRateBps(v float32) {
+	o.RateBps = v
 }
 
-// GetSkipped returns the Skipped field value
-func (o *GetVaultMarketOracleResponseLast24h) GetSkipped() float32 {
+// GetHourlyBps returns the HourlyBps field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetHourlyBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Skipped
+	return o.HourlyBps
 }
 
-// GetSkippedOk returns a tuple with the Skipped field value
+// GetHourlyBpsOk returns a tuple with the HourlyBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseLast24h) GetSkippedOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetHourlyBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Skipped, true
+	return &o.HourlyBps, true
 }
 
-// SetSkipped sets field value
-func (o *GetVaultMarketOracleResponseLast24h) SetSkipped(v float32) {
-	o.Skipped = v
+// SetHourlyBps sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) SetHourlyBps(v float32) {
+	o.HourlyBps = v
 }
 
-// GetFailed returns the Failed field value
-func (o *GetVaultMarketOracleResponseLast24h) GetFailed() float32 {
+// GetCapped returns the Capped field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetCapped() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
-	return o.Failed
+	return o.Capped
 }
 
-// GetFailedOk returns a tuple with the Failed field value
+// GetCappedOk returns a tuple with the Capped field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseLast24h) GetFailedOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) GetCappedOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Failed, true
+	return &o.Capped, true
 }
 
-// SetFailed sets field value
-func (o *GetVaultMarketOracleResponseLast24h) SetFailed(v float32) {
-	o.Failed = v
+// SetCapped sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseFunding) SetCapped(v bool) {
+	o.Capped = v
 }
 
-func (o GetVaultMarketOracleResponseLast24h) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexFeedFundingResponseFunding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["published"] = o.Published
+		toSerialize["rateBps"] = o.RateBps
 	}
 	if true {
-		toSerialize["skipped"] = o.Skipped
+		toSerialize["hourlyBps"] = o.HourlyBps
 	}
 	if true {
-		toSerialize["failed"] = o.Failed
+		toSerialize["capped"] = o.Capped
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketOracleResponseLast24h struct {
-	value *GetVaultMarketOracleResponseLast24h
+type NullableGetVaultMarketIndexFeedFundingResponseFunding struct {
+	value *GetVaultMarketIndexFeedFundingResponseFunding
 	isSet bool
 }
 
-func (v NullableGetVaultMarketOracleResponseLast24h) Get() *GetVaultMarketOracleResponseLast24h {
+func (v NullableGetVaultMarketIndexFeedFundingResponseFunding) Get() *GetVaultMarketIndexFeedFundingResponseFunding {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketOracleResponseLast24h) Set(val *GetVaultMarketOracleResponseLast24h) {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseFunding) Set(val *GetVaultMarketIndexFeedFundingResponseFunding) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketOracleResponseLast24h) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedFundingResponseFunding) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketOracleResponseLast24h) Unset() {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseFunding) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketOracleResponseLast24h(val *GetVaultMarketOracleResponseLast24h) *NullableGetVaultMarketOracleResponseLast24h {
-	return &NullableGetVaultMarketOracleResponseLast24h{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedFundingResponseFunding(val *GetVaultMarketIndexFeedFundingResponseFunding) *NullableGetVaultMarketIndexFeedFundingResponseFunding {
+	return &NullableGetVaultMarketIndexFeedFundingResponseFunding{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketOracleResponseLast24h) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedFundingResponseFunding) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketOracleResponseLast24h) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseFunding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOracleResponseRules struct for GetVaultMarketOracleResponseRules
-type GetVaultMarketOracleResponseRules struct {
+// GetVaultMarketIndexFeedFundingResponseIndex struct for GetVaultMarketIndexFeedFundingResponseIndex
+type GetVaultMarketIndexFeedFundingResponseIndex struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+	Kind string `json:"kind"`
+	Weighting string `json:"weighting"`
+	BaseValue float32 `json:"baseValue"`
+	InceptionDay NullableString `json:"inceptionDay,omitempty"`
+}
+
+// NewGetVaultMarketIndexFeedFundingResponseIndex instantiates a new GetVaultMarketIndexFeedFundingResponseIndex object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexFeedFundingResponseIndex(slug string, name string, kind string, weighting string, baseValue float32) *GetVaultMarketIndexFeedFundingResponseIndex {
+	this := GetVaultMarketIndexFeedFundingResponseIndex{}
+	this.Slug = slug
+	this.Name = name
+	this.Kind = kind
+	this.Weighting = weighting
+	this.BaseValue = baseValue
+	return &this
+}
+
+// NewGetVaultMarketIndexFeedFundingResponseIndexWithDefaults instantiates a new GetVaultMarketIndexFeedFundingResponseIndex object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexFeedFundingResponseIndexWithDefaults() *GetVaultMarketIndexFeedFundingResponseIndex {
+	this := GetVaultMarketIndexFeedFundingResponseIndex{}
+	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetName returns the Name field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetName(v string) {
+	o.Name = v
+}
+
+// GetKind returns the Kind field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetKindOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
+// SetKind sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetKind(v string) {
+	o.Kind = v
+}
+
+// GetWeighting returns the Weighting field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetWeighting() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Weighting
+}
+
+// GetWeightingOk returns a tuple with the Weighting field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetWeightingOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Weighting, true
+}
+
+// SetWeighting sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetWeighting(v string) {
+	o.Weighting = v
+}
+
+// GetBaseValue returns the BaseValue field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetBaseValue() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BaseValue
+}
+
+// GetBaseValueOk returns a tuple with the BaseValue field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetBaseValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BaseValue, true
+}
+
+// SetBaseValue sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetBaseValue(v float32) {
+	o.BaseValue = v
+}
+
+// GetInceptionDay returns the InceptionDay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetInceptionDay() string {
+	if o == nil || o.InceptionDay.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InceptionDay.Get()
+}
+
+// GetInceptionDayOk returns a tuple with the InceptionDay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) GetInceptionDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InceptionDay.Get(), o.InceptionDay.IsSet()
+}
+
+// HasInceptionDay returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) HasInceptionDay() bool {
+	if o != nil && o.InceptionDay.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInceptionDay gets a reference to the given NullableString and assigns it to the InceptionDay field.
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetInceptionDay(v string) {
+	o.InceptionDay.Set(&v)
+}
+// SetInceptionDayNil sets the value for InceptionDay to be an explicit nil
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) SetInceptionDayNil() {
+	o.InceptionDay.Set(nil)
+}
+
+// UnsetInceptionDay ensures that no value is present for InceptionDay, not even an explicit nil
+func (o *GetVaultMarketIndexFeedFundingResponseIndex) UnsetInceptionDay() {
+	o.InceptionDay.Unset()
+}
+
+func (o GetVaultMarketIndexFeedFundingResponseIndex) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["weighting"] = o.Weighting
+	}
+	if true {
+		toSerialize["baseValue"] = o.BaseValue
+	}
+	if o.InceptionDay.IsSet() {
+		toSerialize["inceptionDay"] = o.InceptionDay.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexFeedFundingResponseIndex struct {
+	value *GetVaultMarketIndexFeedFundingResponseIndex
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseIndex) Get() *GetVaultMarketIndexFeedFundingResponseIndex {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseIndex) Set(val *GetVaultMarketIndexFeedFundingResponseIndex) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseIndex) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseIndex) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexFeedFundingResponseIndex(val *GetVaultMarketIndexFeedFundingResponseIndex) *NullableGetVaultMarketIndexFeedFundingResponseIndex {
+	return &NullableGetVaultMarketIndexFeedFundingResponseIndex{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseIndex) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseIndex) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexFeedFundingResponseLevel struct for GetVaultMarketIndexFeedFundingResponseLevel
+type GetVaultMarketIndexFeedFundingResponseLevel struct {
+	Value float32 `json:"value"`
+	Basis string `json:"basis"`
+	CoverageBps float32 `json:"coverageBps"`
 	MinCoverageBps float32 `json:"minCoverageBps"`
-	MinKeys float32 `json:"minKeys"`
-	MaxStaleSec float32 `json:"maxStaleSec"`
-	MaxConfBps float32 `json:"maxConfBps"`
+	PricedKeys float32 `json:"pricedKeys"`
+	Keys float32 `json:"keys"`
+	LastClose NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose `json:"lastClose,omitempty"`
 }
 
-// NewGetVaultMarketOracleResponseRules instantiates a new GetVaultMarketOracleResponseRules object
+// NewGetVaultMarketIndexFeedFundingResponseLevel instantiates a new GetVaultMarketIndexFeedFundingResponseLevel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOracleResponseRules(minCoverageBps float32, minKeys float32, maxStaleSec float32, maxConfBps float32) *GetVaultMarketOracleResponseRules {
-	this := GetVaultMarketOracleResponseRules{}
+func NewGetVaultMarketIndexFeedFundingResponseLevel(value float32, basis string, coverageBps float32, minCoverageBps float32, pricedKeys float32, keys float32) *GetVaultMarketIndexFeedFundingResponseLevel {
+	this := GetVaultMarketIndexFeedFundingResponseLevel{}
+	this.Value = value
+	this.Basis = basis
+	this.CoverageBps = coverageBps
 	this.MinCoverageBps = minCoverageBps
-	this.MinKeys = minKeys
-	this.MaxStaleSec = maxStaleSec
-	this.MaxConfBps = maxConfBps
+	this.PricedKeys = pricedKeys
+	this.Keys = keys
 	return &this
 }
 
-// NewGetVaultMarketOracleResponseRulesWithDefaults instantiates a new GetVaultMarketOracleResponseRules object
+// NewGetVaultMarketIndexFeedFundingResponseLevelWithDefaults instantiates a new GetVaultMarketIndexFeedFundingResponseLevel object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOracleResponseRulesWithDefaults() *GetVaultMarketOracleResponseRules {
-	this := GetVaultMarketOracleResponseRules{}
+func NewGetVaultMarketIndexFeedFundingResponseLevelWithDefaults() *GetVaultMarketIndexFeedFundingResponseLevel {
+	this := GetVaultMarketIndexFeedFundingResponseLevel{}
 	return &this
+}
+
+// GetValue returns the Value field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetValue() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetValue(v float32) {
+	o.Value = v
+}
+
+// GetBasis returns the Basis field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetBasis() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Basis
+}
+
+// GetBasisOk returns a tuple with the Basis field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetBasisOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Basis, true
+}
+
+// SetBasis sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetBasis(v string) {
+	o.Basis = v
+}
+
+// GetCoverageBps returns the CoverageBps field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetCoverageBps() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CoverageBps
+}
+
+// GetCoverageBpsOk returns a tuple with the CoverageBps field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetCoverageBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CoverageBps, true
+}
+
+// SetCoverageBps sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetCoverageBps(v float32) {
+	o.CoverageBps = v
 }
 
 // GetMinCoverageBps returns the MinCoverageBps field value
-func (o *GetVaultMarketOracleResponseRules) GetMinCoverageBps() float32 {
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetMinCoverageBps() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -11696,7 +8939,7 @@ func (o *GetVaultMarketOracleResponseRules) GetMinCoverageBps() float32 {
 
 // GetMinCoverageBpsOk returns a tuple with the MinCoverageBps field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseRules) GetMinCoverageBpsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetMinCoverageBpsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -11704,162 +8947,351 @@ func (o *GetVaultMarketOracleResponseRules) GetMinCoverageBpsOk() (*float32, boo
 }
 
 // SetMinCoverageBps sets field value
-func (o *GetVaultMarketOracleResponseRules) SetMinCoverageBps(v float32) {
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetMinCoverageBps(v float32) {
 	o.MinCoverageBps = v
 }
 
-// GetMinKeys returns the MinKeys field value
-func (o *GetVaultMarketOracleResponseRules) GetMinKeys() float32 {
+// GetPricedKeys returns the PricedKeys field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetPricedKeys() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.MinKeys
+	return o.PricedKeys
 }
 
-// GetMinKeysOk returns a tuple with the MinKeys field value
+// GetPricedKeysOk returns a tuple with the PricedKeys field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseRules) GetMinKeysOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetPricedKeysOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.MinKeys, true
+	return &o.PricedKeys, true
 }
 
-// SetMinKeys sets field value
-func (o *GetVaultMarketOracleResponseRules) SetMinKeys(v float32) {
-	o.MinKeys = v
+// SetPricedKeys sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetPricedKeys(v float32) {
+	o.PricedKeys = v
 }
 
-// GetMaxStaleSec returns the MaxStaleSec field value
-func (o *GetVaultMarketOracleResponseRules) GetMaxStaleSec() float32 {
+// GetKeys returns the Keys field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetKeys() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.MaxStaleSec
+	return o.Keys
 }
 
-// GetMaxStaleSecOk returns a tuple with the MaxStaleSec field value
+// GetKeysOk returns a tuple with the Keys field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseRules) GetMaxStaleSecOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetKeysOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.MaxStaleSec, true
+	return &o.Keys, true
 }
 
-// SetMaxStaleSec sets field value
-func (o *GetVaultMarketOracleResponseRules) SetMaxStaleSec(v float32) {
-	o.MaxStaleSec = v
+// SetKeys sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetKeys(v float32) {
+	o.Keys = v
 }
 
-// GetMaxConfBps returns the MaxConfBps field value
-func (o *GetVaultMarketOracleResponseRules) GetMaxConfBps() float32 {
-	if o == nil {
-		var ret float32
+// GetLastClose returns the LastClose field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetLastClose() GetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	if o == nil || o.LastClose.Get() == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseLevelLastClose
 		return ret
 	}
-
-	return o.MaxConfBps
+	return *o.LastClose.Get()
 }
 
-// GetMaxConfBpsOk returns a tuple with the MaxConfBps field value
+// GetLastCloseOk returns a tuple with the LastClose field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOracleResponseRules) GetMaxConfBpsOk() (*float32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) GetLastCloseOk() (*GetVaultMarketIndexFeedFundingResponseLevelLastClose, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.MaxConfBps, true
+	return o.LastClose.Get(), o.LastClose.IsSet()
 }
 
-// SetMaxConfBps sets field value
-func (o *GetVaultMarketOracleResponseRules) SetMaxConfBps(v float32) {
-	o.MaxConfBps = v
+// HasLastClose returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) HasLastClose() bool {
+	if o != nil && o.LastClose.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-func (o GetVaultMarketOracleResponseRules) MarshalJSON() ([]byte, error) {
+// SetLastClose gets a reference to the given NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose and assigns it to the LastClose field.
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetLastClose(v GetVaultMarketIndexFeedFundingResponseLevelLastClose) {
+	o.LastClose.Set(&v)
+}
+// SetLastCloseNil sets the value for LastClose to be an explicit nil
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) SetLastCloseNil() {
+	o.LastClose.Set(nil)
+}
+
+// UnsetLastClose ensures that no value is present for LastClose, not even an explicit nil
+func (o *GetVaultMarketIndexFeedFundingResponseLevel) UnsetLastClose() {
+	o.LastClose.Unset()
+}
+
+func (o GetVaultMarketIndexFeedFundingResponseLevel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["basis"] = o.Basis
+	}
+	if true {
+		toSerialize["coverageBps"] = o.CoverageBps
+	}
 	if true {
 		toSerialize["minCoverageBps"] = o.MinCoverageBps
 	}
 	if true {
-		toSerialize["minKeys"] = o.MinKeys
+		toSerialize["pricedKeys"] = o.PricedKeys
 	}
 	if true {
-		toSerialize["maxStaleSec"] = o.MaxStaleSec
+		toSerialize["keys"] = o.Keys
 	}
-	if true {
-		toSerialize["maxConfBps"] = o.MaxConfBps
+	if o.LastClose.IsSet() {
+		toSerialize["lastClose"] = o.LastClose.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketOracleResponseRules struct {
-	value *GetVaultMarketOracleResponseRules
+type NullableGetVaultMarketIndexFeedFundingResponseLevel struct {
+	value *GetVaultMarketIndexFeedFundingResponseLevel
 	isSet bool
 }
 
-func (v NullableGetVaultMarketOracleResponseRules) Get() *GetVaultMarketOracleResponseRules {
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevel) Get() *GetVaultMarketIndexFeedFundingResponseLevel {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketOracleResponseRules) Set(val *GetVaultMarketOracleResponseRules) {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevel) Set(val *GetVaultMarketIndexFeedFundingResponseLevel) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketOracleResponseRules) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevel) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketOracleResponseRules) Unset() {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevel) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketOracleResponseRules(val *GetVaultMarketOracleResponseRules) *NullableGetVaultMarketOracleResponseRules {
-	return &NullableGetVaultMarketOracleResponseRules{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedFundingResponseLevel(val *GetVaultMarketIndexFeedFundingResponseLevel) *NullableGetVaultMarketIndexFeedFundingResponseLevel {
+	return &NullableGetVaultMarketIndexFeedFundingResponseLevel{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketOracleResponseRules) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketOracleResponseRules) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOrderHandlingResponse struct for GetVaultMarketOrderHandlingResponse
-type GetVaultMarketOrderHandlingResponse struct {
-	Version string `json:"version"`
-	Sections []GetVaultMarketOrderHandlingResponseSections `json:"sections"`
+// GetVaultMarketIndexFeedFundingResponseLevelLastClose struct for GetVaultMarketIndexFeedFundingResponseLevelLastClose
+type GetVaultMarketIndexFeedFundingResponseLevelLastClose struct {
+	Day string `json:"day"`
+	Value float32 `json:"value"`
 }
 
-// NewGetVaultMarketOrderHandlingResponse instantiates a new GetVaultMarketOrderHandlingResponse object
+// NewGetVaultMarketIndexFeedFundingResponseLevelLastClose instantiates a new GetVaultMarketIndexFeedFundingResponseLevelLastClose object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOrderHandlingResponse(version string, sections []GetVaultMarketOrderHandlingResponseSections) *GetVaultMarketOrderHandlingResponse {
-	this := GetVaultMarketOrderHandlingResponse{}
-	this.Version = version
-	this.Sections = sections
+func NewGetVaultMarketIndexFeedFundingResponseLevelLastClose(day string, value float32) *GetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	this := GetVaultMarketIndexFeedFundingResponseLevelLastClose{}
+	this.Day = day
+	this.Value = value
 	return &this
 }
 
-// NewGetVaultMarketOrderHandlingResponseWithDefaults instantiates a new GetVaultMarketOrderHandlingResponse object
+// NewGetVaultMarketIndexFeedFundingResponseLevelLastCloseWithDefaults instantiates a new GetVaultMarketIndexFeedFundingResponseLevelLastClose object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOrderHandlingResponseWithDefaults() *GetVaultMarketOrderHandlingResponse {
-	this := GetVaultMarketOrderHandlingResponse{}
+func NewGetVaultMarketIndexFeedFundingResponseLevelLastCloseWithDefaults() *GetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	this := GetVaultMarketIndexFeedFundingResponseLevelLastClose{}
 	return &this
+}
+
+// GetDay returns the Day field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) GetDay() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Day
+}
+
+// GetDayOk returns a tuple with the Day field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) GetDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Day, true
+}
+
+// SetDay sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) SetDay(v string) {
+	o.Day = v
+}
+
+// GetValue returns the Value field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) GetValue() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) GetValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *GetVaultMarketIndexFeedFundingResponseLevelLastClose) SetValue(v float32) {
+	o.Value = v
+}
+
+func (o GetVaultMarketIndexFeedFundingResponseLevelLastClose) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["day"] = o.Day
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose struct {
+	value *GetVaultMarketIndexFeedFundingResponseLevelLastClose
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) Get() *GetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) Set(val *GetVaultMarketIndexFeedFundingResponseLevelLastClose) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexFeedFundingResponseLevelLastClose(val *GetVaultMarketIndexFeedFundingResponseLevelLastClose) *NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	return &NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexFeedResponse struct for GetVaultMarketIndexFeedResponse
+type GetVaultMarketIndexFeedResponse struct {
+	Feed string `json:"feed"`
+	Version string `json:"version"`
+	Licensor string `json:"licensor"`
+	Dcm string `json:"dcm"`
+	AsOf string `json:"asOf"`
+	Index GetVaultMarketIndexFeedFundingResponseIndex `json:"index"`
+	Level GetVaultMarketIndexFeedFundingResponseLevel `json:"level"`
+	Settlement GetVaultMarketIndexFeedResponseSettlement `json:"settlement"`
+	Constituents []GetVaultMarketIndexFeedResponseConstituents `json:"constituents"`
+	Funding GetVaultMarketIndexFeedResponseFunding `json:"funding"`
+	Note string `json:"note"`
+}
+
+// NewGetVaultMarketIndexFeedResponse instantiates a new GetVaultMarketIndexFeedResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexFeedResponse(feed string, version string, licensor string, dcm string, asOf string, index GetVaultMarketIndexFeedFundingResponseIndex, level GetVaultMarketIndexFeedFundingResponseLevel, settlement GetVaultMarketIndexFeedResponseSettlement, constituents []GetVaultMarketIndexFeedResponseConstituents, funding GetVaultMarketIndexFeedResponseFunding, note string) *GetVaultMarketIndexFeedResponse {
+	this := GetVaultMarketIndexFeedResponse{}
+	this.Feed = feed
+	this.Version = version
+	this.Licensor = licensor
+	this.Dcm = dcm
+	this.AsOf = asOf
+	this.Index = index
+	this.Level = level
+	this.Settlement = settlement
+	this.Constituents = constituents
+	this.Funding = funding
+	this.Note = note
+	return &this
+}
+
+// NewGetVaultMarketIndexFeedResponseWithDefaults instantiates a new GetVaultMarketIndexFeedResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexFeedResponseWithDefaults() *GetVaultMarketIndexFeedResponse {
+	this := GetVaultMarketIndexFeedResponse{}
+	return &this
+}
+
+// GetFeed returns the Feed field value
+func (o *GetVaultMarketIndexFeedResponse) GetFeed() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Feed
+}
+
+// GetFeedOk returns a tuple with the Feed field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetFeedOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Feed, true
+}
+
+// SetFeed sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetFeed(v string) {
+	o.Feed = v
 }
 
 // GetVersion returns the Version field value
-func (o *GetVaultMarketOrderHandlingResponse) GetVersion() string {
+func (o *GetVaultMarketIndexFeedResponse) GetVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -11870,7 +9302,7 @@ func (o *GetVaultMarketOrderHandlingResponse) GetVersion() string {
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOrderHandlingResponse) GetVersionOk() (*string, bool) {
+func (o *GetVaultMarketIndexFeedResponse) GetVersionOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -11878,1104 +9310,3832 @@ func (o *GetVaultMarketOrderHandlingResponse) GetVersionOk() (*string, bool) {
 }
 
 // SetVersion sets field value
-func (o *GetVaultMarketOrderHandlingResponse) SetVersion(v string) {
+func (o *GetVaultMarketIndexFeedResponse) SetVersion(v string) {
 	o.Version = v
 }
 
-// GetSections returns the Sections field value
-func (o *GetVaultMarketOrderHandlingResponse) GetSections() []GetVaultMarketOrderHandlingResponseSections {
+// GetLicensor returns the Licensor field value
+func (o *GetVaultMarketIndexFeedResponse) GetLicensor() string {
 	if o == nil {
-		var ret []GetVaultMarketOrderHandlingResponseSections
+		var ret string
 		return ret
 	}
 
-	return o.Sections
+	return o.Licensor
 }
 
-// GetSectionsOk returns a tuple with the Sections field value
+// GetLicensorOk returns a tuple with the Licensor field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOrderHandlingResponse) GetSectionsOk() ([]GetVaultMarketOrderHandlingResponseSections, bool) {
+func (o *GetVaultMarketIndexFeedResponse) GetLicensorOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Sections, true
+	return &o.Licensor, true
 }
 
-// SetSections sets field value
-func (o *GetVaultMarketOrderHandlingResponse) SetSections(v []GetVaultMarketOrderHandlingResponseSections) {
-	o.Sections = v
+// SetLicensor sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetLicensor(v string) {
+	o.Licensor = v
 }
 
-func (o GetVaultMarketOrderHandlingResponse) MarshalJSON() ([]byte, error) {
+// GetDcm returns the Dcm field value
+func (o *GetVaultMarketIndexFeedResponse) GetDcm() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Dcm
+}
+
+// GetDcmOk returns a tuple with the Dcm field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetDcmOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Dcm, true
+}
+
+// SetDcm sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetDcm(v string) {
+	o.Dcm = v
+}
+
+// GetAsOf returns the AsOf field value
+func (o *GetVaultMarketIndexFeedResponse) GetAsOf() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AsOf
+}
+
+// GetAsOfOk returns a tuple with the AsOf field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetAsOfOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AsOf, true
+}
+
+// SetAsOf sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetAsOf(v string) {
+	o.AsOf = v
+}
+
+// GetIndex returns the Index field value
+func (o *GetVaultMarketIndexFeedResponse) GetIndex() GetVaultMarketIndexFeedFundingResponseIndex {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseIndex
+		return ret
+	}
+
+	return o.Index
+}
+
+// GetIndexOk returns a tuple with the Index field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetIndexOk() (*GetVaultMarketIndexFeedFundingResponseIndex, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Index, true
+}
+
+// SetIndex sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetIndex(v GetVaultMarketIndexFeedFundingResponseIndex) {
+	o.Index = v
+}
+
+// GetLevel returns the Level field value
+func (o *GetVaultMarketIndexFeedResponse) GetLevel() GetVaultMarketIndexFeedFundingResponseLevel {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseLevel
+		return ret
+	}
+
+	return o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetLevelOk() (*GetVaultMarketIndexFeedFundingResponseLevel, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Level, true
+}
+
+// SetLevel sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetLevel(v GetVaultMarketIndexFeedFundingResponseLevel) {
+	o.Level = v
+}
+
+// GetSettlement returns the Settlement field value
+func (o *GetVaultMarketIndexFeedResponse) GetSettlement() GetVaultMarketIndexFeedResponseSettlement {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedResponseSettlement
+		return ret
+	}
+
+	return o.Settlement
+}
+
+// GetSettlementOk returns a tuple with the Settlement field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetSettlementOk() (*GetVaultMarketIndexFeedResponseSettlement, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Settlement, true
+}
+
+// SetSettlement sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetSettlement(v GetVaultMarketIndexFeedResponseSettlement) {
+	o.Settlement = v
+}
+
+// GetConstituents returns the Constituents field value
+func (o *GetVaultMarketIndexFeedResponse) GetConstituents() []GetVaultMarketIndexFeedResponseConstituents {
+	if o == nil {
+		var ret []GetVaultMarketIndexFeedResponseConstituents
+		return ret
+	}
+
+	return o.Constituents
+}
+
+// GetConstituentsOk returns a tuple with the Constituents field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetConstituentsOk() ([]GetVaultMarketIndexFeedResponseConstituents, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Constituents, true
+}
+
+// SetConstituents sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetConstituents(v []GetVaultMarketIndexFeedResponseConstituents) {
+	o.Constituents = v
+}
+
+// GetFunding returns the Funding field value
+func (o *GetVaultMarketIndexFeedResponse) GetFunding() GetVaultMarketIndexFeedResponseFunding {
+	if o == nil {
+		var ret GetVaultMarketIndexFeedResponseFunding
+		return ret
+	}
+
+	return o.Funding
+}
+
+// GetFundingOk returns a tuple with the Funding field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetFundingOk() (*GetVaultMarketIndexFeedResponseFunding, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Funding, true
+}
+
+// SetFunding sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetFunding(v GetVaultMarketIndexFeedResponseFunding) {
+	o.Funding = v
+}
+
+// GetNote returns the Note field value
+func (o *GetVaultMarketIndexFeedResponse) GetNote() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponse) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Note, true
+}
+
+// SetNote sets field value
+func (o *GetVaultMarketIndexFeedResponse) SetNote(v string) {
+	o.Note = v
+}
+
+func (o GetVaultMarketIndexFeedResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["feed"] = o.Feed
+	}
 	if true {
 		toSerialize["version"] = o.Version
 	}
 	if true {
-		toSerialize["sections"] = o.Sections
+		toSerialize["licensor"] = o.Licensor
+	}
+	if true {
+		toSerialize["dcm"] = o.Dcm
+	}
+	if true {
+		toSerialize["asOf"] = o.AsOf
+	}
+	if true {
+		toSerialize["index"] = o.Index
+	}
+	if true {
+		toSerialize["level"] = o.Level
+	}
+	if true {
+		toSerialize["settlement"] = o.Settlement
+	}
+	if true {
+		toSerialize["constituents"] = o.Constituents
+	}
+	if true {
+		toSerialize["funding"] = o.Funding
+	}
+	if true {
+		toSerialize["note"] = o.Note
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketOrderHandlingResponse struct {
-	value *GetVaultMarketOrderHandlingResponse
+type NullableGetVaultMarketIndexFeedResponse struct {
+	value *GetVaultMarketIndexFeedResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketOrderHandlingResponse) Get() *GetVaultMarketOrderHandlingResponse {
+func (v NullableGetVaultMarketIndexFeedResponse) Get() *GetVaultMarketIndexFeedResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketOrderHandlingResponse) Set(val *GetVaultMarketOrderHandlingResponse) {
+func (v *NullableGetVaultMarketIndexFeedResponse) Set(val *GetVaultMarketIndexFeedResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketOrderHandlingResponse) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketOrderHandlingResponse) Unset() {
+func (v *NullableGetVaultMarketIndexFeedResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketOrderHandlingResponse(val *GetVaultMarketOrderHandlingResponse) *NullableGetVaultMarketOrderHandlingResponse {
-	return &NullableGetVaultMarketOrderHandlingResponse{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedResponse(val *GetVaultMarketIndexFeedResponse) *NullableGetVaultMarketIndexFeedResponse {
+	return &NullableGetVaultMarketIndexFeedResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketOrderHandlingResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketOrderHandlingResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketOrderHandlingResponseSections struct for GetVaultMarketOrderHandlingResponseSections
-type GetVaultMarketOrderHandlingResponseSections struct {
-	Heading string `json:"heading"`
-	Lines []string `json:"lines"`
+// GetVaultMarketIndexFeedResponseConstituents struct for GetVaultMarketIndexFeedResponseConstituents
+type GetVaultMarketIndexFeedResponseConstituents struct {
+	BookKey string `json:"bookKey"`
+	MarkCents NullableFloat32 `json:"markCents,omitempty"`
+	MarkDay NullableString `json:"markDay,omitempty"`
+	Quality string `json:"quality"`
+	Source string `json:"source"`
+	TradeCount float32 `json:"tradeCount"`
+	ConfidenceBps NullableFloat32 `json:"confidenceBps,omitempty"`
+	AsOf NullableString `json:"asOf,omitempty"`
+	Stale bool `json:"stale"`
+	PricedToday bool `json:"pricedToday"`
+	InRatio bool `json:"inRatio"`
 }
 
-// NewGetVaultMarketOrderHandlingResponseSections instantiates a new GetVaultMarketOrderHandlingResponseSections object
+// NewGetVaultMarketIndexFeedResponseConstituents instantiates a new GetVaultMarketIndexFeedResponseConstituents object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketOrderHandlingResponseSections(heading string, lines []string) *GetVaultMarketOrderHandlingResponseSections {
-	this := GetVaultMarketOrderHandlingResponseSections{}
-	this.Heading = heading
-	this.Lines = lines
+func NewGetVaultMarketIndexFeedResponseConstituents(bookKey string, quality string, source string, tradeCount float32, stale bool, pricedToday bool, inRatio bool) *GetVaultMarketIndexFeedResponseConstituents {
+	this := GetVaultMarketIndexFeedResponseConstituents{}
+	this.BookKey = bookKey
+	this.Quality = quality
+	this.Source = source
+	this.TradeCount = tradeCount
+	this.Stale = stale
+	this.PricedToday = pricedToday
+	this.InRatio = inRatio
 	return &this
 }
 
-// NewGetVaultMarketOrderHandlingResponseSectionsWithDefaults instantiates a new GetVaultMarketOrderHandlingResponseSections object
+// NewGetVaultMarketIndexFeedResponseConstituentsWithDefaults instantiates a new GetVaultMarketIndexFeedResponseConstituents object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketOrderHandlingResponseSectionsWithDefaults() *GetVaultMarketOrderHandlingResponseSections {
-	this := GetVaultMarketOrderHandlingResponseSections{}
+func NewGetVaultMarketIndexFeedResponseConstituentsWithDefaults() *GetVaultMarketIndexFeedResponseConstituents {
+	this := GetVaultMarketIndexFeedResponseConstituents{}
 	return &this
 }
 
-// GetHeading returns the Heading field value
-func (o *GetVaultMarketOrderHandlingResponseSections) GetHeading() string {
+// GetBookKey returns the BookKey field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetBookKey() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Heading
+	return o.BookKey
 }
 
-// GetHeadingOk returns a tuple with the Heading field value
+// GetBookKeyOk returns a tuple with the BookKey field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketOrderHandlingResponseSections) GetHeadingOk() (*string, bool) {
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetBookKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Heading, true
+	return &o.BookKey, true
 }
 
-// SetHeading sets field value
-func (o *GetVaultMarketOrderHandlingResponseSections) SetHeading(v string) {
-	o.Heading = v
+// SetBookKey sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetBookKey(v string) {
+	o.BookKey = v
 }
 
-// GetLines returns the Lines field value
-func (o *GetVaultMarketOrderHandlingResponseSections) GetLines() []string {
-	if o == nil {
-		var ret []string
+// GetMarkCents returns the MarkCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetMarkCents() float32 {
+	if o == nil || o.MarkCents.Get() == nil {
+		var ret float32
 		return ret
 	}
-
-	return o.Lines
+	return *o.MarkCents.Get()
 }
 
-// GetLinesOk returns a tuple with the Lines field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketOrderHandlingResponseSections) GetLinesOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Lines, true
-}
-
-// SetLines sets field value
-func (o *GetVaultMarketOrderHandlingResponseSections) SetLines(v []string) {
-	o.Lines = v
-}
-
-func (o GetVaultMarketOrderHandlingResponseSections) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["heading"] = o.Heading
-	}
-	if true {
-		toSerialize["lines"] = o.Lines
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetVaultMarketOrderHandlingResponseSections struct {
-	value *GetVaultMarketOrderHandlingResponseSections
-	isSet bool
-}
-
-func (v NullableGetVaultMarketOrderHandlingResponseSections) Get() *GetVaultMarketOrderHandlingResponseSections {
-	return v.value
-}
-
-func (v *NullableGetVaultMarketOrderHandlingResponseSections) Set(val *GetVaultMarketOrderHandlingResponseSections) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetVaultMarketOrderHandlingResponseSections) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetVaultMarketOrderHandlingResponseSections) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetVaultMarketOrderHandlingResponseSections(val *GetVaultMarketOrderHandlingResponseSections) *NullableGetVaultMarketOrderHandlingResponseSections {
-	return &NullableGetVaultMarketOrderHandlingResponseSections{value: val, isSet: true}
-}
-
-func (v NullableGetVaultMarketOrderHandlingResponseSections) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetVaultMarketOrderHandlingResponseSections) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetVaultMarketP2pDashboardResponse struct for GetVaultMarketP2pDashboardResponse
-type GetVaultMarketP2pDashboardResponse struct {
-	Gates GetVaultMarketP2pDashboardResponseGates `json:"gates"`
-	TermsVersion NullableString `json:"termsVersion,omitempty"`
-	Rules GetVaultMarketP2pDashboardResponseRules `json:"rules"`
-	Borrowing GetVaultMarketP2pDashboardResponseBorrowing `json:"borrowing"`
-	Lending GetVaultMarketP2pDashboardResponseLending `json:"lending"`
-	Offers GetVaultMarketP2pDashboardResponseOffers `json:"offers"`
-}
-
-// NewGetVaultMarketP2pDashboardResponse instantiates a new GetVaultMarketP2pDashboardResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetVaultMarketP2pDashboardResponse(gates GetVaultMarketP2pDashboardResponseGates, rules GetVaultMarketP2pDashboardResponseRules, borrowing GetVaultMarketP2pDashboardResponseBorrowing, lending GetVaultMarketP2pDashboardResponseLending, offers GetVaultMarketP2pDashboardResponseOffers) *GetVaultMarketP2pDashboardResponse {
-	this := GetVaultMarketP2pDashboardResponse{}
-	this.Gates = gates
-	this.Rules = rules
-	this.Borrowing = borrowing
-	this.Lending = lending
-	this.Offers = offers
-	return &this
-}
-
-// NewGetVaultMarketP2pDashboardResponseWithDefaults instantiates a new GetVaultMarketP2pDashboardResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketP2pDashboardResponseWithDefaults() *GetVaultMarketP2pDashboardResponse {
-	this := GetVaultMarketP2pDashboardResponse{}
-	return &this
-}
-
-// GetGates returns the Gates field value
-func (o *GetVaultMarketP2pDashboardResponse) GetGates() GetVaultMarketP2pDashboardResponseGates {
-	if o == nil {
-		var ret GetVaultMarketP2pDashboardResponseGates
-		return ret
-	}
-
-	return o.Gates
-}
-
-// GetGatesOk returns a tuple with the Gates field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponse) GetGatesOk() (*GetVaultMarketP2pDashboardResponseGates, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Gates, true
-}
-
-// SetGates sets field value
-func (o *GetVaultMarketP2pDashboardResponse) SetGates(v GetVaultMarketP2pDashboardResponseGates) {
-	o.Gates = v
-}
-
-// GetTermsVersion returns the TermsVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetVaultMarketP2pDashboardResponse) GetTermsVersion() string {
-	if o == nil || o.TermsVersion.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TermsVersion.Get()
-}
-
-// GetTermsVersionOk returns a tuple with the TermsVersion field value if set, nil otherwise
+// GetMarkCentsOk returns a tuple with the MarkCents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetVaultMarketP2pDashboardResponse) GetTermsVersionOk() (*string, bool) {
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetMarkCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.TermsVersion.Get(), o.TermsVersion.IsSet()
+	return o.MarkCents.Get(), o.MarkCents.IsSet()
 }
 
-// HasTermsVersion returns a boolean if a field has been set.
-func (o *GetVaultMarketP2pDashboardResponse) HasTermsVersion() bool {
-	if o != nil && o.TermsVersion.IsSet() {
+// HasMarkCents returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) HasMarkCents() bool {
+	if o != nil && o.MarkCents.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTermsVersion gets a reference to the given NullableString and assigns it to the TermsVersion field.
-func (o *GetVaultMarketP2pDashboardResponse) SetTermsVersion(v string) {
-	o.TermsVersion.Set(&v)
+// SetMarkCents gets a reference to the given NullableFloat32 and assigns it to the MarkCents field.
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetMarkCents(v float32) {
+	o.MarkCents.Set(&v)
 }
-// SetTermsVersionNil sets the value for TermsVersion to be an explicit nil
-func (o *GetVaultMarketP2pDashboardResponse) SetTermsVersionNil() {
-	o.TermsVersion.Set(nil)
-}
-
-// UnsetTermsVersion ensures that no value is present for TermsVersion, not even an explicit nil
-func (o *GetVaultMarketP2pDashboardResponse) UnsetTermsVersion() {
-	o.TermsVersion.Unset()
+// SetMarkCentsNil sets the value for MarkCents to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetMarkCentsNil() {
+	o.MarkCents.Set(nil)
 }
 
-// GetRules returns the Rules field value
-func (o *GetVaultMarketP2pDashboardResponse) GetRules() GetVaultMarketP2pDashboardResponseRules {
-	if o == nil {
-		var ret GetVaultMarketP2pDashboardResponseRules
+// UnsetMarkCents ensures that no value is present for MarkCents, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) UnsetMarkCents() {
+	o.MarkCents.Unset()
+}
+
+// GetMarkDay returns the MarkDay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetMarkDay() string {
+	if o == nil || o.MarkDay.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Rules
+	return *o.MarkDay.Get()
 }
 
-// GetRulesOk returns a tuple with the Rules field value
+// GetMarkDayOk returns a tuple with the MarkDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponse) GetRulesOk() (*GetVaultMarketP2pDashboardResponseRules, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetMarkDayOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Rules, true
+	return o.MarkDay.Get(), o.MarkDay.IsSet()
 }
 
-// SetRules sets field value
-func (o *GetVaultMarketP2pDashboardResponse) SetRules(v GetVaultMarketP2pDashboardResponseRules) {
-	o.Rules = v
+// HasMarkDay returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) HasMarkDay() bool {
+	if o != nil && o.MarkDay.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetBorrowing returns the Borrowing field value
-func (o *GetVaultMarketP2pDashboardResponse) GetBorrowing() GetVaultMarketP2pDashboardResponseBorrowing {
+// SetMarkDay gets a reference to the given NullableString and assigns it to the MarkDay field.
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetMarkDay(v string) {
+	o.MarkDay.Set(&v)
+}
+// SetMarkDayNil sets the value for MarkDay to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetMarkDayNil() {
+	o.MarkDay.Set(nil)
+}
+
+// UnsetMarkDay ensures that no value is present for MarkDay, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) UnsetMarkDay() {
+	o.MarkDay.Unset()
+}
+
+// GetQuality returns the Quality field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetQuality() string {
 	if o == nil {
-		var ret GetVaultMarketP2pDashboardResponseBorrowing
+		var ret string
 		return ret
 	}
 
-	return o.Borrowing
+	return o.Quality
 }
 
-// GetBorrowingOk returns a tuple with the Borrowing field value
+// GetQualityOk returns a tuple with the Quality field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponse) GetBorrowingOk() (*GetVaultMarketP2pDashboardResponseBorrowing, bool) {
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetQualityOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Borrowing, true
+	return &o.Quality, true
 }
 
-// SetBorrowing sets field value
-func (o *GetVaultMarketP2pDashboardResponse) SetBorrowing(v GetVaultMarketP2pDashboardResponseBorrowing) {
-	o.Borrowing = v
+// SetQuality sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetQuality(v string) {
+	o.Quality = v
 }
 
-// GetLending returns the Lending field value
-func (o *GetVaultMarketP2pDashboardResponse) GetLending() GetVaultMarketP2pDashboardResponseLending {
+// GetSource returns the Source field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetSource() string {
 	if o == nil {
-		var ret GetVaultMarketP2pDashboardResponseLending
+		var ret string
 		return ret
 	}
 
-	return o.Lending
+	return o.Source
 }
 
-// GetLendingOk returns a tuple with the Lending field value
+// GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponse) GetLendingOk() (*GetVaultMarketP2pDashboardResponseLending, bool) {
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetSourceOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Lending, true
+	return &o.Source, true
 }
 
-// SetLending sets field value
-func (o *GetVaultMarketP2pDashboardResponse) SetLending(v GetVaultMarketP2pDashboardResponseLending) {
-	o.Lending = v
+// SetSource sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetSource(v string) {
+	o.Source = v
 }
 
-// GetOffers returns the Offers field value
-func (o *GetVaultMarketP2pDashboardResponse) GetOffers() GetVaultMarketP2pDashboardResponseOffers {
+// GetTradeCount returns the TradeCount field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetTradeCount() float32 {
 	if o == nil {
-		var ret GetVaultMarketP2pDashboardResponseOffers
+		var ret float32
 		return ret
 	}
 
-	return o.Offers
+	return o.TradeCount
 }
 
-// GetOffersOk returns a tuple with the Offers field value
+// GetTradeCountOk returns a tuple with the TradeCount field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponse) GetOffersOk() (*GetVaultMarketP2pDashboardResponseOffers, bool) {
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetTradeCountOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Offers, true
+	return &o.TradeCount, true
 }
 
-// SetOffers sets field value
-func (o *GetVaultMarketP2pDashboardResponse) SetOffers(v GetVaultMarketP2pDashboardResponseOffers) {
-	o.Offers = v
+// SetTradeCount sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetTradeCount(v float32) {
+	o.TradeCount = v
 }
 
-func (o GetVaultMarketP2pDashboardResponse) MarshalJSON() ([]byte, error) {
+// GetConfidenceBps returns the ConfidenceBps field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetConfidenceBps() float32 {
+	if o == nil || o.ConfidenceBps.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ConfidenceBps.Get()
+}
+
+// GetConfidenceBpsOk returns a tuple with the ConfidenceBps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetConfidenceBpsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ConfidenceBps.Get(), o.ConfidenceBps.IsSet()
+}
+
+// HasConfidenceBps returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) HasConfidenceBps() bool {
+	if o != nil && o.ConfidenceBps.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConfidenceBps gets a reference to the given NullableFloat32 and assigns it to the ConfidenceBps field.
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetConfidenceBps(v float32) {
+	o.ConfidenceBps.Set(&v)
+}
+// SetConfidenceBpsNil sets the value for ConfidenceBps to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetConfidenceBpsNil() {
+	o.ConfidenceBps.Set(nil)
+}
+
+// UnsetConfidenceBps ensures that no value is present for ConfidenceBps, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) UnsetConfidenceBps() {
+	o.ConfidenceBps.Unset()
+}
+
+// GetAsOf returns the AsOf field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetAsOf() string {
+	if o == nil || o.AsOf.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AsOf.Get()
+}
+
+// GetAsOfOk returns a tuple with the AsOf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetAsOfOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AsOf.Get(), o.AsOf.IsSet()
+}
+
+// HasAsOf returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) HasAsOf() bool {
+	if o != nil && o.AsOf.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAsOf gets a reference to the given NullableString and assigns it to the AsOf field.
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetAsOf(v string) {
+	o.AsOf.Set(&v)
+}
+// SetAsOfNil sets the value for AsOf to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetAsOfNil() {
+	o.AsOf.Set(nil)
+}
+
+// UnsetAsOf ensures that no value is present for AsOf, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseConstituents) UnsetAsOf() {
+	o.AsOf.Unset()
+}
+
+// GetStale returns the Stale field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetStale() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Stale
+}
+
+// GetStaleOk returns a tuple with the Stale field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetStaleOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Stale, true
+}
+
+// SetStale sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetStale(v bool) {
+	o.Stale = v
+}
+
+// GetPricedToday returns the PricedToday field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetPricedToday() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.PricedToday
+}
+
+// GetPricedTodayOk returns a tuple with the PricedToday field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetPricedTodayOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PricedToday, true
+}
+
+// SetPricedToday sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetPricedToday(v bool) {
+	o.PricedToday = v
+}
+
+// GetInRatio returns the InRatio field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetInRatio() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.InRatio
+}
+
+// GetInRatioOk returns a tuple with the InRatio field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponseConstituents) GetInRatioOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InRatio, true
+}
+
+// SetInRatio sets field value
+func (o *GetVaultMarketIndexFeedResponseConstituents) SetInRatio(v bool) {
+	o.InRatio = v
+}
+
+func (o GetVaultMarketIndexFeedResponseConstituents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["gates"] = o.Gates
+		toSerialize["bookKey"] = o.BookKey
 	}
-	if o.TermsVersion.IsSet() {
-		toSerialize["termsVersion"] = o.TermsVersion.Get()
+	if o.MarkCents.IsSet() {
+		toSerialize["markCents"] = o.MarkCents.Get()
 	}
-	if true {
-		toSerialize["rules"] = o.Rules
-	}
-	if true {
-		toSerialize["borrowing"] = o.Borrowing
+	if o.MarkDay.IsSet() {
+		toSerialize["markDay"] = o.MarkDay.Get()
 	}
 	if true {
-		toSerialize["lending"] = o.Lending
+		toSerialize["quality"] = o.Quality
 	}
 	if true {
-		toSerialize["offers"] = o.Offers
+		toSerialize["source"] = o.Source
+	}
+	if true {
+		toSerialize["tradeCount"] = o.TradeCount
+	}
+	if o.ConfidenceBps.IsSet() {
+		toSerialize["confidenceBps"] = o.ConfidenceBps.Get()
+	}
+	if o.AsOf.IsSet() {
+		toSerialize["asOf"] = o.AsOf.Get()
+	}
+	if true {
+		toSerialize["stale"] = o.Stale
+	}
+	if true {
+		toSerialize["pricedToday"] = o.PricedToday
+	}
+	if true {
+		toSerialize["inRatio"] = o.InRatio
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketP2pDashboardResponse struct {
-	value *GetVaultMarketP2pDashboardResponse
+type NullableGetVaultMarketIndexFeedResponseConstituents struct {
+	value *GetVaultMarketIndexFeedResponseConstituents
 	isSet bool
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponse) Get() *GetVaultMarketP2pDashboardResponse {
+func (v NullableGetVaultMarketIndexFeedResponseConstituents) Get() *GetVaultMarketIndexFeedResponseConstituents {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponse) Set(val *GetVaultMarketP2pDashboardResponse) {
+func (v *NullableGetVaultMarketIndexFeedResponseConstituents) Set(val *GetVaultMarketIndexFeedResponseConstituents) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponse) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedResponseConstituents) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponse) Unset() {
+func (v *NullableGetVaultMarketIndexFeedResponseConstituents) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketP2pDashboardResponse(val *GetVaultMarketP2pDashboardResponse) *NullableGetVaultMarketP2pDashboardResponse {
-	return &NullableGetVaultMarketP2pDashboardResponse{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedResponseConstituents(val *GetVaultMarketIndexFeedResponseConstituents) *NullableGetVaultMarketIndexFeedResponseConstituents {
+	return &NullableGetVaultMarketIndexFeedResponseConstituents{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedResponseConstituents) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedResponseConstituents) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketP2pDashboardResponseBorrowing struct for GetVaultMarketP2pDashboardResponseBorrowing
-type GetVaultMarketP2pDashboardResponseBorrowing struct {
-	Loans float32 `json:"loans"`
-	OwedCents float32 `json:"owedCents"`
-	DailyInterestCents float32 `json:"dailyInterestCents"`
-	Called float32 `json:"called"`
-	Searching float32 `json:"searching"`
+// GetVaultMarketIndexFeedResponseFunding struct for GetVaultMarketIndexFeedResponseFunding
+type GetVaultMarketIndexFeedResponseFunding struct {
+	ClampBps8h float32 `json:"clampBps8h"`
+	CapBpsDay float32 `json:"capBpsDay"`
+	InterestBps8h float32 `json:"interestBps8h"`
+	PeriodsPerDay float32 `json:"periodsPerDay"`
+	Form string `json:"form"`
 }
 
-// NewGetVaultMarketP2pDashboardResponseBorrowing instantiates a new GetVaultMarketP2pDashboardResponseBorrowing object
+// NewGetVaultMarketIndexFeedResponseFunding instantiates a new GetVaultMarketIndexFeedResponseFunding object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketP2pDashboardResponseBorrowing(loans float32, owedCents float32, dailyInterestCents float32, called float32, searching float32) *GetVaultMarketP2pDashboardResponseBorrowing {
-	this := GetVaultMarketP2pDashboardResponseBorrowing{}
-	this.Loans = loans
-	this.OwedCents = owedCents
-	this.DailyInterestCents = dailyInterestCents
-	this.Called = called
-	this.Searching = searching
+func NewGetVaultMarketIndexFeedResponseFunding(clampBps8h float32, capBpsDay float32, interestBps8h float32, periodsPerDay float32, form string) *GetVaultMarketIndexFeedResponseFunding {
+	this := GetVaultMarketIndexFeedResponseFunding{}
+	this.ClampBps8h = clampBps8h
+	this.CapBpsDay = capBpsDay
+	this.InterestBps8h = interestBps8h
+	this.PeriodsPerDay = periodsPerDay
+	this.Form = form
 	return &this
 }
 
-// NewGetVaultMarketP2pDashboardResponseBorrowingWithDefaults instantiates a new GetVaultMarketP2pDashboardResponseBorrowing object
+// NewGetVaultMarketIndexFeedResponseFundingWithDefaults instantiates a new GetVaultMarketIndexFeedResponseFunding object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketP2pDashboardResponseBorrowingWithDefaults() *GetVaultMarketP2pDashboardResponseBorrowing {
-	this := GetVaultMarketP2pDashboardResponseBorrowing{}
+func NewGetVaultMarketIndexFeedResponseFundingWithDefaults() *GetVaultMarketIndexFeedResponseFunding {
+	this := GetVaultMarketIndexFeedResponseFunding{}
 	return &this
 }
 
-// GetLoans returns the Loans field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetLoans() float32 {
+// GetClampBps8h returns the ClampBps8h field value
+func (o *GetVaultMarketIndexFeedResponseFunding) GetClampBps8h() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Loans
+	return o.ClampBps8h
 }
 
-// GetLoansOk returns a tuple with the Loans field value
+// GetClampBps8hOk returns a tuple with the ClampBps8h field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetLoansOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseFunding) GetClampBps8hOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Loans, true
+	return &o.ClampBps8h, true
 }
 
-// SetLoans sets field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) SetLoans(v float32) {
-	o.Loans = v
+// SetClampBps8h sets field value
+func (o *GetVaultMarketIndexFeedResponseFunding) SetClampBps8h(v float32) {
+	o.ClampBps8h = v
 }
 
-// GetOwedCents returns the OwedCents field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetOwedCents() float32 {
+// GetCapBpsDay returns the CapBpsDay field value
+func (o *GetVaultMarketIndexFeedResponseFunding) GetCapBpsDay() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.OwedCents
+	return o.CapBpsDay
 }
 
-// GetOwedCentsOk returns a tuple with the OwedCents field value
+// GetCapBpsDayOk returns a tuple with the CapBpsDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetOwedCentsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseFunding) GetCapBpsDayOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.OwedCents, true
+	return &o.CapBpsDay, true
 }
 
-// SetOwedCents sets field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) SetOwedCents(v float32) {
-	o.OwedCents = v
+// SetCapBpsDay sets field value
+func (o *GetVaultMarketIndexFeedResponseFunding) SetCapBpsDay(v float32) {
+	o.CapBpsDay = v
 }
 
-// GetDailyInterestCents returns the DailyInterestCents field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetDailyInterestCents() float32 {
+// GetInterestBps8h returns the InterestBps8h field value
+func (o *GetVaultMarketIndexFeedResponseFunding) GetInterestBps8h() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.DailyInterestCents
+	return o.InterestBps8h
 }
 
-// GetDailyInterestCentsOk returns a tuple with the DailyInterestCents field value
+// GetInterestBps8hOk returns a tuple with the InterestBps8h field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetDailyInterestCentsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseFunding) GetInterestBps8hOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.DailyInterestCents, true
+	return &o.InterestBps8h, true
 }
 
-// SetDailyInterestCents sets field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) SetDailyInterestCents(v float32) {
-	o.DailyInterestCents = v
+// SetInterestBps8h sets field value
+func (o *GetVaultMarketIndexFeedResponseFunding) SetInterestBps8h(v float32) {
+	o.InterestBps8h = v
 }
 
-// GetCalled returns the Called field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetCalled() float32 {
+// GetPeriodsPerDay returns the PeriodsPerDay field value
+func (o *GetVaultMarketIndexFeedResponseFunding) GetPeriodsPerDay() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Called
+	return o.PeriodsPerDay
 }
 
-// GetCalledOk returns a tuple with the Called field value
+// GetPeriodsPerDayOk returns a tuple with the PeriodsPerDay field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetCalledOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseFunding) GetPeriodsPerDayOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Called, true
+	return &o.PeriodsPerDay, true
 }
 
-// SetCalled sets field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) SetCalled(v float32) {
-	o.Called = v
+// SetPeriodsPerDay sets field value
+func (o *GetVaultMarketIndexFeedResponseFunding) SetPeriodsPerDay(v float32) {
+	o.PeriodsPerDay = v
 }
 
-// GetSearching returns the Searching field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetSearching() float32 {
+// GetForm returns the Form field value
+func (o *GetVaultMarketIndexFeedResponseFunding) GetForm() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.Searching
+	return o.Form
 }
 
-// GetSearchingOk returns a tuple with the Searching field value
+// GetFormOk returns a tuple with the Form field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) GetSearchingOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseFunding) GetFormOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Searching, true
+	return &o.Form, true
 }
 
-// SetSearching sets field value
-func (o *GetVaultMarketP2pDashboardResponseBorrowing) SetSearching(v float32) {
-	o.Searching = v
+// SetForm sets field value
+func (o *GetVaultMarketIndexFeedResponseFunding) SetForm(v string) {
+	o.Form = v
 }
 
-func (o GetVaultMarketP2pDashboardResponseBorrowing) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexFeedResponseFunding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["loans"] = o.Loans
+		toSerialize["clampBps8h"] = o.ClampBps8h
 	}
 	if true {
-		toSerialize["owedCents"] = o.OwedCents
+		toSerialize["capBpsDay"] = o.CapBpsDay
 	}
 	if true {
-		toSerialize["dailyInterestCents"] = o.DailyInterestCents
+		toSerialize["interestBps8h"] = o.InterestBps8h
 	}
 	if true {
-		toSerialize["called"] = o.Called
+		toSerialize["periodsPerDay"] = o.PeriodsPerDay
 	}
 	if true {
-		toSerialize["searching"] = o.Searching
+		toSerialize["form"] = o.Form
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketP2pDashboardResponseBorrowing struct {
-	value *GetVaultMarketP2pDashboardResponseBorrowing
+type NullableGetVaultMarketIndexFeedResponseFunding struct {
+	value *GetVaultMarketIndexFeedResponseFunding
 	isSet bool
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseBorrowing) Get() *GetVaultMarketP2pDashboardResponseBorrowing {
+func (v NullableGetVaultMarketIndexFeedResponseFunding) Get() *GetVaultMarketIndexFeedResponseFunding {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseBorrowing) Set(val *GetVaultMarketP2pDashboardResponseBorrowing) {
+func (v *NullableGetVaultMarketIndexFeedResponseFunding) Set(val *GetVaultMarketIndexFeedResponseFunding) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseBorrowing) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedResponseFunding) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseBorrowing) Unset() {
+func (v *NullableGetVaultMarketIndexFeedResponseFunding) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketP2pDashboardResponseBorrowing(val *GetVaultMarketP2pDashboardResponseBorrowing) *NullableGetVaultMarketP2pDashboardResponseBorrowing {
-	return &NullableGetVaultMarketP2pDashboardResponseBorrowing{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedResponseFunding(val *GetVaultMarketIndexFeedResponseFunding) *NullableGetVaultMarketIndexFeedResponseFunding {
+	return &NullableGetVaultMarketIndexFeedResponseFunding{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseBorrowing) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedResponseFunding) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseBorrowing) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedResponseFunding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketP2pDashboardResponseGates struct for GetVaultMarketP2pDashboardResponseGates
-type GetVaultMarketP2pDashboardResponseGates struct {
-	Custody ListVaultMarketGradeToVaultItemGatesGradingRuns `json:"custody"`
-	Lending ListVaultMarketGradeToVaultItemGatesGradingRuns `json:"lending"`
+// GetVaultMarketIndexFeedResponseSettlement struct for GetVaultMarketIndexFeedResponseSettlement
+type GetVaultMarketIndexFeedResponseSettlement struct {
+	Twap NullableGetVaultMarketIndexFeedResponseSettlementTwap `json:"twap,omitempty"`
+	LastSettlementClose NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose `json:"lastSettlementClose,omitempty"`
 }
 
-// NewGetVaultMarketP2pDashboardResponseGates instantiates a new GetVaultMarketP2pDashboardResponseGates object
+// NewGetVaultMarketIndexFeedResponseSettlement instantiates a new GetVaultMarketIndexFeedResponseSettlement object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketP2pDashboardResponseGates(custody ListVaultMarketGradeToVaultItemGatesGradingRuns, lending ListVaultMarketGradeToVaultItemGatesGradingRuns) *GetVaultMarketP2pDashboardResponseGates {
-	this := GetVaultMarketP2pDashboardResponseGates{}
-	this.Custody = custody
-	this.Lending = lending
+func NewGetVaultMarketIndexFeedResponseSettlement() *GetVaultMarketIndexFeedResponseSettlement {
+	this := GetVaultMarketIndexFeedResponseSettlement{}
 	return &this
 }
 
-// NewGetVaultMarketP2pDashboardResponseGatesWithDefaults instantiates a new GetVaultMarketP2pDashboardResponseGates object
+// NewGetVaultMarketIndexFeedResponseSettlementWithDefaults instantiates a new GetVaultMarketIndexFeedResponseSettlement object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketP2pDashboardResponseGatesWithDefaults() *GetVaultMarketP2pDashboardResponseGates {
-	this := GetVaultMarketP2pDashboardResponseGates{}
+func NewGetVaultMarketIndexFeedResponseSettlementWithDefaults() *GetVaultMarketIndexFeedResponseSettlement {
+	this := GetVaultMarketIndexFeedResponseSettlement{}
 	return &this
 }
 
-// GetCustody returns the Custody field value
-func (o *GetVaultMarketP2pDashboardResponseGates) GetCustody() ListVaultMarketGradeToVaultItemGatesGradingRuns {
-	if o == nil {
-		var ret ListVaultMarketGradeToVaultItemGatesGradingRuns
+// GetTwap returns the Twap field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseSettlement) GetTwap() GetVaultMarketIndexFeedResponseSettlementTwap {
+	if o == nil || o.Twap.Get() == nil {
+		var ret GetVaultMarketIndexFeedResponseSettlementTwap
 		return ret
 	}
-
-	return o.Custody
+	return *o.Twap.Get()
 }
 
-// GetCustodyOk returns a tuple with the Custody field value
+// GetTwapOk returns a tuple with the Twap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseGates) GetCustodyOk() (*ListVaultMarketGradeToVaultItemGatesGradingRuns, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseSettlement) GetTwapOk() (*GetVaultMarketIndexFeedResponseSettlementTwap, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Custody, true
+	return o.Twap.Get(), o.Twap.IsSet()
 }
 
-// SetCustody sets field value
-func (o *GetVaultMarketP2pDashboardResponseGates) SetCustody(v ListVaultMarketGradeToVaultItemGatesGradingRuns) {
-	o.Custody = v
-}
-
-// GetLending returns the Lending field value
-func (o *GetVaultMarketP2pDashboardResponseGates) GetLending() ListVaultMarketGradeToVaultItemGatesGradingRuns {
-	if o == nil {
-		var ret ListVaultMarketGradeToVaultItemGatesGradingRuns
-		return ret
+// HasTwap returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseSettlement) HasTwap() bool {
+	if o != nil && o.Twap.IsSet() {
+		return true
 	}
 
-	return o.Lending
+	return false
 }
 
-// GetLendingOk returns a tuple with the Lending field value
+// SetTwap gets a reference to the given NullableGetVaultMarketIndexFeedResponseSettlementTwap and assigns it to the Twap field.
+func (o *GetVaultMarketIndexFeedResponseSettlement) SetTwap(v GetVaultMarketIndexFeedResponseSettlementTwap) {
+	o.Twap.Set(&v)
+}
+// SetTwapNil sets the value for Twap to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlement) SetTwapNil() {
+	o.Twap.Set(nil)
+}
+
+// UnsetTwap ensures that no value is present for Twap, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlement) UnsetTwap() {
+	o.Twap.Unset()
+}
+
+// GetLastSettlementClose returns the LastSettlementClose field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseSettlement) GetLastSettlementClose() GetVaultMarketIndexFeedFundingResponseLevelLastClose {
+	if o == nil || o.LastSettlementClose.Get() == nil {
+		var ret GetVaultMarketIndexFeedFundingResponseLevelLastClose
+		return ret
+	}
+	return *o.LastSettlementClose.Get()
+}
+
+// GetLastSettlementCloseOk returns a tuple with the LastSettlementClose field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseGates) GetLendingOk() (*ListVaultMarketGradeToVaultItemGatesGradingRuns, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseSettlement) GetLastSettlementCloseOk() (*GetVaultMarketIndexFeedFundingResponseLevelLastClose, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Lending, true
+	return o.LastSettlementClose.Get(), o.LastSettlementClose.IsSet()
 }
 
-// SetLending sets field value
-func (o *GetVaultMarketP2pDashboardResponseGates) SetLending(v ListVaultMarketGradeToVaultItemGatesGradingRuns) {
-	o.Lending = v
+// HasLastSettlementClose returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseSettlement) HasLastSettlementClose() bool {
+	if o != nil && o.LastSettlementClose.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-func (o GetVaultMarketP2pDashboardResponseGates) MarshalJSON() ([]byte, error) {
+// SetLastSettlementClose gets a reference to the given NullableGetVaultMarketIndexFeedFundingResponseLevelLastClose and assigns it to the LastSettlementClose field.
+func (o *GetVaultMarketIndexFeedResponseSettlement) SetLastSettlementClose(v GetVaultMarketIndexFeedFundingResponseLevelLastClose) {
+	o.LastSettlementClose.Set(&v)
+}
+// SetLastSettlementCloseNil sets the value for LastSettlementClose to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlement) SetLastSettlementCloseNil() {
+	o.LastSettlementClose.Set(nil)
+}
+
+// UnsetLastSettlementClose ensures that no value is present for LastSettlementClose, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlement) UnsetLastSettlementClose() {
+	o.LastSettlementClose.Unset()
+}
+
+func (o GetVaultMarketIndexFeedResponseSettlement) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["custody"] = o.Custody
+	if o.Twap.IsSet() {
+		toSerialize["twap"] = o.Twap.Get()
 	}
-	if true {
-		toSerialize["lending"] = o.Lending
+	if o.LastSettlementClose.IsSet() {
+		toSerialize["lastSettlementClose"] = o.LastSettlementClose.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketP2pDashboardResponseGates struct {
-	value *GetVaultMarketP2pDashboardResponseGates
+type NullableGetVaultMarketIndexFeedResponseSettlement struct {
+	value *GetVaultMarketIndexFeedResponseSettlement
 	isSet bool
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseGates) Get() *GetVaultMarketP2pDashboardResponseGates {
+func (v NullableGetVaultMarketIndexFeedResponseSettlement) Get() *GetVaultMarketIndexFeedResponseSettlement {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseGates) Set(val *GetVaultMarketP2pDashboardResponseGates) {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlement) Set(val *GetVaultMarketIndexFeedResponseSettlement) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseGates) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedResponseSettlement) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseGates) Unset() {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlement) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketP2pDashboardResponseGates(val *GetVaultMarketP2pDashboardResponseGates) *NullableGetVaultMarketP2pDashboardResponseGates {
-	return &NullableGetVaultMarketP2pDashboardResponseGates{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedResponseSettlement(val *GetVaultMarketIndexFeedResponseSettlement) *NullableGetVaultMarketIndexFeedResponseSettlement {
+	return &NullableGetVaultMarketIndexFeedResponseSettlement{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseGates) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedResponseSettlement) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseGates) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlement) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketP2pDashboardResponseLending struct for GetVaultMarketP2pDashboardResponseLending
-type GetVaultMarketP2pDashboardResponseLending struct {
-	Loans float32 `json:"loans"`
-	OwedToYouCents float32 `json:"owedToYouCents"`
-	DailyInterestCents float32 `json:"dailyInterestCents"`
-	Called float32 `json:"called"`
+// GetVaultMarketIndexFeedResponseSettlementTwap struct for GetVaultMarketIndexFeedResponseSettlementTwap
+type GetVaultMarketIndexFeedResponseSettlementTwap struct {
+	Day string `json:"day"`
+	Value NullableFloat32 `json:"value,omitempty"`
+	N float32 `json:"n"`
+	Complete bool `json:"complete"`
+	WindowDays float32 `json:"windowDays"`
+	Frozen bool `json:"frozen"`
 }
 
-// NewGetVaultMarketP2pDashboardResponseLending instantiates a new GetVaultMarketP2pDashboardResponseLending object
+// NewGetVaultMarketIndexFeedResponseSettlementTwap instantiates a new GetVaultMarketIndexFeedResponseSettlementTwap object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketP2pDashboardResponseLending(loans float32, owedToYouCents float32, dailyInterestCents float32, called float32) *GetVaultMarketP2pDashboardResponseLending {
-	this := GetVaultMarketP2pDashboardResponseLending{}
-	this.Loans = loans
-	this.OwedToYouCents = owedToYouCents
-	this.DailyInterestCents = dailyInterestCents
-	this.Called = called
+func NewGetVaultMarketIndexFeedResponseSettlementTwap(day string, n float32, complete bool, windowDays float32, frozen bool) *GetVaultMarketIndexFeedResponseSettlementTwap {
+	this := GetVaultMarketIndexFeedResponseSettlementTwap{}
+	this.Day = day
+	this.N = n
+	this.Complete = complete
+	this.WindowDays = windowDays
+	this.Frozen = frozen
 	return &this
 }
 
-// NewGetVaultMarketP2pDashboardResponseLendingWithDefaults instantiates a new GetVaultMarketP2pDashboardResponseLending object
+// NewGetVaultMarketIndexFeedResponseSettlementTwapWithDefaults instantiates a new GetVaultMarketIndexFeedResponseSettlementTwap object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketP2pDashboardResponseLendingWithDefaults() *GetVaultMarketP2pDashboardResponseLending {
-	this := GetVaultMarketP2pDashboardResponseLending{}
+func NewGetVaultMarketIndexFeedResponseSettlementTwapWithDefaults() *GetVaultMarketIndexFeedResponseSettlementTwap {
+	this := GetVaultMarketIndexFeedResponseSettlementTwap{}
 	return &this
 }
 
-// GetLoans returns the Loans field value
-func (o *GetVaultMarketP2pDashboardResponseLending) GetLoans() float32 {
+// GetDay returns the Day field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetDay() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Day
+}
+
+// GetDayOk returns a tuple with the Day field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Day, true
+}
+
+// SetDay sets field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetDay(v string) {
+	o.Day = v
+}
+
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetValue() float32 {
+	if o == nil || o.Value.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Value.Get()
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Value.Get(), o.Value.IsSet()
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) HasValue() bool {
+	if o != nil && o.Value.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given NullableFloat32 and assigns it to the Value field.
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetValue(v float32) {
+	o.Value.Set(&v)
+}
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) UnsetValue() {
+	o.Value.Unset()
+}
+
+// GetN returns the N field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetN() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.Loans
+	return o.N
 }
 
-// GetLoansOk returns a tuple with the Loans field value
+// GetNOk returns a tuple with the N field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseLending) GetLoansOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetNOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Loans, true
+	return &o.N, true
 }
 
-// SetLoans sets field value
-func (o *GetVaultMarketP2pDashboardResponseLending) SetLoans(v float32) {
-	o.Loans = v
+// SetN sets field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetN(v float32) {
+	o.N = v
 }
 
-// GetOwedToYouCents returns the OwedToYouCents field value
-func (o *GetVaultMarketP2pDashboardResponseLending) GetOwedToYouCents() float32 {
+// GetComplete returns the Complete field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetComplete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Complete
+}
+
+// GetCompleteOk returns a tuple with the Complete field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetCompleteOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Complete, true
+}
+
+// SetComplete sets field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetComplete(v bool) {
+	o.Complete = v
+}
+
+// GetWindowDays returns the WindowDays field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetWindowDays() float32 {
 	if o == nil {
 		var ret float32
 		return ret
 	}
 
-	return o.OwedToYouCents
+	return o.WindowDays
 }
 
-// GetOwedToYouCentsOk returns a tuple with the OwedToYouCents field value
+// GetWindowDaysOk returns a tuple with the WindowDays field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseLending) GetOwedToYouCentsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetWindowDaysOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.OwedToYouCents, true
+	return &o.WindowDays, true
 }
 
-// SetOwedToYouCents sets field value
-func (o *GetVaultMarketP2pDashboardResponseLending) SetOwedToYouCents(v float32) {
-	o.OwedToYouCents = v
+// SetWindowDays sets field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetWindowDays(v float32) {
+	o.WindowDays = v
 }
 
-// GetDailyInterestCents returns the DailyInterestCents field value
-func (o *GetVaultMarketP2pDashboardResponseLending) GetDailyInterestCents() float32 {
+// GetFrozen returns the Frozen field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetFrozen() bool {
 	if o == nil {
-		var ret float32
+		var ret bool
 		return ret
 	}
 
-	return o.DailyInterestCents
+	return o.Frozen
 }
 
-// GetDailyInterestCentsOk returns a tuple with the DailyInterestCents field value
+// GetFrozenOk returns a tuple with the Frozen field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseLending) GetDailyInterestCentsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) GetFrozenOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.DailyInterestCents, true
+	return &o.Frozen, true
 }
 
-// SetDailyInterestCents sets field value
-func (o *GetVaultMarketP2pDashboardResponseLending) SetDailyInterestCents(v float32) {
-	o.DailyInterestCents = v
+// SetFrozen sets field value
+func (o *GetVaultMarketIndexFeedResponseSettlementTwap) SetFrozen(v bool) {
+	o.Frozen = v
 }
 
-// GetCalled returns the Called field value
-func (o *GetVaultMarketP2pDashboardResponseLending) GetCalled() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Called
-}
-
-// GetCalledOk returns a tuple with the Called field value
-// and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseLending) GetCalledOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Called, true
-}
-
-// SetCalled sets field value
-func (o *GetVaultMarketP2pDashboardResponseLending) SetCalled(v float32) {
-	o.Called = v
-}
-
-func (o GetVaultMarketP2pDashboardResponseLending) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexFeedResponseSettlementTwap) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["loans"] = o.Loans
+		toSerialize["day"] = o.Day
+	}
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
 	if true {
-		toSerialize["owedToYouCents"] = o.OwedToYouCents
+		toSerialize["n"] = o.N
 	}
 	if true {
-		toSerialize["dailyInterestCents"] = o.DailyInterestCents
+		toSerialize["complete"] = o.Complete
 	}
 	if true {
-		toSerialize["called"] = o.Called
+		toSerialize["windowDays"] = o.WindowDays
+	}
+	if true {
+		toSerialize["frozen"] = o.Frozen
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketP2pDashboardResponseLending struct {
-	value *GetVaultMarketP2pDashboardResponseLending
+type NullableGetVaultMarketIndexFeedResponseSettlementTwap struct {
+	value *GetVaultMarketIndexFeedResponseSettlementTwap
 	isSet bool
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseLending) Get() *GetVaultMarketP2pDashboardResponseLending {
+func (v NullableGetVaultMarketIndexFeedResponseSettlementTwap) Get() *GetVaultMarketIndexFeedResponseSettlementTwap {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseLending) Set(val *GetVaultMarketP2pDashboardResponseLending) {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlementTwap) Set(val *GetVaultMarketIndexFeedResponseSettlementTwap) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseLending) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedResponseSettlementTwap) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseLending) Unset() {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlementTwap) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketP2pDashboardResponseLending(val *GetVaultMarketP2pDashboardResponseLending) *NullableGetVaultMarketP2pDashboardResponseLending {
-	return &NullableGetVaultMarketP2pDashboardResponseLending{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedResponseSettlementTwap(val *GetVaultMarketIndexFeedResponseSettlementTwap) *NullableGetVaultMarketIndexFeedResponseSettlementTwap {
+	return &NullableGetVaultMarketIndexFeedResponseSettlementTwap{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseLending) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedResponseSettlementTwap) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseLending) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedResponseSettlementTwap) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// GetVaultMarketP2pDashboardResponseOffers struct for GetVaultMarketP2pDashboardResponseOffers
-type GetVaultMarketP2pDashboardResponseOffers struct {
-	Open float32 `json:"open"`
-	LoansLeft float32 `json:"loansLeft"`
-	CashOfferedCents float32 `json:"cashOfferedCents"`
+// GetVaultMarketIndexFeedSettlementResponse struct for GetVaultMarketIndexFeedSettlementResponse
+type GetVaultMarketIndexFeedSettlementResponse struct {
+	Index NameSlug `json:"index"`
+	Method string `json:"method"`
+	Series []GetVaultMarketIndexFeedSettlementResponseSeries `json:"series"`
 }
 
-// NewGetVaultMarketP2pDashboardResponseOffers instantiates a new GetVaultMarketP2pDashboardResponseOffers object
+// NewGetVaultMarketIndexFeedSettlementResponse instantiates a new GetVaultMarketIndexFeedSettlementResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetVaultMarketP2pDashboardResponseOffers(open float32, loansLeft float32, cashOfferedCents float32) *GetVaultMarketP2pDashboardResponseOffers {
-	this := GetVaultMarketP2pDashboardResponseOffers{}
-	this.Open = open
-	this.LoansLeft = loansLeft
-	this.CashOfferedCents = cashOfferedCents
+func NewGetVaultMarketIndexFeedSettlementResponse(index NameSlug, method string, series []GetVaultMarketIndexFeedSettlementResponseSeries) *GetVaultMarketIndexFeedSettlementResponse {
+	this := GetVaultMarketIndexFeedSettlementResponse{}
+	this.Index = index
+	this.Method = method
+	this.Series = series
 	return &this
 }
 
-// NewGetVaultMarketP2pDashboardResponseOffersWithDefaults instantiates a new GetVaultMarketP2pDashboardResponseOffers object
+// NewGetVaultMarketIndexFeedSettlementResponseWithDefaults instantiates a new GetVaultMarketIndexFeedSettlementResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetVaultMarketP2pDashboardResponseOffersWithDefaults() *GetVaultMarketP2pDashboardResponseOffers {
-	this := GetVaultMarketP2pDashboardResponseOffers{}
+func NewGetVaultMarketIndexFeedSettlementResponseWithDefaults() *GetVaultMarketIndexFeedSettlementResponse {
+	this := GetVaultMarketIndexFeedSettlementResponse{}
 	return &this
 }
 
-// GetOpen returns the Open field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetOpen() float32 {
+// GetIndex returns the Index field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetIndex() NameSlug {
 	if o == nil {
-		var ret float32
+		var ret NameSlug
 		return ret
 	}
 
-	return o.Open
+	return o.Index
 }
 
-// GetOpenOk returns a tuple with the Open field value
+// GetIndexOk returns a tuple with the Index field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetOpenOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetIndexOk() (*NameSlug, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Open, true
+	return &o.Index, true
 }
 
-// SetOpen sets field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) SetOpen(v float32) {
-	o.Open = v
+// SetIndex sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) SetIndex(v NameSlug) {
+	o.Index = v
 }
 
-// GetLoansLeft returns the LoansLeft field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetLoansLeft() float32 {
+// GetMethod returns the Method field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetMethod() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
-	return o.LoansLeft
+	return o.Method
 }
 
-// GetLoansLeftOk returns a tuple with the LoansLeft field value
+// GetMethodOk returns a tuple with the Method field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetLoansLeftOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetMethodOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.LoansLeft, true
+	return &o.Method, true
 }
 
-// SetLoansLeft sets field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) SetLoansLeft(v float32) {
-	o.LoansLeft = v
+// SetMethod sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) SetMethod(v string) {
+	o.Method = v
 }
 
-// GetCashOfferedCents returns the CashOfferedCents field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetCashOfferedCents() float32 {
+// GetSeries returns the Series field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetSeries() []GetVaultMarketIndexFeedSettlementResponseSeries {
 	if o == nil {
-		var ret float32
+		var ret []GetVaultMarketIndexFeedSettlementResponseSeries
 		return ret
 	}
 
-	return o.CashOfferedCents
+	return o.Series
 }
 
-// GetCashOfferedCentsOk returns a tuple with the CashOfferedCents field value
+// GetSeriesOk returns a tuple with the Series field value
 // and a boolean to check if the value has been set.
-func (o *GetVaultMarketP2pDashboardResponseOffers) GetCashOfferedCentsOk() (*float32, bool) {
+func (o *GetVaultMarketIndexFeedSettlementResponse) GetSeriesOk() ([]GetVaultMarketIndexFeedSettlementResponseSeries, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CashOfferedCents, true
+	return o.Series, true
 }
 
-// SetCashOfferedCents sets field value
-func (o *GetVaultMarketP2pDashboardResponseOffers) SetCashOfferedCents(v float32) {
-	o.CashOfferedCents = v
+// SetSeries sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponse) SetSeries(v []GetVaultMarketIndexFeedSettlementResponseSeries) {
+	o.Series = v
 }
 
-func (o GetVaultMarketP2pDashboardResponseOffers) MarshalJSON() ([]byte, error) {
+func (o GetVaultMarketIndexFeedSettlementResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["open"] = o.Open
+		toSerialize["index"] = o.Index
 	}
 	if true {
-		toSerialize["loansLeft"] = o.LoansLeft
+		toSerialize["method"] = o.Method
 	}
 	if true {
-		toSerialize["cashOfferedCents"] = o.CashOfferedCents
+		toSerialize["series"] = o.Series
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetVaultMarketP2pDashboardResponseOffers struct {
-	value *GetVaultMarketP2pDashboardResponseOffers
+type NullableGetVaultMarketIndexFeedSettlementResponse struct {
+	value *GetVaultMarketIndexFeedSettlementResponse
 	isSet bool
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseOffers) Get() *GetVaultMarketP2pDashboardResponseOffers {
+func (v NullableGetVaultMarketIndexFeedSettlementResponse) Get() *GetVaultMarketIndexFeedSettlementResponse {
 	return v.value
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseOffers) Set(val *GetVaultMarketP2pDashboardResponseOffers) {
+func (v *NullableGetVaultMarketIndexFeedSettlementResponse) Set(val *GetVaultMarketIndexFeedSettlementResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseOffers) IsSet() bool {
+func (v NullableGetVaultMarketIndexFeedSettlementResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseOffers) Unset() {
+func (v *NullableGetVaultMarketIndexFeedSettlementResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetVaultMarketP2pDashboardResponseOffers(val *GetVaultMarketP2pDashboardResponseOffers) *NullableGetVaultMarketP2pDashboardResponseOffers {
-	return &NullableGetVaultMarketP2pDashboardResponseOffers{value: val, isSet: true}
+func NewNullableGetVaultMarketIndexFeedSettlementResponse(val *GetVaultMarketIndexFeedSettlementResponse) *NullableGetVaultMarketIndexFeedSettlementResponse {
+	return &NullableGetVaultMarketIndexFeedSettlementResponse{value: val, isSet: true}
 }
 
-func (v NullableGetVaultMarketP2pDashboardResponseOffers) MarshalJSON() ([]byte, error) {
+func (v NullableGetVaultMarketIndexFeedSettlementResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetVaultMarketP2pDashboardResponseOffers) UnmarshalJSON(src []byte) error {
+func (v *NullableGetVaultMarketIndexFeedSettlementResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexFeedSettlementResponseSeries struct for GetVaultMarketIndexFeedSettlementResponseSeries
+type GetVaultMarketIndexFeedSettlementResponseSeries struct {
+	Day string `json:"day"`
+	Value NullableFloat32 `json:"value,omitempty"`
+	N float32 `json:"n"`
+	Complete bool `json:"complete"`
+	WindowDays float32 `json:"windowDays"`
+	Closes []map[string]interface{} `json:"closes"`
+	FeedVersion string `json:"feedVersion"`
+}
+
+// NewGetVaultMarketIndexFeedSettlementResponseSeries instantiates a new GetVaultMarketIndexFeedSettlementResponseSeries object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexFeedSettlementResponseSeries(day string, n float32, complete bool, windowDays float32, closes []map[string]interface{}, feedVersion string) *GetVaultMarketIndexFeedSettlementResponseSeries {
+	this := GetVaultMarketIndexFeedSettlementResponseSeries{}
+	this.Day = day
+	this.N = n
+	this.Complete = complete
+	this.WindowDays = windowDays
+	this.Closes = closes
+	this.FeedVersion = feedVersion
+	return &this
+}
+
+// NewGetVaultMarketIndexFeedSettlementResponseSeriesWithDefaults instantiates a new GetVaultMarketIndexFeedSettlementResponseSeries object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexFeedSettlementResponseSeriesWithDefaults() *GetVaultMarketIndexFeedSettlementResponseSeries {
+	this := GetVaultMarketIndexFeedSettlementResponseSeries{}
+	return &this
+}
+
+// GetDay returns the Day field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetDay() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Day
+}
+
+// GetDayOk returns a tuple with the Day field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Day, true
+}
+
+// SetDay sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetDay(v string) {
+	o.Day = v
+}
+
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetValue() float32 {
+	if o == nil || o.Value.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Value.Get()
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Value.Get(), o.Value.IsSet()
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) HasValue() bool {
+	if o != nil && o.Value.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given NullableFloat32 and assigns it to the Value field.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetValue(v float32) {
+	o.Value.Set(&v)
+}
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) UnsetValue() {
+	o.Value.Unset()
+}
+
+// GetN returns the N field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetN() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.N
+}
+
+// GetNOk returns a tuple with the N field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetNOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.N, true
+}
+
+// SetN sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetN(v float32) {
+	o.N = v
+}
+
+// GetComplete returns the Complete field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetComplete() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Complete
+}
+
+// GetCompleteOk returns a tuple with the Complete field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetCompleteOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Complete, true
+}
+
+// SetComplete sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetComplete(v bool) {
+	o.Complete = v
+}
+
+// GetWindowDays returns the WindowDays field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetWindowDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.WindowDays
+}
+
+// GetWindowDaysOk returns a tuple with the WindowDays field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetWindowDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WindowDays, true
+}
+
+// SetWindowDays sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetWindowDays(v float32) {
+	o.WindowDays = v
+}
+
+// GetCloses returns the Closes field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetCloses() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+
+	return o.Closes
+}
+
+// GetClosesOk returns a tuple with the Closes field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetClosesOk() ([]map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Closes, true
+}
+
+// SetCloses sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetCloses(v []map[string]interface{}) {
+	o.Closes = v
+}
+
+// GetFeedVersion returns the FeedVersion field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetFeedVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FeedVersion
+}
+
+// GetFeedVersionOk returns a tuple with the FeedVersion field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) GetFeedVersionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeedVersion, true
+}
+
+// SetFeedVersion sets field value
+func (o *GetVaultMarketIndexFeedSettlementResponseSeries) SetFeedVersion(v string) {
+	o.FeedVersion = v
+}
+
+func (o GetVaultMarketIndexFeedSettlementResponseSeries) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["day"] = o.Day
+	}
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
+	}
+	if true {
+		toSerialize["n"] = o.N
+	}
+	if true {
+		toSerialize["complete"] = o.Complete
+	}
+	if true {
+		toSerialize["windowDays"] = o.WindowDays
+	}
+	if true {
+		toSerialize["closes"] = o.Closes
+	}
+	if true {
+		toSerialize["feedVersion"] = o.FeedVersion
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexFeedSettlementResponseSeries struct {
+	value *GetVaultMarketIndexFeedSettlementResponseSeries
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexFeedSettlementResponseSeries) Get() *GetVaultMarketIndexFeedSettlementResponseSeries {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexFeedSettlementResponseSeries) Set(val *GetVaultMarketIndexFeedSettlementResponseSeries) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexFeedSettlementResponseSeries) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexFeedSettlementResponseSeries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexFeedSettlementResponseSeries(val *GetVaultMarketIndexFeedSettlementResponseSeries) *NullableGetVaultMarketIndexFeedSettlementResponseSeries {
+	return &NullableGetVaultMarketIndexFeedSettlementResponseSeries{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexFeedSettlementResponseSeries) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexFeedSettlementResponseSeries) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexLevelResponse struct for GetVaultMarketIndexLevelResponse
+type GetVaultMarketIndexLevelResponse struct {
+	Slug string `json:"slug"`
+	Name string `json:"name"`
+	BaseValue float32 `json:"baseValue"`
+	InceptionDay NullableString `json:"inceptionDay,omitempty"`
+	Levels []GetVaultMarketIndexResponseHistory `json:"levels"`
+}
+
+// NewGetVaultMarketIndexLevelResponse instantiates a new GetVaultMarketIndexLevelResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexLevelResponse(slug string, name string, baseValue float32, levels []GetVaultMarketIndexResponseHistory) *GetVaultMarketIndexLevelResponse {
+	this := GetVaultMarketIndexLevelResponse{}
+	this.Slug = slug
+	this.Name = name
+	this.BaseValue = baseValue
+	this.Levels = levels
+	return &this
+}
+
+// NewGetVaultMarketIndexLevelResponseWithDefaults instantiates a new GetVaultMarketIndexLevelResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexLevelResponseWithDefaults() *GetVaultMarketIndexLevelResponse {
+	this := GetVaultMarketIndexLevelResponse{}
+	return &this
+}
+
+// GetSlug returns the Slug field value
+func (o *GetVaultMarketIndexLevelResponse) GetSlug() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLevelResponse) GetSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Slug, true
+}
+
+// SetSlug sets field value
+func (o *GetVaultMarketIndexLevelResponse) SetSlug(v string) {
+	o.Slug = v
+}
+
+// GetName returns the Name field value
+func (o *GetVaultMarketIndexLevelResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLevelResponse) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetVaultMarketIndexLevelResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetBaseValue returns the BaseValue field value
+func (o *GetVaultMarketIndexLevelResponse) GetBaseValue() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BaseValue
+}
+
+// GetBaseValueOk returns a tuple with the BaseValue field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLevelResponse) GetBaseValueOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BaseValue, true
+}
+
+// SetBaseValue sets field value
+func (o *GetVaultMarketIndexLevelResponse) SetBaseValue(v float32) {
+	o.BaseValue = v
+}
+
+// GetInceptionDay returns the InceptionDay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexLevelResponse) GetInceptionDay() string {
+	if o == nil || o.InceptionDay.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InceptionDay.Get()
+}
+
+// GetInceptionDayOk returns a tuple with the InceptionDay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexLevelResponse) GetInceptionDayOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InceptionDay.Get(), o.InceptionDay.IsSet()
+}
+
+// HasInceptionDay returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexLevelResponse) HasInceptionDay() bool {
+	if o != nil && o.InceptionDay.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInceptionDay gets a reference to the given NullableString and assigns it to the InceptionDay field.
+func (o *GetVaultMarketIndexLevelResponse) SetInceptionDay(v string) {
+	o.InceptionDay.Set(&v)
+}
+// SetInceptionDayNil sets the value for InceptionDay to be an explicit nil
+func (o *GetVaultMarketIndexLevelResponse) SetInceptionDayNil() {
+	o.InceptionDay.Set(nil)
+}
+
+// UnsetInceptionDay ensures that no value is present for InceptionDay, not even an explicit nil
+func (o *GetVaultMarketIndexLevelResponse) UnsetInceptionDay() {
+	o.InceptionDay.Unset()
+}
+
+// GetLevels returns the Levels field value
+func (o *GetVaultMarketIndexLevelResponse) GetLevels() []GetVaultMarketIndexResponseHistory {
+	if o == nil {
+		var ret []GetVaultMarketIndexResponseHistory
+		return ret
+	}
+
+	return o.Levels
+}
+
+// GetLevelsOk returns a tuple with the Levels field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLevelResponse) GetLevelsOk() ([]GetVaultMarketIndexResponseHistory, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Levels, true
+}
+
+// SetLevels sets field value
+func (o *GetVaultMarketIndexLevelResponse) SetLevels(v []GetVaultMarketIndexResponseHistory) {
+	o.Levels = v
+}
+
+func (o GetVaultMarketIndexLevelResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["slug"] = o.Slug
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["baseValue"] = o.BaseValue
+	}
+	if o.InceptionDay.IsSet() {
+		toSerialize["inceptionDay"] = o.InceptionDay.Get()
+	}
+	if true {
+		toSerialize["levels"] = o.Levels
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexLevelResponse struct {
+	value *GetVaultMarketIndexLevelResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexLevelResponse) Get() *GetVaultMarketIndexLevelResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexLevelResponse) Set(val *GetVaultMarketIndexLevelResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexLevelResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexLevelResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexLevelResponse(val *GetVaultMarketIndexLevelResponse) *NullableGetVaultMarketIndexLevelResponse {
+	return &NullableGetVaultMarketIndexLevelResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexLevelResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexLevelResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexLicenceUsageResponse struct for GetVaultMarketIndexLicenceUsageResponse
+type GetVaultMarketIndexLicenceUsageResponse struct {
+	Days float32 `json:"days"`
+	Usage []GetVaultMarketIndexLicenceUsageResponseUsage `json:"usage"`
+}
+
+// NewGetVaultMarketIndexLicenceUsageResponse instantiates a new GetVaultMarketIndexLicenceUsageResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexLicenceUsageResponse(days float32, usage []GetVaultMarketIndexLicenceUsageResponseUsage) *GetVaultMarketIndexLicenceUsageResponse {
+	this := GetVaultMarketIndexLicenceUsageResponse{}
+	this.Days = days
+	this.Usage = usage
+	return &this
+}
+
+// NewGetVaultMarketIndexLicenceUsageResponseWithDefaults instantiates a new GetVaultMarketIndexLicenceUsageResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexLicenceUsageResponseWithDefaults() *GetVaultMarketIndexLicenceUsageResponse {
+	this := GetVaultMarketIndexLicenceUsageResponse{}
+	return &this
+}
+
+// GetDays returns the Days field value
+func (o *GetVaultMarketIndexLicenceUsageResponse) GetDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Days
+}
+
+// GetDaysOk returns a tuple with the Days field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponse) GetDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Days, true
+}
+
+// SetDays sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponse) SetDays(v float32) {
+	o.Days = v
+}
+
+// GetUsage returns the Usage field value
+func (o *GetVaultMarketIndexLicenceUsageResponse) GetUsage() []GetVaultMarketIndexLicenceUsageResponseUsage {
+	if o == nil {
+		var ret []GetVaultMarketIndexLicenceUsageResponseUsage
+		return ret
+	}
+
+	return o.Usage
+}
+
+// GetUsageOk returns a tuple with the Usage field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponse) GetUsageOk() ([]GetVaultMarketIndexLicenceUsageResponseUsage, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Usage, true
+}
+
+// SetUsage sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponse) SetUsage(v []GetVaultMarketIndexLicenceUsageResponseUsage) {
+	o.Usage = v
+}
+
+func (o GetVaultMarketIndexLicenceUsageResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["days"] = o.Days
+	}
+	if true {
+		toSerialize["usage"] = o.Usage
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexLicenceUsageResponse struct {
+	value *GetVaultMarketIndexLicenceUsageResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponse) Get() *GetVaultMarketIndexLicenceUsageResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponse) Set(val *GetVaultMarketIndexLicenceUsageResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexLicenceUsageResponse(val *GetVaultMarketIndexLicenceUsageResponse) *NullableGetVaultMarketIndexLicenceUsageResponse {
+	return &NullableGetVaultMarketIndexLicenceUsageResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexLicenceUsageResponseUsage struct for GetVaultMarketIndexLicenceUsageResponseUsage
+type GetVaultMarketIndexLicenceUsageResponseUsage struct {
+	IndexSlug NullableString `json:"indexSlug,omitempty"`
+	Endpoint string `json:"endpoint"`
+	Dcm string `json:"dcm"`
+	Reads float32 `json:"reads"`
+	FirstAt string `json:"firstAt"`
+	LastAt string `json:"lastAt"`
+}
+
+// NewGetVaultMarketIndexLicenceUsageResponseUsage instantiates a new GetVaultMarketIndexLicenceUsageResponseUsage object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexLicenceUsageResponseUsage(endpoint string, dcm string, reads float32, firstAt string, lastAt string) *GetVaultMarketIndexLicenceUsageResponseUsage {
+	this := GetVaultMarketIndexLicenceUsageResponseUsage{}
+	this.Endpoint = endpoint
+	this.Dcm = dcm
+	this.Reads = reads
+	this.FirstAt = firstAt
+	this.LastAt = lastAt
+	return &this
+}
+
+// NewGetVaultMarketIndexLicenceUsageResponseUsageWithDefaults instantiates a new GetVaultMarketIndexLicenceUsageResponseUsage object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexLicenceUsageResponseUsageWithDefaults() *GetVaultMarketIndexLicenceUsageResponseUsage {
+	this := GetVaultMarketIndexLicenceUsageResponseUsage{}
+	return &this
+}
+
+// GetIndexSlug returns the IndexSlug field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetIndexSlug() string {
+	if o == nil || o.IndexSlug.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IndexSlug.Get()
+}
+
+// GetIndexSlugOk returns a tuple with the IndexSlug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetIndexSlugOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.IndexSlug.Get(), o.IndexSlug.IsSet()
+}
+
+// HasIndexSlug returns a boolean if a field has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) HasIndexSlug() bool {
+	if o != nil && o.IndexSlug.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIndexSlug gets a reference to the given NullableString and assigns it to the IndexSlug field.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetIndexSlug(v string) {
+	o.IndexSlug.Set(&v)
+}
+// SetIndexSlugNil sets the value for IndexSlug to be an explicit nil
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetIndexSlugNil() {
+	o.IndexSlug.Set(nil)
+}
+
+// UnsetIndexSlug ensures that no value is present for IndexSlug, not even an explicit nil
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) UnsetIndexSlug() {
+	o.IndexSlug.Unset()
+}
+
+// GetEndpoint returns the Endpoint field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetEndpoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Endpoint
+}
+
+// GetEndpointOk returns a tuple with the Endpoint field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetEndpointOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Endpoint, true
+}
+
+// SetEndpoint sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetEndpoint(v string) {
+	o.Endpoint = v
+}
+
+// GetDcm returns the Dcm field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetDcm() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Dcm
+}
+
+// GetDcmOk returns a tuple with the Dcm field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetDcmOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Dcm, true
+}
+
+// SetDcm sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetDcm(v string) {
+	o.Dcm = v
+}
+
+// GetReads returns the Reads field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetReads() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Reads
+}
+
+// GetReadsOk returns a tuple with the Reads field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetReadsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Reads, true
+}
+
+// SetReads sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetReads(v float32) {
+	o.Reads = v
+}
+
+// GetFirstAt returns the FirstAt field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetFirstAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FirstAt
+}
+
+// GetFirstAtOk returns a tuple with the FirstAt field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetFirstAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FirstAt, true
+}
+
+// SetFirstAt sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetFirstAt(v string) {
+	o.FirstAt = v
+}
+
+// GetLastAt returns the LastAt field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetLastAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastAt
+}
+
+// GetLastAtOk returns a tuple with the LastAt field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) GetLastAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LastAt, true
+}
+
+// SetLastAt sets field value
+func (o *GetVaultMarketIndexLicenceUsageResponseUsage) SetLastAt(v string) {
+	o.LastAt = v
+}
+
+func (o GetVaultMarketIndexLicenceUsageResponseUsage) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.IndexSlug.IsSet() {
+		toSerialize["indexSlug"] = o.IndexSlug.Get()
+	}
+	if true {
+		toSerialize["endpoint"] = o.Endpoint
+	}
+	if true {
+		toSerialize["dcm"] = o.Dcm
+	}
+	if true {
+		toSerialize["reads"] = o.Reads
+	}
+	if true {
+		toSerialize["firstAt"] = o.FirstAt
+	}
+	if true {
+		toSerialize["lastAt"] = o.LastAt
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexLicenceUsageResponseUsage struct {
+	value *GetVaultMarketIndexLicenceUsageResponseUsage
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponseUsage) Get() *GetVaultMarketIndexLicenceUsageResponseUsage {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponseUsage) Set(val *GetVaultMarketIndexLicenceUsageResponseUsage) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponseUsage) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponseUsage) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexLicenceUsageResponseUsage(val *GetVaultMarketIndexLicenceUsageResponseUsage) *NullableGetVaultMarketIndexLicenceUsageResponseUsage {
+	return &NullableGetVaultMarketIndexLicenceUsageResponseUsage{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexLicenceUsageResponseUsage) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexLicenceUsageResponseUsage) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponse struct for GetVaultMarketIndexMethodologyResponse
+type GetVaultMarketIndexMethodologyResponse struct {
+	Version string `json:"version"`
+	DocumentUrl string `json:"documentUrl"`
+	Administrator string `json:"administrator"`
+	Inputs string `json:"inputs"`
+	Weightings GetVaultMarketIndexMethodologyResponseWeightings `json:"weightings"`
+	Family GetVaultMarketIndexMethodologyResponseFamily `json:"family"`
+	KeyScreen GetVaultMarketIndexMethodologyResponseKeyScreen `json:"keyScreen"`
+	Engines GetVaultMarketIndexMethodologyResponseEngines `json:"engines"`
+	DailyMinPriced GetVaultMarketIndexMethodologyResponseDailyMinPriced `json:"dailyMinPriced"`
+	Revisions GetVaultMarketIndexMethodologyResponseRevisions `json:"revisions"`
+	Calendar string `json:"calendar"`
+	Governance GetVaultMarketIndexMethodologyResponseGovernance `json:"governance"`
+	Limitations string `json:"limitations"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponse instantiates a new GetVaultMarketIndexMethodologyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponse(version string, documentUrl string, administrator string, inputs string, weightings GetVaultMarketIndexMethodologyResponseWeightings, family GetVaultMarketIndexMethodologyResponseFamily, keyScreen GetVaultMarketIndexMethodologyResponseKeyScreen, engines GetVaultMarketIndexMethodologyResponseEngines, dailyMinPriced GetVaultMarketIndexMethodologyResponseDailyMinPriced, revisions GetVaultMarketIndexMethodologyResponseRevisions, calendar string, governance GetVaultMarketIndexMethodologyResponseGovernance, limitations string) *GetVaultMarketIndexMethodologyResponse {
+	this := GetVaultMarketIndexMethodologyResponse{}
+	this.Version = version
+	this.DocumentUrl = documentUrl
+	this.Administrator = administrator
+	this.Inputs = inputs
+	this.Weightings = weightings
+	this.Family = family
+	this.KeyScreen = keyScreen
+	this.Engines = engines
+	this.DailyMinPriced = dailyMinPriced
+	this.Revisions = revisions
+	this.Calendar = calendar
+	this.Governance = governance
+	this.Limitations = limitations
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseWithDefaults() *GetVaultMarketIndexMethodologyResponse {
+	this := GetVaultMarketIndexMethodologyResponse{}
+	return &this
+}
+
+// GetVersion returns the Version field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetVersionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetVersion(v string) {
+	o.Version = v
+}
+
+// GetDocumentUrl returns the DocumentUrl field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetDocumentUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DocumentUrl
+}
+
+// GetDocumentUrlOk returns a tuple with the DocumentUrl field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetDocumentUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DocumentUrl, true
+}
+
+// SetDocumentUrl sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetDocumentUrl(v string) {
+	o.DocumentUrl = v
+}
+
+// GetAdministrator returns the Administrator field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetAdministrator() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Administrator
+}
+
+// GetAdministratorOk returns a tuple with the Administrator field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetAdministratorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Administrator, true
+}
+
+// SetAdministrator sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetAdministrator(v string) {
+	o.Administrator = v
+}
+
+// GetInputs returns the Inputs field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetInputs() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Inputs
+}
+
+// GetInputsOk returns a tuple with the Inputs field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetInputsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Inputs, true
+}
+
+// SetInputs sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetInputs(v string) {
+	o.Inputs = v
+}
+
+// GetWeightings returns the Weightings field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetWeightings() GetVaultMarketIndexMethodologyResponseWeightings {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseWeightings
+		return ret
+	}
+
+	return o.Weightings
+}
+
+// GetWeightingsOk returns a tuple with the Weightings field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetWeightingsOk() (*GetVaultMarketIndexMethodologyResponseWeightings, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Weightings, true
+}
+
+// SetWeightings sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetWeightings(v GetVaultMarketIndexMethodologyResponseWeightings) {
+	o.Weightings = v
+}
+
+// GetFamily returns the Family field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetFamily() GetVaultMarketIndexMethodologyResponseFamily {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseFamily
+		return ret
+	}
+
+	return o.Family
+}
+
+// GetFamilyOk returns a tuple with the Family field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetFamilyOk() (*GetVaultMarketIndexMethodologyResponseFamily, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Family, true
+}
+
+// SetFamily sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetFamily(v GetVaultMarketIndexMethodologyResponseFamily) {
+	o.Family = v
+}
+
+// GetKeyScreen returns the KeyScreen field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetKeyScreen() GetVaultMarketIndexMethodologyResponseKeyScreen {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseKeyScreen
+		return ret
+	}
+
+	return o.KeyScreen
+}
+
+// GetKeyScreenOk returns a tuple with the KeyScreen field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetKeyScreenOk() (*GetVaultMarketIndexMethodologyResponseKeyScreen, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.KeyScreen, true
+}
+
+// SetKeyScreen sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetKeyScreen(v GetVaultMarketIndexMethodologyResponseKeyScreen) {
+	o.KeyScreen = v
+}
+
+// GetEngines returns the Engines field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetEngines() GetVaultMarketIndexMethodologyResponseEngines {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseEngines
+		return ret
+	}
+
+	return o.Engines
+}
+
+// GetEnginesOk returns a tuple with the Engines field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetEnginesOk() (*GetVaultMarketIndexMethodologyResponseEngines, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Engines, true
+}
+
+// SetEngines sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetEngines(v GetVaultMarketIndexMethodologyResponseEngines) {
+	o.Engines = v
+}
+
+// GetDailyMinPriced returns the DailyMinPriced field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetDailyMinPriced() GetVaultMarketIndexMethodologyResponseDailyMinPriced {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseDailyMinPriced
+		return ret
+	}
+
+	return o.DailyMinPriced
+}
+
+// GetDailyMinPricedOk returns a tuple with the DailyMinPriced field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetDailyMinPricedOk() (*GetVaultMarketIndexMethodologyResponseDailyMinPriced, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DailyMinPriced, true
+}
+
+// SetDailyMinPriced sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetDailyMinPriced(v GetVaultMarketIndexMethodologyResponseDailyMinPriced) {
+	o.DailyMinPriced = v
+}
+
+// GetRevisions returns the Revisions field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetRevisions() GetVaultMarketIndexMethodologyResponseRevisions {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseRevisions
+		return ret
+	}
+
+	return o.Revisions
+}
+
+// GetRevisionsOk returns a tuple with the Revisions field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetRevisionsOk() (*GetVaultMarketIndexMethodologyResponseRevisions, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Revisions, true
+}
+
+// SetRevisions sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetRevisions(v GetVaultMarketIndexMethodologyResponseRevisions) {
+	o.Revisions = v
+}
+
+// GetCalendar returns the Calendar field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetCalendar() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Calendar
+}
+
+// GetCalendarOk returns a tuple with the Calendar field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetCalendarOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Calendar, true
+}
+
+// SetCalendar sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetCalendar(v string) {
+	o.Calendar = v
+}
+
+// GetGovernance returns the Governance field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetGovernance() GetVaultMarketIndexMethodologyResponseGovernance {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseGovernance
+		return ret
+	}
+
+	return o.Governance
+}
+
+// GetGovernanceOk returns a tuple with the Governance field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetGovernanceOk() (*GetVaultMarketIndexMethodologyResponseGovernance, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Governance, true
+}
+
+// SetGovernance sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetGovernance(v GetVaultMarketIndexMethodologyResponseGovernance) {
+	o.Governance = v
+}
+
+// GetLimitations returns the Limitations field value
+func (o *GetVaultMarketIndexMethodologyResponse) GetLimitations() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Limitations
+}
+
+// GetLimitationsOk returns a tuple with the Limitations field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponse) GetLimitationsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Limitations, true
+}
+
+// SetLimitations sets field value
+func (o *GetVaultMarketIndexMethodologyResponse) SetLimitations(v string) {
+	o.Limitations = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["documentUrl"] = o.DocumentUrl
+	}
+	if true {
+		toSerialize["administrator"] = o.Administrator
+	}
+	if true {
+		toSerialize["inputs"] = o.Inputs
+	}
+	if true {
+		toSerialize["weightings"] = o.Weightings
+	}
+	if true {
+		toSerialize["family"] = o.Family
+	}
+	if true {
+		toSerialize["keyScreen"] = o.KeyScreen
+	}
+	if true {
+		toSerialize["engines"] = o.Engines
+	}
+	if true {
+		toSerialize["dailyMinPriced"] = o.DailyMinPriced
+	}
+	if true {
+		toSerialize["revisions"] = o.Revisions
+	}
+	if true {
+		toSerialize["calendar"] = o.Calendar
+	}
+	if true {
+		toSerialize["governance"] = o.Governance
+	}
+	if true {
+		toSerialize["limitations"] = o.Limitations
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponse struct {
+	value *GetVaultMarketIndexMethodologyResponse
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponse) Get() *GetVaultMarketIndexMethodologyResponse {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponse) Set(val *GetVaultMarketIndexMethodologyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponse(val *GetVaultMarketIndexMethodologyResponse) *NullableGetVaultMarketIndexMethodologyResponse {
+	return &NullableGetVaultMarketIndexMethodologyResponse{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponseDailyMinPriced struct for GetVaultMarketIndexMethodologyResponseDailyMinPriced
+type GetVaultMarketIndexMethodologyResponseDailyMinPriced struct {
+	Custom float32 `json:"custom"`
+	Brand float32 `json:"brand"`
+	Category float32 `json:"category"`
+	Segment float32 `json:"segment"`
+	Curated float32 `json:"curated"`
+	Composite float32 `json:"composite"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponseDailyMinPriced instantiates a new GetVaultMarketIndexMethodologyResponseDailyMinPriced object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponseDailyMinPriced(custom float32, brand float32, category float32, segment float32, curated float32, composite float32) *GetVaultMarketIndexMethodologyResponseDailyMinPriced {
+	this := GetVaultMarketIndexMethodologyResponseDailyMinPriced{}
+	this.Custom = custom
+	this.Brand = brand
+	this.Category = category
+	this.Segment = segment
+	this.Curated = curated
+	this.Composite = composite
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseDailyMinPricedWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponseDailyMinPriced object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseDailyMinPricedWithDefaults() *GetVaultMarketIndexMethodologyResponseDailyMinPriced {
+	this := GetVaultMarketIndexMethodologyResponseDailyMinPriced{}
+	return &this
+}
+
+// GetCustom returns the Custom field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCustom() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Custom
+}
+
+// GetCustomOk returns a tuple with the Custom field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCustomOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Custom, true
+}
+
+// SetCustom sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetCustom(v float32) {
+	o.Custom = v
+}
+
+// GetBrand returns the Brand field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetBrand() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Brand
+}
+
+// GetBrandOk returns a tuple with the Brand field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetBrandOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Brand, true
+}
+
+// SetBrand sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetBrand(v float32) {
+	o.Brand = v
+}
+
+// GetCategory returns the Category field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCategory() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Category
+}
+
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCategoryOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
+// SetCategory sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetCategory(v float32) {
+	o.Category = v
+}
+
+// GetSegment returns the Segment field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetSegment() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Segment
+}
+
+// GetSegmentOk returns a tuple with the Segment field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetSegmentOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Segment, true
+}
+
+// SetSegment sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetSegment(v float32) {
+	o.Segment = v
+}
+
+// GetCurated returns the Curated field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCurated() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Curated
+}
+
+// GetCuratedOk returns a tuple with the Curated field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCuratedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Curated, true
+}
+
+// SetCurated sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetCurated(v float32) {
+	o.Curated = v
+}
+
+// GetComposite returns the Composite field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetComposite() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Composite
+}
+
+// GetCompositeOk returns a tuple with the Composite field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) GetCompositeOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Composite, true
+}
+
+// SetComposite sets field value
+func (o *GetVaultMarketIndexMethodologyResponseDailyMinPriced) SetComposite(v float32) {
+	o.Composite = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponseDailyMinPriced) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["custom"] = o.Custom
+	}
+	if true {
+		toSerialize["brand"] = o.Brand
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["segment"] = o.Segment
+	}
+	if true {
+		toSerialize["curated"] = o.Curated
+	}
+	if true {
+		toSerialize["composite"] = o.Composite
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced struct {
+	value *GetVaultMarketIndexMethodologyResponseDailyMinPriced
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) Get() *GetVaultMarketIndexMethodologyResponseDailyMinPriced {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) Set(val *GetVaultMarketIndexMethodologyResponseDailyMinPriced) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponseDailyMinPriced(val *GetVaultMarketIndexMethodologyResponseDailyMinPriced) *NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced {
+	return &NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseDailyMinPriced) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponseEngines struct for GetVaultMarketIndexMethodologyResponseEngines
+type GetVaultMarketIndexMethodologyResponseEngines struct {
+	DailyChain string `json:"dailyChain"`
+	Tpd string `json:"tpd"`
+	RepeatSales string `json:"repeatSales"`
+	PublicationGate GetVaultMarketIndexMethodologyResponseEnginesPublicationGate `json:"publicationGate"`
+	BelowGate string `json:"belowGate"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponseEngines instantiates a new GetVaultMarketIndexMethodologyResponseEngines object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponseEngines(dailyChain string, tpd string, repeatSales string, publicationGate GetVaultMarketIndexMethodologyResponseEnginesPublicationGate, belowGate string) *GetVaultMarketIndexMethodologyResponseEngines {
+	this := GetVaultMarketIndexMethodologyResponseEngines{}
+	this.DailyChain = dailyChain
+	this.Tpd = tpd
+	this.RepeatSales = repeatSales
+	this.PublicationGate = publicationGate
+	this.BelowGate = belowGate
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseEnginesWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponseEngines object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseEnginesWithDefaults() *GetVaultMarketIndexMethodologyResponseEngines {
+	this := GetVaultMarketIndexMethodologyResponseEngines{}
+	return &this
+}
+
+// GetDailyChain returns the DailyChain field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetDailyChain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DailyChain
+}
+
+// GetDailyChainOk returns a tuple with the DailyChain field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetDailyChainOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DailyChain, true
+}
+
+// SetDailyChain sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) SetDailyChain(v string) {
+	o.DailyChain = v
+}
+
+// GetTpd returns the Tpd field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetTpd() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tpd
+}
+
+// GetTpdOk returns a tuple with the Tpd field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetTpdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Tpd, true
+}
+
+// SetTpd sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) SetTpd(v string) {
+	o.Tpd = v
+}
+
+// GetRepeatSales returns the RepeatSales field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetRepeatSales() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RepeatSales
+}
+
+// GetRepeatSalesOk returns a tuple with the RepeatSales field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetRepeatSalesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RepeatSales, true
+}
+
+// SetRepeatSales sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) SetRepeatSales(v string) {
+	o.RepeatSales = v
+}
+
+// GetPublicationGate returns the PublicationGate field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetPublicationGate() GetVaultMarketIndexMethodologyResponseEnginesPublicationGate {
+	if o == nil {
+		var ret GetVaultMarketIndexMethodologyResponseEnginesPublicationGate
+		return ret
+	}
+
+	return o.PublicationGate
+}
+
+// GetPublicationGateOk returns a tuple with the PublicationGate field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetPublicationGateOk() (*GetVaultMarketIndexMethodologyResponseEnginesPublicationGate, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PublicationGate, true
+}
+
+// SetPublicationGate sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) SetPublicationGate(v GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) {
+	o.PublicationGate = v
+}
+
+// GetBelowGate returns the BelowGate field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetBelowGate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BelowGate
+}
+
+// GetBelowGateOk returns a tuple with the BelowGate field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEngines) GetBelowGateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BelowGate, true
+}
+
+// SetBelowGate sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEngines) SetBelowGate(v string) {
+	o.BelowGate = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponseEngines) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["dailyChain"] = o.DailyChain
+	}
+	if true {
+		toSerialize["tpd"] = o.Tpd
+	}
+	if true {
+		toSerialize["repeatSales"] = o.RepeatSales
+	}
+	if true {
+		toSerialize["publicationGate"] = o.PublicationGate
+	}
+	if true {
+		toSerialize["belowGate"] = o.BelowGate
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponseEngines struct {
+	value *GetVaultMarketIndexMethodologyResponseEngines
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEngines) Get() *GetVaultMarketIndexMethodologyResponseEngines {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEngines) Set(val *GetVaultMarketIndexMethodologyResponseEngines) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEngines) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEngines) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponseEngines(val *GetVaultMarketIndexMethodologyResponseEngines) *NullableGetVaultMarketIndexMethodologyResponseEngines {
+	return &NullableGetVaultMarketIndexMethodologyResponseEngines{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEngines) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEngines) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponseEnginesPublicationGate struct for GetVaultMarketIndexMethodologyResponseEnginesPublicationGate
+type GetVaultMarketIndexMethodologyResponseEnginesPublicationGate struct {
+	Trades float32 `json:"trades"`
+	Keys float32 `json:"keys"`
+	Counterparties float32 `json:"counterparties"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponseEnginesPublicationGate instantiates a new GetVaultMarketIndexMethodologyResponseEnginesPublicationGate object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponseEnginesPublicationGate(trades float32, keys float32, counterparties float32) *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate {
+	this := GetVaultMarketIndexMethodologyResponseEnginesPublicationGate{}
+	this.Trades = trades
+	this.Keys = keys
+	this.Counterparties = counterparties
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseEnginesPublicationGateWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponseEnginesPublicationGate object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseEnginesPublicationGateWithDefaults() *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate {
+	this := GetVaultMarketIndexMethodologyResponseEnginesPublicationGate{}
+	return &this
+}
+
+// GetTrades returns the Trades field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetTrades() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Trades
+}
+
+// GetTradesOk returns a tuple with the Trades field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetTradesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Trades, true
+}
+
+// SetTrades sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) SetTrades(v float32) {
+	o.Trades = v
+}
+
+// GetKeys returns the Keys field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetKeys() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Keys
+}
+
+// GetKeysOk returns a tuple with the Keys field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetKeysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Keys, true
+}
+
+// SetKeys sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) SetKeys(v float32) {
+	o.Keys = v
+}
+
+// GetCounterparties returns the Counterparties field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetCounterparties() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Counterparties
+}
+
+// GetCounterpartiesOk returns a tuple with the Counterparties field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) GetCounterpartiesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Counterparties, true
+}
+
+// SetCounterparties sets field value
+func (o *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) SetCounterparties(v float32) {
+	o.Counterparties = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["trades"] = o.Trades
+	}
+	if true {
+		toSerialize["keys"] = o.Keys
+	}
+	if true {
+		toSerialize["counterparties"] = o.Counterparties
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate struct {
+	value *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) Get() *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) Set(val *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate(val *GetVaultMarketIndexMethodologyResponseEnginesPublicationGate) *NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate {
+	return &NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseEnginesPublicationGate) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponseFamily struct for GetVaultMarketIndexMethodologyResponseFamily
+type GetVaultMarketIndexMethodologyResponseFamily struct {
+	Composite string `json:"composite"`
+	Sectors string `json:"sectors"`
+	Segments string `json:"segments"`
+	BlueChip50 string `json:"blueChip50"`
+	Custom string `json:"custom"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponseFamily instantiates a new GetVaultMarketIndexMethodologyResponseFamily object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponseFamily(composite string, sectors string, segments string, blueChip50 string, custom string) *GetVaultMarketIndexMethodologyResponseFamily {
+	this := GetVaultMarketIndexMethodologyResponseFamily{}
+	this.Composite = composite
+	this.Sectors = sectors
+	this.Segments = segments
+	this.BlueChip50 = blueChip50
+	this.Custom = custom
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseFamilyWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponseFamily object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseFamilyWithDefaults() *GetVaultMarketIndexMethodologyResponseFamily {
+	this := GetVaultMarketIndexMethodologyResponseFamily{}
+	return &this
+}
+
+// GetComposite returns the Composite field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetComposite() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Composite
+}
+
+// GetCompositeOk returns a tuple with the Composite field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetCompositeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Composite, true
+}
+
+// SetComposite sets field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) SetComposite(v string) {
+	o.Composite = v
+}
+
+// GetSectors returns the Sectors field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetSectors() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Sectors
+}
+
+// GetSectorsOk returns a tuple with the Sectors field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetSectorsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Sectors, true
+}
+
+// SetSectors sets field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) SetSectors(v string) {
+	o.Sectors = v
+}
+
+// GetSegments returns the Segments field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetSegments() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Segments
+}
+
+// GetSegmentsOk returns a tuple with the Segments field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetSegmentsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Segments, true
+}
+
+// SetSegments sets field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) SetSegments(v string) {
+	o.Segments = v
+}
+
+// GetBlueChip50 returns the BlueChip50 field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetBlueChip50() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BlueChip50
+}
+
+// GetBlueChip50Ok returns a tuple with the BlueChip50 field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetBlueChip50Ok() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BlueChip50, true
+}
+
+// SetBlueChip50 sets field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) SetBlueChip50(v string) {
+	o.BlueChip50 = v
+}
+
+// GetCustom returns the Custom field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetCustom() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Custom
+}
+
+// GetCustomOk returns a tuple with the Custom field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseFamily) GetCustomOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Custom, true
+}
+
+// SetCustom sets field value
+func (o *GetVaultMarketIndexMethodologyResponseFamily) SetCustom(v string) {
+	o.Custom = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponseFamily) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["composite"] = o.Composite
+	}
+	if true {
+		toSerialize["sectors"] = o.Sectors
+	}
+	if true {
+		toSerialize["segments"] = o.Segments
+	}
+	if true {
+		toSerialize["blueChip50"] = o.BlueChip50
+	}
+	if true {
+		toSerialize["custom"] = o.Custom
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponseFamily struct {
+	value *GetVaultMarketIndexMethodologyResponseFamily
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseFamily) Get() *GetVaultMarketIndexMethodologyResponseFamily {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseFamily) Set(val *GetVaultMarketIndexMethodologyResponseFamily) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseFamily) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseFamily) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponseFamily(val *GetVaultMarketIndexMethodologyResponseFamily) *NullableGetVaultMarketIndexMethodologyResponseFamily {
+	return &NullableGetVaultMarketIndexMethodologyResponseFamily{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseFamily) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseFamily) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetVaultMarketIndexMethodologyResponseGovernance struct for GetVaultMarketIndexMethodologyResponseGovernance
+type GetVaultMarketIndexMethodologyResponseGovernance struct {
+	CommitteeQuorum float32 `json:"committeeQuorum"`
+	Tools []string `json:"tools"`
+	ConsultationDays float32 `json:"consultationDays"`
+	Conflicts string `json:"conflicts"`
+	Complaints string `json:"complaints"`
+}
+
+// NewGetVaultMarketIndexMethodologyResponseGovernance instantiates a new GetVaultMarketIndexMethodologyResponseGovernance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetVaultMarketIndexMethodologyResponseGovernance(committeeQuorum float32, tools []string, consultationDays float32, conflicts string, complaints string) *GetVaultMarketIndexMethodologyResponseGovernance {
+	this := GetVaultMarketIndexMethodologyResponseGovernance{}
+	this.CommitteeQuorum = committeeQuorum
+	this.Tools = tools
+	this.ConsultationDays = consultationDays
+	this.Conflicts = conflicts
+	this.Complaints = complaints
+	return &this
+}
+
+// NewGetVaultMarketIndexMethodologyResponseGovernanceWithDefaults instantiates a new GetVaultMarketIndexMethodologyResponseGovernance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetVaultMarketIndexMethodologyResponseGovernanceWithDefaults() *GetVaultMarketIndexMethodologyResponseGovernance {
+	this := GetVaultMarketIndexMethodologyResponseGovernance{}
+	return &this
+}
+
+// GetCommitteeQuorum returns the CommitteeQuorum field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetCommitteeQuorum() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CommitteeQuorum
+}
+
+// GetCommitteeQuorumOk returns a tuple with the CommitteeQuorum field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetCommitteeQuorumOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CommitteeQuorum, true
+}
+
+// SetCommitteeQuorum sets field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) SetCommitteeQuorum(v float32) {
+	o.CommitteeQuorum = v
+}
+
+// GetTools returns the Tools field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetTools() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Tools
+}
+
+// GetToolsOk returns a tuple with the Tools field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetToolsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Tools, true
+}
+
+// SetTools sets field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) SetTools(v []string) {
+	o.Tools = v
+}
+
+// GetConsultationDays returns the ConsultationDays field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetConsultationDays() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ConsultationDays
+}
+
+// GetConsultationDaysOk returns a tuple with the ConsultationDays field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetConsultationDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ConsultationDays, true
+}
+
+// SetConsultationDays sets field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) SetConsultationDays(v float32) {
+	o.ConsultationDays = v
+}
+
+// GetConflicts returns the Conflicts field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetConflicts() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Conflicts
+}
+
+// GetConflictsOk returns a tuple with the Conflicts field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetConflictsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Conflicts, true
+}
+
+// SetConflicts sets field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) SetConflicts(v string) {
+	o.Conflicts = v
+}
+
+// GetComplaints returns the Complaints field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetComplaints() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Complaints
+}
+
+// GetComplaintsOk returns a tuple with the Complaints field value
+// and a boolean to check if the value has been set.
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) GetComplaintsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Complaints, true
+}
+
+// SetComplaints sets field value
+func (o *GetVaultMarketIndexMethodologyResponseGovernance) SetComplaints(v string) {
+	o.Complaints = v
+}
+
+func (o GetVaultMarketIndexMethodologyResponseGovernance) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["committeeQuorum"] = o.CommitteeQuorum
+	}
+	if true {
+		toSerialize["tools"] = o.Tools
+	}
+	if true {
+		toSerialize["consultationDays"] = o.ConsultationDays
+	}
+	if true {
+		toSerialize["conflicts"] = o.Conflicts
+	}
+	if true {
+		toSerialize["complaints"] = o.Complaints
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetVaultMarketIndexMethodologyResponseGovernance struct {
+	value *GetVaultMarketIndexMethodologyResponseGovernance
+	isSet bool
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseGovernance) Get() *GetVaultMarketIndexMethodologyResponseGovernance {
+	return v.value
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseGovernance) Set(val *GetVaultMarketIndexMethodologyResponseGovernance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseGovernance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseGovernance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetVaultMarketIndexMethodologyResponseGovernance(val *GetVaultMarketIndexMethodologyResponseGovernance) *NullableGetVaultMarketIndexMethodologyResponseGovernance {
+	return &NullableGetVaultMarketIndexMethodologyResponseGovernance{value: val, isSet: true}
+}
+
+func (v NullableGetVaultMarketIndexMethodologyResponseGovernance) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetVaultMarketIndexMethodologyResponseGovernance) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

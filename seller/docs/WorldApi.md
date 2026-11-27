@@ -4,6 +4,10 @@ All URIs are relative to *https://crossly.net/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateGamePackBreak**](WorldApi.md#CreateGamePackBreak) | **Post** /v1/games/pack-break | Pack Break: your open pack of five real market pieces, or a fresh one. No prices until you pick.
+[**CreateGamePackBreakPick**](WorldApi.md#CreateGamePackBreakPick) | **Post** /v1/games/pack-break/{id}/pick | Pick the pull you think is worth the most: every lowest open ask is revealed, and a win earns a fee-back coupon.
+[**CreateShowroom**](WorldApi.md#CreateShowroom) | **Post** /v1/showrooms | Add a showroom. The first is included; an extra one has a monthly fee and is added in the dashboard (402 world_payment_failed here).
+[**CreateShowroomPlacement**](WorldApi.md#CreateShowroomPlacement) | **Post** /v1/showrooms/{id}/placement | Stand a showroom on a plot your store owns or rents (403 when it does not; 409 when another showroom stands there).
 [**CreateSpatialInviteAccept**](WorldApi.md#CreateSpatialInviteAccept) | **Post** /v1/spatial/invites/accept | Redeem an invite code (dashes optional); returns the room it opens.
 [**CreateSpatialPropertyLeaseWithdraw**](WorldApi.md#CreateSpatialPropertyLeaseWithdraw) | **Post** /v1/spatial/property/leases/{id}/withdraw | Withdraw a lease offer nobody has accepted yet.
 [**CreateSpatialScene**](WorldApi.md#CreateSpatialScene) | **Post** /v1/spatial/scenes | Start a 3D room: a collection (your items on shelves) or a warehouse (racks you arrange). Private until you make it public.
@@ -16,9 +20,9 @@ Method | HTTP request | Description
 [**CreateSpatialSceneUnpin**](WorldApi.md#CreateSpatialSceneUnpin) | **Post** /v1/spatial/scenes/{id}/unpin | Clear every pin in one of your rooms, so it arranges itself again.
 [**CreateSpatialSceneVisibility**](WorldApi.md#CreateSpatialSceneVisibility) | **Post** /v1/spatial/scenes/{id}/visibility | Make one of your rooms private, unlisted (anyone with the link) or public (in the lobby and searchable).
 [**CreateSpatialSceneWarehouseStock**](WorldApi.md#CreateSpatialSceneWarehouseStock) | **Post** /v1/spatial/scenes/{id}/warehouse/stock | Put an inventory item (or unit) on a rack in one of your warehouse rooms.
-[**CreateSpatialShopNeighbourhood**](WorldApi.md#CreateSpatialShopNeighbourhood) | **Post** /v1/spatial/shop/neighbourhood | Move your shop to another neighbourhood (by slug).
 [**CreateSpatialStreetApply**](WorldApi.md#CreateSpatialStreetApply) | **Post** /v1/spatial/streets/{slug}/apply | Ask to open your shop on a street whose owner reviews applications.
 [**CreateSpatialStreetInvite**](WorldApi.md#CreateSpatialStreetInvite) | **Post** /v1/spatial/streets/{slug}/invite | Invite a shop (by its slug) to open on a street you own.
+[**CreateWorldAttendantTestChat**](WorldApi.md#CreateWorldAttendantTestChat) | **Post** /v1/world/attendant/test-chat | One test answer from your AI attendant, on your own AI key (409 ai_key_required without one).
 [**CreateWorldAvatarEquip**](WorldApi.md#CreateWorldAvatarEquip) | **Post** /v1/world/avatar/equip | Wear something you already own -- exactly ONE of { cosmeticId } (a cosmetic you hold), { receiptId } (a Crossly purchase from your closet) or { inventoryItemId } (your own stock). The slot comes from the thing itself; slot is only a fallback for an item with no catalog shape. Replaces whatever was in that slot. Moves no money. Answers the slot and your loadout after the change.
 [**CreateWorldAvatarUnequip**](WorldApi.md#CreateWorldAvatarUnequip) | **Post** /v1/world/avatar/unequip | Take off whatever is in one slot. Idempotent: an empty slot answers removed:false. Answers your loadout after the change.
 [**CreateWorldAvatarWearable**](WorldApi.md#CreateWorldAvatarWearable) | **Post** /v1/world/avatar/wearables | Author a wearable for a body slot (a mesh profile and params, an asking price in COSM base units as a string). A submission: inactive until an operator approves it.
@@ -28,8 +32,15 @@ Method | HTTP request | Description
 [**CreateWorldConvention**](WorldApi.md#CreateWorldConvention) | **Post** /v1/world/conventions | Host a convention in one of your rooms: title, dates, tables and how sellers get one (invite, free, a fee in cents, or a revenue share in basis points).
 [**CreateWorldConventionAccept**](WorldApi.md#CreateWorldConventionAccept) | **Post** /v1/world/conventions/{id}/accept | Accept: your own invitation (no body), or, as host, an application (username).
 [**CreateWorldConventionApply**](WorldApi.md#CreateWorldConventionApply) | **Post** /v1/world/conventions/{id}/apply | Ask for a table at a convention.
+[**CreateWorldConventionBoothApply**](WorldApi.md#CreateWorldConventionBoothApply) | **Post** /v1/world/conventions/{id}/booths/apply | Apply for a booth tier (or book it at once in open mode): { tierId, note?, categories? }.
+[**CreateWorldConventionBoothFee**](WorldApi.md#CreateWorldConventionBoothFee) | **Post** /v1/world/conventions/{id}/booth-fee | Pay your booth fee to the organiser on a Worlds rail: { rail: \&quot;cash\&quot; | \&quot;cbx\&quot; }. Once per booth. Full-access token and Idempotency-Key required.
+[**CreateWorldConventionCheckIn**](WorldApi.md#CreateWorldConventionCheckIn) | **Post** /v1/world/conventions/{id}/check-in | Check in: the organiser names { exhibitorId }; an exhibitor checks themselves in with {}.
+[**CreateWorldConventionFull**](WorldApi.md#CreateWorldConventionFull) | **Post** /v1/world/conventions/full | Create a convention in full: venue + days (rented and paid now on the rail), hours, theme, booth tiers and prices, application or open booking, seller limits, promotion. Full-access token and Idempotency-Key required.
 [**CreateWorldConventionInvite**](WorldApi.md#CreateWorldConventionInvite) | **Post** /v1/world/conventions/{id}/invite | Invite a seller (by shop handle) to a convention you host.
+[**CreateWorldConventionMessage**](WorldApi.md#CreateWorldConventionMessage) | **Post** /v1/world/conventions/{id}/messages | Send a convention message: { body, toUserId? }. The organiser writes to one seller or every seller; an exhibitor writes to the organiser.
 [**CreateWorldConventionPaid**](WorldApi.md#CreateWorldConventionPaid) | **Post** /v1/world/conventions/{id}/paid | As host, record that a seller (username) paid their table fee off-platform. Moves no money.
+[**CreateWorldConventionSellerAssign**](WorldApi.md#CreateWorldConventionSellerAssign) | **Post** /v1/world/conventions/{id}/sellers/assign | Move an accepted seller to another booth of their tier (swaps with whoever is there): { exhibitorId, boothKey }.
+[**CreateWorldConventionSellerDecide**](WorldApi.md#CreateWorldConventionSellerDecide) | **Post** /v1/world/conventions/{id}/sellers/decide | Approve (terms frozen, a booth assigned) or decline an application: { exhibitorId, decision }.
 [**CreateWorldConventionWithdraw**](WorldApi.md#CreateWorldConventionWithdraw) | **Post** /v1/world/conventions/{id}/withdraw | Withdraw your table or decline your invitation; as host, decline someone (username).
 [**CreateWorldCrew**](WorldApi.md#CreateWorldCrew) | **Post** /v1/world/crews | Start a crew you own: { name (2-32 chars), tag (2-5 letters or digits, shown on members&#39; nameplates) }. Answers its id and join code. 409 when you are already in a crew.
 [**CreateWorldCrewChat**](WorldApi.md#CreateWorldCrewChat) | **Post** /v1/world/crew/chat | Say a line to your crew (body: text, up to 400 characters). Returns data.messages, the crew chat ring (the last 50 lines, kept in memory only), and data.said when your line went out; a blocked or too-quick line is dropped silently. 404 when you are in no crew.
@@ -43,6 +54,10 @@ Method | HTTP request | Description
 [**CreateWorldFriendInvite**](WorldApi.md#CreateWorldFriendInvite) | **Post** /v1/world/friends/{userId}/invite | \&quot;Join me\&quot;: send one friend (a mutual follow) a notification with a link to the PUBLIC room you name by slug. 404 when they are not a friend or the room is not public; 429 when you invited them in the last minute.
 [**CreateWorldGamePackage**](WorldApi.md#CreateWorldGamePackage) | **Post** /v1/world/games/packages | Submit a game package version for review: files as { path, base64 } (game.json, thumb.png, logic/, scene/, audio/, images/). Checked like the CLI, assets quarantined, the entry document dry-run, then reviewed by a person.
 [**CreateWorldGamePackageCheck**](WorldApi.md#CreateWorldGamePackageCheck) | **Post** /v1/world/games/packages/check | Validate a game package exactly as a submission is checked (the shared intake report, your version still free) without storing, uploading or queuing anything: world-kit validate for an agent. Same files body as submit.
+[**CreateWorldGamePackagePublish**](WorldApi.md#CreateWorldGamePackagePublish) | **Post** /v1/world/games/packages/{id}/publish | Make an approved version the one every placed copy runs (rollback or roll-forward; running copies restart on it) and list the game again if it was unpublished. Body { version }. Starter seller plan or higher.
+[**CreateWorldGamePackageRestore**](WorldApi.md#CreateWorldGamePackageRestore) | **Post** /v1/world/games/packages/{id}/restore | Restore a deleted Classic game within 30 days (it comes back unpublished).
+[**CreateWorldGamePackageUnpublish**](WorldApi.md#CreateWorldGamePackageUnpublish) | **Post** /v1/world/games/packages/{id}/unpublish | Take a Classic game off the Game Directory and the Carnival Plaza launcher, its store off sale. Copies people already placed keep running. Needs no plan: a lapsed creator can always take a game down.
+[**CreateWorldGamePackageVersionSubmit**](WorldApi.md#CreateWorldGamePackageVersionSubmit) | **Post** /v1/world/games/packages/{id}/versions/{semver}/submit | Send a draft version (uploaded with submit: false) to review: the same static check, sandbox dry run and human review as an upload. Starter seller plan or higher.
 [**CreateWorldGameRating**](WorldApi.md#CreateWorldGameRating) | **Post** /v1/world/games/{id}/rating | Rate a game you played, 1 to 5 stars (rating again replaces it). Only players the runner recorded in that game can rate it.
 [**CreateWorldGameReport**](WorldApi.md#CreateWorldGameReport) | **Post** /v1/world/games/{id}/report | Report a game: reason broken | unfair | offensive | scam | other, optional detail. Staff review it; the creator is told the reason, never who.
 [**CreateWorldGameStoreCheckout**](WorldApi.md#CreateWorldGameStoreCheckout) | **Post** /v1/world/games/{id}/store/{item}/checkout | Buy an item or pass from a game store: answers a client secret for the payment; the item is yours once it succeeds.
@@ -52,7 +67,7 @@ Method | HTTP request | Description
 [**CreateWorldHomeGuestbook**](WorldApi.md#CreateWorldHomeGuestbook) | **Post** /v1/world/homes/{slug}/guestbook | Sign a home guestbook (one short line).
 [**CreateWorldHomeGuestbookReport**](WorldApi.md#CreateWorldHomeGuestbookReport) | **Post** /v1/world/homes/{slug}/guestbook/{id}/report | Report a guestbook entry to moderation.
 [**CreateWorldHuntStart**](WorldApi.md#CreateWorldHuntStart) | **Post** /v1/world/hunt/start | Start the Great Hunt this season by reading its first riddle (the Copper key&#39;s). Idempotent: starting again answers your progress unchanged. Answers the same shape as GET /v1/world/hunt. 409 when no season is running.
-[**CreateWorldInteractiveAsset**](WorldApi.md#CreateWorldInteractiveAsset) | **Post** /v1/world/interactive/assets | Upload one asset for your designs: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64. Answers its sha256 and the path to reference from MML.
+[**CreateWorldInteractiveAsset**](WorldApi.md#CreateWorldInteractiveAsset) | **Post** /v1/world/interactive/assets | Upload one asset: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64; purpose product (your designs, the default) or game (Carnival Studio files such as badge icons). Answers its sha256 and the path to reference from MML.
 [**CreateWorldInteractiveDesign**](WorldApi.md#CreateWorldInteractiveDesign) | **Post** /v1/world/interactive/designs | Create an interactive design: name, footprint (s, m, l or f), optional tint and description, an asking price in COSM base units (a string, six decimals) and optional max supply. Inactive until ops approve a submitted version.
 [**CreateWorldInteractiveDesignCheck**](WorldApi.md#CreateWorldInteractiveDesignCheck) | **Post** /v1/world/interactive/designs/{id}/check | Check the draft: static rules, that every referenced upload exists, and a sandboxed dry run. Budgeted per person.
 [**CreateWorldInteractiveDesignPreview**](WorldApi.md#CreateWorldInteractiveDesignPreview) | **Post** /v1/world/interactive/designs/{id}/preview | A private preview token for the draft (author only) and the socket path that runs it. Budgeted per person.
@@ -61,6 +76,9 @@ Method | HTTP request | Description
 [**CreateWorldJobAppraisalAnswer**](WorldApi.md#CreateWorldJobAppraisalAnswer) | **Post** /v1/world/jobs/appraisals/{id}/answers | Answer a price check: your estimate of the item value in CENTS and an optional note. Moves no money; the asker may accept it.
 [**CreateWorldJobShiftClaim**](WorldApi.md#CreateWorldJobShiftClaim) | **Post** /v1/world/jobs/shifts/{id}/claim | Claim an open shift. You work it by being in the place while it runs.
 [**CreateWorldJobShiftRelease**](WorldApi.md#CreateWorldJobShiftRelease) | **Post** /v1/world/jobs/shifts/{id}/release | Give a shift you claimed back to the board.
+[**CreateWorldMarketBuy**](WorldApi.md#CreateWorldMarketBuy) | **Post** /v1/world/market/{kind}/{id}/buy | Buy a plot or a street.
+[**CreateWorldMarketListing**](WorldApi.md#CreateWorldMarketListing) | **Post** /v1/world/market/listings | List a plot for sale or rent, or a street for sale.
+[**CreateWorldMarketPlotRent**](WorldApi.md#CreateWorldMarketPlotRent) | **Post** /v1/world/market/plot/{id}/rent | Rent a plot offered for lease.
 [**CreateWorldOutfit**](WorldApi.md#CreateWorldOutfit) | **Post** /v1/world/outfits | Save what you are wearing now as a named look: { name (1-32 chars), appearance? (skin, hair, hairColour, eyes, build -- unknown keys fall back to the default) }. Each worn thing is recorded as the door it goes back on by; one that no longer traces to something you own is listed in skipped and not saved. 409 when you already keep 6.
 [**CreateWorldOutfitApply**](WorldApi.md#CreateWorldOutfitApply) | **Post** /v1/world/outfits/{id}/apply | Put a saved look on. Every item goes through the same equip as POST /v1/world/avatar/equip, so ownership still holds: something you no longer own is listed in skipped with the reason and not worn. Slots the look left empty are emptied (cleared). Answers the appearance of the look (for your character -- appearance lives on your device), applied, skipped and cleared. Moves no money.
 [**CreateWorldParty**](WorldApi.md#CreateWorldParty) | **Post** /v1/world/parties | Start a party with you as leader (up to 8 members).
@@ -74,6 +92,9 @@ Method | HTTP request | Description
 [**CreateWorldPartyWishlist**](WorldApi.md#CreateWorldPartyWishlist) | **Post** /v1/world/parties/{id}/wishlist | Add a listing (listingId, or its shop slug) to the party wishlist; answers the wishlist.
 [**CreateWorldPartyWishlistVote**](WorldApi.md#CreateWorldPartyWishlistVote) | **Post** /v1/world/parties/{id}/wishlist/{listingId}/vote | Thumb a wishlist listing up or down (null clears your vote); answers the wishlist.
 [**CreateWorldPlaceItemWant**](WorldApi.md#CreateWorldPlaceItemWant) | **Post** /v1/world/places/{slug}/items/{itemId}/want | Tell a room owner you would buy one of their items (once per person per item; they see the count). Moves no money.
+[**CreateWorldPropertyPlotPhotoUploadUrl**](WorldApi.md#CreateWorldPropertyPlotPhotoUploadUrl) | **Post** /v1/world/property/plots/{plotId}/photo/upload-url | A presigned upload for a plot&#39;s photo (WebP/PNG/JPEG, up to 4 MB): PUT the image to uploadUrl with the same Content-Type and exact Content-Length, then store publicUrl with PUT .../photo.
+[**CreateWorldPropertyPlotShowroom**](WorldApi.md#CreateWorldPropertyPlotShowroom) | **Post** /v1/world/property/plots/{plotId}/showroom | Stand one of your showrooms on a plot you own or rent.
+[**CreateWorldPropertyTrespassed**](WorldApi.md#CreateWorldPropertyTrespassed) | **Post** /v1/world/property/trespassed | Ban someone owner-wide or from one showroom.
 [**CreateWorldSpace**](WorldApi.md#CreateWorldSpace) | **Post** /v1/world/spaces | Open a Space (sellers only, at most two): slug, name, venue, optional membership and about.
 [**CreateWorldSpaceEvent**](WorldApi.md#CreateWorldSpaceEvent) | **Post** /v1/world/spaces/{slug}/events | As host or co-host, put an event on: title, kind, optional about, ISO start and end with offset.
 [**CreateWorldSpaceEventRsvp**](WorldApi.md#CreateWorldSpaceEventRsvp) | **Post** /v1/world/spaces/{slug}/events/{id}/rsvp | Say whether you are going to an event.
@@ -82,6 +103,16 @@ Method | HTTP request | Description
 [**CreateWorldSpaceLeave**](WorldApi.md#CreateWorldSpaceLeave) | **Post** /v1/world/spaces/{slug}/leave | Leave a Space.
 [**CreateWorldSpaceRequestByUserId**](WorldApi.md#CreateWorldSpaceRequestByUserId) | **Post** /v1/world/spaces/{slug}/requests/{userId} | As host or co-host, accept or turn down a request to join.
 [**CreateWorldSpaceRole**](WorldApi.md#CreateWorldSpaceRole) | **Post** /v1/world/spaces/{slug}/role | As host, make a member a co-host or back to a member.
+[**CreateWorldStaffApplicationDecide**](WorldApi.md#CreateWorldStaffApplicationDecide) | **Post** /v1/world/staff/applications/{id}/decide | Accept or decline an application.
+[**CreateWorldStaffAssignmentRateWorker**](WorldApi.md#CreateWorldStaffAssignmentRateWorker) | **Post** /v1/world/staff/assignments/{id}/rate-worker | Rate the worker of one of your seats.
+[**CreateWorldStaffPosting**](WorldApi.md#CreateWorldStaffPosting) | **Post** /v1/world/staff/postings | Post a job: a showroom, stall or convention, pay, recurrence and rules.
+[**CreateWorldStaffPostingStatus**](WorldApi.md#CreateWorldStaffPostingStatus) | **Post** /v1/world/staff/postings/{id}/status | Open, pause or close a posting.
+[**CreateWorldStreetOwnedUpkeepPay**](WorldApi.md#CreateWorldStreetOwnedUpkeepPay) | **Post** /v1/world/streets/owned/{id}/upkeep/pay | Pay your street&#39;s upkeep forward.
+[**CreateWorldVenueBookingCancel**](WorldApi.md#CreateWorldVenueBookingCancel) | **Post** /v1/world/venue-bookings/{id}/cancel | Cancel a hall rental: the whole rent back until 7 days before the first day, nothing after.
+[**CreateWorldWorkAssignmentRateEmployer**](WorldApi.md#CreateWorldWorkAssignmentRateEmployer) | **Post** /v1/world/work/assignments/{id}/rate-employer | Rate the employer of a public-job shift you worked: paid on time, job as described, conduct.
+[**CreateWorldWorkPostingApply**](WorldApi.md#CreateWorldWorkPostingApply) | **Post** /v1/world/work/postings/{id}/apply | Apply for a job.
+[**DeleteShowroom**](WorldApi.md#DeleteShowroom) | **Delete** /v1/showrooms/{id} | Archive a showroom: private, off its plots, billing stopped. Never deletes; the primary cannot be archived (409 showroom_primary).
+[**DeleteShowroomPlacement**](WorldApi.md#DeleteShowroomPlacement) | **Delete** /v1/showrooms/{id}/placement/{plotId} | Take a showroom off a plot (the plot stays yours).
 [**DeleteSpatialSceneGrant**](WorldApi.md#DeleteSpatialSceneGrant) | **Delete** /v1/spatial/scenes/{id}/grants/{grantId} | Take somebody&#39;s access to your room away, or kill an invite nobody has used yet.
 [**DeleteSpatialSceneNode**](WorldApi.md#DeleteSpatialSceneNode) | **Delete** /v1/spatial/scenes/{id}/nodes | Remove units (by id, up to 500) from one of your warehouse rooms.
 [**DeleteSpatialSceneWarehouseStock**](WorldApi.md#DeleteSpatialSceneWarehouseStock) | **Delete** /v1/spatial/scenes/{id}/warehouse/stock | Take an inventory item (or unit) off its rack.
@@ -89,36 +120,53 @@ Method | HTTP request | Description
 [**DeleteWorldBlock**](WorldApi.md#DeleteWorldBlock) | **Delete** /v1/world/blocks/{id} | Unblock somebody (by the block id from GET /v1/world/blocks).
 [**DeleteWorldCollectionCapability**](WorldApi.md#DeleteWorldCollectionCapability) | **Delete** /v1/world/collections/{chain}/{contract}/capabilities | Withdraw your declaration for a collection.
 [**DeleteWorldFollow**](WorldApi.md#DeleteWorldFollow) | **Delete** /v1/world/follows/{userId} | Unfollow somebody. Idempotent.
+[**DeleteWorldGamePackage**](WorldApi.md#DeleteWorldGamePackage) | **Delete** /v1/world/games/packages/{id} | Delete a Classic game: unpublished, then a tombstone restorable for 30 days.
 [**DeleteWorldHallLoan**](WorldApi.md#DeleteWorldHallLoan) | **Delete** /v1/world/hall/loans/{id} | Take one of your loans off show in the Hall of Grails.
 [**DeleteWorldHomeGuestbook**](WorldApi.md#DeleteWorldHomeGuestbook) | **Delete** /v1/world/homes/{slug}/guestbook/{id} | As the home owner, hide a guestbook entry.
 [**DeleteWorldInteractiveDesign**](WorldApi.md#DeleteWorldInteractiveDesign) | **Delete** /v1/world/interactive/designs/{id} | Delete a draft design, or archive a submitted one (off sale; owned copies keep working).
 [**DeleteWorldJobShift**](WorldApi.md#DeleteWorldJobShift) | **Delete** /v1/world/jobs/shifts/{id} | Cancel a shift you posted that nobody has worked yet.
+[**DeleteWorldMarketListing**](WorldApi.md#DeleteWorldMarketListing) | **Delete** /v1/world/market/listings/{kind}/{id}/{mode} | Withdraw a plot or street from the Market.
 [**DeleteWorldOutfit**](WorldApi.md#DeleteWorldOutfit) | **Delete** /v1/world/outfits/{id} | Delete a saved look. 404 when it is not yours.
 [**DeleteWorldPartyWishlist**](WorldApi.md#DeleteWorldPartyWishlist) | **Delete** /v1/world/parties/{id}/wishlist/{listingId} | Take a listing you added off the party wishlist; answers the wishlist.
 [**DeleteWorldPlaceBan**](WorldApi.md#DeleteWorldPlaceBan) | **Delete** /v1/world/places/{slug}/bans/{userId} | Lift a ban from a place you own; they can walk in again right away.
+[**DeleteWorldPropertyPlotShowroom**](WorldApi.md#DeleteWorldPropertyPlotShowroom) | **Delete** /v1/world/property/plots/{plotId}/showroom | Take the showroom off a plot.
+[**DeleteWorldPropertyTrespassed**](WorldApi.md#DeleteWorldPropertyTrespassed) | **Delete** /v1/world/property/trespassed/{userId} | Lift a ban.
 [**DeleteWorldSpace**](WorldApi.md#DeleteWorldSpace) | **Delete** /v1/world/spaces/{slug} | As host, close a Space.
 [**DeleteWorldSpaceEvent**](WorldApi.md#DeleteWorldSpaceEvent) | **Delete** /v1/world/spaces/{slug}/events/{id} | As host or co-host, cancel an event.
+[**DeleteWorldStaffAssignment**](WorldApi.md#DeleteWorldStaffAssignment) | **Delete** /v1/world/staff/assignments/{id} | Take a worker off a seat that has not started.
+[**GetShowroom**](WorldApi.md#GetShowroom) | **Get** /v1/showroom | Your store&#39;s showroom in Crossly World: the room and its look, fixtures with their slot grids, where every item stands (pinned by a person or placed automatically), sharing settings and the stock that can stand there. The ETag is the version.
+[**GetShowroomBilling**](WorldApi.md#GetShowroomBilling) | **Get** /v1/showrooms/{id}/billing | A showroom&#39;s billing: included, active (paid through), past due or cancelled, and the rails a payment can use.
+[**GetShowroomById**](WorldApi.md#GetShowroomById) | **Get** /v1/showrooms/{id} | One showroom: room and look, fixtures (with holders), placements, settings (hours, auto-include) and stock. The ETag is the version.
+[**GetShowroomCatalog**](WorldApi.md#GetShowroomCatalog) | **Get** /v1/showroom/catalog | Everything a showroom can be made of: fixture displays (kind, slots per unit), room sizes, themes, surfaces, shopfronts, facades, sign styles and fonts, window moods, and &#x60;holders&#x60;: every fixture holder with &#x60;owned&#x60; (free, or a premium one you bought in the in-world cosmetics market; an unowned premium holder is refused with holder_not_owned).
+[**GetShowroomPlacement**](WorldApi.md#GetShowroomPlacement) | **Get** /v1/showrooms/{id}/placement | The plots a showroom stands on, and the plots your store owns or rents that it could stand on.
 [**GetSpatialSceneAttention**](WorldApi.md#GetSpatialSceneAttention) | **Get** /v1/spatial/scenes/{sceneId}/attention | What visitors looked at in one of your rooms: viewers, looks, inspects and dwell per item over the last days (1-35, default 30).
 [**GetSpatialSceneWindow**](WorldApi.md#GetSpatialSceneWindow) | **Get** /v1/spatial/scenes/{id}/window | The listings you chose for the street window of your shop, in slot order (left, middle, right; empty &#x3D; newest first), and &#x60;choices&#x60;: your listings that can go in it, newest first.
-[**GetSpatialShopNeighbourhood**](WorldApi.md#GetSpatialShopNeighbourhood) | **Get** /v1/spatial/shop/neighbourhood | Your shop&#39;s neighbourhood, and whether and where it may move.
+[**GetSpatialShopNeighbourhood**](WorldApi.md#GetSpatialShopNeighbourhood) | **Get** /v1/spatial/shop/neighbourhood | Where your shop stands, and the district theme your stock fits.
 [**GetSpatialSpace**](WorldApi.md#GetSpatialSpace) | **Get** /v1/spatial/spaces | The room catalogue: every space profile (what it holds, how it is sorted, its containers) and the warehouse units.
 [**GetSpatialStreetAdmission**](WorldApi.md#GetSpatialStreetAdmission) | **Get** /v1/spatial/streets/admissions | Street applications and invitations: yours, and those waiting on streets you own.
 [**GetSpatialStreetDecor**](WorldApi.md#GetSpatialStreetDecor) | **Get** /v1/spatial/streets/{slug}/decor | The decor on a street you may dress, and what you can place.
 [**GetWorldArcade**](WorldApi.md#GetWorldArcade) | **Get** /v1/world/arcade | The Arcade in Crossly World: data.cabinets (slot, where it stands, host -- piece, price_guess or empty --, game, title, blurb, the piece it hosts and where, record, packageId and thumbnail for a creator game from the Game Directory, players) and data.scores (the High Score wall: per game a title, kind -- leaderboard, record or top -- and up to five ASCII lines; a name shows only for somebody who chose to be seen by name, everyone else is \&quot;A player\&quot;), plus creatorGames (creator games with a cabinet now). Games are played in the world.
+[**GetWorldAttendant**](WorldApi.md#GetWorldAttendant) | **Get** /v1/world/attendant | Your AI attendant and whether your AI key is connected.
 [**GetWorldAurora**](WorldApi.md#GetWorldAurora) | **Get** /v1/world/aurora | The Sales Aurora over the Commons in Crossly World: every real sale on Crossly in the last data.windowDays (30) days. data.total (sales in the window), data.families (key, label, colour, count per colour family: cards, coins, jewellery, electronics, media, fashion, toys, other) and data.sales (newest first, at most 48: family, ageHours, fresh -- sold in the last ten minutes, which shimmers). Aggregate only: no item, price, seller or platform. data.updatedAt is when it was read.
-[**GetWorldAutoShop**](WorldApi.md#GetWorldAutoShop) | **Get** /v1/world/auto-shop | Whether Crossly keeps a world shop for you automatically: enabled, and the shop (id, name, visibility, autoCreated, address, label) or null. Change it with PATCH /v1/world/auto-shop.
+[**GetWorldAvatarBasic**](WorldApi.md#GetWorldAvatarBasic) | **Get** /v1/world/avatar/basics | The free basic wardrobe every account owns: 25 garments (tees, hoodie, overshirt, polo, jacket, vest, jeans, shorts, skirt, sneakers, boots, loafers, caps...) by slot, each with its colourways. Wear one by saving appearance.outfit &#x3D; { top, outer, bottom, shoes, hat } as \&quot;garment:colour\&quot; (outer and hat may be \&quot;none\&quot;) with PUT /v1/world/avatar/look.
 [**GetWorldAvatarIdentity**](WorldApi.md#GetWorldAvatarIdentity) | **Get** /v1/world/avatar/identity | Whether others see your name in the world (named), or not (anonymous); null if you have never chosen.
 [**GetWorldAvatarLoadout**](WorldApi.md#GetWorldAvatarLoadout) | **Get** /v1/world/avatar/loadout | What you are wearing: the rig, its slots (avatar_head, avatar_body, avatar_outer -- a jacket over the top, avatar_legs, avatar_feet, avatar_back) and each worn entry -- a cosmetic or a real item -- with its verified-purchase mark. Carries no price, receipt id, seller or order.
 [**GetWorldAvatarLoadoutByUserId**](WorldApi.md#GetWorldAvatarLoadoutByUserId) | **Get** /v1/world/avatar/loadout/{userId} | What somebody else is wearing, with the verified-purchase mark on each real item -- public on purpose, since a check only its owner can see is not a check. No price, receipt id, seller or order.
 [**GetWorldAvatarLook**](WorldApi.md#GetWorldAvatarLook) | **Get** /v1/world/avatar/look | Your world look on the account: the handle you chose (null if anonymous) and your appearance; null if you never made one.
 [**GetWorldAvatarNftBadge**](WorldApi.md#GetWorldAvatarNftBadge) | **Get** /v1/world/avatar/nft-badge | The NFT you wear on your nameplate in the world, or null.
+[**GetWorldBillingRail**](WorldApi.md#GetWorldBillingRail) | **Get** /v1/world/billing/rails | Which rails (card, CBX) can pay in the world right now.
 [**GetWorldCapability**](WorldApi.md#GetWorldCapability) | **Get** /v1/world/capabilities | What your held NFTs unlock in Crossly World: each token with the capabilities its collection declared (wear, display, emote, gate, ...). Holding is your verified wallets (their synced tokens); the capabilities of a transferred token go within five minutes.
 [**GetWorldCapabilityCatalogue**](WorldApi.md#GetWorldCapabilityCatalogue) | **Get** /v1/world/capabilities/catalogue | The capability kinds of spec crossly.nft-capabilities/1: what each does, whether only the creator of the collection may declare it, whether it needs review, and which clients honour it.
 [**GetWorldCapabilityWear**](WorldApi.md#GetWorldCapabilityWear) | **Get** /v1/world/capabilities/wear | What you wear from your NFTs and COSM copies: your pick per avatar slot (head, body, legs, feet, back) and what the room sees.
 [**GetWorldChest**](WorldApi.md#GetWorldChest) | **Get** /v1/world/chests | The Commons chest: data.window (this 20-minute window, UTC), spot ([x, z] on the plaza), endsAt (when the next chest comes) and mine (openedThis, and opened -- how many windows you have opened one in; the Chest opener pin comes at 10). A chest is opened by walking up to it in Crossly World, never over the API.
 [**GetWorldCollectionCapability**](WorldApi.md#GetWorldCollectionCapability) | **Get** /v1/world/collections/{chain}/{contract}/capabilities | The live capability declaration of a collection (404 when it has none).
 [**GetWorldContestMine**](WorldApi.md#GetWorldContestMine) | **Get** /v1/world/contests/mine | Your contest entries (best score, attempts used, payment state) and prizes (granted, or owed until their gate opens).
+[**GetWorldControl**](WorldApi.md#GetWorldControl) | **Get** /v1/world/controls | Your world controls settings (look sensitivity, invert look, stick size, left-handed, camera distance, reduced camera motion, tap-to-walk, haptics) and whether you have seen the controls tutorial.
 [**GetWorldConvention**](WorldApi.md#GetWorldConvention) | **Get** /v1/world/conventions/{id} | One convention. 404 for an unknown or malformed id alike.
+[**GetWorldConventionExhibit**](WorldApi.md#GetWorldConventionExhibit) | **Get** /v1/world/conventions/{id}/exhibit | A convention from the exhibitor side: tiers with price, size, capacity and booths left, the rails that pay now, and your own booth (status, fee, paid, checked in, listings).
+[**GetWorldConventionHall**](WorldApi.md#GetWorldConventionHall) | **Get** /v1/world/conventions/{id}/hall | The hall design (booths, stage, signs, entrance, kiosk), its version and any problems.
+[**GetWorldConventionManage**](WorldApi.md#GetWorldConventionManage) | **Get** /v1/world/conventions/{id}/manage | A convention you organise: its settings, booth tiers, every seller (status, booth, fee, paid, checked in) and the venue.
+[**GetWorldConventionStatusPage**](WorldApi.md#GetWorldConventionStatusPage) | **Get** /v1/world/conventions/{id}/status-page | The status page: sellers, booths filled per tier, walk-ins, sales of brought listings, booth fees paid and owed.
 [**GetWorldCosmBalance**](WorldApi.md#GetWorldCosmBalance) | **Get** /v1/world/cosm/balance | Your COSM balance: baseUnits (a STRING -- COSM has 6 decimals and overflows a JSON number), decimals, available (false &#x3D; COSM is not provisioned on this deployment, not a zero balance).
 [**GetWorldCrew**](WorldApi.md#GetWorldCrew) | **Get** /v1/world/crew | Your crew: data.crew is null when you are in none, else its name, tag, join code and whether you own it; data.members lists up to 30 members, each with the public room they are in right now when they chose to be seen by name (else null).
 [**GetWorldCrewChat**](WorldApi.md#GetWorldCrewChat) | **Get** /v1/world/crew/chat | Your crew chat: data.messages is the last 50 lines (from, name, text, at), kept in memory only, so it starts empty after a restart. 404 when you are in no crew.
@@ -131,6 +179,8 @@ Method | HTTP request | Description
 [**GetWorldGame**](WorldApi.md#GetWorldGame) | **Get** /v1/world/games/{id} | One live game: its manifest, its store items and which you own.
 [**GetWorldGameLeaderboard**](WorldApi.md#GetWorldGameLeaderboard) | **Get** /v1/world/games/{id}/leaderboard | A live game leaderboard, this week and all time, by its manifest scoring (wins, best points, or best time). Only people who chose to be named show by name. scoring is null for a game that keeps no board.
 [**GetWorldGamePackage**](WorldApi.md#GetWorldGamePackage) | **Get** /v1/world/games/packages/{id} | One of your game packages with every version, its review state and decision note.
+[**GetWorldGamePackageStat**](WorldApi.md#GetWorldGamePackageStat) | **Get** /v1/world/games/packages/{id}/stats | Play stats for one of your Classic games: 30-day totals, the daily series the launcher ranks on (uniques, sessions, playtime, first-play bounces, D1/D7/D28), its ranking score, test impressions and players right now. ?days&#x3D;1-90.
+[**GetWorldGamePackageVersion**](WorldApi.md#GetWorldGamePackageVersion) | **Get** /v1/world/games/packages/{id}/versions | Every version of one of your Classic games: draft, pending, approved, rejected, withdrawn or cancelled, which one is live, its documents and report.
 [**GetWorldGameTemplate**](WorldApi.md#GetWorldGameTemplate) | **Get** /v1/world/games/templates/{kind} | A fresh game package from a template (table, arena, object; collection is an NFT capability declaration), as { path, base64 } files: the world-kit init, for an agent with no local kit. ?id&#x3D;my-game&amp;name&#x3D;My Game.
 [**GetWorldHall**](WorldApi.md#GetWorldHall) | **Get** /v1/world/hall | The Hall of Grails in Crossly World: data.exhibition (key, title, blurb, endsAt -- a new one every Monday UTC -- and next, the coming one&#39;s title) and data.exhibits, up to twelve real catalogue items in slot order (skuId, name, brand, imageUrl, thumbUrl, retailCents, lowestAskCents, lastSaleCents: the live order book, null when the market has none). The first stands on the centre plinth. Buy, bid or watch an exhibit through the market endpoints with its skuId.
 [**GetWorldHallLoan**](WorldApi.md#GetWorldHallLoan) | **Get** /v1/world/hall/loans | Lend to the Hall: this week&#39;s exhibition (key, title, categorySlug, endsAt), your loans on show (id, vaultItemId, skuId, name, credit, since) and the vault pieces you can lend (eligible: vaultItemId, skuId, name, imageUrl, grade) -- held in your Crossly vault, not pledged, in the exhibition&#39;s category. perMember is how many you may lend each week.
@@ -141,6 +191,12 @@ Method | HTTP request | Description
 [**GetWorldJob**](WorldApi.md#GetWorldJob) | **Get** /v1/world/jobs | The jobs board: open staff shifts you could claim, your claimed shifts and open price checks (appraisals), as the world shows them.
 [**GetWorldKite**](WorldApi.md#GetWorldKite) | **Get** /v1/world/kites | Kites flown on the Commons lawn: data.day (today, UTC), today (kites everyone has flown today) and mine (today -- yours today, up to perDay -- perDay, and days -- the days you have flown one on; the Kite flyer pin comes at 5). Kites are flown by standing out on the lawn in Crossly World by day, never over the API, and nothing is spent.
 [**GetWorldLantern**](WorldApi.md#GetWorldLantern) | **Get** /v1/world/lanterns | Sky lanterns in the Commons: data.day (today, UTC), today (lanterns everyone has released today) and mine (today -- yours today, up to perDay -- perDay, and days -- the days you have released one on; the Lantern lighter pin comes at 5). Lanterns are released at the lantern stand in Crossly World, never over the API, and nothing is spent.
+[**GetWorldLauncher**](WorldApi.md#GetWorldLauncher) | **Get** /v1/worlds/launcher | The Carnival Plaza launcher: portals for Classic games, Crossly&#39;s own card games and the Commons card tables, each with players right now, your friends inside, its ranking score (published weights, retention-weighted, first-play bounce negative) and where Play goes. Twelve ring slots: friends&#39; pick, new &amp; rising (guaranteed test impressions), then the top, first-party capped at 25%.
+[**GetWorldManageLedger**](WorldApi.md#GetWorldManageLedger) | **Get** /v1/world/manage/ledger | World money over 7, 30 or 90 days: plot purchases, maintenance, rent, deed sales, staff wages, shifts and stalls, in and out.
+[**GetWorldManageOverview**](WorldApi.md#GetWorldManageOverview) | **Get** /v1/world/manage/overview | Your Crossly World at a glance: shop and addresses, property, staff and shifts, conventions, stalls, 30-day visitors and money.
+[**GetWorldManageVisitor**](WorldApi.md#GetWorldManageVisitor) | **Get** /v1/world/manage/visitors | Who came to your world shop over 7, 30 or 90 days: the funnel, attention by day, most-looked and most-wanted items.
+[**GetWorldMarket**](WorldApi.md#GetWorldMarket) | **Get** /v1/world/market/{kind}/{id} | One plot or street in the Market: price, renders, neighbours, foot traffic, history.
+[**GetWorldNeighbourhoodClaim**](WorldApi.md#GetWorldNeighbourhoodClaim) | **Get** /v1/world/neighbourhoods/{slug}/claim | Whether you may claim a plot on a neighbourhood street (its top sellers by recent sales), and why not.
 [**GetWorldPartyChat**](WorldApi.md#GetWorldPartyChat) | **Get** /v1/world/parties/{id}/chat | Your party chat: the recent lines. 404 when this is not your party.
 [**GetWorldPlaceBoard**](WorldApi.md#GetWorldPlaceBoard) | **Get** /v1/world/places/{slug}/boards | The Trade Floor&#39;s wall of wants, its authentication desk and its Vault Markets ticker (vaultMovers: bookKey, name, label, units, markCents, change24hBps; only the trade-floor place has them).
 [**GetWorldPlaceCollection**](WorldApi.md#GetWorldPlaceCollection) | **Get** /v1/world/places/{slug}/collections/{category}/{brand}/{model} | One collection room: every piece of the set, owned or missing. 404 for an unknown room or set.
@@ -149,16 +205,33 @@ Method | HTTP request | Description
 [**GetWorldPlaceLive**](WorldApi.md#GetWorldPlaceLive) | **Get** /v1/world/places/{slug}/live | The owner&#39;s live sale: their stream and the lot on the block, or null.
 [**GetWorldPlaceSeller**](WorldApi.md#GetWorldPlaceSeller) | **Get** /v1/world/places/{slug}/seller | The shop whose public room this is (username and name), or null.
 [**GetWorldPlaceShopPet**](WorldApi.md#GetWorldPlaceShopPet) | **Get** /v1/world/places/{slug}/shop-pet | The shop&#39;s pet kind, or null.
+[**GetWorldPropertyPlot**](WorldApi.md#GetWorldPropertyPlot) | **Get** /v1/world/property/plots/{plotId} | One plot of yours: showroom, rental, value, upkeep.
+[**GetWorldPropertyRental**](WorldApi.md#GetWorldPropertyRental) | **Get** /v1/world/property/rentals/{leaseId} | One plot you rent out, with its payments.
+[**GetWorldPropertyRenting**](WorldApi.md#GetWorldPropertyRenting) | **Get** /v1/world/property/renting/{leaseId} | One plot you rent, with its payments.
+[**GetWorldRail**](WorldApi.md#GetWorldRail) | **Get** /v1/world/rails | Which Worlds payment rails are on now: cash (card), CBX, or both.
 [**GetWorldSpace**](WorldApi.md#GetWorldSpace) | **Get** /v1/world/spaces/{slug} | One Space: its layout, host, events and your place in it.
 [**GetWorldSpaceCanHost**](WorldApi.md#GetWorldSpaceCanHost) | **Get** /v1/world/spaces/can-host | Whether you may open a Space: sellers only, at most two active.
+[**GetWorldStaffPosting**](WorldApi.md#GetWorldStaffPosting) | **Get** /v1/world/staff/postings/{id} | One of your postings, with its shifts.
+[**GetWorldStaffReputation**](WorldApi.md#GetWorldStaffReputation) | **Get** /v1/world/staff/reputation | Your employer reputation, rated by the people who worked your public jobs.
+[**GetWorldStreetFund**](WorldApi.md#GetWorldStreetFund) | **Get** /v1/world/streets/{slug}/fund | A street&#39;s fund: the CBX property payments on its plots over the last four weeks, and the street events it unlocked.
+[**GetWorldStreetOwned**](WorldApi.md#GetWorldStreetOwned) | **Get** /v1/world/streets/owned/{id} | A street you own: tenants, applications, upkeep, look, fund.
+[**GetWorldStreetTrespassBarrier**](WorldApi.md#GetWorldStreetTrespassBarrier) | **Get** /v1/world/streets/{slug}/trespass-barriers | Plot numbers on the street you are trespassed from.
 [**GetWorldTrialLeaderboard**](WorldApi.md#GetWorldTrialLeaderboard) | **Get** /v1/world/trials/{course}/leaderboard | A Time Trials course&#39;s boards, as the board beside it in the Commons shows them: data.course, week, weekly (this week&#39;s ten fastest: rank, name, short, named, ms, at) and allTime (the ten fastest ever, each person once). A name shows only for somebody who chose to be seen by name in the world; everyone else is \&quot;A player\&quot;. 404 for an unknown course; course 1 is commons-loop.
 [**GetWorldTrialMine**](WorldApi.md#GetWorldTrialMine) | **Get** /v1/world/trials/mine | Your Hoverboard Time Trials bests: data.week (its Monday, YYYY-MM-DD, UTC) and courses, each with course (id, name, parMs, rings, lengthM), week (your best lap this week in ms, your place on the weekly board, laps finished, and the split at each ring) or null, and allTime (your best ever in ms, your place on the all-time board, when) or null. Laps are timed by Crossly from where it saw you ride in the world; nothing here writes one.
+[**GetWorldVenueQuote**](WorldApi.md#GetWorldVenueQuote) | **Get** /v1/world/venues/{id}/quote | What a hall costs for those days (startsOn, endsOn), the full-refund date, and whether it is free.
 [**GetWorldWallet**](WorldApi.md#GetWorldWallet) | **Get** /v1/world/wallet | Every balance you hold in Crossly World, read-only: bucksCents (Crossly Bucks, cents); cbx (available, decimals, and the three CBX balances kept apart as base-unit STRINGS -- granted (spend here only), earned (withdrawable once matured), connected (a delegation ceiling on your own wallet, not cash on hand) -- plus pendingCents of cashback not yet matured); cosm (available, decimals, baseUnits string). available:false means that currency is not provisioned on this deployment, not that you hold none.
 [**GetWorldWish**](WorldApi.md#GetWorldWish) | **Get** /v1/world/wishes | The Wishing Fountain in the Commons: data.day (today, UTC), today (wishes everyone has made today) and mine (madeToday, days -- how many days you have wished on, the Wishmaker pin comes at 7 -- and nextAt, when tomorrow&#39;s wish opens). One wish a day; a wish is made by tossing a coin at the fountain in Crossly World, never over the API, and nothing is spent.
+[**GetWorldWorkEarning**](WorldApi.md#GetWorldWorkEarning) | **Get** /v1/world/work/earnings | What your shifts paid, by rail.
+[**GetWorldWorkMine**](WorldApi.md#GetWorldWorkMine) | **Get** /v1/world/work/mine | Where you work: your seats, applications and your teams’ open jobs.
+[**ListGameCoupons**](WorldApi.md#ListGameCoupons) | **Get** /v1/games/coupons | Your fee-back coupons from house-game wins: Bucks paid out of the fee on your next market purchase.
+[**ListShowroomItemSearch**](WorldApi.md#ListShowroomItemSearch) | **Get** /v1/showrooms/{id}/item-search | Search this store&#39;s in-stock items (title, brand, SKU) to put on a fixture or in a window slot; each with listed / passport / multi_unit badges.
+[**ListShowrooms**](WorldApi.md#ListShowrooms) | **Get** /v1/showrooms | Your store&#39;s showrooms, primary first: name, visibility, auto-include, pinned items, fixtures, billing and the plots each stands on.
+[**ListSpatialLeases**](WorldApi.md#ListSpatialLeases) | **Get** /v1/spatial/leases | Plots offered for lease on every street, cheapest first: address, weekly rent and maintenance in CENTS.
 [**ListSpatialSceneGrants**](WorldApi.md#ListSpatialSceneGrants) | **Get** /v1/spatial/scenes/{id}/grants | Everyone who can currently walk into one of your rooms, and unused invites. Never returns codes.
 [**ListSpatialSceneWarehouseUnplaced**](WorldApi.md#ListSpatialSceneWarehouseUnplaced) | **Get** /v1/spatial/scenes/{id}/warehouse/unplaced | Stock not yet on a shelf in a warehouse room you can arrange (q filters by title).
 [**ListSpatialSharedWithMe**](WorldApi.md#ListSpatialSharedWithMe) | **Get** /v1/spatial/shared-with-me | Rooms other people let you into.
 [**ListSpatialStreetLeases**](WorldApi.md#ListSpatialStreetLeases) | **Get** /v1/spatial/streets/{slug}/leases | Plots on a street offered for lease: weekly rent in CENTS and terms.
+[**ListWorldAttendantUsage**](WorldApi.md#ListWorldAttendantUsage) | **Get** /v1/world/attendant/usage | Your AI attendant’s usage log.
 [**ListWorldAvatarCloset**](WorldApi.md#ListWorldAvatarCloset) | **Get** /v1/world/avatar/closet | Everything you can verifiably wear (your Crossly purchase receipts), newest first: receiptId, item title, brand, size, image, catalog sku/variant, quantity, purchasedAt. Pass a receiptId to POST /v1/world/avatar/equip to put one on. limit 1-200, offset for paging.
 [**ListWorldAvatarStock**](WorldApi.md#ListWorldAvatarStock) | **Get** /v1/world/avatar/stock | Items of your OWN inventory you could wear into a room as a walking storefront: inventoryItemId, title, image and the slot it would go on. Pass an inventoryItemId to POST /v1/world/avatar/equip.
 [**ListWorldAvatarWearables**](WorldApi.md#ListWorldAvatarWearables) | **Get** /v1/world/avatar/wearables | Wearables you have authored as a designer: id, sku, name, slot, priceBaseUnits (COSM base units, a string), maxSupply, mintedCount, active (false until reviewed). meta.available is false when COSM is not provisioned here.
@@ -167,6 +240,7 @@ Method | HTTP request | Description
 [**ListWorldContestStandings**](WorldApi.md#ListWorldContestStandings) | **Get** /v1/world/contests/{id}/standings | The standings of a contest now: best score first (or lowest, for a time game), ties to whoever got there first.
 [**ListWorldContests**](WorldApi.md#ListWorldContests) | **Get** /v1/world/contests | Open skill contests on Crossly World games, soonest ending first: entry mode (free, sponsored, paid) and prizes.
 [**ListWorldConventionExhibitors**](WorldApi.md#ListWorldConventionExhibitors) | **Get** /v1/world/conventions/{id}/exhibitors | The host roster: who applied, who was invited, who is coming (by shop handle). Host only; 404 otherwise.
+[**ListWorldConventionMessages**](WorldApi.md#ListWorldConventionMessages) | **Get** /v1/world/conventions/{id}/messages | Convention messages you may read: the organiser all of them (?with&#x3D;&lt;userId&gt; for one seller), an exhibitor theirs and the broadcasts.
 [**ListWorldConventionMine**](WorldApi.md#ListWorldConventionMine) | **Get** /v1/world/conventions/mine | Conventions you host and conventions you are exhibiting at.
 [**ListWorldConventions**](WorldApi.md#ListWorldConventions) | **Get** /v1/world/conventions | Conventions open to sellers now or soon: title, room, dates, and how to get a table (invite, free, fee or revenue share).
 [**ListWorldCosmCosmetics**](WorldApi.md#ListWorldCosmCosmetics) | **Get** /v1/world/cosm/cosmetics | The active cosmetics catalogue, optionally by tier (premium | earned | stake_exclusive) or slot: sku, name, slot, tier, priceCents (premium only), priceBaseUnits (earned only, COSM base units string), supply, fusable, preview and what it unlocks. Read-only: cosmetics are bought on crossly.net. meta.available / meta.decimals.
@@ -184,13 +258,17 @@ Method | HTTP request | Description
 [**ListWorldFollows**](WorldApi.md#ListWorldFollows) | **Get** /v1/world/follows | Everybody you follow in Crossly World, newest first, each with mutual: true when they follow you back (a friend).
 [**ListWorldFriendHere**](WorldApi.md#ListWorldFriendHere) | **Get** /v1/world/friends/here | Your friends in Crossly World right now, and where (when they share it).
 [**ListWorldFriends**](WorldApi.md#ListWorldFriends) | **Get** /v1/world/friends | Your friends (mutual follows), each with the PUBLIC room they are in right now when they chose to be seen by name there (else null), and their home address slug when they let friends visit. Invisible and anonymous friends are never located.
+[**ListWorldGamePackageReceipts**](WorldApi.md#ListWorldGamePackageReceipts) | **Get** /v1/world/games/packages/{id}/receipts | Store sales of one of your game packages, newest first: item, price paid, edition, when. Never who bought. Cursor-paged: pass pagination.nextCursor back as ?cursor&#x3D;.
 [**ListWorldGamePackages**](WorldApi.md#ListWorldGamePackages) | **Get** /v1/world/games/packages | Your game packages, each with its latest version and review state.
 [**ListWorldGameRewards**](WorldApi.md#ListWorldGameRewards) | **Get** /v1/world/games/rewards | Rewards you won in games: granted, or recorded as unfunded for COSM and CBX (a game prints no value).
 [**ListWorldGames**](WorldApi.md#ListWorldGames) | **Get** /v1/world/games | The Game Directory: every live, reviewed game package with its players, places, rewards, contests and the piece people place.
 [**ListWorldHomeBuilding**](WorldApi.md#ListWorldHomeBuilding) | **Get** /v1/world/home/building | Homes whose owner made you a co-builder.
 [**ListWorldInteractiveCatalogue**](WorldApi.md#ListWorldInteractiveCatalogue) | **Get** /v1/world/interactive/catalogue | Interactive objects: every piece that runs a shared script in a room (first-party and approved creator designs). Per item: model (the piece key a home layout or boutique prop stores), decorValue (the home_prop value its SKU claims), source (first_party | creator), name, blurb, size [x, z] metres, fallbackMesh, cosmeticId (the SKU on the Decor Shop, null when not on sale) and version (a creator design: the approved version every copy runs). Read-only: buying is on crossly.net/shop/decor.
-[**ListWorldInteractiveDesigns**](WorldApi.md#ListWorldInteractiveDesigns) | **Get** /v1/world/interactive/designs | Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null &#x3D; none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null &#x3D; not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. &#x60;archived&#x60;: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen on crossly.net/shop/decor?tab&#x3D;interactive.
+[**ListWorldInteractiveDesigns**](WorldApi.md#ListWorldInteractiveDesigns) | **Get** /v1/world/interactive/designs | Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null &#x3D; none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null &#x3D; not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. &#x60;archived&#x60;: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen in the Creator Studio on crossly.net (/studio/creator/creations/interactive/new/edit).
+[**ListWorldJobBoard**](WorldApi.md#ListWorldJobBoard) | **Get** /v1/world/jobs/board | The public Job Board, filterable.
 [**ListWorldJobPosted**](WorldApi.md#ListWorldJobPosted) | **Get** /v1/world/jobs/posted | Shifts you posted for your rooms, with who claimed each and how it went.
+[**ListWorldMarket**](WorldApi.md#ListWorldMarket) | **Get** /v1/world/market | Plots and streets for sale or rent in the Worlds Market.
+[**ListWorldMarketStreetSigns**](WorldApi.md#ListWorldMarketStreetSigns) | **Get** /v1/world/market/streets/{slug}/signs | The street&#39;s for-sale and for-rent boards.
 [**ListWorldOutfits**](WorldApi.md#ListWorldOutfits) | **Get** /v1/world/outfits | Your saved outfits (up to 6, oldest first): id, name, appearance (skin, hair, hairColour, eyes, build) and items -- each worn thing as the door it goes back on by (slot, door: cosmetic | receipt | stock, id, label). Put one on with POST /v1/world/outfits/:id/apply.
 [**ListWorldPlaceBans**](WorldApi.md#ListWorldPlaceBans) | **Get** /v1/world/places/{slug}/bans | Who is banned from a place you own (your boutique or home).
 [**ListWorldPlaceBundles**](WorldApi.md#ListWorldPlaceBundles) | **Get** /v1/world/places/{slug}/bundles | The owner&#39;s bundle deals mapped onto this room&#39;s items (itemIds null &#x3D; any N from the shop). The discount is decided at checkout.
@@ -199,16 +277,31 @@ Method | HTTP request | Description
 [**ListWorldPlaceRadar**](WorldApi.md#ListWorldPlaceRadar) | **Get** /v1/world/places/{slug}/radar | What you have that someone here wants, and what is here that you want: matched on catalog ids.
 [**ListWorldPlaceTradeTables**](WorldApi.md#ListWorldPlaceTradeTables) | **Get** /v1/world/places/{slug}/trade-tables | The open trade tables in a place: who is sitting and what is laid on the mat.
 [**ListWorldPlaceTrades**](WorldApi.md#ListWorldPlaceTrades) | **Get** /v1/world/places/{slug}/trades | Items in this room open to trades, each with its trade post path.
+[**ListWorldPromoted**](WorldApi.md#ListWorldPromoted) | **Get** /v1/world/promoted | Promoted places in Crossly World: boosted showrooms and conventions (Sponsored, labelled \&quot;Promoted\&quot;), with the token to send when one is opened.
+[**ListWorldPropertyPlots**](WorldApi.md#ListWorldPropertyPlots) | **Get** /v1/world/property/plots | Plots your store owns or rents.
+[**ListWorldPropertyRentals**](WorldApi.md#ListWorldPropertyRentals) | **Get** /v1/world/property/rentals | Plots you rent out.
+[**ListWorldPropertyRenting**](WorldApi.md#ListWorldPropertyRenting) | **Get** /v1/world/property/renting | Plots you rent.
+[**ListWorldPropertyTrespassed**](WorldApi.md#ListWorldPropertyTrespassed) | **Get** /v1/world/property/trespassed | People your store has banned, owner-wide or from one showroom.
 [**ListWorldProvenance**](WorldApi.md#ListWorldProvenance) | **Get** /v1/world/provenance | Provenance trails: where in Crossly World your purchases were found, newest first (optionally ?listingIds&#x3D;a,b -- platform listing ids). data: [{ platformListingId, slug (the listing public slug), kind (room | window | stall | space | drop | auction | worn | agent), place (its name, or null when gone), at, line -- e.g. \&quot;Found at The Sneaker Vault, Oct 2026\&quot; }]. Yours only.
 [**ListWorldQuests**](WorldApi.md#ListWorldQuests) | **Get** /v1/world/quests | Every world quest with your progress: key, the pin it earns, goal, target, count, done, colour. meta.wearing is the pin on your nameplate (or null); meta.streak your current and best daily visit streak. Progress only comes from what the server saw -- there is no write of it.
 [**ListWorldSpaceMine**](WorldApi.md#ListWorldSpaceMine) | **Get** /v1/world/spaces/mine | Spaces you belong to.
 [**ListWorldSpaceRequests**](WorldApi.md#ListWorldSpaceRequests) | **Get** /v1/world/spaces/{slug}/requests | As host or co-host, who asked to join.
 [**ListWorldSpaceWhatsOn**](WorldApi.md#ListWorldSpaceWhatsOn) | **Get** /v1/world/spaces/whats-on | Live and upcoming events across Spaces (streets&#x3D;1 and stage&#x3D;1 add street and Main Stage events).
 [**ListWorldSpaces**](WorldApi.md#ListWorldSpaces) | **Get** /v1/world/spaces | The Spaces directory: seller-hosted clubs with a venue, members and events (optional venue filter).
+[**ListWorldStaffApplicants**](WorldApi.md#ListWorldStaffApplicants) | **Get** /v1/world/staff/applicants | Who applied to your postings, with their worker reputation.
+[**ListWorldStaffPeople**](WorldApi.md#ListWorldStaffPeople) | **Get** /v1/world/staff/people | Everyone working for you: your Settings team and public workers, with their seats.
+[**ListWorldStaffPlaces**](WorldApi.md#ListWorldStaffPlaces) | **Get** /v1/world/staff/places | The showrooms, stalls and conventions a job can be posted at, and the pay rails that are live.
+[**ListWorldStaffPostings**](WorldApi.md#ListWorldStaffPostings) | **Get** /v1/world/staff/postings | Your job postings, with their upcoming shifts.
+[**ListWorldStaffShifts**](WorldApi.md#ListWorldStaffShifts) | **Get** /v1/world/staff/shifts | Your scheduled seats and who is on them.
 [**ListWorldStreaks**](WorldApi.md#ListWorldStreaks) | **Get** /v1/world/streaks | The longest current daily visit streaks (2+ days), top ten: name and days. Only people still choosing to be seen by name.
 [**ListWorldTradeMine**](WorldApi.md#ListWorldTradeMine) | **Get** /v1/world/trades/mine | Your trades and each item progress through the authentication gate (verified or failed).
 [**ListWorldTradeTableBinder**](WorldApi.md#ListWorldTradeTableBinder) | **Get** /v1/world/trade-tables/binder | Your binder: unsold collection rows that are catalog items and may be laid on a trade mat -- key, variantId, condition, grade, portfolioId, name, image and valueCents (market value, cents).
 [**ListWorldTradeTableListings**](WorldApi.md#ListWorldTradeTableListings) | **Get** /v1/world/trade-tables/listings | Your open Trade Block trade listings a trade table can be opened on in the world, each with its items&#39; names.
+[**ListWorldVenues**](WorldApi.md#ListWorldVenues) | **Get** /v1/world/venues | The Convention Center halls for rent: size, floor, booths, price per day, and the days already taken (from, to).
+[**UpdateShowroom**](WorldApi.md#UpdateShowroom) | **Put** /v1/showroom | Replace the whole showroom layout (room, fixtures, placements, settings). Validated as a whole: every item must be this store&#39;s, every pin must fit its fixture, no two pins share a slot. Send If-Match (or expectedVersion) to refuse with 409 version_conflict if it changed meanwhile.
+[**UpdateShowroom2**](WorldApi.md#UpdateShowroom2) | **Patch** /v1/showroom | Apply showroom ops in order, all or nothing: place, move, remove, fill (from a category / tag / brand / collection / search, in price, age, value or title order), sort, clear, add_fixture, update_fixture, remove_fixture, set_room, set_settings. Idempotent; refusals name the op (details.opIndex) with codes slot_occupied, item_not_in_store, fixture_capacity, unknown_fixture, unknown_display, version_conflict.
+[**UpdateShowroom3**](WorldApi.md#UpdateShowroom3) | **Patch** /v1/showrooms/{id} | Apply ops to one showroom in order, all or nothing (the same ops as PATCH /api/v1/showroom).
+[**UpdateShowroomById**](WorldApi.md#UpdateShowroomById) | **Put** /v1/showrooms/{id} | Replace one showroom&#39;s whole layout. If-Match (or expectedVersion) refuses with 409 version_conflict on a concurrent edit.
 [**UpdateSpatialSceneCosmetic**](WorldApi.md#UpdateSpatialSceneCosmetic) | **Patch** /v1/spatial/scenes/{id}/cosmetics | Redecorate one of your rooms (wall, floor, lighting, trim...). Unknown keys are dropped; the response is what survived. &#x60;clear&#x60; lists keys to reset.
 [**UpdateSpatialSceneNode**](WorldApi.md#UpdateSpatialSceneNode) | **Patch** /v1/spatial/scenes/{id}/nodes/{nodeId} | Move a rack in one of your warehouse rooms (position in metres).
 [**UpdateSpatialSceneSetting**](WorldApi.md#UpdateSpatialSceneSetting) | **Patch** /v1/spatial/scenes/{id}/settings | How one of your rooms is laid out and lit: grouping and sort keys, theme, overlay and the arrival camera. Cosmetics and the shop layout have their own writers.
@@ -216,12 +309,15 @@ Method | HTTP request | Description
 [**UpdateSpatialSceneWindow**](WorldApi.md#UpdateSpatialSceneWindow) | **Put** /v1/spatial/scenes/{id}/window | Choose up to three of your live Crossly listings for the street window of your shop, in slot order. Picks that sell drop out and the newest fill in; an empty list goes back to newest first.
 [**UpdateSpatialStreetDecor**](WorldApi.md#UpdateSpatialStreetDecor) | **Put** /v1/spatial/streets/{slug}/decor | Dress a street you own with decor you hold (validated against your inventory).
 [**UpdateSpatialStreetOwned**](WorldApi.md#UpdateSpatialStreetOwned) | **Patch** /v1/spatial/streets/owned/{id} | Who may open a shop on a street you own (open, apply or invite).
-[**UpdateWorldAutoShop**](WorldApi.md#UpdateWorldAutoShop) | **Patch** /v1/world/auto-shop | Turn your automatic world shop off ({ enabled: false } -- an auto-created shop is made private, never deleted) or back on. Answers the new status.
+[**UpdateWorldAttendant**](WorldApi.md#UpdateWorldAttendant) | **Put** /v1/world/attendant | Create or replace your AI attendant (BYOK: switching it on needs your AI key).
 [**UpdateWorldAvatarIdentity**](WorldApi.md#UpdateWorldAvatarIdentity) | **Put** /v1/world/avatar/identity | Choose named or anonymous. Rooms you are already in keep the old answer until you rejoin.
-[**UpdateWorldAvatarLook**](WorldApi.md#UpdateWorldAvatarLook) | **Put** /v1/world/avatar/look | Save your world look to the account, so every device starts from it. look: null stays anonymous.
+[**UpdateWorldAvatarLook**](WorldApi.md#UpdateWorldAvatarLook) | **Put** /v1/world/avatar/look | Save your world look to the account, so every device starts from it. look: null stays anonymous. appearance.outfit &#x3D; { top, outer, bottom, shoes, hat } picks the basic outfit (GET /v1/world/avatar/basics).
 [**UpdateWorldAvatarNftBadge**](WorldApi.md#UpdateWorldAvatarNftBadge) | **Put** /v1/world/avatar/nft-badge | Wear an NFT you hold on your nameplate (null to take it off). Checked again each time you join a room.
 [**UpdateWorldCapabilityWear**](WorldApi.md#UpdateWorldCapabilityWear) | **Put** /v1/world/capabilities/wear | Wear a held token on an avatar slot (refId from GET /v1/world/capabilities), or pass refId null to take it off. Its collection must declare a wear capability for that slot.
 [**UpdateWorldCollectionCapability**](WorldApi.md#UpdateWorldCollectionCapability) | **Put** /v1/world/collections/{chain}/{contract}/capabilities | Declare what the tokens of a collection can do (the whole declaration, spec crossly.nft-capabilities/1). As its creator (launched on Crossly or claimed) any kind; as a holder, cosmetic kinds only. Replaces your previous declaration; pending if it names an uploaded asset or an always-reviewed kind.
+[**UpdateWorldControl**](WorldApi.md#UpdateWorldControl) | **Put** /v1/world/controls | Save your world controls settings to the account (any subset of prefs; out-of-range values take the default) and/or mark the controls tutorial seen.
+[**UpdateWorldConventionHall**](WorldApi.md#UpdateWorldConventionHall) | **Put** /v1/world/conventions/{id}/hall | Save the hall design: { doc, expectedVersion }. Refused on overlaps, narrow aisles, too many booths or a booth with a seller removed.
+[**UpdateWorldConventionMyBooth**](WorldApi.md#UpdateWorldConventionMyBooth) | **Put** /v1/world/conventions/{id}/my-booth | Pick what your booth shows: { listingIds } — any of your live listings, up to the tier’s capacity.
 [**UpdateWorldConventionStatus**](WorldApi.md#UpdateWorldConventionStatus) | **Put** /v1/world/conventions/{id}/status | Open, start, end or cancel a convention you host.
 [**UpdateWorldCosmDesignChainAutoUnlock**](WorldApi.md#UpdateWorldCosmDesignChainAutoUnlock) | **Put** /v1/world/cosm/designs/{id}/chain-auto-unlock | Opt one of your COSM designs in or out of the free chain unlock it earns when popular (on by default). Answers its popularity.
 [**UpdateWorldEmoteWheel**](WorldApi.md#UpdateWorldEmoteWheel) | **Put** /v1/world/emotes/wheel | Arrange your emote wheel: up to 8 slots, each an emote id, a moment slot or null. Returns the saved wheel (locked or unknown ids are dropped).
@@ -234,12 +330,273 @@ Method | HTTP request | Description
 [**UpdateWorldListingHoldersOnly**](WorldApi.md#UpdateWorldListingHoldersOnly) | **Put** /v1/world/listings/{id}/holders-only | Reserve one of your listings for holders of a collection you declared a holders_only perk for (or release it). Checkout refuses anybody else.
 [**UpdateWorldOutfit**](WorldApi.md#UpdateWorldOutfit) | **Patch** /v1/world/outfits/{id} | Rename a saved look: { name (1-32 chars) }. 404 when it is not yours.
 [**UpdateWorldPetActive**](WorldApi.md#UpdateWorldPetActive) | **Put** /v1/world/pets/active | Walk one of your pets with you in the world, or none (kind: null).
+[**UpdateWorldPropertyPlotPhoto**](WorldApi.md#UpdateWorldPropertyPlotPhoto) | **Put** /v1/world/property/plots/{plotId}/photo | Store a plot&#39;s photo: an image of its frontage you uploaded through POST .../photo/upload-url, a render (buildKey must be the plot&#39;s current one) or an in-world capture.
+[**UpdateWorldPropertyRenting**](WorldApi.md#UpdateWorldPropertyRenting) | **Patch** /v1/world/property/renting/{leaseId} | Turn weekly autopay on or off (card leases).
 [**UpdateWorldQuestPin**](WorldApi.md#UpdateWorldQuestPin) | **Put** /v1/world/quests/pin | Wear a pin you EARNED from a quest on your nameplate, or { pin: null } to wear none. 403 for a pin you have not earned. Shows from the next room you walk into.
 [**UpdateWorldRoomHolderGate**](WorldApi.md#UpdateWorldRoomHolderGate) | **Put** /v1/world/rooms/{id}/holder-gate | Make your room holders-only (its collection rooms follow). Send null to open it again. Returns &#x60;{ gate }&#x60;.
 [**UpdateWorldSpace**](WorldApi.md#UpdateWorldSpace) | **Patch** /v1/world/spaces/{slug} | As host, change a Space name, about or membership.
 [**UpdateWorldSpaceHolderGate**](WorldApi.md#UpdateWorldSpaceHolderGate) | **Put** /v1/world/spaces/{slug}/holder-gate | Make your Space holders-only: only holders of an NFT collection join it (others can look in). Send null to open it again. Returns &#x60;{ gate }&#x60;.
+[**UpdateWorldStaffPosting**](WorldApi.md#UpdateWorldStaffPosting) | **Put** /v1/world/staff/postings/{id} | Replace a posting; its future unstaffed shifts are re-made.
 [**UpdateWorldStallBookingBooth**](WorldApi.md#UpdateWorldStallBookingBooth) | **Put** /v1/world/stalls/bookings/{id}/booth | Dress the booth of a stall you booked (decor you hold).
+[**UpdateWorldStreetOwnedTheme**](WorldApi.md#UpdateWorldStreetOwnedTheme) | **Put** /v1/world/streets/owned/{id}/theme | Set your street&#39;s theme.
 
+
+
+## CreateGamePackBreak
+
+> CreateGamePackBreakResponse CreateGamePackBreak(ctx).Execute()
+
+Pack Break: your open pack of five real market pieces, or a fresh one. No prices until you pick.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateGamePackBreak(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateGamePackBreak``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateGamePackBreak`: CreateGamePackBreakResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateGamePackBreak`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGamePackBreakRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateGamePackBreakResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateGamePackBreakPick
+
+> CreateGamePackBreakPickResponse CreateGamePackBreakPick(ctx, id).Execute()
+
+Pick the pull you think is worth the most: every lowest open ask is revealed, and a win earns a fee-back coupon.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateGamePackBreakPick(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateGamePackBreakPick``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateGamePackBreakPick`: CreateGamePackBreakPickResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateGamePackBreakPick`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGamePackBreakPickRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateGamePackBreakPickResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateShowroom
+
+> CreateShowroomResponse CreateShowroom(ctx).StorefrontId(storefrontId).Execute()
+
+Add a showroom. The first is included; an extra one has a monthly fee and is added in the dashboard (402 world_payment_failed here).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateShowroom(context.Background()).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateShowroom`: CreateShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**CreateShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateShowroomPlacement
+
+> CreateShowroomPlacementResponse CreateShowroomPlacement(ctx, id).StorefrontId(storefrontId).Execute()
+
+Stand a showroom on a plot your store owns or rents (403 when it does not; 409 when another showroom stands there).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateShowroomPlacement(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateShowroomPlacement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateShowroomPlacement`: CreateShowroomPlacementResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateShowroomPlacement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateShowroomPlacementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**CreateShowroomPlacementResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 
 
 ## CreateSpatialInviteAccept
@@ -369,7 +726,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialScene
 
-> SpatialSceneResponse2 CreateSpatialScene(ctx).CreateSpatialSceneRequest(createSpatialSceneRequest).Execute()
+> SpatialSceneResponse CreateSpatialScene(ctx).CreateSpatialSceneRequest(createSpatialSceneRequest).Execute()
 
 Start a 3D room: a collection (your items on shelves) or a warehouse (racks you arrange). Private until you make it public.
 
@@ -395,7 +752,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialScene``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialScene`: SpatialSceneResponse2
+    // response from `CreateSpatialScene`: SpatialSceneResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialScene`: %v\n", resp)
 }
 ```
@@ -415,7 +772,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse2**
+**SpatialSceneResponse**
 
 ### Authorization
 
@@ -633,7 +990,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialScenePlace
 
-> SpatialSceneResponse CreateSpatialScenePlace(ctx, id).Execute()
+> CreateSpatialScenePlaceResponse CreateSpatialScenePlace(ctx, id).Execute()
 
 Pin an inventory item to a slot in one of your rooms: by warehouse nodeId, or by a collection container key and index.
 
@@ -659,7 +1016,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialScenePlace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialScenePlace`: SpatialSceneResponse
+    // response from `CreateSpatialScenePlace`: CreateSpatialScenePlaceResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialScenePlace`: %v\n", resp)
 }
 ```
@@ -683,7 +1040,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse**
+**CreateSpatialScenePlaceResponse**
 
 ### Authorization
 
@@ -700,7 +1057,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialSceneRename
 
-> SpatialSceneResponse2 CreateSpatialSceneRename(ctx, id).CreateSpatialSceneRenameRequest(createSpatialSceneRenameRequest).Execute()
+> SpatialSceneResponse CreateSpatialSceneRename(ctx, id).CreateSpatialSceneRenameRequest(createSpatialSceneRenameRequest).Execute()
 
 Rename one of your rooms.
 
@@ -727,7 +1084,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialSceneRename``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialSceneRename`: SpatialSceneResponse2
+    // response from `CreateSpatialSceneRename`: SpatialSceneResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialSceneRename`: %v\n", resp)
 }
 ```
@@ -752,7 +1109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse2**
+**SpatialSceneResponse**
 
 ### Authorization
 
@@ -769,7 +1126,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialSceneShopPlace
 
-> SpatialSceneResponse CreateSpatialSceneShopPlace(ctx, id).Execute()
+> CreateSpatialSceneShopPlaceResponse CreateSpatialSceneShopPlace(ctx, id).Execute()
 
 Place an inventory item in a section and display of your shop room.
 
@@ -795,7 +1152,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialSceneShopPlace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialSceneShopPlace`: SpatialSceneResponse
+    // response from `CreateSpatialSceneShopPlace`: CreateSpatialSceneShopPlaceResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialSceneShopPlace`: %v\n", resp)
 }
 ```
@@ -819,7 +1176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse**
+**CreateSpatialSceneShopPlaceResponse**
 
 ### Authorization
 
@@ -903,7 +1260,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialSceneVisibility
 
-> SpatialSceneResponse2 CreateSpatialSceneVisibility(ctx, id).CreateSpatialSceneVisibilityRequest(createSpatialSceneVisibilityRequest).Execute()
+> SpatialSceneResponse CreateSpatialSceneVisibility(ctx, id).CreateSpatialSceneVisibilityRequest(createSpatialSceneVisibilityRequest).Execute()
 
 Make one of your rooms private, unlisted (anyone with the link) or public (in the lobby and searchable).
 
@@ -930,7 +1287,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialSceneVisibility``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialSceneVisibility`: SpatialSceneResponse2
+    // response from `CreateSpatialSceneVisibility`: SpatialSceneResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialSceneVisibility`: %v\n", resp)
 }
 ```
@@ -955,7 +1312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse2**
+**SpatialSceneResponse**
 
 ### Authorization
 
@@ -972,7 +1329,7 @@ Name | Type | Description  | Notes
 
 ## CreateSpatialSceneWarehouseStock
 
-> SpatialSceneResponse CreateSpatialSceneWarehouseStock(ctx, id).Execute()
+> CreateSpatialScenePlaceResponse CreateSpatialSceneWarehouseStock(ctx, id).Execute()
 
 Put an inventory item (or unit) on a rack in one of your warehouse rooms.
 
@@ -998,7 +1355,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialSceneWarehouseStock``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSpatialSceneWarehouseStock`: SpatialSceneResponse
+    // response from `CreateSpatialSceneWarehouseStock`: CreateSpatialScenePlaceResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialSceneWarehouseStock`: %v\n", resp)
 }
 ```
@@ -1022,65 +1379,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse**
-
-### Authorization
-
-[PersonalAccessToken](../README.md#PersonalAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
-
-
-## CreateSpatialShopNeighbourhood
-
-> CreateSpatialShopNeighbourhoodResponse CreateSpatialShopNeighbourhood(ctx).Execute()
-
-Move your shop to another neighbourhood (by slug).
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorldApi.CreateSpatialShopNeighbourhood(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateSpatialShopNeighbourhood``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateSpatialShopNeighbourhood`: CreateSpatialShopNeighbourhoodResponse
-    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateSpatialShopNeighbourhood`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateSpatialShopNeighbourhoodRequest struct via the builder pattern
-
-
-### Return type
-
-**CreateSpatialShopNeighbourhoodResponse**
+**CreateSpatialScenePlaceResponse**
 
 ### Authorization
 
@@ -1215,6 +1514,64 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateSpatialStreetApplyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldAttendantTestChat
+
+> CreateWorldAttendantTestChatResponse CreateWorldAttendantTestChat(ctx).Execute()
+
+One test answer from your AI attendant, on your own AI key (409 ai_key_required without one).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldAttendantTestChat(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldAttendantTestChat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldAttendantTestChat`: CreateWorldAttendantTestChatResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldAttendantTestChat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldAttendantTestChatRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWorldAttendantTestChatResponse**
 
 ### Authorization
 
@@ -1797,6 +2154,265 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateWorldConventionBoothApply
+
+> CreateWorldConventionBoothApplyResponse CreateWorldConventionBoothApply(ctx, id).Execute()
+
+Apply for a booth tier (or book it at once in open mode): { tierId, note?, categories? }.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionBoothApply(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionBoothApply``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionBoothApply`: CreateWorldConventionBoothApplyResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionBoothApply`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionBoothApplyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionBoothApplyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldConventionBoothFee
+
+> CreateWorldConventionBoothFeeResponse CreateWorldConventionBoothFee(ctx, id).Execute()
+
+Pay your booth fee to the organiser on a Worlds rail: { rail: \"cash\" | \"cbx\" }. Once per booth. Full-access token and Idempotency-Key required.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionBoothFee(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionBoothFee``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionBoothFee`: CreateWorldConventionBoothFeeResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionBoothFee`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionBoothFeeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionBoothFeeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldConventionCheckIn
+
+> CreateWorldConventionCheckInResponse CreateWorldConventionCheckIn(ctx, id).Execute()
+
+Check in: the organiser names { exhibitorId }; an exhibitor checks themselves in with {}.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionCheckIn(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionCheckIn``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionCheckIn`: CreateWorldConventionCheckInResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionCheckIn`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionCheckInRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionCheckInResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldConventionFull
+
+> GetWorldConventionManageResponse CreateWorldConventionFull(ctx).Execute()
+
+Create a convention in full: venue + days (rented and paid now on the rail), hours, theme, booth tiers and prices, application or open booking, seller limits, promotion. Full-access token and Idempotency-Key required.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionFull(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionFull``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionFull`: GetWorldConventionManageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionFull`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionFullRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldConventionManageResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateWorldConventionInvite
 
 > CreateWorldSpaceInviteResponse CreateWorldConventionInvite(ctx, id).Execute()
@@ -1864,9 +2480,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateWorldConventionMessage
+
+> CreateWorldConventionMessageResponse CreateWorldConventionMessage(ctx, id).Execute()
+
+Send a convention message: { body, toUserId? }. The organiser writes to one seller or every seller; an exhibitor writes to the organiser.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionMessage(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionMessage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionMessage`: CreateWorldConventionMessageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionMessage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionMessageRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionMessageResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateWorldConventionPaid
 
-> CreateBreakCancelResponse CreateWorldConventionPaid(ctx, id).Execute()
+> UpdateGroupBuyResponse CreateWorldConventionPaid(ctx, id).Execute()
 
 As host, record that a seller (username) paid their table fee off-platform. Moves no money.
 
@@ -1892,7 +2575,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionPaid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateWorldConventionPaid`: CreateBreakCancelResponse
+    // response from `CreateWorldConventionPaid`: UpdateGroupBuyResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionPaid`: %v\n", resp)
 }
 ```
@@ -1916,7 +2599,141 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldConventionSellerAssign
+
+> CreateWorldConventionSellerAssignResponse CreateWorldConventionSellerAssign(ctx, id).Execute()
+
+Move an accepted seller to another booth of their tier (swaps with whoever is there): { exhibitorId, boothKey }.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionSellerAssign(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionSellerAssign``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionSellerAssign`: CreateWorldConventionSellerAssignResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionSellerAssign`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionSellerAssignRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionSellerAssignResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldConventionSellerDecide
+
+> CreateWorldConventionBoothApplyResponse CreateWorldConventionSellerDecide(ctx, id).Execute()
+
+Approve (terms frozen, a booth assigned) or decline an application: { exhibitorId, decision }.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldConventionSellerDecide(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionSellerDecide``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldConventionSellerDecide`: CreateWorldConventionBoothApplyResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionSellerDecide`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldConventionSellerDecideRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldConventionBoothApplyResponse**
 
 ### Authorization
 
@@ -1933,7 +2750,7 @@ Name | Type | Description  | Notes
 
 ## CreateWorldConventionWithdraw
 
-> CreateBreakCancelResponse CreateWorldConventionWithdraw(ctx, id).Execute()
+> UpdateGroupBuyResponse CreateWorldConventionWithdraw(ctx, id).Execute()
 
 Withdraw your table or decline your invitation; as host, decline someone (username).
 
@@ -1959,7 +2776,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldConventionWithdraw``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateWorldConventionWithdraw`: CreateBreakCancelResponse
+    // response from `CreateWorldConventionWithdraw`: UpdateGroupBuyResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldConventionWithdraw`: %v\n", resp)
 }
 ```
@@ -1983,7 +2800,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 
@@ -2749,6 +3566,277 @@ Other parameters are passed through a pointer to a apiCreateWorldGamePackageChec
 [[Back to README]](../README.md)
 
 
+## CreateWorldGamePackagePublish
+
+> CreateWorldGamePackagePublishResponse CreateWorldGamePackagePublish(ctx, id).Execute()
+
+Make an approved version the one every placed copy runs (rollback or roll-forward; running copies restart on it) and list the game again if it was unpublished. Body { version }. Starter seller plan or higher.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldGamePackagePublish(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldGamePackagePublish``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldGamePackagePublish`: CreateWorldGamePackagePublishResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldGamePackagePublish`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldGamePackagePublishRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldGamePackagePublishResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldGamePackageRestore
+
+> CreateWorldGamePackageRestoreResponse CreateWorldGamePackageRestore(ctx, id).Execute()
+
+Restore a deleted Classic game within 30 days (it comes back unpublished).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldGamePackageRestore(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldGamePackageRestore``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldGamePackageRestore`: CreateWorldGamePackageRestoreResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldGamePackageRestore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldGamePackageRestoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldGamePackageRestoreResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldGamePackageUnpublish
+
+> CreateWorldGamePackageUnpublishResponse CreateWorldGamePackageUnpublish(ctx, id).Execute()
+
+Take a Classic game off the Game Directory and the Carnival Plaza launcher, its store off sale. Copies people already placed keep running. Needs no plan: a lapsed creator can always take a game down.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldGamePackageUnpublish(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldGamePackageUnpublish``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldGamePackageUnpublish`: CreateWorldGamePackageUnpublishResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldGamePackageUnpublish`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldGamePackageUnpublishRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldGamePackageUnpublishResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldGamePackageVersionSubmit
+
+> CreateWorldGamePackageVersionSubmitResponse CreateWorldGamePackageVersionSubmit(ctx, id, semver).Execute()
+
+Send a draft version (uploaded with submit: false) to review: the same static check, sandbox dry run and human review as an upload. Starter seller plan or higher.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    semver := "semver_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldGamePackageVersionSubmit(context.Background(), id, semver).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldGamePackageVersionSubmit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldGamePackageVersionSubmit`: CreateWorldGamePackageVersionSubmitResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldGamePackageVersionSubmit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+**semver** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldGamePackageVersionSubmitRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**CreateWorldGamePackageVersionSubmitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateWorldGameRating
 
 > CreateWorldGameRatingResponse CreateWorldGameRating(ctx, id).Execute()
@@ -3335,7 +4423,7 @@ Other parameters are passed through a pointer to a apiCreateWorldHuntStartReques
 
 > CreateWorldInteractiveAssetResponse CreateWorldInteractiveAsset(ctx).Execute()
 
-Upload one asset for your designs: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64. Answers its sha256 and the path to reference from MML.
+Upload one asset: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64; purpose product (your designs, the default) or game (Carnival Studio files such as badge icons). Answers its sha256 and the path to reference from MML.
 
 ### Example
 
@@ -3893,6 +4981,201 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateWorldJobShiftReleaseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldMarketBuy
+
+> CreateWorldMarketBuyResponse CreateWorldMarketBuy(ctx, kind, id).Execute()
+
+Buy a plot or a street.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    kind := "kind_example" // string | 
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldMarketBuy(context.Background(), kind, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldMarketBuy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldMarketBuy`: CreateWorldMarketBuyResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldMarketBuy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kind** | **string** |  | 
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldMarketBuyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**CreateWorldMarketBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldMarketListing
+
+> CreateWorldMarketListingResponse CreateWorldMarketListing(ctx).Execute()
+
+List a plot for sale or rent, or a street for sale.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldMarketListing(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldMarketListing``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldMarketListing`: CreateWorldMarketListingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldMarketListing`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldMarketListingRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateWorldMarketListingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldMarketPlotRent
+
+> CreateWorldMarketPlotRentResponse CreateWorldMarketPlotRent(ctx, id).Execute()
+
+Rent a plot offered for lease.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldMarketPlotRent(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldMarketPlotRent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldMarketPlotRent`: CreateWorldMarketPlotRentResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldMarketPlotRent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldMarketPlotRentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldMarketPlotRentResponse**
 
 ### Authorization
 
@@ -4771,6 +6054,198 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateWorldPropertyPlotPhotoUploadUrl
+
+> CreateWorldPropertyPlotPhotoUploadUrlResponse CreateWorldPropertyPlotPhotoUploadUrl(ctx, plotId).Execute()
+
+A presigned upload for a plot's photo (WebP/PNG/JPEG, up to 4 MB): PUT the image to uploadUrl with the same Content-Type and exact Content-Length, then store publicUrl with PUT .../photo.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    plotId := "plotId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldPropertyPlotPhotoUploadUrl(context.Background(), plotId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldPropertyPlotPhotoUploadUrl``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldPropertyPlotPhotoUploadUrl`: CreateWorldPropertyPlotPhotoUploadUrlResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldPropertyPlotPhotoUploadUrl`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldPropertyPlotPhotoUploadUrlRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldPropertyPlotPhotoUploadUrlResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldPropertyPlotShowroom
+
+> CreateWorldPropertyPlotShowroomResponse CreateWorldPropertyPlotShowroom(ctx, plotId).Execute()
+
+Stand one of your showrooms on a plot you own or rent.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    plotId := "plotId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldPropertyPlotShowroom(context.Background(), plotId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldPropertyPlotShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldPropertyPlotShowroom`: CreateWorldPropertyPlotShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldPropertyPlotShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldPropertyPlotShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldPropertyPlotShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldPropertyTrespassed
+
+> ListWorldPropertyTrespassedResponse CreateWorldPropertyTrespassed(ctx).Execute()
+
+Ban someone owner-wide or from one showroom.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldPropertyTrespassed(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldPropertyTrespassed``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldPropertyTrespassed`: ListWorldPropertyTrespassedResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldPropertyTrespassed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldPropertyTrespassedRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPropertyTrespassedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateWorldSpace
 
 > CreateWorldSpaceResponse CreateWorldSpace(ctx).Execute()
@@ -5304,6 +6779,674 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateWorldStaffApplicationDecide
+
+> CreateWorldStaffApplicationDecideResponse CreateWorldStaffApplicationDecide(ctx, id).Execute()
+
+Accept or decline an application.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldStaffApplicationDecide(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldStaffApplicationDecide``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldStaffApplicationDecide`: CreateWorldStaffApplicationDecideResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldStaffApplicationDecide`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldStaffApplicationDecideRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldStaffApplicationDecideResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldStaffAssignmentRateWorker
+
+> CreateWorldStaffAssignmentRateWorkerResponse CreateWorldStaffAssignmentRateWorker(ctx, id).Execute()
+
+Rate the worker of one of your seats.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldStaffAssignmentRateWorker(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldStaffAssignmentRateWorker``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldStaffAssignmentRateWorker`: CreateWorldStaffAssignmentRateWorkerResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldStaffAssignmentRateWorker`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldStaffAssignmentRateWorkerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldStaffAssignmentRateWorkerResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldStaffPosting
+
+> WorldStaffPostingResponse CreateWorldStaffPosting(ctx).Execute()
+
+Post a job: a showroom, stall or convention, pay, recurrence and rules.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldStaffPosting(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldStaffPosting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldStaffPosting`: WorldStaffPostingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldStaffPosting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldStaffPostingRequest struct via the builder pattern
+
+
+### Return type
+
+**WorldStaffPostingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldStaffPostingStatus
+
+> WorldStaffPostingResponse CreateWorldStaffPostingStatus(ctx, id).Execute()
+
+Open, pause or close a posting.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldStaffPostingStatus(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldStaffPostingStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldStaffPostingStatus`: WorldStaffPostingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldStaffPostingStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldStaffPostingStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**WorldStaffPostingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldStreetOwnedUpkeepPay
+
+> CreateWorldStreetOwnedUpkeepPayResponse CreateWorldStreetOwnedUpkeepPay(ctx, id).Execute()
+
+Pay your street's upkeep forward.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldStreetOwnedUpkeepPay(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldStreetOwnedUpkeepPay``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldStreetOwnedUpkeepPay`: CreateWorldStreetOwnedUpkeepPayResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldStreetOwnedUpkeepPay`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldStreetOwnedUpkeepPayRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldStreetOwnedUpkeepPayResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldVenueBookingCancel
+
+> CreateWorldVenueBookingCancelResponse CreateWorldVenueBookingCancel(ctx, id).Execute()
+
+Cancel a hall rental: the whole rent back until 7 days before the first day, nothing after.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldVenueBookingCancel(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldVenueBookingCancel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldVenueBookingCancel`: CreateWorldVenueBookingCancelResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldVenueBookingCancel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldVenueBookingCancelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldVenueBookingCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldWorkAssignmentRateEmployer
+
+> CreateWorldStaffAssignmentRateWorkerResponse CreateWorldWorkAssignmentRateEmployer(ctx, id).Execute()
+
+Rate the employer of a public-job shift you worked: paid on time, job as described, conduct.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldWorkAssignmentRateEmployer(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldWorkAssignmentRateEmployer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldWorkAssignmentRateEmployer`: CreateWorldStaffAssignmentRateWorkerResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldWorkAssignmentRateEmployer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldWorkAssignmentRateEmployerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldStaffAssignmentRateWorkerResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateWorldWorkPostingApply
+
+> CreateWorldWorkPostingApplyResponse CreateWorldWorkPostingApply(ctx, id).Execute()
+
+Apply for a job.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.CreateWorldWorkPostingApply(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.CreateWorldWorkPostingApply``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorldWorkPostingApply`: CreateWorldWorkPostingApplyResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.CreateWorldWorkPostingApply`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorldWorkPostingApplyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateWorldWorkPostingApplyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteShowroom
+
+> DeleteShowroomResponse DeleteShowroom(ctx, id).StorefrontId(storefrontId).Execute()
+
+Archive a showroom: private, off its plots, billing stopped. Never deletes; the primary cannot be archived (409 showroom_primary).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteShowroom(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteShowroom`: DeleteShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**DeleteShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteShowroomPlacement
+
+> CreateShowroomPlacementResponse DeleteShowroomPlacement(ctx, id, plotId).StorefrontId(storefrontId).Execute()
+
+Take a showroom off a plot (the plot stays yours).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    plotId := "plotId_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteShowroomPlacement(context.Background(), id, plotId).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteShowroomPlacement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteShowroomPlacement`: CreateShowroomPlacementResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteShowroomPlacement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteShowroomPlacementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**CreateShowroomPlacementResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteSpatialSceneGrant
 
 > DeleteSpatialSceneGrantResponse DeleteSpatialSceneGrant(ctx, id, grantId).Execute()
@@ -5777,6 +7920,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteWorldGamePackage
+
+> DeleteWorldGamePackageResponse DeleteWorldGamePackage(ctx, id).Execute()
+
+Delete a Classic game: unpublished, then a tombstone restorable for 30 days.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteWorldGamePackage(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteWorldGamePackage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWorldGamePackage`: DeleteWorldGamePackageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteWorldGamePackage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorldGamePackageRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**DeleteWorldGamePackageResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteWorldHallLoan
 
 > CreateBreakResponse DeleteWorldHallLoan(ctx, id).Execute()
@@ -6048,6 +8258,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteWorldMarketListing
+
+> DeleteWorldMarketListingResponse DeleteWorldMarketListing(ctx, kind, id, mode).Execute()
+
+Withdraw a plot or street from the Market.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    kind := "kind_example" // string | 
+    id := "id_example" // string | 
+    mode := "mode_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteWorldMarketListing(context.Background(), kind, id, mode).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteWorldMarketListing``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWorldMarketListing`: DeleteWorldMarketListingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteWorldMarketListing`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kind** | **string** |  | 
+**id** | **string** |  | 
+**mode** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorldMarketListingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+**DeleteWorldMarketListingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteWorldOutfit
 
 > DeleteWorldOutfitResponse DeleteWorldOutfit(ctx, id).Execute()
@@ -6255,6 +8538,140 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteWorldPropertyPlotShowroom
+
+> DeleteWorldPropertyPlotShowroomResponse DeleteWorldPropertyPlotShowroom(ctx, plotId).Execute()
+
+Take the showroom off a plot.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    plotId := "plotId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteWorldPropertyPlotShowroom(context.Background(), plotId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteWorldPropertyPlotShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWorldPropertyPlotShowroom`: DeleteWorldPropertyPlotShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteWorldPropertyPlotShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorldPropertyPlotShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**DeleteWorldPropertyPlotShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteWorldPropertyTrespassed
+
+> DeleteSpatialSceneGrantResponse DeleteWorldPropertyTrespassed(ctx, userId).Execute()
+
+Lift a ban.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteWorldPropertyTrespassed(context.Background(), userId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteWorldPropertyTrespassed``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWorldPropertyTrespassed`: DeleteSpatialSceneGrantResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteWorldPropertyTrespassed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorldPropertyTrespassedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**DeleteSpatialSceneGrantResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteWorldSpace
 
 > DeleteWorldSpaceResponse DeleteWorldSpace(ctx, slug).Execute()
@@ -6378,6 +8795,401 @@ Name | Type | Description  | Notes
 ### Return type
 
 **DeleteWorldJobShiftResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteWorldStaffAssignment
+
+> DeleteSpatialSceneGrantResponse DeleteWorldStaffAssignment(ctx, id).Execute()
+
+Take a worker off a seat that has not started.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.DeleteWorldStaffAssignment(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.DeleteWorldStaffAssignment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWorldStaffAssignment`: DeleteSpatialSceneGrantResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.DeleteWorldStaffAssignment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWorldStaffAssignmentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**DeleteSpatialSceneGrantResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetShowroom
+
+> GetShowroomResponse GetShowroom(ctx).StorefrontId(storefrontId).Execute()
+
+Your store's showroom in Crossly World: the room and its look, fixtures with their slot grids, where every item stands (pinned by a person or placed automatically), sharing settings and the stock that can stand there. The ETag is the version.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetShowroom(context.Background()).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetShowroom`: GetShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**GetShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetShowroomBilling
+
+> GetShowroomBillingResponse GetShowroomBilling(ctx, id).StorefrontId(storefrontId).Execute()
+
+A showroom's billing: included, active (paid through), past due or cancelled, and the rails a payment can use.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetShowroomBilling(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetShowroomBilling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetShowroomBilling`: GetShowroomBillingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetShowroomBilling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetShowroomBillingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**GetShowroomBillingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetShowroomById
+
+> GetShowroomResponse GetShowroomById(ctx, id).StorefrontId(storefrontId).Execute()
+
+One showroom: room and look, fixtures (with holders), placements, settings (hours, auto-include) and stock. The ETag is the version.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetShowroomById(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetShowroomById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetShowroomById`: GetShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetShowroomById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetShowroomByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**GetShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetShowroomCatalog
+
+> GetShowroomCatalogResponse GetShowroomCatalog(ctx).Execute()
+
+Everything a showroom can be made of: fixture displays (kind, slots per unit), room sizes, themes, surfaces, shopfronts, facades, sign styles and fonts, window moods, and `holders`: every fixture holder with `owned` (free, or a premium one you bought in the in-world cosmetics market; an unowned premium holder is refused with holder_not_owned).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetShowroomCatalog(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetShowroomCatalog``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetShowroomCatalog`: GetShowroomCatalogResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetShowroomCatalog`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetShowroomCatalogRequest struct via the builder pattern
+
+
+### Return type
+
+**GetShowroomCatalogResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetShowroomPlacement
+
+> GetShowroomPlacementResponse GetShowroomPlacement(ctx, id).StorefrontId(storefrontId).Execute()
+
+The plots a showroom stands on, and the plots your store owns or rents that it could stand on.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetShowroomPlacement(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetShowroomPlacement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetShowroomPlacement`: GetShowroomPlacementResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetShowroomPlacement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetShowroomPlacementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**GetShowroomPlacementResponse**
 
 ### Authorization
 
@@ -6530,7 +9342,7 @@ Name | Type | Description  | Notes
 
 > GetSpatialShopNeighbourhoodResponse GetSpatialShopNeighbourhood(ctx).Execute()
 
-Your shop's neighbourhood, and whether and where it may move.
+Where your shop stands, and the district theme your stock fits.
 
 ### Example
 
@@ -6825,6 +9637,64 @@ Other parameters are passed through a pointer to a apiGetWorldArcadeRequest stru
 [[Back to README]](../README.md)
 
 
+## GetWorldAttendant
+
+> GetWorldAttendantResponse GetWorldAttendant(ctx).Execute()
+
+Your AI attendant and whether your AI key is connected.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldAttendant(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldAttendant``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldAttendant`: GetWorldAttendantResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldAttendant`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldAttendantRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldAttendantResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldAurora
 
 > GetWorldAuroraResponse GetWorldAurora(ctx).Execute()
@@ -6883,11 +9753,11 @@ Other parameters are passed through a pointer to a apiGetWorldAuroraRequest stru
 [[Back to README]](../README.md)
 
 
-## GetWorldAutoShop
+## GetWorldAvatarBasic
 
-> GetWorldAutoShopResponse GetWorldAutoShop(ctx).Execute()
+> GetWorldAvatarBasicResponse GetWorldAvatarBasic(ctx).Execute()
 
-Whether Crossly keeps a world shop for you automatically: enabled, and the shop (id, name, visibility, autoCreated, address, label) or null. Change it with PATCH /v1/world/auto-shop.
+The free basic wardrobe every account owns: 25 garments (tees, hoodie, overshirt, polo, jacket, vest, jeans, shorts, skirt, sneakers, boots, loafers, caps...) by slot, each with its colourways. Wear one by saving appearance.outfit = { top, outer, bottom, shoes, hat } as \"garment:colour\" (outer and hat may be \"none\") with PUT /v1/world/avatar/look.
 
 ### Example
 
@@ -6905,13 +9775,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorldApi.GetWorldAutoShop(context.Background()).Execute()
+    resp, r, err := apiClient.WorldApi.GetWorldAvatarBasic(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldAutoShop``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldAvatarBasic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetWorldAutoShop`: GetWorldAutoShopResponse
-    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldAutoShop`: %v\n", resp)
+    // response from `GetWorldAvatarBasic`: GetWorldAvatarBasicResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldAvatarBasic`: %v\n", resp)
 }
 ```
 
@@ -6921,12 +9791,12 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorldAutoShopRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetWorldAvatarBasicRequest struct via the builder pattern
 
 
 ### Return type
 
-**GetWorldAutoShopResponse**
+**GetWorldAvatarBasicResponse**
 
 ### Authorization
 
@@ -7226,6 +10096,64 @@ Other parameters are passed through a pointer to a apiGetWorldAvatarNftBadgeRequ
 ### Return type
 
 **GetWorldAvatarNftBadgeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldBillingRail
+
+> GetWorldBillingRailResponse GetWorldBillingRail(ctx).Execute()
+
+Which rails (card, CBX) can pay in the world right now.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldBillingRail(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldBillingRail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldBillingRail`: GetWorldBillingRailResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldBillingRail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldBillingRailRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldBillingRailResponse**
 
 ### Authorization
 
@@ -7600,6 +10528,64 @@ Other parameters are passed through a pointer to a apiGetWorldContestMineRequest
 [[Back to README]](../README.md)
 
 
+## GetWorldControl
+
+> GetWorldControlResponse GetWorldControl(ctx).Execute()
+
+Your world controls settings (look sensitivity, invert look, stick size, left-handed, camera distance, reduced camera motion, tap-to-walk, haptics) and whether you have seen the controls tutorial.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldControl(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldControl``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldControl`: GetWorldControlResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldControl`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldControlRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldControlResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldConvention
 
 > GetWorldConventionResponse GetWorldConvention(ctx, id).Execute()
@@ -7653,6 +10639,274 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWorldConventionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldConventionExhibit
+
+> GetWorldConventionExhibitResponse GetWorldConventionExhibit(ctx, id).Execute()
+
+A convention from the exhibitor side: tiers with price, size, capacity and booths left, the rails that pay now, and your own booth (status, fee, paid, checked in, listings).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldConventionExhibit(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldConventionExhibit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldConventionExhibit`: GetWorldConventionExhibitResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldConventionExhibit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldConventionExhibitRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldConventionExhibitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldConventionHall
+
+> GetWorldConventionHallResponse GetWorldConventionHall(ctx, id).Execute()
+
+The hall design (booths, stage, signs, entrance, kiosk), its version and any problems.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldConventionHall(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldConventionHall``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldConventionHall`: GetWorldConventionHallResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldConventionHall`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldConventionHallRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldConventionHallResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldConventionManage
+
+> GetWorldConventionManageResponse GetWorldConventionManage(ctx, id).Execute()
+
+A convention you organise: its settings, booth tiers, every seller (status, booth, fee, paid, checked in) and the venue.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldConventionManage(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldConventionManage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldConventionManage`: GetWorldConventionManageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldConventionManage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldConventionManageRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldConventionManageResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldConventionStatusPage
+
+> GetWorldConventionStatusPageResponse GetWorldConventionStatusPage(ctx, id).Execute()
+
+The status page: sellers, booths filled per tier, walk-ins, sales of brought listings, booth fees paid and owed.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldConventionStatusPage(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldConventionStatusPage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldConventionStatusPage`: GetWorldConventionStatusPageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldConventionStatusPage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldConventionStatusPageRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldConventionStatusPageResponse**
 
 ### Authorization
 
@@ -8399,6 +11653,140 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetWorldGamePackageStat
+
+> GetWorldGamePackageStatResponse GetWorldGamePackageStat(ctx, id).Execute()
+
+Play stats for one of your Classic games: 30-day totals, the daily series the launcher ranks on (uniques, sessions, playtime, first-play bounces, D1/D7/D28), its ranking score, test impressions and players right now. ?days=1-90.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldGamePackageStat(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldGamePackageStat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldGamePackageStat`: GetWorldGamePackageStatResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldGamePackageStat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldGamePackageStatRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldGamePackageStatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldGamePackageVersion
+
+> GetWorldGamePackageVersionResponse GetWorldGamePackageVersion(ctx, id).Execute()
+
+Every version of one of your Classic games: draft, pending, approved, rejected, withdrawn or cancelled, which one is live, its documents and report.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldGamePackageVersion(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldGamePackageVersion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldGamePackageVersion`: GetWorldGamePackageVersionResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldGamePackageVersion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldGamePackageVersionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldGamePackageVersionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldGameTemplate
 
 > GetWorldGameTemplateResponse GetWorldGameTemplate(ctx, kind).Execute()
@@ -8997,6 +12385,375 @@ Other parameters are passed through a pointer to a apiGetWorldLanternRequest str
 [[Back to README]](../README.md)
 
 
+## GetWorldLauncher
+
+> GetWorldLauncherResponse GetWorldLauncher(ctx).Execute()
+
+The Carnival Plaza launcher: portals for Classic games, Crossly's own card games and the Commons card tables, each with players right now, your friends inside, its ranking score (published weights, retention-weighted, first-play bounce negative) and where Play goes. Twelve ring slots: friends' pick, new & rising (guaranteed test impressions), then the top, first-party capped at 25%.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldLauncher(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldLauncher``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldLauncher`: GetWorldLauncherResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldLauncher`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldLauncherRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldLauncherResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldManageLedger
+
+> GetWorldManageLedgerResponse GetWorldManageLedger(ctx).Execute()
+
+World money over 7, 30 or 90 days: plot purchases, maintenance, rent, deed sales, staff wages, shifts and stalls, in and out.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldManageLedger(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldManageLedger``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldManageLedger`: GetWorldManageLedgerResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldManageLedger`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldManageLedgerRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldManageLedgerResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldManageOverview
+
+> GetWorldManageOverviewResponse GetWorldManageOverview(ctx).Execute()
+
+Your Crossly World at a glance: shop and addresses, property, staff and shifts, conventions, stalls, 30-day visitors and money.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldManageOverview(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldManageOverview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldManageOverview`: GetWorldManageOverviewResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldManageOverview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldManageOverviewRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldManageOverviewResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldManageVisitor
+
+> GetWorldManageVisitorResponse GetWorldManageVisitor(ctx).Execute()
+
+Who came to your world shop over 7, 30 or 90 days: the funnel, attention by day, most-looked and most-wanted items.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldManageVisitor(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldManageVisitor``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldManageVisitor`: GetWorldManageVisitorResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldManageVisitor`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldManageVisitorRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldManageVisitorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldMarket
+
+> GetWorldMarketResponse GetWorldMarket(ctx, kind, id).Execute()
+
+One plot or street in the Market: price, renders, neighbours, foot traffic, history.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    kind := "kind_example" // string | 
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldMarket(context.Background(), kind, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldMarket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldMarket`: GetWorldMarketResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldMarket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kind** | **string** |  | 
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldMarketRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**GetWorldMarketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldNeighbourhoodClaim
+
+> GetWorldNeighbourhoodClaimResponse GetWorldNeighbourhoodClaim(ctx, slug).Execute()
+
+Whether you may claim a plot on a neighbourhood street (its top sellers by recent sales), and why not.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldNeighbourhoodClaim(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldNeighbourhoodClaim``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldNeighbourhoodClaim`: GetWorldNeighbourhoodClaimResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldNeighbourhoodClaim`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldNeighbourhoodClaimRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldNeighbourhoodClaimResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldPartyChat
 
 > WorldResponse GetWorldPartyChat(ctx, id).Execute()
@@ -9545,6 +13302,265 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetWorldPropertyPlot
+
+> GetWorldPropertyPlotResponse GetWorldPropertyPlot(ctx, plotId).Execute()
+
+One plot of yours: showroom, rental, value, upkeep.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    plotId := "plotId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldPropertyPlot(context.Background(), plotId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldPropertyPlot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldPropertyPlot`: GetWorldPropertyPlotResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldPropertyPlot`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldPropertyPlotRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldPropertyPlotResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldPropertyRental
+
+> GetWorldPropertyRentalResponse GetWorldPropertyRental(ctx, leaseId).Execute()
+
+One plot you rent out, with its payments.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    leaseId := "leaseId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldPropertyRental(context.Background(), leaseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldPropertyRental``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldPropertyRental`: GetWorldPropertyRentalResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldPropertyRental`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**leaseId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldPropertyRentalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldPropertyRentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldPropertyRenting
+
+> GetWorldPropertyRentalResponse GetWorldPropertyRenting(ctx, leaseId).Execute()
+
+One plot you rent, with its payments.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    leaseId := "leaseId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldPropertyRenting(context.Background(), leaseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldPropertyRenting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldPropertyRenting`: GetWorldPropertyRentalResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldPropertyRenting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**leaseId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldPropertyRentingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldPropertyRentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldRail
+
+> GetWorldRailResponse GetWorldRail(ctx).Execute()
+
+Which Worlds payment rails are on now: cash (card), CBX, or both.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldRail(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldRail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldRail`: GetWorldRailResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldRail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldRailRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldRailResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldSpace
 
 > GetWorldSpaceResponse GetWorldSpace(ctx, slug).Execute()
@@ -9656,6 +13672,332 @@ Other parameters are passed through a pointer to a apiGetWorldSpaceCanHostReques
 ### Return type
 
 **GetWorldSpaceCanHostResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldStaffPosting
+
+> GetWorldStaffPostingResponse GetWorldStaffPosting(ctx, id).Execute()
+
+One of your postings, with its shifts.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldStaffPosting(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldStaffPosting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldStaffPosting`: GetWorldStaffPostingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldStaffPosting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldStaffPostingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldStaffPostingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldStaffReputation
+
+> GetWorldStaffReputationResponse GetWorldStaffReputation(ctx).Execute()
+
+Your employer reputation, rated by the people who worked your public jobs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldStaffReputation(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldStaffReputation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldStaffReputation`: GetWorldStaffReputationResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldStaffReputation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldStaffReputationRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldStaffReputationResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldStreetFund
+
+> GetWorldStreetFundResponse GetWorldStreetFund(ctx, slug).Execute()
+
+A street's fund: the CBX property payments on its plots over the last four weeks, and the street events it unlocked.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldStreetFund(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldStreetFund``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldStreetFund`: GetWorldStreetFundResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldStreetFund`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldStreetFundRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldStreetFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldStreetOwned
+
+> GetWorldStreetOwnedResponse GetWorldStreetOwned(ctx, id).Execute()
+
+A street you own: tenants, applications, upkeep, look, fund.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldStreetOwned(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldStreetOwned``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldStreetOwned`: GetWorldStreetOwnedResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldStreetOwned`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldStreetOwnedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldStreetOwnedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldStreetTrespassBarrier
+
+> GetWorldStreetTrespassBarrierResponse GetWorldStreetTrespassBarrier(ctx, slug).Execute()
+
+Plot numbers on the street you are trespassed from.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldStreetTrespassBarrier(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldStreetTrespassBarrier``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldStreetTrespassBarrier`: GetWorldStreetTrespassBarrierResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldStreetTrespassBarrier`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldStreetTrespassBarrierRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldStreetTrespassBarrierResponse**
 
 ### Authorization
 
@@ -9795,6 +14137,73 @@ Other parameters are passed through a pointer to a apiGetWorldTrialMineRequest s
 [[Back to README]](../README.md)
 
 
+## GetWorldVenueQuote
+
+> GetWorldVenueQuoteResponse GetWorldVenueQuote(ctx, id).Execute()
+
+What a hall costs for those days (startsOn, endsOn), the full-refund date, and whether it is free.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldVenueQuote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldVenueQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldVenueQuote`: GetWorldVenueQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldVenueQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldVenueQuoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetWorldVenueQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetWorldWallet
 
 > GetWorldWalletResponse GetWorldWallet(ctx).Execute()
@@ -9897,6 +14306,370 @@ Other parameters are passed through a pointer to a apiGetWorldWishRequest struct
 ### Return type
 
 **GetWorldWishResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldWorkEarning
+
+> GetWorldWorkEarningResponse GetWorldWorkEarning(ctx).Execute()
+
+What your shifts paid, by rail.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldWorkEarning(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldWorkEarning``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldWorkEarning`: GetWorldWorkEarningResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldWorkEarning`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldWorkEarningRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldWorkEarningResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetWorldWorkMine
+
+> GetWorldWorkMineResponse GetWorldWorkMine(ctx).Execute()
+
+Where you work: your seats, applications and your teams’ open jobs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.GetWorldWorkMine(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.GetWorldWorkMine``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWorldWorkMine`: GetWorldWorkMineResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.GetWorldWorkMine`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWorldWorkMineRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldWorkMineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListGameCoupons
+
+> ListGameCouponsResponse ListGameCoupons(ctx).Execute()
+
+Your fee-back coupons from house-game wins: Bucks paid out of the fee on your next market purchase.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListGameCoupons(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListGameCoupons``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListGameCoupons`: ListGameCouponsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListGameCoupons`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListGameCouponsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListGameCouponsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListShowroomItemSearch
+
+> ListShowroomItemSearchResponse ListShowroomItemSearch(ctx, id).StorefrontId(storefrontId).Execute()
+
+Search this store's in-stock items (title, brand, SKU) to put on a fixture or in a window slot; each with listed / passport / multi_unit badges.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListShowroomItemSearch(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListShowroomItemSearch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListShowroomItemSearch`: ListShowroomItemSearchResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListShowroomItemSearch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListShowroomItemSearchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**ListShowroomItemSearchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListShowrooms
+
+> ListShowroomsResponse ListShowrooms(ctx).StorefrontId(storefrontId).Execute()
+
+Your store's showrooms, primary first: name, visibility, auto-include, pinned items, fixtures, billing and the plots each stands on.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListShowrooms(context.Background()).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListShowrooms``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListShowrooms`: ListShowroomsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListShowrooms`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListShowroomsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**ListShowroomsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListSpatialLeases
+
+> ListSpatialLeasesResponse ListSpatialLeases(ctx).Execute()
+
+Plots offered for lease on every street, cheapest first: address, weekly rent and maintenance in CENTS.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListSpatialLeases(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListSpatialLeases``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListSpatialLeases`: ListSpatialLeasesResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListSpatialLeases`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListSpatialLeasesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListSpatialLeasesResponse**
 
 ### Authorization
 
@@ -10105,7 +14878,7 @@ Other parameters are passed through a pointer to a apiListSpatialSharedWithMeReq
 
 ## ListSpatialStreetLeases
 
-> ListSpatialStreetLeasesResponse ListSpatialStreetLeases(ctx, slug).Execute()
+> ListSpatialLeasesResponse ListSpatialStreetLeases(ctx, slug).Execute()
 
 Plots on a street offered for lease: weekly rent in CENTS and terms.
 
@@ -10131,7 +14904,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListSpatialStreetLeases``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListSpatialStreetLeases`: ListSpatialStreetLeasesResponse
+    // response from `ListSpatialStreetLeases`: ListSpatialLeasesResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListSpatialStreetLeases`: %v\n", resp)
 }
 ```
@@ -10155,7 +14928,65 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListSpatialStreetLeasesResponse**
+**ListSpatialLeasesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldAttendantUsage
+
+> ListWorldAttendantUsageResponse ListWorldAttendantUsage(ctx).Execute()
+
+Your AI attendant’s usage log.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldAttendantUsage(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldAttendantUsage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldAttendantUsage`: ListWorldAttendantUsageResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldAttendantUsage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldAttendantUsageRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldAttendantUsageResponse**
 
 ### Authorization
 
@@ -10645,6 +15476,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListWorldConventionExhibitorsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldConventionMessages
+
+> ListWorldConventionMessagesResponse ListWorldConventionMessages(ctx, id).Execute()
+
+Convention messages you may read: the organiser all of them (?with=<userId> for one seller), an exhibitor theirs and the broadcasts.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldConventionMessages(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldConventionMessages``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldConventionMessages`: ListWorldConventionMessagesResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldConventionMessages`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldConventionMessagesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWorldConventionMessagesResponse**
 
 ### Authorization
 
@@ -11657,6 +16555,73 @@ Other parameters are passed through a pointer to a apiListWorldFriendsRequest st
 [[Back to README]](../README.md)
 
 
+## ListWorldGamePackageReceipts
+
+> ListWorldGamePackageReceiptsResponse ListWorldGamePackageReceipts(ctx, id).Execute()
+
+Store sales of one of your game packages, newest first: item, price paid, edition, when. Never who bought. Cursor-paged: pass pagination.nextCursor back as ?cursor=.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldGamePackageReceipts(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldGamePackageReceipts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldGamePackageReceipts`: ListWorldGamePackageReceiptsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldGamePackageReceipts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldGamePackageReceiptsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWorldGamePackageReceiptsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListWorldGamePackages
 
 > ListWorldGamePackagesResponse ListWorldGamePackages(ctx).Execute()
@@ -11951,7 +16916,7 @@ Other parameters are passed through a pointer to a apiListWorldInteractiveCatalo
 
 > ListWorldInteractiveDesignsResponse ListWorldInteractiveDesigns(ctx).Archived(archived).Execute()
 
-Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen on crossly.net/shop/decor?tab=interactive.
+Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen in the Creator Studio on crossly.net (/studio/creator/creations/interactive/new/edit).
 
 ### Example
 
@@ -12010,6 +16975,64 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListWorldJobBoard
+
+> ListWorldJobBoardResponse ListWorldJobBoard(ctx).Execute()
+
+The public Job Board, filterable.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldJobBoard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldJobBoard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldJobBoard`: ListWorldJobBoardResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldJobBoard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldJobBoardRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldJobBoardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListWorldJobPosted
 
 > ListJobShiftsResponse ListWorldJobPosted(ctx).Execute()
@@ -12054,6 +17077,131 @@ Other parameters are passed through a pointer to a apiListWorldJobPostedRequest 
 ### Return type
 
 **ListJobShiftsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldMarket
+
+> ListWorldMarketResponse ListWorldMarket(ctx).Execute()
+
+Plots and streets for sale or rent in the Worlds Market.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldMarket(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldMarket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldMarket`: ListWorldMarketResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldMarket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldMarketRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldMarketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldMarketStreetSigns
+
+> ListWorldMarketStreetSignsResponse ListWorldMarketStreetSigns(ctx, slug).Execute()
+
+The street's for-sale and for-rent boards.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldMarketStreetSigns(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldMarketStreetSigns``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldMarketStreetSigns`: ListWorldMarketStreetSignsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldMarketStreetSigns`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldMarketStreetSignsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListWorldMarketStreetSignsResponse**
 
 ### Authorization
 
@@ -12595,6 +17743,296 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListWorldPromoted
+
+> ListWorldPromotedResponse ListWorldPromoted(ctx).Execute()
+
+Promoted places in Crossly World: boosted showrooms and conventions (Sponsored, labelled \"Promoted\"), with the token to send when one is opened.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldPromoted(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldPromoted``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldPromoted`: ListWorldPromotedResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldPromoted`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldPromotedRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPromotedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldPropertyPlots
+
+> ListWorldPropertyPlotsResponse ListWorldPropertyPlots(ctx).Execute()
+
+Plots your store owns or rents.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldPropertyPlots(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldPropertyPlots``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldPropertyPlots`: ListWorldPropertyPlotsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldPropertyPlots`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldPropertyPlotsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPropertyPlotsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldPropertyRentals
+
+> ListWorldPropertyRentalsResponse ListWorldPropertyRentals(ctx).Execute()
+
+Plots you rent out.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldPropertyRentals(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldPropertyRentals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldPropertyRentals`: ListWorldPropertyRentalsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldPropertyRentals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldPropertyRentalsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPropertyRentalsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldPropertyRenting
+
+> ListWorldPropertyRentalsResponse ListWorldPropertyRenting(ctx).Execute()
+
+Plots you rent.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldPropertyRenting(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldPropertyRenting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldPropertyRenting`: ListWorldPropertyRentalsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldPropertyRenting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldPropertyRentingRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPropertyRentalsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldPropertyTrespassed
+
+> ListWorldPropertyTrespassedResponse ListWorldPropertyTrespassed(ctx).Execute()
+
+People your store has banned, owner-wide or from one showroom.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldPropertyTrespassed(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldPropertyTrespassed``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldPropertyTrespassed`: ListWorldPropertyTrespassedResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldPropertyTrespassed`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldPropertyTrespassedRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldPropertyTrespassedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListWorldProvenance
 
 > ListWorldProvenanceResponse ListWorldProvenance(ctx).Execute()
@@ -12952,6 +18390,296 @@ Other parameters are passed through a pointer to a apiListWorldSpacesRequest str
 [[Back to README]](../README.md)
 
 
+## ListWorldStaffApplicants
+
+> ListWorldStaffApplicantsResponse ListWorldStaffApplicants(ctx).Execute()
+
+Who applied to your postings, with their worker reputation.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldStaffApplicants(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldStaffApplicants``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldStaffApplicants`: ListWorldStaffApplicantsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldStaffApplicants`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldStaffApplicantsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldStaffApplicantsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldStaffPeople
+
+> ListWorldStaffPeopleResponse ListWorldStaffPeople(ctx).Execute()
+
+Everyone working for you: your Settings team and public workers, with their seats.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldStaffPeople(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldStaffPeople``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldStaffPeople`: ListWorldStaffPeopleResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldStaffPeople`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldStaffPeopleRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldStaffPeopleResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldStaffPlaces
+
+> ListWorldStaffPlacesResponse ListWorldStaffPlaces(ctx).Execute()
+
+The showrooms, stalls and conventions a job can be posted at, and the pay rails that are live.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldStaffPlaces(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldStaffPlaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldStaffPlaces`: ListWorldStaffPlacesResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldStaffPlaces`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldStaffPlacesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldStaffPlacesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldStaffPostings
+
+> ListWorldStaffPostingsResponse ListWorldStaffPostings(ctx).Execute()
+
+Your job postings, with their upcoming shifts.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldStaffPostings(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldStaffPostings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldStaffPostings`: ListWorldStaffPostingsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldStaffPostings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldStaffPostingsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldStaffPostingsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListWorldStaffShifts
+
+> ListWorldStaffShiftsResponse ListWorldStaffShifts(ctx).Execute()
+
+Your scheduled seats and who is on them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldStaffShifts(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldStaffShifts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldStaffShifts`: ListWorldStaffShiftsResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldStaffShifts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldStaffShiftsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldStaffShiftsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListWorldStreaks
 
 > ListWorldStreaksResponse ListWorldStreaks(ctx).Execute()
@@ -13184,6 +18912,328 @@ Other parameters are passed through a pointer to a apiListWorldTradeTableListing
 [[Back to README]](../README.md)
 
 
+## ListWorldVenues
+
+> ListWorldVenuesResponse ListWorldVenues(ctx).Execute()
+
+The Convention Center halls for rent: size, floor, booths, price per day, and the days already taken (from, to).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.ListWorldVenues(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.ListWorldVenues``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorldVenues`: ListWorldVenuesResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.ListWorldVenues`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorldVenuesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListWorldVenuesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateShowroom
+
+> UpdateShowroomResponse UpdateShowroom(ctx).StorefrontId(storefrontId).Execute()
+
+Replace the whole showroom layout (room, fixtures, placements, settings). Validated as a whole: every item must be this store's, every pin must fit its fixture, no two pins share a slot. Send If-Match (or expectedVersion) to refuse with 409 version_conflict if it changed meanwhile.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateShowroom(context.Background()).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateShowroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateShowroom`: UpdateShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateShowroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateShowroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**UpdateShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateShowroom2
+
+> UpdateShowroom2Response UpdateShowroom2(ctx).StorefrontId(storefrontId).Execute()
+
+Apply showroom ops in order, all or nothing: place, move, remove, fill (from a category / tag / brand / collection / search, in price, age, value or title order), sort, clear, add_fixture, update_fixture, remove_fixture, set_room, set_settings. Idempotent; refusals name the op (details.opIndex) with codes slot_occupied, item_not_in_store, fixture_capacity, unknown_fixture, unknown_display, version_conflict.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateShowroom2(context.Background()).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateShowroom2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateShowroom2`: UpdateShowroom2Response
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateShowroom2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateShowroom2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**UpdateShowroom2Response**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateShowroom3
+
+> UpdateShowroom2Response UpdateShowroom3(ctx, id).StorefrontId(storefrontId).Execute()
+
+Apply ops to one showroom in order, all or nothing (the same ops as PATCH /api/v1/showroom).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateShowroom3(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateShowroom3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateShowroom3`: UpdateShowroom2Response
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateShowroom3`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateShowroom3Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**UpdateShowroom2Response**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateShowroomById
+
+> UpdateShowroomResponse UpdateShowroomById(ctx, id).StorefrontId(storefrontId).Execute()
+
+Replace one showroom's whole layout. If-Match (or expectedVersion) refuses with 409 version_conflict on a concurrent edit.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    storefrontId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Which store (else X-Storefront-Id, else your default store). (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateShowroomById(context.Background(), id).StorefrontId(storefrontId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateShowroomById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateShowroomById`: UpdateShowroomResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateShowroomById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateShowroomByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **storefrontId** | **string** | Which store (else X-Storefront-Id, else your default store). | 
+
+### Return type
+
+**UpdateShowroomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateSpatialSceneCosmetic
 
 > UpdateSpatialSceneCosmeticResponse UpdateSpatialSceneCosmetic(ctx, id).Execute()
@@ -13323,7 +19373,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSpatialSceneSetting
 
-> SpatialSceneResponse2 UpdateSpatialSceneSetting(ctx, id).Execute()
+> SpatialSceneResponse UpdateSpatialSceneSetting(ctx, id).Execute()
 
 How one of your rooms is laid out and lit: grouping and sort keys, theme, overlay and the arrival camera. Cosmetics and the shop layout have their own writers.
 
@@ -13349,7 +19399,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateSpatialSceneSetting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateSpatialSceneSetting`: SpatialSceneResponse2
+    // response from `UpdateSpatialSceneSetting`: SpatialSceneResponse
     fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateSpatialSceneSetting`: %v\n", resp)
 }
 ```
@@ -13373,7 +19423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SpatialSceneResponse2**
+**SpatialSceneResponse**
 
 ### Authorization
 
@@ -13656,11 +19706,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateWorldAutoShop
+## UpdateWorldAttendant
 
-> GetWorldAutoShopResponse UpdateWorldAutoShop(ctx).UpdateWorldAutoShopRequest(updateWorldAutoShopRequest).Execute()
+> UpdateWorldAttendantResponse UpdateWorldAttendant(ctx).Execute()
 
-Turn your automatic world shop off ({ enabled: false } -- an auto-created shop is made private, never deleted) or back on. Answers the new status.
+Create or replace your AI attendant (BYOK: switching it on needs your AI key).
 
 ### Example
 
@@ -13675,36 +19725,31 @@ import (
 )
 
 func main() {
-    updateWorldAutoShopRequest := *openapiclient.NewUpdateWorldAutoShopRequest(false) // UpdateWorldAutoShopRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WorldApi.UpdateWorldAutoShop(context.Background()).UpdateWorldAutoShopRequest(updateWorldAutoShopRequest).Execute()
+    resp, r, err := apiClient.WorldApi.UpdateWorldAttendant(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldAutoShop``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldAttendant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateWorldAutoShop`: GetWorldAutoShopResponse
-    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldAutoShop`: %v\n", resp)
+    // response from `UpdateWorldAttendant`: UpdateWorldAttendantResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldAttendant`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateWorldAutoShopRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateWorldAttendantRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **updateWorldAutoShopRequest** | **UpdateWorldAutoShopRequest** |  | 
 
 ### Return type
 
-**GetWorldAutoShopResponse**
+**UpdateWorldAttendantResponse**
 
 ### Authorization
 
@@ -13712,7 +19757,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -13781,7 +19826,7 @@ Other parameters are passed through a pointer to a apiUpdateWorldAvatarIdentityR
 
 > UpdateWorldAvatarLookResponse UpdateWorldAvatarLook(ctx).Execute()
 
-Save your world look to the account, so every device starts from it. look: null stays anonymous.
+Save your world look to the account, so every device starts from it. look: null stays anonymous. appearance.outfit = { top, outer, bottom, shoes, hat } picks the basic outfit (GET /v1/world/avatar/basics).
 
 ### Example
 
@@ -14007,6 +20052,198 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWorldCollectionCapabilityResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWorldControl
+
+> GetWorldControlResponse UpdateWorldControl(ctx).Execute()
+
+Save your world controls settings to the account (any subset of prefs; out-of-range values take the default) and/or mark the controls tutorial seen.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldControl(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldControl``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldControl`: GetWorldControlResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldControl`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldControlRequest struct via the builder pattern
+
+
+### Return type
+
+**GetWorldControlResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWorldConventionHall
+
+> UpdateWorldConventionHallResponse UpdateWorldConventionHall(ctx, id).Execute()
+
+Save the hall design: { doc, expectedVersion }. Refused on overlaps, narrow aisles, too many booths or a booth with a seller removed.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldConventionHall(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldConventionHall``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldConventionHall`: UpdateWorldConventionHallResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldConventionHall`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldConventionHallRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWorldConventionHallResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWorldConventionMyBooth
+
+> UpdateWorldConventionMyBoothResponse UpdateWorldConventionMyBooth(ctx, id).Execute()
+
+Pick what your booth shows: { listingIds } — any of your live listings, up to the tier’s capacity.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldConventionMyBooth(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldConventionMyBooth``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldConventionMyBooth`: UpdateWorldConventionMyBoothResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldConventionMyBooth`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldConventionMyBoothRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWorldConventionMyBoothResponse**
 
 ### Authorization
 
@@ -14788,6 +21025,140 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateWorldPropertyPlotPhoto
+
+> UpdateWorldPropertyPlotPhotoResponse UpdateWorldPropertyPlotPhoto(ctx, plotId).Execute()
+
+Store a plot's photo: an image of its frontage you uploaded through POST .../photo/upload-url, a render (buildKey must be the plot's current one) or an in-world capture.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    plotId := "plotId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldPropertyPlotPhoto(context.Background(), plotId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldPropertyPlotPhoto``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldPropertyPlotPhoto`: UpdateWorldPropertyPlotPhotoResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldPropertyPlotPhoto`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**plotId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldPropertyPlotPhotoRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWorldPropertyPlotPhotoResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWorldPropertyRenting
+
+> UpdateWorldPropertyRentingResponse UpdateWorldPropertyRenting(ctx, leaseId).Execute()
+
+Turn weekly autopay on or off (card leases).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    leaseId := "leaseId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldPropertyRenting(context.Background(), leaseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldPropertyRenting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldPropertyRenting`: UpdateWorldPropertyRentingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldPropertyRenting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**leaseId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldPropertyRentingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWorldPropertyRentingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateWorldQuestPin
 
 > UpdateWorldQuestPinResponse UpdateWorldQuestPin(ctx).UpdateWorldQuestPinRequest(updateWorldQuestPinRequest).Execute()
@@ -15052,6 +21423,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateWorldStaffPosting
+
+> WorldStaffPostingResponse UpdateWorldStaffPosting(ctx, id).Execute()
+
+Replace a posting; its future unstaffed shifts are re-made.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldStaffPosting(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldStaffPosting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldStaffPosting`: WorldStaffPostingResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldStaffPosting`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldStaffPostingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**WorldStaffPostingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateWorldStallBookingBooth
 
 > UpdateWorldStallBookingBoothResponse UpdateWorldStallBookingBooth(ctx, id).Execute()
@@ -15105,6 +21543,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **UpdateWorldStallBookingBoothResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateWorldStreetOwnedTheme
+
+> UpdateWorldStreetOwnedThemeResponse UpdateWorldStreetOwnedTheme(ctx, id).Execute()
+
+Set your street's theme.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WorldApi.UpdateWorldStreetOwnedTheme(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WorldApi.UpdateWorldStreetOwnedTheme``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWorldStreetOwnedTheme`: UpdateWorldStreetOwnedThemeResponse
+    fmt.Fprintf(os.Stdout, "Response from `WorldApi.UpdateWorldStreetOwnedTheme`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWorldStreetOwnedThemeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateWorldStreetOwnedThemeResponse**
 
 ### Authorization
 

@@ -350,6 +350,8 @@ type CreateMeTemplateRenderResponseMissingTokensItem string
 const (
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_DATE CreateMeTemplateRenderResponseMissingTokensItem = "date"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_BRAND CreateMeTemplateRenderResponseMissingTokensItem = "brand"
+	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_CATEGORY CreateMeTemplateRenderResponseMissingTokensItem = "category"
+	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_MONTH CreateMeTemplateRenderResponseMissingTokensItem = "month"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_SKU CreateMeTemplateRenderResponseMissingTokensItem = "sku"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_CONDITION CreateMeTemplateRenderResponseMissingTokensItem = "condition"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_SIZE CreateMeTemplateRenderResponseMissingTokensItem = "size"
@@ -357,17 +359,17 @@ const (
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_STYLE CreateMeTemplateRenderResponseMissingTokensItem = "style"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_COLOR CreateMeTemplateRenderResponseMissingTokensItem = "color"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_PRICE CreateMeTemplateRenderResponseMissingTokensItem = "price"
-	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_CATEGORY CreateMeTemplateRenderResponseMissingTokensItem = "category"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_YEAR CreateMeTemplateRenderResponseMissingTokensItem = "year"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_MODEL CreateMeTemplateRenderResponseMissingTokensItem = "model"
 	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_ITEM_NAME CreateMeTemplateRenderResponseMissingTokensItem = "item_name"
-	CREATEMETEMPLATERENDERRESPONSEMISSINGTOKENSITEM_MONTH CreateMeTemplateRenderResponseMissingTokensItem = "month"
 )
 
 // All allowed values of CreateMeTemplateRenderResponseMissingTokensItem enum
 var AllowedCreateMeTemplateRenderResponseMissingTokensItemEnumValues = []CreateMeTemplateRenderResponseMissingTokensItem{
 	"date",
 	"brand",
+	"category",
+	"month",
 	"sku",
 	"condition",
 	"size",
@@ -375,11 +377,9 @@ var AllowedCreateMeTemplateRenderResponseMissingTokensItemEnumValues = []CreateM
 	"style",
 	"color",
 	"price",
-	"category",
 	"year",
 	"model",
 	"item_name",
-	"month",
 }
 
 func (v *CreateMeTemplateRenderResponseMissingTokensItem) UnmarshalJSON(src []byte) error {
@@ -468,6 +468,8 @@ type CreateMeTemplateRenderResponseTokensUsedItem string
 const (
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_DATE CreateMeTemplateRenderResponseTokensUsedItem = "date"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_BRAND CreateMeTemplateRenderResponseTokensUsedItem = "brand"
+	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_CATEGORY CreateMeTemplateRenderResponseTokensUsedItem = "category"
+	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_MONTH CreateMeTemplateRenderResponseTokensUsedItem = "month"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_SKU CreateMeTemplateRenderResponseTokensUsedItem = "sku"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_CONDITION CreateMeTemplateRenderResponseTokensUsedItem = "condition"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_SIZE CreateMeTemplateRenderResponseTokensUsedItem = "size"
@@ -475,17 +477,17 @@ const (
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_STYLE CreateMeTemplateRenderResponseTokensUsedItem = "style"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_COLOR CreateMeTemplateRenderResponseTokensUsedItem = "color"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_PRICE CreateMeTemplateRenderResponseTokensUsedItem = "price"
-	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_CATEGORY CreateMeTemplateRenderResponseTokensUsedItem = "category"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_YEAR CreateMeTemplateRenderResponseTokensUsedItem = "year"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_MODEL CreateMeTemplateRenderResponseTokensUsedItem = "model"
 	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_ITEM_NAME CreateMeTemplateRenderResponseTokensUsedItem = "item_name"
-	CREATEMETEMPLATERENDERRESPONSETOKENSUSEDITEM_MONTH CreateMeTemplateRenderResponseTokensUsedItem = "month"
 )
 
 // All allowed values of CreateMeTemplateRenderResponseTokensUsedItem enum
 var AllowedCreateMeTemplateRenderResponseTokensUsedItemEnumValues = []CreateMeTemplateRenderResponseTokensUsedItem{
 	"date",
 	"brand",
+	"category",
+	"month",
 	"sku",
 	"condition",
 	"size",
@@ -493,11 +495,9 @@ var AllowedCreateMeTemplateRenderResponseTokensUsedItemEnumValues = []CreateMeTe
 	"style",
 	"color",
 	"price",
-	"category",
 	"year",
 	"model",
 	"item_name",
-	"month",
 }
 
 func (v *CreateMeTemplateRenderResponseTokensUsedItem) UnmarshalJSON(src []byte) error {
@@ -1105,6 +1105,9 @@ type ListMeTemplatesItem struct {
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	UserId string `json:"userId"`
+	Description NullableString `json:"description,omitempty"`
+	Notes NullableString `json:"notes,omitempty"`
+	IsDefault bool `json:"isDefault"`
 	Condition NullableString `json:"condition,omitempty"`
 	Size NullableString `json:"size,omitempty"`
 	Material NullableString `json:"material,omitempty"`
@@ -1116,24 +1119,21 @@ type ListMeTemplatesItem struct {
 	SizeSystem NullableString `json:"sizeSystem,omitempty"`
 	Color NullableString `json:"color,omitempty"`
 	Tags []string `json:"tags,omitempty"`
-	Notes NullableString `json:"notes,omitempty"`
 	WeightOz NullableFloat32 `json:"weightOz,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	IsDefault bool `json:"isDefault"`
 	Title NullableString `json:"title,omitempty"`
-	Scope string `json:"scope"`
-	ShareToken NullableString `json:"shareToken,omitempty"`
 	SortOrder float32 `json:"sortOrder"`
+	Scope string `json:"scope"`
 	DescriptionVariants []string `json:"descriptionVariants,omitempty"`
 	TitleVariants []string `json:"titleVariants,omitempty"`
 	DefaultForCategory NullableString `json:"defaultForCategory,omitempty"`
+	ShareToken NullableString `json:"shareToken,omitempty"`
 }
 
 // NewListMeTemplatesItem instantiates a new ListMeTemplatesItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListMeTemplatesItem(id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, scope string, sortOrder float32) *ListMeTemplatesItem {
+func NewListMeTemplatesItem(id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isDefault bool, sortOrder float32, scope string) *ListMeTemplatesItem {
 	this := ListMeTemplatesItem{}
 	this.Id = id
 	this.Name = name
@@ -1141,8 +1141,8 @@ func NewListMeTemplatesItem(id string, name string, createdAt time.Time, updated
 	this.UpdatedAt = updatedAt
 	this.UserId = userId
 	this.IsDefault = isDefault
-	this.Scope = scope
 	this.SortOrder = sortOrder
+	this.Scope = scope
 	return &this
 }
 
@@ -1314,6 +1314,114 @@ func (o *ListMeTemplatesItem) GetUserIdOk() (*string, bool) {
 // SetUserId sets field value
 func (o *ListMeTemplatesItem) SetUserId(v string) {
 	o.UserId = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMeTemplatesItem) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMeTemplatesItem) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ListMeTemplatesItem) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *ListMeTemplatesItem) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *ListMeTemplatesItem) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *ListMeTemplatesItem) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMeTemplatesItem) GetNotes() string {
+	if o == nil || o.Notes.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Notes.Get()
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMeTemplatesItem) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes.Get(), o.Notes.IsSet()
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *ListMeTemplatesItem) HasNotes() bool {
+	if o != nil && o.Notes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
+func (o *ListMeTemplatesItem) SetNotes(v string) {
+	o.Notes.Set(&v)
+}
+// SetNotesNil sets the value for Notes to be an explicit nil
+func (o *ListMeTemplatesItem) SetNotesNil() {
+	o.Notes.Set(nil)
+}
+
+// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
+func (o *ListMeTemplatesItem) UnsetNotes() {
+	o.Notes.Unset()
+}
+
+// GetIsDefault returns the IsDefault field value
+func (o *ListMeTemplatesItem) GetIsDefault() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsDefault
+}
+
+// GetIsDefaultOk returns a tuple with the IsDefault field value
+// and a boolean to check if the value has been set.
+func (o *ListMeTemplatesItem) GetIsDefaultOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsDefault, true
+}
+
+// SetIsDefault sets field value
+func (o *ListMeTemplatesItem) SetIsDefault(v bool) {
+	o.IsDefault = v
 }
 
 // GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1769,48 +1877,6 @@ func (o *ListMeTemplatesItem) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListMeTemplatesItem) GetNotes() string {
-	if o == nil || o.Notes.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Notes.Get()
-}
-
-// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListMeTemplatesItem) GetNotesOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Notes.Get(), o.Notes.IsSet()
-}
-
-// HasNotes returns a boolean if a field has been set.
-func (o *ListMeTemplatesItem) HasNotes() bool {
-	if o != nil && o.Notes.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
-func (o *ListMeTemplatesItem) SetNotes(v string) {
-	o.Notes.Set(&v)
-}
-// SetNotesNil sets the value for Notes to be an explicit nil
-func (o *ListMeTemplatesItem) SetNotesNil() {
-	o.Notes.Set(nil)
-}
-
-// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
-func (o *ListMeTemplatesItem) UnsetNotes() {
-	o.Notes.Unset()
-}
-
 // GetWeightOz returns the WeightOz field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListMeTemplatesItem) GetWeightOz() float32 {
 	if o == nil || o.WeightOz.Get() == nil {
@@ -1851,72 +1917,6 @@ func (o *ListMeTemplatesItem) SetWeightOzNil() {
 // UnsetWeightOz ensures that no value is present for WeightOz, not even an explicit nil
 func (o *ListMeTemplatesItem) UnsetWeightOz() {
 	o.WeightOz.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListMeTemplatesItem) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListMeTemplatesItem) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *ListMeTemplatesItem) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *ListMeTemplatesItem) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *ListMeTemplatesItem) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *ListMeTemplatesItem) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetIsDefault returns the IsDefault field value
-func (o *ListMeTemplatesItem) GetIsDefault() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsDefault
-}
-
-// GetIsDefaultOk returns a tuple with the IsDefault field value
-// and a boolean to check if the value has been set.
-func (o *ListMeTemplatesItem) GetIsDefaultOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IsDefault, true
-}
-
-// SetIsDefault sets field value
-func (o *ListMeTemplatesItem) SetIsDefault(v bool) {
-	o.IsDefault = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1961,72 +1961,6 @@ func (o *ListMeTemplatesItem) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetScope returns the Scope field value
-func (o *ListMeTemplatesItem) GetScope() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Scope
-}
-
-// GetScopeOk returns a tuple with the Scope field value
-// and a boolean to check if the value has been set.
-func (o *ListMeTemplatesItem) GetScopeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Scope, true
-}
-
-// SetScope sets field value
-func (o *ListMeTemplatesItem) SetScope(v string) {
-	o.Scope = v
-}
-
-// GetShareToken returns the ShareToken field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListMeTemplatesItem) GetShareToken() string {
-	if o == nil || o.ShareToken.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ShareToken.Get()
-}
-
-// GetShareTokenOk returns a tuple with the ShareToken field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListMeTemplatesItem) GetShareTokenOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ShareToken.Get(), o.ShareToken.IsSet()
-}
-
-// HasShareToken returns a boolean if a field has been set.
-func (o *ListMeTemplatesItem) HasShareToken() bool {
-	if o != nil && o.ShareToken.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetShareToken gets a reference to the given NullableString and assigns it to the ShareToken field.
-func (o *ListMeTemplatesItem) SetShareToken(v string) {
-	o.ShareToken.Set(&v)
-}
-// SetShareTokenNil sets the value for ShareToken to be an explicit nil
-func (o *ListMeTemplatesItem) SetShareTokenNil() {
-	o.ShareToken.Set(nil)
-}
-
-// UnsetShareToken ensures that no value is present for ShareToken, not even an explicit nil
-func (o *ListMeTemplatesItem) UnsetShareToken() {
-	o.ShareToken.Unset()
-}
-
 // GetSortOrder returns the SortOrder field value
 func (o *ListMeTemplatesItem) GetSortOrder() float32 {
 	if o == nil {
@@ -2049,6 +1983,30 @@ func (o *ListMeTemplatesItem) GetSortOrderOk() (*float32, bool) {
 // SetSortOrder sets field value
 func (o *ListMeTemplatesItem) SetSortOrder(v float32) {
 	o.SortOrder = v
+}
+
+// GetScope returns the Scope field value
+func (o *ListMeTemplatesItem) GetScope() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value
+// and a boolean to check if the value has been set.
+func (o *ListMeTemplatesItem) GetScopeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Scope, true
+}
+
+// SetScope sets field value
+func (o *ListMeTemplatesItem) SetScope(v string) {
+	o.Scope = v
 }
 
 // GetDescriptionVariants returns the DescriptionVariants field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2159,6 +2117,48 @@ func (o *ListMeTemplatesItem) UnsetDefaultForCategory() {
 	o.DefaultForCategory.Unset()
 }
 
+// GetShareToken returns the ShareToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListMeTemplatesItem) GetShareToken() string {
+	if o == nil || o.ShareToken.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShareToken.Get()
+}
+
+// GetShareTokenOk returns a tuple with the ShareToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListMeTemplatesItem) GetShareTokenOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShareToken.Get(), o.ShareToken.IsSet()
+}
+
+// HasShareToken returns a boolean if a field has been set.
+func (o *ListMeTemplatesItem) HasShareToken() bool {
+	if o != nil && o.ShareToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShareToken gets a reference to the given NullableString and assigns it to the ShareToken field.
+func (o *ListMeTemplatesItem) SetShareToken(v string) {
+	o.ShareToken.Set(&v)
+}
+// SetShareTokenNil sets the value for ShareToken to be an explicit nil
+func (o *ListMeTemplatesItem) SetShareTokenNil() {
+	o.ShareToken.Set(nil)
+}
+
+// UnsetShareToken ensures that no value is present for ShareToken, not even an explicit nil
+func (o *ListMeTemplatesItem) UnsetShareToken() {
+	o.ShareToken.Unset()
+}
+
 func (o ListMeTemplatesItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -2178,6 +2178,15 @@ func (o ListMeTemplatesItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["userId"] = o.UserId
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.Notes.IsSet() {
+		toSerialize["notes"] = o.Notes.Get()
+	}
+	if true {
+		toSerialize["isDefault"] = o.IsDefault
 	}
 	if o.Condition.IsSet() {
 		toSerialize["condition"] = o.Condition.Get()
@@ -2212,29 +2221,17 @@ func (o ListMeTemplatesItem) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Notes.IsSet() {
-		toSerialize["notes"] = o.Notes.Get()
-	}
 	if o.WeightOz.IsSet() {
 		toSerialize["weightOz"] = o.WeightOz.Get()
-	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
-	if true {
-		toSerialize["isDefault"] = o.IsDefault
 	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
 	if true {
-		toSerialize["scope"] = o.Scope
-	}
-	if o.ShareToken.IsSet() {
-		toSerialize["shareToken"] = o.ShareToken.Get()
+		toSerialize["sortOrder"] = o.SortOrder
 	}
 	if true {
-		toSerialize["sortOrder"] = o.SortOrder
+		toSerialize["scope"] = o.Scope
 	}
 	if o.DescriptionVariants != nil {
 		toSerialize["descriptionVariants"] = o.DescriptionVariants
@@ -2244,6 +2241,9 @@ func (o ListMeTemplatesItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DefaultForCategory.IsSet() {
 		toSerialize["defaultForCategory"] = o.DefaultForCategory.Get()
+	}
+	if o.ShareToken.IsSet() {
+		toSerialize["shareToken"] = o.ShareToken.Get()
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,7 +17,7 @@ import (
 
 // CreateAutomationRuleImportResponse struct for CreateAutomationRuleImportResponse
 type CreateAutomationRuleImportResponse struct {
-	Created []CreateAutomationRuleImportResponseCreated `json:"created"`
+	Created []IdName `json:"created"`
 	Errors []CreateAutomationRuleImportResponseErrors `json:"errors"`
 }
 
@@ -25,7 +25,7 @@ type CreateAutomationRuleImportResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutomationRuleImportResponse(created []CreateAutomationRuleImportResponseCreated, errors []CreateAutomationRuleImportResponseErrors) *CreateAutomationRuleImportResponse {
+func NewCreateAutomationRuleImportResponse(created []IdName, errors []CreateAutomationRuleImportResponseErrors) *CreateAutomationRuleImportResponse {
 	this := CreateAutomationRuleImportResponse{}
 	this.Created = created
 	this.Errors = errors
@@ -41,9 +41,9 @@ func NewCreateAutomationRuleImportResponseWithDefaults() *CreateAutomationRuleIm
 }
 
 // GetCreated returns the Created field value
-func (o *CreateAutomationRuleImportResponse) GetCreated() []CreateAutomationRuleImportResponseCreated {
+func (o *CreateAutomationRuleImportResponse) GetCreated() []IdName {
 	if o == nil {
-		var ret []CreateAutomationRuleImportResponseCreated
+		var ret []IdName
 		return ret
 	}
 
@@ -52,7 +52,7 @@ func (o *CreateAutomationRuleImportResponse) GetCreated() []CreateAutomationRule
 
 // GetCreatedOk returns a tuple with the Created field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleImportResponse) GetCreatedOk() ([]CreateAutomationRuleImportResponseCreated, bool) {
+func (o *CreateAutomationRuleImportResponse) GetCreatedOk() ([]IdName, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *CreateAutomationRuleImportResponse) GetCreatedOk() ([]CreateAutomationR
 }
 
 // SetCreated sets field value
-func (o *CreateAutomationRuleImportResponse) SetCreated(v []CreateAutomationRuleImportResponseCreated) {
+func (o *CreateAutomationRuleImportResponse) SetCreated(v []IdName) {
 	o.Created = v
 }
 
@@ -135,137 +135,17 @@ func (v *NullableCreateAutomationRuleImportResponse) UnmarshalJSON(src []byte) e
 	return json.Unmarshal(src, &v.value)
 }
 
-// CreateAutomationRuleImportResponseCreated struct for CreateAutomationRuleImportResponseCreated
-type CreateAutomationRuleImportResponseCreated struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
-}
-
-// NewCreateAutomationRuleImportResponseCreated instantiates a new CreateAutomationRuleImportResponseCreated object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateAutomationRuleImportResponseCreated(id string, name string) *CreateAutomationRuleImportResponseCreated {
-	this := CreateAutomationRuleImportResponseCreated{}
-	this.Id = id
-	this.Name = name
-	return &this
-}
-
-// NewCreateAutomationRuleImportResponseCreatedWithDefaults instantiates a new CreateAutomationRuleImportResponseCreated object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateAutomationRuleImportResponseCreatedWithDefaults() *CreateAutomationRuleImportResponseCreated {
-	this := CreateAutomationRuleImportResponseCreated{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *CreateAutomationRuleImportResponseCreated) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleImportResponseCreated) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CreateAutomationRuleImportResponseCreated) SetId(v string) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *CreateAutomationRuleImportResponseCreated) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleImportResponseCreated) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CreateAutomationRuleImportResponseCreated) SetName(v string) {
-	o.Name = v
-}
-
-func (o CreateAutomationRuleImportResponseCreated) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateAutomationRuleImportResponseCreated struct {
-	value *CreateAutomationRuleImportResponseCreated
-	isSet bool
-}
-
-func (v NullableCreateAutomationRuleImportResponseCreated) Get() *CreateAutomationRuleImportResponseCreated {
-	return v.value
-}
-
-func (v *NullableCreateAutomationRuleImportResponseCreated) Set(val *CreateAutomationRuleImportResponseCreated) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateAutomationRuleImportResponseCreated) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateAutomationRuleImportResponseCreated) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateAutomationRuleImportResponseCreated(val *CreateAutomationRuleImportResponseCreated) *NullableCreateAutomationRuleImportResponseCreated {
-	return &NullableCreateAutomationRuleImportResponseCreated{value: val, isSet: true}
-}
-
-func (v NullableCreateAutomationRuleImportResponseCreated) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateAutomationRuleImportResponseCreated) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
 // CreateAutomationRuleImportResponseErrors struct for CreateAutomationRuleImportResponseErrors
 type CreateAutomationRuleImportResponseErrors struct {
 	Name string `json:"name"`
-	Errors []map[string]interface{} `json:"errors"`
+	Errors []interface{} `json:"errors"`
 }
 
 // NewCreateAutomationRuleImportResponseErrors instantiates a new CreateAutomationRuleImportResponseErrors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutomationRuleImportResponseErrors(name string, errors []map[string]interface{}) *CreateAutomationRuleImportResponseErrors {
+func NewCreateAutomationRuleImportResponseErrors(name string, errors []interface{}) *CreateAutomationRuleImportResponseErrors {
 	this := CreateAutomationRuleImportResponseErrors{}
 	this.Name = name
 	this.Errors = errors
@@ -305,9 +185,9 @@ func (o *CreateAutomationRuleImportResponseErrors) SetName(v string) {
 }
 
 // GetErrors returns the Errors field value
-func (o *CreateAutomationRuleImportResponseErrors) GetErrors() []map[string]interface{} {
+func (o *CreateAutomationRuleImportResponseErrors) GetErrors() []interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 
@@ -316,7 +196,7 @@ func (o *CreateAutomationRuleImportResponseErrors) GetErrors() []map[string]inte
 
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleImportResponseErrors) GetErrorsOk() ([]map[string]interface{}, bool) {
+func (o *CreateAutomationRuleImportResponseErrors) GetErrorsOk() ([]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -324,7 +204,7 @@ func (o *CreateAutomationRuleImportResponseErrors) GetErrorsOk() ([]map[string]i
 }
 
 // SetErrors sets field value
-func (o *CreateAutomationRuleImportResponseErrors) SetErrors(v []map[string]interface{}) {
+func (o *CreateAutomationRuleImportResponseErrors) SetErrors(v []interface{}) {
 	o.Errors = v
 }
 
@@ -378,16 +258,17 @@ func (v *NullableCreateAutomationRuleImportResponseErrors) UnmarshalJSON(src []b
 // CreateAutomationRuleRunNowResponse struct for CreateAutomationRuleRunNowResponse
 type CreateAutomationRuleRunNowResponse struct {
 	Success bool `json:"success"`
-	JobId NullableString `json:"jobId,omitempty"`
+	JobId string `json:"jobId"`
 }
 
 // NewCreateAutomationRuleRunNowResponse instantiates a new CreateAutomationRuleRunNowResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutomationRuleRunNowResponse(success bool) *CreateAutomationRuleRunNowResponse {
+func NewCreateAutomationRuleRunNowResponse(success bool, jobId string) *CreateAutomationRuleRunNowResponse {
 	this := CreateAutomationRuleRunNowResponse{}
 	this.Success = success
+	this.JobId = jobId
 	return &this
 }
 
@@ -423,46 +304,28 @@ func (o *CreateAutomationRuleRunNowResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
-// GetJobId returns the JobId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetJobId returns the JobId field value
 func (o *CreateAutomationRuleRunNowResponse) GetJobId() string {
-	if o == nil || o.JobId.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.JobId.Get()
+
+	return o.JobId
 }
 
-// GetJobIdOk returns a tuple with the JobId field value if set, nil otherwise
+// GetJobIdOk returns a tuple with the JobId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAutomationRuleRunNowResponse) GetJobIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.JobId.Get(), o.JobId.IsSet()
+	return &o.JobId, true
 }
 
-// HasJobId returns a boolean if a field has been set.
-func (o *CreateAutomationRuleRunNowResponse) HasJobId() bool {
-	if o != nil && o.JobId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetJobId gets a reference to the given NullableString and assigns it to the JobId field.
+// SetJobId sets field value
 func (o *CreateAutomationRuleRunNowResponse) SetJobId(v string) {
-	o.JobId.Set(&v)
-}
-// SetJobIdNil sets the value for JobId to be an explicit nil
-func (o *CreateAutomationRuleRunNowResponse) SetJobIdNil() {
-	o.JobId.Set(nil)
-}
-
-// UnsetJobId ensures that no value is present for JobId, not even an explicit nil
-func (o *CreateAutomationRuleRunNowResponse) UnsetJobId() {
-	o.JobId.Unset()
+	o.JobId = v
 }
 
 func (o CreateAutomationRuleRunNowResponse) MarshalJSON() ([]byte, error) {
@@ -470,8 +333,8 @@ func (o CreateAutomationRuleRunNowResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["success"] = o.Success
 	}
-	if o.JobId.IsSet() {
-		toSerialize["jobId"] = o.JobId.Get()
+	if true {
+		toSerialize["jobId"] = o.JobId
 	}
 	return json.Marshal(toSerialize)
 }
@@ -515,19 +378,19 @@ func (v *NullableCreateAutomationRuleRunNowResponse) UnmarshalJSON(src []byte) e
 // CreateAutomationRuleValidateRecipeResponse struct for CreateAutomationRuleValidateRecipeResponse
 type CreateAutomationRuleValidateRecipeResponse struct {
 	Valid bool `json:"valid"`
-	Error string `json:"error"`
-	Details CreateAutomationRuleValidateRecipeResponseDetails `json:"details"`
+	Count float32 `json:"count"`
+	Results []CreateAutomationRuleValidateRecipeResponseResults `json:"results"`
 }
 
 // NewCreateAutomationRuleValidateRecipeResponse instantiates a new CreateAutomationRuleValidateRecipeResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutomationRuleValidateRecipeResponse(valid bool, error_ string, details CreateAutomationRuleValidateRecipeResponseDetails) *CreateAutomationRuleValidateRecipeResponse {
+func NewCreateAutomationRuleValidateRecipeResponse(valid bool, count float32, results []CreateAutomationRuleValidateRecipeResponseResults) *CreateAutomationRuleValidateRecipeResponse {
 	this := CreateAutomationRuleValidateRecipeResponse{}
 	this.Valid = valid
-	this.Error = error_
-	this.Details = details
+	this.Count = count
+	this.Results = results
 	return &this
 }
 
@@ -563,52 +426,52 @@ func (o *CreateAutomationRuleValidateRecipeResponse) SetValid(v bool) {
 	o.Valid = v
 }
 
-// GetError returns the Error field value
-func (o *CreateAutomationRuleValidateRecipeResponse) GetError() string {
+// GetCount returns the Count field value
+func (o *CreateAutomationRuleValidateRecipeResponse) GetCount() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.Error
+	return o.Count
 }
 
-// GetErrorOk returns a tuple with the Error field value
+// GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleValidateRecipeResponse) GetErrorOk() (*string, bool) {
+func (o *CreateAutomationRuleValidateRecipeResponse) GetCountOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Error, true
+	return &o.Count, true
 }
 
-// SetError sets field value
-func (o *CreateAutomationRuleValidateRecipeResponse) SetError(v string) {
-	o.Error = v
+// SetCount sets field value
+func (o *CreateAutomationRuleValidateRecipeResponse) SetCount(v float32) {
+	o.Count = v
 }
 
-// GetDetails returns the Details field value
-func (o *CreateAutomationRuleValidateRecipeResponse) GetDetails() CreateAutomationRuleValidateRecipeResponseDetails {
+// GetResults returns the Results field value
+func (o *CreateAutomationRuleValidateRecipeResponse) GetResults() []CreateAutomationRuleValidateRecipeResponseResults {
 	if o == nil {
-		var ret CreateAutomationRuleValidateRecipeResponseDetails
+		var ret []CreateAutomationRuleValidateRecipeResponseResults
 		return ret
 	}
 
-	return o.Details
+	return o.Results
 }
 
-// GetDetailsOk returns a tuple with the Details field value
+// GetResultsOk returns a tuple with the Results field value
 // and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleValidateRecipeResponse) GetDetailsOk() (*CreateAutomationRuleValidateRecipeResponseDetails, bool) {
+func (o *CreateAutomationRuleValidateRecipeResponse) GetResultsOk() ([]CreateAutomationRuleValidateRecipeResponseResults, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Details, true
+	return o.Results, true
 }
 
-// SetDetails sets field value
-func (o *CreateAutomationRuleValidateRecipeResponse) SetDetails(v CreateAutomationRuleValidateRecipeResponseDetails) {
-	o.Details = v
+// SetResults sets field value
+func (o *CreateAutomationRuleValidateRecipeResponse) SetResults(v []CreateAutomationRuleValidateRecipeResponseResults) {
+	o.Results = v
 }
 
 func (o CreateAutomationRuleValidateRecipeResponse) MarshalJSON() ([]byte, error) {
@@ -617,10 +480,10 @@ func (o CreateAutomationRuleValidateRecipeResponse) MarshalJSON() ([]byte, error
 		toSerialize["valid"] = o.Valid
 	}
 	if true {
-		toSerialize["error"] = o.Error
+		toSerialize["count"] = o.Count
 	}
 	if true {
-		toSerialize["details"] = o.Details
+		toSerialize["results"] = o.Results
 	}
 	return json.Marshal(toSerialize)
 }
@@ -661,591 +524,151 @@ func (v *NullableCreateAutomationRuleValidateRecipeResponse) UnmarshalJSON(src [
 	return json.Unmarshal(src, &v.value)
 }
 
-// CreateAutomationRuleValidateRecipeResponseDetails struct for CreateAutomationRuleValidateRecipeResponseDetails
-type CreateAutomationRuleValidateRecipeResponseDetails struct {
-	FormErrors []string `json:"formErrors"`
-	FieldErrors CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors `json:"fieldErrors"`
+// CreateAutomationRuleValidateRecipeResponseResults struct for CreateAutomationRuleValidateRecipeResponseResults
+type CreateAutomationRuleValidateRecipeResponseResults struct {
+	Name string `json:"name"`
+	Valid bool `json:"valid"`
+	Errors []map[string]interface{} `json:"errors"`
 }
 
-// NewCreateAutomationRuleValidateRecipeResponseDetails instantiates a new CreateAutomationRuleValidateRecipeResponseDetails object
+// NewCreateAutomationRuleValidateRecipeResponseResults instantiates a new CreateAutomationRuleValidateRecipeResponseResults object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAutomationRuleValidateRecipeResponseDetails(formErrors []string, fieldErrors CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) *CreateAutomationRuleValidateRecipeResponseDetails {
-	this := CreateAutomationRuleValidateRecipeResponseDetails{}
-	this.FormErrors = formErrors
-	this.FieldErrors = fieldErrors
+func NewCreateAutomationRuleValidateRecipeResponseResults(name string, valid bool, errors []map[string]interface{}) *CreateAutomationRuleValidateRecipeResponseResults {
+	this := CreateAutomationRuleValidateRecipeResponseResults{}
+	this.Name = name
+	this.Valid = valid
+	this.Errors = errors
 	return &this
 }
 
-// NewCreateAutomationRuleValidateRecipeResponseDetailsWithDefaults instantiates a new CreateAutomationRuleValidateRecipeResponseDetails object
+// NewCreateAutomationRuleValidateRecipeResponseResultsWithDefaults instantiates a new CreateAutomationRuleValidateRecipeResponseResults object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateAutomationRuleValidateRecipeResponseDetailsWithDefaults() *CreateAutomationRuleValidateRecipeResponseDetails {
-	this := CreateAutomationRuleValidateRecipeResponseDetails{}
+func NewCreateAutomationRuleValidateRecipeResponseResultsWithDefaults() *CreateAutomationRuleValidateRecipeResponseResults {
+	this := CreateAutomationRuleValidateRecipeResponseResults{}
 	return &this
 }
 
-// GetFormErrors returns the FormErrors field value
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) GetFormErrors() []string {
+// GetName returns the Name field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetName() string {
 	if o == nil {
-		var ret []string
+		var ret string
 		return ret
 	}
 
-	return o.FormErrors
-}
-
-// GetFormErrorsOk returns a tuple with the FormErrors field value
-// and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) GetFormErrorsOk() ([]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.FormErrors, true
-}
-
-// SetFormErrors sets field value
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) SetFormErrors(v []string) {
-	o.FormErrors = v
-}
-
-// GetFieldErrors returns the FieldErrors field value
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) GetFieldErrors() CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors {
-	if o == nil {
-		var ret CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors
-		return ret
-	}
-
-	return o.FieldErrors
-}
-
-// GetFieldErrorsOk returns a tuple with the FieldErrors field value
-// and a boolean to check if the value has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) GetFieldErrorsOk() (*CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.FieldErrors, true
-}
-
-// SetFieldErrors sets field value
-func (o *CreateAutomationRuleValidateRecipeResponseDetails) SetFieldErrors(v CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) {
-	o.FieldErrors = v
-}
-
-func (o CreateAutomationRuleValidateRecipeResponseDetails) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["formErrors"] = o.FormErrors
-	}
-	if true {
-		toSerialize["fieldErrors"] = o.FieldErrors
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableCreateAutomationRuleValidateRecipeResponseDetails struct {
-	value *CreateAutomationRuleValidateRecipeResponseDetails
-	isSet bool
-}
-
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetails) Get() *CreateAutomationRuleValidateRecipeResponseDetails {
-	return v.value
-}
-
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetails) Set(val *CreateAutomationRuleValidateRecipeResponseDetails) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetails) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetails) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateAutomationRuleValidateRecipeResponseDetails(val *CreateAutomationRuleValidateRecipeResponseDetails) *NullableCreateAutomationRuleValidateRecipeResponseDetails {
-	return &NullableCreateAutomationRuleValidateRecipeResponseDetails{value: val, isSet: true}
-}
-
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetails) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetails) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors struct for CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors
-type CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors struct {
-	Name []string `json:"name,omitempty"`
-	Condition []string `json:"condition,omitempty"`
-	Action []string `json:"action,omitempty"`
-	Metadata []string `json:"metadata,omitempty"`
-	Description []string `json:"description,omitempty"`
-	SchemaVersion []string `json:"schemaVersion,omitempty"`
-	Platforms []string `json:"platforms,omitempty"`
-	Trigger []string `json:"trigger,omitempty"`
-	Schema []string `json:"$schema,omitempty"`
-	ExportedAt []string `json:"exportedAt,omitempty"`
-	Recipes []string `json:"recipes,omitempty"`
-}
-
-// NewCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors instantiates a new CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors() *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors {
-	this := CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors{}
-	return &this
-}
-
-// NewCreateAutomationRuleValidateRecipeResponseDetailsFieldErrorsWithDefaults instantiates a new CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateAutomationRuleValidateRecipeResponseDetailsFieldErrorsWithDefaults() *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors {
-	this := CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors{}
-	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetName() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
 	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetNameOk() ([]string, bool) {
-	if o == nil || o.Name == nil {
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetNameOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given []string and assigns it to the Name field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetName(v []string) {
+// SetName sets field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) SetName(v string) {
 	o.Name = v
 }
 
-// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetCondition() []string {
-	if o == nil  {
-		var ret []string
+// GetValid returns the Valid field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetValid() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return o.Condition
+
+	return o.Valid
 }
 
-// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// GetValidOk returns a tuple with the Valid field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetConditionOk() ([]string, bool) {
-	if o == nil || o.Condition == nil {
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetValidOk() (*bool, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Condition, true
+	return &o.Valid, true
 }
 
-// HasCondition returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasCondition() bool {
-	if o != nil && o.Condition != nil {
-		return true
-	}
-
-	return false
+// SetValid sets field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) SetValid(v bool) {
+	o.Valid = v
 }
 
-// SetCondition gets a reference to the given []string and assigns it to the Condition field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetCondition(v []string) {
-	o.Condition = v
-}
-
-// GetAction returns the Action field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetAction() []string {
-	if o == nil  {
-		var ret []string
+// GetErrors returns the Errors field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetErrors() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
 		return ret
 	}
-	return o.Action
+
+	return o.Errors
 }
 
-// GetActionOk returns a tuple with the Action field value if set, nil otherwise
+// GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetActionOk() ([]string, bool) {
-	if o == nil || o.Action == nil {
-		return nil, false
-	}
-	return o.Action, true
-}
-
-// HasAction returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasAction() bool {
-	if o != nil && o.Action != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAction gets a reference to the given []string and assigns it to the Action field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetAction(v []string) {
-	o.Action = v
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetMetadata() []string {
+func (o *CreateAutomationRuleValidateRecipeResponseResults) GetErrorsOk() ([]map[string]interface{}, bool) {
 	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetMetadataOk() ([]string, bool) {
-	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return o.Metadata, true
+	return o.Errors, true
 }
 
-// HasMetadata returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+// SetErrors sets field value
+func (o *CreateAutomationRuleValidateRecipeResponseResults) SetErrors(v []map[string]interface{}) {
+	o.Errors = v
 }
 
-// SetMetadata gets a reference to the given []string and assigns it to the Metadata field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetMetadata(v []string) {
-	o.Metadata = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetDescription() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetDescriptionOk() ([]string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []string and assigns it to the Description field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetDescription(v []string) {
-	o.Description = v
-}
-
-// GetSchemaVersion returns the SchemaVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetSchemaVersion() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.SchemaVersion
-}
-
-// GetSchemaVersionOk returns a tuple with the SchemaVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetSchemaVersionOk() ([]string, bool) {
-	if o == nil || o.SchemaVersion == nil {
-		return nil, false
-	}
-	return o.SchemaVersion, true
-}
-
-// HasSchemaVersion returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasSchemaVersion() bool {
-	if o != nil && o.SchemaVersion != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSchemaVersion gets a reference to the given []string and assigns it to the SchemaVersion field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetSchemaVersion(v []string) {
-	o.SchemaVersion = v
-}
-
-// GetPlatforms returns the Platforms field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetPlatforms() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Platforms
-}
-
-// GetPlatformsOk returns a tuple with the Platforms field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetPlatformsOk() ([]string, bool) {
-	if o == nil || o.Platforms == nil {
-		return nil, false
-	}
-	return o.Platforms, true
-}
-
-// HasPlatforms returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasPlatforms() bool {
-	if o != nil && o.Platforms != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatforms gets a reference to the given []string and assigns it to the Platforms field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetPlatforms(v []string) {
-	o.Platforms = v
-}
-
-// GetTrigger returns the Trigger field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetTrigger() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Trigger
-}
-
-// GetTriggerOk returns a tuple with the Trigger field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetTriggerOk() ([]string, bool) {
-	if o == nil || o.Trigger == nil {
-		return nil, false
-	}
-	return o.Trigger, true
-}
-
-// HasTrigger returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasTrigger() bool {
-	if o != nil && o.Trigger != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTrigger gets a reference to the given []string and assigns it to the Trigger field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetTrigger(v []string) {
-	o.Trigger = v
-}
-
-// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetSchema() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Schema
-}
-
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetSchemaOk() ([]string, bool) {
-	if o == nil || o.Schema == nil {
-		return nil, false
-	}
-	return o.Schema, true
-}
-
-// HasSchema returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasSchema() bool {
-	if o != nil && o.Schema != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSchema gets a reference to the given []string and assigns it to the Schema field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetSchema(v []string) {
-	o.Schema = v
-}
-
-// GetExportedAt returns the ExportedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetExportedAt() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.ExportedAt
-}
-
-// GetExportedAtOk returns a tuple with the ExportedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetExportedAtOk() ([]string, bool) {
-	if o == nil || o.ExportedAt == nil {
-		return nil, false
-	}
-	return o.ExportedAt, true
-}
-
-// HasExportedAt returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasExportedAt() bool {
-	if o != nil && o.ExportedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetExportedAt gets a reference to the given []string and assigns it to the ExportedAt field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetExportedAt(v []string) {
-	o.ExportedAt = v
-}
-
-// GetRecipes returns the Recipes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetRecipes() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Recipes
-}
-
-// GetRecipesOk returns a tuple with the Recipes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) GetRecipesOk() ([]string, bool) {
-	if o == nil || o.Recipes == nil {
-		return nil, false
-	}
-	return o.Recipes, true
-}
-
-// HasRecipes returns a boolean if a field has been set.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) HasRecipes() bool {
-	if o != nil && o.Recipes != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRecipes gets a reference to the given []string and assigns it to the Recipes field.
-func (o *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) SetRecipes(v []string) {
-	o.Recipes = v
-}
-
-func (o CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) MarshalJSON() ([]byte, error) {
+func (o CreateAutomationRuleValidateRecipeResponseResults) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Condition != nil {
-		toSerialize["condition"] = o.Condition
+	if true {
+		toSerialize["valid"] = o.Valid
 	}
-	if o.Action != nil {
-		toSerialize["action"] = o.Action
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.SchemaVersion != nil {
-		toSerialize["schemaVersion"] = o.SchemaVersion
-	}
-	if o.Platforms != nil {
-		toSerialize["platforms"] = o.Platforms
-	}
-	if o.Trigger != nil {
-		toSerialize["trigger"] = o.Trigger
-	}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.ExportedAt != nil {
-		toSerialize["exportedAt"] = o.ExportedAt
-	}
-	if o.Recipes != nil {
-		toSerialize["recipes"] = o.Recipes
+	if true {
+		toSerialize["errors"] = o.Errors
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors struct {
-	value *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors
+type NullableCreateAutomationRuleValidateRecipeResponseResults struct {
+	value *CreateAutomationRuleValidateRecipeResponseResults
 	isSet bool
 }
 
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) Get() *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors {
+func (v NullableCreateAutomationRuleValidateRecipeResponseResults) Get() *CreateAutomationRuleValidateRecipeResponseResults {
 	return v.value
 }
 
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) Set(val *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) {
+func (v *NullableCreateAutomationRuleValidateRecipeResponseResults) Set(val *CreateAutomationRuleValidateRecipeResponseResults) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) IsSet() bool {
+func (v NullableCreateAutomationRuleValidateRecipeResponseResults) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) Unset() {
+func (v *NullableCreateAutomationRuleValidateRecipeResponseResults) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors(val *CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) *NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors {
-	return &NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors{value: val, isSet: true}
+func NewNullableCreateAutomationRuleValidateRecipeResponseResults(val *CreateAutomationRuleValidateRecipeResponseResults) *NullableCreateAutomationRuleValidateRecipeResponseResults {
+	return &NullableCreateAutomationRuleValidateRecipeResponseResults{value: val, isSet: true}
 }
 
-func (v NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) MarshalJSON() ([]byte, error) {
+func (v NullableCreateAutomationRuleValidateRecipeResponseResults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateAutomationRuleValidateRecipeResponseDetailsFieldErrors) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateAutomationRuleValidateRecipeResponseResults) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -1580,28 +1003,28 @@ func (v *NullableGetAutomationCatalogResponseTriggerTypes) UnmarshalJSON(src []b
 
 // GetAutomationRuleExportByIdResponse struct for GetAutomationRuleExportByIdResponse
 type GetAutomationRuleExportByIdResponse struct {
-	Name string `json:"name"`
-	Action GetAutomationRuleExportByIdResponseAction `json:"action"`
 	SchemaVersion float32 `json:"schemaVersion"`
-	Trigger GetAutomationRuleExportByIdResponseAction `json:"trigger"`
-	Condition NullableGetAutomationRuleExportByIdResponseCondition `json:"condition,omitempty"`
-	Metadata NullableGetAutomationRuleExportByIdResponseMetadata `json:"metadata,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	Platforms []string `json:"platforms,omitempty"`
+	Name string `json:"name"`
+	Trigger GetAutomationRuleExportByIdResponseTrigger `json:"trigger"`
+	Action GetAutomationRuleExportByIdResponseTrigger `json:"action"`
 	// Optional reference to the public schema URL — purely cosmetic.
 	Schema NullableString `json:"$schema,omitempty"`
+	Description NullableString `json:"description,omitempty"`
+	Condition NullableGetAutomationRuleExportByIdResponseCondition `json:"condition,omitempty"`
+	Platforms []string `json:"platforms,omitempty"`
+	Metadata NullableGetAutomationRuleExportByIdResponseMetadata `json:"metadata,omitempty"`
 }
 
 // NewGetAutomationRuleExportByIdResponse instantiates a new GetAutomationRuleExportByIdResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAutomationRuleExportByIdResponse(name string, action GetAutomationRuleExportByIdResponseAction, schemaVersion float32, trigger GetAutomationRuleExportByIdResponseAction) *GetAutomationRuleExportByIdResponse {
+func NewGetAutomationRuleExportByIdResponse(schemaVersion float32, name string, trigger GetAutomationRuleExportByIdResponseTrigger, action GetAutomationRuleExportByIdResponseTrigger) *GetAutomationRuleExportByIdResponse {
 	this := GetAutomationRuleExportByIdResponse{}
-	this.Name = name
-	this.Action = action
 	this.SchemaVersion = schemaVersion
+	this.Name = name
 	this.Trigger = trigger
+	this.Action = action
 	return &this
 }
 
@@ -1611,54 +1034,6 @@ func NewGetAutomationRuleExportByIdResponse(name string, action GetAutomationRul
 func NewGetAutomationRuleExportByIdResponseWithDefaults() *GetAutomationRuleExportByIdResponse {
 	this := GetAutomationRuleExportByIdResponse{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *GetAutomationRuleExportByIdResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GetAutomationRuleExportByIdResponse) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GetAutomationRuleExportByIdResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetAction returns the Action field value
-func (o *GetAutomationRuleExportByIdResponse) GetAction() GetAutomationRuleExportByIdResponseAction {
-	if o == nil {
-		var ret GetAutomationRuleExportByIdResponseAction
-		return ret
-	}
-
-	return o.Action
-}
-
-// GetActionOk returns a tuple with the Action field value
-// and a boolean to check if the value has been set.
-func (o *GetAutomationRuleExportByIdResponse) GetActionOk() (*GetAutomationRuleExportByIdResponseAction, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Action, true
-}
-
-// SetAction sets field value
-func (o *GetAutomationRuleExportByIdResponse) SetAction(v GetAutomationRuleExportByIdResponseAction) {
-	o.Action = v
 }
 
 // GetSchemaVersion returns the SchemaVersion field value
@@ -1685,10 +1060,34 @@ func (o *GetAutomationRuleExportByIdResponse) SetSchemaVersion(v float32) {
 	o.SchemaVersion = v
 }
 
-// GetTrigger returns the Trigger field value
-func (o *GetAutomationRuleExportByIdResponse) GetTrigger() GetAutomationRuleExportByIdResponseAction {
+// GetName returns the Name field value
+func (o *GetAutomationRuleExportByIdResponse) GetName() string {
 	if o == nil {
-		var ret GetAutomationRuleExportByIdResponseAction
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetAutomationRuleExportByIdResponse) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GetAutomationRuleExportByIdResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetTrigger returns the Trigger field value
+func (o *GetAutomationRuleExportByIdResponse) GetTrigger() GetAutomationRuleExportByIdResponseTrigger {
+	if o == nil {
+		var ret GetAutomationRuleExportByIdResponseTrigger
 		return ret
 	}
 
@@ -1697,7 +1096,7 @@ func (o *GetAutomationRuleExportByIdResponse) GetTrigger() GetAutomationRuleExpo
 
 // GetTriggerOk returns a tuple with the Trigger field value
 // and a boolean to check if the value has been set.
-func (o *GetAutomationRuleExportByIdResponse) GetTriggerOk() (*GetAutomationRuleExportByIdResponseAction, bool) {
+func (o *GetAutomationRuleExportByIdResponse) GetTriggerOk() (*GetAutomationRuleExportByIdResponseTrigger, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1705,167 +1104,32 @@ func (o *GetAutomationRuleExportByIdResponse) GetTriggerOk() (*GetAutomationRule
 }
 
 // SetTrigger sets field value
-func (o *GetAutomationRuleExportByIdResponse) SetTrigger(v GetAutomationRuleExportByIdResponseAction) {
+func (o *GetAutomationRuleExportByIdResponse) SetTrigger(v GetAutomationRuleExportByIdResponseTrigger) {
 	o.Trigger = v
 }
 
-// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponse) GetCondition() GetAutomationRuleExportByIdResponseCondition {
-	if o == nil || o.Condition.Get() == nil {
-		var ret GetAutomationRuleExportByIdResponseCondition
+// GetAction returns the Action field value
+func (o *GetAutomationRuleExportByIdResponse) GetAction() GetAutomationRuleExportByIdResponseTrigger {
+	if o == nil {
+		var ret GetAutomationRuleExportByIdResponseTrigger
 		return ret
 	}
-	return *o.Condition.Get()
+
+	return o.Action
 }
 
-// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponse) GetConditionOk() (*GetAutomationRuleExportByIdResponseCondition, bool) {
+func (o *GetAutomationRuleExportByIdResponse) GetActionOk() (*GetAutomationRuleExportByIdResponseTrigger, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Condition.Get(), o.Condition.IsSet()
+	return &o.Action, true
 }
 
-// HasCondition returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponse) HasCondition() bool {
-	if o != nil && o.Condition.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCondition gets a reference to the given NullableGetAutomationRuleExportByIdResponseCondition and assigns it to the Condition field.
-func (o *GetAutomationRuleExportByIdResponse) SetCondition(v GetAutomationRuleExportByIdResponseCondition) {
-	o.Condition.Set(&v)
-}
-// SetConditionNil sets the value for Condition to be an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) SetConditionNil() {
-	o.Condition.Set(nil)
-}
-
-// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) UnsetCondition() {
-	o.Condition.Unset()
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponse) GetMetadata() GetAutomationRuleExportByIdResponseMetadata {
-	if o == nil || o.Metadata.Get() == nil {
-		var ret GetAutomationRuleExportByIdResponseMetadata
-		return ret
-	}
-	return *o.Metadata.Get()
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponse) GetMetadataOk() (*GetAutomationRuleExportByIdResponseMetadata, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Metadata.Get(), o.Metadata.IsSet()
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponse) HasMetadata() bool {
-	if o != nil && o.Metadata.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given NullableGetAutomationRuleExportByIdResponseMetadata and assigns it to the Metadata field.
-func (o *GetAutomationRuleExportByIdResponse) SetMetadata(v GetAutomationRuleExportByIdResponseMetadata) {
-	o.Metadata.Set(&v)
-}
-// SetMetadataNil sets the value for Metadata to be an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) SetMetadataNil() {
-	o.Metadata.Set(nil)
-}
-
-// UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) UnsetMetadata() {
-	o.Metadata.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponse) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponse) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *GetAutomationRuleExportByIdResponse) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *GetAutomationRuleExportByIdResponse) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetPlatforms returns the Platforms field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponse) GetPlatforms() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Platforms
-}
-
-// GetPlatformsOk returns a tuple with the Platforms field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponse) GetPlatformsOk() ([]string, bool) {
-	if o == nil || o.Platforms == nil {
-		return nil, false
-	}
-	return o.Platforms, true
-}
-
-// HasPlatforms returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponse) HasPlatforms() bool {
-	if o != nil && o.Platforms != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatforms gets a reference to the given []string and assigns it to the Platforms field.
-func (o *GetAutomationRuleExportByIdResponse) SetPlatforms(v []string) {
-	o.Platforms = v
+// SetAction sets field value
+func (o *GetAutomationRuleExportByIdResponse) SetAction(v GetAutomationRuleExportByIdResponseTrigger) {
+	o.Action = v
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1910,34 +1174,193 @@ func (o *GetAutomationRuleExportByIdResponse) UnsetSchema() {
 	o.Schema.Unset()
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponse) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description.Get()
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Description.Get(), o.Description.IsSet()
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponse) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *GetAutomationRuleExportByIdResponse) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetCondition returns the Condition field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponse) GetCondition() GetAutomationRuleExportByIdResponseCondition {
+	if o == nil || o.Condition.Get() == nil {
+		var ret GetAutomationRuleExportByIdResponseCondition
+		return ret
+	}
+	return *o.Condition.Get()
+}
+
+// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponse) GetConditionOk() (*GetAutomationRuleExportByIdResponseCondition, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Condition.Get(), o.Condition.IsSet()
+}
+
+// HasCondition returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponse) HasCondition() bool {
+	if o != nil && o.Condition.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCondition gets a reference to the given NullableGetAutomationRuleExportByIdResponseCondition and assigns it to the Condition field.
+func (o *GetAutomationRuleExportByIdResponse) SetCondition(v GetAutomationRuleExportByIdResponseCondition) {
+	o.Condition.Set(&v)
+}
+// SetConditionNil sets the value for Condition to be an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) SetConditionNil() {
+	o.Condition.Set(nil)
+}
+
+// UnsetCondition ensures that no value is present for Condition, not even an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) UnsetCondition() {
+	o.Condition.Unset()
+}
+
+// GetPlatforms returns the Platforms field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponse) GetPlatforms() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.Platforms
+}
+
+// GetPlatformsOk returns a tuple with the Platforms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponse) GetPlatformsOk() ([]string, bool) {
+	if o == nil || o.Platforms == nil {
+		return nil, false
+	}
+	return o.Platforms, true
+}
+
+// HasPlatforms returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponse) HasPlatforms() bool {
+	if o != nil && o.Platforms != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatforms gets a reference to the given []string and assigns it to the Platforms field.
+func (o *GetAutomationRuleExportByIdResponse) SetPlatforms(v []string) {
+	o.Platforms = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponse) GetMetadata() GetAutomationRuleExportByIdResponseMetadata {
+	if o == nil || o.Metadata.Get() == nil {
+		var ret GetAutomationRuleExportByIdResponseMetadata
+		return ret
+	}
+	return *o.Metadata.Get()
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponse) GetMetadataOk() (*GetAutomationRuleExportByIdResponseMetadata, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Metadata.Get(), o.Metadata.IsSet()
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponse) HasMetadata() bool {
+	if o != nil && o.Metadata.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given NullableGetAutomationRuleExportByIdResponseMetadata and assigns it to the Metadata field.
+func (o *GetAutomationRuleExportByIdResponse) SetMetadata(v GetAutomationRuleExportByIdResponseMetadata) {
+	o.Metadata.Set(&v)
+}
+// SetMetadataNil sets the value for Metadata to be an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) SetMetadataNil() {
+	o.Metadata.Set(nil)
+}
+
+// UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+func (o *GetAutomationRuleExportByIdResponse) UnsetMetadata() {
+	o.Metadata.Unset()
+}
+
 func (o GetAutomationRuleExportByIdResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["action"] = o.Action
-	}
 	if true {
 		toSerialize["schemaVersion"] = o.SchemaVersion
 	}
 	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
 		toSerialize["trigger"] = o.Trigger
 	}
-	if o.Condition.IsSet() {
-		toSerialize["condition"] = o.Condition.Get()
+	if true {
+		toSerialize["action"] = o.Action
 	}
-	if o.Metadata.IsSet() {
-		toSerialize["metadata"] = o.Metadata.Get()
+	if o.Schema.IsSet() {
+		toSerialize["$schema"] = o.Schema.Get()
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	if o.Condition.IsSet() {
+		toSerialize["condition"] = o.Condition.Get()
+	}
 	if o.Platforms != nil {
 		toSerialize["platforms"] = o.Platforms
 	}
-	if o.Schema.IsSet() {
-		toSerialize["$schema"] = o.Schema.Get()
+	if o.Metadata.IsSet() {
+		toSerialize["metadata"] = o.Metadata.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1974,126 +1397,6 @@ func (v NullableGetAutomationRuleExportByIdResponse) MarshalJSON() ([]byte, erro
 }
 
 func (v *NullableGetAutomationRuleExportByIdResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// GetAutomationRuleExportByIdResponseAction struct for GetAutomationRuleExportByIdResponseAction
-type GetAutomationRuleExportByIdResponseAction struct {
-	Type string `json:"type"`
-	Config map[string]interface{} `json:"config"`
-}
-
-// NewGetAutomationRuleExportByIdResponseAction instantiates a new GetAutomationRuleExportByIdResponseAction object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGetAutomationRuleExportByIdResponseAction(type_ string, config map[string]interface{}) *GetAutomationRuleExportByIdResponseAction {
-	this := GetAutomationRuleExportByIdResponseAction{}
-	this.Type = type_
-	this.Config = config
-	return &this
-}
-
-// NewGetAutomationRuleExportByIdResponseActionWithDefaults instantiates a new GetAutomationRuleExportByIdResponseAction object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewGetAutomationRuleExportByIdResponseActionWithDefaults() *GetAutomationRuleExportByIdResponseAction {
-	this := GetAutomationRuleExportByIdResponseAction{}
-	return &this
-}
-
-// GetType returns the Type field value
-func (o *GetAutomationRuleExportByIdResponseAction) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *GetAutomationRuleExportByIdResponseAction) GetTypeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *GetAutomationRuleExportByIdResponseAction) SetType(v string) {
-	o.Type = v
-}
-
-// GetConfig returns the Config field value
-func (o *GetAutomationRuleExportByIdResponseAction) GetConfig() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.Config
-}
-
-// GetConfigOk returns a tuple with the Config field value
-// and a boolean to check if the value has been set.
-func (o *GetAutomationRuleExportByIdResponseAction) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Config, true
-}
-
-// SetConfig sets field value
-func (o *GetAutomationRuleExportByIdResponseAction) SetConfig(v map[string]interface{}) {
-	o.Config = v
-}
-
-func (o GetAutomationRuleExportByIdResponseAction) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["config"] = o.Config
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableGetAutomationRuleExportByIdResponseAction struct {
-	value *GetAutomationRuleExportByIdResponseAction
-	isSet bool
-}
-
-func (v NullableGetAutomationRuleExportByIdResponseAction) Get() *GetAutomationRuleExportByIdResponseAction {
-	return v.value
-}
-
-func (v *NullableGetAutomationRuleExportByIdResponseAction) Set(val *GetAutomationRuleExportByIdResponseAction) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGetAutomationRuleExportByIdResponseAction) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGetAutomationRuleExportByIdResponseAction) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGetAutomationRuleExportByIdResponseAction(val *GetAutomationRuleExportByIdResponseAction) *NullableGetAutomationRuleExportByIdResponseAction {
-	return &NullableGetAutomationRuleExportByIdResponseAction{value: val, isSet: true}
-}
-
-func (v NullableGetAutomationRuleExportByIdResponseAction) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGetAutomationRuleExportByIdResponseAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -2220,9 +1523,9 @@ func (v *NullableGetAutomationRuleExportByIdResponseCondition) UnmarshalJSON(src
 
 // GetAutomationRuleExportByIdResponseMetadata Community-library metadata. Server ignores; UI may render.
 type GetAutomationRuleExportByIdResponseMetadata struct {
-	Tags []string `json:"tags,omitempty"`
-	SourceUrl NullableString `json:"sourceUrl,omitempty"`
 	Author NullableString `json:"author,omitempty"`
+	SourceUrl NullableString `json:"sourceUrl,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 // NewGetAutomationRuleExportByIdResponseMetadata instantiates a new GetAutomationRuleExportByIdResponseMetadata object
@@ -2240,81 +1543,6 @@ func NewGetAutomationRuleExportByIdResponseMetadata() *GetAutomationRuleExportBy
 func NewGetAutomationRuleExportByIdResponseMetadataWithDefaults() *GetAutomationRuleExportByIdResponseMetadata {
 	this := GetAutomationRuleExportByIdResponseMetadata{}
 	return &this
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponseMetadata) GetTags() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponseMetadata) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponseMetadata) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *GetAutomationRuleExportByIdResponseMetadata) SetTags(v []string) {
-	o.Tags = v
-}
-
-// GetSourceUrl returns the SourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetAutomationRuleExportByIdResponseMetadata) GetSourceUrl() string {
-	if o == nil || o.SourceUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SourceUrl.Get()
-}
-
-// GetSourceUrlOk returns a tuple with the SourceUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetAutomationRuleExportByIdResponseMetadata) GetSourceUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SourceUrl.Get(), o.SourceUrl.IsSet()
-}
-
-// HasSourceUrl returns a boolean if a field has been set.
-func (o *GetAutomationRuleExportByIdResponseMetadata) HasSourceUrl() bool {
-	if o != nil && o.SourceUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSourceUrl gets a reference to the given NullableString and assigns it to the SourceUrl field.
-func (o *GetAutomationRuleExportByIdResponseMetadata) SetSourceUrl(v string) {
-	o.SourceUrl.Set(&v)
-}
-// SetSourceUrlNil sets the value for SourceUrl to be an explicit nil
-func (o *GetAutomationRuleExportByIdResponseMetadata) SetSourceUrlNil() {
-	o.SourceUrl.Set(nil)
-}
-
-// UnsetSourceUrl ensures that no value is present for SourceUrl, not even an explicit nil
-func (o *GetAutomationRuleExportByIdResponseMetadata) UnsetSourceUrl() {
-	o.SourceUrl.Unset()
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2359,16 +1587,91 @@ func (o *GetAutomationRuleExportByIdResponseMetadata) UnsetAuthor() {
 	o.Author.Unset()
 }
 
+// GetSourceUrl returns the SourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponseMetadata) GetSourceUrl() string {
+	if o == nil || o.SourceUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SourceUrl.Get()
+}
+
+// GetSourceUrlOk returns a tuple with the SourceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponseMetadata) GetSourceUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SourceUrl.Get(), o.SourceUrl.IsSet()
+}
+
+// HasSourceUrl returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponseMetadata) HasSourceUrl() bool {
+	if o != nil && o.SourceUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceUrl gets a reference to the given NullableString and assigns it to the SourceUrl field.
+func (o *GetAutomationRuleExportByIdResponseMetadata) SetSourceUrl(v string) {
+	o.SourceUrl.Set(&v)
+}
+// SetSourceUrlNil sets the value for SourceUrl to be an explicit nil
+func (o *GetAutomationRuleExportByIdResponseMetadata) SetSourceUrlNil() {
+	o.SourceUrl.Set(nil)
+}
+
+// UnsetSourceUrl ensures that no value is present for SourceUrl, not even an explicit nil
+func (o *GetAutomationRuleExportByIdResponseMetadata) UnsetSourceUrl() {
+	o.SourceUrl.Unset()
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAutomationRuleExportByIdResponseMetadata) GetTags() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAutomationRuleExportByIdResponseMetadata) GetTagsOk() ([]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *GetAutomationRuleExportByIdResponseMetadata) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *GetAutomationRuleExportByIdResponseMetadata) SetTags(v []string) {
+	o.Tags = v
+}
+
 func (o GetAutomationRuleExportByIdResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	if o.Author.IsSet() {
+		toSerialize["author"] = o.Author.Get()
 	}
 	if o.SourceUrl.IsSet() {
 		toSerialize["sourceUrl"] = o.SourceUrl.Get()
 	}
-	if o.Author.IsSet() {
-		toSerialize["author"] = o.Author.Get()
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
 }
@@ -2405,6 +1708,126 @@ func (v NullableGetAutomationRuleExportByIdResponseMetadata) MarshalJSON() ([]by
 }
 
 func (v *NullableGetAutomationRuleExportByIdResponseMetadata) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAutomationRuleExportByIdResponseTrigger struct for GetAutomationRuleExportByIdResponseTrigger
+type GetAutomationRuleExportByIdResponseTrigger struct {
+	Type string `json:"type"`
+	Config map[string]interface{} `json:"config"`
+}
+
+// NewGetAutomationRuleExportByIdResponseTrigger instantiates a new GetAutomationRuleExportByIdResponseTrigger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAutomationRuleExportByIdResponseTrigger(type_ string, config map[string]interface{}) *GetAutomationRuleExportByIdResponseTrigger {
+	this := GetAutomationRuleExportByIdResponseTrigger{}
+	this.Type = type_
+	this.Config = config
+	return &this
+}
+
+// NewGetAutomationRuleExportByIdResponseTriggerWithDefaults instantiates a new GetAutomationRuleExportByIdResponseTrigger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAutomationRuleExportByIdResponseTriggerWithDefaults() *GetAutomationRuleExportByIdResponseTrigger {
+	this := GetAutomationRuleExportByIdResponseTrigger{}
+	return &this
+}
+
+// GetType returns the Type field value
+func (o *GetAutomationRuleExportByIdResponseTrigger) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GetAutomationRuleExportByIdResponseTrigger) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GetAutomationRuleExportByIdResponseTrigger) SetType(v string) {
+	o.Type = v
+}
+
+// GetConfig returns the Config field value
+func (o *GetAutomationRuleExportByIdResponseTrigger) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *GetAutomationRuleExportByIdResponseTrigger) GetConfigOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Config, true
+}
+
+// SetConfig sets field value
+func (o *GetAutomationRuleExportByIdResponseTrigger) SetConfig(v map[string]interface{}) {
+	o.Config = v
+}
+
+func (o GetAutomationRuleExportByIdResponseTrigger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["config"] = o.Config
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAutomationRuleExportByIdResponseTrigger struct {
+	value *GetAutomationRuleExportByIdResponseTrigger
+	isSet bool
+}
+
+func (v NullableGetAutomationRuleExportByIdResponseTrigger) Get() *GetAutomationRuleExportByIdResponseTrigger {
+	return v.value
+}
+
+func (v *NullableGetAutomationRuleExportByIdResponseTrigger) Set(val *GetAutomationRuleExportByIdResponseTrigger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAutomationRuleExportByIdResponseTrigger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAutomationRuleExportByIdResponseTrigger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAutomationRuleExportByIdResponseTrigger(val *GetAutomationRuleExportByIdResponseTrigger) *NullableGetAutomationRuleExportByIdResponseTrigger {
+	return &NullableGetAutomationRuleExportByIdResponseTrigger{value: val, isSet: true}
+}
+
+func (v NullableGetAutomationRuleExportByIdResponseTrigger) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAutomationRuleExportByIdResponseTrigger) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
@@ -2681,35 +2104,43 @@ func (v *NullableGetAutomationRuleResponse) UnmarshalJSON(src []byte) error {
 // ListAutomationRulesItem struct for ListAutomationRulesItem
 type ListAutomationRulesItem struct {
 	Id string `json:"id"`
+	UserId string `json:"userId"`
 	Name string `json:"name"`
+	IsActive bool `json:"isActive"`
+	TriggerType string `json:"triggerType"`
+	TriggerConfig map[string]interface{} `json:"triggerConfig"`
+	ConditionType NullableString `json:"conditionType,omitempty"`
+	ConditionConfig map[string]interface{} `json:"conditionConfig,omitempty"`
+	ActionType string `json:"actionType"`
+	ActionConfig map[string]interface{} `json:"actionConfig"`
+	Platforms []string `json:"platforms,omitempty"`
+	LastRunAt NullableTime `json:"lastRunAt,omitempty"`
+	NextRunAt NullableTime `json:"nextRunAt,omitempty"`
+	RunCount float32 `json:"runCount"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
-	UserId string `json:"userId"`
-	IsActive bool `json:"isActive"`
-	Platforms []string `json:"platforms,omitempty"`
-	NextRunAt NullableTime `json:"nextRunAt,omitempty"`
-	LastRunAt NullableTime `json:"lastRunAt,omitempty"`
-	TriggerType string `json:"triggerType"`
-	ConditionType NullableString `json:"conditionType,omitempty"`
-	ActionType string `json:"actionType"`
-	RunCount float32 `json:"runCount"`
+	// The workflow this rule is (open it in /v1/workflows).
+	WorkflowId string `json:"workflowId"`
 }
 
 // NewListAutomationRulesItem instantiates a new ListAutomationRulesItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListAutomationRulesItem(id string, name string, createdAt time.Time, updatedAt time.Time, userId string, isActive bool, triggerType string, actionType string, runCount float32) *ListAutomationRulesItem {
+func NewListAutomationRulesItem(id string, userId string, name string, isActive bool, triggerType string, triggerConfig map[string]interface{}, actionType string, actionConfig map[string]interface{}, runCount float32, createdAt time.Time, updatedAt time.Time, workflowId string) *ListAutomationRulesItem {
 	this := ListAutomationRulesItem{}
 	this.Id = id
-	this.Name = name
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	this.UserId = userId
+	this.Name = name
 	this.IsActive = isActive
 	this.TriggerType = triggerType
+	this.TriggerConfig = triggerConfig
 	this.ActionType = actionType
+	this.ActionConfig = actionConfig
 	this.RunCount = runCount
+	this.CreatedAt = createdAt
+	this.UpdatedAt = updatedAt
+	this.WorkflowId = workflowId
 	return &this
 }
 
@@ -2745,6 +2176,30 @@ func (o *ListAutomationRulesItem) SetId(v string) {
 	o.Id = v
 }
 
+// GetUserId returns the UserId field value
+func (o *ListAutomationRulesItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListAutomationRulesItem) SetUserId(v string) {
+	o.UserId = v
+}
+
 // GetName returns the Name field value
 func (o *ListAutomationRulesItem) GetName() string {
 	if o == nil {
@@ -2767,6 +2222,342 @@ func (o *ListAutomationRulesItem) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *ListAutomationRulesItem) SetName(v string) {
 	o.Name = v
+}
+
+// GetIsActive returns the IsActive field value
+func (o *ListAutomationRulesItem) GetIsActive() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsActive
+}
+
+// GetIsActiveOk returns a tuple with the IsActive field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetIsActiveOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.IsActive, true
+}
+
+// SetIsActive sets field value
+func (o *ListAutomationRulesItem) SetIsActive(v bool) {
+	o.IsActive = v
+}
+
+// GetTriggerType returns the TriggerType field value
+func (o *ListAutomationRulesItem) GetTriggerType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TriggerType
+}
+
+// GetTriggerTypeOk returns a tuple with the TriggerType field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetTriggerTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TriggerType, true
+}
+
+// SetTriggerType sets field value
+func (o *ListAutomationRulesItem) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
+// GetTriggerConfig returns the TriggerConfig field value
+func (o *ListAutomationRulesItem) GetTriggerConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.TriggerConfig
+}
+
+// GetTriggerConfigOk returns a tuple with the TriggerConfig field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetTriggerConfigOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TriggerConfig, true
+}
+
+// SetTriggerConfig sets field value
+func (o *ListAutomationRulesItem) SetTriggerConfig(v map[string]interface{}) {
+	o.TriggerConfig = v
+}
+
+// GetConditionType returns the ConditionType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRulesItem) GetConditionType() string {
+	if o == nil || o.ConditionType.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ConditionType.Get()
+}
+
+// GetConditionTypeOk returns a tuple with the ConditionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRulesItem) GetConditionTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ConditionType.Get(), o.ConditionType.IsSet()
+}
+
+// HasConditionType returns a boolean if a field has been set.
+func (o *ListAutomationRulesItem) HasConditionType() bool {
+	if o != nil && o.ConditionType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConditionType gets a reference to the given NullableString and assigns it to the ConditionType field.
+func (o *ListAutomationRulesItem) SetConditionType(v string) {
+	o.ConditionType.Set(&v)
+}
+// SetConditionTypeNil sets the value for ConditionType to be an explicit nil
+func (o *ListAutomationRulesItem) SetConditionTypeNil() {
+	o.ConditionType.Set(nil)
+}
+
+// UnsetConditionType ensures that no value is present for ConditionType, not even an explicit nil
+func (o *ListAutomationRulesItem) UnsetConditionType() {
+	o.ConditionType.Unset()
+}
+
+// GetConditionConfig returns the ConditionConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRulesItem) GetConditionConfig() map[string]interface{} {
+	if o == nil  {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.ConditionConfig
+}
+
+// GetConditionConfigOk returns a tuple with the ConditionConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRulesItem) GetConditionConfigOk() (map[string]interface{}, bool) {
+	if o == nil || o.ConditionConfig == nil {
+		return nil, false
+	}
+	return o.ConditionConfig, true
+}
+
+// HasConditionConfig returns a boolean if a field has been set.
+func (o *ListAutomationRulesItem) HasConditionConfig() bool {
+	if o != nil && o.ConditionConfig != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConditionConfig gets a reference to the given map[string]interface{} and assigns it to the ConditionConfig field.
+func (o *ListAutomationRulesItem) SetConditionConfig(v map[string]interface{}) {
+	o.ConditionConfig = v
+}
+
+// GetActionType returns the ActionType field value
+func (o *ListAutomationRulesItem) GetActionType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ActionType
+}
+
+// GetActionTypeOk returns a tuple with the ActionType field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetActionTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ActionType, true
+}
+
+// SetActionType sets field value
+func (o *ListAutomationRulesItem) SetActionType(v string) {
+	o.ActionType = v
+}
+
+// GetActionConfig returns the ActionConfig field value
+func (o *ListAutomationRulesItem) GetActionConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.ActionConfig
+}
+
+// GetActionConfigOk returns a tuple with the ActionConfig field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetActionConfigOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ActionConfig, true
+}
+
+// SetActionConfig sets field value
+func (o *ListAutomationRulesItem) SetActionConfig(v map[string]interface{}) {
+	o.ActionConfig = v
+}
+
+// GetPlatforms returns the Platforms field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRulesItem) GetPlatforms() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.Platforms
+}
+
+// GetPlatformsOk returns a tuple with the Platforms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRulesItem) GetPlatformsOk() ([]string, bool) {
+	if o == nil || o.Platforms == nil {
+		return nil, false
+	}
+	return o.Platforms, true
+}
+
+// HasPlatforms returns a boolean if a field has been set.
+func (o *ListAutomationRulesItem) HasPlatforms() bool {
+	if o != nil && o.Platforms != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatforms gets a reference to the given []string and assigns it to the Platforms field.
+func (o *ListAutomationRulesItem) SetPlatforms(v []string) {
+	o.Platforms = v
+}
+
+// GetLastRunAt returns the LastRunAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRulesItem) GetLastRunAt() time.Time {
+	if o == nil || o.LastRunAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastRunAt.Get()
+}
+
+// GetLastRunAtOk returns a tuple with the LastRunAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRulesItem) GetLastRunAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastRunAt.Get(), o.LastRunAt.IsSet()
+}
+
+// HasLastRunAt returns a boolean if a field has been set.
+func (o *ListAutomationRulesItem) HasLastRunAt() bool {
+	if o != nil && o.LastRunAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastRunAt gets a reference to the given NullableTime and assigns it to the LastRunAt field.
+func (o *ListAutomationRulesItem) SetLastRunAt(v time.Time) {
+	o.LastRunAt.Set(&v)
+}
+// SetLastRunAtNil sets the value for LastRunAt to be an explicit nil
+func (o *ListAutomationRulesItem) SetLastRunAtNil() {
+	o.LastRunAt.Set(nil)
+}
+
+// UnsetLastRunAt ensures that no value is present for LastRunAt, not even an explicit nil
+func (o *ListAutomationRulesItem) UnsetLastRunAt() {
+	o.LastRunAt.Unset()
+}
+
+// GetNextRunAt returns the NextRunAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRulesItem) GetNextRunAt() time.Time {
+	if o == nil || o.NextRunAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.NextRunAt.Get()
+}
+
+// GetNextRunAtOk returns a tuple with the NextRunAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRulesItem) GetNextRunAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NextRunAt.Get(), o.NextRunAt.IsSet()
+}
+
+// HasNextRunAt returns a boolean if a field has been set.
+func (o *ListAutomationRulesItem) HasNextRunAt() bool {
+	if o != nil && o.NextRunAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextRunAt gets a reference to the given NullableTime and assigns it to the NextRunAt field.
+func (o *ListAutomationRulesItem) SetNextRunAt(v time.Time) {
+	o.NextRunAt.Set(&v)
+}
+// SetNextRunAtNil sets the value for NextRunAt to be an explicit nil
+func (o *ListAutomationRulesItem) SetNextRunAtNil() {
+	o.NextRunAt.Set(nil)
+}
+
+// UnsetNextRunAt ensures that no value is present for NextRunAt, not even an explicit nil
+func (o *ListAutomationRulesItem) UnsetNextRunAt() {
+	o.NextRunAt.Unset()
+}
+
+// GetRunCount returns the RunCount field value
+func (o *ListAutomationRulesItem) GetRunCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.RunCount
+}
+
+// GetRunCountOk returns a tuple with the RunCount field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRulesItem) GetRunCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RunCount, true
+}
+
+// SetRunCount sets field value
+func (o *ListAutomationRulesItem) SetRunCount(v float32) {
+	o.RunCount = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -2817,283 +2608,28 @@ func (o *ListAutomationRulesItem) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetUserId returns the UserId field value
-func (o *ListAutomationRulesItem) GetUserId() string {
+// GetWorkflowId returns the WorkflowId field value
+func (o *ListAutomationRulesItem) GetWorkflowId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UserId
+	return o.WorkflowId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetWorkflowIdOk returns a tuple with the WorkflowId field value
 // and a boolean to check if the value has been set.
-func (o *ListAutomationRulesItem) GetUserIdOk() (*string, bool) {
+func (o *ListAutomationRulesItem) GetWorkflowIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UserId, true
+	return &o.WorkflowId, true
 }
 
-// SetUserId sets field value
-func (o *ListAutomationRulesItem) SetUserId(v string) {
-	o.UserId = v
-}
-
-// GetIsActive returns the IsActive field value
-func (o *ListAutomationRulesItem) GetIsActive() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsActive
-}
-
-// GetIsActiveOk returns a tuple with the IsActive field value
-// and a boolean to check if the value has been set.
-func (o *ListAutomationRulesItem) GetIsActiveOk() (*bool, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.IsActive, true
-}
-
-// SetIsActive sets field value
-func (o *ListAutomationRulesItem) SetIsActive(v bool) {
-	o.IsActive = v
-}
-
-// GetPlatforms returns the Platforms field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRulesItem) GetPlatforms() []string {
-	if o == nil  {
-		var ret []string
-		return ret
-	}
-	return o.Platforms
-}
-
-// GetPlatformsOk returns a tuple with the Platforms field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRulesItem) GetPlatformsOk() ([]string, bool) {
-	if o == nil || o.Platforms == nil {
-		return nil, false
-	}
-	return o.Platforms, true
-}
-
-// HasPlatforms returns a boolean if a field has been set.
-func (o *ListAutomationRulesItem) HasPlatforms() bool {
-	if o != nil && o.Platforms != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatforms gets a reference to the given []string and assigns it to the Platforms field.
-func (o *ListAutomationRulesItem) SetPlatforms(v []string) {
-	o.Platforms = v
-}
-
-// GetNextRunAt returns the NextRunAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRulesItem) GetNextRunAt() time.Time {
-	if o == nil || o.NextRunAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.NextRunAt.Get()
-}
-
-// GetNextRunAtOk returns a tuple with the NextRunAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRulesItem) GetNextRunAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.NextRunAt.Get(), o.NextRunAt.IsSet()
-}
-
-// HasNextRunAt returns a boolean if a field has been set.
-func (o *ListAutomationRulesItem) HasNextRunAt() bool {
-	if o != nil && o.NextRunAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNextRunAt gets a reference to the given NullableTime and assigns it to the NextRunAt field.
-func (o *ListAutomationRulesItem) SetNextRunAt(v time.Time) {
-	o.NextRunAt.Set(&v)
-}
-// SetNextRunAtNil sets the value for NextRunAt to be an explicit nil
-func (o *ListAutomationRulesItem) SetNextRunAtNil() {
-	o.NextRunAt.Set(nil)
-}
-
-// UnsetNextRunAt ensures that no value is present for NextRunAt, not even an explicit nil
-func (o *ListAutomationRulesItem) UnsetNextRunAt() {
-	o.NextRunAt.Unset()
-}
-
-// GetLastRunAt returns the LastRunAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRulesItem) GetLastRunAt() time.Time {
-	if o == nil || o.LastRunAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastRunAt.Get()
-}
-
-// GetLastRunAtOk returns a tuple with the LastRunAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRulesItem) GetLastRunAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.LastRunAt.Get(), o.LastRunAt.IsSet()
-}
-
-// HasLastRunAt returns a boolean if a field has been set.
-func (o *ListAutomationRulesItem) HasLastRunAt() bool {
-	if o != nil && o.LastRunAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastRunAt gets a reference to the given NullableTime and assigns it to the LastRunAt field.
-func (o *ListAutomationRulesItem) SetLastRunAt(v time.Time) {
-	o.LastRunAt.Set(&v)
-}
-// SetLastRunAtNil sets the value for LastRunAt to be an explicit nil
-func (o *ListAutomationRulesItem) SetLastRunAtNil() {
-	o.LastRunAt.Set(nil)
-}
-
-// UnsetLastRunAt ensures that no value is present for LastRunAt, not even an explicit nil
-func (o *ListAutomationRulesItem) UnsetLastRunAt() {
-	o.LastRunAt.Unset()
-}
-
-// GetTriggerType returns the TriggerType field value
-func (o *ListAutomationRulesItem) GetTriggerType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TriggerType
-}
-
-// GetTriggerTypeOk returns a tuple with the TriggerType field value
-// and a boolean to check if the value has been set.
-func (o *ListAutomationRulesItem) GetTriggerTypeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.TriggerType, true
-}
-
-// SetTriggerType sets field value
-func (o *ListAutomationRulesItem) SetTriggerType(v string) {
-	o.TriggerType = v
-}
-
-// GetConditionType returns the ConditionType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRulesItem) GetConditionType() string {
-	if o == nil || o.ConditionType.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ConditionType.Get()
-}
-
-// GetConditionTypeOk returns a tuple with the ConditionType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRulesItem) GetConditionTypeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ConditionType.Get(), o.ConditionType.IsSet()
-}
-
-// HasConditionType returns a boolean if a field has been set.
-func (o *ListAutomationRulesItem) HasConditionType() bool {
-	if o != nil && o.ConditionType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConditionType gets a reference to the given NullableString and assigns it to the ConditionType field.
-func (o *ListAutomationRulesItem) SetConditionType(v string) {
-	o.ConditionType.Set(&v)
-}
-// SetConditionTypeNil sets the value for ConditionType to be an explicit nil
-func (o *ListAutomationRulesItem) SetConditionTypeNil() {
-	o.ConditionType.Set(nil)
-}
-
-// UnsetConditionType ensures that no value is present for ConditionType, not even an explicit nil
-func (o *ListAutomationRulesItem) UnsetConditionType() {
-	o.ConditionType.Unset()
-}
-
-// GetActionType returns the ActionType field value
-func (o *ListAutomationRulesItem) GetActionType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ActionType
-}
-
-// GetActionTypeOk returns a tuple with the ActionType field value
-// and a boolean to check if the value has been set.
-func (o *ListAutomationRulesItem) GetActionTypeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ActionType, true
-}
-
-// SetActionType sets field value
-func (o *ListAutomationRulesItem) SetActionType(v string) {
-	o.ActionType = v
-}
-
-// GetRunCount returns the RunCount field value
-func (o *ListAutomationRulesItem) GetRunCount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.RunCount
-}
-
-// GetRunCountOk returns a tuple with the RunCount field value
-// and a boolean to check if the value has been set.
-func (o *ListAutomationRulesItem) GetRunCountOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.RunCount, true
-}
-
-// SetRunCount sets field value
-func (o *ListAutomationRulesItem) SetRunCount(v float32) {
-	o.RunCount = v
+// SetWorkflowId sets field value
+func (o *ListAutomationRulesItem) SetWorkflowId(v string) {
+	o.WorkflowId = v
 }
 
 func (o ListAutomationRulesItem) MarshalJSON() ([]byte, error) {
@@ -3102,7 +2638,43 @@ func (o ListAutomationRulesItem) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
 		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["isActive"] = o.IsActive
+	}
+	if true {
+		toSerialize["triggerType"] = o.TriggerType
+	}
+	if true {
+		toSerialize["triggerConfig"] = o.TriggerConfig
+	}
+	if o.ConditionType.IsSet() {
+		toSerialize["conditionType"] = o.ConditionType.Get()
+	}
+	if o.ConditionConfig != nil {
+		toSerialize["conditionConfig"] = o.ConditionConfig
+	}
+	if true {
+		toSerialize["actionType"] = o.ActionType
+	}
+	if true {
+		toSerialize["actionConfig"] = o.ActionConfig
+	}
+	if o.Platforms != nil {
+		toSerialize["platforms"] = o.Platforms
+	}
+	if o.LastRunAt.IsSet() {
+		toSerialize["lastRunAt"] = o.LastRunAt.Get()
+	}
+	if o.NextRunAt.IsSet() {
+		toSerialize["nextRunAt"] = o.NextRunAt.Get()
+	}
+	if true {
+		toSerialize["runCount"] = o.RunCount
 	}
 	if true {
 		toSerialize["createdAt"] = o.CreatedAt
@@ -3111,31 +2683,7 @@ func (o ListAutomationRulesItem) MarshalJSON() ([]byte, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if true {
-		toSerialize["userId"] = o.UserId
-	}
-	if true {
-		toSerialize["isActive"] = o.IsActive
-	}
-	if o.Platforms != nil {
-		toSerialize["platforms"] = o.Platforms
-	}
-	if o.NextRunAt.IsSet() {
-		toSerialize["nextRunAt"] = o.NextRunAt.Get()
-	}
-	if o.LastRunAt.IsSet() {
-		toSerialize["lastRunAt"] = o.LastRunAt.Get()
-	}
-	if true {
-		toSerialize["triggerType"] = o.TriggerType
-	}
-	if o.ConditionType.IsSet() {
-		toSerialize["conditionType"] = o.ConditionType.Get()
-	}
-	if true {
-		toSerialize["actionType"] = o.ActionType
-	}
-	if true {
-		toSerialize["runCount"] = o.RunCount
+		toSerialize["workflowId"] = o.WorkflowId
 	}
 	return json.Marshal(toSerialize)
 }
@@ -3344,27 +2892,31 @@ func (v *NullableListAutomationRulesResponse) UnmarshalJSON(src []byte) error {
 // ListAutomationRunsItem struct for ListAutomationRunsItem
 type ListAutomationRunsItem struct {
 	Id string `json:"id"`
-	CreatedAt time.Time `json:"createdAt"`
 	UserId string `json:"userId"`
+	RuleId NullableString `json:"ruleId,omitempty"`
+	ChainId NullableString `json:"chainId,omitempty"`
 	Status string `json:"status"`
+	ActionType string `json:"actionType"`
+	Summary map[string]interface{} `json:"summary"`
 	ErrorMessage NullableString `json:"errorMessage,omitempty"`
 	DurationMs NullableFloat32 `json:"durationMs,omitempty"`
-	RuleId NullableString `json:"ruleId,omitempty"`
-	ActionType string `json:"actionType"`
-	ChainId NullableString `json:"chainId,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+	// Set for runs of the converted workflow.
+	WorkflowRunId NullableString `json:"workflowRunId,omitempty"`
 }
 
 // NewListAutomationRunsItem instantiates a new ListAutomationRunsItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListAutomationRunsItem(id string, createdAt time.Time, userId string, status string, actionType string) *ListAutomationRunsItem {
+func NewListAutomationRunsItem(id string, userId string, status string, actionType string, summary map[string]interface{}, createdAt time.Time) *ListAutomationRunsItem {
 	this := ListAutomationRunsItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
 	this.UserId = userId
 	this.Status = status
 	this.ActionType = actionType
+	this.Summary = summary
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -3400,30 +2952,6 @@ func (o *ListAutomationRunsItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListAutomationRunsItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListAutomationRunsItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListAutomationRunsItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
 // GetUserId returns the UserId field value
 func (o *ListAutomationRunsItem) GetUserId() string {
 	if o == nil {
@@ -3448,6 +2976,90 @@ func (o *ListAutomationRunsItem) SetUserId(v string) {
 	o.UserId = v
 }
 
+// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRunsItem) GetRuleId() string {
+	if o == nil || o.RuleId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RuleId.Get()
+}
+
+// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRunsItem) GetRuleIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RuleId.Get(), o.RuleId.IsSet()
+}
+
+// HasRuleId returns a boolean if a field has been set.
+func (o *ListAutomationRunsItem) HasRuleId() bool {
+	if o != nil && o.RuleId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleId gets a reference to the given NullableString and assigns it to the RuleId field.
+func (o *ListAutomationRunsItem) SetRuleId(v string) {
+	o.RuleId.Set(&v)
+}
+// SetRuleIdNil sets the value for RuleId to be an explicit nil
+func (o *ListAutomationRunsItem) SetRuleIdNil() {
+	o.RuleId.Set(nil)
+}
+
+// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
+func (o *ListAutomationRunsItem) UnsetRuleId() {
+	o.RuleId.Unset()
+}
+
+// GetChainId returns the ChainId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRunsItem) GetChainId() string {
+	if o == nil || o.ChainId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ChainId.Get()
+}
+
+// GetChainIdOk returns a tuple with the ChainId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListAutomationRunsItem) GetChainIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ChainId.Get(), o.ChainId.IsSet()
+}
+
+// HasChainId returns a boolean if a field has been set.
+func (o *ListAutomationRunsItem) HasChainId() bool {
+	if o != nil && o.ChainId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetChainId gets a reference to the given NullableString and assigns it to the ChainId field.
+func (o *ListAutomationRunsItem) SetChainId(v string) {
+	o.ChainId.Set(&v)
+}
+// SetChainIdNil sets the value for ChainId to be an explicit nil
+func (o *ListAutomationRunsItem) SetChainIdNil() {
+	o.ChainId.Set(nil)
+}
+
+// UnsetChainId ensures that no value is present for ChainId, not even an explicit nil
+func (o *ListAutomationRunsItem) UnsetChainId() {
+	o.ChainId.Unset()
+}
+
 // GetStatus returns the Status field value
 func (o *ListAutomationRunsItem) GetStatus() string {
 	if o == nil {
@@ -3470,6 +3082,54 @@ func (o *ListAutomationRunsItem) GetStatusOk() (*string, bool) {
 // SetStatus sets field value
 func (o *ListAutomationRunsItem) SetStatus(v string) {
 	o.Status = v
+}
+
+// GetActionType returns the ActionType field value
+func (o *ListAutomationRunsItem) GetActionType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ActionType
+}
+
+// GetActionTypeOk returns a tuple with the ActionType field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRunsItem) GetActionTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ActionType, true
+}
+
+// SetActionType sets field value
+func (o *ListAutomationRunsItem) SetActionType(v string) {
+	o.ActionType = v
+}
+
+// GetSummary returns the Summary field value
+func (o *ListAutomationRunsItem) GetSummary() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *ListAutomationRunsItem) GetSummaryOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Summary, true
+}
+
+// SetSummary sets field value
+func (o *ListAutomationRunsItem) SetSummary(v map[string]interface{}) {
+	o.Summary = v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3556,112 +3216,70 @@ func (o *ListAutomationRunsItem) UnsetDurationMs() {
 	o.DurationMs.Unset()
 }
 
-// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRunsItem) GetRuleId() string {
-	if o == nil || o.RuleId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RuleId.Get()
-}
-
-// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRunsItem) GetRuleIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RuleId.Get(), o.RuleId.IsSet()
-}
-
-// HasRuleId returns a boolean if a field has been set.
-func (o *ListAutomationRunsItem) HasRuleId() bool {
-	if o != nil && o.RuleId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRuleId gets a reference to the given NullableString and assigns it to the RuleId field.
-func (o *ListAutomationRunsItem) SetRuleId(v string) {
-	o.RuleId.Set(&v)
-}
-// SetRuleIdNil sets the value for RuleId to be an explicit nil
-func (o *ListAutomationRunsItem) SetRuleIdNil() {
-	o.RuleId.Set(nil)
-}
-
-// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
-func (o *ListAutomationRunsItem) UnsetRuleId() {
-	o.RuleId.Unset()
-}
-
-// GetActionType returns the ActionType field value
-func (o *ListAutomationRunsItem) GetActionType() string {
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListAutomationRunsItem) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
-	return o.ActionType
+	return o.CreatedAt
 }
 
-// GetActionTypeOk returns a tuple with the ActionType field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ListAutomationRunsItem) GetActionTypeOk() (*string, bool) {
+func (o *ListAutomationRunsItem) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.ActionType, true
+	return &o.CreatedAt, true
 }
 
-// SetActionType sets field value
-func (o *ListAutomationRunsItem) SetActionType(v string) {
-	o.ActionType = v
+// SetCreatedAt sets field value
+func (o *ListAutomationRunsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
-// GetChainId returns the ChainId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListAutomationRunsItem) GetChainId() string {
-	if o == nil || o.ChainId.Get() == nil {
+// GetWorkflowRunId returns the WorkflowRunId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListAutomationRunsItem) GetWorkflowRunId() string {
+	if o == nil || o.WorkflowRunId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ChainId.Get()
+	return *o.WorkflowRunId.Get()
 }
 
-// GetChainIdOk returns a tuple with the ChainId field value if set, nil otherwise
+// GetWorkflowRunIdOk returns a tuple with the WorkflowRunId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListAutomationRunsItem) GetChainIdOk() (*string, bool) {
+func (o *ListAutomationRunsItem) GetWorkflowRunIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ChainId.Get(), o.ChainId.IsSet()
+	return o.WorkflowRunId.Get(), o.WorkflowRunId.IsSet()
 }
 
-// HasChainId returns a boolean if a field has been set.
-func (o *ListAutomationRunsItem) HasChainId() bool {
-	if o != nil && o.ChainId.IsSet() {
+// HasWorkflowRunId returns a boolean if a field has been set.
+func (o *ListAutomationRunsItem) HasWorkflowRunId() bool {
+	if o != nil && o.WorkflowRunId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetChainId gets a reference to the given NullableString and assigns it to the ChainId field.
-func (o *ListAutomationRunsItem) SetChainId(v string) {
-	o.ChainId.Set(&v)
+// SetWorkflowRunId gets a reference to the given NullableString and assigns it to the WorkflowRunId field.
+func (o *ListAutomationRunsItem) SetWorkflowRunId(v string) {
+	o.WorkflowRunId.Set(&v)
 }
-// SetChainIdNil sets the value for ChainId to be an explicit nil
-func (o *ListAutomationRunsItem) SetChainIdNil() {
-	o.ChainId.Set(nil)
+// SetWorkflowRunIdNil sets the value for WorkflowRunId to be an explicit nil
+func (o *ListAutomationRunsItem) SetWorkflowRunIdNil() {
+	o.WorkflowRunId.Set(nil)
 }
 
-// UnsetChainId ensures that no value is present for ChainId, not even an explicit nil
-func (o *ListAutomationRunsItem) UnsetChainId() {
-	o.ChainId.Unset()
+// UnsetWorkflowRunId ensures that no value is present for WorkflowRunId, not even an explicit nil
+func (o *ListAutomationRunsItem) UnsetWorkflowRunId() {
+	o.WorkflowRunId.Unset()
 }
 
 func (o ListAutomationRunsItem) MarshalJSON() ([]byte, error) {
@@ -3670,13 +3288,22 @@ func (o ListAutomationRunsItem) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if true {
 		toSerialize["userId"] = o.UserId
+	}
+	if o.RuleId.IsSet() {
+		toSerialize["ruleId"] = o.RuleId.Get()
+	}
+	if o.ChainId.IsSet() {
+		toSerialize["chainId"] = o.ChainId.Get()
 	}
 	if true {
 		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["actionType"] = o.ActionType
+	}
+	if true {
+		toSerialize["summary"] = o.Summary
 	}
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
@@ -3684,14 +3311,11 @@ func (o ListAutomationRunsItem) MarshalJSON() ([]byte, error) {
 	if o.DurationMs.IsSet() {
 		toSerialize["durationMs"] = o.DurationMs.Get()
 	}
-	if o.RuleId.IsSet() {
-		toSerialize["ruleId"] = o.RuleId.Get()
-	}
 	if true {
-		toSerialize["actionType"] = o.ActionType
+		toSerialize["createdAt"] = o.CreatedAt
 	}
-	if o.ChainId.IsSet() {
-		toSerialize["chainId"] = o.ChainId.Get()
+	if o.WorkflowRunId.IsSet() {
+		toSerialize["workflowRunId"] = o.WorkflowRunId.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -3893,105 +3517,6 @@ func (v NullableListAutomationRunsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *NullableListAutomationRunsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-// UpdateAutomationRuleResponse struct for UpdateAutomationRuleResponse
-type UpdateAutomationRuleResponse struct {
-	Rule map[string]interface{} `json:"rule,omitempty"`
-}
-
-// NewUpdateAutomationRuleResponse instantiates a new UpdateAutomationRuleResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUpdateAutomationRuleResponse() *UpdateAutomationRuleResponse {
-	this := UpdateAutomationRuleResponse{}
-	return &this
-}
-
-// NewUpdateAutomationRuleResponseWithDefaults instantiates a new UpdateAutomationRuleResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateAutomationRuleResponseWithDefaults() *UpdateAutomationRuleResponse {
-	this := UpdateAutomationRuleResponse{}
-	return &this
-}
-
-// GetRule returns the Rule field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateAutomationRuleResponse) GetRule() map[string]interface{} {
-	if o == nil  {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Rule
-}
-
-// GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateAutomationRuleResponse) GetRuleOk() (map[string]interface{}, bool) {
-	if o == nil || o.Rule == nil {
-		return nil, false
-	}
-	return o.Rule, true
-}
-
-// HasRule returns a boolean if a field has been set.
-func (o *UpdateAutomationRuleResponse) HasRule() bool {
-	if o != nil && o.Rule != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRule gets a reference to the given map[string]interface{} and assigns it to the Rule field.
-func (o *UpdateAutomationRuleResponse) SetRule(v map[string]interface{}) {
-	o.Rule = v
-}
-
-func (o UpdateAutomationRuleResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Rule != nil {
-		toSerialize["rule"] = o.Rule
-	}
-	return json.Marshal(toSerialize)
-}
-
-type NullableUpdateAutomationRuleResponse struct {
-	value *UpdateAutomationRuleResponse
-	isSet bool
-}
-
-func (v NullableUpdateAutomationRuleResponse) Get() *UpdateAutomationRuleResponse {
-	return v.value
-}
-
-func (v *NullableUpdateAutomationRuleResponse) Set(val *UpdateAutomationRuleResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUpdateAutomationRuleResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUpdateAutomationRuleResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUpdateAutomationRuleResponse(val *UpdateAutomationRuleResponse) *NullableUpdateAutomationRuleResponse {
-	return &NullableUpdateAutomationRuleResponse{value: val, isSet: true}
-}
-
-func (v NullableUpdateAutomationRuleResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUpdateAutomationRuleResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

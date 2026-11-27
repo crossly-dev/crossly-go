@@ -747,29 +747,29 @@ func (v *NullableCreateBuyerFeedbackResponse) UnmarshalJSON(src []byte) error {
 // ListBuyerFeedbackItem struct for ListBuyerFeedbackItem
 type ListBuyerFeedbackItem struct {
 	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
 	Rating float32 `json:"rating"`
+	CreatedAt string `json:"createdAt"`
 	Body NullableString `json:"body,omitempty"`
+	RevisedAt NullableString `json:"revisedAt,omitempty"`
+	SellerReply NullableString `json:"sellerReply,omitempty"`
+	SellerRepliedAt NullableString `json:"sellerRepliedAt,omitempty"`
+	SellerName NullableString `json:"sellerName,omitempty"`
+	ItemTitle NullableString `json:"itemTitle,omitempty"`
+	RatingAsDescribed NullableFloat32 `json:"ratingAsDescribed,omitempty"`
 	RatingCommunication NullableFloat32 `json:"ratingCommunication,omitempty"`
 	RatingShipSpeed NullableFloat32 `json:"ratingShipSpeed,omitempty"`
 	RatingShipCost NullableFloat32 `json:"ratingShipCost,omitempty"`
-	RatingAsDescribed NullableFloat32 `json:"ratingAsDescribed,omitempty"`
-	SellerReply NullableString `json:"sellerReply,omitempty"`
-	SellerRepliedAt NullableString `json:"sellerRepliedAt,omitempty"`
-	RevisedAt NullableString `json:"revisedAt,omitempty"`
-	ItemTitle NullableString `json:"itemTitle,omitempty"`
-	SellerName NullableString `json:"sellerName,omitempty"`
 }
 
 // NewListBuyerFeedbackItem instantiates a new ListBuyerFeedbackItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBuyerFeedbackItem(id string, createdAt string, rating float32) *ListBuyerFeedbackItem {
+func NewListBuyerFeedbackItem(id string, rating float32, createdAt string) *ListBuyerFeedbackItem {
 	this := ListBuyerFeedbackItem{}
 	this.Id = id
-	this.CreatedAt = createdAt
 	this.Rating = rating
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -805,30 +805,6 @@ func (o *ListBuyerFeedbackItem) SetId(v string) {
 	o.Id = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListBuyerFeedbackItem) GetCreatedAt() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *ListBuyerFeedbackItem) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *ListBuyerFeedbackItem) SetCreatedAt(v string) {
-	o.CreatedAt = v
-}
-
 // GetRating returns the Rating field value
 func (o *ListBuyerFeedbackItem) GetRating() float32 {
 	if o == nil {
@@ -851,6 +827,30 @@ func (o *ListBuyerFeedbackItem) GetRatingOk() (*float32, bool) {
 // SetRating sets field value
 func (o *ListBuyerFeedbackItem) SetRating(v float32) {
 	o.Rating = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListBuyerFeedbackItem) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListBuyerFeedbackItem) GetCreatedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListBuyerFeedbackItem) SetCreatedAt(v string) {
+	o.CreatedAt = v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -893,6 +893,258 @@ func (o *ListBuyerFeedbackItem) SetBodyNil() {
 // UnsetBody ensures that no value is present for Body, not even an explicit nil
 func (o *ListBuyerFeedbackItem) UnsetBody() {
 	o.Body.Unset()
+}
+
+// GetRevisedAt returns the RevisedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetRevisedAt() string {
+	if o == nil || o.RevisedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevisedAt.Get()
+}
+
+// GetRevisedAtOk returns a tuple with the RevisedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetRevisedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RevisedAt.Get(), o.RevisedAt.IsSet()
+}
+
+// HasRevisedAt returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasRevisedAt() bool {
+	if o != nil && o.RevisedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevisedAt gets a reference to the given NullableString and assigns it to the RevisedAt field.
+func (o *ListBuyerFeedbackItem) SetRevisedAt(v string) {
+	o.RevisedAt.Set(&v)
+}
+// SetRevisedAtNil sets the value for RevisedAt to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetRevisedAtNil() {
+	o.RevisedAt.Set(nil)
+}
+
+// UnsetRevisedAt ensures that no value is present for RevisedAt, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetRevisedAt() {
+	o.RevisedAt.Unset()
+}
+
+// GetSellerReply returns the SellerReply field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetSellerReply() string {
+	if o == nil || o.SellerReply.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerReply.Get()
+}
+
+// GetSellerReplyOk returns a tuple with the SellerReply field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetSellerReplyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerReply.Get(), o.SellerReply.IsSet()
+}
+
+// HasSellerReply returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasSellerReply() bool {
+	if o != nil && o.SellerReply.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerReply gets a reference to the given NullableString and assigns it to the SellerReply field.
+func (o *ListBuyerFeedbackItem) SetSellerReply(v string) {
+	o.SellerReply.Set(&v)
+}
+// SetSellerReplyNil sets the value for SellerReply to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetSellerReplyNil() {
+	o.SellerReply.Set(nil)
+}
+
+// UnsetSellerReply ensures that no value is present for SellerReply, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetSellerReply() {
+	o.SellerReply.Unset()
+}
+
+// GetSellerRepliedAt returns the SellerRepliedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetSellerRepliedAt() string {
+	if o == nil || o.SellerRepliedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerRepliedAt.Get()
+}
+
+// GetSellerRepliedAtOk returns a tuple with the SellerRepliedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetSellerRepliedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerRepliedAt.Get(), o.SellerRepliedAt.IsSet()
+}
+
+// HasSellerRepliedAt returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasSellerRepliedAt() bool {
+	if o != nil && o.SellerRepliedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerRepliedAt gets a reference to the given NullableString and assigns it to the SellerRepliedAt field.
+func (o *ListBuyerFeedbackItem) SetSellerRepliedAt(v string) {
+	o.SellerRepliedAt.Set(&v)
+}
+// SetSellerRepliedAtNil sets the value for SellerRepliedAt to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetSellerRepliedAtNil() {
+	o.SellerRepliedAt.Set(nil)
+}
+
+// UnsetSellerRepliedAt ensures that no value is present for SellerRepliedAt, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetSellerRepliedAt() {
+	o.SellerRepliedAt.Unset()
+}
+
+// GetSellerName returns the SellerName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetSellerName() string {
+	if o == nil || o.SellerName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerName.Get()
+}
+
+// GetSellerNameOk returns a tuple with the SellerName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetSellerNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerName.Get(), o.SellerName.IsSet()
+}
+
+// HasSellerName returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasSellerName() bool {
+	if o != nil && o.SellerName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerName gets a reference to the given NullableString and assigns it to the SellerName field.
+func (o *ListBuyerFeedbackItem) SetSellerName(v string) {
+	o.SellerName.Set(&v)
+}
+// SetSellerNameNil sets the value for SellerName to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetSellerNameNil() {
+	o.SellerName.Set(nil)
+}
+
+// UnsetSellerName ensures that no value is present for SellerName, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetSellerName() {
+	o.SellerName.Unset()
+}
+
+// GetItemTitle returns the ItemTitle field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetItemTitle() string {
+	if o == nil || o.ItemTitle.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemTitle.Get()
+}
+
+// GetItemTitleOk returns a tuple with the ItemTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetItemTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemTitle.Get(), o.ItemTitle.IsSet()
+}
+
+// HasItemTitle returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasItemTitle() bool {
+	if o != nil && o.ItemTitle.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemTitle gets a reference to the given NullableString and assigns it to the ItemTitle field.
+func (o *ListBuyerFeedbackItem) SetItemTitle(v string) {
+	o.ItemTitle.Set(&v)
+}
+// SetItemTitleNil sets the value for ItemTitle to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetItemTitleNil() {
+	o.ItemTitle.Set(nil)
+}
+
+// UnsetItemTitle ensures that no value is present for ItemTitle, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetItemTitle() {
+	o.ItemTitle.Unset()
+}
+
+// GetRatingAsDescribed returns the RatingAsDescribed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackItem) GetRatingAsDescribed() float32 {
+	if o == nil || o.RatingAsDescribed.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.RatingAsDescribed.Get()
+}
+
+// GetRatingAsDescribedOk returns a tuple with the RatingAsDescribed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackItem) GetRatingAsDescribedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.RatingAsDescribed.Get(), o.RatingAsDescribed.IsSet()
+}
+
+// HasRatingAsDescribed returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackItem) HasRatingAsDescribed() bool {
+	if o != nil && o.RatingAsDescribed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRatingAsDescribed gets a reference to the given NullableFloat32 and assigns it to the RatingAsDescribed field.
+func (o *ListBuyerFeedbackItem) SetRatingAsDescribed(v float32) {
+	o.RatingAsDescribed.Set(&v)
+}
+// SetRatingAsDescribedNil sets the value for RatingAsDescribed to be an explicit nil
+func (o *ListBuyerFeedbackItem) SetRatingAsDescribedNil() {
+	o.RatingAsDescribed.Set(nil)
+}
+
+// UnsetRatingAsDescribed ensures that no value is present for RatingAsDescribed, not even an explicit nil
+func (o *ListBuyerFeedbackItem) UnsetRatingAsDescribed() {
+	o.RatingAsDescribed.Unset()
 }
 
 // GetRatingCommunication returns the RatingCommunication field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1021,271 +1273,37 @@ func (o *ListBuyerFeedbackItem) UnsetRatingShipCost() {
 	o.RatingShipCost.Unset()
 }
 
-// GetRatingAsDescribed returns the RatingAsDescribed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetRatingAsDescribed() float32 {
-	if o == nil || o.RatingAsDescribed.Get() == nil {
-		var ret float32
-		return ret
-	}
-	return *o.RatingAsDescribed.Get()
-}
-
-// GetRatingAsDescribedOk returns a tuple with the RatingAsDescribed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetRatingAsDescribedOk() (*float32, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RatingAsDescribed.Get(), o.RatingAsDescribed.IsSet()
-}
-
-// HasRatingAsDescribed returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasRatingAsDescribed() bool {
-	if o != nil && o.RatingAsDescribed.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRatingAsDescribed gets a reference to the given NullableFloat32 and assigns it to the RatingAsDescribed field.
-func (o *ListBuyerFeedbackItem) SetRatingAsDescribed(v float32) {
-	o.RatingAsDescribed.Set(&v)
-}
-// SetRatingAsDescribedNil sets the value for RatingAsDescribed to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetRatingAsDescribedNil() {
-	o.RatingAsDescribed.Set(nil)
-}
-
-// UnsetRatingAsDescribed ensures that no value is present for RatingAsDescribed, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetRatingAsDescribed() {
-	o.RatingAsDescribed.Unset()
-}
-
-// GetSellerReply returns the SellerReply field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetSellerReply() string {
-	if o == nil || o.SellerReply.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerReply.Get()
-}
-
-// GetSellerReplyOk returns a tuple with the SellerReply field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetSellerReplyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerReply.Get(), o.SellerReply.IsSet()
-}
-
-// HasSellerReply returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasSellerReply() bool {
-	if o != nil && o.SellerReply.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerReply gets a reference to the given NullableString and assigns it to the SellerReply field.
-func (o *ListBuyerFeedbackItem) SetSellerReply(v string) {
-	o.SellerReply.Set(&v)
-}
-// SetSellerReplyNil sets the value for SellerReply to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetSellerReplyNil() {
-	o.SellerReply.Set(nil)
-}
-
-// UnsetSellerReply ensures that no value is present for SellerReply, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetSellerReply() {
-	o.SellerReply.Unset()
-}
-
-// GetSellerRepliedAt returns the SellerRepliedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetSellerRepliedAt() string {
-	if o == nil || o.SellerRepliedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerRepliedAt.Get()
-}
-
-// GetSellerRepliedAtOk returns a tuple with the SellerRepliedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetSellerRepliedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerRepliedAt.Get(), o.SellerRepliedAt.IsSet()
-}
-
-// HasSellerRepliedAt returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasSellerRepliedAt() bool {
-	if o != nil && o.SellerRepliedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerRepliedAt gets a reference to the given NullableString and assigns it to the SellerRepliedAt field.
-func (o *ListBuyerFeedbackItem) SetSellerRepliedAt(v string) {
-	o.SellerRepliedAt.Set(&v)
-}
-// SetSellerRepliedAtNil sets the value for SellerRepliedAt to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetSellerRepliedAtNil() {
-	o.SellerRepliedAt.Set(nil)
-}
-
-// UnsetSellerRepliedAt ensures that no value is present for SellerRepliedAt, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetSellerRepliedAt() {
-	o.SellerRepliedAt.Unset()
-}
-
-// GetRevisedAt returns the RevisedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetRevisedAt() string {
-	if o == nil || o.RevisedAt.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RevisedAt.Get()
-}
-
-// GetRevisedAtOk returns a tuple with the RevisedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetRevisedAtOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RevisedAt.Get(), o.RevisedAt.IsSet()
-}
-
-// HasRevisedAt returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasRevisedAt() bool {
-	if o != nil && o.RevisedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRevisedAt gets a reference to the given NullableString and assigns it to the RevisedAt field.
-func (o *ListBuyerFeedbackItem) SetRevisedAt(v string) {
-	o.RevisedAt.Set(&v)
-}
-// SetRevisedAtNil sets the value for RevisedAt to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetRevisedAtNil() {
-	o.RevisedAt.Set(nil)
-}
-
-// UnsetRevisedAt ensures that no value is present for RevisedAt, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetRevisedAt() {
-	o.RevisedAt.Unset()
-}
-
-// GetItemTitle returns the ItemTitle field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetItemTitle() string {
-	if o == nil || o.ItemTitle.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ItemTitle.Get()
-}
-
-// GetItemTitleOk returns a tuple with the ItemTitle field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetItemTitleOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ItemTitle.Get(), o.ItemTitle.IsSet()
-}
-
-// HasItemTitle returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasItemTitle() bool {
-	if o != nil && o.ItemTitle.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetItemTitle gets a reference to the given NullableString and assigns it to the ItemTitle field.
-func (o *ListBuyerFeedbackItem) SetItemTitle(v string) {
-	o.ItemTitle.Set(&v)
-}
-// SetItemTitleNil sets the value for ItemTitle to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetItemTitleNil() {
-	o.ItemTitle.Set(nil)
-}
-
-// UnsetItemTitle ensures that no value is present for ItemTitle, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetItemTitle() {
-	o.ItemTitle.Unset()
-}
-
-// GetSellerName returns the SellerName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackItem) GetSellerName() string {
-	if o == nil || o.SellerName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerName.Get()
-}
-
-// GetSellerNameOk returns a tuple with the SellerName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackItem) GetSellerNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerName.Get(), o.SellerName.IsSet()
-}
-
-// HasSellerName returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackItem) HasSellerName() bool {
-	if o != nil && o.SellerName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerName gets a reference to the given NullableString and assigns it to the SellerName field.
-func (o *ListBuyerFeedbackItem) SetSellerName(v string) {
-	o.SellerName.Set(&v)
-}
-// SetSellerNameNil sets the value for SellerName to be an explicit nil
-func (o *ListBuyerFeedbackItem) SetSellerNameNil() {
-	o.SellerName.Set(nil)
-}
-
-// UnsetSellerName ensures that no value is present for SellerName, not even an explicit nil
-func (o *ListBuyerFeedbackItem) UnsetSellerName() {
-	o.SellerName.Unset()
-}
-
 func (o ListBuyerFeedbackItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["rating"] = o.Rating
 	}
 	if true {
-		toSerialize["rating"] = o.Rating
+		toSerialize["createdAt"] = o.CreatedAt
 	}
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
+	}
+	if o.RevisedAt.IsSet() {
+		toSerialize["revisedAt"] = o.RevisedAt.Get()
+	}
+	if o.SellerReply.IsSet() {
+		toSerialize["sellerReply"] = o.SellerReply.Get()
+	}
+	if o.SellerRepliedAt.IsSet() {
+		toSerialize["sellerRepliedAt"] = o.SellerRepliedAt.Get()
+	}
+	if o.SellerName.IsSet() {
+		toSerialize["sellerName"] = o.SellerName.Get()
+	}
+	if o.ItemTitle.IsSet() {
+		toSerialize["itemTitle"] = o.ItemTitle.Get()
+	}
+	if o.RatingAsDescribed.IsSet() {
+		toSerialize["ratingAsDescribed"] = o.RatingAsDescribed.Get()
 	}
 	if o.RatingCommunication.IsSet() {
 		toSerialize["ratingCommunication"] = o.RatingCommunication.Get()
@@ -1295,24 +1313,6 @@ func (o ListBuyerFeedbackItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.RatingShipCost.IsSet() {
 		toSerialize["ratingShipCost"] = o.RatingShipCost.Get()
-	}
-	if o.RatingAsDescribed.IsSet() {
-		toSerialize["ratingAsDescribed"] = o.RatingAsDescribed.Get()
-	}
-	if o.SellerReply.IsSet() {
-		toSerialize["sellerReply"] = o.SellerReply.Get()
-	}
-	if o.SellerRepliedAt.IsSet() {
-		toSerialize["sellerRepliedAt"] = o.SellerRepliedAt.Get()
-	}
-	if o.RevisedAt.IsSet() {
-		toSerialize["revisedAt"] = o.RevisedAt.Get()
-	}
-	if o.ItemTitle.IsSet() {
-		toSerialize["itemTitle"] = o.ItemTitle.Get()
-	}
-	if o.SellerName.IsSet() {
-		toSerialize["sellerName"] = o.SellerName.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -1357,11 +1357,11 @@ func (v *NullableListBuyerFeedbackItem) UnmarshalJSON(src []byte) error {
 type ListBuyerFeedbackPendingItem struct {
 	PurchaseId string `json:"purchaseId"`
 	ItemTitle string `json:"itemTitle"`
-	ShippedAt NullableString `json:"shippedAt,omitempty"`
-	DeliveredAt NullableString `json:"deliveredAt,omitempty"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
-	SellerName NullableString `json:"sellerName,omitempty"`
+	DeliveredAt NullableString `json:"deliveredAt,omitempty"`
+	ShippedAt NullableString `json:"shippedAt,omitempty"`
 	OrderedAt NullableString `json:"orderedAt,omitempty"`
+	SellerName NullableString `json:"sellerName,omitempty"`
 }
 
 // NewListBuyerFeedbackPendingItem instantiates a new ListBuyerFeedbackPendingItem object
@@ -1431,46 +1431,46 @@ func (o *ListBuyerFeedbackPendingItem) SetItemTitle(v string) {
 	o.ItemTitle = v
 }
 
-// GetShippedAt returns the ShippedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackPendingItem) GetShippedAt() string {
-	if o == nil || o.ShippedAt.Get() == nil {
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackPendingItem) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ShippedAt.Get()
+	return *o.ImageUrl.Get()
 }
 
-// GetShippedAtOk returns a tuple with the ShippedAt field value if set, nil otherwise
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackPendingItem) GetShippedAtOk() (*string, bool) {
+func (o *ListBuyerFeedbackPendingItem) GetImageUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
 }
 
-// HasShippedAt returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackPendingItem) HasShippedAt() bool {
-	if o != nil && o.ShippedAt.IsSet() {
+// HasImageUrl returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackPendingItem) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetShippedAt gets a reference to the given NullableString and assigns it to the ShippedAt field.
-func (o *ListBuyerFeedbackPendingItem) SetShippedAt(v string) {
-	o.ShippedAt.Set(&v)
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *ListBuyerFeedbackPendingItem) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
 }
-// SetShippedAtNil sets the value for ShippedAt to be an explicit nil
-func (o *ListBuyerFeedbackPendingItem) SetShippedAtNil() {
-	o.ShippedAt.Set(nil)
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *ListBuyerFeedbackPendingItem) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
 }
 
-// UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
-func (o *ListBuyerFeedbackPendingItem) UnsetShippedAt() {
-	o.ShippedAt.Unset()
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *ListBuyerFeedbackPendingItem) UnsetImageUrl() {
+	o.ImageUrl.Unset()
 }
 
 // GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1515,88 +1515,46 @@ func (o *ListBuyerFeedbackPendingItem) UnsetDeliveredAt() {
 	o.DeliveredAt.Unset()
 }
 
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackPendingItem) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
+// GetShippedAt returns the ShippedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackPendingItem) GetShippedAt() string {
+	if o == nil || o.ShippedAt.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ImageUrl.Get()
+	return *o.ShippedAt.Get()
 }
 
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// GetShippedAtOk returns a tuple with the ShippedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackPendingItem) GetImageUrlOk() (*string, bool) {
+func (o *ListBuyerFeedbackPendingItem) GetShippedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
 }
 
-// HasImageUrl returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackPendingItem) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
+// HasShippedAt returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackPendingItem) HasShippedAt() bool {
+	if o != nil && o.ShippedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *ListBuyerFeedbackPendingItem) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
+// SetShippedAt gets a reference to the given NullableString and assigns it to the ShippedAt field.
+func (o *ListBuyerFeedbackPendingItem) SetShippedAt(v string) {
+	o.ShippedAt.Set(&v)
 }
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *ListBuyerFeedbackPendingItem) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *ListBuyerFeedbackPendingItem) UnsetImageUrl() {
-	o.ImageUrl.Unset()
+// SetShippedAtNil sets the value for ShippedAt to be an explicit nil
+func (o *ListBuyerFeedbackPendingItem) SetShippedAtNil() {
+	o.ShippedAt.Set(nil)
 }
 
-// GetSellerName returns the SellerName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListBuyerFeedbackPendingItem) GetSellerName() string {
-	if o == nil || o.SellerName.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.SellerName.Get()
-}
-
-// GetSellerNameOk returns a tuple with the SellerName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListBuyerFeedbackPendingItem) GetSellerNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.SellerName.Get(), o.SellerName.IsSet()
-}
-
-// HasSellerName returns a boolean if a field has been set.
-func (o *ListBuyerFeedbackPendingItem) HasSellerName() bool {
-	if o != nil && o.SellerName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSellerName gets a reference to the given NullableString and assigns it to the SellerName field.
-func (o *ListBuyerFeedbackPendingItem) SetSellerName(v string) {
-	o.SellerName.Set(&v)
-}
-// SetSellerNameNil sets the value for SellerName to be an explicit nil
-func (o *ListBuyerFeedbackPendingItem) SetSellerNameNil() {
-	o.SellerName.Set(nil)
-}
-
-// UnsetSellerName ensures that no value is present for SellerName, not even an explicit nil
-func (o *ListBuyerFeedbackPendingItem) UnsetSellerName() {
-	o.SellerName.Unset()
+// UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
+func (o *ListBuyerFeedbackPendingItem) UnsetShippedAt() {
+	o.ShippedAt.Unset()
 }
 
 // GetOrderedAt returns the OrderedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1641,6 +1599,48 @@ func (o *ListBuyerFeedbackPendingItem) UnsetOrderedAt() {
 	o.OrderedAt.Unset()
 }
 
+// GetSellerName returns the SellerName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListBuyerFeedbackPendingItem) GetSellerName() string {
+	if o == nil || o.SellerName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SellerName.Get()
+}
+
+// GetSellerNameOk returns a tuple with the SellerName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListBuyerFeedbackPendingItem) GetSellerNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SellerName.Get(), o.SellerName.IsSet()
+}
+
+// HasSellerName returns a boolean if a field has been set.
+func (o *ListBuyerFeedbackPendingItem) HasSellerName() bool {
+	if o != nil && o.SellerName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSellerName gets a reference to the given NullableString and assigns it to the SellerName field.
+func (o *ListBuyerFeedbackPendingItem) SetSellerName(v string) {
+	o.SellerName.Set(&v)
+}
+// SetSellerNameNil sets the value for SellerName to be an explicit nil
+func (o *ListBuyerFeedbackPendingItem) SetSellerNameNil() {
+	o.SellerName.Set(nil)
+}
+
+// UnsetSellerName ensures that no value is present for SellerName, not even an explicit nil
+func (o *ListBuyerFeedbackPendingItem) UnsetSellerName() {
+	o.SellerName.Unset()
+}
+
 func (o ListBuyerFeedbackPendingItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1649,20 +1649,20 @@ func (o ListBuyerFeedbackPendingItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["itemTitle"] = o.ItemTitle
 	}
-	if o.ShippedAt.IsSet() {
-		toSerialize["shippedAt"] = o.ShippedAt.Get()
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
 	}
 	if o.DeliveredAt.IsSet() {
 		toSerialize["deliveredAt"] = o.DeliveredAt.Get()
 	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
-	}
-	if o.SellerName.IsSet() {
-		toSerialize["sellerName"] = o.SellerName.Get()
+	if o.ShippedAt.IsSet() {
+		toSerialize["shippedAt"] = o.ShippedAt.Get()
 	}
 	if o.OrderedAt.IsSet() {
 		toSerialize["orderedAt"] = o.OrderedAt.Get()
+	}
+	if o.SellerName.IsSet() {
+		toSerialize["sellerName"] = o.SellerName.Get()
 	}
 	return json.Marshal(toSerialize)
 }

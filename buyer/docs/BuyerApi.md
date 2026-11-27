@@ -25,14 +25,19 @@ Method | HTTP request | Description
 [**CreateBuyerCatalogListingRental**](BuyerApi.md#CreateBuyerCatalogListingRental) | **Post** /v1/buyer/catalog/listings/{slug}/rental | Book a rental. Returns a Stripe PaymentIntent client secret for rent + shipping both ways + deposit; the dates are held 30 minutes for payment. Crossly buys both labels; the deposit comes back after the item does.
 [**CreateBuyerCatalogListingRentalQuote**](BuyerApi.md#CreateBuyerCatalogListingRentalQuote) | **Post** /v1/buyer/catalog/listings/{slug}/rental/quote | Price a rental: rent (the cheaper of by-the-day and by-the-week), both shipping legs once a ship-to is given, and the deposit. &#x60;problem&#x60; says why the dates can’t be booked.
 [**CreateBuyerCatalogListingVideoRequest**](BuyerApi.md#CreateBuyerCatalogListingVideoRequest) | **Post** /v1/buyer/catalog/listings/{slug}/video-requests | Ask the seller for a video of an item (one open request per item). The seller is notified; their answer appears on the listing for every buyer.
+[**CreateBuyerCompany**](BuyerApi.md#CreateBuyerCompany) | **Post** /v1/buyer/company | Create a buyer company: name, taxId?, website?. You become its owner; a user is in at most one company.
+[**CreateBuyerCompanyApproval**](BuyerApi.md#CreateBuyerCompanyApproval) | **Post** /v1/buyer/company/approvals | Ask for approval of a trade order above your limit: sellerUserId, amountCents, note?, poReference?. Good for 7 days, used once at checkout.
+[**CreateBuyerCompanyApprovalDecide**](BuyerApi.md#CreateBuyerCompanyApprovalDecide) | **Post** /v1/buyer/company/approvals/{id}/decide | Approve or decline a pending request (owner, accounts payable): decision approved | declined, note?.
+[**CreateBuyerCompanyMember**](BuyerApi.md#CreateBuyerCompanyMember) | **Post** /v1/buyer/company/members | Invite a teammate by email (owner): role owner | buyer | accounts_payable | viewer, approvalLimitCents for a buyer (orders above it need an approval).
 [**CreateBuyerConversationInvite**](BuyerApi.md#CreateBuyerConversationInvite) | **Post** /v1/buyer/conversations/{id}/invite | Invite a friend into a chat with a seller: a single-use link (7 days) that makes whoever opens it a guest who can read and post. Only the thread’s buyer can invite; at most 5 guests.
 [**CreateBuyerConversationJoin**](BuyerApi.md#CreateBuyerConversationJoin) | **Post** /v1/buyer/conversations/join/{token} | Join a chat you were invited into, as a guest.
+[**CreateBuyerEventRsvp**](BuyerApi.md#CreateBuyerEventRsvp) | **Post** /v1/buyer/events/{slug}/rsvp | RSVP to an event: going (counts against its capacity) or interested.
 [**CreateBuyerFeedback**](BuyerApi.md#CreateBuyerFeedback) | **Post** /v1/buyer/feedback | Leave feedback on up to 25 orders at once, with optional detailed seller ratings.
 [**CreateBuyerFitRef**](BuyerApi.md#CreateBuyerFitRef) | **Post** /v1/buyer/fit/refs | Save a reference garment (flat measurements, inches) to compare listings against.
 [**CreateBuyerFollowingSellerSeen**](BuyerApi.md#CreateBuyerFollowingSellerSeen) | **Post** /v1/buyer/following/sellers/seen | Clear the \&quot;new listings\&quot; count on a followed seller, or on all of them.
 [**CreateBuyerGiftCard**](BuyerApi.md#CreateBuyerGiftCard) | **Post** /v1/buyer/gift-cards | Start a gift card purchase.
 [**CreateBuyerGiftCardRedeem**](BuyerApi.md#CreateBuyerGiftCardRedeem) | **Post** /v1/buyer/gift-cards/redeem | Redeem a gift card code into your own balance.
-[**CreateBuyerGroupBuyJoin**](BuyerApi.md#CreateBuyerGroupBuyJoin) | **Post** /v1/buyer/group-buys/{id}/join | Join a group buy: a hold at the starting price, captured at the price the group reaches. Checked against this key’s spending controls; send an Idempotency-Key.
+[**CreateBuyerGroupBuyJoin**](BuyerApi.md#CreateBuyerGroupBuyJoin) | **Post** /v1/buyer/group-buys/{id}/join | Join a group buy with a quantity (up to its per-buyer max): a hold (or, for pay-now pools, a charge refunded the difference) at the starting price, settled at the price the group reaches. &#x60;linkToken&#x60; opens a link-only pool. Checked against this key’s spending controls; send an Idempotency-Key.
 [**CreateBuyerGroupBuyLeave**](BuyerApi.md#CreateBuyerGroupBuyLeave) | **Post** /v1/buyer/group-buys/{id}/leave | Leave a group buy and release your hold.
 [**CreateBuyerHunt**](BuyerApi.md#CreateBuyerHunt) | **Post** /v1/buyer/hunts | Start a buyer-agent hunt — over a search (filters), or auto-buy on one listing (listingSlug: buy it once its price, sale applied, is within maxPriceCents). &#x60;offer&#x60; and &#x60;buy&#x60; modes also need buyer:checkout:write, and the budget is checked against this key’s spending controls.
 [**CreateBuyerInstantOfferAccept**](BuyerApi.md#CreateBuyerInstantOfferAccept) | **Post** /v1/buyer/instant-offers/{id}/accept | Accept Crossly’s instant offer on a collection item. Ops then send a prepaid label; the store credit is paid once the item arrives and checks out.
@@ -53,22 +58,28 @@ Method | HTTP request | Description
 [**CreateBuyerPackFairnessRotate**](BuyerApi.md#CreateBuyerPackFairnessRotate) | **Post** /v1/buyer/packs/fairness/rotate | Reveal your current server seed and start a new one (optionally with your own client seed). Refused while an opening is awaiting payment.
 [**CreateBuyerPackOpen**](BuyerApi.md#CreateBuyerPackOpen) | **Post** /v1/buyer/packs/{slug}/open | Open a pack. SPENDS MONEY: charges the pack price to your saved card, then pulls one real item by the published odds (provably fair: see /buyer/packs/fairness) into your Crossly vault. confirmAdult must be true. Checked against this key’s spending controls; send an Idempotency-Key.
 [**CreateBuyerPackOpeningSellBack**](BuyerApi.md#CreateBuyerPackOpeningSellBack) | **Post** /v1/buyer/pack-openings/{id}/sell-back | Sell a pull straight back for Crossly credit at the pack’s buyback rate, within its window, while it is still in your vault.
-[**CreateBuyerPassportClaim**](BuyerApi.md#CreateBuyerPassportClaim) | **Post** /v1/buyer/passports/{code}/claim | Claim a passport as the item’s current owner (the buyer of its latest sale) — shown as “in its owner’s hands” until it sells again.
+[**CreateBuyerPassportClaim**](BuyerApi.md#CreateBuyerPassportClaim) | **Post** /v1/buyer/passports/{code}/claim | Claim a passport as the item’s current owner — the buyer of its latest Crossly sale, or (after a sale on another marketplace) with the transfer code from the card in the box — shown as “in its owner’s hands” until it sells again.
 [**CreateBuyerProtectionPlanCancel**](BuyerApi.md#CreateBuyerProtectionPlanCancel) | **Post** /v1/buyer/protection-plans/{id}/cancel | Cancel a protection plan. The insurer decides what is refundable (pro-rata after the free-look window); that amount goes back to the card.
-[**CreateBuyerPurchaseDownload**](BuyerApi.md#CreateBuyerPurchaseDownload) | **Post** /v1/buyer/purchases/{id}/download | A ten-minute link to a digital purchase’s file; each call uses one of its downloads.
 [**CreateBuyerPurchaseFit**](BuyerApi.md#CreateBuyerPurchaseFit) | **Post** /v1/buyer/purchases/{id}/fit | Say how a delivered purchase fit: true_to_size, small or large. It teaches your size memory and, pooled with other buyers, how the brand runs.
 [**CreateBuyerPurchaseReturn**](BuyerApi.md#CreateBuyerPurchaseReturn) | **Post** /v1/buyer/purchases/{id}/return | Return a purchase under the seller’s policy, or send back a try-at-home item. With reason doesnt_fit, &#x60;fit&#x60; (small | large) says which way, and it feeds your size memory.
 [**CreateBuyerRegistry**](BuyerApi.md#CreateBuyerRegistry) | **Post** /v1/buyer/registries | Start a gift registry (wedding, baby, birthday, housewarming, graduation, other). Items are added like any wishlist item; set shipAddressId to one of your saved addresses so guests can buy — they never see it.
 [**CreateBuyerRegistryGiftThanked**](BuyerApi.md#CreateBuyerRegistryGiftThanked) | **Post** /v1/buyer/registries/{id}/gifts/{giftId}/thanked | Tick a gift as thanked (or untick it).
 [**CreateBuyerRentalArrivalPhoto**](BuyerApi.md#CreateBuyerRentalArrivalPhoto) | **Post** /v1/buyer/rentals/{id}/arrival-photos | Photograph a rental on arrival (URLs you uploaded): your side of the condition record.
+[**CreateBuyerRentalBuyout**](BuyerApi.md#CreateBuyerRentalBuyout) | **Post** /v1/buyer/rentals/{id}/buyout | Buy the item you are renting: the price less the rent-to-own credit → clientSecret.
 [**CreateBuyerRentalCancel**](BuyerApi.md#CreateBuyerRentalCancel) | **Post** /v1/buyer/rentals/{id}/cancel | Cancel a rental that has not shipped: everything is refunded.
 [**CreateBuyerRentalClaimResponse**](BuyerApi.md#CreateBuyerRentalClaimResponse) | **Post** /v1/buyer/rentals/{id}/claim-response | Answer a deposit claim: accept (the claim is paid, the rest refunded) or dispute (Crossly decides).
+[**CreateBuyerRentalDelivered**](BuyerApi.md#CreateBuyerRentalDelivered) | **Post** /v1/buyer/rentals/{id}/delivered | Confirm your rental arrived.
+[**CreateBuyerRentalExtension**](BuyerApi.md#CreateBuyerRentalExtension) | **Post** /v1/buyer/rentals/{id}/extensions | Ask for more days. Auto-approved extensions return a clientSecret to pay with Stripe.
+[**CreateBuyerRentalExtensionPay**](BuyerApi.md#CreateBuyerRentalExtensionPay) | **Post** /v1/buyer/rentals/{id}/extensions/{extensionId}/pay | Pay for an extension the seller approved → clientSecret.
 [**CreateBuyerRentalIdentityStart**](BuyerApi.md#CreateBuyerRentalIdentityStart) | **Post** /v1/buyer/rentals/identity/start | Start the ID check renting needs (Stripe Identity: photo ID + selfie). Open &#x60;url&#x60; (hosted) or use &#x60;clientSecret&#x60; with Stripe.js.
+[**CreateBuyerRentalReturnShipped**](BuyerApi.md#CreateBuyerRentalReturnShipped) | **Post** /v1/buyer/rentals/{id}/return-shipped | Say you sent your rental back (optionally with photos).
 [**CreateBuyerReturnCancel**](BuyerApi.md#CreateBuyerReturnCancel) | **Post** /v1/buyer/returns/{id}/cancel | Cancel a return before it ships.
 [**CreateBuyerReturnTracking**](BuyerApi.md#CreateBuyerReturnTracking) | **Post** /v1/buyer/returns/{id}/tracking | Add tracking to a return you shipped on your own label.
 [**CreateBuyerSellerClubJoin**](BuyerApi.md#CreateBuyerSellerClubJoin) | **Post** /v1/buyer/sellers/{sellerUserId}/club/join | Join a seller’s loyalty club (free). Your tier’s discount then applies to their items — the best of it and any other rate you have with them, never stacked.
+[**CreateBuyerSellerLoyaltyJoin**](BuyerApi.md#CreateBuyerSellerLoyaltyJoin) | **Post** /v1/buyer/sellers/{sellerUserId}/loyalty/join | Join a seller’s loyalty club. Invite-only clubs take only invited buyers. Your tier and its perks are granted at once.
 [**CreateBuyerSellerReport**](BuyerApi.md#CreateBuyerSellerReport) | **Post** /v1/buyer/sellers/{username}/report | Report a seller to Crossly’s trust team.
 [**CreateBuyerSplitCancel**](BuyerApi.md#CreateBuyerSplitCancel) | **Post** /v1/buyer/splits/{id}/cancel | Cancel a split you organised; every held share is released.
+[**CreateBuyerStoreReport**](BuyerApi.md#CreateBuyerStoreReport) | **Post** /v1/buyer/stores/{slug}/report | Report a store to Crossly’s trust team.
 [**CreateBuyerTogether**](BuyerApi.md#CreateBuyerTogether) | **Post** /v1/buyer/together | Start a shop-together room.
 [**CreateBuyerTogetherItem**](BuyerApi.md#CreateBuyerTogetherItem) | **Post** /v1/buyer/together/{code}/items | Add a listing to a shop-together board.
 [**CreateBuyerTogetherItemVote**](BuyerApi.md#CreateBuyerTogetherItemVote) | **Post** /v1/buyer/together/{code}/items/{id}/vote | Vote an item on a room’s board up (1), down (-1) or clear (0).
@@ -79,6 +90,14 @@ Method | HTTP request | Description
 [**CreateBuyerVaultList**](BuyerApi.md#CreateBuyerVaultList) | **Post** /v1/buyer/vault/{id}/list | Sell a vault item on the market at your price. It is already authenticated, so when it sells nothing ships in: the buyer keeps it vaulted or it ships straight to them.
 [**CreateBuyerVaultUnlist**](BuyerApi.md#CreateBuyerVaultUnlist) | **Post** /v1/buyer/vault/{id}/unlist | Take a vault item off the market; it stays stored.
 [**CreateBuyerVaultWithdraw**](BuyerApi.md#CreateBuyerVaultWithdraw) | **Post** /v1/buyer/vault/{id}/withdraw | Ship a vault item home, standard or expedited. The shipping, any storage it owes and the early-withdrawal fee (within 90 days of arriving) are charged to your saved card now, all checked against this key’s spending controls; send an Idempotency-Key.
+[**CreateBuyerWholesaleCatalogApply**](BuyerApi.md#CreateBuyerWholesaleCatalogApply) | **Post** /v1/buyer/wholesale/catalogs/{storeSlug}/{catalogSlug}/apply | Apply to a store&#39;s wholesale catalog: { message?, answers [{ id, value }], resaleCertUrl?, resaleCertState?, taxId?, businessInfo? }. The seller&#39;s requirements are enforced (400 trade_apply_requirements names the first one missing); the seller reviews the request.
+[**CreateBuyerWholesaleFreightRequest**](BuyerApi.md#CreateBuyerWholesaleFreightRequest) | **Post** /v1/buyer/wholesale/freight-requests | Ask a seller to quote freight for their lines in your cart (an order over their pallet threshold): { sellerUserId, weightLbs?, shipTo? { postalCode, country, city?, region?, liftgate?, dock? }, note? }. One open request per seller.
+[**CreateBuyerWholesaleInvoicePayLink**](BuyerApi.md#CreateBuyerWholesaleInvoicePayLink) | **Post** /v1/buyer/wholesale/invoices/{id}/pay-link | A hosted payment page for an on-account invoice: amountCents? (part of the balance, at least $1), method? card | ach. Nothing is charged until the buyer completes the page.
+[**CreateBuyerWholesaleOrderSheet**](BuyerApi.md#CreateBuyerWholesaleOrderSheet) | **Post** /v1/buyer/wholesale/order-sheets | Save an order sheet: name, lines [{ platformListingId, listingVariantId?, catalogId?, quantity }] from one seller, optional catalogId, poReference, note.
+[**CreateBuyerWholesaleQuote**](BuyerApi.md#CreateBuyerWholesaleQuote) | **Post** /v1/buyer/wholesale/quotes | Ask one seller for a quote: items [{ platformListingId, listingVariantId?, quantity, targetUnitPriceCents? }] (one seller per quote), optional catalogId, note, poReference.
+[**CreateBuyerWholesaleQuoteAccept**](BuyerApi.md#CreateBuyerWholesaleQuoteAccept) | **Post** /v1/buyer/wholesale/quotes/{id}/accept | Accept an answered quote: its priced items go into your cart at the quoted quantities, locked at the quoted prices until the quote expires (changing a line&#39;s quantity drops the lock). Paying happens at checkout on Crossly.
+[**CreateBuyerWholesaleQuoteWithdraw**](BuyerApi.md#CreateBuyerWholesaleQuoteWithdraw) | **Post** /v1/buyer/wholesale/quotes/{id}/withdraw | Withdraw a quote request that is still requested or answered.
+[**CreateBuyerWholesaleUploadValidate**](BuyerApi.md#CreateBuyerWholesaleUploadValidate) | **Post** /v1/buyer/wholesale/upload/validate | Validate a CSV / PO against one catalog: rows [{ line, sku, quantity }] are matched by SKU (item or option SKU, or listing slug), merged per item and priced today; unmatched rows come back by line.
 [**CreateBuyerWishlist**](BuyerApi.md#CreateBuyerWishlist) | **Post** /v1/buyer/wishlists | Create a wishlist.
 [**CreateBuyerWishlistInvite**](BuyerApi.md#CreateBuyerWishlistInvite) | **Post** /v1/buyer/wishlists/{id}/invite | Share a wishlist with a co-editor: a single-use link (14 days). Members add and remove items; only the owner renames, deletes or removes members. At most 20.
 [**CreateBuyerWishlistItem**](BuyerApi.md#CreateBuyerWishlistItem) | **Post** /v1/buyer/wishlists/{id}/items | Add a listing to a wishlist.
@@ -89,8 +108,12 @@ Method | HTTP request | Description
 [**DeleteBuyerBreakSpotHold**](BuyerApi.md#DeleteBuyerBreakSpotHold) | **Delete** /v1/buyer/breaks/{id}/spots/{spotId}/hold | Release a break spot you hold.
 [**DeleteBuyerCartItem**](BuyerApi.md#DeleteBuyerCartItem) | **Delete** /v1/buyer/cart/items/{id} | Remove a line from your cart.
 [**DeleteBuyerCartSaved**](BuyerApi.md#DeleteBuyerCartSaved) | **Delete** /v1/buyer/cart/saved/{id} | Remove an item from saved-for-later. Returns the remaining list.
+[**DeleteBuyerCompanyMember**](BuyerApi.md#DeleteBuyerCompanyMember) | **Delete** /v1/buyer/company/members/{id} | Remove a member or cancel an invite (owner), or leave the company (your own member id).
 [**DeleteBuyerConversationGuest**](BuyerApi.md#DeleteBuyerConversationGuest) | **Delete** /v1/buyer/conversations/{id}/guests/{userId} | Remove a guest (the thread’s buyer), or leave (a guest, with your own user id).
+[**DeleteBuyerCreationReview**](BuyerApi.md#DeleteBuyerCreationReview) | **Delete** /v1/buyer/creations/{format}/{id}/review | Remove your review of a creation (its vote leaves the rating with it).
+[**DeleteBuyerEventRsvp**](BuyerApi.md#DeleteBuyerEventRsvp) | **Delete** /v1/buyer/events/{slug}/rsvp | Take back your RSVP.
 [**DeleteBuyerFitRef**](BuyerApi.md#DeleteBuyerFitRef) | **Delete** /v1/buyer/fit/refs/{id} | Delete a reference garment.
+[**DeleteBuyerHomeGuestbook**](BuyerApi.md#DeleteBuyerHomeGuestbook) | **Delete** /v1/buyer/home/guestbook/{id} | Hide a line from your home’s guestbook.
 [**DeleteBuyerMarketBid**](BuyerApi.md#DeleteBuyerMarketBid) | **Delete** /v1/buyer/market/bids/{id} | Cancel a resting market bid.
 [**DeleteBuyerMarketWatch**](BuyerApi.md#DeleteBuyerMarketWatch) | **Delete** /v1/buyer/market/watches/{id} | Stop watching a market variant.
 [**DeleteBuyerOffer**](BuyerApi.md#DeleteBuyerOffer) | **Delete** /v1/buyer/offers/{id} | Withdraw an offer you made that the seller has not answered.
@@ -98,9 +121,11 @@ Method | HTTP request | Description
 [**DeleteBuyerRecentlyViewed2**](BuyerApi.md#DeleteBuyerRecentlyViewed2) | **Delete** /v1/buyer/recently-viewed | Clear your recently viewed list.
 [**DeleteBuyerRegistry**](BuyerApi.md#DeleteBuyerRegistry) | **Delete** /v1/buyer/registries/{id} | Delete a registry (and the wishlist behind it).
 [**DeleteBuyerSellerClubJoin**](BuyerApi.md#DeleteBuyerSellerClubJoin) | **Delete** /v1/buyer/sellers/{sellerUserId}/club/join | Leave a seller’s loyalty club.
+[**DeleteBuyerSellerLoyaltyJoin**](BuyerApi.md#DeleteBuyerSellerLoyaltyJoin) | **Delete** /v1/buyer/sellers/{sellerUserId}/loyalty/join | Leave a seller’s loyalty club.
 [**DeleteBuyerTogetherItem**](BuyerApi.md#DeleteBuyerTogetherItem) | **Delete** /v1/buyer/together/{code}/items/{id} | Take an item you added off a room’s board.
 [**DeleteBuyerTotalRequest**](BuyerApi.md#DeleteBuyerTotalRequest) | **Delete** /v1/buyer/total-requests/{id} | Cancel a total request you made.
 [**DeleteBuyerTryOn**](BuyerApi.md#DeleteBuyerTryOn) | **Delete** /v1/buyer/try-ons/{id} | Delete a try-on and its images — or pass &#x60;all&#x60; to delete every photo and result.
+[**DeleteBuyerWholesaleOrderSheet**](BuyerApi.md#DeleteBuyerWholesaleOrderSheet) | **Delete** /v1/buyer/wholesale/order-sheets/{id} | Delete an order sheet.
 [**DeleteBuyerWishlist**](BuyerApi.md#DeleteBuyerWishlist) | **Delete** /v1/buyer/wishlists/{id} | Delete a wishlist and everything on it.
 [**DeleteBuyerWishlistItem**](BuyerApi.md#DeleteBuyerWishlistItem) | **Delete** /v1/buyer/wishlists/{id}/items/{slug} | Take a listing off a wishlist.
 [**DeleteBuyerWishlistMember**](BuyerApi.md#DeleteBuyerWishlistMember) | **Delete** /v1/buyer/wishlists/{id}/members/{userId} | Remove a co-editor (the owner), or leave a list shared with you (your own user id).
@@ -116,9 +141,14 @@ Method | HTTP request | Description
 [**GetBuyerCheckoutUsdc**](BuyerApi.md#GetBuyerCheckoutUsdc) | **Get** /v1/buyer/checkout/usdc | Whether Crossly takes USDC (Stripe stablecoin payments: Solana, Ethereum, Base, Polygon), and its per-order limit. Paying needs the buyer’s wallet, so it happens in the browser checkout, never unattended.
 [**GetBuyerCollectionOffer**](BuyerApi.md#GetBuyerCollectionOffer) | **Get** /v1/buyer/collection/{id}/offer | What an item in your collection would fetch now: the top open bid on the market for the same variant, condition and grade, and Crossly’s instant offer in store credit when that is switched on (a quote valid for a limited time).
 [**GetBuyerCollectionSet**](BuyerApi.md#GetBuyerCollectionSet) | **Get** /v1/buyer/collection/sets/{category}/{brand}/{model} | One set: every piece (owned or missing, with its lowest ask on the market), what completing it would cost now, and the leaderboard of collectors who opted in, with your rank.
+[**GetBuyerCompany**](BuyerApi.md#GetBuyerCompany) | **Get** /v1/buyer/company | Your buyer company (members, roles, approval limits, shared addresses), or null when you are in none.
+[**GetBuyerCreation**](BuyerApi.md#GetBuyerCreation) | **Get** /v1/buyer/creations/{format}/{id} | A live creation&#39;s public page: its rating breakdown, recent reviews and whether you can review it.
 [**GetBuyerCreator**](BuyerApi.md#GetBuyerCreator) | **Get** /v1/buyer/creators/{handle} | A creator storefront: profile, affiliate code, and shelves of live picks.
+[**GetBuyerEvent**](BuyerApi.md#GetBuyerEvent) | **Get** /v1/buyer/events/{slug} | A seller event: schedule, location, host, linked listings, live show, promo code, RSVP counts and your own RSVP.
 [**GetBuyerFitVocabulary**](BuyerApi.md#GetBuyerFitVocabulary) | **Get** /v1/buyer/fit/vocabulary | Garment kinds and the measurements each takes.
 [**GetBuyerGiftFinderOption**](BuyerApi.md#GetBuyerGiftFinderOption) | **Get** /v1/buyer/gift-finder/options | The gift finder’s questions: recipients, interests, budgets.
+[**GetBuyerHome**](BuyerApi.md#GetBuyerHome) | **Get** /v1/buyer/home | Your home in Crossly World (made on first read).
+[**GetBuyerHomePlaceable**](BuyerApi.md#GetBuyerHomePlaceable) | **Get** /v1/buyer/home/placeable | What you could place in your home: your items and delivered furniture.
 [**GetBuyerImpact**](BuyerApi.md#GetBuyerImpact) | **Get** /v1/buyer/impact | The sourced footprint your secondhand purchases avoided.
 [**GetBuyerLayaway**](BuyerApi.md#GetBuyerLayaway) | **Get** /v1/buyer/layaways/{id} | One layaway and its schedule.
 [**GetBuyerListingAudioSummary**](BuyerApi.md#GetBuyerListingAudioSummary) | **Get** /v1/buyer/listings/{slug}/audio-summary | A spoken summary of a listing (accessibility): the text, built only from the listing’s own fields and the seller’s description, and the recording of it when one exists.
@@ -139,7 +169,7 @@ Method | HTTP request | Description
 [**GetBuyerPack**](BuyerApi.md#GetBuyerPack) | **Get** /v1/buyer/packs/{slug} | One pack: tiers and odds, items left, expected value, the chase items still in it.
 [**GetBuyerPackFairness**](BuyerApi.md#GetBuyerPackFairness) | **Get** /v1/buyer/packs/fairness | Your provably-fair seeds: the active server-seed commitment (sha256), your client seed and nonce, and every retired seed in full so past openings can be re-run.
 [**GetBuyerParty**](BuyerApi.md#GetBuyerParty) | **Get** /v1/buyer/parties/{slug} | One shopping party.
-[**GetBuyerPassport**](BuyerApi.md#GetBuyerPassport) | **Get** /v1/buyer/passports/{code} | What a product passport tag opens: the item, whether it was authenticated, how many owners on Crossly and since when — never who or for how much.
+[**GetBuyerPassport**](BuyerApi.md#GetBuyerPassport) | **Get** /v1/buyer/passports/{code} | What a product passport tag opens: the item, the verify verdict (registered, tag bound, tag matches with ?uid&#x3D;, authenticated, graded, in its owner’s hands), how many owners and since when — never who or for how much.
 [**GetBuyerPreference**](BuyerApi.md#GetBuyerPreference) | **Get** /v1/buyer/preferences | The shopping profile derived from that activity.
 [**GetBuyerPriceGuide**](BuyerApi.md#GetBuyerPriceGuide) | **Get** /v1/buyer/price-guide | What matching items actually sold for on Crossly: median, quartiles, by month, and recent sales. Needs q, brand or category.
 [**GetBuyerProfile**](BuyerApi.md#GetBuyerProfile) | **Get** /v1/buyer/profile | Your Crossly shopping profile — name, email, saved address, Bucks balance.
@@ -149,14 +179,38 @@ Method | HTTP request | Description
 [**GetBuyerPurchaseStory**](BuyerApi.md#GetBuyerPurchaseStory) | **Get** /v1/buyer/purchases/{id}/story | Your owner story on a purchase, passed on to the next owner if you resell it.
 [**GetBuyerRegistry**](BuyerApi.md#GetBuyerRegistry) | **Get** /v1/buyer/registries/{id} | One of your registries: items with how many are wanted and bought.
 [**GetBuyerRegistryByToken**](BuyerApi.md#GetBuyerRegistryByToken) | **Get** /v1/buyer/registry/{token} | A registry as a guest sees it: items, how many are still wanted, and whether it can ship. Never the address.
+[**GetBuyerRental**](BuyerApi.md#GetBuyerRental) | **Get** /v1/buyer/rentals/{id} | One of your rentals: timeline, payments, the return label, extension and buy-out terms.
 [**GetBuyerRentalEligibility**](BuyerApi.md#GetBuyerRentalEligibility) | **Get** /v1/buyer/rentals/eligibility | Can you rent right now: ID-verified (a photo ID and a matching selfie, once), the verified name rentals ship to, and your standing (one rental at a time until your first comes back; none after one that never did).
 [**GetBuyerSellerClub**](BuyerApi.md#GetBuyerSellerClub) | **Get** /v1/buyer/sellers/{sellerUserId}/club | A seller’s loyalty club: its tiers (spend threshold, discount, perks) and your standing. null when the seller has none.
+[**GetBuyerSellerLoyalty**](BuyerApi.md#GetBuyerSellerLoyalty) | **Get** /v1/buyer/sellers/{sellerUserId}/loyalty | A seller’s loyalty club with its typed perks per tier, its join mode (automatic, opt-in, invite-only) and your standing. null when they run none.
 [**GetBuyerSellerTrust**](BuyerApi.md#GetBuyerSellerTrust) | **Get** /v1/buyer/sellers/{username}/trust | Seller at a glance: member since, completed sales, independent rating, typical handling time, dispute rate, trust tier, badges — and the plain sentences the profile shows.
 [**GetBuyerTogether**](BuyerApi.md#GetBuyerTogether) | **Get** /v1/buyer/together/{code} | A shop-together room: members, the board with votes, and chat.
 [**GetBuyerVaultMarketHistory**](BuyerApi.md#GetBuyerVaultMarketHistory) | **Get** /v1/buyer/vault-markets/history | Your Vault Markets value by day at the marks (oldest first, today live) over &#x60;days&#x60; (default 90), and today’s change against yesterday’s close.
 [**GetBuyerVaultMarketIndex**](BuyerApi.md#GetBuyerVaultMarketIndex) | **Get** /v1/buyer/vault-markets/indexes/{slug} | One index with its published daily closes (oldest first, &#x60;days&#x60; default 365) and its level now.
 [**GetBuyerVaultMarketInstantExit**](BuyerApi.md#GetBuyerVaultMarketInstantExit) | **Get** /v1/buyer/vault-markets/instant-exit/{id} | The Instant Exit quote for one vault unit you hold, and whether it can be sold now.
+[**GetBuyerVaultMarketOptionAnalytic**](BuyerApi.md#GetBuyerVaultMarketOptionAnalytic) | **Get** /v1/buyer/vault-markets/options/analytics/{underlying} | Options analytics on an underlying: vol surface and smile, IV rank and percentile, open interest and volume by strike and expiry, put/call ratios, expected move and historical vol. Derived, display only. Read only.
+[**GetBuyerVaultMarketOptionChain**](BuyerApi.md#GetBuyerVaultMarketOptionChain) | **Get** /v1/buyer/vault-markets/options/chain/{underlying} | The option chain for an underlying (index slug or book key): expiries, and for one expiry each strike’s call and put with bid / ask, last, open interest, theoretical price, implied vol (display only) and Greeks. Prices are cents per contract.
+[**GetBuyerVaultMarketOptionIv**](BuyerApi.md#GetBuyerVaultMarketOptionIv) | **Get** /v1/buyer/vault-markets/options/iv/{underlying} | The at-the-money implied vol on an underlying’s nearest expiry, for display: derived from the options book, quality C, never a mark.
+[**GetBuyerVaultMarketOptionPosition**](BuyerApi.md#GetBuyerVaultMarketOptionPosition) | **Get** /v1/buyer/vault-markets/options/positions | Your fractional options positions with their marks, P&amp;L and Greeks (open by default; &#x60;status&#x60; all for closed and settled too). Read only.
+[**GetBuyerVaultMarketOptionRisk**](BuyerApi.md#GetBuyerVaultMarketOptionRisk) | **Get** /v1/buyer/vault-markets/options/risk | Your options portfolio Greeks, a scenario&#39;s P&amp;L (&#x60;priceShift&#x60;, &#x60;volShift&#x60;, &#x60;daysForward&#x60;) and the beta-weighted delta against an index. Read only.
+[**GetBuyerVaultMarketPredictionBoard**](BuyerApi.md#GetBuyerVaultMarketPredictionBoard) | **Get** /v1/buyer/vault-markets/predictions/board | The busiest open prediction markets and their odds (the Trading Floor board). Anonymous.
+[**GetBuyerVaultMarketPredictionEvent**](BuyerApi.md#GetBuyerVaultMarketPredictionEvent) | **Get** /v1/buyer/vault-markets/predictions/events/{id} | One expiry’s markets with your holdings in each and their real worst and best case across them.
+[**GetBuyerVaultMarketPredictionLeaderboard**](BuyerApi.md#GetBuyerVaultMarketPredictionLeaderboard) | **Get** /v1/buyer/vault-markets/predictions/leaderboard | Opt-in forecaster leaderboards (&#x60;period&#x60; week | month | all; &#x60;metric&#x60; pnl | accuracy | brier; &#x60;venue&#x60; live | paper).
+[**GetBuyerVaultMarketPredictionMarket**](BuyerApi.md#GetBuyerVaultMarketPredictionMarket) | **Get** /v1/buyer/vault-markets/predictions/markets/{id} | One prediction market: terms, the Yes ladder (live and practice), recent trades, settlement history and the series rules with their hash.
+[**GetBuyerVaultMarketPredictionMarketHistory**](BuyerApi.md#GetBuyerVaultMarketPredictionMarketHistory) | **Get** /v1/buyer/vault-markets/predictions/markets/{id}/history | A prediction market’s probability over time (display only, never a mark), candles on the Yes price, volume and open interest (&#x60;range&#x60; 1d, 1w, 1m, all; &#x60;venue&#x60; live or paper).
+[**GetBuyerVaultMarketShare**](BuyerApi.md#GetBuyerVaultMarketShare) | **Get** /v1/buyer/vault-markets/shares | Your Vault Shares: shares and percent of each item, cost, implied value at the last share price (display only, never a mark), subscriptions and payouts.
+[**GetBuyerVaultMarketShareBasket**](BuyerApi.md#GetBuyerVaultMarketShareBasket) | **Get** /v1/buyer/vault-markets/shares/baskets/{id} | One theme basket: its series, weights and prices, and your holdings against them.
+[**GetBuyerVaultMarketShareSery**](BuyerApi.md#GetBuyerVaultMarketShareSery) | **Get** /v1/buyer/vault-markets/shares/series/{id} | One Vault Shares series: the offering, the share book, the latest fills, holders as percentages (nobody named) and buyouts.
+[**GetBuyerVaultMarketShareSeryHistory**](BuyerApi.md#GetBuyerVaultMarketShareSeryHistory) | **Get** /v1/buyer/vault-markets/shares/series/{id}/history | A Vault Shares series’ full price history (candles), the offering price and the appraisal history. Display only, never a mark.
+[**GetBuyerVaultMarketShareSeryPerk**](BuyerApi.md#GetBuyerVaultMarketShareSeryPerk) | **Get** /v1/buyer/vault-markets/shares/series/{id}/perks | Your holder perks on a series: badge, visit links, viewing days and your bookings.
 [**GetBuyerVaultMarketWorth**](BuyerApi.md#GetBuyerVaultMarketWorth) | **Get** /v1/buyer/vault-markets/worth | What your vault is worth now: value at the market prices (marks come only from trades) split into reliable and indicative marks, cost and P&amp;L, today’s change, and an estimate of what the units free to sell would fetch from the bids resting on the book now. Read only.
+[**GetBuyerWholesaleCart**](BuyerApi.md#GetBuyerWholesaleCart) | **Get** /v1/buyer/wholesale/cart | Your cart grouped per seller: trade terms, the order-minimum progress, every rule the cart breaks (the messages checkout would refuse with), PO reference, quote-locked lines, and the checkout methods, deposit and freight threshold for each group.
+[**GetBuyerWholesaleCatalogApply**](BuyerApi.md#GetBuyerWholesaleCatalogApply) | **Get** /v1/buyer/wholesale/catalogs/{storeSlug}/{catalogSlug}/apply | The application form for a store&#39;s wholesale catalog: the seller&#39;s requirements (resale certificate and accepted states, tax id, their custom questions) and your business info pre-filled. applicable&#x3D;false for a catalog you cannot apply to.
+[**GetBuyerWholesaleDrop**](BuyerApi.md#GetBuyerWholesaleDrop) | **Get** /v1/buyer/wholesale/drops/{id} | One trade drop open to you: its listings once live (add one to your cart to reserve or buy it), and your reservations in it. 404 for a drop not open to you.
+[**GetBuyerWholesaleInvoicePayQuote**](BuyerApi.md#GetBuyerWholesaleInvoicePayQuote) | **Get** /v1/buyer/wholesale/invoices/{id}/pay-quote | What paying an on-account invoice costs now: balance due, the early-pay discount if still open, the minimum part payment and the methods (card, ach).
+[**GetBuyerWholesaleOrderSheet**](BuyerApi.md#GetBuyerWholesaleOrderSheet) | **Get** /v1/buyer/wholesale/order-sheets/{id} | One order sheet priced TODAY at its quantities, with stock, trade terms and flags (unavailable, out_of_stock, short_stock, price_hidden, needs_option).
+[**GetBuyerWholesaleQuote**](BuyerApi.md#GetBuyerWholesaleQuote) | **Get** /v1/buyer/wholesale/quotes/{id} | One of your quotes with its items, the seller&#39;s prices and expiry.
+[**GetBuyerWholesaleReorder**](BuyerApi.md#GetBuyerWholesaleReorder) | **Get** /v1/buyer/wholesale/reorder/{id} | Buy again: a past wholesale order (purchase or order id) as order-sheet lines at the same quantities, priced today, out-of-stock flagged.
 [**ListBuyerActivity**](BuyerApi.md#ListBuyerActivity) | **Get** /v1/buyer/activity | What this buyer has compared lately.
 [**ListBuyerAuctionBids**](BuyerApi.md#ListBuyerAuctionBids) | **Get** /v1/buyer/auctions/{slug}/bids | An auction’s bid history, highest first, bidders anonymised.
 [**ListBuyerAuctions**](BuyerApi.md#ListBuyerAuctions) | **Get** /v1/buyer/auctions | Auctions you have bid in — bidding, won or lost (last 100).
@@ -170,8 +224,11 @@ Method | HTTP request | Description
 [**ListBuyerCatalogListingVideos**](BuyerApi.md#ListBuyerCatalogListingVideos) | **Get** /v1/buyer/catalog/listings/{slug}/videos | Videos the seller recorded for this item on request, newest first, with the question each one answers.
 [**ListBuyerClubs**](BuyerApi.md#ListBuyerClubs) | **Get** /v1/buyer/clubs | Sellers’ loyalty clubs you belong to: your spend with each, your tier and its discount, and the next tier.
 [**ListBuyerCollectionSets**](BuyerApi.md#ListBuyerCollectionSets) | **Get** /v1/buyer/collection/sets | Sets you are collecting — a catalogue brand + model you own at least two pieces of — with owned / total and percent complete, most complete first; and whether you show on set leaderboards.
+[**ListBuyerCompanyApprovals**](BuyerApi.md#ListBuyerCompanyApprovals) | **Get** /v1/buyer/company/approvals | Spend approval requests (owners and accounts payable see all; others their own). ?status&#x3D;pending|approved|declined|used|expired.
 [**ListBuyerConsolidations**](BuyerApi.md#ListBuyerConsolidations) | **Get** /v1/buyer/consolidations | Your ship-together orders: parcels at the hub, and the one box out.
 [**ListBuyerConversationGuests**](BuyerApi.md#ListBuyerConversationGuests) | **Get** /v1/buyer/conversations/{id}/guests | Guests in a chat.
+[**ListBuyerCreationReviewable**](BuyerApi.md#ListBuyerCreationReviewable) | **Get** /v1/buyer/creations/reviewable | Creations you bought (decor, wearables, interactive objects, cards from packs) and your review of each.
+[**ListBuyerEvents**](BuyerApi.md#ListBuyerEvents) | **Get** /v1/buyer/events | Upcoming and live seller events across Crossly, soonest first.
 [**ListBuyerFeedback**](BuyerApi.md#ListBuyerFeedback) | **Get** /v1/buyer/feedback | Feedback you have left sellers, newest first — with the ids you revise by.
 [**ListBuyerFeedbackPending**](BuyerApi.md#ListBuyerFeedbackPending) | **Get** /v1/buyer/feedback/pending | Orders from the last 60 days that are on their way or arrived and still need your feedback.
 [**ListBuyerFitRefs**](BuyerApi.md#ListBuyerFitRefs) | **Get** /v1/buyer/fit/refs | Your saved reference garments for fit comparison.
@@ -180,6 +237,8 @@ Method | HTTP request | Description
 [**ListBuyerGiftCards**](BuyerApi.md#ListBuyerGiftCards) | **Get** /v1/buyer/gift-cards | Gift cards you bought, newest first.
 [**ListBuyerGiftFinder**](BuyerApi.md#ListBuyerGiftFinder) | **Get** /v1/buyer/gift-finder | Live listings for a recipient, interest and budget.
 [**ListBuyerGiftSent**](BuyerApi.md#ListBuyerGiftSent) | **Get** /v1/buyer/gifts/sent | Items you sent as gifts: whether the teaser went out, whether it arrived and was opened, and any thank-you. Send one with &#x60;gift&#x60; on checkout.
+[**ListBuyerHomeBuilders**](BuyerApi.md#ListBuyerHomeBuilders) | **Get** /v1/buyer/home/builders | Your co-builders: friends who may arrange your home with you.
+[**ListBuyerHomeBuilding**](BuyerApi.md#ListBuyerHomeBuilding) | **Get** /v1/buyer/homes/building | The homes you co-build, to visit and arrange.
 [**ListBuyerHotspots**](BuyerApi.md#ListBuyerHotspots) | **Get** /v1/buyer/hotspots | Shop-the-look tags on a story or lookbook photo: each tagged listing and where it sits on the image (x, y as fractions).
 [**ListBuyerHunts**](BuyerApi.md#ListBuyerHunts) | **Get** /v1/buyer/hunts | Your buyer-agent hunts and what they did.
 [**ListBuyerInstantOffers**](BuyerApi.md#ListBuyerInstantOffers) | **Get** /v1/buyer/instant-offers | Your instant offers: live quotes, accepted ones awaiting a label, approved ones (with the prepaid label) and paid ones.
@@ -188,6 +247,7 @@ Method | HTTP request | Description
 [**ListBuyerListingSellerReviews**](BuyerApi.md#ListBuyerListingSellerReviews) | **Get** /v1/buyer/listings/{slug}/seller-reviews | The seller’s public reviews: summary, text, photos, replies.
 [**ListBuyerLiveShipments**](BuyerApi.md#ListBuyerLiveShipments) | **Get** /v1/buyer/live-shipments | Your one-box-per-show shipments: every order won in a show ships together, and postage is charged once (the rest refunded when it ships).
 [**ListBuyerLiveStreamLineup**](BuyerApi.md#ListBuyerLiveStreamLineup) | **Get** /v1/buyer/live-streams/{id}/lineup | What a live show will sell, in order: each item, its price, and whether it is still available.
+[**ListBuyerLoyalty**](BuyerApi.md#ListBuyerLoyalty) | **Get** /v1/buyer/loyalty | Your loyalty clubs: the tier you hold, progress and how to reach the next tier, the typed perks you hold now, and your history.
 [**ListBuyerMarketBids**](BuyerApi.md#ListBuyerMarketBids) | **Get** /v1/buyer/market/bids | Your resting market bids.
 [**ListBuyerMarketWatches**](BuyerApi.md#ListBuyerMarketWatches) | **Get** /v1/buyer/market/watches | Market variants you watch, with the price you are waiting for.
 [**ListBuyerOffers**](BuyerApi.md#ListBuyerOffers) | **Get** /v1/buyer/offers | Offers you have made, newest first (last 100).
@@ -196,6 +256,7 @@ Method | HTTP request | Description
 [**ListBuyerPacks**](BuyerApi.md#ListBuyerPacks) | **Get** /v1/buyer/packs | Packs you can open: price, every tier with its published odds, what is left in it and its value range, and the expected value of one opening.
 [**ListBuyerParties**](BuyerApi.md#ListBuyerParties) | **Get** /v1/buyer/parties | Themed shopping parties, live and upcoming.
 [**ListBuyerPartyListings**](BuyerApi.md#ListBuyerPartyListings) | **Get** /v1/buyer/parties/{slug}/listings | Listings shared to a party, featured first.
+[**ListBuyerPaymentMethods**](BuyerApi.md#ListBuyerPaymentMethods) | **Get** /v1/buyer/payment-methods | Your saved cards, the default first.
 [**ListBuyerPickupPoints**](BuyerApi.md#ListBuyerPickupPoints) | **Get** /v1/buyer/pickup-points | Carrier pickup points (UPS Access Point / FedEx Hold at Location) near an address; pass one as &#x60;pickupPoint&#x60; to POST /v1/buyer/checkout.
 [**ListBuyerProtectionPlans**](BuyerApi.md#ListBuyerProtectionPlans) | **Get** /v1/buyer/protection-plans | Your protection plans (bought at checkout with &#x60;protection&#x60;): status, term, coverage, contract id, and any refund.
 [**ListBuyerRegistries**](BuyerApi.md#ListBuyerRegistries) | **Get** /v1/buyer/registries | Your gift registries.
@@ -205,6 +266,7 @@ Method | HTTP request | Description
 [**ListBuyerSizeMemoryPrompts**](BuyerApi.md#ListBuyerSizeMemoryPrompts) | **Get** /v1/buyer/size-memory/prompts | Delivered orders with a size that you haven’t said how they fit (the last 60 days).
 [**ListBuyerSizeMemorySizes**](BuyerApi.md#ListBuyerSizeMemorySizes) | **Get** /v1/buyer/size-memory/sizes | The sizes learned from what you bought and kept, by kind of item (shoes, tops, bottoms, dresses, outerwear) and department.
 [**ListBuyerSplits**](BuyerApi.md#ListBuyerSplits) | **Get** /v1/buyer/splits | Purchases you split, with each share’s status.
+[**ListBuyerStoreListings**](BuyerApi.md#ListBuyerStoreListings) | **Get** /v1/buyer/stores/{slug}/listings | A store&#39;s live listings, filtered by tag, category, text and program chips (f: on_sale, discount_eligible, code_eligible, group_buy_active, rentable, wholesale_available…; all must hold), sorted; each card carries its program badges.
 [**ListBuyerSubscriptions**](BuyerApi.md#ListBuyerSubscriptions) | **Get** /v1/buyer/subscriptions | Your subscribe &amp; save standing orders.
 [**ListBuyerTogether**](BuyerApi.md#ListBuyerTogether) | **Get** /v1/buyer/together | Shop-together rooms you are in.
 [**ListBuyerTotalRequests**](BuyerApi.md#ListBuyerTotalRequests) | **Get** /v1/buyer/total-requests | Your combined-shipping total requests, newest per seller.
@@ -213,20 +275,51 @@ Method | HTTP request | Description
 [**ListBuyerVaultMarketHoldings**](BuyerApi.md#ListBuyerVaultMarketHoldings) | **Get** /v1/buyer/vault-markets/holdings | Each unit you hold in the vault at its market price, with the mark’s quality (A or B reliable, C indicative, none), cost, P&amp;L and where it stands (stored, listed, lent, pledged, at the grader); &#x60;meta&#x60; carries the totals and the units you have out on loan.
 [**ListBuyerVaultMarketIndexes**](BuyerApi.md#ListBuyerVaultMarketIndexes) | **Get** /v1/buyer/vault-markets/indexes | Crossly indexes over vault book keys (category, brand, curated, composite, segment, and your own), each with its level now and change since the last daily close. Index levels are valued only from the book’s marks.
 [**ListBuyerVaultMarketInstantExit**](BuyerApi.md#ListBuyerVaultMarketInstantExit) | **Get** /v1/buyer/vault-markets/instant-exit | Instant Exit quotes for what you hold, one per book key: the best resting bid (yours left out), its share of the mark, the bid levels, units held and which are free to sell, and why a key cannot be sold instantly. A quote, not an order.
+[**ListBuyerVaultMarketOptionCombos**](BuyerApi.md#ListBuyerVaultMarketOptionCombos) | **Get** /v1/buyer/vault-markets/options/combos | Your options strategies (working by default) with their legs, net price per unit and fills. Read only.
+[**ListBuyerVaultMarketOptionNotices**](BuyerApi.md#ListBuyerVaultMarketOptionNotices) | **Get** /v1/buyer/vault-markets/options/notices | Your options notices: expiry warnings, auto-closes, exercises, assignments, expiries worthless and rolls. Read only.
+[**ListBuyerVaultMarketOptionSeries**](BuyerApi.md#ListBuyerVaultMarketOptionSeries) | **Get** /v1/buyer/vault-markets/options/series | Fractional options series on Crossly prices (indexes, and tier A item keys with 90 days of reliable marks): underlying, status and eligibility. Read only.
+[**ListBuyerVaultMarketOptionStrategies**](BuyerApi.md#ListBuyerVaultMarketOptionStrategies) | **Get** /v1/buyer/vault-markets/options/strategies | The options strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar) and what each does. Read only.
+[**ListBuyerVaultMarketPredictionComments**](BuyerApi.md#ListBuyerVaultMarketPredictionComments) | **Get** /v1/buyer/vault-markets/predictions/comments | A prediction market’s (or series’) discussion thread. Read only.
+[**ListBuyerVaultMarketPredictionMarkets**](BuyerApi.md#ListBuyerVaultMarketPredictionMarkets) | **Get** /v1/buyer/vault-markets/predictions/markets | \&quot;Will it hit?\&quot; prediction markets on Crossly prices (filter by book key, index slug, kind, status, expiry or text): strike, expiry, best Yes bid and ask, last price and the probability (the market&#39;s own price, display only).
+[**ListBuyerVaultMarketPredictionPositions**](BuyerApi.md#ListBuyerVaultMarketPredictionPositions) | **Get** /v1/buyer/vault-markets/predictions/positions | Your prediction positions (practice and live): side, contracts, cost, value at the last price, payout or refund once settled.
+[**ListBuyerVaultMarketShareAutoInvest**](BuyerApi.md#ListBuyerVaultMarketShareAutoInvest) | **Get** /v1/buyer/vault-markets/shares/auto-invest | Your recurring Vault Shares auto-invest plans.
+[**ListBuyerVaultMarketShareBaskets**](BuyerApi.md#ListBuyerVaultMarketShareBaskets) | **Get** /v1/buyer/vault-markets/shares/baskets | Theme baskets: model portfolios of Vault Shares series you would own directly, never a fund.
+[**ListBuyerVaultMarketShareDrops**](BuyerApi.md#ListBuyerVaultMarketShareDrops) | **Get** /v1/buyer/vault-markets/shares/drops | Upcoming and open Vault Shares drops: phase, countdown, allocation (first come, pro-rata or lottery), your Crossly One early-access time (never a better price).
+[**ListBuyerVaultMarketShareGifts**](BuyerApi.md#ListBuyerVaultMarketShareGifts) | **Get** /v1/buyer/vault-markets/shares/gifts | Vault Shares gifts you sent or were offered.
+[**ListBuyerVaultMarketShareSeries**](BuyerApi.md#ListBuyerVaultMarketShareSeries) | **Get** /v1/buyer/vault-markets/shares/series | Vault Shares series: open offerings first, then trading. Terms, progress, last share price and implied item value, and your holding.
 [**ListBuyerVaultMarketWatchlist**](BuyerApi.md#ListBuyerVaultMarketWatchlist) | **Get** /v1/buyer/vault-markets/watchlist | The book keys you watch, with mark and its quality, 24 h and 7 d change, and the last 30 daily marks.
 [**ListBuyerVideoRequests**](BuyerApi.md#ListBuyerVideoRequests) | **Get** /v1/buyer/video-requests | Your video requests and their answers.
+[**ListBuyerWalletPerks**](BuyerApi.md#ListBuyerWalletPerks) | **Get** /v1/buyer/wallet/perks | The perks your wallets unlock: each Collection holders deal (a shop’s percent off for holders of a collection) and creator shop perk on a collection a linked wallet or your Crossly wallet holds, best first. Checkout applies the best one; perks never stack with each other.
+[**ListBuyerWholesaleDrops**](BuyerApi.md#ListBuyerWholesaleDrops) | **Get** /v1/buyer/wholesale/drops | Upcoming and live trade drops open to you: drops sellers release only to their approved trade buyers or to a catalog audience. kind prebook &#x3D; reserve quantity now with a deposit (depositBps) at checkout; the balance is invoiced when the seller releases the stock.
+[**ListBuyerWholesaleFreightRequests**](BuyerApi.md#ListBuyerWholesaleFreightRequests) | **Get** /v1/buyer/wholesale/freight-requests | Your freight (LTL) quote requests to sellers, with the seller&#39;s figure in cents once quoted.
+[**ListBuyerWholesaleOrderSheets**](BuyerApi.md#ListBuyerWholesaleOrderSheets) | **Get** /v1/buyer/wholesale/order-sheets | Your saved wholesale order sheets (one seller each), newest first.
+[**ListBuyerWholesaleOrders**](BuyerApi.md#ListBuyerWholesaleOrders) | **Get** /v1/buyer/wholesale/orders | Your past wholesale orders (trade-priced or on account), newest first — the starting point for reorder.
+[**ListBuyerWholesalePrebooks**](BuyerApi.md#ListBuyerWholesalePrebooks) | **Get** /v1/buyer/wholesale/prebooks | Your pre-books: the drop, item, quantity, deposit paid, balance, status (awaiting_release, invoiced, paid, cancelled, failed) and the balance invoice once the seller released the stock.
+[**ListBuyerWholesaleQuotes**](BuyerApi.md#ListBuyerWholesaleQuotes) | **Get** /v1/buyer/wholesale/quotes | Your requests for a quote (RFQ) to wholesale sellers. ?status&#x3D;open|all|requested|answered|accepted|declined|withdrawn|expired. An answered or accepted quote past expiresAt reads expired.
+[**ListBuyerWholesaleStatement**](BuyerApi.md#ListBuyerWholesaleStatement) | **Get** /v1/buyer/wholesale/statement | Your open trade balances per seller in aging buckets (current, 1-30, 31-60, 61-90, 90+ days past due), with the invoices behind them.
+[**ListBuyerWholesaleSuppliers**](BuyerApi.md#ListBuyerWholesaleSuppliers) | **Get** /v1/buyer/wholesale/suppliers | The sellers you trade with: catalogs you can open, your terms (net days, credit limit, discount), customer groups, and what you owe each.
 [**ListBuyerWishlistItems**](BuyerApi.md#ListBuyerWishlistItems) | **Get** /v1/buyer/wishlists/{id}/items | What is on one wishlist.
 [**ListBuyerWishlistMembers**](BuyerApi.md#ListBuyerWishlistMembers) | **Get** /v1/buyer/wishlists/{id}/members | Co-editors of a shared wishlist.
 [**ListBuyerWishlists**](BuyerApi.md#ListBuyerWishlists) | **Get** /v1/buyer/wishlists | Your wishlists.
 [**UpdateBuyerBoard**](BuyerApi.md#UpdateBuyerBoard) | **Patch** /v1/buyer/boards/{id} | Rename a board, change its description, or make it public / private.
 [**UpdateBuyerBoardLayout**](BuyerApi.md#UpdateBuyerBoardLayout) | **Put** /v1/buyer/boards/{id}/layout | Replace a board’s layout: items by platform listing id or slug, with x, y, w (0–1) and z. At most 40.
 [**UpdateBuyerCollectionSetLeaderboard**](BuyerApi.md#UpdateBuyerCollectionSetLeaderboard) | **Put** /v1/buyer/collection/sets/leaderboard | Show or hide yourself (by your public handle) on set leaderboards.
+[**UpdateBuyerCompany**](BuyerApi.md#UpdateBuyerCompany) | **Patch** /v1/buyer/company | Rename the company or change its tax id / website (owner).
+[**UpdateBuyerCompanyAddress**](BuyerApi.md#UpdateBuyerCompanyAddress) | **Put** /v1/buyer/company/addresses | Replace the shared address book (owner): addresses [{ id, label, name, line1, line2?, city, region, postalCode, country, phone?, isDefault? }], at most 20.
+[**UpdateBuyerCompanyMember**](BuyerApi.md#UpdateBuyerCompanyMember) | **Patch** /v1/buyer/company/members/{id} | Change a member&#39;s role or approval limit (owner). The last owner stays an owner.
+[**UpdateBuyerCreationReview**](BuyerApi.md#UpdateBuyerCreationReview) | **Put** /v1/buyer/creations/{format}/{id}/review | Review a creation you bought (or change your review): 1-5 stars and an optional comment.
 [**UpdateBuyerFeedback**](BuyerApi.md#UpdateBuyerFeedback) | **Patch** /v1/buyer/feedback/{id} | Revise feedback you left, within 60 days.
+[**UpdateBuyerHome**](BuyerApi.md#UpdateBuyerHome) | **Patch** /v1/buyer/home | Who may walk in (privacy), the lighting (theme), wallpaper/floor/mood decor and whether visitors see your vault wall values.
+[**UpdateBuyerHomeBuilder**](BuyerApi.md#UpdateBuyerHomeBuilder) | **Put** /v1/buyer/home/builders | Set your co-builders (friends only, at most 4).
+[**UpdateBuyerHomeLayout**](BuyerApi.md#UpdateBuyerHomeLayout) | **Put** /v1/buyer/home/layout | Arrange your home: the whole layout, checked against what you own.
 [**UpdateBuyerHunt**](BuyerApi.md#UpdateBuyerHunt) | **Patch** /v1/buyer/hunts/{id} | Pause, resume or stop a hunt.
+[**UpdateBuyerPaymentMethodDefault**](BuyerApi.md#UpdateBuyerPaymentMethodDefault) | **Put** /v1/buyer/payment-methods/{id}/default | Make one of your saved cards the default.
 [**UpdateBuyerPurchaseStory**](BuyerApi.md#UpdateBuyerPurchaseStory) | **Put** /v1/buyer/purchases/{id}/story | Write your owner story (280 characters); it travels with the item if you resell it.
 [**UpdateBuyerRegistry**](BuyerApi.md#UpdateBuyerRegistry) | **Patch** /v1/buyer/registries/{id} | Edit a registry: title, kind, date, message, ship-to address.
 [**UpdateBuyerRegistryItem**](BuyerApi.md#UpdateBuyerRegistryItem) | **Put** /v1/buyer/registries/{id}/items/{platformListingId} | How many of an item you want (1–50).
 [**UpdateBuyerSubscription**](BuyerApi.md#UpdateBuyerSubscription) | **Patch** /v1/buyer/subscriptions/{id} | Pause, resume, skip the next delivery, change the interval, or cancel.
+[**UpdateBuyerWholesaleCartPo**](BuyerApi.md#UpdateBuyerWholesaleCartPo) | **Put** /v1/buyer/wholesale/cart/po | Set the PO reference for one seller&#39;s group of your cart: { sellerUserId, poReference } (empty clears it).
+[**UpdateBuyerWholesaleOrderSheet**](BuyerApi.md#UpdateBuyerWholesaleOrderSheet) | **Patch** /v1/buyer/wholesale/order-sheets/{id} | Rename an order sheet, change its PO reference or note, or replace its lines.
 [**UpdateBuyerWishlist**](BuyerApi.md#UpdateBuyerWishlist) | **Patch** /v1/buyer/wishlists/{id} | Rename a wishlist, or make it public / private.
 
 
@@ -1638,6 +1731,247 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateBuyerCompany
+
+> BuyerCompanyResponse CreateBuyerCompany(ctx).Execute()
+
+Create a buyer company: name, taxId?, website?. You become its owner; a user is in at most one company.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerCompany(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerCompany``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerCompany`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerCompany`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerCompanyRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerCompanyApproval
+
+> CreateBuyerCompanyApprovalResponse CreateBuyerCompanyApproval(ctx).Execute()
+
+Ask for approval of a trade order above your limit: sellerUserId, amountCents, note?, poReference?. Good for 7 days, used once at checkout.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerCompanyApproval(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerCompanyApproval``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerCompanyApproval`: CreateBuyerCompanyApprovalResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerCompanyApproval`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerCompanyApprovalRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateBuyerCompanyApprovalResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerCompanyApprovalDecide
+
+> CreateBuyerCompanyApprovalResponse CreateBuyerCompanyApprovalDecide(ctx, id).Execute()
+
+Approve or decline a pending request (owner, accounts payable): decision approved | declined, note?.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerCompanyApprovalDecide(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerCompanyApprovalDecide``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerCompanyApprovalDecide`: CreateBuyerCompanyApprovalResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerCompanyApprovalDecide`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerCompanyApprovalDecideRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerCompanyApprovalResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerCompanyMember
+
+> BuyerCompanyResponse CreateBuyerCompanyMember(ctx).Execute()
+
+Invite a teammate by email (owner): role owner | buyer | accounts_payable | viewer, approvalLimitCents for a buyer (orders above it need an approval).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerCompanyMember(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerCompanyMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerCompanyMember`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerCompanyMember`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerCompanyMemberRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateBuyerConversationInvite
 
 > CreateBuyerWishlistInviteResponse CreateBuyerConversationInvite(ctx, id).Execute()
@@ -1758,6 +2092,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateBuyerConversationJoinResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerEventRsvp
+
+> CreateBuyerEventRsvpResponse CreateBuyerEventRsvp(ctx, slug).Execute()
+
+RSVP to an event: going (counts against its capacity) or interested.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerEventRsvp(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerEventRsvp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerEventRsvp`: CreateBuyerEventRsvpResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerEventRsvp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerEventRsvpRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerEventRsvpResponse**
 
 ### Authorization
 
@@ -2092,7 +2493,7 @@ Name | Type | Description  | Notes
 
 > CreateBuyerGroupBuyJoinResponse CreateBuyerGroupBuyJoin(ctx, id).Execute()
 
-Join a group buy: a hold at the starting price, captured at the price the group reaches. Checked against this key’s spending controls; send an Idempotency-Key.
+Join a group buy with a quantity (up to its per-buyer max): a hold (or, for pay-now pools, a charge refunded the difference) at the starting price, settled at the price the group reaches. `linkToken` opens a link-only pool. Checked against this key’s spending controls; send an Idempotency-Key.
 
 ### Example
 
@@ -3473,7 +3874,7 @@ Name | Type | Description  | Notes
 
 > GetBuyerPassportResponse CreateBuyerPassportClaim(ctx, code).Execute()
 
-Claim a passport as the item’s current owner (the buyer of its latest sale) — shown as “in its owner’s hands” until it sells again.
+Claim a passport as the item’s current owner — the buyer of its latest Crossly sale, or (after a sale on another marketplace) with the transfer code from the card in the box — shown as “in its owner’s hands” until it sells again.
 
 ### Example
 
@@ -3589,73 +3990,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateBuyerProtectionPlanCancelResponse**
-
-### Authorization
-
-[BuyerOAuth](../README.md#BuyerOAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
-
-
-## CreateBuyerPurchaseDownload
-
-> CreateBuyerPurchaseDownloadResponse CreateBuyerPurchaseDownload(ctx, id).Execute()
-
-A ten-minute link to a digital purchase’s file; each call uses one of its downloads.
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BuyerApi.CreateBuyerPurchaseDownload(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerPurchaseDownload``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateBuyerPurchaseDownload`: CreateBuyerPurchaseDownloadResponse
-    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerPurchaseDownload`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateBuyerPurchaseDownloadRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-**CreateBuyerPurchaseDownloadResponse**
 
 ### Authorization
 
@@ -3934,7 +4268,7 @@ Name | Type | Description  | Notes
 
 ## CreateBuyerRentalArrivalPhoto
 
-> CreateBuyerRentalArrivalPhotoResponse CreateBuyerRentalArrivalPhoto(ctx, id).Execute()
+> BuyerRentalResponse CreateBuyerRentalArrivalPhoto(ctx, id).Execute()
 
 Photograph a rental on arrival (URLs you uploaded): your side of the condition record.
 
@@ -3960,7 +4294,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalArrivalPhoto``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBuyerRentalArrivalPhoto`: CreateBuyerRentalArrivalPhotoResponse
+    // response from `CreateBuyerRentalArrivalPhoto`: BuyerRentalResponse
     fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalArrivalPhoto`: %v\n", resp)
 }
 ```
@@ -3984,7 +4318,74 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBuyerRentalArrivalPhotoResponse**
+**BuyerRentalResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerRentalBuyout
+
+> CreateBuyerRentalBuyoutResponse CreateBuyerRentalBuyout(ctx, id).Execute()
+
+Buy the item you are renting: the price less the rent-to-own credit → clientSecret.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerRentalBuyout(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalBuyout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerRentalBuyout`: CreateBuyerRentalBuyoutResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalBuyout`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerRentalBuyoutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerRentalBuyoutResponse**
 
 ### Authorization
 
@@ -4133,6 +4534,210 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateBuyerRentalDelivered
+
+> BuyerRentalResponse CreateBuyerRentalDelivered(ctx, id).Execute()
+
+Confirm your rental arrived.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerRentalDelivered(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalDelivered``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerRentalDelivered`: BuyerRentalResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalDelivered`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerRentalDeliveredRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerRentalResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerRentalExtension
+
+> CreateBuyerRentalExtensionResponse CreateBuyerRentalExtension(ctx, id).Execute()
+
+Ask for more days. Auto-approved extensions return a clientSecret to pay with Stripe.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerRentalExtension(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalExtension``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerRentalExtension`: CreateBuyerRentalExtensionResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalExtension`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerRentalExtensionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerRentalExtensionResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerRentalExtensionPay
+
+> CreateBuyerRentalExtensionPayResponse CreateBuyerRentalExtensionPay(ctx, id, extensionId).Execute()
+
+Pay for an extension the seller approved → clientSecret.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    extensionId := "extensionId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerRentalExtensionPay(context.Background(), id, extensionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalExtensionPay``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerRentalExtensionPay`: CreateBuyerRentalExtensionPayResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalExtensionPay`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+**extensionId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerRentalExtensionPayRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**CreateBuyerRentalExtensionPayResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateBuyerRentalIdentityStart
 
 > CreateBuyerRentalIdentityStartResponse CreateBuyerRentalIdentityStart(ctx).Execute()
@@ -4177,6 +4782,73 @@ Other parameters are passed through a pointer to a apiCreateBuyerRentalIdentityS
 ### Return type
 
 **CreateBuyerRentalIdentityStartResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerRentalReturnShipped
+
+> BuyerRentalResponse CreateBuyerRentalReturnShipped(ctx, id).Execute()
+
+Say you sent your rental back (optionally with photos).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerRentalReturnShipped(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerRentalReturnShipped``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerRentalReturnShipped`: BuyerRentalResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerRentalReturnShipped`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerRentalReturnShippedRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerRentalResponse**
 
 ### Authorization
 
@@ -4392,9 +5064,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateBuyerSellerLoyaltyJoin
+
+> GetBuyerSellerLoyaltyResponse CreateBuyerSellerLoyaltyJoin(ctx, sellerUserId).Execute()
+
+Join a seller’s loyalty club. Invite-only clubs take only invited buyers. Your tier and its perks are granted at once.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    sellerUserId := "sellerUserId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerSellerLoyaltyJoin(context.Background(), sellerUserId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerSellerLoyaltyJoin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerSellerLoyaltyJoin`: GetBuyerSellerLoyaltyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerSellerLoyaltyJoin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sellerUserId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerSellerLoyaltyJoinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerSellerLoyaltyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## CreateBuyerSellerReport
 
-> CreateBuyerSellerReportResponse CreateBuyerSellerReport(ctx, username).CreateBuyerSellerReportRequest(createBuyerSellerReportRequest).Execute()
+> CreateBuyerStoreReportResponse CreateBuyerSellerReport(ctx, username).CreateBuyerSellerReportRequest(createBuyerSellerReportRequest).Execute()
 
 Report a seller to Crossly’s trust team.
 
@@ -4423,7 +5162,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerSellerReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateBuyerSellerReport`: CreateBuyerSellerReportResponse
+    // response from `CreateBuyerSellerReport`: CreateBuyerStoreReportResponse
     fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerSellerReport`: %v\n", resp)
 }
 ```
@@ -4448,7 +5187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBuyerSellerReportResponse**
+**CreateBuyerStoreReportResponse**
 
 ### Authorization
 
@@ -4524,6 +5263,77 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerStoreReport
+
+> CreateBuyerStoreReportResponse CreateBuyerStoreReport(ctx, slug).CreateBuyerSellerReportRequest(createBuyerSellerReportRequest).Execute()
+
+Report a store to Crossly’s trust team.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | The store’s slug (its /shop/s/<slug> address).
+    createBuyerSellerReportRequest := *openapiclient.NewCreateBuyerSellerReportRequest("Reason_example") // CreateBuyerSellerReportRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerStoreReport(context.Background(), slug).CreateBuyerSellerReportRequest(createBuyerSellerReportRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerStoreReport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerStoreReport`: CreateBuyerStoreReportResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerStoreReport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** | The store’s slug (its /shop/s/&lt;slug&gt; address). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerStoreReportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createBuyerSellerReportRequest** | **CreateBuyerSellerReportRequest** |  | 
+
+### Return type
+
+**CreateBuyerStoreReportResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -5178,6 +5988,509 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateBuyerVaultWithdrawResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleCatalogApply
+
+> CreateBuyerWholesaleCatalogApplyResponse CreateBuyerWholesaleCatalogApply(ctx, storeSlug, catalogSlug).Execute()
+
+Apply to a store's wholesale catalog: { message?, answers [{ id, value }], resaleCertUrl?, resaleCertState?, taxId?, businessInfo? }. The seller's requirements are enforced (400 trade_apply_requirements names the first one missing); the seller reviews the request.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storeSlug := "storeSlug_example" // string | 
+    catalogSlug := "catalogSlug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleCatalogApply(context.Background(), storeSlug, catalogSlug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleCatalogApply``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleCatalogApply`: CreateBuyerWholesaleCatalogApplyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleCatalogApply`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storeSlug** | **string** |  | 
+**catalogSlug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleCatalogApplyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**CreateBuyerWholesaleCatalogApplyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleFreightRequest
+
+> CreateBuyerWholesaleFreightRequestResponse CreateBuyerWholesaleFreightRequest(ctx).Execute()
+
+Ask a seller to quote freight for their lines in your cart (an order over their pallet threshold): { sellerUserId, weightLbs?, shipTo? { postalCode, country, city?, region?, liftgate?, dock? }, note? }. One open request per seller.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleFreightRequest(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleFreightRequest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleFreightRequest`: CreateBuyerWholesaleFreightRequestResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleFreightRequest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleFreightRequestRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateBuyerWholesaleFreightRequestResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleInvoicePayLink
+
+> CreateBuyerWholesaleInvoicePayLinkResponse CreateBuyerWholesaleInvoicePayLink(ctx, id).Execute()
+
+A hosted payment page for an on-account invoice: amountCents? (part of the balance, at least $1), method? card | ach. Nothing is charged until the buyer completes the page.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleInvoicePayLink(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleInvoicePayLink``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleInvoicePayLink`: CreateBuyerWholesaleInvoicePayLinkResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleInvoicePayLink`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleInvoicePayLinkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerWholesaleInvoicePayLinkResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleOrderSheet
+
+> BuyerWholesaleOrderSheetResponse CreateBuyerWholesaleOrderSheet(ctx).Execute()
+
+Save an order sheet: name, lines [{ platformListingId, listingVariantId?, catalogId?, quantity }] from one seller, optional catalogId, poReference, note.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleOrderSheet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleOrderSheet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleOrderSheet`: BuyerWholesaleOrderSheetResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleOrderSheet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleOrderSheetRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerWholesaleOrderSheetResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleQuote
+
+> BuyerWholesaleQuoteResponse CreateBuyerWholesaleQuote(ctx).Execute()
+
+Ask one seller for a quote: items [{ platformListingId, listingVariantId?, quantity, targetUnitPriceCents? }] (one seller per quote), optional catalogId, note, poReference.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleQuote(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleQuote`: BuyerWholesaleQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleQuoteRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerWholesaleQuoteResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleQuoteAccept
+
+> CreateBuyerWholesaleQuoteAcceptResponse CreateBuyerWholesaleQuoteAccept(ctx, id).Execute()
+
+Accept an answered quote: its priced items go into your cart at the quoted quantities, locked at the quoted prices until the quote expires (changing a line's quantity drops the lock). Paying happens at checkout on Crossly.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleQuoteAccept(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleQuoteAccept``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleQuoteAccept`: CreateBuyerWholesaleQuoteAcceptResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleQuoteAccept`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleQuoteAcceptRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**CreateBuyerWholesaleQuoteAcceptResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleQuoteWithdraw
+
+> BuyerWholesaleQuoteResponse CreateBuyerWholesaleQuoteWithdraw(ctx, id).Execute()
+
+Withdraw a quote request that is still requested or answered.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleQuoteWithdraw(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleQuoteWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleQuoteWithdraw`: BuyerWholesaleQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleQuoteWithdraw`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleQuoteWithdrawRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerWholesaleQuoteResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateBuyerWholesaleUploadValidate
+
+> CreateBuyerWholesaleUploadValidateResponse CreateBuyerWholesaleUploadValidate(ctx).Execute()
+
+Validate a CSV / PO against one catalog: rows [{ line, sku, quantity }] are matched by SKU (item or option SKU, or listing slug), merged per item and priced today; unmatched rows come back by line.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.CreateBuyerWholesaleUploadValidate(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.CreateBuyerWholesaleUploadValidate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBuyerWholesaleUploadValidate`: CreateBuyerWholesaleUploadValidateResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.CreateBuyerWholesaleUploadValidate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBuyerWholesaleUploadValidateRequest struct via the builder pattern
+
+
+### Return type
+
+**CreateBuyerWholesaleUploadValidateResponse**
 
 ### Authorization
 
@@ -5868,6 +7181,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteBuyerCompanyMember
+
+> BuyerCompanyResponse DeleteBuyerCompanyMember(ctx, id).Execute()
+
+Remove a member or cancel an invite (owner), or leave the company (your own member id).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerCompanyMember(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerCompanyMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBuyerCompanyMember`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.DeleteBuyerCompanyMember`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerCompanyMemberRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteBuyerConversationGuest
 
 > BuyerResponse DeleteBuyerConversationGuest(ctx, id, userId).Execute()
@@ -5919,6 +7299,143 @@ Other parameters are passed through a pointer to a apiDeleteBuyerConversationGue
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+
+### Return type
+
+**BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteBuyerCreationReview
+
+> BuyerResponse DeleteBuyerCreationReview(ctx, format, id).Execute()
+
+Remove your review of a creation (its vote leaves the rating with it).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    format := "format_example" // string | The creation format.
+    id := "id_example" // string | The creation id (a card is <setId>.<slug>).
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerCreationReview(context.Background(), format, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerCreationReview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBuyerCreationReview`: BuyerResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.DeleteBuyerCreationReview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**format** | **string** | The creation format. | 
+**id** | **string** | The creation id (a card is &lt;setId&gt;.&lt;slug&gt;). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerCreationReviewRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteBuyerEventRsvp
+
+> BuyerResponse DeleteBuyerEventRsvp(ctx, slug).Execute()
+
+Take back your RSVP.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerEventRsvp(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerEventRsvp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBuyerEventRsvp`: BuyerResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.DeleteBuyerEventRsvp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerEventRsvpRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -5991,6 +7508,71 @@ Name | Type | Description  | Notes
 ### Return type
 
 **BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteBuyerHomeGuestbook
+
+> DeleteBuyerHomeGuestbook(ctx, id).Execute()
+
+Hide a line from your home’s guestbook.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerHomeGuestbook(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerHomeGuestbook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerHomeGuestbookRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 
@@ -6469,6 +8051,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteBuyerSellerLoyaltyJoin
+
+> BuyerResponse DeleteBuyerSellerLoyaltyJoin(ctx, sellerUserId).Execute()
+
+Leave a seller’s loyalty club.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    sellerUserId := "sellerUserId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerSellerLoyaltyJoin(context.Background(), sellerUserId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerSellerLoyaltyJoin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBuyerSellerLoyaltyJoin`: BuyerResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.DeleteBuyerSellerLoyaltyJoin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sellerUserId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerSellerLoyaltyJoinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## DeleteBuyerTogetherItem
 
 > BuyerResponse DeleteBuyerTogetherItem(ctx, code, id).Execute()
@@ -6659,6 +8308,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **DeleteBuyerTryOnResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteBuyerWholesaleOrderSheet
+
+> DeleteBuyerWholesaleOrderSheetResponse DeleteBuyerWholesaleOrderSheet(ctx, id).Execute()
+
+Delete an order sheet.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.DeleteBuyerWholesaleOrderSheet(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.DeleteBuyerWholesaleOrderSheet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBuyerWholesaleOrderSheet`: DeleteBuyerWholesaleOrderSheetResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.DeleteBuyerWholesaleOrderSheet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBuyerWholesaleOrderSheetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**DeleteBuyerWholesaleOrderSheetResponse**
 
 ### Authorization
 
@@ -7672,6 +9388,134 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetBuyerCompany
+
+> BuyerCompanyResponse GetBuyerCompany(ctx).Execute()
+
+Your buyer company (members, roles, approval limits, shared addresses), or null when you are in none.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerCompany(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerCompany``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerCompany`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerCompany`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerCompanyRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerCreation
+
+> GetBuyerCreationResponse GetBuyerCreation(ctx, format, id).Execute()
+
+A live creation's public page: its rating breakdown, recent reviews and whether you can review it.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    format := "format_example" // string | The creation format.
+    id := "id_example" // string | The creation id (a card is <setId>.<slug>).
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerCreation(context.Background(), format, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerCreation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerCreation`: GetBuyerCreationResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerCreation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**format** | **string** | The creation format. | 
+**id** | **string** | The creation id (a card is &lt;setId&gt;.&lt;slug&gt;). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerCreationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**GetBuyerCreationResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetBuyerCreator
 
 > GetBuyerCreatorResponse GetBuyerCreator(ctx, handle).Execute()
@@ -7725,6 +9569,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetBuyerCreatorResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerEvent
+
+> GetBuyerEventResponse GetBuyerEvent(ctx, slug).Execute()
+
+A seller event: schedule, location, host, linked listings, live show, promo code, RSVP counts and your own RSVP.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerEvent(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerEvent`: GetBuyerEventResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerEvent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerEventRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerEventResponse**
 
 ### Authorization
 
@@ -7841,6 +9752,122 @@ Other parameters are passed through a pointer to a apiGetBuyerGiftFinderOptionRe
 ### Return type
 
 **GetBuyerGiftFinderOptionResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerHome
+
+> BuyerHomeResponse GetBuyerHome(ctx).Execute()
+
+Your home in Crossly World (made on first read).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerHome(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerHome``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerHome`: BuyerHomeResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerHome`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerHomeRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerHomeResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerHomePlaceable
+
+> GetBuyerHomePlaceableResponse GetBuyerHomePlaceable(ctx).Execute()
+
+What you could place in your home: your items and delivered furniture.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerHomePlaceable(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerHomePlaceable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerHomePlaceable`: GetBuyerHomePlaceableResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerHomePlaceable`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerHomePlaceableRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerHomePlaceableResponse**
 
 ### Authorization
 
@@ -9174,7 +11201,7 @@ Name | Type | Description  | Notes
 
 > GetBuyerPassportResponse GetBuyerPassport(ctx, code).Execute()
 
-What a product passport tag opens: the item, whether it was authenticated, how many owners on Crossly and since when — never who or for how much.
+What a product passport tag opens: the item, the verify verdict (registered, tag bound, tag matches with ?uid=, authenticated, graded, in its owner’s hands), how many owners and since when — never who or for how much.
 
 ### Example
 
@@ -9815,6 +11842,73 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetBuyerRental
+
+> GetBuyerRentalResponse GetBuyerRental(ctx, id).Execute()
+
+One of your rentals: timeline, payments, the return label, extension and buy-out terms.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerRental(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerRental``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerRental`: GetBuyerRentalResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerRental`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerRentalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerRentalResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetBuyerRentalEligibility
 
 > GetBuyerRentalEligibilityResponse GetBuyerRentalEligibility(ctx).Execute()
@@ -9926,6 +12020,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetBuyerSellerClubResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerSellerLoyalty
+
+> GetBuyerSellerLoyaltyResponse GetBuyerSellerLoyalty(ctx, sellerUserId).Execute()
+
+A seller’s loyalty club with its typed perks per tier, its join mode (automatic, opt-in, invite-only) and your standing. null when they run none.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    sellerUserId := "sellerUserId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerSellerLoyalty(context.Background(), sellerUserId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerSellerLoyalty``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerSellerLoyalty`: GetBuyerSellerLoyaltyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerSellerLoyalty`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sellerUserId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerSellerLoyaltyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerSellerLoyaltyResponse**
 
 ### Authorization
 
@@ -10266,6 +12427,966 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetBuyerVaultMarketOptionAnalytic
+
+> GetBuyerVaultMarketOptionAnalyticResponse GetBuyerVaultMarketOptionAnalytic(ctx, underlying).Execute()
+
+Options analytics on an underlying: vol surface and smile, IV rank and percentile, open interest and volume by strike and expiry, put/call ratios, expected move and historical vol. Derived, display only. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketOptionAnalytic(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketOptionAnalytic``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketOptionAnalytic`: GetBuyerVaultMarketOptionAnalyticResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketOptionAnalytic`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketOptionAnalyticRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketOptionAnalyticResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketOptionChain
+
+> GetBuyerVaultMarketOptionChainResponse GetBuyerVaultMarketOptionChain(ctx, underlying).Execute()
+
+The option chain for an underlying (index slug or book key): expiries, and for one expiry each strike’s call and put with bid / ask, last, open interest, theoretical price, implied vol (display only) and Greeks. Prices are cents per contract.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketOptionChain(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketOptionChain``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketOptionChain`: GetBuyerVaultMarketOptionChainResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketOptionChain`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketOptionChainRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketOptionChainResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketOptionIv
+
+> GetBuyerVaultMarketOptionIvResponse GetBuyerVaultMarketOptionIv(ctx, underlying).Execute()
+
+The at-the-money implied vol on an underlying’s nearest expiry, for display: derived from the options book, quality C, never a mark.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    underlying := "underlying_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketOptionIv(context.Background(), underlying).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketOptionIv``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketOptionIv`: GetBuyerVaultMarketOptionIvResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketOptionIv`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**underlying** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketOptionIvRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketOptionIvResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketOptionPosition
+
+> GetBuyerVaultMarketOptionPositionResponse GetBuyerVaultMarketOptionPosition(ctx).Execute()
+
+Your fractional options positions with their marks, P&L and Greeks (open by default; `status` all for closed and settled too). Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketOptionPosition(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketOptionPosition``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketOptionPosition`: GetBuyerVaultMarketOptionPositionResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketOptionPosition`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketOptionPositionRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerVaultMarketOptionPositionResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketOptionRisk
+
+> GetBuyerVaultMarketOptionRiskResponse GetBuyerVaultMarketOptionRisk(ctx).Execute()
+
+Your options portfolio Greeks, a scenario's P&L (`priceShift`, `volShift`, `daysForward`) and the beta-weighted delta against an index. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketOptionRisk(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketOptionRisk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketOptionRisk`: GetBuyerVaultMarketOptionRiskResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketOptionRisk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketOptionRiskRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerVaultMarketOptionRiskResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketPredictionBoard
+
+> GetBuyerVaultMarketPredictionBoardResponse GetBuyerVaultMarketPredictionBoard(ctx).Execute()
+
+The busiest open prediction markets and their odds (the Trading Floor board). Anonymous.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketPredictionBoard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketPredictionBoard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketPredictionBoard`: GetBuyerVaultMarketPredictionBoardResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketPredictionBoard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketPredictionBoardRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerVaultMarketPredictionBoardResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketPredictionEvent
+
+> GetBuyerVaultMarketPredictionEventResponse GetBuyerVaultMarketPredictionEvent(ctx, id).Execute()
+
+One expiry’s markets with your holdings in each and their real worst and best case across them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketPredictionEvent(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketPredictionEvent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketPredictionEvent`: GetBuyerVaultMarketPredictionEventResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketPredictionEvent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketPredictionEventRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketPredictionEventResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketPredictionLeaderboard
+
+> GetBuyerVaultMarketPredictionLeaderboardResponse GetBuyerVaultMarketPredictionLeaderboard(ctx).Execute()
+
+Opt-in forecaster leaderboards (`period` week | month | all; `metric` pnl | accuracy | brier; `venue` live | paper).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketPredictionLeaderboard(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketPredictionLeaderboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketPredictionLeaderboard`: GetBuyerVaultMarketPredictionLeaderboardResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketPredictionLeaderboard`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketPredictionLeaderboardRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerVaultMarketPredictionLeaderboardResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketPredictionMarket
+
+> GetBuyerVaultMarketPredictionMarketResponse GetBuyerVaultMarketPredictionMarket(ctx, id).Execute()
+
+One prediction market: terms, the Yes ladder (live and practice), recent trades, settlement history and the series rules with their hash.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketPredictionMarket(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketPredictionMarket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketPredictionMarket`: GetBuyerVaultMarketPredictionMarketResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketPredictionMarket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketPredictionMarketRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketPredictionMarketResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketPredictionMarketHistory
+
+> GetBuyerVaultMarketPredictionMarketHistoryResponse GetBuyerVaultMarketPredictionMarketHistory(ctx, id).Execute()
+
+A prediction market’s probability over time (display only, never a mark), candles on the Yes price, volume and open interest (`range` 1d, 1w, 1m, all; `venue` live or paper).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketPredictionMarketHistory(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketPredictionMarketHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketPredictionMarketHistory`: GetBuyerVaultMarketPredictionMarketHistoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketPredictionMarketHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketPredictionMarketHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketPredictionMarketHistoryResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketShare
+
+> GetBuyerVaultMarketShareResponse GetBuyerVaultMarketShare(ctx).Execute()
+
+Your Vault Shares: shares and percent of each item, cost, implied value at the last share price (display only, never a mark), subscriptions and payouts.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketShare(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketShare``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketShare`: GetBuyerVaultMarketShareResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketShare`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketShareRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerVaultMarketShareResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketShareBasket
+
+> GetBuyerVaultMarketShareBasketResponse GetBuyerVaultMarketShareBasket(ctx, id).Execute()
+
+One theme basket: its series, weights and prices, and your holdings against them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketShareBasket(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketShareBasket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketShareBasket`: GetBuyerVaultMarketShareBasketResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketShareBasket`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketShareBasketRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketShareBasketResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketShareSery
+
+> GetBuyerVaultMarketShareSeryResponse GetBuyerVaultMarketShareSery(ctx, id).Execute()
+
+One Vault Shares series: the offering, the share book, the latest fills, holders as percentages (nobody named) and buyouts.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketShareSery(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketShareSery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketShareSery`: GetBuyerVaultMarketShareSeryResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketShareSery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketShareSeryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketShareSeryResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketShareSeryHistory
+
+> GetBuyerVaultMarketShareSeryHistoryResponse GetBuyerVaultMarketShareSeryHistory(ctx, id).Execute()
+
+A Vault Shares series’ full price history (candles), the offering price and the appraisal history. Display only, never a mark.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketShareSeryHistory(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketShareSeryHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketShareSeryHistory`: GetBuyerVaultMarketShareSeryHistoryResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketShareSeryHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketShareSeryHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketShareSeryHistoryResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerVaultMarketShareSeryPerk
+
+> GetBuyerVaultMarketShareSeryPerkResponse GetBuyerVaultMarketShareSeryPerk(ctx, id).Execute()
+
+Your holder perks on a series: badge, visit links, viewing days and your bookings.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerVaultMarketShareSeryPerk(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerVaultMarketShareSeryPerk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerVaultMarketShareSeryPerk`: GetBuyerVaultMarketShareSeryPerkResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerVaultMarketShareSeryPerk`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerVaultMarketShareSeryPerkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerVaultMarketShareSeryPerkResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetBuyerVaultMarketWorth
 
 > GetBuyerVaultMarketWorthResponse GetBuyerVaultMarketWorth(ctx).Execute()
@@ -10310,6 +13431,469 @@ Other parameters are passed through a pointer to a apiGetBuyerVaultMarketWorthRe
 ### Return type
 
 **GetBuyerVaultMarketWorthResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleCart
+
+> GetBuyerWholesaleCartResponse GetBuyerWholesaleCart(ctx).Execute()
+
+Your cart grouped per seller: trade terms, the order-minimum progress, every rule the cart breaks (the messages checkout would refuse with), PO reference, quote-locked lines, and the checkout methods, deposit and freight threshold for each group.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleCart(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleCart``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleCart`: GetBuyerWholesaleCartResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleCart`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleCartRequest struct via the builder pattern
+
+
+### Return type
+
+**GetBuyerWholesaleCartResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleCatalogApply
+
+> GetBuyerWholesaleCatalogApplyResponse GetBuyerWholesaleCatalogApply(ctx, storeSlug, catalogSlug).Execute()
+
+The application form for a store's wholesale catalog: the seller's requirements (resale certificate and accepted states, tax id, their custom questions) and your business info pre-filled. applicable=false for a catalog you cannot apply to.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    storeSlug := "storeSlug_example" // string | 
+    catalogSlug := "catalogSlug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleCatalogApply(context.Background(), storeSlug, catalogSlug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleCatalogApply``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleCatalogApply`: GetBuyerWholesaleCatalogApplyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleCatalogApply`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**storeSlug** | **string** |  | 
+**catalogSlug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleCatalogApplyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**GetBuyerWholesaleCatalogApplyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleDrop
+
+> GetBuyerWholesaleDropResponse GetBuyerWholesaleDrop(ctx, id).Execute()
+
+One trade drop open to you: its listings once live (add one to your cart to reserve or buy it), and your reservations in it. 404 for a drop not open to you.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleDrop(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleDrop``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleDrop`: GetBuyerWholesaleDropResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleDrop`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleDropRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerWholesaleDropResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleInvoicePayQuote
+
+> GetBuyerWholesaleInvoicePayQuoteResponse GetBuyerWholesaleInvoicePayQuote(ctx, id).Execute()
+
+What paying an on-account invoice costs now: balance due, the early-pay discount if still open, the minimum part payment and the methods (card, ach).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleInvoicePayQuote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleInvoicePayQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleInvoicePayQuote`: GetBuyerWholesaleInvoicePayQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleInvoicePayQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleInvoicePayQuoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerWholesaleInvoicePayQuoteResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleOrderSheet
+
+> BuyerWholesaleOrderSheetResponse GetBuyerWholesaleOrderSheet(ctx, id).Execute()
+
+One order sheet priced TODAY at its quantities, with stock, trade terms and flags (unavailable, out_of_stock, short_stock, price_hidden, needs_option).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleOrderSheet(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleOrderSheet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleOrderSheet`: BuyerWholesaleOrderSheetResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleOrderSheet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleOrderSheetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerWholesaleOrderSheetResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleQuote
+
+> BuyerWholesaleQuoteResponse GetBuyerWholesaleQuote(ctx, id).Execute()
+
+One of your quotes with its items, the seller's prices and expiry.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleQuote(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleQuote``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleQuote`: BuyerWholesaleQuoteResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleQuote`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleQuoteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerWholesaleQuoteResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetBuyerWholesaleReorder
+
+> GetBuyerWholesaleReorderResponse GetBuyerWholesaleReorder(ctx, id).Execute()
+
+Buy again: a past wholesale order (purchase or order id) as order-sheet lines at the same quantities, priced today, out-of-stock flagged.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.GetBuyerWholesaleReorder(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.GetBuyerWholesaleReorder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBuyerWholesaleReorder`: GetBuyerWholesaleReorderResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.GetBuyerWholesaleReorder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBuyerWholesaleReorderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**GetBuyerWholesaleReorderResponse**
 
 ### Authorization
 
@@ -11123,6 +14707,64 @@ Other parameters are passed through a pointer to a apiListBuyerCollectionSetsReq
 [[Back to README]](../README.md)
 
 
+## ListBuyerCompanyApprovals
+
+> BuyerResponse3 ListBuyerCompanyApprovals(ctx).Execute()
+
+Spend approval requests (owners and accounts payable see all; others their own). ?status=pending|approved|declined|used|expired.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerCompanyApprovals(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerCompanyApprovals``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerCompanyApprovals`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerCompanyApprovals`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerCompanyApprovalsRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListBuyerConsolidations
 
 > BuyerResponse3 ListBuyerConsolidations(ctx).Execute()
@@ -11234,6 +14876,127 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListBuyerWishlistMembersResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerCreationReviewable
+
+> ListBuyerCreationReviewableResponse ListBuyerCreationReviewable(ctx).PurchaseRef(purchaseRef).Execute()
+
+Creations you bought (decor, wearables, interactive objects, cards from packs) and your review of each.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    purchaseRef := "purchaseRef_example" // string | Only the creation this purchase bought. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerCreationReviewable(context.Background()).PurchaseRef(purchaseRef).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerCreationReviewable``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerCreationReviewable`: ListBuyerCreationReviewableResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerCreationReviewable`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerCreationReviewableRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **purchaseRef** | **string** | Only the creation this purchase bought. | 
+
+### Return type
+
+**ListBuyerCreationReviewableResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerEvents
+
+> ListBuyerEventsResponse ListBuyerEvents(ctx).Execute()
+
+Upcoming and live seller events across Crossly, soonest first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerEvents(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerEvents`: ListBuyerEventsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerEventsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerEventsResponse**
 
 ### Authorization
 
@@ -11702,6 +15465,122 @@ Other parameters are passed through a pointer to a apiListBuyerGiftSentRequest s
 ### Return type
 
 **ListBuyerGiftSentResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerHomeBuilders
+
+> ListBuyerHomeBuildersResponse ListBuyerHomeBuilders(ctx).Execute()
+
+Your co-builders: friends who may arrange your home with you.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerHomeBuilders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerHomeBuilders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerHomeBuilders`: ListBuyerHomeBuildersResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerHomeBuilders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerHomeBuildersRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerHomeBuildersResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerHomeBuilding
+
+> ListBuyerHomeBuildingResponse ListBuyerHomeBuilding(ctx).Execute()
+
+The homes you co-build, to visit and arrange.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerHomeBuilding(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerHomeBuilding``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerHomeBuilding`: ListBuyerHomeBuildingResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerHomeBuilding`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerHomeBuildingRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerHomeBuildingResponse**
 
 ### Authorization
 
@@ -12207,6 +16086,64 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListBuyerLoyalty
+
+> ListBuyerLoyaltyResponse ListBuyerLoyalty(ctx).Execute()
+
+Your loyalty clubs: the tier you hold, progress and how to reach the next tier, the typed perks you hold now, and your history.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerLoyalty(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerLoyalty``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerLoyalty`: ListBuyerLoyaltyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerLoyalty`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerLoyaltyRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerLoyaltyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListBuyerMarketBids
 
 > BuyerResponse3 ListBuyerMarketBids(ctx).Execute()
@@ -12680,6 +16617,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 **BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerPaymentMethods
+
+> ListBuyerPaymentMethodsResponse ListBuyerPaymentMethods(ctx).Execute()
+
+Your saved cards, the default first.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerPaymentMethods(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerPaymentMethods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerPaymentMethods`: ListBuyerPaymentMethodsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerPaymentMethods`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerPaymentMethodsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerPaymentMethodsResponse**
 
 ### Authorization
 
@@ -13225,6 +17222,73 @@ Other parameters are passed through a pointer to a apiListBuyerSplitsRequest str
 [[Back to README]](../README.md)
 
 
+## ListBuyerStoreListings
+
+> ListBuyerStoreListingsResponse ListBuyerStoreListings(ctx, slug).Execute()
+
+A store's live listings, filtered by tag, category, text and program chips (f: on_sale, discount_eligible, code_eligible, group_buy_active, rentable, wholesale_available…; all must hold), sorted; each card carries its program badges.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    slug := "slug_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerStoreListings(context.Background(), slug).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerStoreListings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerStoreListings`: ListBuyerStoreListingsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerStoreListings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**slug** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerStoreListingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**ListBuyerStoreListingsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListBuyerSubscriptions
 
 > ListBuyerSubscriptionsResponse ListBuyerSubscriptions(ctx).Execute()
@@ -13691,6 +17755,702 @@ Other parameters are passed through a pointer to a apiListBuyerVaultMarketInstan
 [[Back to README]](../README.md)
 
 
+## ListBuyerVaultMarketOptionCombos
+
+> ListBuyerVaultMarketOptionCombosResponse ListBuyerVaultMarketOptionCombos(ctx).Execute()
+
+Your options strategies (working by default) with their legs, net price per unit and fills. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketOptionCombos(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketOptionCombos``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketOptionCombos`: ListBuyerVaultMarketOptionCombosResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketOptionCombos`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketOptionCombosRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketOptionCombosResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketOptionNotices
+
+> ListBuyerVaultMarketOptionNoticesResponse ListBuyerVaultMarketOptionNotices(ctx).Execute()
+
+Your options notices: expiry warnings, auto-closes, exercises, assignments, expiries worthless and rolls. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketOptionNotices(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketOptionNotices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketOptionNotices`: ListBuyerVaultMarketOptionNoticesResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketOptionNotices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketOptionNoticesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketOptionNoticesResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketOptionSeries
+
+> ListBuyerVaultMarketOptionSeriesResponse ListBuyerVaultMarketOptionSeries(ctx).Execute()
+
+Fractional options series on Crossly prices (indexes, and tier A item keys with 90 days of reliable marks): underlying, status and eligibility. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketOptionSeries(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketOptionSeries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketOptionSeries`: ListBuyerVaultMarketOptionSeriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketOptionSeries`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketOptionSeriesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketOptionSeriesResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketOptionStrategies
+
+> ListBuyerVaultMarketOptionStrategiesResponse ListBuyerVaultMarketOptionStrategies(ctx).Execute()
+
+The options strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar) and what each does. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketOptionStrategies(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketOptionStrategies``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketOptionStrategies`: ListBuyerVaultMarketOptionStrategiesResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketOptionStrategies`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketOptionStrategiesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketOptionStrategiesResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketPredictionComments
+
+> ListBuyerVaultMarketPredictionCommentsResponse ListBuyerVaultMarketPredictionComments(ctx).Execute()
+
+A prediction market’s (or series’) discussion thread. Read only.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketPredictionComments(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketPredictionComments``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketPredictionComments`: ListBuyerVaultMarketPredictionCommentsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketPredictionComments`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketPredictionCommentsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketPredictionCommentsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketPredictionMarkets
+
+> ListBuyerVaultMarketPredictionMarketsResponse ListBuyerVaultMarketPredictionMarkets(ctx).Execute()
+
+\"Will it hit?\" prediction markets on Crossly prices (filter by book key, index slug, kind, status, expiry or text): strike, expiry, best Yes bid and ask, last price and the probability (the market's own price, display only).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketPredictionMarkets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketPredictionMarkets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketPredictionMarkets`: ListBuyerVaultMarketPredictionMarketsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketPredictionMarkets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketPredictionMarketsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketPredictionMarketsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketPredictionPositions
+
+> ListBuyerVaultMarketPredictionPositionsResponse ListBuyerVaultMarketPredictionPositions(ctx).Execute()
+
+Your prediction positions (practice and live): side, contracts, cost, value at the last price, payout or refund once settled.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketPredictionPositions(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketPredictionPositions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketPredictionPositions`: ListBuyerVaultMarketPredictionPositionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketPredictionPositions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketPredictionPositionsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketPredictionPositionsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketShareAutoInvest
+
+> ListBuyerVaultMarketShareAutoInvestResponse ListBuyerVaultMarketShareAutoInvest(ctx).Execute()
+
+Your recurring Vault Shares auto-invest plans.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketShareAutoInvest(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketShareAutoInvest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketShareAutoInvest`: ListBuyerVaultMarketShareAutoInvestResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketShareAutoInvest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketShareAutoInvestRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketShareAutoInvestResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketShareBaskets
+
+> ListBuyerVaultMarketShareBasketsResponse ListBuyerVaultMarketShareBaskets(ctx).Execute()
+
+Theme baskets: model portfolios of Vault Shares series you would own directly, never a fund.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketShareBaskets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketShareBaskets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketShareBaskets`: ListBuyerVaultMarketShareBasketsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketShareBaskets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketShareBasketsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketShareBasketsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketShareDrops
+
+> ListBuyerVaultMarketShareDropsResponse ListBuyerVaultMarketShareDrops(ctx).Execute()
+
+Upcoming and open Vault Shares drops: phase, countdown, allocation (first come, pro-rata or lottery), your Crossly One early-access time (never a better price).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketShareDrops(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketShareDrops``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketShareDrops`: ListBuyerVaultMarketShareDropsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketShareDrops`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketShareDropsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketShareDropsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketShareGifts
+
+> ListBuyerVaultMarketShareGiftsResponse ListBuyerVaultMarketShareGifts(ctx).Execute()
+
+Vault Shares gifts you sent or were offered.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketShareGifts(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketShareGifts``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketShareGifts`: ListBuyerVaultMarketShareGiftsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketShareGifts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketShareGiftsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketShareGiftsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerVaultMarketShareSeries
+
+> ListBuyerVaultMarketShareSeriesResponse ListBuyerVaultMarketShareSeries(ctx).Execute()
+
+Vault Shares series: open offerings first, then trading. Terms, progress, last share price and implied item value, and your holding.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerVaultMarketShareSeries(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerVaultMarketShareSeries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerVaultMarketShareSeries`: ListBuyerVaultMarketShareSeriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerVaultMarketShareSeries`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerVaultMarketShareSeriesRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerVaultMarketShareSeriesResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## ListBuyerVaultMarketWatchlist
 
 > ListBuyerVaultMarketWatchlistResponse ListBuyerVaultMarketWatchlist(ctx).Execute()
@@ -13793,6 +18553,528 @@ Other parameters are passed through a pointer to a apiListBuyerVideoRequestsRequ
 ### Return type
 
 **ListBuyerVideoRequestsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWalletPerks
+
+> ListBuyerWalletPerksResponse ListBuyerWalletPerks(ctx).Execute()
+
+The perks your wallets unlock: each Collection holders deal (a shop’s percent off for holders of a collection) and creator shop perk on a collection a linked wallet or your Crossly wallet holds, best first. Checkout applies the best one; perks never stack with each other.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWalletPerks(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWalletPerks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWalletPerks`: ListBuyerWalletPerksResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWalletPerks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWalletPerksRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerWalletPerksResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleDrops
+
+> ListBuyerWholesaleDropsResponse ListBuyerWholesaleDrops(ctx).Execute()
+
+Upcoming and live trade drops open to you: drops sellers release only to their approved trade buyers or to a catalog audience. kind prebook = reserve quantity now with a deposit (depositBps) at checkout; the balance is invoiced when the seller releases the stock.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleDrops(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleDrops``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleDrops`: ListBuyerWholesaleDropsResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleDrops`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleDropsRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerWholesaleDropsResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleFreightRequests
+
+> BuyerResponse3 ListBuyerWholesaleFreightRequests(ctx).Execute()
+
+Your freight (LTL) quote requests to sellers, with the seller's figure in cents once quoted.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleFreightRequests(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleFreightRequests``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleFreightRequests`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleFreightRequests`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleFreightRequestsRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleOrderSheets
+
+> BuyerResponse3 ListBuyerWholesaleOrderSheets(ctx).Execute()
+
+Your saved wholesale order sheets (one seller each), newest first.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleOrderSheets(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleOrderSheets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleOrderSheets`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleOrderSheets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleOrderSheetsRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleOrders
+
+> BuyerResponse3 ListBuyerWholesaleOrders(ctx).Execute()
+
+Your past wholesale orders (trade-priced or on account), newest first — the starting point for reorder.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleOrders(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleOrders`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleOrdersRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesalePrebooks
+
+> ListBuyerWholesalePrebooksResponse ListBuyerWholesalePrebooks(ctx).Execute()
+
+Your pre-books: the drop, item, quantity, deposit paid, balance, status (awaiting_release, invoiced, paid, cancelled, failed) and the balance invoice once the seller released the stock.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesalePrebooks(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesalePrebooks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesalePrebooks`: ListBuyerWholesalePrebooksResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesalePrebooks`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesalePrebooksRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerWholesalePrebooksResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleQuotes
+
+> BuyerResponse3 ListBuyerWholesaleQuotes(ctx).Execute()
+
+Your requests for a quote (RFQ) to wholesale sellers. ?status=open|all|requested|answered|accepted|declined|withdrawn|expired. An answered or accepted quote past expiresAt reads expired.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleQuotes(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleQuotes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleQuotes`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleQuotes`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleQuotesRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleStatement
+
+> BuyerResponse3 ListBuyerWholesaleStatement(ctx).Execute()
+
+Your open trade balances per seller in aging buckets (current, 1-30, 31-60, 61-90, 90+ days past due), with the invoices behind them.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleStatement(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleStatement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleStatement`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleStatement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleStatementRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListBuyerWholesaleSuppliers
+
+> BuyerResponse3 ListBuyerWholesaleSuppliers(ctx).Execute()
+
+The sellers you trade with: catalogs you can open, your terms (net days, credit limit, discount), customer groups, and what you owe each.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.ListBuyerWholesaleSuppliers(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.ListBuyerWholesaleSuppliers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListBuyerWholesaleSuppliers`: BuyerResponse3
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.ListBuyerWholesaleSuppliers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListBuyerWholesaleSuppliersRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerResponse3**
 
 ### Authorization
 
@@ -14191,6 +19473,263 @@ Other parameters are passed through a pointer to a apiUpdateBuyerCollectionSetLe
 [[Back to README]](../README.md)
 
 
+## UpdateBuyerCompany
+
+> BuyerCompanyResponse UpdateBuyerCompany(ctx).Execute()
+
+Rename the company or change its tax id / website (owner).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerCompany(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerCompany``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerCompany`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerCompany`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerCompanyRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerCompanyAddress
+
+> BuyerCompanyResponse UpdateBuyerCompanyAddress(ctx).Execute()
+
+Replace the shared address book (owner): addresses [{ id, label, name, line1, line2?, city, region, postalCode, country, phone?, isDefault? }], at most 20.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerCompanyAddress(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerCompanyAddress``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerCompanyAddress`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerCompanyAddress`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerCompanyAddressRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerCompanyMember
+
+> BuyerCompanyResponse UpdateBuyerCompanyMember(ctx, id).Execute()
+
+Change a member's role or approval limit (owner). The last owner stays an owner.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerCompanyMember(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerCompanyMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerCompanyMember`: BuyerCompanyResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerCompanyMember`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerCompanyMemberRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerCompanyResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerCreationReview
+
+> UpdateBuyerCreationReviewResponse UpdateBuyerCreationReview(ctx, format, id).UpdateBuyerCreationReviewRequest(updateBuyerCreationReviewRequest).Execute()
+
+Review a creation you bought (or change your review): 1-5 stars and an optional comment.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    format := "format_example" // string | The creation format.
+    id := "id_example" // string | The creation id (a card is <setId>.<slug>).
+    updateBuyerCreationReviewRequest := *openapiclient.NewUpdateBuyerCreationReviewRequest(int32(123)) // UpdateBuyerCreationReviewRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerCreationReview(context.Background(), format, id).UpdateBuyerCreationReviewRequest(updateBuyerCreationReviewRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerCreationReview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerCreationReview`: UpdateBuyerCreationReviewResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerCreationReview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**format** | **string** | The creation format. | 
+**id** | **string** | The creation id (a card is &lt;setId&gt;.&lt;slug&gt;). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerCreationReviewRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateBuyerCreationReviewRequest** | **UpdateBuyerCreationReviewRequest** |  | 
+
+### Return type
+
+**UpdateBuyerCreationReviewResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateBuyerFeedback
 
 > BuyerResponse UpdateBuyerFeedback(ctx, id).UpdateBuyerFeedbackRequest(updateBuyerFeedbackRequest).Execute()
@@ -14262,6 +19801,180 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateBuyerHome
+
+> BuyerHomeResponse UpdateBuyerHome(ctx).Execute()
+
+Who may walk in (privacy), the lighting (theme), wallpaper/floor/mood decor and whether visitors see your vault wall values.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerHome(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerHome``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerHome`: BuyerHomeResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerHome`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerHomeRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerHomeResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerHomeBuilder
+
+> ListBuyerHomeBuildersResponse UpdateBuyerHomeBuilder(ctx).Execute()
+
+Set your co-builders (friends only, at most 4).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerHomeBuilder(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerHomeBuilder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerHomeBuilder`: ListBuyerHomeBuildersResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerHomeBuilder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerHomeBuilderRequest struct via the builder pattern
+
+
+### Return type
+
+**ListBuyerHomeBuildersResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerHomeLayout
+
+> BuyerHomeResponse UpdateBuyerHomeLayout(ctx).Execute()
+
+Arrange your home: the whole layout, checked against what you own.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerHomeLayout(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerHomeLayout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerHomeLayout`: BuyerHomeResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerHomeLayout`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerHomeLayoutRequest struct via the builder pattern
+
+
+### Return type
+
+**BuyerHomeResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## UpdateBuyerHunt
 
 > BuyerResponse UpdateBuyerHunt(ctx, id).Execute()
@@ -14315,6 +20028,75 @@ Name | Type | Description  | Notes
 ### Return type
 
 **BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerPaymentMethodDefault
+
+> UpdateBuyerPaymentMethodDefaultResponse UpdateBuyerPaymentMethodDefault(ctx, id).Execute()
+
+Make one of your saved cards the default.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerPaymentMethodDefault(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerPaymentMethodDefault``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerPaymentMethodDefault`: UpdateBuyerPaymentMethodDefaultResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerPaymentMethodDefault`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerPaymentMethodDefaultRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**UpdateBuyerPaymentMethodDefaultResponse**
 
 ### Authorization
 
@@ -14586,6 +20368,131 @@ Name | Type | Description  | Notes
 ### Return type
 
 **BuyerResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerWholesaleCartPo
+
+> UpdateBuyerWholesaleCartPoResponse UpdateBuyerWholesaleCartPo(ctx).Execute()
+
+Set the PO reference for one seller's group of your cart: { sellerUserId, poReference } (empty clears it).
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerWholesaleCartPo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerWholesaleCartPo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerWholesaleCartPo`: UpdateBuyerWholesaleCartPoResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerWholesaleCartPo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerWholesaleCartPoRequest struct via the builder pattern
+
+
+### Return type
+
+**UpdateBuyerWholesaleCartPoResponse**
+
+### Authorization
+
+[BuyerOAuth](../README.md#BuyerOAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateBuyerWholesaleOrderSheet
+
+> BuyerWholesaleOrderSheetResponse UpdateBuyerWholesaleOrderSheet(ctx, id).Execute()
+
+Rename an order sheet, change its PO reference or note, or replace its lines.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BuyerApi.UpdateBuyerWholesaleOrderSheet(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BuyerApi.UpdateBuyerWholesaleOrderSheet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBuyerWholesaleOrderSheet`: BuyerWholesaleOrderSheetResponse
+    fmt.Fprintf(os.Stdout, "Response from `BuyerApi.UpdateBuyerWholesaleOrderSheet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBuyerWholesaleOrderSheetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**BuyerWholesaleOrderSheetResponse**
 
 ### Authorization
 

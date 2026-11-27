@@ -736,27 +736,27 @@ func (v *NullableGetNetworkPoolSizeResponse) UnmarshalJSON(src []byte) error {
 type ListNetworkPoolLogItem struct {
 	Id string `json:"id"`
 	Platform string `json:"platform"`
-	RuleId NullableString `json:"ruleId,omitempty"`
 	ActionType string `json:"actionType"`
 	TargetUserId string `json:"targetUserId"`
-	PerformedAt time.Time `json:"performedAt"`
+	RuleId NullableString `json:"ruleId,omitempty"`
 	EngagerUserId string `json:"engagerUserId"`
 	TargetListingId NullableString `json:"targetListingId,omitempty"`
 	TargetPlatformListingId NullableString `json:"targetPlatformListingId,omitempty"`
+	PerformedAt time.Time `json:"performedAt"`
 }
 
 // NewListNetworkPoolLogItem instantiates a new ListNetworkPoolLogItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListNetworkPoolLogItem(id string, platform string, actionType string, targetUserId string, performedAt time.Time, engagerUserId string) *ListNetworkPoolLogItem {
+func NewListNetworkPoolLogItem(id string, platform string, actionType string, targetUserId string, engagerUserId string, performedAt time.Time) *ListNetworkPoolLogItem {
 	this := ListNetworkPoolLogItem{}
 	this.Id = id
 	this.Platform = platform
 	this.ActionType = actionType
 	this.TargetUserId = targetUserId
-	this.PerformedAt = performedAt
 	this.EngagerUserId = engagerUserId
+	this.PerformedAt = performedAt
 	return &this
 }
 
@@ -816,48 +816,6 @@ func (o *ListNetworkPoolLogItem) SetPlatform(v string) {
 	o.Platform = v
 }
 
-// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListNetworkPoolLogItem) GetRuleId() string {
-	if o == nil || o.RuleId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.RuleId.Get()
-}
-
-// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListNetworkPoolLogItem) GetRuleIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.RuleId.Get(), o.RuleId.IsSet()
-}
-
-// HasRuleId returns a boolean if a field has been set.
-func (o *ListNetworkPoolLogItem) HasRuleId() bool {
-	if o != nil && o.RuleId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRuleId gets a reference to the given NullableString and assigns it to the RuleId field.
-func (o *ListNetworkPoolLogItem) SetRuleId(v string) {
-	o.RuleId.Set(&v)
-}
-// SetRuleIdNil sets the value for RuleId to be an explicit nil
-func (o *ListNetworkPoolLogItem) SetRuleIdNil() {
-	o.RuleId.Set(nil)
-}
-
-// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
-func (o *ListNetworkPoolLogItem) UnsetRuleId() {
-	o.RuleId.Unset()
-}
-
 // GetActionType returns the ActionType field value
 func (o *ListNetworkPoolLogItem) GetActionType() string {
 	if o == nil {
@@ -906,28 +864,46 @@ func (o *ListNetworkPoolLogItem) SetTargetUserId(v string) {
 	o.TargetUserId = v
 }
 
-// GetPerformedAt returns the PerformedAt field value
-func (o *ListNetworkPoolLogItem) GetPerformedAt() time.Time {
-	if o == nil {
-		var ret time.Time
+// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListNetworkPoolLogItem) GetRuleId() string {
+	if o == nil || o.RuleId.Get() == nil {
+		var ret string
 		return ret
 	}
-
-	return o.PerformedAt
+	return *o.RuleId.Get()
 }
 
-// GetPerformedAtOk returns a tuple with the PerformedAt field value
+// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListNetworkPoolLogItem) GetPerformedAtOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListNetworkPoolLogItem) GetRuleIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.PerformedAt, true
+	return o.RuleId.Get(), o.RuleId.IsSet()
 }
 
-// SetPerformedAt sets field value
-func (o *ListNetworkPoolLogItem) SetPerformedAt(v time.Time) {
-	o.PerformedAt = v
+// HasRuleId returns a boolean if a field has been set.
+func (o *ListNetworkPoolLogItem) HasRuleId() bool {
+	if o != nil && o.RuleId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleId gets a reference to the given NullableString and assigns it to the RuleId field.
+func (o *ListNetworkPoolLogItem) SetRuleId(v string) {
+	o.RuleId.Set(&v)
+}
+// SetRuleIdNil sets the value for RuleId to be an explicit nil
+func (o *ListNetworkPoolLogItem) SetRuleIdNil() {
+	o.RuleId.Set(nil)
+}
+
+// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
+func (o *ListNetworkPoolLogItem) UnsetRuleId() {
+	o.RuleId.Unset()
 }
 
 // GetEngagerUserId returns the EngagerUserId field value
@@ -1038,6 +1014,30 @@ func (o *ListNetworkPoolLogItem) UnsetTargetPlatformListingId() {
 	o.TargetPlatformListingId.Unset()
 }
 
+// GetPerformedAt returns the PerformedAt field value
+func (o *ListNetworkPoolLogItem) GetPerformedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.PerformedAt
+}
+
+// GetPerformedAtOk returns a tuple with the PerformedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListNetworkPoolLogItem) GetPerformedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PerformedAt, true
+}
+
+// SetPerformedAt sets field value
+func (o *ListNetworkPoolLogItem) SetPerformedAt(v time.Time) {
+	o.PerformedAt = v
+}
+
 func (o ListNetworkPoolLogItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -1046,17 +1046,14 @@ func (o ListNetworkPoolLogItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["platform"] = o.Platform
 	}
-	if o.RuleId.IsSet() {
-		toSerialize["ruleId"] = o.RuleId.Get()
-	}
 	if true {
 		toSerialize["actionType"] = o.ActionType
 	}
 	if true {
 		toSerialize["targetUserId"] = o.TargetUserId
 	}
-	if true {
-		toSerialize["performedAt"] = o.PerformedAt
+	if o.RuleId.IsSet() {
+		toSerialize["ruleId"] = o.RuleId.Get()
 	}
 	if true {
 		toSerialize["engagerUserId"] = o.EngagerUserId
@@ -1066,6 +1063,9 @@ func (o ListNetworkPoolLogItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.TargetPlatformListingId.IsSet() {
 		toSerialize["targetPlatformListingId"] = o.TargetPlatformListingId.Get()
+	}
+	if true {
+		toSerialize["performedAt"] = o.PerformedAt
 	}
 	return json.Marshal(toSerialize)
 }

@@ -29,6 +29,8 @@ Method | HTTP request | Description
 
 Create an automation rule.
 
+
+
 ### Example
 
 ```go
@@ -86,6 +88,8 @@ Other parameters are passed through a pointer to a apiCreateAutomationRuleReques
 > CreateAutomationRuleImportResponse CreateAutomationRuleImport(ctx).Activate(activate).Execute()
 
 Import one or more rules from recipe JSON (single or bundle).
+
+
 
 ### Example
 
@@ -150,6 +154,8 @@ Name | Type | Description  | Notes
 
 Fire an automation rule immediately.
 
+
+
 ### Example
 
 ```go
@@ -213,9 +219,11 @@ Name | Type | Description  | Notes
 
 ## CreateAutomationRuleToggle
 
-> UpdateAutomationRuleResponse CreateAutomationRuleToggle(ctx, id).Execute()
+> GetAutomationRuleResponse CreateAutomationRuleToggle(ctx, id).Execute()
 
 Flip an automation rule between active and inactive.
+
+
 
 ### Example
 
@@ -239,7 +247,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AutomationApi.CreateAutomationRuleToggle``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateAutomationRuleToggle`: UpdateAutomationRuleResponse
+    // response from `CreateAutomationRuleToggle`: GetAutomationRuleResponse
     fmt.Fprintf(os.Stdout, "Response from `AutomationApi.CreateAutomationRuleToggle`: %v\n", resp)
 }
 ```
@@ -263,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**UpdateAutomationRuleResponse**
+**GetAutomationRuleResponse**
 
 ### Authorization
 
@@ -283,6 +291,8 @@ Name | Type | Description  | Notes
 > CreateAutomationRuleValidateRecipeResponse CreateAutomationRuleValidateRecipe(ctx).Execute()
 
 Dry-run validate one or more recipes against the live catalog.
+
+
 
 ### Example
 
@@ -476,6 +486,8 @@ Name | Type | Description  | Notes
 
 Delete an automation rule.
 
+
+
 ### Example
 
 ```go
@@ -601,6 +613,8 @@ Other parameters are passed through a pointer to a apiGetAutomationCatalogReques
 
 Get a single automation rule.
 
+
+
 ### Example
 
 ```go
@@ -668,6 +682,8 @@ Name | Type | Description  | Notes
 
 Export the user's full rule library as a portable recipe bundle.
 
+
+
 ### Example
 
 ```go
@@ -725,6 +741,8 @@ Other parameters are passed through a pointer to a apiGetAutomationRuleExportReq
 > GetAutomationRuleExportByIdResponse GetAutomationRuleExportById(ctx, id).Execute()
 
 Export a single automation rule as a portable recipe.
+
+
 
 ### Example
 
@@ -793,6 +811,8 @@ Name | Type | Description  | Notes
 
 List automation rules.
 
+
+
 ### Example
 
 ```go
@@ -850,6 +870,8 @@ Other parameters are passed through a pointer to a apiListAutomationRulesRequest
 > ListAutomationRunsResponse ListAutomationRuns(ctx).RuleId(ruleId).ChainId(chainId).Limit(limit).Execute()
 
 Per-fire history for automation rules and workflow chain runs.
+
+
 
 ### Example
 
@@ -972,9 +994,11 @@ Other parameters are passed through a pointer to a apiListRepriceEventsRequest s
 
 ## UpdateAutomationRule
 
-> UpdateAutomationRuleResponse UpdateAutomationRule(ctx, id).Execute()
+> GetAutomationRuleResponse UpdateAutomationRule(ctx, id).Execute()
 
 Update an automation rule (full replace).
+
+
 
 ### Example
 
@@ -998,7 +1022,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AutomationApi.UpdateAutomationRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateAutomationRule`: UpdateAutomationRuleResponse
+    // response from `UpdateAutomationRule`: GetAutomationRuleResponse
     fmt.Fprintf(os.Stdout, "Response from `AutomationApi.UpdateAutomationRule`: %v\n", resp)
 }
 ```
@@ -1022,7 +1046,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**UpdateAutomationRuleResponse**
+**GetAutomationRuleResponse**
 
 ### Authorization
 

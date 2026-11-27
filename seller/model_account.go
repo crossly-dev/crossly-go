@@ -15,6 +15,224 @@ import (
 	"time"
 )
 
+// CreateAccountCancelDeletionResponse struct for CreateAccountCancelDeletionResponse
+type CreateAccountCancelDeletionResponse struct {
+	Cancelled bool `json:"cancelled"`
+	BillingResumed bool `json:"billingResumed"`
+}
+
+// NewCreateAccountCancelDeletionResponse instantiates a new CreateAccountCancelDeletionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAccountCancelDeletionResponse(cancelled bool, billingResumed bool) *CreateAccountCancelDeletionResponse {
+	this := CreateAccountCancelDeletionResponse{}
+	this.Cancelled = cancelled
+	this.BillingResumed = billingResumed
+	return &this
+}
+
+// NewCreateAccountCancelDeletionResponseWithDefaults instantiates a new CreateAccountCancelDeletionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAccountCancelDeletionResponseWithDefaults() *CreateAccountCancelDeletionResponse {
+	this := CreateAccountCancelDeletionResponse{}
+	return &this
+}
+
+// GetCancelled returns the Cancelled field value
+func (o *CreateAccountCancelDeletionResponse) GetCancelled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Cancelled
+}
+
+// GetCancelledOk returns a tuple with the Cancelled field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountCancelDeletionResponse) GetCancelledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Cancelled, true
+}
+
+// SetCancelled sets field value
+func (o *CreateAccountCancelDeletionResponse) SetCancelled(v bool) {
+	o.Cancelled = v
+}
+
+// GetBillingResumed returns the BillingResumed field value
+func (o *CreateAccountCancelDeletionResponse) GetBillingResumed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BillingResumed
+}
+
+// GetBillingResumedOk returns a tuple with the BillingResumed field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountCancelDeletionResponse) GetBillingResumedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BillingResumed, true
+}
+
+// SetBillingResumed sets field value
+func (o *CreateAccountCancelDeletionResponse) SetBillingResumed(v bool) {
+	o.BillingResumed = v
+}
+
+func (o CreateAccountCancelDeletionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["cancelled"] = o.Cancelled
+	}
+	if true {
+		toSerialize["billingResumed"] = o.BillingResumed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateAccountCancelDeletionResponse struct {
+	value *CreateAccountCancelDeletionResponse
+	isSet bool
+}
+
+func (v NullableCreateAccountCancelDeletionResponse) Get() *CreateAccountCancelDeletionResponse {
+	return v.value
+}
+
+func (v *NullableCreateAccountCancelDeletionResponse) Set(val *CreateAccountCancelDeletionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAccountCancelDeletionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAccountCancelDeletionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAccountCancelDeletionResponse(val *CreateAccountCancelDeletionResponse) *NullableCreateAccountCancelDeletionResponse {
+	return &NullableCreateAccountCancelDeletionResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateAccountCancelDeletionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAccountCancelDeletionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateAccountIdentityVerificationStartRequest struct for CreateAccountIdentityVerificationStartRequest
+type CreateAccountIdentityVerificationStartRequest struct {
+	ReturnPath *string `json:"returnPath,omitempty"`
+}
+
+// NewCreateAccountIdentityVerificationStartRequest instantiates a new CreateAccountIdentityVerificationStartRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAccountIdentityVerificationStartRequest() *CreateAccountIdentityVerificationStartRequest {
+	this := CreateAccountIdentityVerificationStartRequest{}
+	return &this
+}
+
+// NewCreateAccountIdentityVerificationStartRequestWithDefaults instantiates a new CreateAccountIdentityVerificationStartRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAccountIdentityVerificationStartRequestWithDefaults() *CreateAccountIdentityVerificationStartRequest {
+	this := CreateAccountIdentityVerificationStartRequest{}
+	return &this
+}
+
+// GetReturnPath returns the ReturnPath field value if set, zero value otherwise.
+func (o *CreateAccountIdentityVerificationStartRequest) GetReturnPath() string {
+	if o == nil || o.ReturnPath == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReturnPath
+}
+
+// GetReturnPathOk returns a tuple with the ReturnPath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAccountIdentityVerificationStartRequest) GetReturnPathOk() (*string, bool) {
+	if o == nil || o.ReturnPath == nil {
+		return nil, false
+	}
+	return o.ReturnPath, true
+}
+
+// HasReturnPath returns a boolean if a field has been set.
+func (o *CreateAccountIdentityVerificationStartRequest) HasReturnPath() bool {
+	if o != nil && o.ReturnPath != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnPath gets a reference to the given string and assigns it to the ReturnPath field.
+func (o *CreateAccountIdentityVerificationStartRequest) SetReturnPath(v string) {
+	o.ReturnPath = &v
+}
+
+func (o CreateAccountIdentityVerificationStartRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ReturnPath != nil {
+		toSerialize["returnPath"] = o.ReturnPath
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateAccountIdentityVerificationStartRequest struct {
+	value *CreateAccountIdentityVerificationStartRequest
+	isSet bool
+}
+
+func (v NullableCreateAccountIdentityVerificationStartRequest) Get() *CreateAccountIdentityVerificationStartRequest {
+	return v.value
+}
+
+func (v *NullableCreateAccountIdentityVerificationStartRequest) Set(val *CreateAccountIdentityVerificationStartRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAccountIdentityVerificationStartRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAccountIdentityVerificationStartRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAccountIdentityVerificationStartRequest(val *CreateAccountIdentityVerificationStartRequest) *NullableCreateAccountIdentityVerificationStartRequest {
+	return &NullableCreateAccountIdentityVerificationStartRequest{value: val, isSet: true}
+}
+
+func (v NullableCreateAccountIdentityVerificationStartRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAccountIdentityVerificationStartRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreateAccountLogoutAllResponse struct for CreateAccountLogoutAllResponse
 type CreateAccountLogoutAllResponse struct {
 	Ok bool `json:"ok"`
@@ -135,22 +353,173 @@ func (v *NullableCreateAccountLogoutAllResponse) UnmarshalJSON(src []byte) error
 	return json.Unmarshal(src, &v.value)
 }
 
+// CreateAccountReconfirmDeletionResponse struct for CreateAccountReconfirmDeletionResponse
+type CreateAccountReconfirmDeletionResponse struct {
+	Id string `json:"id"`
+	ScheduledFor time.Time `json:"scheduledFor"`
+	Reconfirmed bool `json:"reconfirmed"`
+}
+
+// NewCreateAccountReconfirmDeletionResponse instantiates a new CreateAccountReconfirmDeletionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAccountReconfirmDeletionResponse(id string, scheduledFor time.Time, reconfirmed bool) *CreateAccountReconfirmDeletionResponse {
+	this := CreateAccountReconfirmDeletionResponse{}
+	this.Id = id
+	this.ScheduledFor = scheduledFor
+	this.Reconfirmed = reconfirmed
+	return &this
+}
+
+// NewCreateAccountReconfirmDeletionResponseWithDefaults instantiates a new CreateAccountReconfirmDeletionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAccountReconfirmDeletionResponseWithDefaults() *CreateAccountReconfirmDeletionResponse {
+	this := CreateAccountReconfirmDeletionResponse{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CreateAccountReconfirmDeletionResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountReconfirmDeletionResponse) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CreateAccountReconfirmDeletionResponse) SetId(v string) {
+	o.Id = v
+}
+
+// GetScheduledFor returns the ScheduledFor field value
+func (o *CreateAccountReconfirmDeletionResponse) GetScheduledFor() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.ScheduledFor
+}
+
+// GetScheduledForOk returns a tuple with the ScheduledFor field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountReconfirmDeletionResponse) GetScheduledForOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ScheduledFor, true
+}
+
+// SetScheduledFor sets field value
+func (o *CreateAccountReconfirmDeletionResponse) SetScheduledFor(v time.Time) {
+	o.ScheduledFor = v
+}
+
+// GetReconfirmed returns the Reconfirmed field value
+func (o *CreateAccountReconfirmDeletionResponse) GetReconfirmed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Reconfirmed
+}
+
+// GetReconfirmedOk returns a tuple with the Reconfirmed field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountReconfirmDeletionResponse) GetReconfirmedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Reconfirmed, true
+}
+
+// SetReconfirmed sets field value
+func (o *CreateAccountReconfirmDeletionResponse) SetReconfirmed(v bool) {
+	o.Reconfirmed = v
+}
+
+func (o CreateAccountReconfirmDeletionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["scheduledFor"] = o.ScheduledFor
+	}
+	if true {
+		toSerialize["reconfirmed"] = o.Reconfirmed
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateAccountReconfirmDeletionResponse struct {
+	value *CreateAccountReconfirmDeletionResponse
+	isSet bool
+}
+
+func (v NullableCreateAccountReconfirmDeletionResponse) Get() *CreateAccountReconfirmDeletionResponse {
+	return v.value
+}
+
+func (v *NullableCreateAccountReconfirmDeletionResponse) Set(val *CreateAccountReconfirmDeletionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAccountReconfirmDeletionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAccountReconfirmDeletionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAccountReconfirmDeletionResponse(val *CreateAccountReconfirmDeletionResponse) *NullableCreateAccountReconfirmDeletionResponse {
+	return &NullableCreateAccountReconfirmDeletionResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateAccountReconfirmDeletionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAccountReconfirmDeletionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // CreateAccountRequestDeletionResponse struct for CreateAccountRequestDeletionResponse
 type CreateAccountRequestDeletionResponse struct {
 	Id string `json:"id"`
 	ScheduledFor time.Time `json:"scheduledFor"`
 	GraceDays float32 `json:"graceDays"`
+	SubscriptionsEnding float32 `json:"subscriptionsEnding"`
 }
 
 // NewCreateAccountRequestDeletionResponse instantiates a new CreateAccountRequestDeletionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccountRequestDeletionResponse(id string, scheduledFor time.Time, graceDays float32) *CreateAccountRequestDeletionResponse {
+func NewCreateAccountRequestDeletionResponse(id string, scheduledFor time.Time, graceDays float32, subscriptionsEnding float32) *CreateAccountRequestDeletionResponse {
 	this := CreateAccountRequestDeletionResponse{}
 	this.Id = id
 	this.ScheduledFor = scheduledFor
 	this.GraceDays = graceDays
+	this.SubscriptionsEnding = subscriptionsEnding
 	return &this
 }
 
@@ -234,6 +603,30 @@ func (o *CreateAccountRequestDeletionResponse) SetGraceDays(v float32) {
 	o.GraceDays = v
 }
 
+// GetSubscriptionsEnding returns the SubscriptionsEnding field value
+func (o *CreateAccountRequestDeletionResponse) GetSubscriptionsEnding() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SubscriptionsEnding
+}
+
+// GetSubscriptionsEndingOk returns a tuple with the SubscriptionsEnding field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccountRequestDeletionResponse) GetSubscriptionsEndingOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SubscriptionsEnding, true
+}
+
+// SetSubscriptionsEnding sets field value
+func (o *CreateAccountRequestDeletionResponse) SetSubscriptionsEnding(v float32) {
+	o.SubscriptionsEnding = v
+}
+
 func (o CreateAccountRequestDeletionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -244,6 +637,9 @@ func (o CreateAccountRequestDeletionResponse) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["graceDays"] = o.GraceDays
+	}
+	if true {
+		toSerialize["subscriptionsEnding"] = o.SubscriptionsEnding
 	}
 	return json.Marshal(toSerialize)
 }
@@ -491,18 +887,525 @@ func (v *NullableCreateAccountResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// GetAccountClosureChecklistResponse struct for GetAccountClosureChecklistResponse
+type GetAccountClosureChecklistResponse struct {
+	LiveListings GetAccountClosureChecklistResponseLiveListings `json:"liveListings"`
+	Automations GetAccountClosureChecklistResponseAutomations `json:"automations"`
+	Subscriptions float32 `json:"subscriptions"`
+	Blockers []string `json:"blockers"`
+}
+
+// NewGetAccountClosureChecklistResponse instantiates a new GetAccountClosureChecklistResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountClosureChecklistResponse(liveListings GetAccountClosureChecklistResponseLiveListings, automations GetAccountClosureChecklistResponseAutomations, subscriptions float32, blockers []string) *GetAccountClosureChecklistResponse {
+	this := GetAccountClosureChecklistResponse{}
+	this.LiveListings = liveListings
+	this.Automations = automations
+	this.Subscriptions = subscriptions
+	this.Blockers = blockers
+	return &this
+}
+
+// NewGetAccountClosureChecklistResponseWithDefaults instantiates a new GetAccountClosureChecklistResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountClosureChecklistResponseWithDefaults() *GetAccountClosureChecklistResponse {
+	this := GetAccountClosureChecklistResponse{}
+	return &this
+}
+
+// GetLiveListings returns the LiveListings field value
+func (o *GetAccountClosureChecklistResponse) GetLiveListings() GetAccountClosureChecklistResponseLiveListings {
+	if o == nil {
+		var ret GetAccountClosureChecklistResponseLiveListings
+		return ret
+	}
+
+	return o.LiveListings
+}
+
+// GetLiveListingsOk returns a tuple with the LiveListings field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponse) GetLiveListingsOk() (*GetAccountClosureChecklistResponseLiveListings, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.LiveListings, true
+}
+
+// SetLiveListings sets field value
+func (o *GetAccountClosureChecklistResponse) SetLiveListings(v GetAccountClosureChecklistResponseLiveListings) {
+	o.LiveListings = v
+}
+
+// GetAutomations returns the Automations field value
+func (o *GetAccountClosureChecklistResponse) GetAutomations() GetAccountClosureChecklistResponseAutomations {
+	if o == nil {
+		var ret GetAccountClosureChecklistResponseAutomations
+		return ret
+	}
+
+	return o.Automations
+}
+
+// GetAutomationsOk returns a tuple with the Automations field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponse) GetAutomationsOk() (*GetAccountClosureChecklistResponseAutomations, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Automations, true
+}
+
+// SetAutomations sets field value
+func (o *GetAccountClosureChecklistResponse) SetAutomations(v GetAccountClosureChecklistResponseAutomations) {
+	o.Automations = v
+}
+
+// GetSubscriptions returns the Subscriptions field value
+func (o *GetAccountClosureChecklistResponse) GetSubscriptions() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Subscriptions
+}
+
+// GetSubscriptionsOk returns a tuple with the Subscriptions field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponse) GetSubscriptionsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Subscriptions, true
+}
+
+// SetSubscriptions sets field value
+func (o *GetAccountClosureChecklistResponse) SetSubscriptions(v float32) {
+	o.Subscriptions = v
+}
+
+// GetBlockers returns the Blockers field value
+func (o *GetAccountClosureChecklistResponse) GetBlockers() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Blockers
+}
+
+// GetBlockersOk returns a tuple with the Blockers field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponse) GetBlockersOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Blockers, true
+}
+
+// SetBlockers sets field value
+func (o *GetAccountClosureChecklistResponse) SetBlockers(v []string) {
+	o.Blockers = v
+}
+
+func (o GetAccountClosureChecklistResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["liveListings"] = o.LiveListings
+	}
+	if true {
+		toSerialize["automations"] = o.Automations
+	}
+	if true {
+		toSerialize["subscriptions"] = o.Subscriptions
+	}
+	if true {
+		toSerialize["blockers"] = o.Blockers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountClosureChecklistResponse struct {
+	value *GetAccountClosureChecklistResponse
+	isSet bool
+}
+
+func (v NullableGetAccountClosureChecklistResponse) Get() *GetAccountClosureChecklistResponse {
+	return v.value
+}
+
+func (v *NullableGetAccountClosureChecklistResponse) Set(val *GetAccountClosureChecklistResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountClosureChecklistResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountClosureChecklistResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountClosureChecklistResponse(val *GetAccountClosureChecklistResponse) *NullableGetAccountClosureChecklistResponse {
+	return &NullableGetAccountClosureChecklistResponse{value: val, isSet: true}
+}
+
+func (v NullableGetAccountClosureChecklistResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountClosureChecklistResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAccountClosureChecklistResponseAutomations struct for GetAccountClosureChecklistResponseAutomations
+type GetAccountClosureChecklistResponseAutomations struct {
+	Rules float32 `json:"rules"`
+	Workflows float32 `json:"workflows"`
+	ScheduledPublishes float32 `json:"scheduledPublishes"`
+}
+
+// NewGetAccountClosureChecklistResponseAutomations instantiates a new GetAccountClosureChecklistResponseAutomations object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountClosureChecklistResponseAutomations(rules float32, workflows float32, scheduledPublishes float32) *GetAccountClosureChecklistResponseAutomations {
+	this := GetAccountClosureChecklistResponseAutomations{}
+	this.Rules = rules
+	this.Workflows = workflows
+	this.ScheduledPublishes = scheduledPublishes
+	return &this
+}
+
+// NewGetAccountClosureChecklistResponseAutomationsWithDefaults instantiates a new GetAccountClosureChecklistResponseAutomations object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountClosureChecklistResponseAutomationsWithDefaults() *GetAccountClosureChecklistResponseAutomations {
+	this := GetAccountClosureChecklistResponseAutomations{}
+	return &this
+}
+
+// GetRules returns the Rules field value
+func (o *GetAccountClosureChecklistResponseAutomations) GetRules() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseAutomations) GetRulesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Rules, true
+}
+
+// SetRules sets field value
+func (o *GetAccountClosureChecklistResponseAutomations) SetRules(v float32) {
+	o.Rules = v
+}
+
+// GetWorkflows returns the Workflows field value
+func (o *GetAccountClosureChecklistResponseAutomations) GetWorkflows() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Workflows
+}
+
+// GetWorkflowsOk returns a tuple with the Workflows field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseAutomations) GetWorkflowsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Workflows, true
+}
+
+// SetWorkflows sets field value
+func (o *GetAccountClosureChecklistResponseAutomations) SetWorkflows(v float32) {
+	o.Workflows = v
+}
+
+// GetScheduledPublishes returns the ScheduledPublishes field value
+func (o *GetAccountClosureChecklistResponseAutomations) GetScheduledPublishes() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ScheduledPublishes
+}
+
+// GetScheduledPublishesOk returns a tuple with the ScheduledPublishes field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseAutomations) GetScheduledPublishesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ScheduledPublishes, true
+}
+
+// SetScheduledPublishes sets field value
+func (o *GetAccountClosureChecklistResponseAutomations) SetScheduledPublishes(v float32) {
+	o.ScheduledPublishes = v
+}
+
+func (o GetAccountClosureChecklistResponseAutomations) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["rules"] = o.Rules
+	}
+	if true {
+		toSerialize["workflows"] = o.Workflows
+	}
+	if true {
+		toSerialize["scheduledPublishes"] = o.ScheduledPublishes
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountClosureChecklistResponseAutomations struct {
+	value *GetAccountClosureChecklistResponseAutomations
+	isSet bool
+}
+
+func (v NullableGetAccountClosureChecklistResponseAutomations) Get() *GetAccountClosureChecklistResponseAutomations {
+	return v.value
+}
+
+func (v *NullableGetAccountClosureChecklistResponseAutomations) Set(val *GetAccountClosureChecklistResponseAutomations) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountClosureChecklistResponseAutomations) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountClosureChecklistResponseAutomations) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountClosureChecklistResponseAutomations(val *GetAccountClosureChecklistResponseAutomations) *NullableGetAccountClosureChecklistResponseAutomations {
+	return &NullableGetAccountClosureChecklistResponseAutomations{value: val, isSet: true}
+}
+
+func (v NullableGetAccountClosureChecklistResponseAutomations) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountClosureChecklistResponseAutomations) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAccountClosureChecklistResponseLiveListings struct for GetAccountClosureChecklistResponseLiveListings
+type GetAccountClosureChecklistResponseLiveListings struct {
+	// Listings with at least one live marketplace copy.
+	Listings float32 `json:"listings"`
+	// Live marketplace copies (one listing on three marketplaces is three).
+	Copies float32 `json:"copies"`
+	ByPlatform map[string]interface{} `json:"byPlatform"`
+	// The listings \"Delist everywhere\" would take down (capped).
+	ListingIds []string `json:"listingIds"`
+}
+
+// NewGetAccountClosureChecklistResponseLiveListings instantiates a new GetAccountClosureChecklistResponseLiveListings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountClosureChecklistResponseLiveListings(listings float32, copies float32, byPlatform map[string]interface{}, listingIds []string) *GetAccountClosureChecklistResponseLiveListings {
+	this := GetAccountClosureChecklistResponseLiveListings{}
+	this.Listings = listings
+	this.Copies = copies
+	this.ByPlatform = byPlatform
+	this.ListingIds = listingIds
+	return &this
+}
+
+// NewGetAccountClosureChecklistResponseLiveListingsWithDefaults instantiates a new GetAccountClosureChecklistResponseLiveListings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountClosureChecklistResponseLiveListingsWithDefaults() *GetAccountClosureChecklistResponseLiveListings {
+	this := GetAccountClosureChecklistResponseLiveListings{}
+	return &this
+}
+
+// GetListings returns the Listings field value
+func (o *GetAccountClosureChecklistResponseLiveListings) GetListings() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Listings
+}
+
+// GetListingsOk returns a tuple with the Listings field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseLiveListings) GetListingsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Listings, true
+}
+
+// SetListings sets field value
+func (o *GetAccountClosureChecklistResponseLiveListings) SetListings(v float32) {
+	o.Listings = v
+}
+
+// GetCopies returns the Copies field value
+func (o *GetAccountClosureChecklistResponseLiveListings) GetCopies() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Copies
+}
+
+// GetCopiesOk returns a tuple with the Copies field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseLiveListings) GetCopiesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Copies, true
+}
+
+// SetCopies sets field value
+func (o *GetAccountClosureChecklistResponseLiveListings) SetCopies(v float32) {
+	o.Copies = v
+}
+
+// GetByPlatform returns the ByPlatform field value
+func (o *GetAccountClosureChecklistResponseLiveListings) GetByPlatform() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+
+	return o.ByPlatform
+}
+
+// GetByPlatformOk returns a tuple with the ByPlatform field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseLiveListings) GetByPlatformOk() (map[string]interface{}, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ByPlatform, true
+}
+
+// SetByPlatform sets field value
+func (o *GetAccountClosureChecklistResponseLiveListings) SetByPlatform(v map[string]interface{}) {
+	o.ByPlatform = v
+}
+
+// GetListingIds returns the ListingIds field value
+func (o *GetAccountClosureChecklistResponseLiveListings) GetListingIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.ListingIds
+}
+
+// GetListingIdsOk returns a tuple with the ListingIds field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountClosureChecklistResponseLiveListings) GetListingIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingIds, true
+}
+
+// SetListingIds sets field value
+func (o *GetAccountClosureChecklistResponseLiveListings) SetListingIds(v []string) {
+	o.ListingIds = v
+}
+
+func (o GetAccountClosureChecklistResponseLiveListings) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["listings"] = o.Listings
+	}
+	if true {
+		toSerialize["copies"] = o.Copies
+	}
+	if true {
+		toSerialize["byPlatform"] = o.ByPlatform
+	}
+	if true {
+		toSerialize["listingIds"] = o.ListingIds
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountClosureChecklistResponseLiveListings struct {
+	value *GetAccountClosureChecklistResponseLiveListings
+	isSet bool
+}
+
+func (v NullableGetAccountClosureChecklistResponseLiveListings) Get() *GetAccountClosureChecklistResponseLiveListings {
+	return v.value
+}
+
+func (v *NullableGetAccountClosureChecklistResponseLiveListings) Set(val *GetAccountClosureChecklistResponseLiveListings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountClosureChecklistResponseLiveListings) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountClosureChecklistResponseLiveListings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountClosureChecklistResponseLiveListings(val *GetAccountClosureChecklistResponseLiveListings) *NullableGetAccountClosureChecklistResponseLiveListings {
+	return &NullableGetAccountClosureChecklistResponseLiveListings{value: val, isSet: true}
+}
+
+func (v NullableGetAccountClosureChecklistResponseLiveListings) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountClosureChecklistResponseLiveListings) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // GetAccountDeletionStatusResponse struct for GetAccountDeletionStatusResponse
 type GetAccountDeletionStatusResponse struct {
-	Pending GetAccountDeletionStatusResponsePending `json:"pending"`
+	Pending NullableGetAccountDeletionStatusResponsePending `json:"pending,omitempty"`
 }
 
 // NewGetAccountDeletionStatusResponse instantiates a new GetAccountDeletionStatusResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAccountDeletionStatusResponse(pending GetAccountDeletionStatusResponsePending) *GetAccountDeletionStatusResponse {
+func NewGetAccountDeletionStatusResponse() *GetAccountDeletionStatusResponse {
 	this := GetAccountDeletionStatusResponse{}
-	this.Pending = pending
 	return &this
 }
 
@@ -514,34 +1417,52 @@ func NewGetAccountDeletionStatusResponseWithDefaults() *GetAccountDeletionStatus
 	return &this
 }
 
-// GetPending returns the Pending field value
+// GetPending returns the Pending field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetAccountDeletionStatusResponse) GetPending() GetAccountDeletionStatusResponsePending {
-	if o == nil {
+	if o == nil || o.Pending.Get() == nil {
 		var ret GetAccountDeletionStatusResponsePending
 		return ret
 	}
-
-	return o.Pending
+	return *o.Pending.Get()
 }
 
-// GetPendingOk returns a tuple with the Pending field value
+// GetPendingOk returns a tuple with the Pending field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetAccountDeletionStatusResponse) GetPendingOk() (*GetAccountDeletionStatusResponsePending, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Pending, true
+	return o.Pending.Get(), o.Pending.IsSet()
 }
 
-// SetPending sets field value
+// HasPending returns a boolean if a field has been set.
+func (o *GetAccountDeletionStatusResponse) HasPending() bool {
+	if o != nil && o.Pending.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPending gets a reference to the given NullableGetAccountDeletionStatusResponsePending and assigns it to the Pending field.
 func (o *GetAccountDeletionStatusResponse) SetPending(v GetAccountDeletionStatusResponsePending) {
-	o.Pending = v
+	o.Pending.Set(&v)
+}
+// SetPendingNil sets the value for Pending to be an explicit nil
+func (o *GetAccountDeletionStatusResponse) SetPendingNil() {
+	o.Pending.Set(nil)
+}
+
+// UnsetPending ensures that no value is present for Pending, not even an explicit nil
+func (o *GetAccountDeletionStatusResponse) UnsetPending() {
+	o.Pending.Unset()
 }
 
 func (o GetAccountDeletionStatusResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["pending"] = o.Pending
+	if o.Pending.IsSet() {
+		toSerialize["pending"] = o.Pending.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -587,17 +1508,25 @@ type GetAccountDeletionStatusResponsePending struct {
 	Id string `json:"id"`
 	RequestedAt time.Time `json:"requestedAt"`
 	ScheduledFor time.Time `json:"scheduledFor"`
+	// Set when the account was found in use: it waits for a re-confirmation.
+	PausedAt NullableTime `json:"pausedAt,omitempty"`
+	PauseReason NullableString `json:"pauseReason,omitempty"`
+	// What the cascade will take.
+	ListingCount float32 `json:"listingCount"`
+	InventoryCount float32 `json:"inventoryCount"`
 }
 
 // NewGetAccountDeletionStatusResponsePending instantiates a new GetAccountDeletionStatusResponsePending object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetAccountDeletionStatusResponsePending(id string, requestedAt time.Time, scheduledFor time.Time) *GetAccountDeletionStatusResponsePending {
+func NewGetAccountDeletionStatusResponsePending(id string, requestedAt time.Time, scheduledFor time.Time, listingCount float32, inventoryCount float32) *GetAccountDeletionStatusResponsePending {
 	this := GetAccountDeletionStatusResponsePending{}
 	this.Id = id
 	this.RequestedAt = requestedAt
 	this.ScheduledFor = scheduledFor
+	this.ListingCount = listingCount
+	this.InventoryCount = inventoryCount
 	return &this
 }
 
@@ -681,6 +1610,138 @@ func (o *GetAccountDeletionStatusResponsePending) SetScheduledFor(v time.Time) {
 	o.ScheduledFor = v
 }
 
+// GetPausedAt returns the PausedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountDeletionStatusResponsePending) GetPausedAt() time.Time {
+	if o == nil || o.PausedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PausedAt.Get()
+}
+
+// GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountDeletionStatusResponsePending) GetPausedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PausedAt.Get(), o.PausedAt.IsSet()
+}
+
+// HasPausedAt returns a boolean if a field has been set.
+func (o *GetAccountDeletionStatusResponsePending) HasPausedAt() bool {
+	if o != nil && o.PausedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPausedAt gets a reference to the given NullableTime and assigns it to the PausedAt field.
+func (o *GetAccountDeletionStatusResponsePending) SetPausedAt(v time.Time) {
+	o.PausedAt.Set(&v)
+}
+// SetPausedAtNil sets the value for PausedAt to be an explicit nil
+func (o *GetAccountDeletionStatusResponsePending) SetPausedAtNil() {
+	o.PausedAt.Set(nil)
+}
+
+// UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
+func (o *GetAccountDeletionStatusResponsePending) UnsetPausedAt() {
+	o.PausedAt.Unset()
+}
+
+// GetPauseReason returns the PauseReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountDeletionStatusResponsePending) GetPauseReason() string {
+	if o == nil || o.PauseReason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PauseReason.Get()
+}
+
+// GetPauseReasonOk returns a tuple with the PauseReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountDeletionStatusResponsePending) GetPauseReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PauseReason.Get(), o.PauseReason.IsSet()
+}
+
+// HasPauseReason returns a boolean if a field has been set.
+func (o *GetAccountDeletionStatusResponsePending) HasPauseReason() bool {
+	if o != nil && o.PauseReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPauseReason gets a reference to the given NullableString and assigns it to the PauseReason field.
+func (o *GetAccountDeletionStatusResponsePending) SetPauseReason(v string) {
+	o.PauseReason.Set(&v)
+}
+// SetPauseReasonNil sets the value for PauseReason to be an explicit nil
+func (o *GetAccountDeletionStatusResponsePending) SetPauseReasonNil() {
+	o.PauseReason.Set(nil)
+}
+
+// UnsetPauseReason ensures that no value is present for PauseReason, not even an explicit nil
+func (o *GetAccountDeletionStatusResponsePending) UnsetPauseReason() {
+	o.PauseReason.Unset()
+}
+
+// GetListingCount returns the ListingCount field value
+func (o *GetAccountDeletionStatusResponsePending) GetListingCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ListingCount
+}
+
+// GetListingCountOk returns a tuple with the ListingCount field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountDeletionStatusResponsePending) GetListingCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingCount, true
+}
+
+// SetListingCount sets field value
+func (o *GetAccountDeletionStatusResponsePending) SetListingCount(v float32) {
+	o.ListingCount = v
+}
+
+// GetInventoryCount returns the InventoryCount field value
+func (o *GetAccountDeletionStatusResponsePending) GetInventoryCount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.InventoryCount
+}
+
+// GetInventoryCountOk returns a tuple with the InventoryCount field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountDeletionStatusResponsePending) GetInventoryCountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InventoryCount, true
+}
+
+// SetInventoryCount sets field value
+func (o *GetAccountDeletionStatusResponsePending) SetInventoryCount(v float32) {
+	o.InventoryCount = v
+}
+
 func (o GetAccountDeletionStatusResponsePending) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -691,6 +1752,18 @@ func (o GetAccountDeletionStatusResponsePending) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["scheduledFor"] = o.ScheduledFor
+	}
+	if o.PausedAt.IsSet() {
+		toSerialize["pausedAt"] = o.PausedAt.Get()
+	}
+	if o.PauseReason.IsSet() {
+		toSerialize["pauseReason"] = o.PauseReason.Get()
+	}
+	if true {
+		toSerialize["listingCount"] = o.ListingCount
+	}
+	if true {
+		toSerialize["inventoryCount"] = o.InventoryCount
 	}
 	return json.Marshal(toSerialize)
 }
@@ -727,6 +1800,601 @@ func (v NullableGetAccountDeletionStatusResponsePending) MarshalJSON() ([]byte, 
 }
 
 func (v *NullableGetAccountDeletionStatusResponsePending) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAccountIdentityVerificationResponse struct for GetAccountIdentityVerificationResponse
+type GetAccountIdentityVerificationResponse struct {
+	Data GetAccountIdentityVerificationResponseData `json:"data"`
+}
+
+// NewGetAccountIdentityVerificationResponse instantiates a new GetAccountIdentityVerificationResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountIdentityVerificationResponse(data GetAccountIdentityVerificationResponseData) *GetAccountIdentityVerificationResponse {
+	this := GetAccountIdentityVerificationResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewGetAccountIdentityVerificationResponseWithDefaults instantiates a new GetAccountIdentityVerificationResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountIdentityVerificationResponseWithDefaults() *GetAccountIdentityVerificationResponse {
+	this := GetAccountIdentityVerificationResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetAccountIdentityVerificationResponse) GetData() GetAccountIdentityVerificationResponseData {
+	if o == nil {
+		var ret GetAccountIdentityVerificationResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponse) GetDataOk() (*GetAccountIdentityVerificationResponseData, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetAccountIdentityVerificationResponse) SetData(v GetAccountIdentityVerificationResponseData) {
+	o.Data = v
+}
+
+func (o GetAccountIdentityVerificationResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountIdentityVerificationResponse struct {
+	value *GetAccountIdentityVerificationResponse
+	isSet bool
+}
+
+func (v NullableGetAccountIdentityVerificationResponse) Get() *GetAccountIdentityVerificationResponse {
+	return v.value
+}
+
+func (v *NullableGetAccountIdentityVerificationResponse) Set(val *GetAccountIdentityVerificationResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountIdentityVerificationResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountIdentityVerificationResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountIdentityVerificationResponse(val *GetAccountIdentityVerificationResponse) *NullableGetAccountIdentityVerificationResponse {
+	return &NullableGetAccountIdentityVerificationResponse{value: val, isSet: true}
+}
+
+func (v NullableGetAccountIdentityVerificationResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountIdentityVerificationResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAccountIdentityVerificationResponseData struct for GetAccountIdentityVerificationResponseData
+type GetAccountIdentityVerificationResponseData struct {
+	Status string `json:"status"`
+	Verified bool `json:"verified"`
+	VerifiedAt NullableString `json:"verifiedAt,omitempty"`
+	// The name on the verified ID, when the check reported one.
+	VerifiedName NullableString `json:"verifiedName,omitempty"`
+	// The age-restricted checkout gate passes: the date of birth on the verified ID says 18+.
+	AgeVerified bool `json:"ageVerified"`
+	// Plain-language next step; null once verified.
+	Message NullableString `json:"message,omitempty"`
+	LastError NullableGetAccountIdentityVerificationResponseDataLastError `json:"lastError,omitempty"`
+	// Failed tries of the open check so far (0 when none).
+	Attempts float32 `json:"attempts"`
+}
+
+// NewGetAccountIdentityVerificationResponseData instantiates a new GetAccountIdentityVerificationResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountIdentityVerificationResponseData(status string, verified bool, ageVerified bool, attempts float32) *GetAccountIdentityVerificationResponseData {
+	this := GetAccountIdentityVerificationResponseData{}
+	this.Status = status
+	this.Verified = verified
+	this.AgeVerified = ageVerified
+	this.Attempts = attempts
+	return &this
+}
+
+// NewGetAccountIdentityVerificationResponseDataWithDefaults instantiates a new GetAccountIdentityVerificationResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountIdentityVerificationResponseDataWithDefaults() *GetAccountIdentityVerificationResponseData {
+	this := GetAccountIdentityVerificationResponseData{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetAccountIdentityVerificationResponseData) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponseData) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetAccountIdentityVerificationResponseData) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetVerified returns the Verified field value
+func (o *GetAccountIdentityVerificationResponseData) GetVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Verified
+}
+
+// GetVerifiedOk returns a tuple with the Verified field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponseData) GetVerifiedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Verified, true
+}
+
+// SetVerified sets field value
+func (o *GetAccountIdentityVerificationResponseData) SetVerified(v bool) {
+	o.Verified = v
+}
+
+// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountIdentityVerificationResponseData) GetVerifiedAt() string {
+	if o == nil || o.VerifiedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VerifiedAt.Get()
+}
+
+// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountIdentityVerificationResponseData) GetVerifiedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VerifiedAt.Get(), o.VerifiedAt.IsSet()
+}
+
+// HasVerifiedAt returns a boolean if a field has been set.
+func (o *GetAccountIdentityVerificationResponseData) HasVerifiedAt() bool {
+	if o != nil && o.VerifiedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifiedAt gets a reference to the given NullableString and assigns it to the VerifiedAt field.
+func (o *GetAccountIdentityVerificationResponseData) SetVerifiedAt(v string) {
+	o.VerifiedAt.Set(&v)
+}
+// SetVerifiedAtNil sets the value for VerifiedAt to be an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) SetVerifiedAtNil() {
+	o.VerifiedAt.Set(nil)
+}
+
+// UnsetVerifiedAt ensures that no value is present for VerifiedAt, not even an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) UnsetVerifiedAt() {
+	o.VerifiedAt.Unset()
+}
+
+// GetVerifiedName returns the VerifiedName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountIdentityVerificationResponseData) GetVerifiedName() string {
+	if o == nil || o.VerifiedName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VerifiedName.Get()
+}
+
+// GetVerifiedNameOk returns a tuple with the VerifiedName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountIdentityVerificationResponseData) GetVerifiedNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VerifiedName.Get(), o.VerifiedName.IsSet()
+}
+
+// HasVerifiedName returns a boolean if a field has been set.
+func (o *GetAccountIdentityVerificationResponseData) HasVerifiedName() bool {
+	if o != nil && o.VerifiedName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifiedName gets a reference to the given NullableString and assigns it to the VerifiedName field.
+func (o *GetAccountIdentityVerificationResponseData) SetVerifiedName(v string) {
+	o.VerifiedName.Set(&v)
+}
+// SetVerifiedNameNil sets the value for VerifiedName to be an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) SetVerifiedNameNil() {
+	o.VerifiedName.Set(nil)
+}
+
+// UnsetVerifiedName ensures that no value is present for VerifiedName, not even an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) UnsetVerifiedName() {
+	o.VerifiedName.Unset()
+}
+
+// GetAgeVerified returns the AgeVerified field value
+func (o *GetAccountIdentityVerificationResponseData) GetAgeVerified() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AgeVerified
+}
+
+// GetAgeVerifiedOk returns a tuple with the AgeVerified field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponseData) GetAgeVerifiedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AgeVerified, true
+}
+
+// SetAgeVerified sets field value
+func (o *GetAccountIdentityVerificationResponseData) SetAgeVerified(v bool) {
+	o.AgeVerified = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountIdentityVerificationResponseData) GetMessage() string {
+	if o == nil || o.Message.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message.Get()
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountIdentityVerificationResponseData) GetMessageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Message.Get(), o.Message.IsSet()
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *GetAccountIdentityVerificationResponseData) HasMessage() bool {
+	if o != nil && o.Message.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given NullableString and assigns it to the Message field.
+func (o *GetAccountIdentityVerificationResponseData) SetMessage(v string) {
+	o.Message.Set(&v)
+}
+// SetMessageNil sets the value for Message to be an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) SetMessageNil() {
+	o.Message.Set(nil)
+}
+
+// UnsetMessage ensures that no value is present for Message, not even an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) UnsetMessage() {
+	o.Message.Unset()
+}
+
+// GetLastError returns the LastError field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountIdentityVerificationResponseData) GetLastError() GetAccountIdentityVerificationResponseDataLastError {
+	if o == nil || o.LastError.Get() == nil {
+		var ret GetAccountIdentityVerificationResponseDataLastError
+		return ret
+	}
+	return *o.LastError.Get()
+}
+
+// GetLastErrorOk returns a tuple with the LastError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountIdentityVerificationResponseData) GetLastErrorOk() (*GetAccountIdentityVerificationResponseDataLastError, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LastError.Get(), o.LastError.IsSet()
+}
+
+// HasLastError returns a boolean if a field has been set.
+func (o *GetAccountIdentityVerificationResponseData) HasLastError() bool {
+	if o != nil && o.LastError.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastError gets a reference to the given NullableGetAccountIdentityVerificationResponseDataLastError and assigns it to the LastError field.
+func (o *GetAccountIdentityVerificationResponseData) SetLastError(v GetAccountIdentityVerificationResponseDataLastError) {
+	o.LastError.Set(&v)
+}
+// SetLastErrorNil sets the value for LastError to be an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) SetLastErrorNil() {
+	o.LastError.Set(nil)
+}
+
+// UnsetLastError ensures that no value is present for LastError, not even an explicit nil
+func (o *GetAccountIdentityVerificationResponseData) UnsetLastError() {
+	o.LastError.Unset()
+}
+
+// GetAttempts returns the Attempts field value
+func (o *GetAccountIdentityVerificationResponseData) GetAttempts() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Attempts
+}
+
+// GetAttemptsOk returns a tuple with the Attempts field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponseData) GetAttemptsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Attempts, true
+}
+
+// SetAttempts sets field value
+func (o *GetAccountIdentityVerificationResponseData) SetAttempts(v float32) {
+	o.Attempts = v
+}
+
+func (o GetAccountIdentityVerificationResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["verified"] = o.Verified
+	}
+	if o.VerifiedAt.IsSet() {
+		toSerialize["verifiedAt"] = o.VerifiedAt.Get()
+	}
+	if o.VerifiedName.IsSet() {
+		toSerialize["verifiedName"] = o.VerifiedName.Get()
+	}
+	if true {
+		toSerialize["ageVerified"] = o.AgeVerified
+	}
+	if o.Message.IsSet() {
+		toSerialize["message"] = o.Message.Get()
+	}
+	if o.LastError.IsSet() {
+		toSerialize["lastError"] = o.LastError.Get()
+	}
+	if true {
+		toSerialize["attempts"] = o.Attempts
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountIdentityVerificationResponseData struct {
+	value *GetAccountIdentityVerificationResponseData
+	isSet bool
+}
+
+func (v NullableGetAccountIdentityVerificationResponseData) Get() *GetAccountIdentityVerificationResponseData {
+	return v.value
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseData) Set(val *GetAccountIdentityVerificationResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountIdentityVerificationResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountIdentityVerificationResponseData(val *GetAccountIdentityVerificationResponseData) *NullableGetAccountIdentityVerificationResponseData {
+	return &NullableGetAccountIdentityVerificationResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetAccountIdentityVerificationResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetAccountIdentityVerificationResponseDataLastError requires_input only: the last try failed and the person can try again on the same link. Null otherwise.
+type GetAccountIdentityVerificationResponseDataLastError struct {
+	Code string `json:"code"`
+	// The service's reason in words (e.g. \"The document was unreadable\"), when it gave one.
+	Reason NullableString `json:"reason,omitempty"`
+}
+
+// NewGetAccountIdentityVerificationResponseDataLastError instantiates a new GetAccountIdentityVerificationResponseDataLastError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAccountIdentityVerificationResponseDataLastError(code string) *GetAccountIdentityVerificationResponseDataLastError {
+	this := GetAccountIdentityVerificationResponseDataLastError{}
+	this.Code = code
+	return &this
+}
+
+// NewGetAccountIdentityVerificationResponseDataLastErrorWithDefaults instantiates a new GetAccountIdentityVerificationResponseDataLastError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAccountIdentityVerificationResponseDataLastErrorWithDefaults() *GetAccountIdentityVerificationResponseDataLastError {
+	this := GetAccountIdentityVerificationResponseDataLastError{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *GetAccountIdentityVerificationResponseDataLastError) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *GetAccountIdentityVerificationResponseDataLastError) GetCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *GetAccountIdentityVerificationResponseDataLastError) SetCode(v string) {
+	o.Code = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetAccountIdentityVerificationResponseDataLastError) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetAccountIdentityVerificationResponseDataLastError) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *GetAccountIdentityVerificationResponseDataLastError) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *GetAccountIdentityVerificationResponseDataLastError) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *GetAccountIdentityVerificationResponseDataLastError) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *GetAccountIdentityVerificationResponseDataLastError) UnsetReason() {
+	o.Reason.Unset()
+}
+
+func (o GetAccountIdentityVerificationResponseDataLastError) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetAccountIdentityVerificationResponseDataLastError struct {
+	value *GetAccountIdentityVerificationResponseDataLastError
+	isSet bool
+}
+
+func (v NullableGetAccountIdentityVerificationResponseDataLastError) Get() *GetAccountIdentityVerificationResponseDataLastError {
+	return v.value
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseDataLastError) Set(val *GetAccountIdentityVerificationResponseDataLastError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAccountIdentityVerificationResponseDataLastError) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseDataLastError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAccountIdentityVerificationResponseDataLastError(val *GetAccountIdentityVerificationResponseDataLastError) *NullableGetAccountIdentityVerificationResponseDataLastError {
+	return &NullableGetAccountIdentityVerificationResponseDataLastError{value: val, isSet: true}
+}
+
+func (v NullableGetAccountIdentityVerificationResponseDataLastError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAccountIdentityVerificationResponseDataLastError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

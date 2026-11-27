@@ -738,6 +738,563 @@ func (v *NullableCreateVideoRequestUploadUrlResponseData) UnmarshalJSON(src []by
 	return json.Unmarshal(src, &v.value)
 }
 
+// CreateVideoStudioFinalizeResponse struct for CreateVideoStudioFinalizeResponse
+type CreateVideoStudioFinalizeResponse struct {
+	VideoUrl string `json:"videoUrl"`
+	ObjectKey string `json:"objectKey"`
+	Bytes float32 `json:"bytes"`
+	ContentType string `json:"contentType"`
+	Width NullableFloat32 `json:"width,omitempty"`
+	Height NullableFloat32 `json:"height,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
+}
+
+// NewCreateVideoStudioFinalizeResponse instantiates a new CreateVideoStudioFinalizeResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateVideoStudioFinalizeResponse(videoUrl string, objectKey string, bytes float32, contentType string) *CreateVideoStudioFinalizeResponse {
+	this := CreateVideoStudioFinalizeResponse{}
+	this.VideoUrl = videoUrl
+	this.ObjectKey = objectKey
+	this.Bytes = bytes
+	this.ContentType = contentType
+	return &this
+}
+
+// NewCreateVideoStudioFinalizeResponseWithDefaults instantiates a new CreateVideoStudioFinalizeResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateVideoStudioFinalizeResponseWithDefaults() *CreateVideoStudioFinalizeResponse {
+	this := CreateVideoStudioFinalizeResponse{}
+	return &this
+}
+
+// GetVideoUrl returns the VideoUrl field value
+func (o *CreateVideoStudioFinalizeResponse) GetVideoUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VideoUrl
+}
+
+// GetVideoUrlOk returns a tuple with the VideoUrl field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioFinalizeResponse) GetVideoUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.VideoUrl, true
+}
+
+// SetVideoUrl sets field value
+func (o *CreateVideoStudioFinalizeResponse) SetVideoUrl(v string) {
+	o.VideoUrl = v
+}
+
+// GetObjectKey returns the ObjectKey field value
+func (o *CreateVideoStudioFinalizeResponse) GetObjectKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ObjectKey
+}
+
+// GetObjectKeyOk returns a tuple with the ObjectKey field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioFinalizeResponse) GetObjectKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ObjectKey, true
+}
+
+// SetObjectKey sets field value
+func (o *CreateVideoStudioFinalizeResponse) SetObjectKey(v string) {
+	o.ObjectKey = v
+}
+
+// GetBytes returns the Bytes field value
+func (o *CreateVideoStudioFinalizeResponse) GetBytes() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Bytes
+}
+
+// GetBytesOk returns a tuple with the Bytes field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioFinalizeResponse) GetBytesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Bytes, true
+}
+
+// SetBytes sets field value
+func (o *CreateVideoStudioFinalizeResponse) SetBytes(v float32) {
+	o.Bytes = v
+}
+
+// GetContentType returns the ContentType field value
+func (o *CreateVideoStudioFinalizeResponse) GetContentType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContentType
+}
+
+// GetContentTypeOk returns a tuple with the ContentType field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioFinalizeResponse) GetContentTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ContentType, true
+}
+
+// SetContentType sets field value
+func (o *CreateVideoStudioFinalizeResponse) SetContentType(v string) {
+	o.ContentType = v
+}
+
+// GetWidth returns the Width field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVideoStudioFinalizeResponse) GetWidth() float32 {
+	if o == nil || o.Width.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Width.Get()
+}
+
+// GetWidthOk returns a tuple with the Width field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVideoStudioFinalizeResponse) GetWidthOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Width.Get(), o.Width.IsSet()
+}
+
+// HasWidth returns a boolean if a field has been set.
+func (o *CreateVideoStudioFinalizeResponse) HasWidth() bool {
+	if o != nil && o.Width.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWidth gets a reference to the given NullableFloat32 and assigns it to the Width field.
+func (o *CreateVideoStudioFinalizeResponse) SetWidth(v float32) {
+	o.Width.Set(&v)
+}
+// SetWidthNil sets the value for Width to be an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) SetWidthNil() {
+	o.Width.Set(nil)
+}
+
+// UnsetWidth ensures that no value is present for Width, not even an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) UnsetWidth() {
+	o.Width.Unset()
+}
+
+// GetHeight returns the Height field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVideoStudioFinalizeResponse) GetHeight() float32 {
+	if o == nil || o.Height.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Height.Get()
+}
+
+// GetHeightOk returns a tuple with the Height field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVideoStudioFinalizeResponse) GetHeightOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Height.Get(), o.Height.IsSet()
+}
+
+// HasHeight returns a boolean if a field has been set.
+func (o *CreateVideoStudioFinalizeResponse) HasHeight() bool {
+	if o != nil && o.Height.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHeight gets a reference to the given NullableFloat32 and assigns it to the Height field.
+func (o *CreateVideoStudioFinalizeResponse) SetHeight(v float32) {
+	o.Height.Set(&v)
+}
+// SetHeightNil sets the value for Height to be an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) SetHeightNil() {
+	o.Height.Set(nil)
+}
+
+// UnsetHeight ensures that no value is present for Height, not even an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) UnsetHeight() {
+	o.Height.Unset()
+}
+
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateVideoStudioFinalizeResponse) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateVideoStudioFinalizeResponse) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *CreateVideoStudioFinalizeResponse) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *CreateVideoStudioFinalizeResponse) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *CreateVideoStudioFinalizeResponse) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
+func (o CreateVideoStudioFinalizeResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["videoUrl"] = o.VideoUrl
+	}
+	if true {
+		toSerialize["objectKey"] = o.ObjectKey
+	}
+	if true {
+		toSerialize["bytes"] = o.Bytes
+	}
+	if true {
+		toSerialize["contentType"] = o.ContentType
+	}
+	if o.Width.IsSet() {
+		toSerialize["width"] = o.Width.Get()
+	}
+	if o.Height.IsSet() {
+		toSerialize["height"] = o.Height.Get()
+	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateVideoStudioFinalizeResponse struct {
+	value *CreateVideoStudioFinalizeResponse
+	isSet bool
+}
+
+func (v NullableCreateVideoStudioFinalizeResponse) Get() *CreateVideoStudioFinalizeResponse {
+	return v.value
+}
+
+func (v *NullableCreateVideoStudioFinalizeResponse) Set(val *CreateVideoStudioFinalizeResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateVideoStudioFinalizeResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateVideoStudioFinalizeResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateVideoStudioFinalizeResponse(val *CreateVideoStudioFinalizeResponse) *NullableCreateVideoStudioFinalizeResponse {
+	return &NullableCreateVideoStudioFinalizeResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateVideoStudioFinalizeResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateVideoStudioFinalizeResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// CreateVideoStudioUploadUrlResponse struct for CreateVideoStudioUploadUrlResponse
+type CreateVideoStudioUploadUrlResponse struct {
+	// Presigned R2 PUT. Content-Type `video/mp4` is signed in; the length is not (the render size is unknown).
+	UploadUrl string `json:"uploadUrl"`
+	// Pass back to finalize. `uploads/<userId>/video/<uuid>.mp4`.
+	ObjectKey string `json:"objectKey"`
+	// The object's public CDN URL once uploaded.
+	PublicUrl string `json:"publicUrl"`
+	ContentType string `json:"contentType"`
+	// Epoch milliseconds.
+	ExpiresAt float32 `json:"expiresAt"`
+	// The largest object finalize accepts.
+	MaxBytes float32 `json:"maxBytes"`
+}
+
+// NewCreateVideoStudioUploadUrlResponse instantiates a new CreateVideoStudioUploadUrlResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateVideoStudioUploadUrlResponse(uploadUrl string, objectKey string, publicUrl string, contentType string, expiresAt float32, maxBytes float32) *CreateVideoStudioUploadUrlResponse {
+	this := CreateVideoStudioUploadUrlResponse{}
+	this.UploadUrl = uploadUrl
+	this.ObjectKey = objectKey
+	this.PublicUrl = publicUrl
+	this.ContentType = contentType
+	this.ExpiresAt = expiresAt
+	this.MaxBytes = maxBytes
+	return &this
+}
+
+// NewCreateVideoStudioUploadUrlResponseWithDefaults instantiates a new CreateVideoStudioUploadUrlResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateVideoStudioUploadUrlResponseWithDefaults() *CreateVideoStudioUploadUrlResponse {
+	this := CreateVideoStudioUploadUrlResponse{}
+	return &this
+}
+
+// GetUploadUrl returns the UploadUrl field value
+func (o *CreateVideoStudioUploadUrlResponse) GetUploadUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UploadUrl
+}
+
+// GetUploadUrlOk returns a tuple with the UploadUrl field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetUploadUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UploadUrl, true
+}
+
+// SetUploadUrl sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetUploadUrl(v string) {
+	o.UploadUrl = v
+}
+
+// GetObjectKey returns the ObjectKey field value
+func (o *CreateVideoStudioUploadUrlResponse) GetObjectKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ObjectKey
+}
+
+// GetObjectKeyOk returns a tuple with the ObjectKey field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetObjectKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ObjectKey, true
+}
+
+// SetObjectKey sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetObjectKey(v string) {
+	o.ObjectKey = v
+}
+
+// GetPublicUrl returns the PublicUrl field value
+func (o *CreateVideoStudioUploadUrlResponse) GetPublicUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PublicUrl
+}
+
+// GetPublicUrlOk returns a tuple with the PublicUrl field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetPublicUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PublicUrl, true
+}
+
+// SetPublicUrl sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetPublicUrl(v string) {
+	o.PublicUrl = v
+}
+
+// GetContentType returns the ContentType field value
+func (o *CreateVideoStudioUploadUrlResponse) GetContentType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContentType
+}
+
+// GetContentTypeOk returns a tuple with the ContentType field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetContentTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ContentType, true
+}
+
+// SetContentType sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetContentType(v string) {
+	o.ContentType = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *CreateVideoStudioUploadUrlResponse) GetExpiresAt() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetExpiresAtOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetExpiresAt(v float32) {
+	o.ExpiresAt = v
+}
+
+// GetMaxBytes returns the MaxBytes field value
+func (o *CreateVideoStudioUploadUrlResponse) GetMaxBytes() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.MaxBytes
+}
+
+// GetMaxBytesOk returns a tuple with the MaxBytes field value
+// and a boolean to check if the value has been set.
+func (o *CreateVideoStudioUploadUrlResponse) GetMaxBytesOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxBytes, true
+}
+
+// SetMaxBytes sets field value
+func (o *CreateVideoStudioUploadUrlResponse) SetMaxBytes(v float32) {
+	o.MaxBytes = v
+}
+
+func (o CreateVideoStudioUploadUrlResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["uploadUrl"] = o.UploadUrl
+	}
+	if true {
+		toSerialize["objectKey"] = o.ObjectKey
+	}
+	if true {
+		toSerialize["publicUrl"] = o.PublicUrl
+	}
+	if true {
+		toSerialize["contentType"] = o.ContentType
+	}
+	if true {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	if true {
+		toSerialize["maxBytes"] = o.MaxBytes
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableCreateVideoStudioUploadUrlResponse struct {
+	value *CreateVideoStudioUploadUrlResponse
+	isSet bool
+}
+
+func (v NullableCreateVideoStudioUploadUrlResponse) Get() *CreateVideoStudioUploadUrlResponse {
+	return v.value
+}
+
+func (v *NullableCreateVideoStudioUploadUrlResponse) Set(val *CreateVideoStudioUploadUrlResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateVideoStudioUploadUrlResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateVideoStudioUploadUrlResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateVideoStudioUploadUrlResponse(val *CreateVideoStudioUploadUrlResponse) *NullableCreateVideoStudioUploadUrlResponse {
+	return &NullableCreateVideoStudioUploadUrlResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateVideoStudioUploadUrlResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateVideoStudioUploadUrlResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // ListVideoRequestsItem struct for ListVideoRequestsItem
 type ListVideoRequestsItem struct {
 	Id string `json:"id"`

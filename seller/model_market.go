@@ -1939,16 +1939,16 @@ type GetMarketProductResponseDataProduct struct {
 	CreatedAt time.Time `json:"createdAt"`
 	Status string `json:"status"`
 	RetailCents NullableFloat32 `json:"retailCents,omitempty"`
-	CategorySlug string `json:"categorySlug"`
-	ExternalId NullableString `json:"externalId,omitempty"`
 	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	CategorySlug string `json:"categorySlug"`
+	ApprovedByUserId NullableString `json:"approvedByUserId,omitempty"`
+	ApprovedAt NullableTime `json:"approvedAt,omitempty"`
+	ExternalId NullableString `json:"externalId,omitempty"`
 	Model NullableString `json:"model,omitempty"`
 	Colorway NullableString `json:"colorway,omitempty"`
 	StyleCode NullableString `json:"styleCode,omitempty"`
 	ReleaseDate NullableString `json:"releaseDate,omitempty"`
 	SubmittedByUserId NullableString `json:"submittedByUserId,omitempty"`
-	ApprovedByUserId NullableString `json:"approvedByUserId,omitempty"`
-	ApprovedAt NullableTime `json:"approvedAt,omitempty"`
 	RejectionReason NullableString `json:"rejectionReason,omitempty"`
 	ProposedVariants []GetMarketProductResponseDataProductProposedVariants `json:"proposedVariants"`
 	Verification map[string]interface{} `json:"verification"`
@@ -2209,6 +2209,48 @@ func (o *GetMarketProductResponseDataProduct) UnsetRetailCents() {
 	o.RetailCents.Unset()
 }
 
+// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMarketProductResponseDataProduct) GetImageUrl() string {
+	if o == nil || o.ImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ImageUrl.Get()
+}
+
+// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMarketProductResponseDataProduct) GetImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
+}
+
+// HasImageUrl returns a boolean if a field has been set.
+func (o *GetMarketProductResponseDataProduct) HasImageUrl() bool {
+	if o != nil && o.ImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
+func (o *GetMarketProductResponseDataProduct) SetImageUrl(v string) {
+	o.ImageUrl.Set(&v)
+}
+// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
+func (o *GetMarketProductResponseDataProduct) SetImageUrlNil() {
+	o.ImageUrl.Set(nil)
+}
+
+// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
+func (o *GetMarketProductResponseDataProduct) UnsetImageUrl() {
+	o.ImageUrl.Unset()
+}
+
 // GetCategorySlug returns the CategorySlug field value
 func (o *GetMarketProductResponseDataProduct) GetCategorySlug() string {
 	if o == nil {
@@ -2231,6 +2273,90 @@ func (o *GetMarketProductResponseDataProduct) GetCategorySlugOk() (*string, bool
 // SetCategorySlug sets field value
 func (o *GetMarketProductResponseDataProduct) SetCategorySlug(v string) {
 	o.CategorySlug = v
+}
+
+// GetApprovedByUserId returns the ApprovedByUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMarketProductResponseDataProduct) GetApprovedByUserId() string {
+	if o == nil || o.ApprovedByUserId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ApprovedByUserId.Get()
+}
+
+// GetApprovedByUserIdOk returns a tuple with the ApprovedByUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMarketProductResponseDataProduct) GetApprovedByUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ApprovedByUserId.Get(), o.ApprovedByUserId.IsSet()
+}
+
+// HasApprovedByUserId returns a boolean if a field has been set.
+func (o *GetMarketProductResponseDataProduct) HasApprovedByUserId() bool {
+	if o != nil && o.ApprovedByUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApprovedByUserId gets a reference to the given NullableString and assigns it to the ApprovedByUserId field.
+func (o *GetMarketProductResponseDataProduct) SetApprovedByUserId(v string) {
+	o.ApprovedByUserId.Set(&v)
+}
+// SetApprovedByUserIdNil sets the value for ApprovedByUserId to be an explicit nil
+func (o *GetMarketProductResponseDataProduct) SetApprovedByUserIdNil() {
+	o.ApprovedByUserId.Set(nil)
+}
+
+// UnsetApprovedByUserId ensures that no value is present for ApprovedByUserId, not even an explicit nil
+func (o *GetMarketProductResponseDataProduct) UnsetApprovedByUserId() {
+	o.ApprovedByUserId.Unset()
+}
+
+// GetApprovedAt returns the ApprovedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetMarketProductResponseDataProduct) GetApprovedAt() time.Time {
+	if o == nil || o.ApprovedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ApprovedAt.Get()
+}
+
+// GetApprovedAtOk returns a tuple with the ApprovedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetMarketProductResponseDataProduct) GetApprovedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ApprovedAt.Get(), o.ApprovedAt.IsSet()
+}
+
+// HasApprovedAt returns a boolean if a field has been set.
+func (o *GetMarketProductResponseDataProduct) HasApprovedAt() bool {
+	if o != nil && o.ApprovedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApprovedAt gets a reference to the given NullableTime and assigns it to the ApprovedAt field.
+func (o *GetMarketProductResponseDataProduct) SetApprovedAt(v time.Time) {
+	o.ApprovedAt.Set(&v)
+}
+// SetApprovedAtNil sets the value for ApprovedAt to be an explicit nil
+func (o *GetMarketProductResponseDataProduct) SetApprovedAtNil() {
+	o.ApprovedAt.Set(nil)
+}
+
+// UnsetApprovedAt ensures that no value is present for ApprovedAt, not even an explicit nil
+func (o *GetMarketProductResponseDataProduct) UnsetApprovedAt() {
+	o.ApprovedAt.Unset()
 }
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2273,48 +2399,6 @@ func (o *GetMarketProductResponseDataProduct) SetExternalIdNil() {
 // UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
 func (o *GetMarketProductResponseDataProduct) UnsetExternalId() {
 	o.ExternalId.Unset()
-}
-
-// GetImageUrl returns the ImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetMarketProductResponseDataProduct) GetImageUrl() string {
-	if o == nil || o.ImageUrl.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ImageUrl.Get()
-}
-
-// GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetMarketProductResponseDataProduct) GetImageUrlOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ImageUrl.Get(), o.ImageUrl.IsSet()
-}
-
-// HasImageUrl returns a boolean if a field has been set.
-func (o *GetMarketProductResponseDataProduct) HasImageUrl() bool {
-	if o != nil && o.ImageUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetImageUrl gets a reference to the given NullableString and assigns it to the ImageUrl field.
-func (o *GetMarketProductResponseDataProduct) SetImageUrl(v string) {
-	o.ImageUrl.Set(&v)
-}
-// SetImageUrlNil sets the value for ImageUrl to be an explicit nil
-func (o *GetMarketProductResponseDataProduct) SetImageUrlNil() {
-	o.ImageUrl.Set(nil)
-}
-
-// UnsetImageUrl ensures that no value is present for ImageUrl, not even an explicit nil
-func (o *GetMarketProductResponseDataProduct) UnsetImageUrl() {
-	o.ImageUrl.Unset()
 }
 
 // GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -2525,90 +2609,6 @@ func (o *GetMarketProductResponseDataProduct) SetSubmittedByUserIdNil() {
 // UnsetSubmittedByUserId ensures that no value is present for SubmittedByUserId, not even an explicit nil
 func (o *GetMarketProductResponseDataProduct) UnsetSubmittedByUserId() {
 	o.SubmittedByUserId.Unset()
-}
-
-// GetApprovedByUserId returns the ApprovedByUserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetMarketProductResponseDataProduct) GetApprovedByUserId() string {
-	if o == nil || o.ApprovedByUserId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.ApprovedByUserId.Get()
-}
-
-// GetApprovedByUserIdOk returns a tuple with the ApprovedByUserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetMarketProductResponseDataProduct) GetApprovedByUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ApprovedByUserId.Get(), o.ApprovedByUserId.IsSet()
-}
-
-// HasApprovedByUserId returns a boolean if a field has been set.
-func (o *GetMarketProductResponseDataProduct) HasApprovedByUserId() bool {
-	if o != nil && o.ApprovedByUserId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetApprovedByUserId gets a reference to the given NullableString and assigns it to the ApprovedByUserId field.
-func (o *GetMarketProductResponseDataProduct) SetApprovedByUserId(v string) {
-	o.ApprovedByUserId.Set(&v)
-}
-// SetApprovedByUserIdNil sets the value for ApprovedByUserId to be an explicit nil
-func (o *GetMarketProductResponseDataProduct) SetApprovedByUserIdNil() {
-	o.ApprovedByUserId.Set(nil)
-}
-
-// UnsetApprovedByUserId ensures that no value is present for ApprovedByUserId, not even an explicit nil
-func (o *GetMarketProductResponseDataProduct) UnsetApprovedByUserId() {
-	o.ApprovedByUserId.Unset()
-}
-
-// GetApprovedAt returns the ApprovedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetMarketProductResponseDataProduct) GetApprovedAt() time.Time {
-	if o == nil || o.ApprovedAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.ApprovedAt.Get()
-}
-
-// GetApprovedAtOk returns a tuple with the ApprovedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetMarketProductResponseDataProduct) GetApprovedAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.ApprovedAt.Get(), o.ApprovedAt.IsSet()
-}
-
-// HasApprovedAt returns a boolean if a field has been set.
-func (o *GetMarketProductResponseDataProduct) HasApprovedAt() bool {
-	if o != nil && o.ApprovedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetApprovedAt gets a reference to the given NullableTime and assigns it to the ApprovedAt field.
-func (o *GetMarketProductResponseDataProduct) SetApprovedAt(v time.Time) {
-	o.ApprovedAt.Set(&v)
-}
-// SetApprovedAtNil sets the value for ApprovedAt to be an explicit nil
-func (o *GetMarketProductResponseDataProduct) SetApprovedAtNil() {
-	o.ApprovedAt.Set(nil)
-}
-
-// UnsetApprovedAt ensures that no value is present for ApprovedAt, not even an explicit nil
-func (o *GetMarketProductResponseDataProduct) UnsetApprovedAt() {
-	o.ApprovedAt.Unset()
 }
 
 // GetRejectionReason returns the RejectionReason field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -3447,14 +3447,20 @@ func (o GetMarketProductResponseDataProduct) MarshalJSON() ([]byte, error) {
 	if o.RetailCents.IsSet() {
 		toSerialize["retailCents"] = o.RetailCents.Get()
 	}
+	if o.ImageUrl.IsSet() {
+		toSerialize["imageUrl"] = o.ImageUrl.Get()
+	}
 	if true {
 		toSerialize["categorySlug"] = o.CategorySlug
 	}
+	if o.ApprovedByUserId.IsSet() {
+		toSerialize["approvedByUserId"] = o.ApprovedByUserId.Get()
+	}
+	if o.ApprovedAt.IsSet() {
+		toSerialize["approvedAt"] = o.ApprovedAt.Get()
+	}
 	if o.ExternalId.IsSet() {
 		toSerialize["externalId"] = o.ExternalId.Get()
-	}
-	if o.ImageUrl.IsSet() {
-		toSerialize["imageUrl"] = o.ImageUrl.Get()
 	}
 	if o.Model.IsSet() {
 		toSerialize["model"] = o.Model.Get()
@@ -3470,12 +3476,6 @@ func (o GetMarketProductResponseDataProduct) MarshalJSON() ([]byte, error) {
 	}
 	if o.SubmittedByUserId.IsSet() {
 		toSerialize["submittedByUserId"] = o.SubmittedByUserId.Get()
-	}
-	if o.ApprovedByUserId.IsSet() {
-		toSerialize["approvedByUserId"] = o.ApprovedByUserId.Get()
-	}
-	if o.ApprovedAt.IsSet() {
-		toSerialize["approvedAt"] = o.ApprovedAt.Get()
 	}
 	if o.RejectionReason.IsSet() {
 		toSerialize["rejectionReason"] = o.RejectionReason.Get()
@@ -3849,12 +3849,12 @@ type GetMarketProductResponseDataVariants struct {
 	Id string `json:"id"`
 	Label string `json:"label"`
 	SortKey float32 `json:"sortKey"`
+	SkuId string `json:"skuId"`
 	ExternalId NullableString `json:"externalId,omitempty"`
 	ExternalSource NullableString `json:"externalSource,omitempty"`
 	ExternalSyncedAt NullableTime `json:"externalSyncedAt,omitempty"`
 	LastSaleCents NullableFloat32 `json:"lastSaleCents,omitempty"`
 	TradesCount float32 `json:"tradesCount"`
-	SkuId string `json:"skuId"`
 	LastSaleAt NullableTime `json:"lastSaleAt,omitempty"`
 	BestBidCents NullableFloat32 `json:"bestBidCents,omitempty"`
 	BestAskCents NullableFloat32 `json:"bestAskCents,omitempty"`
@@ -3864,13 +3864,13 @@ type GetMarketProductResponseDataVariants struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetMarketProductResponseDataVariants(id string, label string, sortKey float32, tradesCount float32, skuId string) *GetMarketProductResponseDataVariants {
+func NewGetMarketProductResponseDataVariants(id string, label string, sortKey float32, skuId string, tradesCount float32) *GetMarketProductResponseDataVariants {
 	this := GetMarketProductResponseDataVariants{}
 	this.Id = id
 	this.Label = label
 	this.SortKey = sortKey
-	this.TradesCount = tradesCount
 	this.SkuId = skuId
+	this.TradesCount = tradesCount
 	return &this
 }
 
@@ -3952,6 +3952,30 @@ func (o *GetMarketProductResponseDataVariants) GetSortKeyOk() (*float32, bool) {
 // SetSortKey sets field value
 func (o *GetMarketProductResponseDataVariants) SetSortKey(v float32) {
 	o.SortKey = v
+}
+
+// GetSkuId returns the SkuId field value
+func (o *GetMarketProductResponseDataVariants) GetSkuId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SkuId
+}
+
+// GetSkuIdOk returns a tuple with the SkuId field value
+// and a boolean to check if the value has been set.
+func (o *GetMarketProductResponseDataVariants) GetSkuIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.SkuId, true
+}
+
+// SetSkuId sets field value
+func (o *GetMarketProductResponseDataVariants) SetSkuId(v string) {
+	o.SkuId = v
 }
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -4146,30 +4170,6 @@ func (o *GetMarketProductResponseDataVariants) SetTradesCount(v float32) {
 	o.TradesCount = v
 }
 
-// GetSkuId returns the SkuId field value
-func (o *GetMarketProductResponseDataVariants) GetSkuId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SkuId
-}
-
-// GetSkuIdOk returns a tuple with the SkuId field value
-// and a boolean to check if the value has been set.
-func (o *GetMarketProductResponseDataVariants) GetSkuIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.SkuId, true
-}
-
-// SetSkuId sets field value
-func (o *GetMarketProductResponseDataVariants) SetSkuId(v string) {
-	o.SkuId = v
-}
-
 // GetLastSaleAt returns the LastSaleAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetMarketProductResponseDataVariants) GetLastSaleAt() time.Time {
 	if o == nil || o.LastSaleAt.Get() == nil {
@@ -4307,6 +4307,9 @@ func (o GetMarketProductResponseDataVariants) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["sortKey"] = o.SortKey
 	}
+	if true {
+		toSerialize["skuId"] = o.SkuId
+	}
 	if o.ExternalId.IsSet() {
 		toSerialize["externalId"] = o.ExternalId.Get()
 	}
@@ -4321,9 +4324,6 @@ func (o GetMarketProductResponseDataVariants) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["tradesCount"] = o.TradesCount
-	}
-	if true {
-		toSerialize["skuId"] = o.SkuId
 	}
 	if o.LastSaleAt.IsSet() {
 		toSerialize["lastSaleAt"] = o.LastSaleAt.Get()

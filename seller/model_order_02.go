@@ -15,22 +15,1714 @@ import (
 	"time"
 )
 
-// ListOrdersItem struct for ListOrdersItem
-type ListOrdersItem struct {
+// GetOrderProofOfDeliveryResponse struct for GetOrderProofOfDeliveryResponse
+type GetOrderProofOfDeliveryResponse struct {
+	OrderId string `json:"orderId"`
+	Platform string `json:"platform"`
+	PlatformOrderId NullableString `json:"platformOrderId,omitempty"`
+	ItemTitle NullableString `json:"itemTitle,omitempty"`
+	BuyerUsername NullableString `json:"buyerUsername,omitempty"`
+	// The ZIP we shipped to, for comparison against the delivery scan.
+	ShipToPostalCode NullableString `json:"shipToPostalCode,omitempty"`
+	ShipToCityState NullableString `json:"shipToCityState,omitempty"`
+	Carrier NullableString `json:"carrier,omitempty"`
+	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+	TrackingUrl NullableString `json:"trackingUrl,omitempty"`
+	ShippedAt NullableString `json:"shippedAt,omitempty"`
+	DeliveredAt NullableString `json:"deliveredAt,omitempty"`
+	DeliveryLocation NullableString `json:"deliveryLocation,omitempty"`
+	// Null means the carrier captured none — NOT that delivery is unproven.
+	Signature NullableString `json:"signature,omitempty"`
+	// The carrier's own artefacts, rehosted on our CDN (7C, services/dispute/delivery-evidence.ts): UPS's photo of the parcel at the door and the signature image, and the carrier's proof-of-delivery document (UPS letter, FedEx signed POD). Null when the carrier has none.
+	DeliveryPhotoUrl NullableString `json:"deliveryPhotoUrl,omitempty"`
+	SignatureImageUrl NullableString `json:"signatureImageUrl,omitempty"`
+	CarrierDocumentUrl NullableString `json:"carrierDocumentUrl,omitempty"`
+	ReceivedBy NullableString `json:"receivedBy,omitempty"`
+	Scans []GetOrderProofOfDeliveryResponseScans `json:"scans"`
+	// Does the delivery scan's location contain the ZIP we shipped to?  `null` when either side is missing, which is different from `false`. A false says the carrier delivered somewhere else — a serious claim — and it must never be produced by a missing field.
+	PostalCodeMatches NullableBool `json:"postalCodeMatches,omitempty"`
+	// Why this document is weak, stated plainly so the seller isn't surprised by the marketplace's response.
+	Gaps []string `json:"gaps"`
+}
+
+// NewGetOrderProofOfDeliveryResponse instantiates a new GetOrderProofOfDeliveryResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderProofOfDeliveryResponse(orderId string, platform string, scans []GetOrderProofOfDeliveryResponseScans, gaps []string) *GetOrderProofOfDeliveryResponse {
+	this := GetOrderProofOfDeliveryResponse{}
+	this.OrderId = orderId
+	this.Platform = platform
+	this.Scans = scans
+	this.Gaps = gaps
+	return &this
+}
+
+// NewGetOrderProofOfDeliveryResponseWithDefaults instantiates a new GetOrderProofOfDeliveryResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderProofOfDeliveryResponseWithDefaults() *GetOrderProofOfDeliveryResponse {
+	this := GetOrderProofOfDeliveryResponse{}
+	return &this
+}
+
+// GetOrderId returns the OrderId field value
+func (o *GetOrderProofOfDeliveryResponse) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderProofOfDeliveryResponse) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *GetOrderProofOfDeliveryResponse) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *GetOrderProofOfDeliveryResponse) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderProofOfDeliveryResponse) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *GetOrderProofOfDeliveryResponse) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetPlatformOrderId returns the PlatformOrderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetPlatformOrderId() string {
+	if o == nil || o.PlatformOrderId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformOrderId.Get()
+}
+
+// GetPlatformOrderIdOk returns a tuple with the PlatformOrderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetPlatformOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformOrderId.Get(), o.PlatformOrderId.IsSet()
+}
+
+// HasPlatformOrderId returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasPlatformOrderId() bool {
+	if o != nil && o.PlatformOrderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformOrderId gets a reference to the given NullableString and assigns it to the PlatformOrderId field.
+func (o *GetOrderProofOfDeliveryResponse) SetPlatformOrderId(v string) {
+	o.PlatformOrderId.Set(&v)
+}
+// SetPlatformOrderIdNil sets the value for PlatformOrderId to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetPlatformOrderIdNil() {
+	o.PlatformOrderId.Set(nil)
+}
+
+// UnsetPlatformOrderId ensures that no value is present for PlatformOrderId, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetPlatformOrderId() {
+	o.PlatformOrderId.Unset()
+}
+
+// GetItemTitle returns the ItemTitle field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetItemTitle() string {
+	if o == nil || o.ItemTitle.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ItemTitle.Get()
+}
+
+// GetItemTitleOk returns a tuple with the ItemTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetItemTitleOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ItemTitle.Get(), o.ItemTitle.IsSet()
+}
+
+// HasItemTitle returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasItemTitle() bool {
+	if o != nil && o.ItemTitle.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetItemTitle gets a reference to the given NullableString and assigns it to the ItemTitle field.
+func (o *GetOrderProofOfDeliveryResponse) SetItemTitle(v string) {
+	o.ItemTitle.Set(&v)
+}
+// SetItemTitleNil sets the value for ItemTitle to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetItemTitleNil() {
+	o.ItemTitle.Set(nil)
+}
+
+// UnsetItemTitle ensures that no value is present for ItemTitle, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetItemTitle() {
+	o.ItemTitle.Unset()
+}
+
+// GetBuyerUsername returns the BuyerUsername field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetBuyerUsername() string {
+	if o == nil || o.BuyerUsername.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerUsername.Get()
+}
+
+// GetBuyerUsernameOk returns a tuple with the BuyerUsername field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetBuyerUsernameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerUsername.Get(), o.BuyerUsername.IsSet()
+}
+
+// HasBuyerUsername returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasBuyerUsername() bool {
+	if o != nil && o.BuyerUsername.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerUsername gets a reference to the given NullableString and assigns it to the BuyerUsername field.
+func (o *GetOrderProofOfDeliveryResponse) SetBuyerUsername(v string) {
+	o.BuyerUsername.Set(&v)
+}
+// SetBuyerUsernameNil sets the value for BuyerUsername to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetBuyerUsernameNil() {
+	o.BuyerUsername.Set(nil)
+}
+
+// UnsetBuyerUsername ensures that no value is present for BuyerUsername, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetBuyerUsername() {
+	o.BuyerUsername.Unset()
+}
+
+// GetShipToPostalCode returns the ShipToPostalCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetShipToPostalCode() string {
+	if o == nil || o.ShipToPostalCode.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShipToPostalCode.Get()
+}
+
+// GetShipToPostalCodeOk returns a tuple with the ShipToPostalCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetShipToPostalCodeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShipToPostalCode.Get(), o.ShipToPostalCode.IsSet()
+}
+
+// HasShipToPostalCode returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasShipToPostalCode() bool {
+	if o != nil && o.ShipToPostalCode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShipToPostalCode gets a reference to the given NullableString and assigns it to the ShipToPostalCode field.
+func (o *GetOrderProofOfDeliveryResponse) SetShipToPostalCode(v string) {
+	o.ShipToPostalCode.Set(&v)
+}
+// SetShipToPostalCodeNil sets the value for ShipToPostalCode to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetShipToPostalCodeNil() {
+	o.ShipToPostalCode.Set(nil)
+}
+
+// UnsetShipToPostalCode ensures that no value is present for ShipToPostalCode, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetShipToPostalCode() {
+	o.ShipToPostalCode.Unset()
+}
+
+// GetShipToCityState returns the ShipToCityState field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetShipToCityState() string {
+	if o == nil || o.ShipToCityState.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShipToCityState.Get()
+}
+
+// GetShipToCityStateOk returns a tuple with the ShipToCityState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetShipToCityStateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShipToCityState.Get(), o.ShipToCityState.IsSet()
+}
+
+// HasShipToCityState returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasShipToCityState() bool {
+	if o != nil && o.ShipToCityState.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShipToCityState gets a reference to the given NullableString and assigns it to the ShipToCityState field.
+func (o *GetOrderProofOfDeliveryResponse) SetShipToCityState(v string) {
+	o.ShipToCityState.Set(&v)
+}
+// SetShipToCityStateNil sets the value for ShipToCityState to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetShipToCityStateNil() {
+	o.ShipToCityState.Set(nil)
+}
+
+// UnsetShipToCityState ensures that no value is present for ShipToCityState, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetShipToCityState() {
+	o.ShipToCityState.Unset()
+}
+
+// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetCarrier() string {
+	if o == nil || o.Carrier.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Carrier.Get()
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Carrier.Get(), o.Carrier.IsSet()
+}
+
+// HasCarrier returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasCarrier() bool {
+	if o != nil && o.Carrier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
+func (o *GetOrderProofOfDeliveryResponse) SetCarrier(v string) {
+	o.Carrier.Set(&v)
+}
+// SetCarrierNil sets the value for Carrier to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetCarrierNil() {
+	o.Carrier.Set(nil)
+}
+
+// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetCarrier() {
+	o.Carrier.Unset()
+}
+
+// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetTrackingNumber() string {
+	if o == nil || o.TrackingNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingNumber.Get()
+}
+
+// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetTrackingNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
+}
+
+// HasTrackingNumber returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasTrackingNumber() bool {
+	if o != nil && o.TrackingNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
+func (o *GetOrderProofOfDeliveryResponse) SetTrackingNumber(v string) {
+	o.TrackingNumber.Set(&v)
+}
+// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetTrackingNumberNil() {
+	o.TrackingNumber.Set(nil)
+}
+
+// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetTrackingNumber() {
+	o.TrackingNumber.Unset()
+}
+
+// GetTrackingUrl returns the TrackingUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetTrackingUrl() string {
+	if o == nil || o.TrackingUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingUrl.Get()
+}
+
+// GetTrackingUrlOk returns a tuple with the TrackingUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetTrackingUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingUrl.Get(), o.TrackingUrl.IsSet()
+}
+
+// HasTrackingUrl returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasTrackingUrl() bool {
+	if o != nil && o.TrackingUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingUrl gets a reference to the given NullableString and assigns it to the TrackingUrl field.
+func (o *GetOrderProofOfDeliveryResponse) SetTrackingUrl(v string) {
+	o.TrackingUrl.Set(&v)
+}
+// SetTrackingUrlNil sets the value for TrackingUrl to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetTrackingUrlNil() {
+	o.TrackingUrl.Set(nil)
+}
+
+// UnsetTrackingUrl ensures that no value is present for TrackingUrl, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetTrackingUrl() {
+	o.TrackingUrl.Unset()
+}
+
+// GetShippedAt returns the ShippedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetShippedAt() string {
+	if o == nil || o.ShippedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShippedAt.Get()
+}
+
+// GetShippedAtOk returns a tuple with the ShippedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetShippedAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShippedAt.Get(), o.ShippedAt.IsSet()
+}
+
+// HasShippedAt returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasShippedAt() bool {
+	if o != nil && o.ShippedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShippedAt gets a reference to the given NullableString and assigns it to the ShippedAt field.
+func (o *GetOrderProofOfDeliveryResponse) SetShippedAt(v string) {
+	o.ShippedAt.Set(&v)
+}
+// SetShippedAtNil sets the value for ShippedAt to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetShippedAtNil() {
+	o.ShippedAt.Set(nil)
+}
+
+// UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetShippedAt() {
+	o.ShippedAt.Unset()
+}
+
+// GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveredAt() string {
+	if o == nil || o.DeliveredAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveredAt.Get()
+}
+
+// GetDeliveredAtOk returns a tuple with the DeliveredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveredAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveredAt.Get(), o.DeliveredAt.IsSet()
+}
+
+// HasDeliveredAt returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasDeliveredAt() bool {
+	if o != nil && o.DeliveredAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveredAt gets a reference to the given NullableString and assigns it to the DeliveredAt field.
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveredAt(v string) {
+	o.DeliveredAt.Set(&v)
+}
+// SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveredAtNil() {
+	o.DeliveredAt.Set(nil)
+}
+
+// UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetDeliveredAt() {
+	o.DeliveredAt.Unset()
+}
+
+// GetDeliveryLocation returns the DeliveryLocation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveryLocation() string {
+	if o == nil || o.DeliveryLocation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryLocation.Get()
+}
+
+// GetDeliveryLocationOk returns a tuple with the DeliveryLocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveryLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryLocation.Get(), o.DeliveryLocation.IsSet()
+}
+
+// HasDeliveryLocation returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasDeliveryLocation() bool {
+	if o != nil && o.DeliveryLocation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryLocation gets a reference to the given NullableString and assigns it to the DeliveryLocation field.
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveryLocation(v string) {
+	o.DeliveryLocation.Set(&v)
+}
+// SetDeliveryLocationNil sets the value for DeliveryLocation to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveryLocationNil() {
+	o.DeliveryLocation.Set(nil)
+}
+
+// UnsetDeliveryLocation ensures that no value is present for DeliveryLocation, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetDeliveryLocation() {
+	o.DeliveryLocation.Unset()
+}
+
+// GetSignature returns the Signature field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetSignature() string {
+	if o == nil || o.Signature.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Signature.Get()
+}
+
+// GetSignatureOk returns a tuple with the Signature field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetSignatureOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Signature.Get(), o.Signature.IsSet()
+}
+
+// HasSignature returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasSignature() bool {
+	if o != nil && o.Signature.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSignature gets a reference to the given NullableString and assigns it to the Signature field.
+func (o *GetOrderProofOfDeliveryResponse) SetSignature(v string) {
+	o.Signature.Set(&v)
+}
+// SetSignatureNil sets the value for Signature to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetSignatureNil() {
+	o.Signature.Set(nil)
+}
+
+// UnsetSignature ensures that no value is present for Signature, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetSignature() {
+	o.Signature.Unset()
+}
+
+// GetDeliveryPhotoUrl returns the DeliveryPhotoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveryPhotoUrl() string {
+	if o == nil || o.DeliveryPhotoUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryPhotoUrl.Get()
+}
+
+// GetDeliveryPhotoUrlOk returns a tuple with the DeliveryPhotoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetDeliveryPhotoUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryPhotoUrl.Get(), o.DeliveryPhotoUrl.IsSet()
+}
+
+// HasDeliveryPhotoUrl returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasDeliveryPhotoUrl() bool {
+	if o != nil && o.DeliveryPhotoUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryPhotoUrl gets a reference to the given NullableString and assigns it to the DeliveryPhotoUrl field.
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveryPhotoUrl(v string) {
+	o.DeliveryPhotoUrl.Set(&v)
+}
+// SetDeliveryPhotoUrlNil sets the value for DeliveryPhotoUrl to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetDeliveryPhotoUrlNil() {
+	o.DeliveryPhotoUrl.Set(nil)
+}
+
+// UnsetDeliveryPhotoUrl ensures that no value is present for DeliveryPhotoUrl, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetDeliveryPhotoUrl() {
+	o.DeliveryPhotoUrl.Unset()
+}
+
+// GetSignatureImageUrl returns the SignatureImageUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetSignatureImageUrl() string {
+	if o == nil || o.SignatureImageUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SignatureImageUrl.Get()
+}
+
+// GetSignatureImageUrlOk returns a tuple with the SignatureImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetSignatureImageUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SignatureImageUrl.Get(), o.SignatureImageUrl.IsSet()
+}
+
+// HasSignatureImageUrl returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasSignatureImageUrl() bool {
+	if o != nil && o.SignatureImageUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSignatureImageUrl gets a reference to the given NullableString and assigns it to the SignatureImageUrl field.
+func (o *GetOrderProofOfDeliveryResponse) SetSignatureImageUrl(v string) {
+	o.SignatureImageUrl.Set(&v)
+}
+// SetSignatureImageUrlNil sets the value for SignatureImageUrl to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetSignatureImageUrlNil() {
+	o.SignatureImageUrl.Set(nil)
+}
+
+// UnsetSignatureImageUrl ensures that no value is present for SignatureImageUrl, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetSignatureImageUrl() {
+	o.SignatureImageUrl.Unset()
+}
+
+// GetCarrierDocumentUrl returns the CarrierDocumentUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetCarrierDocumentUrl() string {
+	if o == nil || o.CarrierDocumentUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CarrierDocumentUrl.Get()
+}
+
+// GetCarrierDocumentUrlOk returns a tuple with the CarrierDocumentUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetCarrierDocumentUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CarrierDocumentUrl.Get(), o.CarrierDocumentUrl.IsSet()
+}
+
+// HasCarrierDocumentUrl returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasCarrierDocumentUrl() bool {
+	if o != nil && o.CarrierDocumentUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrierDocumentUrl gets a reference to the given NullableString and assigns it to the CarrierDocumentUrl field.
+func (o *GetOrderProofOfDeliveryResponse) SetCarrierDocumentUrl(v string) {
+	o.CarrierDocumentUrl.Set(&v)
+}
+// SetCarrierDocumentUrlNil sets the value for CarrierDocumentUrl to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetCarrierDocumentUrlNil() {
+	o.CarrierDocumentUrl.Set(nil)
+}
+
+// UnsetCarrierDocumentUrl ensures that no value is present for CarrierDocumentUrl, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetCarrierDocumentUrl() {
+	o.CarrierDocumentUrl.Unset()
+}
+
+// GetReceivedBy returns the ReceivedBy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetReceivedBy() string {
+	if o == nil || o.ReceivedBy.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReceivedBy.Get()
+}
+
+// GetReceivedByOk returns a tuple with the ReceivedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetReceivedByOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReceivedBy.Get(), o.ReceivedBy.IsSet()
+}
+
+// HasReceivedBy returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasReceivedBy() bool {
+	if o != nil && o.ReceivedBy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReceivedBy gets a reference to the given NullableString and assigns it to the ReceivedBy field.
+func (o *GetOrderProofOfDeliveryResponse) SetReceivedBy(v string) {
+	o.ReceivedBy.Set(&v)
+}
+// SetReceivedByNil sets the value for ReceivedBy to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetReceivedByNil() {
+	o.ReceivedBy.Set(nil)
+}
+
+// UnsetReceivedBy ensures that no value is present for ReceivedBy, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetReceivedBy() {
+	o.ReceivedBy.Unset()
+}
+
+// GetScans returns the Scans field value
+func (o *GetOrderProofOfDeliveryResponse) GetScans() []GetOrderProofOfDeliveryResponseScans {
+	if o == nil {
+		var ret []GetOrderProofOfDeliveryResponseScans
+		return ret
+	}
+
+	return o.Scans
+}
+
+// GetScansOk returns a tuple with the Scans field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderProofOfDeliveryResponse) GetScansOk() ([]GetOrderProofOfDeliveryResponseScans, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Scans, true
+}
+
+// SetScans sets field value
+func (o *GetOrderProofOfDeliveryResponse) SetScans(v []GetOrderProofOfDeliveryResponseScans) {
+	o.Scans = v
+}
+
+// GetPostalCodeMatches returns the PostalCodeMatches field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponse) GetPostalCodeMatches() bool {
+	if o == nil || o.PostalCodeMatches.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PostalCodeMatches.Get()
+}
+
+// GetPostalCodeMatchesOk returns a tuple with the PostalCodeMatches field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponse) GetPostalCodeMatchesOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PostalCodeMatches.Get(), o.PostalCodeMatches.IsSet()
+}
+
+// HasPostalCodeMatches returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponse) HasPostalCodeMatches() bool {
+	if o != nil && o.PostalCodeMatches.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPostalCodeMatches gets a reference to the given NullableBool and assigns it to the PostalCodeMatches field.
+func (o *GetOrderProofOfDeliveryResponse) SetPostalCodeMatches(v bool) {
+	o.PostalCodeMatches.Set(&v)
+}
+// SetPostalCodeMatchesNil sets the value for PostalCodeMatches to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) SetPostalCodeMatchesNil() {
+	o.PostalCodeMatches.Set(nil)
+}
+
+// UnsetPostalCodeMatches ensures that no value is present for PostalCodeMatches, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponse) UnsetPostalCodeMatches() {
+	o.PostalCodeMatches.Unset()
+}
+
+// GetGaps returns the Gaps field value
+func (o *GetOrderProofOfDeliveryResponse) GetGaps() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Gaps
+}
+
+// GetGapsOk returns a tuple with the Gaps field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderProofOfDeliveryResponse) GetGapsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Gaps, true
+}
+
+// SetGaps sets field value
+func (o *GetOrderProofOfDeliveryResponse) SetGaps(v []string) {
+	o.Gaps = v
+}
+
+func (o GetOrderProofOfDeliveryResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if o.PlatformOrderId.IsSet() {
+		toSerialize["platformOrderId"] = o.PlatformOrderId.Get()
+	}
+	if o.ItemTitle.IsSet() {
+		toSerialize["itemTitle"] = o.ItemTitle.Get()
+	}
+	if o.BuyerUsername.IsSet() {
+		toSerialize["buyerUsername"] = o.BuyerUsername.Get()
+	}
+	if o.ShipToPostalCode.IsSet() {
+		toSerialize["shipToPostalCode"] = o.ShipToPostalCode.Get()
+	}
+	if o.ShipToCityState.IsSet() {
+		toSerialize["shipToCityState"] = o.ShipToCityState.Get()
+	}
+	if o.Carrier.IsSet() {
+		toSerialize["carrier"] = o.Carrier.Get()
+	}
+	if o.TrackingNumber.IsSet() {
+		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	if o.TrackingUrl.IsSet() {
+		toSerialize["trackingUrl"] = o.TrackingUrl.Get()
+	}
+	if o.ShippedAt.IsSet() {
+		toSerialize["shippedAt"] = o.ShippedAt.Get()
+	}
+	if o.DeliveredAt.IsSet() {
+		toSerialize["deliveredAt"] = o.DeliveredAt.Get()
+	}
+	if o.DeliveryLocation.IsSet() {
+		toSerialize["deliveryLocation"] = o.DeliveryLocation.Get()
+	}
+	if o.Signature.IsSet() {
+		toSerialize["signature"] = o.Signature.Get()
+	}
+	if o.DeliveryPhotoUrl.IsSet() {
+		toSerialize["deliveryPhotoUrl"] = o.DeliveryPhotoUrl.Get()
+	}
+	if o.SignatureImageUrl.IsSet() {
+		toSerialize["signatureImageUrl"] = o.SignatureImageUrl.Get()
+	}
+	if o.CarrierDocumentUrl.IsSet() {
+		toSerialize["carrierDocumentUrl"] = o.CarrierDocumentUrl.Get()
+	}
+	if o.ReceivedBy.IsSet() {
+		toSerialize["receivedBy"] = o.ReceivedBy.Get()
+	}
+	if true {
+		toSerialize["scans"] = o.Scans
+	}
+	if o.PostalCodeMatches.IsSet() {
+		toSerialize["postalCodeMatches"] = o.PostalCodeMatches.Get()
+	}
+	if true {
+		toSerialize["gaps"] = o.Gaps
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderProofOfDeliveryResponse struct {
+	value *GetOrderProofOfDeliveryResponse
+	isSet bool
+}
+
+func (v NullableGetOrderProofOfDeliveryResponse) Get() *GetOrderProofOfDeliveryResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponse) Set(val *GetOrderProofOfDeliveryResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderProofOfDeliveryResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderProofOfDeliveryResponse(val *GetOrderProofOfDeliveryResponse) *NullableGetOrderProofOfDeliveryResponse {
+	return &NullableGetOrderProofOfDeliveryResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderProofOfDeliveryResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderProofOfDeliveryResponseScans struct for GetOrderProofOfDeliveryResponseScans
+type GetOrderProofOfDeliveryResponseScans struct {
+	Status string `json:"status"`
+	Detail NullableString `json:"detail,omitempty"`
+	Date NullableString `json:"date,omitempty"`
+	Location NullableString `json:"location,omitempty"`
+}
+
+// NewGetOrderProofOfDeliveryResponseScans instantiates a new GetOrderProofOfDeliveryResponseScans object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderProofOfDeliveryResponseScans(status string) *GetOrderProofOfDeliveryResponseScans {
+	this := GetOrderProofOfDeliveryResponseScans{}
+	this.Status = status
+	return &this
+}
+
+// NewGetOrderProofOfDeliveryResponseScansWithDefaults instantiates a new GetOrderProofOfDeliveryResponseScans object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderProofOfDeliveryResponseScansWithDefaults() *GetOrderProofOfDeliveryResponseScans {
+	this := GetOrderProofOfDeliveryResponseScans{}
+	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *GetOrderProofOfDeliveryResponseScans) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderProofOfDeliveryResponseScans) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *GetOrderProofOfDeliveryResponseScans) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponseScans) GetDetail() string {
+	if o == nil || o.Detail.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Detail.Get()
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponseScans) GetDetailOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Detail.Get(), o.Detail.IsSet()
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponseScans) HasDetail() bool {
+	if o != nil && o.Detail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
+func (o *GetOrderProofOfDeliveryResponseScans) SetDetail(v string) {
+	o.Detail.Set(&v)
+}
+// SetDetailNil sets the value for Detail to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) SetDetailNil() {
+	o.Detail.Set(nil)
+}
+
+// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) UnsetDetail() {
+	o.Detail.Unset()
+}
+
+// GetDate returns the Date field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponseScans) GetDate() string {
+	if o == nil || o.Date.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Date.Get()
+}
+
+// GetDateOk returns a tuple with the Date field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponseScans) GetDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Date.Get(), o.Date.IsSet()
+}
+
+// HasDate returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponseScans) HasDate() bool {
+	if o != nil && o.Date.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDate gets a reference to the given NullableString and assigns it to the Date field.
+func (o *GetOrderProofOfDeliveryResponseScans) SetDate(v string) {
+	o.Date.Set(&v)
+}
+// SetDateNil sets the value for Date to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) SetDateNil() {
+	o.Date.Set(nil)
+}
+
+// UnsetDate ensures that no value is present for Date, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) UnsetDate() {
+	o.Date.Unset()
+}
+
+// GetLocation returns the Location field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderProofOfDeliveryResponseScans) GetLocation() string {
+	if o == nil || o.Location.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Location.Get()
+}
+
+// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderProofOfDeliveryResponseScans) GetLocationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Location.Get(), o.Location.IsSet()
+}
+
+// HasLocation returns a boolean if a field has been set.
+func (o *GetOrderProofOfDeliveryResponseScans) HasLocation() bool {
+	if o != nil && o.Location.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLocation gets a reference to the given NullableString and assigns it to the Location field.
+func (o *GetOrderProofOfDeliveryResponseScans) SetLocation(v string) {
+	o.Location.Set(&v)
+}
+// SetLocationNil sets the value for Location to be an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) SetLocationNil() {
+	o.Location.Set(nil)
+}
+
+// UnsetLocation ensures that no value is present for Location, not even an explicit nil
+func (o *GetOrderProofOfDeliveryResponseScans) UnsetLocation() {
+	o.Location.Unset()
+}
+
+func (o GetOrderProofOfDeliveryResponseScans) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.Detail.IsSet() {
+		toSerialize["detail"] = o.Detail.Get()
+	}
+	if o.Date.IsSet() {
+		toSerialize["date"] = o.Date.Get()
+	}
+	if o.Location.IsSet() {
+		toSerialize["location"] = o.Location.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderProofOfDeliveryResponseScans struct {
+	value *GetOrderProofOfDeliveryResponseScans
+	isSet bool
+}
+
+func (v NullableGetOrderProofOfDeliveryResponseScans) Get() *GetOrderProofOfDeliveryResponseScans {
+	return v.value
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponseScans) Set(val *GetOrderProofOfDeliveryResponseScans) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderProofOfDeliveryResponseScans) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponseScans) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderProofOfDeliveryResponseScans(val *GetOrderProofOfDeliveryResponseScans) *NullableGetOrderProofOfDeliveryResponseScans {
+	return &NullableGetOrderProofOfDeliveryResponseScans{value: val, isSet: true}
+}
+
+func (v NullableGetOrderProofOfDeliveryResponseScans) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderProofOfDeliveryResponseScans) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderRefundOptionResponse struct for GetOrderRefundOptionResponse
+type GetOrderRefundOptionResponse struct {
+	OrderId string `json:"orderId"`
+	Platform string `json:"platform"`
+	Supported bool `json:"supported"`
+	Full bool `json:"full"`
+	Partial bool `json:"partial"`
+	PartialCap NullableString `json:"partialCap,omitempty"`
+	BeforeShipment bool `json:"beforeShipment"`
+	Reasons []GetAnalyticProgramResponseDataTrendSeries `json:"reasons,omitempty"`
+	Comment bool `json:"comment"`
+	CancelsSale bool `json:"cancelsSale"`
+	UntilCompleted bool `json:"untilCompleted"`
+	WindowClosed bool `json:"windowClosed"`
+	Note NullableString `json:"note,omitempty"`
+}
+
+// NewGetOrderRefundOptionResponse instantiates a new GetOrderRefundOptionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderRefundOptionResponse(orderId string, platform string, supported bool, full bool, partial bool, beforeShipment bool, comment bool, cancelsSale bool, untilCompleted bool, windowClosed bool) *GetOrderRefundOptionResponse {
+	this := GetOrderRefundOptionResponse{}
+	this.OrderId = orderId
+	this.Platform = platform
+	this.Supported = supported
+	this.Full = full
+	this.Partial = partial
+	this.BeforeShipment = beforeShipment
+	this.Comment = comment
+	this.CancelsSale = cancelsSale
+	this.UntilCompleted = untilCompleted
+	this.WindowClosed = windowClosed
+	return &this
+}
+
+// NewGetOrderRefundOptionResponseWithDefaults instantiates a new GetOrderRefundOptionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderRefundOptionResponseWithDefaults() *GetOrderRefundOptionResponse {
+	this := GetOrderRefundOptionResponse{}
+	return &this
+}
+
+// GetOrderId returns the OrderId field value
+func (o *GetOrderRefundOptionResponse) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *GetOrderRefundOptionResponse) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *GetOrderRefundOptionResponse) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *GetOrderRefundOptionResponse) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetSupported returns the Supported field value
+func (o *GetOrderRefundOptionResponse) GetSupported() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Supported
+}
+
+// GetSupportedOk returns a tuple with the Supported field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetSupportedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Supported, true
+}
+
+// SetSupported sets field value
+func (o *GetOrderRefundOptionResponse) SetSupported(v bool) {
+	o.Supported = v
+}
+
+// GetFull returns the Full field value
+func (o *GetOrderRefundOptionResponse) GetFull() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Full
+}
+
+// GetFullOk returns a tuple with the Full field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetFullOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Full, true
+}
+
+// SetFull sets field value
+func (o *GetOrderRefundOptionResponse) SetFull(v bool) {
+	o.Full = v
+}
+
+// GetPartial returns the Partial field value
+func (o *GetOrderRefundOptionResponse) GetPartial() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Partial
+}
+
+// GetPartialOk returns a tuple with the Partial field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetPartialOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Partial, true
+}
+
+// SetPartial sets field value
+func (o *GetOrderRefundOptionResponse) SetPartial(v bool) {
+	o.Partial = v
+}
+
+// GetPartialCap returns the PartialCap field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderRefundOptionResponse) GetPartialCap() string {
+	if o == nil || o.PartialCap.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PartialCap.Get()
+}
+
+// GetPartialCapOk returns a tuple with the PartialCap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderRefundOptionResponse) GetPartialCapOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PartialCap.Get(), o.PartialCap.IsSet()
+}
+
+// HasPartialCap returns a boolean if a field has been set.
+func (o *GetOrderRefundOptionResponse) HasPartialCap() bool {
+	if o != nil && o.PartialCap.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPartialCap gets a reference to the given NullableString and assigns it to the PartialCap field.
+func (o *GetOrderRefundOptionResponse) SetPartialCap(v string) {
+	o.PartialCap.Set(&v)
+}
+// SetPartialCapNil sets the value for PartialCap to be an explicit nil
+func (o *GetOrderRefundOptionResponse) SetPartialCapNil() {
+	o.PartialCap.Set(nil)
+}
+
+// UnsetPartialCap ensures that no value is present for PartialCap, not even an explicit nil
+func (o *GetOrderRefundOptionResponse) UnsetPartialCap() {
+	o.PartialCap.Unset()
+}
+
+// GetBeforeShipment returns the BeforeShipment field value
+func (o *GetOrderRefundOptionResponse) GetBeforeShipment() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.BeforeShipment
+}
+
+// GetBeforeShipmentOk returns a tuple with the BeforeShipment field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetBeforeShipmentOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BeforeShipment, true
+}
+
+// SetBeforeShipment sets field value
+func (o *GetOrderRefundOptionResponse) SetBeforeShipment(v bool) {
+	o.BeforeShipment = v
+}
+
+// GetReasons returns the Reasons field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderRefundOptionResponse) GetReasons() []GetAnalyticProgramResponseDataTrendSeries {
+	if o == nil  {
+		var ret []GetAnalyticProgramResponseDataTrendSeries
+		return ret
+	}
+	return o.Reasons
+}
+
+// GetReasonsOk returns a tuple with the Reasons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderRefundOptionResponse) GetReasonsOk() ([]GetAnalyticProgramResponseDataTrendSeries, bool) {
+	if o == nil || o.Reasons == nil {
+		return nil, false
+	}
+	return o.Reasons, true
+}
+
+// HasReasons returns a boolean if a field has been set.
+func (o *GetOrderRefundOptionResponse) HasReasons() bool {
+	if o != nil && o.Reasons != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReasons gets a reference to the given []GetAnalyticProgramResponseDataTrendSeries and assigns it to the Reasons field.
+func (o *GetOrderRefundOptionResponse) SetReasons(v []GetAnalyticProgramResponseDataTrendSeries) {
+	o.Reasons = v
+}
+
+// GetComment returns the Comment field value
+func (o *GetOrderRefundOptionResponse) GetComment() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetCommentOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Comment, true
+}
+
+// SetComment sets field value
+func (o *GetOrderRefundOptionResponse) SetComment(v bool) {
+	o.Comment = v
+}
+
+// GetCancelsSale returns the CancelsSale field value
+func (o *GetOrderRefundOptionResponse) GetCancelsSale() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CancelsSale
+}
+
+// GetCancelsSaleOk returns a tuple with the CancelsSale field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetCancelsSaleOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CancelsSale, true
+}
+
+// SetCancelsSale sets field value
+func (o *GetOrderRefundOptionResponse) SetCancelsSale(v bool) {
+	o.CancelsSale = v
+}
+
+// GetUntilCompleted returns the UntilCompleted field value
+func (o *GetOrderRefundOptionResponse) GetUntilCompleted() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.UntilCompleted
+}
+
+// GetUntilCompletedOk returns a tuple with the UntilCompleted field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetUntilCompletedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UntilCompleted, true
+}
+
+// SetUntilCompleted sets field value
+func (o *GetOrderRefundOptionResponse) SetUntilCompleted(v bool) {
+	o.UntilCompleted = v
+}
+
+// GetWindowClosed returns the WindowClosed field value
+func (o *GetOrderRefundOptionResponse) GetWindowClosed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.WindowClosed
+}
+
+// GetWindowClosedOk returns a tuple with the WindowClosed field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderRefundOptionResponse) GetWindowClosedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WindowClosed, true
+}
+
+// SetWindowClosed sets field value
+func (o *GetOrderRefundOptionResponse) SetWindowClosed(v bool) {
+	o.WindowClosed = v
+}
+
+// GetNote returns the Note field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderRefundOptionResponse) GetNote() string {
+	if o == nil || o.Note.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Note.Get()
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderRefundOptionResponse) GetNoteOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Note.Get(), o.Note.IsSet()
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *GetOrderRefundOptionResponse) HasNote() bool {
+	if o != nil && o.Note.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given NullableString and assigns it to the Note field.
+func (o *GetOrderRefundOptionResponse) SetNote(v string) {
+	o.Note.Set(&v)
+}
+// SetNoteNil sets the value for Note to be an explicit nil
+func (o *GetOrderRefundOptionResponse) SetNoteNil() {
+	o.Note.Set(nil)
+}
+
+// UnsetNote ensures that no value is present for Note, not even an explicit nil
+func (o *GetOrderRefundOptionResponse) UnsetNote() {
+	o.Note.Unset()
+}
+
+func (o GetOrderRefundOptionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if true {
+		toSerialize["supported"] = o.Supported
+	}
+	if true {
+		toSerialize["full"] = o.Full
+	}
+	if true {
+		toSerialize["partial"] = o.Partial
+	}
+	if o.PartialCap.IsSet() {
+		toSerialize["partialCap"] = o.PartialCap.Get()
+	}
+	if true {
+		toSerialize["beforeShipment"] = o.BeforeShipment
+	}
+	if o.Reasons != nil {
+		toSerialize["reasons"] = o.Reasons
+	}
+	if true {
+		toSerialize["comment"] = o.Comment
+	}
+	if true {
+		toSerialize["cancelsSale"] = o.CancelsSale
+	}
+	if true {
+		toSerialize["untilCompleted"] = o.UntilCompleted
+	}
+	if true {
+		toSerialize["windowClosed"] = o.WindowClosed
+	}
+	if o.Note.IsSet() {
+		toSerialize["note"] = o.Note.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderRefundOptionResponse struct {
+	value *GetOrderRefundOptionResponse
+	isSet bool
+}
+
+func (v NullableGetOrderRefundOptionResponse) Get() *GetOrderRefundOptionResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderRefundOptionResponse) Set(val *GetOrderRefundOptionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderRefundOptionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderRefundOptionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderRefundOptionResponse(val *GetOrderRefundOptionResponse) *NullableGetOrderRefundOptionResponse {
+	return &NullableGetOrderRefundOptionResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderRefundOptionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderRefundOptionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderResponse struct for GetOrderResponse
+type GetOrderResponse struct {
+	AppShare NullableGetOrderResponseAppShare `json:"appShare,omitempty"`
+	CarrierTracking string `json:"carrierTracking"`
+	Trade NullableGetOrderResponseTrade `json:"trade,omitempty"`
+	// DOLLARS (numbers, as order.created sends them). null = not known (no sale row, or details pending).
+	SalePrice NullableFloat32 `json:"salePrice,omitempty"`
+	PlatformFee NullableFloat32 `json:"platformFee,omitempty"`
+	TaxCollected NullableFloat32 `json:"taxCollected,omitempty"`
+	ShippingCharged NullableFloat32 `json:"shippingCharged,omitempty"`
+	// 'exact' (the marketplace's charged fee) | 'estimated'.
+	FeeSource NullableString `json:"feeSource,omitempty"`
+	DetailsPending bool `json:"detailsPending"`
+	// The listing's SKU (order.created `sku`).
+	Sku NullableString `json:"sku,omitempty"`
+	// Units on the order (order.created `quantity`).
+	Quantity float32 `json:"quantity"`
+	LineItems []GetOrderResponseLineItems `json:"lineItems"`
 	Id string `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	UserId string `json:"userId"`
-	Quantity float32 `json:"quantity"`
-	Notes NullableString `json:"notes,omitempty"`
-	Status string `json:"status"`
 	Platform string `json:"platform"`
-	CancelledAt NullableTime `json:"cancelledAt,omitempty"`
-	ListingId NullableString `json:"listingId,omitempty"`
+	Status string `json:"status"`
+	Notes NullableString `json:"notes,omitempty"`
+	Source NullableString `json:"source,omitempty"`
 	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+	ListingId NullableString `json:"listingId,omitempty"`
 	PlatformListingId NullableString `json:"platformListingId,omitempty"`
+	StorefrontId NullableString `json:"storefrontId,omitempty"`
 	HandlingTimeDays NullableFloat32 `json:"handlingTimeDays,omitempty"`
 	PlatformOrderId NullableString `json:"platformOrderId,omitempty"`
+	ReportedByAppId NullableString `json:"reportedByAppId,omitempty"`
 	BuyerUsername NullableString `json:"buyerUsername,omitempty"`
 	PickupPoint map[string]interface{} `json:"pickupPoint,omitempty"`
 	ConsolidationId NullableString `json:"consolidationId,omitempty"`
@@ -38,6 +1730,9 @@ type ListOrdersItem struct {
 	DutiesRefundedAt NullableTime `json:"dutiesRefundedAt,omitempty"`
 	SalesChannel string `json:"salesChannel"`
 	ChannelLocationId NullableString `json:"channelLocationId,omitempty"`
+	Channel string `json:"channel"`
+	InvoiceId NullableString `json:"invoiceId,omitempty"`
+	BuyerCompanyId NullableString `json:"buyerCompanyId,omitempty"`
 	PackagePresetId NullableString `json:"packagePresetId,omitempty"`
 	Carrier NullableString `json:"carrier,omitempty"`
 	Service NullableString `json:"service,omitempty"`
@@ -52,7 +1747,7 @@ type ListOrdersItem struct {
 	DeliveredAt NullableTime `json:"deliveredAt,omitempty"`
 	CarrierStatus NullableString `json:"carrierStatus,omitempty"`
 	CarrierStatusDetail NullableString `json:"carrierStatusDetail,omitempty"`
-	TrackingHistory []ListOrdersItemTrackingHistory `json:"trackingHistory,omitempty"`
+	TrackingHistory []GetOrderResponseTrackingHistory `json:"trackingHistory,omitempty"`
 	DeliveryLocation NullableString `json:"deliveryLocation,omitempty"`
 	DeliverySignature NullableString `json:"deliverySignature,omitempty"`
 	TrackingSubmittedAt NullableTime `json:"trackingSubmittedAt,omitempty"`
@@ -74,33 +1769,40 @@ type ListOrdersItem struct {
 	RefundReason NullableString `json:"refundReason,omitempty"`
 	RefundPlatformId NullableString `json:"refundPlatformId,omitempty"`
 	RefundedAt NullableTime `json:"refundedAt,omitempty"`
+	CancelledAt NullableTime `json:"cancelledAt,omitempty"`
 	CancellationReason NullableString `json:"cancellationReason,omitempty"`
 	ArrivalConditionRequestedAt NullableTime `json:"arrivalConditionRequestedAt,omitempty"`
 	ArrivalConditionSubmittedAt NullableTime `json:"arrivalConditionSubmittedAt,omitempty"`
 	ArrivalConditionDeclinedAt NullableTime `json:"arrivalConditionDeclinedAt,omitempty"`
 	DeliveryPhotoUrl NullableString `json:"deliveryPhotoUrl,omitempty"`
+	DeliveryPhotoSource NullableString `json:"deliveryPhotoSource,omitempty"`
 	PurchaseOrderRef NullableString `json:"purchaseOrderRef,omitempty"`
 	ArrivalConditionPhotos []string `json:"arrivalConditionPhotos"`
 	BuyerEmail NullableString `json:"buyerEmail,omitempty"`
 	FulfillmentMethod string `json:"fulfillmentMethod"`
+	PlatformConfirmedAt NullableTime `json:"platformConfirmedAt,omitempty"`
 	DeletedAt NullableTime `json:"deletedAt,omitempty"`
 }
 
-// NewListOrdersItem instantiates a new ListOrdersItem object
+// NewGetOrderResponse instantiates a new GetOrderResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrdersItem(id string, createdAt time.Time, updatedAt time.Time, userId string, quantity float32, status string, platform string, dutiesCents float32, salesChannel string, oversoldBy float32, isDisputed bool, arrivalConditionPhotos []string, fulfillmentMethod string) *ListOrdersItem {
-	this := ListOrdersItem{}
+func NewGetOrderResponse(carrierTracking string, detailsPending bool, quantity float32, lineItems []GetOrderResponseLineItems, id string, createdAt time.Time, updatedAt time.Time, userId string, platform string, status string, dutiesCents float32, salesChannel string, channel string, oversoldBy float32, isDisputed bool, arrivalConditionPhotos []string, fulfillmentMethod string) *GetOrderResponse {
+	this := GetOrderResponse{}
+	this.CarrierTracking = carrierTracking
+	this.DetailsPending = detailsPending
+	this.Quantity = quantity
+	this.LineItems = lineItems
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	this.UserId = userId
-	this.Quantity = quantity
-	this.Status = status
 	this.Platform = platform
+	this.Status = status
 	this.DutiesCents = dutiesCents
 	this.SalesChannel = salesChannel
+	this.Channel = channel
 	this.OversoldBy = oversoldBy
 	this.IsDisputed = isDisputed
 	this.ArrivalConditionPhotos = arrivalConditionPhotos
@@ -108,112 +1810,400 @@ func NewListOrdersItem(id string, createdAt time.Time, updatedAt time.Time, user
 	return &this
 }
 
-// NewListOrdersItemWithDefaults instantiates a new ListOrdersItem object
+// NewGetOrderResponseWithDefaults instantiates a new GetOrderResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListOrdersItemWithDefaults() *ListOrdersItem {
-	this := ListOrdersItem{}
+func NewGetOrderResponseWithDefaults() *GetOrderResponse {
+	this := GetOrderResponse{}
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *ListOrdersItem) GetId() string {
+// GetAppShare returns the AppShare field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetAppShare() GetOrderResponseAppShare {
+	if o == nil || o.AppShare.Get() == nil {
+		var ret GetOrderResponseAppShare
+		return ret
+	}
+	return *o.AppShare.Get()
+}
+
+// GetAppShareOk returns a tuple with the AppShare field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetAppShareOk() (*GetOrderResponseAppShare, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.AppShare.Get(), o.AppShare.IsSet()
+}
+
+// HasAppShare returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasAppShare() bool {
+	if o != nil && o.AppShare.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAppShare gets a reference to the given NullableGetOrderResponseAppShare and assigns it to the AppShare field.
+func (o *GetOrderResponse) SetAppShare(v GetOrderResponseAppShare) {
+	o.AppShare.Set(&v)
+}
+// SetAppShareNil sets the value for AppShare to be an explicit nil
+func (o *GetOrderResponse) SetAppShareNil() {
+	o.AppShare.Set(nil)
+}
+
+// UnsetAppShare ensures that no value is present for AppShare, not even an explicit nil
+func (o *GetOrderResponse) UnsetAppShare() {
+	o.AppShare.Unset()
+}
+
+// GetCarrierTracking returns the CarrierTracking field value
+func (o *GetOrderResponse) GetCarrierTracking() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Id
+	return o.CarrierTracking
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetCarrierTrackingOk returns a tuple with the CarrierTracking field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetCarrierTrackingOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.CarrierTracking, true
 }
 
-// SetId sets field value
-func (o *ListOrdersItem) SetId(v string) {
-	o.Id = v
+// SetCarrierTracking sets field value
+func (o *GetOrderResponse) SetCarrierTracking(v string) {
+	o.CarrierTracking = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *ListOrdersItem) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
+// GetTrade returns the Trade field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetTrade() GetOrderResponseTrade {
+	if o == nil || o.Trade.Get() == nil {
+		var ret GetOrderResponseTrade
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.Trade.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetTradeOk returns a tuple with the Trade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetCreatedAtOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetTradeOk() (*GetOrderResponseTrade, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.Trade.Get(), o.Trade.IsSet()
 }
 
-// SetCreatedAt sets field value
-func (o *ListOrdersItem) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+// HasTrade returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasTrade() bool {
+	if o != nil && o.Trade.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *ListOrdersItem) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
+// SetTrade gets a reference to the given NullableGetOrderResponseTrade and assigns it to the Trade field.
+func (o *GetOrderResponse) SetTrade(v GetOrderResponseTrade) {
+	o.Trade.Set(&v)
+}
+// SetTradeNil sets the value for Trade to be an explicit nil
+func (o *GetOrderResponse) SetTradeNil() {
+	o.Trade.Set(nil)
+}
+
+// UnsetTrade ensures that no value is present for Trade, not even an explicit nil
+func (o *GetOrderResponse) UnsetTrade() {
+	o.Trade.Unset()
+}
+
+// GetSalePrice returns the SalePrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetSalePrice() float32 {
+	if o == nil || o.SalePrice.Get() == nil {
+		var ret float32
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.SalePrice.Get()
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetSalePriceOk returns a tuple with the SalePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetUpdatedAtOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetSalePriceOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.SalePrice.Get(), o.SalePrice.IsSet()
 }
 
-// SetUpdatedAt sets field value
-func (o *ListOrdersItem) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+// HasSalePrice returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasSalePrice() bool {
+	if o != nil && o.SalePrice.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetUserId returns the UserId field value
-func (o *ListOrdersItem) GetUserId() string {
-	if o == nil {
+// SetSalePrice gets a reference to the given NullableFloat32 and assigns it to the SalePrice field.
+func (o *GetOrderResponse) SetSalePrice(v float32) {
+	o.SalePrice.Set(&v)
+}
+// SetSalePriceNil sets the value for SalePrice to be an explicit nil
+func (o *GetOrderResponse) SetSalePriceNil() {
+	o.SalePrice.Set(nil)
+}
+
+// UnsetSalePrice ensures that no value is present for SalePrice, not even an explicit nil
+func (o *GetOrderResponse) UnsetSalePrice() {
+	o.SalePrice.Unset()
+}
+
+// GetPlatformFee returns the PlatformFee field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetPlatformFee() float32 {
+	if o == nil || o.PlatformFee.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.PlatformFee.Get()
+}
+
+// GetPlatformFeeOk returns a tuple with the PlatformFee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetPlatformFeeOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformFee.Get(), o.PlatformFee.IsSet()
+}
+
+// HasPlatformFee returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasPlatformFee() bool {
+	if o != nil && o.PlatformFee.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformFee gets a reference to the given NullableFloat32 and assigns it to the PlatformFee field.
+func (o *GetOrderResponse) SetPlatformFee(v float32) {
+	o.PlatformFee.Set(&v)
+}
+// SetPlatformFeeNil sets the value for PlatformFee to be an explicit nil
+func (o *GetOrderResponse) SetPlatformFeeNil() {
+	o.PlatformFee.Set(nil)
+}
+
+// UnsetPlatformFee ensures that no value is present for PlatformFee, not even an explicit nil
+func (o *GetOrderResponse) UnsetPlatformFee() {
+	o.PlatformFee.Unset()
+}
+
+// GetTaxCollected returns the TaxCollected field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetTaxCollected() float32 {
+	if o == nil || o.TaxCollected.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.TaxCollected.Get()
+}
+
+// GetTaxCollectedOk returns a tuple with the TaxCollected field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetTaxCollectedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TaxCollected.Get(), o.TaxCollected.IsSet()
+}
+
+// HasTaxCollected returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasTaxCollected() bool {
+	if o != nil && o.TaxCollected.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxCollected gets a reference to the given NullableFloat32 and assigns it to the TaxCollected field.
+func (o *GetOrderResponse) SetTaxCollected(v float32) {
+	o.TaxCollected.Set(&v)
+}
+// SetTaxCollectedNil sets the value for TaxCollected to be an explicit nil
+func (o *GetOrderResponse) SetTaxCollectedNil() {
+	o.TaxCollected.Set(nil)
+}
+
+// UnsetTaxCollected ensures that no value is present for TaxCollected, not even an explicit nil
+func (o *GetOrderResponse) UnsetTaxCollected() {
+	o.TaxCollected.Unset()
+}
+
+// GetShippingCharged returns the ShippingCharged field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetShippingCharged() float32 {
+	if o == nil || o.ShippingCharged.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ShippingCharged.Get()
+}
+
+// GetShippingChargedOk returns a tuple with the ShippingCharged field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetShippingChargedOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShippingCharged.Get(), o.ShippingCharged.IsSet()
+}
+
+// HasShippingCharged returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasShippingCharged() bool {
+	if o != nil && o.ShippingCharged.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShippingCharged gets a reference to the given NullableFloat32 and assigns it to the ShippingCharged field.
+func (o *GetOrderResponse) SetShippingCharged(v float32) {
+	o.ShippingCharged.Set(&v)
+}
+// SetShippingChargedNil sets the value for ShippingCharged to be an explicit nil
+func (o *GetOrderResponse) SetShippingChargedNil() {
+	o.ShippingCharged.Set(nil)
+}
+
+// UnsetShippingCharged ensures that no value is present for ShippingCharged, not even an explicit nil
+func (o *GetOrderResponse) UnsetShippingCharged() {
+	o.ShippingCharged.Unset()
+}
+
+// GetFeeSource returns the FeeSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetFeeSource() string {
+	if o == nil || o.FeeSource.Get() == nil {
 		var ret string
 		return ret
 	}
-
-	return o.UserId
+	return *o.FeeSource.Get()
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetFeeSourceOk returns a tuple with the FeeSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetUserIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetFeeSourceOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.FeeSource.Get(), o.FeeSource.IsSet()
 }
 
-// SetUserId sets field value
-func (o *ListOrdersItem) SetUserId(v string) {
-	o.UserId = v
+// HasFeeSource returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasFeeSource() bool {
+	if o != nil && o.FeeSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFeeSource gets a reference to the given NullableString and assigns it to the FeeSource field.
+func (o *GetOrderResponse) SetFeeSource(v string) {
+	o.FeeSource.Set(&v)
+}
+// SetFeeSourceNil sets the value for FeeSource to be an explicit nil
+func (o *GetOrderResponse) SetFeeSourceNil() {
+	o.FeeSource.Set(nil)
+}
+
+// UnsetFeeSource ensures that no value is present for FeeSource, not even an explicit nil
+func (o *GetOrderResponse) UnsetFeeSource() {
+	o.FeeSource.Unset()
+}
+
+// GetDetailsPending returns the DetailsPending field value
+func (o *GetOrderResponse) GetDetailsPending() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DetailsPending
+}
+
+// GetDetailsPendingOk returns a tuple with the DetailsPending field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponse) GetDetailsPendingOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.DetailsPending, true
+}
+
+// SetDetailsPending sets field value
+func (o *GetOrderResponse) SetDetailsPending(v bool) {
+	o.DetailsPending = v
+}
+
+// GetSku returns the Sku field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetSku() string {
+	if o == nil || o.Sku.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sku.Get()
+}
+
+// GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetSkuOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Sku.Get(), o.Sku.IsSet()
+}
+
+// HasSku returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasSku() bool {
+	if o != nil && o.Sku.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSku gets a reference to the given NullableString and assigns it to the Sku field.
+func (o *GetOrderResponse) SetSku(v string) {
+	o.Sku.Set(&v)
+}
+// SetSkuNil sets the value for Sku to be an explicit nil
+func (o *GetOrderResponse) SetSkuNil() {
+	o.Sku.Set(nil)
+}
+
+// UnsetSku ensures that no value is present for Sku, not even an explicit nil
+func (o *GetOrderResponse) UnsetSku() {
+	o.Sku.Unset()
 }
 
 // GetQuantity returns the Quantity field value
-func (o *ListOrdersItem) GetQuantity() float32 {
+func (o *GetOrderResponse) GetQuantity() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -224,7 +2214,7 @@ func (o *ListOrdersItem) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetQuantityOk() (*float32, bool) {
+func (o *GetOrderResponse) GetQuantityOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -232,78 +2222,132 @@ func (o *ListOrdersItem) GetQuantityOk() (*float32, bool) {
 }
 
 // SetQuantity sets field value
-func (o *ListOrdersItem) SetQuantity(v float32) {
+func (o *GetOrderResponse) SetQuantity(v float32) {
 	o.Quantity = v
 }
 
-// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetNotes() string {
-	if o == nil || o.Notes.Get() == nil {
-		var ret string
+// GetLineItems returns the LineItems field value
+func (o *GetOrderResponse) GetLineItems() []GetOrderResponseLineItems {
+	if o == nil {
+		var ret []GetOrderResponseLineItems
 		return ret
 	}
-	return *o.Notes.Get()
+
+	return o.LineItems
 }
 
-// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// GetLineItemsOk returns a tuple with the LineItems field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetNotesOk() (*string, bool) {
+func (o *GetOrderResponse) GetLineItemsOk() ([]GetOrderResponseLineItems, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Notes.Get(), o.Notes.IsSet()
+	return o.LineItems, true
 }
 
-// HasNotes returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasNotes() bool {
-	if o != nil && o.Notes.IsSet() {
-		return true
-	}
-
-	return false
+// SetLineItems sets field value
+func (o *GetOrderResponse) SetLineItems(v []GetOrderResponseLineItems) {
+	o.LineItems = v
 }
 
-// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
-func (o *ListOrdersItem) SetNotes(v string) {
-	o.Notes.Set(&v)
-}
-// SetNotesNil sets the value for Notes to be an explicit nil
-func (o *ListOrdersItem) SetNotesNil() {
-	o.Notes.Set(nil)
-}
-
-// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
-func (o *ListOrdersItem) UnsetNotes() {
-	o.Notes.Unset()
-}
-
-// GetStatus returns the Status field value
-func (o *ListOrdersItem) GetStatus() string {
+// GetId returns the Id field value
+func (o *GetOrderResponse) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.Id
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetStatusOk() (*string, bool) {
+func (o *GetOrderResponse) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.Id, true
 }
 
-// SetStatus sets field value
-func (o *ListOrdersItem) SetStatus(v string) {
-	o.Status = v
+// SetId sets field value
+func (o *GetOrderResponse) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetOrderResponse) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponse) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetOrderResponse) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value
+func (o *GetOrderResponse) GetUpdatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponse) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UpdatedAt, true
+}
+
+// SetUpdatedAt sets field value
+func (o *GetOrderResponse) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *GetOrderResponse) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponse) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *GetOrderResponse) SetUserId(v string) {
+	o.UserId = v
 }
 
 // GetPlatform returns the Platform field value
-func (o *ListOrdersItem) GetPlatform() string {
+func (o *GetOrderResponse) GetPlatform() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -314,7 +2358,7 @@ func (o *ListOrdersItem) GetPlatform() string {
 
 // GetPlatformOk returns a tuple with the Platform field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetPlatformOk() (*string, bool) {
+func (o *GetOrderResponse) GetPlatformOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -322,96 +2366,120 @@ func (o *ListOrdersItem) GetPlatformOk() (*string, bool) {
 }
 
 // SetPlatform sets field value
-func (o *ListOrdersItem) SetPlatform(v string) {
+func (o *GetOrderResponse) SetPlatform(v string) {
 	o.Platform = v
 }
 
-// GetCancelledAt returns the CancelledAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCancelledAt() time.Time {
-	if o == nil || o.CancelledAt.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CancelledAt.Get()
-}
-
-// GetCancelledAtOk returns a tuple with the CancelledAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCancelledAtOk() (*time.Time, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.CancelledAt.Get(), o.CancelledAt.IsSet()
-}
-
-// HasCancelledAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCancelledAt() bool {
-	if o != nil && o.CancelledAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCancelledAt gets a reference to the given NullableTime and assigns it to the CancelledAt field.
-func (o *ListOrdersItem) SetCancelledAt(v time.Time) {
-	o.CancelledAt.Set(&v)
-}
-// SetCancelledAtNil sets the value for CancelledAt to be an explicit nil
-func (o *ListOrdersItem) SetCancelledAtNil() {
-	o.CancelledAt.Set(nil)
-}
-
-// UnsetCancelledAt ensures that no value is present for CancelledAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetCancelledAt() {
-	o.CancelledAt.Unset()
-}
-
-// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetListingId() string {
-	if o == nil || o.ListingId.Get() == nil {
+// GetStatus returns the Status field value
+func (o *GetOrderResponse) GetStatus() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ListingId.Get()
+
+	return o.Status
 }
 
-// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetListingIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.ListingId.Get(), o.ListingId.IsSet()
+	return &o.Status, true
 }
 
-// HasListingId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasListingId() bool {
-	if o != nil && o.ListingId.IsSet() {
+// SetStatus sets field value
+func (o *GetOrderResponse) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetNotes returns the Notes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetNotes() string {
+	if o == nil || o.Notes.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Notes.Get()
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetNotesOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Notes.Get(), o.Notes.IsSet()
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasNotes() bool {
+	if o != nil && o.Notes.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
-func (o *ListOrdersItem) SetListingId(v string) {
-	o.ListingId.Set(&v)
+// SetNotes gets a reference to the given NullableString and assigns it to the Notes field.
+func (o *GetOrderResponse) SetNotes(v string) {
+	o.Notes.Set(&v)
 }
-// SetListingIdNil sets the value for ListingId to be an explicit nil
-func (o *ListOrdersItem) SetListingIdNil() {
-	o.ListingId.Set(nil)
+// SetNotesNil sets the value for Notes to be an explicit nil
+func (o *GetOrderResponse) SetNotesNil() {
+	o.Notes.Set(nil)
 }
 
-// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
-func (o *ListOrdersItem) UnsetListingId() {
-	o.ListingId.Unset()
+// UnsetNotes ensures that no value is present for Notes, not even an explicit nil
+func (o *GetOrderResponse) UnsetNotes() {
+	o.Notes.Unset()
+}
+
+// GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetSource() string {
+	if o == nil || o.Source.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source.Get()
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Source.Get(), o.Source.IsSet()
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasSource() bool {
+	if o != nil && o.Source.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given NullableString and assigns it to the Source field.
+func (o *GetOrderResponse) SetSource(v string) {
+	o.Source.Set(&v)
+}
+// SetSourceNil sets the value for Source to be an explicit nil
+func (o *GetOrderResponse) SetSourceNil() {
+	o.Source.Set(nil)
+}
+
+// UnsetSource ensures that no value is present for Source, not even an explicit nil
+func (o *GetOrderResponse) UnsetSource() {
+	o.Source.Unset()
 }
 
 // GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetInventoryItemId() string {
+func (o *GetOrderResponse) GetInventoryItemId() string {
 	if o == nil || o.InventoryItemId.Get() == nil {
 		var ret string
 		return ret
@@ -422,7 +2490,7 @@ func (o *ListOrdersItem) GetInventoryItemId() string {
 // GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetInventoryItemIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetInventoryItemIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -430,7 +2498,7 @@ func (o *ListOrdersItem) GetInventoryItemIdOk() (*string, bool) {
 }
 
 // HasInventoryItemId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasInventoryItemId() bool {
+func (o *GetOrderResponse) HasInventoryItemId() bool {
 	if o != nil && o.InventoryItemId.IsSet() {
 		return true
 	}
@@ -439,21 +2507,63 @@ func (o *ListOrdersItem) HasInventoryItemId() bool {
 }
 
 // SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
-func (o *ListOrdersItem) SetInventoryItemId(v string) {
+func (o *GetOrderResponse) SetInventoryItemId(v string) {
 	o.InventoryItemId.Set(&v)
 }
 // SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
-func (o *ListOrdersItem) SetInventoryItemIdNil() {
+func (o *GetOrderResponse) SetInventoryItemIdNil() {
 	o.InventoryItemId.Set(nil)
 }
 
 // UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
-func (o *ListOrdersItem) UnsetInventoryItemId() {
+func (o *GetOrderResponse) UnsetInventoryItemId() {
 	o.InventoryItemId.Unset()
 }
 
+// GetListingId returns the ListingId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetListingId() string {
+	if o == nil || o.ListingId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ListingId.Get()
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ListingId.Get(), o.ListingId.IsSet()
+}
+
+// HasListingId returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasListingId() bool {
+	if o != nil && o.ListingId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetListingId gets a reference to the given NullableString and assigns it to the ListingId field.
+func (o *GetOrderResponse) SetListingId(v string) {
+	o.ListingId.Set(&v)
+}
+// SetListingIdNil sets the value for ListingId to be an explicit nil
+func (o *GetOrderResponse) SetListingIdNil() {
+	o.ListingId.Set(nil)
+}
+
+// UnsetListingId ensures that no value is present for ListingId, not even an explicit nil
+func (o *GetOrderResponse) UnsetListingId() {
+	o.ListingId.Unset()
+}
+
 // GetPlatformListingId returns the PlatformListingId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetPlatformListingId() string {
+func (o *GetOrderResponse) GetPlatformListingId() string {
 	if o == nil || o.PlatformListingId.Get() == nil {
 		var ret string
 		return ret
@@ -464,7 +2574,7 @@ func (o *ListOrdersItem) GetPlatformListingId() string {
 // GetPlatformListingIdOk returns a tuple with the PlatformListingId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetPlatformListingIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetPlatformListingIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -472,7 +2582,7 @@ func (o *ListOrdersItem) GetPlatformListingIdOk() (*string, bool) {
 }
 
 // HasPlatformListingId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasPlatformListingId() bool {
+func (o *GetOrderResponse) HasPlatformListingId() bool {
 	if o != nil && o.PlatformListingId.IsSet() {
 		return true
 	}
@@ -481,21 +2591,63 @@ func (o *ListOrdersItem) HasPlatformListingId() bool {
 }
 
 // SetPlatformListingId gets a reference to the given NullableString and assigns it to the PlatformListingId field.
-func (o *ListOrdersItem) SetPlatformListingId(v string) {
+func (o *GetOrderResponse) SetPlatformListingId(v string) {
 	o.PlatformListingId.Set(&v)
 }
 // SetPlatformListingIdNil sets the value for PlatformListingId to be an explicit nil
-func (o *ListOrdersItem) SetPlatformListingIdNil() {
+func (o *GetOrderResponse) SetPlatformListingIdNil() {
 	o.PlatformListingId.Set(nil)
 }
 
 // UnsetPlatformListingId ensures that no value is present for PlatformListingId, not even an explicit nil
-func (o *ListOrdersItem) UnsetPlatformListingId() {
+func (o *GetOrderResponse) UnsetPlatformListingId() {
 	o.PlatformListingId.Unset()
 }
 
+// GetStorefrontId returns the StorefrontId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetStorefrontId() string {
+	if o == nil || o.StorefrontId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.StorefrontId.Get()
+}
+
+// GetStorefrontIdOk returns a tuple with the StorefrontId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetStorefrontIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.StorefrontId.Get(), o.StorefrontId.IsSet()
+}
+
+// HasStorefrontId returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasStorefrontId() bool {
+	if o != nil && o.StorefrontId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStorefrontId gets a reference to the given NullableString and assigns it to the StorefrontId field.
+func (o *GetOrderResponse) SetStorefrontId(v string) {
+	o.StorefrontId.Set(&v)
+}
+// SetStorefrontIdNil sets the value for StorefrontId to be an explicit nil
+func (o *GetOrderResponse) SetStorefrontIdNil() {
+	o.StorefrontId.Set(nil)
+}
+
+// UnsetStorefrontId ensures that no value is present for StorefrontId, not even an explicit nil
+func (o *GetOrderResponse) UnsetStorefrontId() {
+	o.StorefrontId.Unset()
+}
+
 // GetHandlingTimeDays returns the HandlingTimeDays field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetHandlingTimeDays() float32 {
+func (o *GetOrderResponse) GetHandlingTimeDays() float32 {
 	if o == nil || o.HandlingTimeDays.Get() == nil {
 		var ret float32
 		return ret
@@ -506,7 +2658,7 @@ func (o *ListOrdersItem) GetHandlingTimeDays() float32 {
 // GetHandlingTimeDaysOk returns a tuple with the HandlingTimeDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetHandlingTimeDaysOk() (*float32, bool) {
+func (o *GetOrderResponse) GetHandlingTimeDaysOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -514,7 +2666,7 @@ func (o *ListOrdersItem) GetHandlingTimeDaysOk() (*float32, bool) {
 }
 
 // HasHandlingTimeDays returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasHandlingTimeDays() bool {
+func (o *GetOrderResponse) HasHandlingTimeDays() bool {
 	if o != nil && o.HandlingTimeDays.IsSet() {
 		return true
 	}
@@ -523,21 +2675,21 @@ func (o *ListOrdersItem) HasHandlingTimeDays() bool {
 }
 
 // SetHandlingTimeDays gets a reference to the given NullableFloat32 and assigns it to the HandlingTimeDays field.
-func (o *ListOrdersItem) SetHandlingTimeDays(v float32) {
+func (o *GetOrderResponse) SetHandlingTimeDays(v float32) {
 	o.HandlingTimeDays.Set(&v)
 }
 // SetHandlingTimeDaysNil sets the value for HandlingTimeDays to be an explicit nil
-func (o *ListOrdersItem) SetHandlingTimeDaysNil() {
+func (o *GetOrderResponse) SetHandlingTimeDaysNil() {
 	o.HandlingTimeDays.Set(nil)
 }
 
 // UnsetHandlingTimeDays ensures that no value is present for HandlingTimeDays, not even an explicit nil
-func (o *ListOrdersItem) UnsetHandlingTimeDays() {
+func (o *GetOrderResponse) UnsetHandlingTimeDays() {
 	o.HandlingTimeDays.Unset()
 }
 
 // GetPlatformOrderId returns the PlatformOrderId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetPlatformOrderId() string {
+func (o *GetOrderResponse) GetPlatformOrderId() string {
 	if o == nil || o.PlatformOrderId.Get() == nil {
 		var ret string
 		return ret
@@ -548,7 +2700,7 @@ func (o *ListOrdersItem) GetPlatformOrderId() string {
 // GetPlatformOrderIdOk returns a tuple with the PlatformOrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetPlatformOrderIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetPlatformOrderIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -556,7 +2708,7 @@ func (o *ListOrdersItem) GetPlatformOrderIdOk() (*string, bool) {
 }
 
 // HasPlatformOrderId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasPlatformOrderId() bool {
+func (o *GetOrderResponse) HasPlatformOrderId() bool {
 	if o != nil && o.PlatformOrderId.IsSet() {
 		return true
 	}
@@ -565,21 +2717,63 @@ func (o *ListOrdersItem) HasPlatformOrderId() bool {
 }
 
 // SetPlatformOrderId gets a reference to the given NullableString and assigns it to the PlatformOrderId field.
-func (o *ListOrdersItem) SetPlatformOrderId(v string) {
+func (o *GetOrderResponse) SetPlatformOrderId(v string) {
 	o.PlatformOrderId.Set(&v)
 }
 // SetPlatformOrderIdNil sets the value for PlatformOrderId to be an explicit nil
-func (o *ListOrdersItem) SetPlatformOrderIdNil() {
+func (o *GetOrderResponse) SetPlatformOrderIdNil() {
 	o.PlatformOrderId.Set(nil)
 }
 
 // UnsetPlatformOrderId ensures that no value is present for PlatformOrderId, not even an explicit nil
-func (o *ListOrdersItem) UnsetPlatformOrderId() {
+func (o *GetOrderResponse) UnsetPlatformOrderId() {
 	o.PlatformOrderId.Unset()
 }
 
+// GetReportedByAppId returns the ReportedByAppId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetReportedByAppId() string {
+	if o == nil || o.ReportedByAppId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReportedByAppId.Get()
+}
+
+// GetReportedByAppIdOk returns a tuple with the ReportedByAppId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetReportedByAppIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ReportedByAppId.Get(), o.ReportedByAppId.IsSet()
+}
+
+// HasReportedByAppId returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasReportedByAppId() bool {
+	if o != nil && o.ReportedByAppId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReportedByAppId gets a reference to the given NullableString and assigns it to the ReportedByAppId field.
+func (o *GetOrderResponse) SetReportedByAppId(v string) {
+	o.ReportedByAppId.Set(&v)
+}
+// SetReportedByAppIdNil sets the value for ReportedByAppId to be an explicit nil
+func (o *GetOrderResponse) SetReportedByAppIdNil() {
+	o.ReportedByAppId.Set(nil)
+}
+
+// UnsetReportedByAppId ensures that no value is present for ReportedByAppId, not even an explicit nil
+func (o *GetOrderResponse) UnsetReportedByAppId() {
+	o.ReportedByAppId.Unset()
+}
+
 // GetBuyerUsername returns the BuyerUsername field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetBuyerUsername() string {
+func (o *GetOrderResponse) GetBuyerUsername() string {
 	if o == nil || o.BuyerUsername.Get() == nil {
 		var ret string
 		return ret
@@ -590,7 +2784,7 @@ func (o *ListOrdersItem) GetBuyerUsername() string {
 // GetBuyerUsernameOk returns a tuple with the BuyerUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetBuyerUsernameOk() (*string, bool) {
+func (o *GetOrderResponse) GetBuyerUsernameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -598,7 +2792,7 @@ func (o *ListOrdersItem) GetBuyerUsernameOk() (*string, bool) {
 }
 
 // HasBuyerUsername returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasBuyerUsername() bool {
+func (o *GetOrderResponse) HasBuyerUsername() bool {
 	if o != nil && o.BuyerUsername.IsSet() {
 		return true
 	}
@@ -607,21 +2801,21 @@ func (o *ListOrdersItem) HasBuyerUsername() bool {
 }
 
 // SetBuyerUsername gets a reference to the given NullableString and assigns it to the BuyerUsername field.
-func (o *ListOrdersItem) SetBuyerUsername(v string) {
+func (o *GetOrderResponse) SetBuyerUsername(v string) {
 	o.BuyerUsername.Set(&v)
 }
 // SetBuyerUsernameNil sets the value for BuyerUsername to be an explicit nil
-func (o *ListOrdersItem) SetBuyerUsernameNil() {
+func (o *GetOrderResponse) SetBuyerUsernameNil() {
 	o.BuyerUsername.Set(nil)
 }
 
 // UnsetBuyerUsername ensures that no value is present for BuyerUsername, not even an explicit nil
-func (o *ListOrdersItem) UnsetBuyerUsername() {
+func (o *GetOrderResponse) UnsetBuyerUsername() {
 	o.BuyerUsername.Unset()
 }
 
 // GetPickupPoint returns the PickupPoint field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetPickupPoint() map[string]interface{} {
+func (o *GetOrderResponse) GetPickupPoint() map[string]interface{} {
 	if o == nil  {
 		var ret map[string]interface{}
 		return ret
@@ -632,7 +2826,7 @@ func (o *ListOrdersItem) GetPickupPoint() map[string]interface{} {
 // GetPickupPointOk returns a tuple with the PickupPoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetPickupPointOk() (map[string]interface{}, bool) {
+func (o *GetOrderResponse) GetPickupPointOk() (map[string]interface{}, bool) {
 	if o == nil || o.PickupPoint == nil {
 		return nil, false
 	}
@@ -640,7 +2834,7 @@ func (o *ListOrdersItem) GetPickupPointOk() (map[string]interface{}, bool) {
 }
 
 // HasPickupPoint returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasPickupPoint() bool {
+func (o *GetOrderResponse) HasPickupPoint() bool {
 	if o != nil && o.PickupPoint != nil {
 		return true
 	}
@@ -649,12 +2843,12 @@ func (o *ListOrdersItem) HasPickupPoint() bool {
 }
 
 // SetPickupPoint gets a reference to the given map[string]interface{} and assigns it to the PickupPoint field.
-func (o *ListOrdersItem) SetPickupPoint(v map[string]interface{}) {
+func (o *GetOrderResponse) SetPickupPoint(v map[string]interface{}) {
 	o.PickupPoint = v
 }
 
 // GetConsolidationId returns the ConsolidationId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetConsolidationId() string {
+func (o *GetOrderResponse) GetConsolidationId() string {
 	if o == nil || o.ConsolidationId.Get() == nil {
 		var ret string
 		return ret
@@ -665,7 +2859,7 @@ func (o *ListOrdersItem) GetConsolidationId() string {
 // GetConsolidationIdOk returns a tuple with the ConsolidationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetConsolidationIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetConsolidationIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -673,7 +2867,7 @@ func (o *ListOrdersItem) GetConsolidationIdOk() (*string, bool) {
 }
 
 // HasConsolidationId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasConsolidationId() bool {
+func (o *GetOrderResponse) HasConsolidationId() bool {
 	if o != nil && o.ConsolidationId.IsSet() {
 		return true
 	}
@@ -682,21 +2876,21 @@ func (o *ListOrdersItem) HasConsolidationId() bool {
 }
 
 // SetConsolidationId gets a reference to the given NullableString and assigns it to the ConsolidationId field.
-func (o *ListOrdersItem) SetConsolidationId(v string) {
+func (o *GetOrderResponse) SetConsolidationId(v string) {
 	o.ConsolidationId.Set(&v)
 }
 // SetConsolidationIdNil sets the value for ConsolidationId to be an explicit nil
-func (o *ListOrdersItem) SetConsolidationIdNil() {
+func (o *GetOrderResponse) SetConsolidationIdNil() {
 	o.ConsolidationId.Set(nil)
 }
 
 // UnsetConsolidationId ensures that no value is present for ConsolidationId, not even an explicit nil
-func (o *ListOrdersItem) UnsetConsolidationId() {
+func (o *GetOrderResponse) UnsetConsolidationId() {
 	o.ConsolidationId.Unset()
 }
 
 // GetDutiesCents returns the DutiesCents field value
-func (o *ListOrdersItem) GetDutiesCents() float32 {
+func (o *GetOrderResponse) GetDutiesCents() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -707,7 +2901,7 @@ func (o *ListOrdersItem) GetDutiesCents() float32 {
 
 // GetDutiesCentsOk returns a tuple with the DutiesCents field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetDutiesCentsOk() (*float32, bool) {
+func (o *GetOrderResponse) GetDutiesCentsOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -715,12 +2909,12 @@ func (o *ListOrdersItem) GetDutiesCentsOk() (*float32, bool) {
 }
 
 // SetDutiesCents sets field value
-func (o *ListOrdersItem) SetDutiesCents(v float32) {
+func (o *GetOrderResponse) SetDutiesCents(v float32) {
 	o.DutiesCents = v
 }
 
 // GetDutiesRefundedAt returns the DutiesRefundedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDutiesRefundedAt() time.Time {
+func (o *GetOrderResponse) GetDutiesRefundedAt() time.Time {
 	if o == nil || o.DutiesRefundedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -731,7 +2925,7 @@ func (o *ListOrdersItem) GetDutiesRefundedAt() time.Time {
 // GetDutiesRefundedAtOk returns a tuple with the DutiesRefundedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDutiesRefundedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetDutiesRefundedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -739,7 +2933,7 @@ func (o *ListOrdersItem) GetDutiesRefundedAtOk() (*time.Time, bool) {
 }
 
 // HasDutiesRefundedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDutiesRefundedAt() bool {
+func (o *GetOrderResponse) HasDutiesRefundedAt() bool {
 	if o != nil && o.DutiesRefundedAt.IsSet() {
 		return true
 	}
@@ -748,21 +2942,21 @@ func (o *ListOrdersItem) HasDutiesRefundedAt() bool {
 }
 
 // SetDutiesRefundedAt gets a reference to the given NullableTime and assigns it to the DutiesRefundedAt field.
-func (o *ListOrdersItem) SetDutiesRefundedAt(v time.Time) {
+func (o *GetOrderResponse) SetDutiesRefundedAt(v time.Time) {
 	o.DutiesRefundedAt.Set(&v)
 }
 // SetDutiesRefundedAtNil sets the value for DutiesRefundedAt to be an explicit nil
-func (o *ListOrdersItem) SetDutiesRefundedAtNil() {
+func (o *GetOrderResponse) SetDutiesRefundedAtNil() {
 	o.DutiesRefundedAt.Set(nil)
 }
 
 // UnsetDutiesRefundedAt ensures that no value is present for DutiesRefundedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetDutiesRefundedAt() {
+func (o *GetOrderResponse) UnsetDutiesRefundedAt() {
 	o.DutiesRefundedAt.Unset()
 }
 
 // GetSalesChannel returns the SalesChannel field value
-func (o *ListOrdersItem) GetSalesChannel() string {
+func (o *GetOrderResponse) GetSalesChannel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -773,7 +2967,7 @@ func (o *ListOrdersItem) GetSalesChannel() string {
 
 // GetSalesChannelOk returns a tuple with the SalesChannel field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetSalesChannelOk() (*string, bool) {
+func (o *GetOrderResponse) GetSalesChannelOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -781,12 +2975,12 @@ func (o *ListOrdersItem) GetSalesChannelOk() (*string, bool) {
 }
 
 // SetSalesChannel sets field value
-func (o *ListOrdersItem) SetSalesChannel(v string) {
+func (o *GetOrderResponse) SetSalesChannel(v string) {
 	o.SalesChannel = v
 }
 
 // GetChannelLocationId returns the ChannelLocationId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetChannelLocationId() string {
+func (o *GetOrderResponse) GetChannelLocationId() string {
 	if o == nil || o.ChannelLocationId.Get() == nil {
 		var ret string
 		return ret
@@ -797,7 +2991,7 @@ func (o *ListOrdersItem) GetChannelLocationId() string {
 // GetChannelLocationIdOk returns a tuple with the ChannelLocationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetChannelLocationIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetChannelLocationIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -805,7 +2999,7 @@ func (o *ListOrdersItem) GetChannelLocationIdOk() (*string, bool) {
 }
 
 // HasChannelLocationId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasChannelLocationId() bool {
+func (o *GetOrderResponse) HasChannelLocationId() bool {
 	if o != nil && o.ChannelLocationId.IsSet() {
 		return true
 	}
@@ -814,21 +3008,129 @@ func (o *ListOrdersItem) HasChannelLocationId() bool {
 }
 
 // SetChannelLocationId gets a reference to the given NullableString and assigns it to the ChannelLocationId field.
-func (o *ListOrdersItem) SetChannelLocationId(v string) {
+func (o *GetOrderResponse) SetChannelLocationId(v string) {
 	o.ChannelLocationId.Set(&v)
 }
 // SetChannelLocationIdNil sets the value for ChannelLocationId to be an explicit nil
-func (o *ListOrdersItem) SetChannelLocationIdNil() {
+func (o *GetOrderResponse) SetChannelLocationIdNil() {
 	o.ChannelLocationId.Set(nil)
 }
 
 // UnsetChannelLocationId ensures that no value is present for ChannelLocationId, not even an explicit nil
-func (o *ListOrdersItem) UnsetChannelLocationId() {
+func (o *GetOrderResponse) UnsetChannelLocationId() {
 	o.ChannelLocationId.Unset()
 }
 
+// GetChannel returns the Channel field value
+func (o *GetOrderResponse) GetChannel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Channel
+}
+
+// GetChannelOk returns a tuple with the Channel field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponse) GetChannelOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Channel, true
+}
+
+// SetChannel sets field value
+func (o *GetOrderResponse) SetChannel(v string) {
+	o.Channel = v
+}
+
+// GetInvoiceId returns the InvoiceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetInvoiceId() string {
+	if o == nil || o.InvoiceId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InvoiceId.Get()
+}
+
+// GetInvoiceIdOk returns a tuple with the InvoiceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetInvoiceIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InvoiceId.Get(), o.InvoiceId.IsSet()
+}
+
+// HasInvoiceId returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasInvoiceId() bool {
+	if o != nil && o.InvoiceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoiceId gets a reference to the given NullableString and assigns it to the InvoiceId field.
+func (o *GetOrderResponse) SetInvoiceId(v string) {
+	o.InvoiceId.Set(&v)
+}
+// SetInvoiceIdNil sets the value for InvoiceId to be an explicit nil
+func (o *GetOrderResponse) SetInvoiceIdNil() {
+	o.InvoiceId.Set(nil)
+}
+
+// UnsetInvoiceId ensures that no value is present for InvoiceId, not even an explicit nil
+func (o *GetOrderResponse) UnsetInvoiceId() {
+	o.InvoiceId.Unset()
+}
+
+// GetBuyerCompanyId returns the BuyerCompanyId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetBuyerCompanyId() string {
+	if o == nil || o.BuyerCompanyId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuyerCompanyId.Get()
+}
+
+// GetBuyerCompanyIdOk returns a tuple with the BuyerCompanyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetBuyerCompanyIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.BuyerCompanyId.Get(), o.BuyerCompanyId.IsSet()
+}
+
+// HasBuyerCompanyId returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasBuyerCompanyId() bool {
+	if o != nil && o.BuyerCompanyId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBuyerCompanyId gets a reference to the given NullableString and assigns it to the BuyerCompanyId field.
+func (o *GetOrderResponse) SetBuyerCompanyId(v string) {
+	o.BuyerCompanyId.Set(&v)
+}
+// SetBuyerCompanyIdNil sets the value for BuyerCompanyId to be an explicit nil
+func (o *GetOrderResponse) SetBuyerCompanyIdNil() {
+	o.BuyerCompanyId.Set(nil)
+}
+
+// UnsetBuyerCompanyId ensures that no value is present for BuyerCompanyId, not even an explicit nil
+func (o *GetOrderResponse) UnsetBuyerCompanyId() {
+	o.BuyerCompanyId.Unset()
+}
+
 // GetPackagePresetId returns the PackagePresetId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetPackagePresetId() string {
+func (o *GetOrderResponse) GetPackagePresetId() string {
 	if o == nil || o.PackagePresetId.Get() == nil {
 		var ret string
 		return ret
@@ -839,7 +3141,7 @@ func (o *ListOrdersItem) GetPackagePresetId() string {
 // GetPackagePresetIdOk returns a tuple with the PackagePresetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetPackagePresetIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetPackagePresetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -847,7 +3149,7 @@ func (o *ListOrdersItem) GetPackagePresetIdOk() (*string, bool) {
 }
 
 // HasPackagePresetId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasPackagePresetId() bool {
+func (o *GetOrderResponse) HasPackagePresetId() bool {
 	if o != nil && o.PackagePresetId.IsSet() {
 		return true
 	}
@@ -856,21 +3158,21 @@ func (o *ListOrdersItem) HasPackagePresetId() bool {
 }
 
 // SetPackagePresetId gets a reference to the given NullableString and assigns it to the PackagePresetId field.
-func (o *ListOrdersItem) SetPackagePresetId(v string) {
+func (o *GetOrderResponse) SetPackagePresetId(v string) {
 	o.PackagePresetId.Set(&v)
 }
 // SetPackagePresetIdNil sets the value for PackagePresetId to be an explicit nil
-func (o *ListOrdersItem) SetPackagePresetIdNil() {
+func (o *GetOrderResponse) SetPackagePresetIdNil() {
 	o.PackagePresetId.Set(nil)
 }
 
 // UnsetPackagePresetId ensures that no value is present for PackagePresetId, not even an explicit nil
-func (o *ListOrdersItem) UnsetPackagePresetId() {
+func (o *GetOrderResponse) UnsetPackagePresetId() {
 	o.PackagePresetId.Unset()
 }
 
 // GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCarrier() string {
+func (o *GetOrderResponse) GetCarrier() string {
 	if o == nil || o.Carrier.Get() == nil {
 		var ret string
 		return ret
@@ -881,7 +3183,7 @@ func (o *ListOrdersItem) GetCarrier() string {
 // GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCarrierOk() (*string, bool) {
+func (o *GetOrderResponse) GetCarrierOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -889,7 +3191,7 @@ func (o *ListOrdersItem) GetCarrierOk() (*string, bool) {
 }
 
 // HasCarrier returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCarrier() bool {
+func (o *GetOrderResponse) HasCarrier() bool {
 	if o != nil && o.Carrier.IsSet() {
 		return true
 	}
@@ -898,21 +3200,21 @@ func (o *ListOrdersItem) HasCarrier() bool {
 }
 
 // SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
-func (o *ListOrdersItem) SetCarrier(v string) {
+func (o *GetOrderResponse) SetCarrier(v string) {
 	o.Carrier.Set(&v)
 }
 // SetCarrierNil sets the value for Carrier to be an explicit nil
-func (o *ListOrdersItem) SetCarrierNil() {
+func (o *GetOrderResponse) SetCarrierNil() {
 	o.Carrier.Set(nil)
 }
 
 // UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
-func (o *ListOrdersItem) UnsetCarrier() {
+func (o *GetOrderResponse) UnsetCarrier() {
 	o.Carrier.Unset()
 }
 
 // GetService returns the Service field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetService() string {
+func (o *GetOrderResponse) GetService() string {
 	if o == nil || o.Service.Get() == nil {
 		var ret string
 		return ret
@@ -923,7 +3225,7 @@ func (o *ListOrdersItem) GetService() string {
 // GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetServiceOk() (*string, bool) {
+func (o *GetOrderResponse) GetServiceOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -931,7 +3233,7 @@ func (o *ListOrdersItem) GetServiceOk() (*string, bool) {
 }
 
 // HasService returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasService() bool {
+func (o *GetOrderResponse) HasService() bool {
 	if o != nil && o.Service.IsSet() {
 		return true
 	}
@@ -940,21 +3242,21 @@ func (o *ListOrdersItem) HasService() bool {
 }
 
 // SetService gets a reference to the given NullableString and assigns it to the Service field.
-func (o *ListOrdersItem) SetService(v string) {
+func (o *GetOrderResponse) SetService(v string) {
 	o.Service.Set(&v)
 }
 // SetServiceNil sets the value for Service to be an explicit nil
-func (o *ListOrdersItem) SetServiceNil() {
+func (o *GetOrderResponse) SetServiceNil() {
 	o.Service.Set(nil)
 }
 
 // UnsetService ensures that no value is present for Service, not even an explicit nil
-func (o *ListOrdersItem) UnsetService() {
+func (o *GetOrderResponse) UnsetService() {
 	o.Service.Unset()
 }
 
 // GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetTrackingNumber() string {
+func (o *GetOrderResponse) GetTrackingNumber() string {
 	if o == nil || o.TrackingNumber.Get() == nil {
 		var ret string
 		return ret
@@ -965,7 +3267,7 @@ func (o *ListOrdersItem) GetTrackingNumber() string {
 // GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetTrackingNumberOk() (*string, bool) {
+func (o *GetOrderResponse) GetTrackingNumberOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -973,7 +3275,7 @@ func (o *ListOrdersItem) GetTrackingNumberOk() (*string, bool) {
 }
 
 // HasTrackingNumber returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasTrackingNumber() bool {
+func (o *GetOrderResponse) HasTrackingNumber() bool {
 	if o != nil && o.TrackingNumber.IsSet() {
 		return true
 	}
@@ -982,21 +3284,21 @@ func (o *ListOrdersItem) HasTrackingNumber() bool {
 }
 
 // SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
-func (o *ListOrdersItem) SetTrackingNumber(v string) {
+func (o *GetOrderResponse) SetTrackingNumber(v string) {
 	o.TrackingNumber.Set(&v)
 }
 // SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
-func (o *ListOrdersItem) SetTrackingNumberNil() {
+func (o *GetOrderResponse) SetTrackingNumberNil() {
 	o.TrackingNumber.Set(nil)
 }
 
 // UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
-func (o *ListOrdersItem) UnsetTrackingNumber() {
+func (o *GetOrderResponse) UnsetTrackingNumber() {
 	o.TrackingNumber.Unset()
 }
 
 // GetEasypostShipmentId returns the EasypostShipmentId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetEasypostShipmentId() string {
+func (o *GetOrderResponse) GetEasypostShipmentId() string {
 	if o == nil || o.EasypostShipmentId.Get() == nil {
 		var ret string
 		return ret
@@ -1007,7 +3309,7 @@ func (o *ListOrdersItem) GetEasypostShipmentId() string {
 // GetEasypostShipmentIdOk returns a tuple with the EasypostShipmentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetEasypostShipmentIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetEasypostShipmentIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1015,7 +3317,7 @@ func (o *ListOrdersItem) GetEasypostShipmentIdOk() (*string, bool) {
 }
 
 // HasEasypostShipmentId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasEasypostShipmentId() bool {
+func (o *GetOrderResponse) HasEasypostShipmentId() bool {
 	if o != nil && o.EasypostShipmentId.IsSet() {
 		return true
 	}
@@ -1024,21 +3326,21 @@ func (o *ListOrdersItem) HasEasypostShipmentId() bool {
 }
 
 // SetEasypostShipmentId gets a reference to the given NullableString and assigns it to the EasypostShipmentId field.
-func (o *ListOrdersItem) SetEasypostShipmentId(v string) {
+func (o *GetOrderResponse) SetEasypostShipmentId(v string) {
 	o.EasypostShipmentId.Set(&v)
 }
 // SetEasypostShipmentIdNil sets the value for EasypostShipmentId to be an explicit nil
-func (o *ListOrdersItem) SetEasypostShipmentIdNil() {
+func (o *GetOrderResponse) SetEasypostShipmentIdNil() {
 	o.EasypostShipmentId.Set(nil)
 }
 
 // UnsetEasypostShipmentId ensures that no value is present for EasypostShipmentId, not even an explicit nil
-func (o *ListOrdersItem) UnsetEasypostShipmentId() {
+func (o *GetOrderResponse) UnsetEasypostShipmentId() {
 	o.EasypostShipmentId.Unset()
 }
 
 // GetEasypostTrackerId returns the EasypostTrackerId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetEasypostTrackerId() string {
+func (o *GetOrderResponse) GetEasypostTrackerId() string {
 	if o == nil || o.EasypostTrackerId.Get() == nil {
 		var ret string
 		return ret
@@ -1049,7 +3351,7 @@ func (o *ListOrdersItem) GetEasypostTrackerId() string {
 // GetEasypostTrackerIdOk returns a tuple with the EasypostTrackerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetEasypostTrackerIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetEasypostTrackerIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1057,7 +3359,7 @@ func (o *ListOrdersItem) GetEasypostTrackerIdOk() (*string, bool) {
 }
 
 // HasEasypostTrackerId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasEasypostTrackerId() bool {
+func (o *GetOrderResponse) HasEasypostTrackerId() bool {
 	if o != nil && o.EasypostTrackerId.IsSet() {
 		return true
 	}
@@ -1066,21 +3368,21 @@ func (o *ListOrdersItem) HasEasypostTrackerId() bool {
 }
 
 // SetEasypostTrackerId gets a reference to the given NullableString and assigns it to the EasypostTrackerId field.
-func (o *ListOrdersItem) SetEasypostTrackerId(v string) {
+func (o *GetOrderResponse) SetEasypostTrackerId(v string) {
 	o.EasypostTrackerId.Set(&v)
 }
 // SetEasypostTrackerIdNil sets the value for EasypostTrackerId to be an explicit nil
-func (o *ListOrdersItem) SetEasypostTrackerIdNil() {
+func (o *GetOrderResponse) SetEasypostTrackerIdNil() {
 	o.EasypostTrackerId.Set(nil)
 }
 
 // UnsetEasypostTrackerId ensures that no value is present for EasypostTrackerId, not even an explicit nil
-func (o *ListOrdersItem) UnsetEasypostTrackerId() {
+func (o *GetOrderResponse) UnsetEasypostTrackerId() {
 	o.EasypostTrackerId.Unset()
 }
 
 // GetEasypostRateId returns the EasypostRateId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetEasypostRateId() string {
+func (o *GetOrderResponse) GetEasypostRateId() string {
 	if o == nil || o.EasypostRateId.Get() == nil {
 		var ret string
 		return ret
@@ -1091,7 +3393,7 @@ func (o *ListOrdersItem) GetEasypostRateId() string {
 // GetEasypostRateIdOk returns a tuple with the EasypostRateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetEasypostRateIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetEasypostRateIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1099,7 +3401,7 @@ func (o *ListOrdersItem) GetEasypostRateIdOk() (*string, bool) {
 }
 
 // HasEasypostRateId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasEasypostRateId() bool {
+func (o *GetOrderResponse) HasEasypostRateId() bool {
 	if o != nil && o.EasypostRateId.IsSet() {
 		return true
 	}
@@ -1108,21 +3410,21 @@ func (o *ListOrdersItem) HasEasypostRateId() bool {
 }
 
 // SetEasypostRateId gets a reference to the given NullableString and assigns it to the EasypostRateId field.
-func (o *ListOrdersItem) SetEasypostRateId(v string) {
+func (o *GetOrderResponse) SetEasypostRateId(v string) {
 	o.EasypostRateId.Set(&v)
 }
 // SetEasypostRateIdNil sets the value for EasypostRateId to be an explicit nil
-func (o *ListOrdersItem) SetEasypostRateIdNil() {
+func (o *GetOrderResponse) SetEasypostRateIdNil() {
 	o.EasypostRateId.Set(nil)
 }
 
 // UnsetEasypostRateId ensures that no value is present for EasypostRateId, not even an explicit nil
-func (o *ListOrdersItem) UnsetEasypostRateId() {
+func (o *GetOrderResponse) UnsetEasypostRateId() {
 	o.EasypostRateId.Unset()
 }
 
 // GetShippingLabelUrl returns the ShippingLabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetShippingLabelUrl() string {
+func (o *GetOrderResponse) GetShippingLabelUrl() string {
 	if o == nil || o.ShippingLabelUrl.Get() == nil {
 		var ret string
 		return ret
@@ -1133,7 +3435,7 @@ func (o *ListOrdersItem) GetShippingLabelUrl() string {
 // GetShippingLabelUrlOk returns a tuple with the ShippingLabelUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetShippingLabelUrlOk() (*string, bool) {
+func (o *GetOrderResponse) GetShippingLabelUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1141,7 +3443,7 @@ func (o *ListOrdersItem) GetShippingLabelUrlOk() (*string, bool) {
 }
 
 // HasShippingLabelUrl returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasShippingLabelUrl() bool {
+func (o *GetOrderResponse) HasShippingLabelUrl() bool {
 	if o != nil && o.ShippingLabelUrl.IsSet() {
 		return true
 	}
@@ -1150,21 +3452,21 @@ func (o *ListOrdersItem) HasShippingLabelUrl() bool {
 }
 
 // SetShippingLabelUrl gets a reference to the given NullableString and assigns it to the ShippingLabelUrl field.
-func (o *ListOrdersItem) SetShippingLabelUrl(v string) {
+func (o *GetOrderResponse) SetShippingLabelUrl(v string) {
 	o.ShippingLabelUrl.Set(&v)
 }
 // SetShippingLabelUrlNil sets the value for ShippingLabelUrl to be an explicit nil
-func (o *ListOrdersItem) SetShippingLabelUrlNil() {
+func (o *GetOrderResponse) SetShippingLabelUrlNil() {
 	o.ShippingLabelUrl.Set(nil)
 }
 
 // UnsetShippingLabelUrl ensures that no value is present for ShippingLabelUrl, not even an explicit nil
-func (o *ListOrdersItem) UnsetShippingLabelUrl() {
+func (o *GetOrderResponse) UnsetShippingLabelUrl() {
 	o.ShippingLabelUrl.Unset()
 }
 
 // GetLabelPurchasedAt returns the LabelPurchasedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetLabelPurchasedAt() time.Time {
+func (o *GetOrderResponse) GetLabelPurchasedAt() time.Time {
 	if o == nil || o.LabelPurchasedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1175,7 +3477,7 @@ func (o *ListOrdersItem) GetLabelPurchasedAt() time.Time {
 // GetLabelPurchasedAtOk returns a tuple with the LabelPurchasedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetLabelPurchasedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetLabelPurchasedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1183,7 +3485,7 @@ func (o *ListOrdersItem) GetLabelPurchasedAtOk() (*time.Time, bool) {
 }
 
 // HasLabelPurchasedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasLabelPurchasedAt() bool {
+func (o *GetOrderResponse) HasLabelPurchasedAt() bool {
 	if o != nil && o.LabelPurchasedAt.IsSet() {
 		return true
 	}
@@ -1192,21 +3494,21 @@ func (o *ListOrdersItem) HasLabelPurchasedAt() bool {
 }
 
 // SetLabelPurchasedAt gets a reference to the given NullableTime and assigns it to the LabelPurchasedAt field.
-func (o *ListOrdersItem) SetLabelPurchasedAt(v time.Time) {
+func (o *GetOrderResponse) SetLabelPurchasedAt(v time.Time) {
 	o.LabelPurchasedAt.Set(&v)
 }
 // SetLabelPurchasedAtNil sets the value for LabelPurchasedAt to be an explicit nil
-func (o *ListOrdersItem) SetLabelPurchasedAtNil() {
+func (o *GetOrderResponse) SetLabelPurchasedAtNil() {
 	o.LabelPurchasedAt.Set(nil)
 }
 
 // UnsetLabelPurchasedAt ensures that no value is present for LabelPurchasedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetLabelPurchasedAt() {
+func (o *GetOrderResponse) UnsetLabelPurchasedAt() {
 	o.LabelPurchasedAt.Unset()
 }
 
 // GetShippedAt returns the ShippedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetShippedAt() time.Time {
+func (o *GetOrderResponse) GetShippedAt() time.Time {
 	if o == nil || o.ShippedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1217,7 +3519,7 @@ func (o *ListOrdersItem) GetShippedAt() time.Time {
 // GetShippedAtOk returns a tuple with the ShippedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetShippedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetShippedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1225,7 +3527,7 @@ func (o *ListOrdersItem) GetShippedAtOk() (*time.Time, bool) {
 }
 
 // HasShippedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasShippedAt() bool {
+func (o *GetOrderResponse) HasShippedAt() bool {
 	if o != nil && o.ShippedAt.IsSet() {
 		return true
 	}
@@ -1234,21 +3536,21 @@ func (o *ListOrdersItem) HasShippedAt() bool {
 }
 
 // SetShippedAt gets a reference to the given NullableTime and assigns it to the ShippedAt field.
-func (o *ListOrdersItem) SetShippedAt(v time.Time) {
+func (o *GetOrderResponse) SetShippedAt(v time.Time) {
 	o.ShippedAt.Set(&v)
 }
 // SetShippedAtNil sets the value for ShippedAt to be an explicit nil
-func (o *ListOrdersItem) SetShippedAtNil() {
+func (o *GetOrderResponse) SetShippedAtNil() {
 	o.ShippedAt.Set(nil)
 }
 
 // UnsetShippedAt ensures that no value is present for ShippedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetShippedAt() {
+func (o *GetOrderResponse) UnsetShippedAt() {
 	o.ShippedAt.Unset()
 }
 
 // GetEstimatedDelivery returns the EstimatedDelivery field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetEstimatedDelivery() string {
+func (o *GetOrderResponse) GetEstimatedDelivery() string {
 	if o == nil || o.EstimatedDelivery.Get() == nil {
 		var ret string
 		return ret
@@ -1259,7 +3561,7 @@ func (o *ListOrdersItem) GetEstimatedDelivery() string {
 // GetEstimatedDeliveryOk returns a tuple with the EstimatedDelivery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetEstimatedDeliveryOk() (*string, bool) {
+func (o *GetOrderResponse) GetEstimatedDeliveryOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1267,7 +3569,7 @@ func (o *ListOrdersItem) GetEstimatedDeliveryOk() (*string, bool) {
 }
 
 // HasEstimatedDelivery returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasEstimatedDelivery() bool {
+func (o *GetOrderResponse) HasEstimatedDelivery() bool {
 	if o != nil && o.EstimatedDelivery.IsSet() {
 		return true
 	}
@@ -1276,21 +3578,21 @@ func (o *ListOrdersItem) HasEstimatedDelivery() bool {
 }
 
 // SetEstimatedDelivery gets a reference to the given NullableString and assigns it to the EstimatedDelivery field.
-func (o *ListOrdersItem) SetEstimatedDelivery(v string) {
+func (o *GetOrderResponse) SetEstimatedDelivery(v string) {
 	o.EstimatedDelivery.Set(&v)
 }
 // SetEstimatedDeliveryNil sets the value for EstimatedDelivery to be an explicit nil
-func (o *ListOrdersItem) SetEstimatedDeliveryNil() {
+func (o *GetOrderResponse) SetEstimatedDeliveryNil() {
 	o.EstimatedDelivery.Set(nil)
 }
 
 // UnsetEstimatedDelivery ensures that no value is present for EstimatedDelivery, not even an explicit nil
-func (o *ListOrdersItem) UnsetEstimatedDelivery() {
+func (o *GetOrderResponse) UnsetEstimatedDelivery() {
 	o.EstimatedDelivery.Unset()
 }
 
 // GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDeliveredAt() time.Time {
+func (o *GetOrderResponse) GetDeliveredAt() time.Time {
 	if o == nil || o.DeliveredAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1301,7 +3603,7 @@ func (o *ListOrdersItem) GetDeliveredAt() time.Time {
 // GetDeliveredAtOk returns a tuple with the DeliveredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDeliveredAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetDeliveredAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1309,7 +3611,7 @@ func (o *ListOrdersItem) GetDeliveredAtOk() (*time.Time, bool) {
 }
 
 // HasDeliveredAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDeliveredAt() bool {
+func (o *GetOrderResponse) HasDeliveredAt() bool {
 	if o != nil && o.DeliveredAt.IsSet() {
 		return true
 	}
@@ -1318,21 +3620,21 @@ func (o *ListOrdersItem) HasDeliveredAt() bool {
 }
 
 // SetDeliveredAt gets a reference to the given NullableTime and assigns it to the DeliveredAt field.
-func (o *ListOrdersItem) SetDeliveredAt(v time.Time) {
+func (o *GetOrderResponse) SetDeliveredAt(v time.Time) {
 	o.DeliveredAt.Set(&v)
 }
 // SetDeliveredAtNil sets the value for DeliveredAt to be an explicit nil
-func (o *ListOrdersItem) SetDeliveredAtNil() {
+func (o *GetOrderResponse) SetDeliveredAtNil() {
 	o.DeliveredAt.Set(nil)
 }
 
 // UnsetDeliveredAt ensures that no value is present for DeliveredAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetDeliveredAt() {
+func (o *GetOrderResponse) UnsetDeliveredAt() {
 	o.DeliveredAt.Unset()
 }
 
 // GetCarrierStatus returns the CarrierStatus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCarrierStatus() string {
+func (o *GetOrderResponse) GetCarrierStatus() string {
 	if o == nil || o.CarrierStatus.Get() == nil {
 		var ret string
 		return ret
@@ -1343,7 +3645,7 @@ func (o *ListOrdersItem) GetCarrierStatus() string {
 // GetCarrierStatusOk returns a tuple with the CarrierStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCarrierStatusOk() (*string, bool) {
+func (o *GetOrderResponse) GetCarrierStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1351,7 +3653,7 @@ func (o *ListOrdersItem) GetCarrierStatusOk() (*string, bool) {
 }
 
 // HasCarrierStatus returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCarrierStatus() bool {
+func (o *GetOrderResponse) HasCarrierStatus() bool {
 	if o != nil && o.CarrierStatus.IsSet() {
 		return true
 	}
@@ -1360,21 +3662,21 @@ func (o *ListOrdersItem) HasCarrierStatus() bool {
 }
 
 // SetCarrierStatus gets a reference to the given NullableString and assigns it to the CarrierStatus field.
-func (o *ListOrdersItem) SetCarrierStatus(v string) {
+func (o *GetOrderResponse) SetCarrierStatus(v string) {
 	o.CarrierStatus.Set(&v)
 }
 // SetCarrierStatusNil sets the value for CarrierStatus to be an explicit nil
-func (o *ListOrdersItem) SetCarrierStatusNil() {
+func (o *GetOrderResponse) SetCarrierStatusNil() {
 	o.CarrierStatus.Set(nil)
 }
 
 // UnsetCarrierStatus ensures that no value is present for CarrierStatus, not even an explicit nil
-func (o *ListOrdersItem) UnsetCarrierStatus() {
+func (o *GetOrderResponse) UnsetCarrierStatus() {
 	o.CarrierStatus.Unset()
 }
 
 // GetCarrierStatusDetail returns the CarrierStatusDetail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCarrierStatusDetail() string {
+func (o *GetOrderResponse) GetCarrierStatusDetail() string {
 	if o == nil || o.CarrierStatusDetail.Get() == nil {
 		var ret string
 		return ret
@@ -1385,7 +3687,7 @@ func (o *ListOrdersItem) GetCarrierStatusDetail() string {
 // GetCarrierStatusDetailOk returns a tuple with the CarrierStatusDetail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCarrierStatusDetailOk() (*string, bool) {
+func (o *GetOrderResponse) GetCarrierStatusDetailOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1393,7 +3695,7 @@ func (o *ListOrdersItem) GetCarrierStatusDetailOk() (*string, bool) {
 }
 
 // HasCarrierStatusDetail returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCarrierStatusDetail() bool {
+func (o *GetOrderResponse) HasCarrierStatusDetail() bool {
 	if o != nil && o.CarrierStatusDetail.IsSet() {
 		return true
 	}
@@ -1402,23 +3704,23 @@ func (o *ListOrdersItem) HasCarrierStatusDetail() bool {
 }
 
 // SetCarrierStatusDetail gets a reference to the given NullableString and assigns it to the CarrierStatusDetail field.
-func (o *ListOrdersItem) SetCarrierStatusDetail(v string) {
+func (o *GetOrderResponse) SetCarrierStatusDetail(v string) {
 	o.CarrierStatusDetail.Set(&v)
 }
 // SetCarrierStatusDetailNil sets the value for CarrierStatusDetail to be an explicit nil
-func (o *ListOrdersItem) SetCarrierStatusDetailNil() {
+func (o *GetOrderResponse) SetCarrierStatusDetailNil() {
 	o.CarrierStatusDetail.Set(nil)
 }
 
 // UnsetCarrierStatusDetail ensures that no value is present for CarrierStatusDetail, not even an explicit nil
-func (o *ListOrdersItem) UnsetCarrierStatusDetail() {
+func (o *GetOrderResponse) UnsetCarrierStatusDetail() {
 	o.CarrierStatusDetail.Unset()
 }
 
 // GetTrackingHistory returns the TrackingHistory field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetTrackingHistory() []ListOrdersItemTrackingHistory {
+func (o *GetOrderResponse) GetTrackingHistory() []GetOrderResponseTrackingHistory {
 	if o == nil  {
-		var ret []ListOrdersItemTrackingHistory
+		var ret []GetOrderResponseTrackingHistory
 		return ret
 	}
 	return o.TrackingHistory
@@ -1427,7 +3729,7 @@ func (o *ListOrdersItem) GetTrackingHistory() []ListOrdersItemTrackingHistory {
 // GetTrackingHistoryOk returns a tuple with the TrackingHistory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetTrackingHistoryOk() ([]ListOrdersItemTrackingHistory, bool) {
+func (o *GetOrderResponse) GetTrackingHistoryOk() ([]GetOrderResponseTrackingHistory, bool) {
 	if o == nil || o.TrackingHistory == nil {
 		return nil, false
 	}
@@ -1435,7 +3737,7 @@ func (o *ListOrdersItem) GetTrackingHistoryOk() ([]ListOrdersItemTrackingHistory
 }
 
 // HasTrackingHistory returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasTrackingHistory() bool {
+func (o *GetOrderResponse) HasTrackingHistory() bool {
 	if o != nil && o.TrackingHistory != nil {
 		return true
 	}
@@ -1443,13 +3745,13 @@ func (o *ListOrdersItem) HasTrackingHistory() bool {
 	return false
 }
 
-// SetTrackingHistory gets a reference to the given []ListOrdersItemTrackingHistory and assigns it to the TrackingHistory field.
-func (o *ListOrdersItem) SetTrackingHistory(v []ListOrdersItemTrackingHistory) {
+// SetTrackingHistory gets a reference to the given []GetOrderResponseTrackingHistory and assigns it to the TrackingHistory field.
+func (o *GetOrderResponse) SetTrackingHistory(v []GetOrderResponseTrackingHistory) {
 	o.TrackingHistory = v
 }
 
 // GetDeliveryLocation returns the DeliveryLocation field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDeliveryLocation() string {
+func (o *GetOrderResponse) GetDeliveryLocation() string {
 	if o == nil || o.DeliveryLocation.Get() == nil {
 		var ret string
 		return ret
@@ -1460,7 +3762,7 @@ func (o *ListOrdersItem) GetDeliveryLocation() string {
 // GetDeliveryLocationOk returns a tuple with the DeliveryLocation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDeliveryLocationOk() (*string, bool) {
+func (o *GetOrderResponse) GetDeliveryLocationOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1468,7 +3770,7 @@ func (o *ListOrdersItem) GetDeliveryLocationOk() (*string, bool) {
 }
 
 // HasDeliveryLocation returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDeliveryLocation() bool {
+func (o *GetOrderResponse) HasDeliveryLocation() bool {
 	if o != nil && o.DeliveryLocation.IsSet() {
 		return true
 	}
@@ -1477,21 +3779,21 @@ func (o *ListOrdersItem) HasDeliveryLocation() bool {
 }
 
 // SetDeliveryLocation gets a reference to the given NullableString and assigns it to the DeliveryLocation field.
-func (o *ListOrdersItem) SetDeliveryLocation(v string) {
+func (o *GetOrderResponse) SetDeliveryLocation(v string) {
 	o.DeliveryLocation.Set(&v)
 }
 // SetDeliveryLocationNil sets the value for DeliveryLocation to be an explicit nil
-func (o *ListOrdersItem) SetDeliveryLocationNil() {
+func (o *GetOrderResponse) SetDeliveryLocationNil() {
 	o.DeliveryLocation.Set(nil)
 }
 
 // UnsetDeliveryLocation ensures that no value is present for DeliveryLocation, not even an explicit nil
-func (o *ListOrdersItem) UnsetDeliveryLocation() {
+func (o *GetOrderResponse) UnsetDeliveryLocation() {
 	o.DeliveryLocation.Unset()
 }
 
 // GetDeliverySignature returns the DeliverySignature field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDeliverySignature() string {
+func (o *GetOrderResponse) GetDeliverySignature() string {
 	if o == nil || o.DeliverySignature.Get() == nil {
 		var ret string
 		return ret
@@ -1502,7 +3804,7 @@ func (o *ListOrdersItem) GetDeliverySignature() string {
 // GetDeliverySignatureOk returns a tuple with the DeliverySignature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDeliverySignatureOk() (*string, bool) {
+func (o *GetOrderResponse) GetDeliverySignatureOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1510,7 +3812,7 @@ func (o *ListOrdersItem) GetDeliverySignatureOk() (*string, bool) {
 }
 
 // HasDeliverySignature returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDeliverySignature() bool {
+func (o *GetOrderResponse) HasDeliverySignature() bool {
 	if o != nil && o.DeliverySignature.IsSet() {
 		return true
 	}
@@ -1519,21 +3821,21 @@ func (o *ListOrdersItem) HasDeliverySignature() bool {
 }
 
 // SetDeliverySignature gets a reference to the given NullableString and assigns it to the DeliverySignature field.
-func (o *ListOrdersItem) SetDeliverySignature(v string) {
+func (o *GetOrderResponse) SetDeliverySignature(v string) {
 	o.DeliverySignature.Set(&v)
 }
 // SetDeliverySignatureNil sets the value for DeliverySignature to be an explicit nil
-func (o *ListOrdersItem) SetDeliverySignatureNil() {
+func (o *GetOrderResponse) SetDeliverySignatureNil() {
 	o.DeliverySignature.Set(nil)
 }
 
 // UnsetDeliverySignature ensures that no value is present for DeliverySignature, not even an explicit nil
-func (o *ListOrdersItem) UnsetDeliverySignature() {
+func (o *GetOrderResponse) UnsetDeliverySignature() {
 	o.DeliverySignature.Unset()
 }
 
 // GetTrackingSubmittedAt returns the TrackingSubmittedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetTrackingSubmittedAt() time.Time {
+func (o *GetOrderResponse) GetTrackingSubmittedAt() time.Time {
 	if o == nil || o.TrackingSubmittedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1544,7 +3846,7 @@ func (o *ListOrdersItem) GetTrackingSubmittedAt() time.Time {
 // GetTrackingSubmittedAtOk returns a tuple with the TrackingSubmittedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetTrackingSubmittedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetTrackingSubmittedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1552,7 +3854,7 @@ func (o *ListOrdersItem) GetTrackingSubmittedAtOk() (*time.Time, bool) {
 }
 
 // HasTrackingSubmittedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasTrackingSubmittedAt() bool {
+func (o *GetOrderResponse) HasTrackingSubmittedAt() bool {
 	if o != nil && o.TrackingSubmittedAt.IsSet() {
 		return true
 	}
@@ -1561,21 +3863,21 @@ func (o *ListOrdersItem) HasTrackingSubmittedAt() bool {
 }
 
 // SetTrackingSubmittedAt gets a reference to the given NullableTime and assigns it to the TrackingSubmittedAt field.
-func (o *ListOrdersItem) SetTrackingSubmittedAt(v time.Time) {
+func (o *GetOrderResponse) SetTrackingSubmittedAt(v time.Time) {
 	o.TrackingSubmittedAt.Set(&v)
 }
 // SetTrackingSubmittedAtNil sets the value for TrackingSubmittedAt to be an explicit nil
-func (o *ListOrdersItem) SetTrackingSubmittedAtNil() {
+func (o *GetOrderResponse) SetTrackingSubmittedAtNil() {
 	o.TrackingSubmittedAt.Set(nil)
 }
 
 // UnsetTrackingSubmittedAt ensures that no value is present for TrackingSubmittedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetTrackingSubmittedAt() {
+func (o *GetOrderResponse) UnsetTrackingSubmittedAt() {
 	o.TrackingSubmittedAt.Unset()
 }
 
 // GetTrackingSubmitStatus returns the TrackingSubmitStatus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetTrackingSubmitStatus() string {
+func (o *GetOrderResponse) GetTrackingSubmitStatus() string {
 	if o == nil || o.TrackingSubmitStatus.Get() == nil {
 		var ret string
 		return ret
@@ -1586,7 +3888,7 @@ func (o *ListOrdersItem) GetTrackingSubmitStatus() string {
 // GetTrackingSubmitStatusOk returns a tuple with the TrackingSubmitStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetTrackingSubmitStatusOk() (*string, bool) {
+func (o *GetOrderResponse) GetTrackingSubmitStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1594,7 +3896,7 @@ func (o *ListOrdersItem) GetTrackingSubmitStatusOk() (*string, bool) {
 }
 
 // HasTrackingSubmitStatus returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasTrackingSubmitStatus() bool {
+func (o *GetOrderResponse) HasTrackingSubmitStatus() bool {
 	if o != nil && o.TrackingSubmitStatus.IsSet() {
 		return true
 	}
@@ -1603,21 +3905,21 @@ func (o *ListOrdersItem) HasTrackingSubmitStatus() bool {
 }
 
 // SetTrackingSubmitStatus gets a reference to the given NullableString and assigns it to the TrackingSubmitStatus field.
-func (o *ListOrdersItem) SetTrackingSubmitStatus(v string) {
+func (o *GetOrderResponse) SetTrackingSubmitStatus(v string) {
 	o.TrackingSubmitStatus.Set(&v)
 }
 // SetTrackingSubmitStatusNil sets the value for TrackingSubmitStatus to be an explicit nil
-func (o *ListOrdersItem) SetTrackingSubmitStatusNil() {
+func (o *GetOrderResponse) SetTrackingSubmitStatusNil() {
 	o.TrackingSubmitStatus.Set(nil)
 }
 
 // UnsetTrackingSubmitStatus ensures that no value is present for TrackingSubmitStatus, not even an explicit nil
-func (o *ListOrdersItem) UnsetTrackingSubmitStatus() {
+func (o *GetOrderResponse) UnsetTrackingSubmitStatus() {
 	o.TrackingSubmitStatus.Unset()
 }
 
 // GetLabelCost returns the LabelCost field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetLabelCost() string {
+func (o *GetOrderResponse) GetLabelCost() string {
 	if o == nil || o.LabelCost.Get() == nil {
 		var ret string
 		return ret
@@ -1628,7 +3930,7 @@ func (o *ListOrdersItem) GetLabelCost() string {
 // GetLabelCostOk returns a tuple with the LabelCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetLabelCostOk() (*string, bool) {
+func (o *GetOrderResponse) GetLabelCostOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1636,7 +3938,7 @@ func (o *ListOrdersItem) GetLabelCostOk() (*string, bool) {
 }
 
 // HasLabelCost returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasLabelCost() bool {
+func (o *GetOrderResponse) HasLabelCost() bool {
 	if o != nil && o.LabelCost.IsSet() {
 		return true
 	}
@@ -1645,21 +3947,21 @@ func (o *ListOrdersItem) HasLabelCost() bool {
 }
 
 // SetLabelCost gets a reference to the given NullableString and assigns it to the LabelCost field.
-func (o *ListOrdersItem) SetLabelCost(v string) {
+func (o *GetOrderResponse) SetLabelCost(v string) {
 	o.LabelCost.Set(&v)
 }
 // SetLabelCostNil sets the value for LabelCost to be an explicit nil
-func (o *ListOrdersItem) SetLabelCostNil() {
+func (o *GetOrderResponse) SetLabelCostNil() {
 	o.LabelCost.Set(nil)
 }
 
 // UnsetLabelCost ensures that no value is present for LabelCost, not even an explicit nil
-func (o *ListOrdersItem) UnsetLabelCost() {
+func (o *GetOrderResponse) UnsetLabelCost() {
 	o.LabelCost.Unset()
 }
 
 // GetCostOfGoods returns the CostOfGoods field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCostOfGoods() string {
+func (o *GetOrderResponse) GetCostOfGoods() string {
 	if o == nil || o.CostOfGoods.Get() == nil {
 		var ret string
 		return ret
@@ -1670,7 +3972,7 @@ func (o *ListOrdersItem) GetCostOfGoods() string {
 // GetCostOfGoodsOk returns a tuple with the CostOfGoods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCostOfGoodsOk() (*string, bool) {
+func (o *GetOrderResponse) GetCostOfGoodsOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1678,7 +3980,7 @@ func (o *ListOrdersItem) GetCostOfGoodsOk() (*string, bool) {
 }
 
 // HasCostOfGoods returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCostOfGoods() bool {
+func (o *GetOrderResponse) HasCostOfGoods() bool {
 	if o != nil && o.CostOfGoods.IsSet() {
 		return true
 	}
@@ -1687,21 +3989,21 @@ func (o *ListOrdersItem) HasCostOfGoods() bool {
 }
 
 // SetCostOfGoods gets a reference to the given NullableString and assigns it to the CostOfGoods field.
-func (o *ListOrdersItem) SetCostOfGoods(v string) {
+func (o *GetOrderResponse) SetCostOfGoods(v string) {
 	o.CostOfGoods.Set(&v)
 }
 // SetCostOfGoodsNil sets the value for CostOfGoods to be an explicit nil
-func (o *ListOrdersItem) SetCostOfGoodsNil() {
+func (o *GetOrderResponse) SetCostOfGoodsNil() {
 	o.CostOfGoods.Set(nil)
 }
 
 // UnsetCostOfGoods ensures that no value is present for CostOfGoods, not even an explicit nil
-func (o *ListOrdersItem) UnsetCostOfGoods() {
+func (o *GetOrderResponse) UnsetCostOfGoods() {
 	o.CostOfGoods.Unset()
 }
 
 // GetRequestedCarrier returns the RequestedCarrier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRequestedCarrier() string {
+func (o *GetOrderResponse) GetRequestedCarrier() string {
 	if o == nil || o.RequestedCarrier.Get() == nil {
 		var ret string
 		return ret
@@ -1712,7 +4014,7 @@ func (o *ListOrdersItem) GetRequestedCarrier() string {
 // GetRequestedCarrierOk returns a tuple with the RequestedCarrier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRequestedCarrierOk() (*string, bool) {
+func (o *GetOrderResponse) GetRequestedCarrierOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1720,7 +4022,7 @@ func (o *ListOrdersItem) GetRequestedCarrierOk() (*string, bool) {
 }
 
 // HasRequestedCarrier returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRequestedCarrier() bool {
+func (o *GetOrderResponse) HasRequestedCarrier() bool {
 	if o != nil && o.RequestedCarrier.IsSet() {
 		return true
 	}
@@ -1729,21 +4031,21 @@ func (o *ListOrdersItem) HasRequestedCarrier() bool {
 }
 
 // SetRequestedCarrier gets a reference to the given NullableString and assigns it to the RequestedCarrier field.
-func (o *ListOrdersItem) SetRequestedCarrier(v string) {
+func (o *GetOrderResponse) SetRequestedCarrier(v string) {
 	o.RequestedCarrier.Set(&v)
 }
 // SetRequestedCarrierNil sets the value for RequestedCarrier to be an explicit nil
-func (o *ListOrdersItem) SetRequestedCarrierNil() {
+func (o *GetOrderResponse) SetRequestedCarrierNil() {
 	o.RequestedCarrier.Set(nil)
 }
 
 // UnsetRequestedCarrier ensures that no value is present for RequestedCarrier, not even an explicit nil
-func (o *ListOrdersItem) UnsetRequestedCarrier() {
+func (o *GetOrderResponse) UnsetRequestedCarrier() {
 	o.RequestedCarrier.Unset()
 }
 
 // GetRequestedService returns the RequestedService field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRequestedService() string {
+func (o *GetOrderResponse) GetRequestedService() string {
 	if o == nil || o.RequestedService.Get() == nil {
 		var ret string
 		return ret
@@ -1754,7 +4056,7 @@ func (o *ListOrdersItem) GetRequestedService() string {
 // GetRequestedServiceOk returns a tuple with the RequestedService field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRequestedServiceOk() (*string, bool) {
+func (o *GetOrderResponse) GetRequestedServiceOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1762,7 +4064,7 @@ func (o *ListOrdersItem) GetRequestedServiceOk() (*string, bool) {
 }
 
 // HasRequestedService returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRequestedService() bool {
+func (o *GetOrderResponse) HasRequestedService() bool {
 	if o != nil && o.RequestedService.IsSet() {
 		return true
 	}
@@ -1771,21 +4073,21 @@ func (o *ListOrdersItem) HasRequestedService() bool {
 }
 
 // SetRequestedService gets a reference to the given NullableString and assigns it to the RequestedService field.
-func (o *ListOrdersItem) SetRequestedService(v string) {
+func (o *GetOrderResponse) SetRequestedService(v string) {
 	o.RequestedService.Set(&v)
 }
 // SetRequestedServiceNil sets the value for RequestedService to be an explicit nil
-func (o *ListOrdersItem) SetRequestedServiceNil() {
+func (o *GetOrderResponse) SetRequestedServiceNil() {
 	o.RequestedService.Set(nil)
 }
 
 // UnsetRequestedService ensures that no value is present for RequestedService, not even an explicit nil
-func (o *ListOrdersItem) UnsetRequestedService() {
+func (o *GetOrderResponse) UnsetRequestedService() {
 	o.RequestedService.Unset()
 }
 
 // GetShipByAt returns the ShipByAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetShipByAt() time.Time {
+func (o *GetOrderResponse) GetShipByAt() time.Time {
 	if o == nil || o.ShipByAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1796,7 +4098,7 @@ func (o *ListOrdersItem) GetShipByAt() time.Time {
 // GetShipByAtOk returns a tuple with the ShipByAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetShipByAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetShipByAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1804,7 +4106,7 @@ func (o *ListOrdersItem) GetShipByAtOk() (*time.Time, bool) {
 }
 
 // HasShipByAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasShipByAt() bool {
+func (o *GetOrderResponse) HasShipByAt() bool {
 	if o != nil && o.ShipByAt.IsSet() {
 		return true
 	}
@@ -1813,21 +4115,21 @@ func (o *ListOrdersItem) HasShipByAt() bool {
 }
 
 // SetShipByAt gets a reference to the given NullableTime and assigns it to the ShipByAt field.
-func (o *ListOrdersItem) SetShipByAt(v time.Time) {
+func (o *GetOrderResponse) SetShipByAt(v time.Time) {
 	o.ShipByAt.Set(&v)
 }
 // SetShipByAtNil sets the value for ShipByAt to be an explicit nil
-func (o *ListOrdersItem) SetShipByAtNil() {
+func (o *GetOrderResponse) SetShipByAtNil() {
 	o.ShipByAt.Set(nil)
 }
 
 // UnsetShipByAt ensures that no value is present for ShipByAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetShipByAt() {
+func (o *GetOrderResponse) UnsetShipByAt() {
 	o.ShipByAt.Unset()
 }
 
 // GetShipByAlertedAt returns the ShipByAlertedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetShipByAlertedAt() time.Time {
+func (o *GetOrderResponse) GetShipByAlertedAt() time.Time {
 	if o == nil || o.ShipByAlertedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1838,7 +4140,7 @@ func (o *ListOrdersItem) GetShipByAlertedAt() time.Time {
 // GetShipByAlertedAtOk returns a tuple with the ShipByAlertedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetShipByAlertedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetShipByAlertedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1846,7 +4148,7 @@ func (o *ListOrdersItem) GetShipByAlertedAtOk() (*time.Time, bool) {
 }
 
 // HasShipByAlertedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasShipByAlertedAt() bool {
+func (o *GetOrderResponse) HasShipByAlertedAt() bool {
 	if o != nil && o.ShipByAlertedAt.IsSet() {
 		return true
 	}
@@ -1855,21 +4157,21 @@ func (o *ListOrdersItem) HasShipByAlertedAt() bool {
 }
 
 // SetShipByAlertedAt gets a reference to the given NullableTime and assigns it to the ShipByAlertedAt field.
-func (o *ListOrdersItem) SetShipByAlertedAt(v time.Time) {
+func (o *GetOrderResponse) SetShipByAlertedAt(v time.Time) {
 	o.ShipByAlertedAt.Set(&v)
 }
 // SetShipByAlertedAtNil sets the value for ShipByAlertedAt to be an explicit nil
-func (o *ListOrdersItem) SetShipByAlertedAtNil() {
+func (o *GetOrderResponse) SetShipByAlertedAtNil() {
 	o.ShipByAlertedAt.Set(nil)
 }
 
 // UnsetShipByAlertedAt ensures that no value is present for ShipByAlertedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetShipByAlertedAt() {
+func (o *GetOrderResponse) UnsetShipByAlertedAt() {
 	o.ShipByAlertedAt.Unset()
 }
 
 // GetOversoldBy returns the OversoldBy field value
-func (o *ListOrdersItem) GetOversoldBy() float32 {
+func (o *GetOrderResponse) GetOversoldBy() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -1880,7 +4182,7 @@ func (o *ListOrdersItem) GetOversoldBy() float32 {
 
 // GetOversoldByOk returns a tuple with the OversoldBy field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetOversoldByOk() (*float32, bool) {
+func (o *GetOrderResponse) GetOversoldByOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1888,12 +4190,12 @@ func (o *ListOrdersItem) GetOversoldByOk() (*float32, bool) {
 }
 
 // SetOversoldBy sets field value
-func (o *ListOrdersItem) SetOversoldBy(v float32) {
+func (o *GetOrderResponse) SetOversoldBy(v float32) {
 	o.OversoldBy = v
 }
 
 // GetLastStatusCheckAt returns the LastStatusCheckAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetLastStatusCheckAt() time.Time {
+func (o *GetOrderResponse) GetLastStatusCheckAt() time.Time {
 	if o == nil || o.LastStatusCheckAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1904,7 +4206,7 @@ func (o *ListOrdersItem) GetLastStatusCheckAt() time.Time {
 // GetLastStatusCheckAtOk returns a tuple with the LastStatusCheckAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetLastStatusCheckAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetLastStatusCheckAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1912,7 +4214,7 @@ func (o *ListOrdersItem) GetLastStatusCheckAtOk() (*time.Time, bool) {
 }
 
 // HasLastStatusCheckAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasLastStatusCheckAt() bool {
+func (o *GetOrderResponse) HasLastStatusCheckAt() bool {
 	if o != nil && o.LastStatusCheckAt.IsSet() {
 		return true
 	}
@@ -1921,21 +4223,21 @@ func (o *ListOrdersItem) HasLastStatusCheckAt() bool {
 }
 
 // SetLastStatusCheckAt gets a reference to the given NullableTime and assigns it to the LastStatusCheckAt field.
-func (o *ListOrdersItem) SetLastStatusCheckAt(v time.Time) {
+func (o *GetOrderResponse) SetLastStatusCheckAt(v time.Time) {
 	o.LastStatusCheckAt.Set(&v)
 }
 // SetLastStatusCheckAtNil sets the value for LastStatusCheckAt to be an explicit nil
-func (o *ListOrdersItem) SetLastStatusCheckAtNil() {
+func (o *GetOrderResponse) SetLastStatusCheckAtNil() {
 	o.LastStatusCheckAt.Set(nil)
 }
 
 // UnsetLastStatusCheckAt ensures that no value is present for LastStatusCheckAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetLastStatusCheckAt() {
+func (o *GetOrderResponse) UnsetLastStatusCheckAt() {
 	o.LastStatusCheckAt.Unset()
 }
 
 // GetLastChatCheckAt returns the LastChatCheckAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetLastChatCheckAt() time.Time {
+func (o *GetOrderResponse) GetLastChatCheckAt() time.Time {
 	if o == nil || o.LastChatCheckAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -1946,7 +4248,7 @@ func (o *ListOrdersItem) GetLastChatCheckAt() time.Time {
 // GetLastChatCheckAtOk returns a tuple with the LastChatCheckAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetLastChatCheckAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetLastChatCheckAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1954,7 +4256,7 @@ func (o *ListOrdersItem) GetLastChatCheckAtOk() (*time.Time, bool) {
 }
 
 // HasLastChatCheckAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasLastChatCheckAt() bool {
+func (o *GetOrderResponse) HasLastChatCheckAt() bool {
 	if o != nil && o.LastChatCheckAt.IsSet() {
 		return true
 	}
@@ -1963,21 +4265,21 @@ func (o *ListOrdersItem) HasLastChatCheckAt() bool {
 }
 
 // SetLastChatCheckAt gets a reference to the given NullableTime and assigns it to the LastChatCheckAt field.
-func (o *ListOrdersItem) SetLastChatCheckAt(v time.Time) {
+func (o *GetOrderResponse) SetLastChatCheckAt(v time.Time) {
 	o.LastChatCheckAt.Set(&v)
 }
 // SetLastChatCheckAtNil sets the value for LastChatCheckAt to be an explicit nil
-func (o *ListOrdersItem) SetLastChatCheckAtNil() {
+func (o *GetOrderResponse) SetLastChatCheckAtNil() {
 	o.LastChatCheckAt.Set(nil)
 }
 
 // UnsetLastChatCheckAt ensures that no value is present for LastChatCheckAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetLastChatCheckAt() {
+func (o *GetOrderResponse) UnsetLastChatCheckAt() {
 	o.LastChatCheckAt.Unset()
 }
 
 // GetIsDisputed returns the IsDisputed field value
-func (o *ListOrdersItem) GetIsDisputed() bool {
+func (o *GetOrderResponse) GetIsDisputed() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -1988,7 +4290,7 @@ func (o *ListOrdersItem) GetIsDisputed() bool {
 
 // GetIsDisputedOk returns a tuple with the IsDisputed field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetIsDisputedOk() (*bool, bool) {
+func (o *GetOrderResponse) GetIsDisputedOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1996,12 +4298,12 @@ func (o *ListOrdersItem) GetIsDisputedOk() (*bool, bool) {
 }
 
 // SetIsDisputed sets field value
-func (o *ListOrdersItem) SetIsDisputed(v bool) {
+func (o *GetOrderResponse) SetIsDisputed(v bool) {
 	o.IsDisputed = v
 }
 
 // GetDisputeReason returns the DisputeReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDisputeReason() string {
+func (o *GetOrderResponse) GetDisputeReason() string {
 	if o == nil || o.DisputeReason.Get() == nil {
 		var ret string
 		return ret
@@ -2012,7 +4314,7 @@ func (o *ListOrdersItem) GetDisputeReason() string {
 // GetDisputeReasonOk returns a tuple with the DisputeReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDisputeReasonOk() (*string, bool) {
+func (o *GetOrderResponse) GetDisputeReasonOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2020,7 +4322,7 @@ func (o *ListOrdersItem) GetDisputeReasonOk() (*string, bool) {
 }
 
 // HasDisputeReason returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDisputeReason() bool {
+func (o *GetOrderResponse) HasDisputeReason() bool {
 	if o != nil && o.DisputeReason.IsSet() {
 		return true
 	}
@@ -2029,21 +4331,21 @@ func (o *ListOrdersItem) HasDisputeReason() bool {
 }
 
 // SetDisputeReason gets a reference to the given NullableString and assigns it to the DisputeReason field.
-func (o *ListOrdersItem) SetDisputeReason(v string) {
+func (o *GetOrderResponse) SetDisputeReason(v string) {
 	o.DisputeReason.Set(&v)
 }
 // SetDisputeReasonNil sets the value for DisputeReason to be an explicit nil
-func (o *ListOrdersItem) SetDisputeReasonNil() {
+func (o *GetOrderResponse) SetDisputeReasonNil() {
 	o.DisputeReason.Set(nil)
 }
 
 // UnsetDisputeReason ensures that no value is present for DisputeReason, not even an explicit nil
-func (o *ListOrdersItem) UnsetDisputeReason() {
+func (o *GetOrderResponse) UnsetDisputeReason() {
 	o.DisputeReason.Unset()
 }
 
 // GetDisputePlatformCaseId returns the DisputePlatformCaseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDisputePlatformCaseId() string {
+func (o *GetOrderResponse) GetDisputePlatformCaseId() string {
 	if o == nil || o.DisputePlatformCaseId.Get() == nil {
 		var ret string
 		return ret
@@ -2054,7 +4356,7 @@ func (o *ListOrdersItem) GetDisputePlatformCaseId() string {
 // GetDisputePlatformCaseIdOk returns a tuple with the DisputePlatformCaseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDisputePlatformCaseIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetDisputePlatformCaseIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2062,7 +4364,7 @@ func (o *ListOrdersItem) GetDisputePlatformCaseIdOk() (*string, bool) {
 }
 
 // HasDisputePlatformCaseId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDisputePlatformCaseId() bool {
+func (o *GetOrderResponse) HasDisputePlatformCaseId() bool {
 	if o != nil && o.DisputePlatformCaseId.IsSet() {
 		return true
 	}
@@ -2071,21 +4373,21 @@ func (o *ListOrdersItem) HasDisputePlatformCaseId() bool {
 }
 
 // SetDisputePlatformCaseId gets a reference to the given NullableString and assigns it to the DisputePlatformCaseId field.
-func (o *ListOrdersItem) SetDisputePlatformCaseId(v string) {
+func (o *GetOrderResponse) SetDisputePlatformCaseId(v string) {
 	o.DisputePlatformCaseId.Set(&v)
 }
 // SetDisputePlatformCaseIdNil sets the value for DisputePlatformCaseId to be an explicit nil
-func (o *ListOrdersItem) SetDisputePlatformCaseIdNil() {
+func (o *GetOrderResponse) SetDisputePlatformCaseIdNil() {
 	o.DisputePlatformCaseId.Set(nil)
 }
 
 // UnsetDisputePlatformCaseId ensures that no value is present for DisputePlatformCaseId, not even an explicit nil
-func (o *ListOrdersItem) UnsetDisputePlatformCaseId() {
+func (o *GetOrderResponse) UnsetDisputePlatformCaseId() {
 	o.DisputePlatformCaseId.Unset()
 }
 
 // GetDisputeResolvedAt returns the DisputeResolvedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDisputeResolvedAt() time.Time {
+func (o *GetOrderResponse) GetDisputeResolvedAt() time.Time {
 	if o == nil || o.DisputeResolvedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2096,7 +4398,7 @@ func (o *ListOrdersItem) GetDisputeResolvedAt() time.Time {
 // GetDisputeResolvedAtOk returns a tuple with the DisputeResolvedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDisputeResolvedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetDisputeResolvedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2104,7 +4406,7 @@ func (o *ListOrdersItem) GetDisputeResolvedAtOk() (*time.Time, bool) {
 }
 
 // HasDisputeResolvedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDisputeResolvedAt() bool {
+func (o *GetOrderResponse) HasDisputeResolvedAt() bool {
 	if o != nil && o.DisputeResolvedAt.IsSet() {
 		return true
 	}
@@ -2113,21 +4415,21 @@ func (o *ListOrdersItem) HasDisputeResolvedAt() bool {
 }
 
 // SetDisputeResolvedAt gets a reference to the given NullableTime and assigns it to the DisputeResolvedAt field.
-func (o *ListOrdersItem) SetDisputeResolvedAt(v time.Time) {
+func (o *GetOrderResponse) SetDisputeResolvedAt(v time.Time) {
 	o.DisputeResolvedAt.Set(&v)
 }
 // SetDisputeResolvedAtNil sets the value for DisputeResolvedAt to be an explicit nil
-func (o *ListOrdersItem) SetDisputeResolvedAtNil() {
+func (o *GetOrderResponse) SetDisputeResolvedAtNil() {
 	o.DisputeResolvedAt.Set(nil)
 }
 
 // UnsetDisputeResolvedAt ensures that no value is present for DisputeResolvedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetDisputeResolvedAt() {
+func (o *GetOrderResponse) UnsetDisputeResolvedAt() {
 	o.DisputeResolvedAt.Unset()
 }
 
 // GetRefundAmount returns the RefundAmount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRefundAmount() string {
+func (o *GetOrderResponse) GetRefundAmount() string {
 	if o == nil || o.RefundAmount.Get() == nil {
 		var ret string
 		return ret
@@ -2138,7 +4440,7 @@ func (o *ListOrdersItem) GetRefundAmount() string {
 // GetRefundAmountOk returns a tuple with the RefundAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRefundAmountOk() (*string, bool) {
+func (o *GetOrderResponse) GetRefundAmountOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2146,7 +4448,7 @@ func (o *ListOrdersItem) GetRefundAmountOk() (*string, bool) {
 }
 
 // HasRefundAmount returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRefundAmount() bool {
+func (o *GetOrderResponse) HasRefundAmount() bool {
 	if o != nil && o.RefundAmount.IsSet() {
 		return true
 	}
@@ -2155,21 +4457,21 @@ func (o *ListOrdersItem) HasRefundAmount() bool {
 }
 
 // SetRefundAmount gets a reference to the given NullableString and assigns it to the RefundAmount field.
-func (o *ListOrdersItem) SetRefundAmount(v string) {
+func (o *GetOrderResponse) SetRefundAmount(v string) {
 	o.RefundAmount.Set(&v)
 }
 // SetRefundAmountNil sets the value for RefundAmount to be an explicit nil
-func (o *ListOrdersItem) SetRefundAmountNil() {
+func (o *GetOrderResponse) SetRefundAmountNil() {
 	o.RefundAmount.Set(nil)
 }
 
 // UnsetRefundAmount ensures that no value is present for RefundAmount, not even an explicit nil
-func (o *ListOrdersItem) UnsetRefundAmount() {
+func (o *GetOrderResponse) UnsetRefundAmount() {
 	o.RefundAmount.Unset()
 }
 
 // GetRefundReason returns the RefundReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRefundReason() string {
+func (o *GetOrderResponse) GetRefundReason() string {
 	if o == nil || o.RefundReason.Get() == nil {
 		var ret string
 		return ret
@@ -2180,7 +4482,7 @@ func (o *ListOrdersItem) GetRefundReason() string {
 // GetRefundReasonOk returns a tuple with the RefundReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRefundReasonOk() (*string, bool) {
+func (o *GetOrderResponse) GetRefundReasonOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2188,7 +4490,7 @@ func (o *ListOrdersItem) GetRefundReasonOk() (*string, bool) {
 }
 
 // HasRefundReason returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRefundReason() bool {
+func (o *GetOrderResponse) HasRefundReason() bool {
 	if o != nil && o.RefundReason.IsSet() {
 		return true
 	}
@@ -2197,21 +4499,21 @@ func (o *ListOrdersItem) HasRefundReason() bool {
 }
 
 // SetRefundReason gets a reference to the given NullableString and assigns it to the RefundReason field.
-func (o *ListOrdersItem) SetRefundReason(v string) {
+func (o *GetOrderResponse) SetRefundReason(v string) {
 	o.RefundReason.Set(&v)
 }
 // SetRefundReasonNil sets the value for RefundReason to be an explicit nil
-func (o *ListOrdersItem) SetRefundReasonNil() {
+func (o *GetOrderResponse) SetRefundReasonNil() {
 	o.RefundReason.Set(nil)
 }
 
 // UnsetRefundReason ensures that no value is present for RefundReason, not even an explicit nil
-func (o *ListOrdersItem) UnsetRefundReason() {
+func (o *GetOrderResponse) UnsetRefundReason() {
 	o.RefundReason.Unset()
 }
 
 // GetRefundPlatformId returns the RefundPlatformId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRefundPlatformId() string {
+func (o *GetOrderResponse) GetRefundPlatformId() string {
 	if o == nil || o.RefundPlatformId.Get() == nil {
 		var ret string
 		return ret
@@ -2222,7 +4524,7 @@ func (o *ListOrdersItem) GetRefundPlatformId() string {
 // GetRefundPlatformIdOk returns a tuple with the RefundPlatformId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRefundPlatformIdOk() (*string, bool) {
+func (o *GetOrderResponse) GetRefundPlatformIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2230,7 +4532,7 @@ func (o *ListOrdersItem) GetRefundPlatformIdOk() (*string, bool) {
 }
 
 // HasRefundPlatformId returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRefundPlatformId() bool {
+func (o *GetOrderResponse) HasRefundPlatformId() bool {
 	if o != nil && o.RefundPlatformId.IsSet() {
 		return true
 	}
@@ -2239,21 +4541,21 @@ func (o *ListOrdersItem) HasRefundPlatformId() bool {
 }
 
 // SetRefundPlatformId gets a reference to the given NullableString and assigns it to the RefundPlatformId field.
-func (o *ListOrdersItem) SetRefundPlatformId(v string) {
+func (o *GetOrderResponse) SetRefundPlatformId(v string) {
 	o.RefundPlatformId.Set(&v)
 }
 // SetRefundPlatformIdNil sets the value for RefundPlatformId to be an explicit nil
-func (o *ListOrdersItem) SetRefundPlatformIdNil() {
+func (o *GetOrderResponse) SetRefundPlatformIdNil() {
 	o.RefundPlatformId.Set(nil)
 }
 
 // UnsetRefundPlatformId ensures that no value is present for RefundPlatformId, not even an explicit nil
-func (o *ListOrdersItem) UnsetRefundPlatformId() {
+func (o *GetOrderResponse) UnsetRefundPlatformId() {
 	o.RefundPlatformId.Unset()
 }
 
 // GetRefundedAt returns the RefundedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetRefundedAt() time.Time {
+func (o *GetOrderResponse) GetRefundedAt() time.Time {
 	if o == nil || o.RefundedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2264,7 +4566,7 @@ func (o *ListOrdersItem) GetRefundedAt() time.Time {
 // GetRefundedAtOk returns a tuple with the RefundedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetRefundedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetRefundedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2272,7 +4574,7 @@ func (o *ListOrdersItem) GetRefundedAtOk() (*time.Time, bool) {
 }
 
 // HasRefundedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasRefundedAt() bool {
+func (o *GetOrderResponse) HasRefundedAt() bool {
 	if o != nil && o.RefundedAt.IsSet() {
 		return true
 	}
@@ -2281,21 +4583,63 @@ func (o *ListOrdersItem) HasRefundedAt() bool {
 }
 
 // SetRefundedAt gets a reference to the given NullableTime and assigns it to the RefundedAt field.
-func (o *ListOrdersItem) SetRefundedAt(v time.Time) {
+func (o *GetOrderResponse) SetRefundedAt(v time.Time) {
 	o.RefundedAt.Set(&v)
 }
 // SetRefundedAtNil sets the value for RefundedAt to be an explicit nil
-func (o *ListOrdersItem) SetRefundedAtNil() {
+func (o *GetOrderResponse) SetRefundedAtNil() {
 	o.RefundedAt.Set(nil)
 }
 
 // UnsetRefundedAt ensures that no value is present for RefundedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetRefundedAt() {
+func (o *GetOrderResponse) UnsetRefundedAt() {
 	o.RefundedAt.Unset()
 }
 
+// GetCancelledAt returns the CancelledAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetCancelledAt() time.Time {
+	if o == nil || o.CancelledAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CancelledAt.Get()
+}
+
+// GetCancelledAtOk returns a tuple with the CancelledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetCancelledAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CancelledAt.Get(), o.CancelledAt.IsSet()
+}
+
+// HasCancelledAt returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasCancelledAt() bool {
+	if o != nil && o.CancelledAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelledAt gets a reference to the given NullableTime and assigns it to the CancelledAt field.
+func (o *GetOrderResponse) SetCancelledAt(v time.Time) {
+	o.CancelledAt.Set(&v)
+}
+// SetCancelledAtNil sets the value for CancelledAt to be an explicit nil
+func (o *GetOrderResponse) SetCancelledAtNil() {
+	o.CancelledAt.Set(nil)
+}
+
+// UnsetCancelledAt ensures that no value is present for CancelledAt, not even an explicit nil
+func (o *GetOrderResponse) UnsetCancelledAt() {
+	o.CancelledAt.Unset()
+}
+
 // GetCancellationReason returns the CancellationReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetCancellationReason() string {
+func (o *GetOrderResponse) GetCancellationReason() string {
 	if o == nil || o.CancellationReason.Get() == nil {
 		var ret string
 		return ret
@@ -2306,7 +4650,7 @@ func (o *ListOrdersItem) GetCancellationReason() string {
 // GetCancellationReasonOk returns a tuple with the CancellationReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetCancellationReasonOk() (*string, bool) {
+func (o *GetOrderResponse) GetCancellationReasonOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2314,7 +4658,7 @@ func (o *ListOrdersItem) GetCancellationReasonOk() (*string, bool) {
 }
 
 // HasCancellationReason returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasCancellationReason() bool {
+func (o *GetOrderResponse) HasCancellationReason() bool {
 	if o != nil && o.CancellationReason.IsSet() {
 		return true
 	}
@@ -2323,21 +4667,21 @@ func (o *ListOrdersItem) HasCancellationReason() bool {
 }
 
 // SetCancellationReason gets a reference to the given NullableString and assigns it to the CancellationReason field.
-func (o *ListOrdersItem) SetCancellationReason(v string) {
+func (o *GetOrderResponse) SetCancellationReason(v string) {
 	o.CancellationReason.Set(&v)
 }
 // SetCancellationReasonNil sets the value for CancellationReason to be an explicit nil
-func (o *ListOrdersItem) SetCancellationReasonNil() {
+func (o *GetOrderResponse) SetCancellationReasonNil() {
 	o.CancellationReason.Set(nil)
 }
 
 // UnsetCancellationReason ensures that no value is present for CancellationReason, not even an explicit nil
-func (o *ListOrdersItem) UnsetCancellationReason() {
+func (o *GetOrderResponse) UnsetCancellationReason() {
 	o.CancellationReason.Unset()
 }
 
 // GetArrivalConditionRequestedAt returns the ArrivalConditionRequestedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetArrivalConditionRequestedAt() time.Time {
+func (o *GetOrderResponse) GetArrivalConditionRequestedAt() time.Time {
 	if o == nil || o.ArrivalConditionRequestedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2348,7 +4692,7 @@ func (o *ListOrdersItem) GetArrivalConditionRequestedAt() time.Time {
 // GetArrivalConditionRequestedAtOk returns a tuple with the ArrivalConditionRequestedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetArrivalConditionRequestedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetArrivalConditionRequestedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2356,7 +4700,7 @@ func (o *ListOrdersItem) GetArrivalConditionRequestedAtOk() (*time.Time, bool) {
 }
 
 // HasArrivalConditionRequestedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasArrivalConditionRequestedAt() bool {
+func (o *GetOrderResponse) HasArrivalConditionRequestedAt() bool {
 	if o != nil && o.ArrivalConditionRequestedAt.IsSet() {
 		return true
 	}
@@ -2365,21 +4709,21 @@ func (o *ListOrdersItem) HasArrivalConditionRequestedAt() bool {
 }
 
 // SetArrivalConditionRequestedAt gets a reference to the given NullableTime and assigns it to the ArrivalConditionRequestedAt field.
-func (o *ListOrdersItem) SetArrivalConditionRequestedAt(v time.Time) {
+func (o *GetOrderResponse) SetArrivalConditionRequestedAt(v time.Time) {
 	o.ArrivalConditionRequestedAt.Set(&v)
 }
 // SetArrivalConditionRequestedAtNil sets the value for ArrivalConditionRequestedAt to be an explicit nil
-func (o *ListOrdersItem) SetArrivalConditionRequestedAtNil() {
+func (o *GetOrderResponse) SetArrivalConditionRequestedAtNil() {
 	o.ArrivalConditionRequestedAt.Set(nil)
 }
 
 // UnsetArrivalConditionRequestedAt ensures that no value is present for ArrivalConditionRequestedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetArrivalConditionRequestedAt() {
+func (o *GetOrderResponse) UnsetArrivalConditionRequestedAt() {
 	o.ArrivalConditionRequestedAt.Unset()
 }
 
 // GetArrivalConditionSubmittedAt returns the ArrivalConditionSubmittedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetArrivalConditionSubmittedAt() time.Time {
+func (o *GetOrderResponse) GetArrivalConditionSubmittedAt() time.Time {
 	if o == nil || o.ArrivalConditionSubmittedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2390,7 +4734,7 @@ func (o *ListOrdersItem) GetArrivalConditionSubmittedAt() time.Time {
 // GetArrivalConditionSubmittedAtOk returns a tuple with the ArrivalConditionSubmittedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetArrivalConditionSubmittedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetArrivalConditionSubmittedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2398,7 +4742,7 @@ func (o *ListOrdersItem) GetArrivalConditionSubmittedAtOk() (*time.Time, bool) {
 }
 
 // HasArrivalConditionSubmittedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasArrivalConditionSubmittedAt() bool {
+func (o *GetOrderResponse) HasArrivalConditionSubmittedAt() bool {
 	if o != nil && o.ArrivalConditionSubmittedAt.IsSet() {
 		return true
 	}
@@ -2407,21 +4751,21 @@ func (o *ListOrdersItem) HasArrivalConditionSubmittedAt() bool {
 }
 
 // SetArrivalConditionSubmittedAt gets a reference to the given NullableTime and assigns it to the ArrivalConditionSubmittedAt field.
-func (o *ListOrdersItem) SetArrivalConditionSubmittedAt(v time.Time) {
+func (o *GetOrderResponse) SetArrivalConditionSubmittedAt(v time.Time) {
 	o.ArrivalConditionSubmittedAt.Set(&v)
 }
 // SetArrivalConditionSubmittedAtNil sets the value for ArrivalConditionSubmittedAt to be an explicit nil
-func (o *ListOrdersItem) SetArrivalConditionSubmittedAtNil() {
+func (o *GetOrderResponse) SetArrivalConditionSubmittedAtNil() {
 	o.ArrivalConditionSubmittedAt.Set(nil)
 }
 
 // UnsetArrivalConditionSubmittedAt ensures that no value is present for ArrivalConditionSubmittedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetArrivalConditionSubmittedAt() {
+func (o *GetOrderResponse) UnsetArrivalConditionSubmittedAt() {
 	o.ArrivalConditionSubmittedAt.Unset()
 }
 
 // GetArrivalConditionDeclinedAt returns the ArrivalConditionDeclinedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetArrivalConditionDeclinedAt() time.Time {
+func (o *GetOrderResponse) GetArrivalConditionDeclinedAt() time.Time {
 	if o == nil || o.ArrivalConditionDeclinedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2432,7 +4776,7 @@ func (o *ListOrdersItem) GetArrivalConditionDeclinedAt() time.Time {
 // GetArrivalConditionDeclinedAtOk returns a tuple with the ArrivalConditionDeclinedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetArrivalConditionDeclinedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetArrivalConditionDeclinedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2440,7 +4784,7 @@ func (o *ListOrdersItem) GetArrivalConditionDeclinedAtOk() (*time.Time, bool) {
 }
 
 // HasArrivalConditionDeclinedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasArrivalConditionDeclinedAt() bool {
+func (o *GetOrderResponse) HasArrivalConditionDeclinedAt() bool {
 	if o != nil && o.ArrivalConditionDeclinedAt.IsSet() {
 		return true
 	}
@@ -2449,21 +4793,21 @@ func (o *ListOrdersItem) HasArrivalConditionDeclinedAt() bool {
 }
 
 // SetArrivalConditionDeclinedAt gets a reference to the given NullableTime and assigns it to the ArrivalConditionDeclinedAt field.
-func (o *ListOrdersItem) SetArrivalConditionDeclinedAt(v time.Time) {
+func (o *GetOrderResponse) SetArrivalConditionDeclinedAt(v time.Time) {
 	o.ArrivalConditionDeclinedAt.Set(&v)
 }
 // SetArrivalConditionDeclinedAtNil sets the value for ArrivalConditionDeclinedAt to be an explicit nil
-func (o *ListOrdersItem) SetArrivalConditionDeclinedAtNil() {
+func (o *GetOrderResponse) SetArrivalConditionDeclinedAtNil() {
 	o.ArrivalConditionDeclinedAt.Set(nil)
 }
 
 // UnsetArrivalConditionDeclinedAt ensures that no value is present for ArrivalConditionDeclinedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetArrivalConditionDeclinedAt() {
+func (o *GetOrderResponse) UnsetArrivalConditionDeclinedAt() {
 	o.ArrivalConditionDeclinedAt.Unset()
 }
 
 // GetDeliveryPhotoUrl returns the DeliveryPhotoUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDeliveryPhotoUrl() string {
+func (o *GetOrderResponse) GetDeliveryPhotoUrl() string {
 	if o == nil || o.DeliveryPhotoUrl.Get() == nil {
 		var ret string
 		return ret
@@ -2474,7 +4818,7 @@ func (o *ListOrdersItem) GetDeliveryPhotoUrl() string {
 // GetDeliveryPhotoUrlOk returns a tuple with the DeliveryPhotoUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDeliveryPhotoUrlOk() (*string, bool) {
+func (o *GetOrderResponse) GetDeliveryPhotoUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2482,7 +4826,7 @@ func (o *ListOrdersItem) GetDeliveryPhotoUrlOk() (*string, bool) {
 }
 
 // HasDeliveryPhotoUrl returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDeliveryPhotoUrl() bool {
+func (o *GetOrderResponse) HasDeliveryPhotoUrl() bool {
 	if o != nil && o.DeliveryPhotoUrl.IsSet() {
 		return true
 	}
@@ -2491,21 +4835,63 @@ func (o *ListOrdersItem) HasDeliveryPhotoUrl() bool {
 }
 
 // SetDeliveryPhotoUrl gets a reference to the given NullableString and assigns it to the DeliveryPhotoUrl field.
-func (o *ListOrdersItem) SetDeliveryPhotoUrl(v string) {
+func (o *GetOrderResponse) SetDeliveryPhotoUrl(v string) {
 	o.DeliveryPhotoUrl.Set(&v)
 }
 // SetDeliveryPhotoUrlNil sets the value for DeliveryPhotoUrl to be an explicit nil
-func (o *ListOrdersItem) SetDeliveryPhotoUrlNil() {
+func (o *GetOrderResponse) SetDeliveryPhotoUrlNil() {
 	o.DeliveryPhotoUrl.Set(nil)
 }
 
 // UnsetDeliveryPhotoUrl ensures that no value is present for DeliveryPhotoUrl, not even an explicit nil
-func (o *ListOrdersItem) UnsetDeliveryPhotoUrl() {
+func (o *GetOrderResponse) UnsetDeliveryPhotoUrl() {
 	o.DeliveryPhotoUrl.Unset()
 }
 
+// GetDeliveryPhotoSource returns the DeliveryPhotoSource field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetDeliveryPhotoSource() string {
+	if o == nil || o.DeliveryPhotoSource.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeliveryPhotoSource.Get()
+}
+
+// GetDeliveryPhotoSourceOk returns a tuple with the DeliveryPhotoSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetDeliveryPhotoSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DeliveryPhotoSource.Get(), o.DeliveryPhotoSource.IsSet()
+}
+
+// HasDeliveryPhotoSource returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasDeliveryPhotoSource() bool {
+	if o != nil && o.DeliveryPhotoSource.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryPhotoSource gets a reference to the given NullableString and assigns it to the DeliveryPhotoSource field.
+func (o *GetOrderResponse) SetDeliveryPhotoSource(v string) {
+	o.DeliveryPhotoSource.Set(&v)
+}
+// SetDeliveryPhotoSourceNil sets the value for DeliveryPhotoSource to be an explicit nil
+func (o *GetOrderResponse) SetDeliveryPhotoSourceNil() {
+	o.DeliveryPhotoSource.Set(nil)
+}
+
+// UnsetDeliveryPhotoSource ensures that no value is present for DeliveryPhotoSource, not even an explicit nil
+func (o *GetOrderResponse) UnsetDeliveryPhotoSource() {
+	o.DeliveryPhotoSource.Unset()
+}
+
 // GetPurchaseOrderRef returns the PurchaseOrderRef field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetPurchaseOrderRef() string {
+func (o *GetOrderResponse) GetPurchaseOrderRef() string {
 	if o == nil || o.PurchaseOrderRef.Get() == nil {
 		var ret string
 		return ret
@@ -2516,7 +4902,7 @@ func (o *ListOrdersItem) GetPurchaseOrderRef() string {
 // GetPurchaseOrderRefOk returns a tuple with the PurchaseOrderRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetPurchaseOrderRefOk() (*string, bool) {
+func (o *GetOrderResponse) GetPurchaseOrderRefOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2524,7 +4910,7 @@ func (o *ListOrdersItem) GetPurchaseOrderRefOk() (*string, bool) {
 }
 
 // HasPurchaseOrderRef returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasPurchaseOrderRef() bool {
+func (o *GetOrderResponse) HasPurchaseOrderRef() bool {
 	if o != nil && o.PurchaseOrderRef.IsSet() {
 		return true
 	}
@@ -2533,21 +4919,21 @@ func (o *ListOrdersItem) HasPurchaseOrderRef() bool {
 }
 
 // SetPurchaseOrderRef gets a reference to the given NullableString and assigns it to the PurchaseOrderRef field.
-func (o *ListOrdersItem) SetPurchaseOrderRef(v string) {
+func (o *GetOrderResponse) SetPurchaseOrderRef(v string) {
 	o.PurchaseOrderRef.Set(&v)
 }
 // SetPurchaseOrderRefNil sets the value for PurchaseOrderRef to be an explicit nil
-func (o *ListOrdersItem) SetPurchaseOrderRefNil() {
+func (o *GetOrderResponse) SetPurchaseOrderRefNil() {
 	o.PurchaseOrderRef.Set(nil)
 }
 
 // UnsetPurchaseOrderRef ensures that no value is present for PurchaseOrderRef, not even an explicit nil
-func (o *ListOrdersItem) UnsetPurchaseOrderRef() {
+func (o *GetOrderResponse) UnsetPurchaseOrderRef() {
 	o.PurchaseOrderRef.Unset()
 }
 
 // GetArrivalConditionPhotos returns the ArrivalConditionPhotos field value
-func (o *ListOrdersItem) GetArrivalConditionPhotos() []string {
+func (o *GetOrderResponse) GetArrivalConditionPhotos() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -2558,7 +4944,7 @@ func (o *ListOrdersItem) GetArrivalConditionPhotos() []string {
 
 // GetArrivalConditionPhotosOk returns a tuple with the ArrivalConditionPhotos field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetArrivalConditionPhotosOk() ([]string, bool) {
+func (o *GetOrderResponse) GetArrivalConditionPhotosOk() ([]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2566,12 +4952,12 @@ func (o *ListOrdersItem) GetArrivalConditionPhotosOk() ([]string, bool) {
 }
 
 // SetArrivalConditionPhotos sets field value
-func (o *ListOrdersItem) SetArrivalConditionPhotos(v []string) {
+func (o *GetOrderResponse) SetArrivalConditionPhotos(v []string) {
 	o.ArrivalConditionPhotos = v
 }
 
 // GetBuyerEmail returns the BuyerEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetBuyerEmail() string {
+func (o *GetOrderResponse) GetBuyerEmail() string {
 	if o == nil || o.BuyerEmail.Get() == nil {
 		var ret string
 		return ret
@@ -2582,7 +4968,7 @@ func (o *ListOrdersItem) GetBuyerEmail() string {
 // GetBuyerEmailOk returns a tuple with the BuyerEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetBuyerEmailOk() (*string, bool) {
+func (o *GetOrderResponse) GetBuyerEmailOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2590,7 +4976,7 @@ func (o *ListOrdersItem) GetBuyerEmailOk() (*string, bool) {
 }
 
 // HasBuyerEmail returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasBuyerEmail() bool {
+func (o *GetOrderResponse) HasBuyerEmail() bool {
 	if o != nil && o.BuyerEmail.IsSet() {
 		return true
 	}
@@ -2599,21 +4985,21 @@ func (o *ListOrdersItem) HasBuyerEmail() bool {
 }
 
 // SetBuyerEmail gets a reference to the given NullableString and assigns it to the BuyerEmail field.
-func (o *ListOrdersItem) SetBuyerEmail(v string) {
+func (o *GetOrderResponse) SetBuyerEmail(v string) {
 	o.BuyerEmail.Set(&v)
 }
 // SetBuyerEmailNil sets the value for BuyerEmail to be an explicit nil
-func (o *ListOrdersItem) SetBuyerEmailNil() {
+func (o *GetOrderResponse) SetBuyerEmailNil() {
 	o.BuyerEmail.Set(nil)
 }
 
 // UnsetBuyerEmail ensures that no value is present for BuyerEmail, not even an explicit nil
-func (o *ListOrdersItem) UnsetBuyerEmail() {
+func (o *GetOrderResponse) UnsetBuyerEmail() {
 	o.BuyerEmail.Unset()
 }
 
 // GetFulfillmentMethod returns the FulfillmentMethod field value
-func (o *ListOrdersItem) GetFulfillmentMethod() string {
+func (o *GetOrderResponse) GetFulfillmentMethod() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -2624,7 +5010,7 @@ func (o *ListOrdersItem) GetFulfillmentMethod() string {
 
 // GetFulfillmentMethodOk returns a tuple with the FulfillmentMethod field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItem) GetFulfillmentMethodOk() (*string, bool) {
+func (o *GetOrderResponse) GetFulfillmentMethodOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2632,12 +5018,54 @@ func (o *ListOrdersItem) GetFulfillmentMethodOk() (*string, bool) {
 }
 
 // SetFulfillmentMethod sets field value
-func (o *ListOrdersItem) SetFulfillmentMethod(v string) {
+func (o *GetOrderResponse) SetFulfillmentMethod(v string) {
 	o.FulfillmentMethod = v
 }
 
+// GetPlatformConfirmedAt returns the PlatformConfirmedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponse) GetPlatformConfirmedAt() time.Time {
+	if o == nil || o.PlatformConfirmedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PlatformConfirmedAt.Get()
+}
+
+// GetPlatformConfirmedAtOk returns a tuple with the PlatformConfirmedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponse) GetPlatformConfirmedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformConfirmedAt.Get(), o.PlatformConfirmedAt.IsSet()
+}
+
+// HasPlatformConfirmedAt returns a boolean if a field has been set.
+func (o *GetOrderResponse) HasPlatformConfirmedAt() bool {
+	if o != nil && o.PlatformConfirmedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformConfirmedAt gets a reference to the given NullableTime and assigns it to the PlatformConfirmedAt field.
+func (o *GetOrderResponse) SetPlatformConfirmedAt(v time.Time) {
+	o.PlatformConfirmedAt.Set(&v)
+}
+// SetPlatformConfirmedAtNil sets the value for PlatformConfirmedAt to be an explicit nil
+func (o *GetOrderResponse) SetPlatformConfirmedAtNil() {
+	o.PlatformConfirmedAt.Set(nil)
+}
+
+// UnsetPlatformConfirmedAt ensures that no value is present for PlatformConfirmedAt, not even an explicit nil
+func (o *GetOrderResponse) UnsetPlatformConfirmedAt() {
+	o.PlatformConfirmedAt.Unset()
+}
+
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItem) GetDeletedAt() time.Time {
+func (o *GetOrderResponse) GetDeletedAt() time.Time {
 	if o == nil || o.DeletedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -2648,7 +5076,7 @@ func (o *ListOrdersItem) GetDeletedAt() time.Time {
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItem) GetDeletedAtOk() (*time.Time, bool) {
+func (o *GetOrderResponse) GetDeletedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2656,7 +5084,7 @@ func (o *ListOrdersItem) GetDeletedAtOk() (*time.Time, bool) {
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
-func (o *ListOrdersItem) HasDeletedAt() bool {
+func (o *GetOrderResponse) HasDeletedAt() bool {
 	if o != nil && o.DeletedAt.IsSet() {
 		return true
 	}
@@ -2665,21 +5093,57 @@ func (o *ListOrdersItem) HasDeletedAt() bool {
 }
 
 // SetDeletedAt gets a reference to the given NullableTime and assigns it to the DeletedAt field.
-func (o *ListOrdersItem) SetDeletedAt(v time.Time) {
+func (o *GetOrderResponse) SetDeletedAt(v time.Time) {
 	o.DeletedAt.Set(&v)
 }
 // SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
-func (o *ListOrdersItem) SetDeletedAtNil() {
+func (o *GetOrderResponse) SetDeletedAtNil() {
 	o.DeletedAt.Set(nil)
 }
 
 // UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
-func (o *ListOrdersItem) UnsetDeletedAt() {
+func (o *GetOrderResponse) UnsetDeletedAt() {
 	o.DeletedAt.Unset()
 }
 
-func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
+func (o GetOrderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AppShare.IsSet() {
+		toSerialize["appShare"] = o.AppShare.Get()
+	}
+	if true {
+		toSerialize["carrierTracking"] = o.CarrierTracking
+	}
+	if o.Trade.IsSet() {
+		toSerialize["trade"] = o.Trade.Get()
+	}
+	if o.SalePrice.IsSet() {
+		toSerialize["salePrice"] = o.SalePrice.Get()
+	}
+	if o.PlatformFee.IsSet() {
+		toSerialize["platformFee"] = o.PlatformFee.Get()
+	}
+	if o.TaxCollected.IsSet() {
+		toSerialize["taxCollected"] = o.TaxCollected.Get()
+	}
+	if o.ShippingCharged.IsSet() {
+		toSerialize["shippingCharged"] = o.ShippingCharged.Get()
+	}
+	if o.FeeSource.IsSet() {
+		toSerialize["feeSource"] = o.FeeSource.Get()
+	}
+	if true {
+		toSerialize["detailsPending"] = o.DetailsPending
+	}
+	if o.Sku.IsSet() {
+		toSerialize["sku"] = o.Sku.Get()
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if true {
+		toSerialize["lineItems"] = o.LineItems
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -2693,34 +5157,37 @@ func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
 		toSerialize["userId"] = o.UserId
 	}
 	if true {
-		toSerialize["quantity"] = o.Quantity
-	}
-	if o.Notes.IsSet() {
-		toSerialize["notes"] = o.Notes.Get()
+		toSerialize["platform"] = o.Platform
 	}
 	if true {
 		toSerialize["status"] = o.Status
 	}
-	if true {
-		toSerialize["platform"] = o.Platform
+	if o.Notes.IsSet() {
+		toSerialize["notes"] = o.Notes.Get()
 	}
-	if o.CancelledAt.IsSet() {
-		toSerialize["cancelledAt"] = o.CancelledAt.Get()
-	}
-	if o.ListingId.IsSet() {
-		toSerialize["listingId"] = o.ListingId.Get()
+	if o.Source.IsSet() {
+		toSerialize["source"] = o.Source.Get()
 	}
 	if o.InventoryItemId.IsSet() {
 		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
 	}
+	if o.ListingId.IsSet() {
+		toSerialize["listingId"] = o.ListingId.Get()
+	}
 	if o.PlatformListingId.IsSet() {
 		toSerialize["platformListingId"] = o.PlatformListingId.Get()
+	}
+	if o.StorefrontId.IsSet() {
+		toSerialize["storefrontId"] = o.StorefrontId.Get()
 	}
 	if o.HandlingTimeDays.IsSet() {
 		toSerialize["handlingTimeDays"] = o.HandlingTimeDays.Get()
 	}
 	if o.PlatformOrderId.IsSet() {
 		toSerialize["platformOrderId"] = o.PlatformOrderId.Get()
+	}
+	if o.ReportedByAppId.IsSet() {
+		toSerialize["reportedByAppId"] = o.ReportedByAppId.Get()
 	}
 	if o.BuyerUsername.IsSet() {
 		toSerialize["buyerUsername"] = o.BuyerUsername.Get()
@@ -2742,6 +5209,15 @@ func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.ChannelLocationId.IsSet() {
 		toSerialize["channelLocationId"] = o.ChannelLocationId.Get()
+	}
+	if true {
+		toSerialize["channel"] = o.Channel
+	}
+	if o.InvoiceId.IsSet() {
+		toSerialize["invoiceId"] = o.InvoiceId.Get()
+	}
+	if o.BuyerCompanyId.IsSet() {
+		toSerialize["buyerCompanyId"] = o.BuyerCompanyId.Get()
 	}
 	if o.PackagePresetId.IsSet() {
 		toSerialize["packagePresetId"] = o.PackagePresetId.Get()
@@ -2851,6 +5327,9 @@ func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
 	if o.RefundedAt.IsSet() {
 		toSerialize["refundedAt"] = o.RefundedAt.Get()
 	}
+	if o.CancelledAt.IsSet() {
+		toSerialize["cancelledAt"] = o.CancelledAt.Get()
+	}
 	if o.CancellationReason.IsSet() {
 		toSerialize["cancellationReason"] = o.CancellationReason.Get()
 	}
@@ -2866,6 +5345,9 @@ func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
 	if o.DeliveryPhotoUrl.IsSet() {
 		toSerialize["deliveryPhotoUrl"] = o.DeliveryPhotoUrl.Get()
 	}
+	if o.DeliveryPhotoSource.IsSet() {
+		toSerialize["deliveryPhotoSource"] = o.DeliveryPhotoSource.Get()
+	}
 	if o.PurchaseOrderRef.IsSet() {
 		toSerialize["purchaseOrderRef"] = o.PurchaseOrderRef.Get()
 	}
@@ -2878,76 +5360,624 @@ func (o ListOrdersItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["fulfillmentMethod"] = o.FulfillmentMethod
 	}
+	if o.PlatformConfirmedAt.IsSet() {
+		toSerialize["platformConfirmedAt"] = o.PlatformConfirmedAt.Get()
+	}
 	if o.DeletedAt.IsSet() {
 		toSerialize["deletedAt"] = o.DeletedAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableListOrdersItem struct {
-	value *ListOrdersItem
+type NullableGetOrderResponse struct {
+	value *GetOrderResponse
 	isSet bool
 }
 
-func (v NullableListOrdersItem) Get() *ListOrdersItem {
+func (v NullableGetOrderResponse) Get() *GetOrderResponse {
 	return v.value
 }
 
-func (v *NullableListOrdersItem) Set(val *ListOrdersItem) {
+func (v *NullableGetOrderResponse) Set(val *GetOrderResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListOrdersItem) IsSet() bool {
+func (v NullableGetOrderResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListOrdersItem) Unset() {
+func (v *NullableGetOrderResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListOrdersItem(val *ListOrdersItem) *NullableListOrdersItem {
-	return &NullableListOrdersItem{value: val, isSet: true}
+func NewNullableGetOrderResponse(val *GetOrderResponse) *NullableGetOrderResponse {
+	return &NullableGetOrderResponse{value: val, isSet: true}
 }
 
-func (v NullableListOrdersItem) MarshalJSON() ([]byte, error) {
+func (v NullableGetOrderResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListOrdersItem) UnmarshalJSON(src []byte) error {
+func (v *NullableGetOrderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListOrdersItemTrackingHistory struct for ListOrdersItemTrackingHistory
-type ListOrdersItemTrackingHistory struct {
+// GetOrderResponseAppShare struct for GetOrderResponseAppShare
+type GetOrderResponseAppShare struct {
+	AppName string `json:"appName"`
+	Amount float32 `json:"amount"`
+	// True when no ledger row exists yet: the expected cut, not the taken one.
+	Estimated bool `json:"estimated"`
+}
+
+// NewGetOrderResponseAppShare instantiates a new GetOrderResponseAppShare object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderResponseAppShare(appName string, amount float32, estimated bool) *GetOrderResponseAppShare {
+	this := GetOrderResponseAppShare{}
+	this.AppName = appName
+	this.Amount = amount
+	this.Estimated = estimated
+	return &this
+}
+
+// NewGetOrderResponseAppShareWithDefaults instantiates a new GetOrderResponseAppShare object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderResponseAppShareWithDefaults() *GetOrderResponseAppShare {
+	this := GetOrderResponseAppShare{}
+	return &this
+}
+
+// GetAppName returns the AppName field value
+func (o *GetOrderResponseAppShare) GetAppName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AppName
+}
+
+// GetAppNameOk returns a tuple with the AppName field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseAppShare) GetAppNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AppName, true
+}
+
+// SetAppName sets field value
+func (o *GetOrderResponseAppShare) SetAppName(v string) {
+	o.AppName = v
+}
+
+// GetAmount returns the Amount field value
+func (o *GetOrderResponseAppShare) GetAmount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseAppShare) GetAmountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
+// SetAmount sets field value
+func (o *GetOrderResponseAppShare) SetAmount(v float32) {
+	o.Amount = v
+}
+
+// GetEstimated returns the Estimated field value
+func (o *GetOrderResponseAppShare) GetEstimated() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Estimated
+}
+
+// GetEstimatedOk returns a tuple with the Estimated field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseAppShare) GetEstimatedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Estimated, true
+}
+
+// SetEstimated sets field value
+func (o *GetOrderResponseAppShare) SetEstimated(v bool) {
+	o.Estimated = v
+}
+
+func (o GetOrderResponseAppShare) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["appName"] = o.AppName
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["estimated"] = o.Estimated
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderResponseAppShare struct {
+	value *GetOrderResponseAppShare
+	isSet bool
+}
+
+func (v NullableGetOrderResponseAppShare) Get() *GetOrderResponseAppShare {
+	return v.value
+}
+
+func (v *NullableGetOrderResponseAppShare) Set(val *GetOrderResponseAppShare) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderResponseAppShare) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderResponseAppShare) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderResponseAppShare(val *GetOrderResponseAppShare) *NullableGetOrderResponseAppShare {
+	return &NullableGetOrderResponseAppShare{value: val, isSet: true}
+}
+
+func (v NullableGetOrderResponseAppShare) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderResponseAppShare) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderResponseLineItems struct for GetOrderResponseLineItems
+type GetOrderResponseLineItems struct {
+	LineKey NullableString `json:"lineKey,omitempty"`
+	ListingId string `json:"listingId"`
+	InventoryItemId NullableString `json:"inventoryItemId,omitempty"`
+	// The MARKETPLACE's listing id (eBay item id, Poshmark listing id, ...), not Crossly's.
+	PlatformListingId string `json:"platformListingId"`
+	// The variant SKU the marketplace reported, else the listing's SKU.
+	Sku NullableString `json:"sku,omitempty"`
+	VariantId NullableString `json:"variantId,omitempty"`
+	Quantity float32 `json:"quantity"`
+	// DOLLARS per unit (salePrice / quantity, rounded to the cent).
+	UnitPrice float32 `json:"unitPrice"`
+	// DOLLARS for the line: the sale price.
+	Total float32 `json:"total"`
+}
+
+// NewGetOrderResponseLineItems instantiates a new GetOrderResponseLineItems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderResponseLineItems(listingId string, platformListingId string, quantity float32, unitPrice float32, total float32) *GetOrderResponseLineItems {
+	this := GetOrderResponseLineItems{}
+	this.ListingId = listingId
+	this.PlatformListingId = platformListingId
+	this.Quantity = quantity
+	this.UnitPrice = unitPrice
+	this.Total = total
+	return &this
+}
+
+// NewGetOrderResponseLineItemsWithDefaults instantiates a new GetOrderResponseLineItems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderResponseLineItemsWithDefaults() *GetOrderResponseLineItems {
+	this := GetOrderResponseLineItems{}
+	return &this
+}
+
+// GetLineKey returns the LineKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseLineItems) GetLineKey() string {
+	if o == nil || o.LineKey.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LineKey.Get()
+}
+
+// GetLineKeyOk returns a tuple with the LineKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseLineItems) GetLineKeyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LineKey.Get(), o.LineKey.IsSet()
+}
+
+// HasLineKey returns a boolean if a field has been set.
+func (o *GetOrderResponseLineItems) HasLineKey() bool {
+	if o != nil && o.LineKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLineKey gets a reference to the given NullableString and assigns it to the LineKey field.
+func (o *GetOrderResponseLineItems) SetLineKey(v string) {
+	o.LineKey.Set(&v)
+}
+// SetLineKeyNil sets the value for LineKey to be an explicit nil
+func (o *GetOrderResponseLineItems) SetLineKeyNil() {
+	o.LineKey.Set(nil)
+}
+
+// UnsetLineKey ensures that no value is present for LineKey, not even an explicit nil
+func (o *GetOrderResponseLineItems) UnsetLineKey() {
+	o.LineKey.Unset()
+}
+
+// GetListingId returns the ListingId field value
+func (o *GetOrderResponseLineItems) GetListingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ListingId
+}
+
+// GetListingIdOk returns a tuple with the ListingId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseLineItems) GetListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ListingId, true
+}
+
+// SetListingId sets field value
+func (o *GetOrderResponseLineItems) SetListingId(v string) {
+	o.ListingId = v
+}
+
+// GetInventoryItemId returns the InventoryItemId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseLineItems) GetInventoryItemId() string {
+	if o == nil || o.InventoryItemId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.InventoryItemId.Get()
+}
+
+// GetInventoryItemIdOk returns a tuple with the InventoryItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseLineItems) GetInventoryItemIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.InventoryItemId.Get(), o.InventoryItemId.IsSet()
+}
+
+// HasInventoryItemId returns a boolean if a field has been set.
+func (o *GetOrderResponseLineItems) HasInventoryItemId() bool {
+	if o != nil && o.InventoryItemId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInventoryItemId gets a reference to the given NullableString and assigns it to the InventoryItemId field.
+func (o *GetOrderResponseLineItems) SetInventoryItemId(v string) {
+	o.InventoryItemId.Set(&v)
+}
+// SetInventoryItemIdNil sets the value for InventoryItemId to be an explicit nil
+func (o *GetOrderResponseLineItems) SetInventoryItemIdNil() {
+	o.InventoryItemId.Set(nil)
+}
+
+// UnsetInventoryItemId ensures that no value is present for InventoryItemId, not even an explicit nil
+func (o *GetOrderResponseLineItems) UnsetInventoryItemId() {
+	o.InventoryItemId.Unset()
+}
+
+// GetPlatformListingId returns the PlatformListingId field value
+func (o *GetOrderResponseLineItems) GetPlatformListingId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PlatformListingId
+}
+
+// GetPlatformListingIdOk returns a tuple with the PlatformListingId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseLineItems) GetPlatformListingIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PlatformListingId, true
+}
+
+// SetPlatformListingId sets field value
+func (o *GetOrderResponseLineItems) SetPlatformListingId(v string) {
+	o.PlatformListingId = v
+}
+
+// GetSku returns the Sku field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseLineItems) GetSku() string {
+	if o == nil || o.Sku.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sku.Get()
+}
+
+// GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseLineItems) GetSkuOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Sku.Get(), o.Sku.IsSet()
+}
+
+// HasSku returns a boolean if a field has been set.
+func (o *GetOrderResponseLineItems) HasSku() bool {
+	if o != nil && o.Sku.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSku gets a reference to the given NullableString and assigns it to the Sku field.
+func (o *GetOrderResponseLineItems) SetSku(v string) {
+	o.Sku.Set(&v)
+}
+// SetSkuNil sets the value for Sku to be an explicit nil
+func (o *GetOrderResponseLineItems) SetSkuNil() {
+	o.Sku.Set(nil)
+}
+
+// UnsetSku ensures that no value is present for Sku, not even an explicit nil
+func (o *GetOrderResponseLineItems) UnsetSku() {
+	o.Sku.Unset()
+}
+
+// GetVariantId returns the VariantId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseLineItems) GetVariantId() string {
+	if o == nil || o.VariantId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.VariantId.Get()
+}
+
+// GetVariantIdOk returns a tuple with the VariantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseLineItems) GetVariantIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VariantId.Get(), o.VariantId.IsSet()
+}
+
+// HasVariantId returns a boolean if a field has been set.
+func (o *GetOrderResponseLineItems) HasVariantId() bool {
+	if o != nil && o.VariantId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVariantId gets a reference to the given NullableString and assigns it to the VariantId field.
+func (o *GetOrderResponseLineItems) SetVariantId(v string) {
+	o.VariantId.Set(&v)
+}
+// SetVariantIdNil sets the value for VariantId to be an explicit nil
+func (o *GetOrderResponseLineItems) SetVariantIdNil() {
+	o.VariantId.Set(nil)
+}
+
+// UnsetVariantId ensures that no value is present for VariantId, not even an explicit nil
+func (o *GetOrderResponseLineItems) UnsetVariantId() {
+	o.VariantId.Unset()
+}
+
+// GetQuantity returns the Quantity field value
+func (o *GetOrderResponseLineItems) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseLineItems) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *GetOrderResponseLineItems) SetQuantity(v float32) {
+	o.Quantity = v
+}
+
+// GetUnitPrice returns the UnitPrice field value
+func (o *GetOrderResponseLineItems) GetUnitPrice() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.UnitPrice
+}
+
+// GetUnitPriceOk returns a tuple with the UnitPrice field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseLineItems) GetUnitPriceOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnitPrice, true
+}
+
+// SetUnitPrice sets field value
+func (o *GetOrderResponseLineItems) SetUnitPrice(v float32) {
+	o.UnitPrice = v
+}
+
+// GetTotal returns the Total field value
+func (o *GetOrderResponseLineItems) GetTotal() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseLineItems) GetTotalOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
+// SetTotal sets field value
+func (o *GetOrderResponseLineItems) SetTotal(v float32) {
+	o.Total = v
+}
+
+func (o GetOrderResponseLineItems) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.LineKey.IsSet() {
+		toSerialize["lineKey"] = o.LineKey.Get()
+	}
+	if true {
+		toSerialize["listingId"] = o.ListingId
+	}
+	if o.InventoryItemId.IsSet() {
+		toSerialize["inventoryItemId"] = o.InventoryItemId.Get()
+	}
+	if true {
+		toSerialize["platformListingId"] = o.PlatformListingId
+	}
+	if o.Sku.IsSet() {
+		toSerialize["sku"] = o.Sku.Get()
+	}
+	if o.VariantId.IsSet() {
+		toSerialize["variantId"] = o.VariantId.Get()
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if true {
+		toSerialize["unitPrice"] = o.UnitPrice
+	}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderResponseLineItems struct {
+	value *GetOrderResponseLineItems
+	isSet bool
+}
+
+func (v NullableGetOrderResponseLineItems) Get() *GetOrderResponseLineItems {
+	return v.value
+}
+
+func (v *NullableGetOrderResponseLineItems) Set(val *GetOrderResponseLineItems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderResponseLineItems) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderResponseLineItems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderResponseLineItems(val *GetOrderResponseLineItems) *NullableGetOrderResponseLineItems {
+	return &NullableGetOrderResponseLineItems{value: val, isSet: true}
+}
+
+func (v NullableGetOrderResponseLineItems) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderResponseLineItems) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderResponseTrackingHistory struct for GetOrderResponseTrackingHistory
+type GetOrderResponseTrackingHistory struct {
 	Status string `json:"status"`
 	StatusDetails NullableString `json:"statusDetails,omitempty"`
 	StatusDate NullableString `json:"statusDate,omitempty"`
 	Location NullableString `json:"location,omitempty"`
 }
 
-// NewListOrdersItemTrackingHistory instantiates a new ListOrdersItemTrackingHistory object
+// NewGetOrderResponseTrackingHistory instantiates a new GetOrderResponseTrackingHistory object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrdersItemTrackingHistory(status string) *ListOrdersItemTrackingHistory {
-	this := ListOrdersItemTrackingHistory{}
+func NewGetOrderResponseTrackingHistory(status string) *GetOrderResponseTrackingHistory {
+	this := GetOrderResponseTrackingHistory{}
 	this.Status = status
 	return &this
 }
 
-// NewListOrdersItemTrackingHistoryWithDefaults instantiates a new ListOrdersItemTrackingHistory object
+// NewGetOrderResponseTrackingHistoryWithDefaults instantiates a new GetOrderResponseTrackingHistory object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListOrdersItemTrackingHistoryWithDefaults() *ListOrdersItemTrackingHistory {
-	this := ListOrdersItemTrackingHistory{}
+func NewGetOrderResponseTrackingHistoryWithDefaults() *GetOrderResponseTrackingHistory {
+	this := GetOrderResponseTrackingHistory{}
 	return &this
 }
 
 // GetStatus returns the Status field value
-func (o *ListOrdersItemTrackingHistory) GetStatus() string {
+func (o *GetOrderResponseTrackingHistory) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -2958,7 +5988,7 @@ func (o *ListOrdersItemTrackingHistory) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersItemTrackingHistory) GetStatusOk() (*string, bool) {
+func (o *GetOrderResponseTrackingHistory) GetStatusOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2966,12 +5996,12 @@ func (o *ListOrdersItemTrackingHistory) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *ListOrdersItemTrackingHistory) SetStatus(v string) {
+func (o *GetOrderResponseTrackingHistory) SetStatus(v string) {
 	o.Status = v
 }
 
 // GetStatusDetails returns the StatusDetails field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItemTrackingHistory) GetStatusDetails() string {
+func (o *GetOrderResponseTrackingHistory) GetStatusDetails() string {
 	if o == nil || o.StatusDetails.Get() == nil {
 		var ret string
 		return ret
@@ -2982,7 +6012,7 @@ func (o *ListOrdersItemTrackingHistory) GetStatusDetails() string {
 // GetStatusDetailsOk returns a tuple with the StatusDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItemTrackingHistory) GetStatusDetailsOk() (*string, bool) {
+func (o *GetOrderResponseTrackingHistory) GetStatusDetailsOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2990,7 +6020,7 @@ func (o *ListOrdersItemTrackingHistory) GetStatusDetailsOk() (*string, bool) {
 }
 
 // HasStatusDetails returns a boolean if a field has been set.
-func (o *ListOrdersItemTrackingHistory) HasStatusDetails() bool {
+func (o *GetOrderResponseTrackingHistory) HasStatusDetails() bool {
 	if o != nil && o.StatusDetails.IsSet() {
 		return true
 	}
@@ -2999,21 +6029,21 @@ func (o *ListOrdersItemTrackingHistory) HasStatusDetails() bool {
 }
 
 // SetStatusDetails gets a reference to the given NullableString and assigns it to the StatusDetails field.
-func (o *ListOrdersItemTrackingHistory) SetStatusDetails(v string) {
+func (o *GetOrderResponseTrackingHistory) SetStatusDetails(v string) {
 	o.StatusDetails.Set(&v)
 }
 // SetStatusDetailsNil sets the value for StatusDetails to be an explicit nil
-func (o *ListOrdersItemTrackingHistory) SetStatusDetailsNil() {
+func (o *GetOrderResponseTrackingHistory) SetStatusDetailsNil() {
 	o.StatusDetails.Set(nil)
 }
 
 // UnsetStatusDetails ensures that no value is present for StatusDetails, not even an explicit nil
-func (o *ListOrdersItemTrackingHistory) UnsetStatusDetails() {
+func (o *GetOrderResponseTrackingHistory) UnsetStatusDetails() {
 	o.StatusDetails.Unset()
 }
 
 // GetStatusDate returns the StatusDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItemTrackingHistory) GetStatusDate() string {
+func (o *GetOrderResponseTrackingHistory) GetStatusDate() string {
 	if o == nil || o.StatusDate.Get() == nil {
 		var ret string
 		return ret
@@ -3024,7 +6054,7 @@ func (o *ListOrdersItemTrackingHistory) GetStatusDate() string {
 // GetStatusDateOk returns a tuple with the StatusDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItemTrackingHistory) GetStatusDateOk() (*string, bool) {
+func (o *GetOrderResponseTrackingHistory) GetStatusDateOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -3032,7 +6062,7 @@ func (o *ListOrdersItemTrackingHistory) GetStatusDateOk() (*string, bool) {
 }
 
 // HasStatusDate returns a boolean if a field has been set.
-func (o *ListOrdersItemTrackingHistory) HasStatusDate() bool {
+func (o *GetOrderResponseTrackingHistory) HasStatusDate() bool {
 	if o != nil && o.StatusDate.IsSet() {
 		return true
 	}
@@ -3041,21 +6071,21 @@ func (o *ListOrdersItemTrackingHistory) HasStatusDate() bool {
 }
 
 // SetStatusDate gets a reference to the given NullableString and assigns it to the StatusDate field.
-func (o *ListOrdersItemTrackingHistory) SetStatusDate(v string) {
+func (o *GetOrderResponseTrackingHistory) SetStatusDate(v string) {
 	o.StatusDate.Set(&v)
 }
 // SetStatusDateNil sets the value for StatusDate to be an explicit nil
-func (o *ListOrdersItemTrackingHistory) SetStatusDateNil() {
+func (o *GetOrderResponseTrackingHistory) SetStatusDateNil() {
 	o.StatusDate.Set(nil)
 }
 
 // UnsetStatusDate ensures that no value is present for StatusDate, not even an explicit nil
-func (o *ListOrdersItemTrackingHistory) UnsetStatusDate() {
+func (o *GetOrderResponseTrackingHistory) UnsetStatusDate() {
 	o.StatusDate.Unset()
 }
 
 // GetLocation returns the Location field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ListOrdersItemTrackingHistory) GetLocation() string {
+func (o *GetOrderResponseTrackingHistory) GetLocation() string {
 	if o == nil || o.Location.Get() == nil {
 		var ret string
 		return ret
@@ -3066,7 +6096,7 @@ func (o *ListOrdersItemTrackingHistory) GetLocation() string {
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListOrdersItemTrackingHistory) GetLocationOk() (*string, bool) {
+func (o *GetOrderResponseTrackingHistory) GetLocationOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -3074,7 +6104,7 @@ func (o *ListOrdersItemTrackingHistory) GetLocationOk() (*string, bool) {
 }
 
 // HasLocation returns a boolean if a field has been set.
-func (o *ListOrdersItemTrackingHistory) HasLocation() bool {
+func (o *GetOrderResponseTrackingHistory) HasLocation() bool {
 	if o != nil && o.Location.IsSet() {
 		return true
 	}
@@ -3083,20 +6113,20 @@ func (o *ListOrdersItemTrackingHistory) HasLocation() bool {
 }
 
 // SetLocation gets a reference to the given NullableString and assigns it to the Location field.
-func (o *ListOrdersItemTrackingHistory) SetLocation(v string) {
+func (o *GetOrderResponseTrackingHistory) SetLocation(v string) {
 	o.Location.Set(&v)
 }
 // SetLocationNil sets the value for Location to be an explicit nil
-func (o *ListOrdersItemTrackingHistory) SetLocationNil() {
+func (o *GetOrderResponseTrackingHistory) SetLocationNil() {
 	o.Location.Set(nil)
 }
 
 // UnsetLocation ensures that no value is present for Location, not even an explicit nil
-func (o *ListOrdersItemTrackingHistory) UnsetLocation() {
+func (o *GetOrderResponseTrackingHistory) UnsetLocation() {
 	o.Location.Unset()
 }
 
-func (o ListOrdersItemTrackingHistory) MarshalJSON() ([]byte, error) {
+func (o GetOrderResponseTrackingHistory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["status"] = o.Status
@@ -3113,73 +6143,877 @@ func (o ListOrdersItemTrackingHistory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableListOrdersItemTrackingHistory struct {
-	value *ListOrdersItemTrackingHistory
+type NullableGetOrderResponseTrackingHistory struct {
+	value *GetOrderResponseTrackingHistory
 	isSet bool
 }
 
-func (v NullableListOrdersItemTrackingHistory) Get() *ListOrdersItemTrackingHistory {
+func (v NullableGetOrderResponseTrackingHistory) Get() *GetOrderResponseTrackingHistory {
 	return v.value
 }
 
-func (v *NullableListOrdersItemTrackingHistory) Set(val *ListOrdersItemTrackingHistory) {
+func (v *NullableGetOrderResponseTrackingHistory) Set(val *GetOrderResponseTrackingHistory) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListOrdersItemTrackingHistory) IsSet() bool {
+func (v NullableGetOrderResponseTrackingHistory) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListOrdersItemTrackingHistory) Unset() {
+func (v *NullableGetOrderResponseTrackingHistory) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListOrdersItemTrackingHistory(val *ListOrdersItemTrackingHistory) *NullableListOrdersItemTrackingHistory {
-	return &NullableListOrdersItemTrackingHistory{value: val, isSet: true}
+func NewNullableGetOrderResponseTrackingHistory(val *GetOrderResponseTrackingHistory) *NullableGetOrderResponseTrackingHistory {
+	return &NullableGetOrderResponseTrackingHistory{value: val, isSet: true}
 }
 
-func (v NullableListOrdersItemTrackingHistory) MarshalJSON() ([]byte, error) {
+func (v NullableGetOrderResponseTrackingHistory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListOrdersItemTrackingHistory) UnmarshalJSON(src []byte) error {
+func (v *NullableGetOrderResponseTrackingHistory) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
 
-// ListOrdersResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
-type ListOrdersResponse struct {
-	// The rows.
-	Data []ListOrdersItem `json:"data"`
-	Pagination *Pagination `json:"pagination,omitempty"`
-	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
-	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+// GetOrderResponseTrade struct for GetOrderResponseTrade
+type GetOrderResponseTrade struct {
+	InvoiceId string `json:"invoiceId"`
+	InvoiceNumber string `json:"invoiceNumber"`
+	InvoiceStatus string `json:"invoiceStatus"`
+	// Net days on the invoice; null = due on receipt.
+	NetDays NullableFloat32 `json:"netDays,omitempty"`
+	DueAt NullableString `json:"dueAt,omitempty"`
+	TotalCents float32 `json:"totalCents"`
+	AmountPaidCents float32 `json:"amountPaidCents"`
+	BalanceCents float32 `json:"balanceCents"`
 }
 
-// NewListOrdersResponse instantiates a new ListOrdersResponse object
+// NewGetOrderResponseTrade instantiates a new GetOrderResponseTrade object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrdersResponse(data []ListOrdersItem) *ListOrdersResponse {
-	this := ListOrdersResponse{}
+func NewGetOrderResponseTrade(invoiceId string, invoiceNumber string, invoiceStatus string, totalCents float32, amountPaidCents float32, balanceCents float32) *GetOrderResponseTrade {
+	this := GetOrderResponseTrade{}
+	this.InvoiceId = invoiceId
+	this.InvoiceNumber = invoiceNumber
+	this.InvoiceStatus = invoiceStatus
+	this.TotalCents = totalCents
+	this.AmountPaidCents = amountPaidCents
+	this.BalanceCents = balanceCents
+	return &this
+}
+
+// NewGetOrderResponseTradeWithDefaults instantiates a new GetOrderResponseTrade object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderResponseTradeWithDefaults() *GetOrderResponseTrade {
+	this := GetOrderResponseTrade{}
+	return &this
+}
+
+// GetInvoiceId returns the InvoiceId field value
+func (o *GetOrderResponseTrade) GetInvoiceId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InvoiceId
+}
+
+// GetInvoiceIdOk returns a tuple with the InvoiceId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetInvoiceIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InvoiceId, true
+}
+
+// SetInvoiceId sets field value
+func (o *GetOrderResponseTrade) SetInvoiceId(v string) {
+	o.InvoiceId = v
+}
+
+// GetInvoiceNumber returns the InvoiceNumber field value
+func (o *GetOrderResponseTrade) GetInvoiceNumber() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InvoiceNumber
+}
+
+// GetInvoiceNumberOk returns a tuple with the InvoiceNumber field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetInvoiceNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InvoiceNumber, true
+}
+
+// SetInvoiceNumber sets field value
+func (o *GetOrderResponseTrade) SetInvoiceNumber(v string) {
+	o.InvoiceNumber = v
+}
+
+// GetInvoiceStatus returns the InvoiceStatus field value
+func (o *GetOrderResponseTrade) GetInvoiceStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InvoiceStatus
+}
+
+// GetInvoiceStatusOk returns a tuple with the InvoiceStatus field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetInvoiceStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.InvoiceStatus, true
+}
+
+// SetInvoiceStatus sets field value
+func (o *GetOrderResponseTrade) SetInvoiceStatus(v string) {
+	o.InvoiceStatus = v
+}
+
+// GetNetDays returns the NetDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseTrade) GetNetDays() float32 {
+	if o == nil || o.NetDays.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.NetDays.Get()
+}
+
+// GetNetDaysOk returns a tuple with the NetDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseTrade) GetNetDaysOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.NetDays.Get(), o.NetDays.IsSet()
+}
+
+// HasNetDays returns a boolean if a field has been set.
+func (o *GetOrderResponseTrade) HasNetDays() bool {
+	if o != nil && o.NetDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNetDays gets a reference to the given NullableFloat32 and assigns it to the NetDays field.
+func (o *GetOrderResponseTrade) SetNetDays(v float32) {
+	o.NetDays.Set(&v)
+}
+// SetNetDaysNil sets the value for NetDays to be an explicit nil
+func (o *GetOrderResponseTrade) SetNetDaysNil() {
+	o.NetDays.Set(nil)
+}
+
+// UnsetNetDays ensures that no value is present for NetDays, not even an explicit nil
+func (o *GetOrderResponseTrade) UnsetNetDays() {
+	o.NetDays.Unset()
+}
+
+// GetDueAt returns the DueAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderResponseTrade) GetDueAt() string {
+	if o == nil || o.DueAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DueAt.Get()
+}
+
+// GetDueAtOk returns a tuple with the DueAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderResponseTrade) GetDueAtOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DueAt.Get(), o.DueAt.IsSet()
+}
+
+// HasDueAt returns a boolean if a field has been set.
+func (o *GetOrderResponseTrade) HasDueAt() bool {
+	if o != nil && o.DueAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDueAt gets a reference to the given NullableString and assigns it to the DueAt field.
+func (o *GetOrderResponseTrade) SetDueAt(v string) {
+	o.DueAt.Set(&v)
+}
+// SetDueAtNil sets the value for DueAt to be an explicit nil
+func (o *GetOrderResponseTrade) SetDueAtNil() {
+	o.DueAt.Set(nil)
+}
+
+// UnsetDueAt ensures that no value is present for DueAt, not even an explicit nil
+func (o *GetOrderResponseTrade) UnsetDueAt() {
+	o.DueAt.Unset()
+}
+
+// GetTotalCents returns the TotalCents field value
+func (o *GetOrderResponseTrade) GetTotalCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalCents
+}
+
+// GetTotalCentsOk returns a tuple with the TotalCents field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetTotalCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TotalCents, true
+}
+
+// SetTotalCents sets field value
+func (o *GetOrderResponseTrade) SetTotalCents(v float32) {
+	o.TotalCents = v
+}
+
+// GetAmountPaidCents returns the AmountPaidCents field value
+func (o *GetOrderResponseTrade) GetAmountPaidCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AmountPaidCents
+}
+
+// GetAmountPaidCentsOk returns a tuple with the AmountPaidCents field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetAmountPaidCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.AmountPaidCents, true
+}
+
+// SetAmountPaidCents sets field value
+func (o *GetOrderResponseTrade) SetAmountPaidCents(v float32) {
+	o.AmountPaidCents = v
+}
+
+// GetBalanceCents returns the BalanceCents field value
+func (o *GetOrderResponseTrade) GetBalanceCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.BalanceCents
+}
+
+// GetBalanceCentsOk returns a tuple with the BalanceCents field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderResponseTrade) GetBalanceCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.BalanceCents, true
+}
+
+// SetBalanceCents sets field value
+func (o *GetOrderResponseTrade) SetBalanceCents(v float32) {
+	o.BalanceCents = v
+}
+
+func (o GetOrderResponseTrade) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["invoiceId"] = o.InvoiceId
+	}
+	if true {
+		toSerialize["invoiceNumber"] = o.InvoiceNumber
+	}
+	if true {
+		toSerialize["invoiceStatus"] = o.InvoiceStatus
+	}
+	if o.NetDays.IsSet() {
+		toSerialize["netDays"] = o.NetDays.Get()
+	}
+	if o.DueAt.IsSet() {
+		toSerialize["dueAt"] = o.DueAt.Get()
+	}
+	if true {
+		toSerialize["totalCents"] = o.TotalCents
+	}
+	if true {
+		toSerialize["amountPaidCents"] = o.AmountPaidCents
+	}
+	if true {
+		toSerialize["balanceCents"] = o.BalanceCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderResponseTrade struct {
+	value *GetOrderResponseTrade
+	isSet bool
+}
+
+func (v NullableGetOrderResponseTrade) Get() *GetOrderResponseTrade {
+	return v.value
+}
+
+func (v *NullableGetOrderResponseTrade) Set(val *GetOrderResponseTrade) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderResponseTrade) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderResponseTrade) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderResponseTrade(val *GetOrderResponseTrade) *NullableGetOrderResponseTrade {
+	return &NullableGetOrderResponseTrade{value: val, isSet: true}
+}
+
+func (v NullableGetOrderResponseTrade) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderResponseTrade) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderSalesTaxResponse struct for GetOrderSalesTaxResponse
+type GetOrderSalesTaxResponse struct {
+	OrderId string `json:"orderId"`
+	CollectedBy string `json:"collectedBy"`
+	Reason NullableString `json:"reason,omitempty"`
+	Country NullableString `json:"country,omitempty"`
+	State NullableString `json:"state,omitempty"`
+	Source string `json:"source"`
+	Jurisdiction NullableString `json:"jurisdiction,omitempty"`
+	TaxCents float32 `json:"taxCents"`
+	MayOwe bool `json:"mayOwe"`
+	Notice string `json:"notice"`
+	// Crossly collects in this jurisdiction TODAY (it may not have at the time of this sale).
+	CrosslyCollectsThereNow bool `json:"crosslyCollectsThereNow"`
+	HelpPath string `json:"helpPath"`
+}
+
+// NewGetOrderSalesTaxResponse instantiates a new GetOrderSalesTaxResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderSalesTaxResponse(orderId string, collectedBy string, source string, taxCents float32, mayOwe bool, notice string, crosslyCollectsThereNow bool, helpPath string) *GetOrderSalesTaxResponse {
+	this := GetOrderSalesTaxResponse{}
+	this.OrderId = orderId
+	this.CollectedBy = collectedBy
+	this.Source = source
+	this.TaxCents = taxCents
+	this.MayOwe = mayOwe
+	this.Notice = notice
+	this.CrosslyCollectsThereNow = crosslyCollectsThereNow
+	this.HelpPath = helpPath
+	return &this
+}
+
+// NewGetOrderSalesTaxResponseWithDefaults instantiates a new GetOrderSalesTaxResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderSalesTaxResponseWithDefaults() *GetOrderSalesTaxResponse {
+	this := GetOrderSalesTaxResponse{}
+	return &this
+}
+
+// GetOrderId returns the OrderId field value
+func (o *GetOrderSalesTaxResponse) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *GetOrderSalesTaxResponse) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetCollectedBy returns the CollectedBy field value
+func (o *GetOrderSalesTaxResponse) GetCollectedBy() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CollectedBy
+}
+
+// GetCollectedByOk returns a tuple with the CollectedBy field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetCollectedByOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CollectedBy, true
+}
+
+// SetCollectedBy sets field value
+func (o *GetOrderSalesTaxResponse) SetCollectedBy(v string) {
+	o.CollectedBy = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderSalesTaxResponse) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderSalesTaxResponse) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *GetOrderSalesTaxResponse) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *GetOrderSalesTaxResponse) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *GetOrderSalesTaxResponse) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *GetOrderSalesTaxResponse) UnsetReason() {
+	o.Reason.Unset()
+}
+
+// GetCountry returns the Country field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderSalesTaxResponse) GetCountry() string {
+	if o == nil || o.Country.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Country.Get()
+}
+
+// GetCountryOk returns a tuple with the Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderSalesTaxResponse) GetCountryOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Country.Get(), o.Country.IsSet()
+}
+
+// HasCountry returns a boolean if a field has been set.
+func (o *GetOrderSalesTaxResponse) HasCountry() bool {
+	if o != nil && o.Country.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCountry gets a reference to the given NullableString and assigns it to the Country field.
+func (o *GetOrderSalesTaxResponse) SetCountry(v string) {
+	o.Country.Set(&v)
+}
+// SetCountryNil sets the value for Country to be an explicit nil
+func (o *GetOrderSalesTaxResponse) SetCountryNil() {
+	o.Country.Set(nil)
+}
+
+// UnsetCountry ensures that no value is present for Country, not even an explicit nil
+func (o *GetOrderSalesTaxResponse) UnsetCountry() {
+	o.Country.Unset()
+}
+
+// GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderSalesTaxResponse) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderSalesTaxResponse) GetStateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *GetOrderSalesTaxResponse) HasState() bool {
+	if o != nil && o.State.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given NullableString and assigns it to the State field.
+func (o *GetOrderSalesTaxResponse) SetState(v string) {
+	o.State.Set(&v)
+}
+// SetStateNil sets the value for State to be an explicit nil
+func (o *GetOrderSalesTaxResponse) SetStateNil() {
+	o.State.Set(nil)
+}
+
+// UnsetState ensures that no value is present for State, not even an explicit nil
+func (o *GetOrderSalesTaxResponse) UnsetState() {
+	o.State.Unset()
+}
+
+// GetSource returns the Source field value
+func (o *GetOrderSalesTaxResponse) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *GetOrderSalesTaxResponse) SetSource(v string) {
+	o.Source = v
+}
+
+// GetJurisdiction returns the Jurisdiction field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderSalesTaxResponse) GetJurisdiction() string {
+	if o == nil || o.Jurisdiction.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Jurisdiction.Get()
+}
+
+// GetJurisdictionOk returns a tuple with the Jurisdiction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderSalesTaxResponse) GetJurisdictionOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Jurisdiction.Get(), o.Jurisdiction.IsSet()
+}
+
+// HasJurisdiction returns a boolean if a field has been set.
+func (o *GetOrderSalesTaxResponse) HasJurisdiction() bool {
+	if o != nil && o.Jurisdiction.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJurisdiction gets a reference to the given NullableString and assigns it to the Jurisdiction field.
+func (o *GetOrderSalesTaxResponse) SetJurisdiction(v string) {
+	o.Jurisdiction.Set(&v)
+}
+// SetJurisdictionNil sets the value for Jurisdiction to be an explicit nil
+func (o *GetOrderSalesTaxResponse) SetJurisdictionNil() {
+	o.Jurisdiction.Set(nil)
+}
+
+// UnsetJurisdiction ensures that no value is present for Jurisdiction, not even an explicit nil
+func (o *GetOrderSalesTaxResponse) UnsetJurisdiction() {
+	o.Jurisdiction.Unset()
+}
+
+// GetTaxCents returns the TaxCents field value
+func (o *GetOrderSalesTaxResponse) GetTaxCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TaxCents
+}
+
+// GetTaxCentsOk returns a tuple with the TaxCents field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetTaxCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TaxCents, true
+}
+
+// SetTaxCents sets field value
+func (o *GetOrderSalesTaxResponse) SetTaxCents(v float32) {
+	o.TaxCents = v
+}
+
+// GetMayOwe returns the MayOwe field value
+func (o *GetOrderSalesTaxResponse) GetMayOwe() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.MayOwe
+}
+
+// GetMayOweOk returns a tuple with the MayOwe field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetMayOweOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MayOwe, true
+}
+
+// SetMayOwe sets field value
+func (o *GetOrderSalesTaxResponse) SetMayOwe(v bool) {
+	o.MayOwe = v
+}
+
+// GetNotice returns the Notice field value
+func (o *GetOrderSalesTaxResponse) GetNotice() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notice
+}
+
+// GetNoticeOk returns a tuple with the Notice field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetNoticeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Notice, true
+}
+
+// SetNotice sets field value
+func (o *GetOrderSalesTaxResponse) SetNotice(v string) {
+	o.Notice = v
+}
+
+// GetCrosslyCollectsThereNow returns the CrosslyCollectsThereNow field value
+func (o *GetOrderSalesTaxResponse) GetCrosslyCollectsThereNow() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CrosslyCollectsThereNow
+}
+
+// GetCrosslyCollectsThereNowOk returns a tuple with the CrosslyCollectsThereNow field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetCrosslyCollectsThereNowOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CrosslyCollectsThereNow, true
+}
+
+// SetCrosslyCollectsThereNow sets field value
+func (o *GetOrderSalesTaxResponse) SetCrosslyCollectsThereNow(v bool) {
+	o.CrosslyCollectsThereNow = v
+}
+
+// GetHelpPath returns the HelpPath field value
+func (o *GetOrderSalesTaxResponse) GetHelpPath() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HelpPath
+}
+
+// GetHelpPathOk returns a tuple with the HelpPath field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderSalesTaxResponse) GetHelpPathOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.HelpPath, true
+}
+
+// SetHelpPath sets field value
+func (o *GetOrderSalesTaxResponse) SetHelpPath(v string) {
+	o.HelpPath = v
+}
+
+func (o GetOrderSalesTaxResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if true {
+		toSerialize["collectedBy"] = o.CollectedBy
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	if o.Country.IsSet() {
+		toSerialize["country"] = o.Country.Get()
+	}
+	if o.State.IsSet() {
+		toSerialize["state"] = o.State.Get()
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if o.Jurisdiction.IsSet() {
+		toSerialize["jurisdiction"] = o.Jurisdiction.Get()
+	}
+	if true {
+		toSerialize["taxCents"] = o.TaxCents
+	}
+	if true {
+		toSerialize["mayOwe"] = o.MayOwe
+	}
+	if true {
+		toSerialize["notice"] = o.Notice
+	}
+	if true {
+		toSerialize["crosslyCollectsThereNow"] = o.CrosslyCollectsThereNow
+	}
+	if true {
+		toSerialize["helpPath"] = o.HelpPath
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderSalesTaxResponse struct {
+	value *GetOrderSalesTaxResponse
+	isSet bool
+}
+
+func (v NullableGetOrderSalesTaxResponse) Get() *GetOrderSalesTaxResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderSalesTaxResponse) Set(val *GetOrderSalesTaxResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderSalesTaxResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderSalesTaxResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderSalesTaxResponse(val *GetOrderSalesTaxResponse) *NullableGetOrderSalesTaxResponse {
+	return &NullableGetOrderSalesTaxResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderSalesTaxResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderSalesTaxResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderScanFormResponse struct for GetOrderScanFormResponse
+type GetOrderScanFormResponse struct {
+	Data ListOrderScanFormsItem `json:"data"`
+}
+
+// NewGetOrderScanFormResponse instantiates a new GetOrderScanFormResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderScanFormResponse(data ListOrderScanFormsItem) *GetOrderScanFormResponse {
+	this := GetOrderScanFormResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewListOrdersResponseWithDefaults instantiates a new ListOrdersResponse object
+// NewGetOrderScanFormResponseWithDefaults instantiates a new GetOrderScanFormResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListOrdersResponseWithDefaults() *ListOrdersResponse {
-	this := ListOrdersResponse{}
+func NewGetOrderScanFormResponseWithDefaults() *GetOrderScanFormResponse {
+	this := GetOrderScanFormResponse{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *ListOrdersResponse) GetData() []ListOrdersItem {
+func (o *GetOrderScanFormResponse) GetData() ListOrderScanFormsItem {
 	if o == nil {
-		var ret []ListOrdersItem
+		var ret ListOrderScanFormsItem
 		return ret
 	}
 
@@ -3188,7 +7022,100 @@ func (o *ListOrdersResponse) GetData() []ListOrdersItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ListOrdersResponse) GetDataOk() ([]ListOrdersItem, bool) {
+func (o *GetOrderScanFormResponse) GetDataOk() (*ListOrderScanFormsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *GetOrderScanFormResponse) SetData(v ListOrderScanFormsItem) {
+	o.Data = v
+}
+
+func (o GetOrderScanFormResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderScanFormResponse struct {
+	value *GetOrderScanFormResponse
+	isSet bool
+}
+
+func (v NullableGetOrderScanFormResponse) Get() *GetOrderScanFormResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderScanFormResponse) Set(val *GetOrderScanFormResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderScanFormResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderScanFormResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderScanFormResponse(val *GetOrderScanFormResponse) *NullableGetOrderScanFormResponse {
+	return &NullableGetOrderScanFormResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderScanFormResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderScanFormResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderShipmentResponse struct for GetOrderShipmentResponse
+type GetOrderShipmentResponse struct {
+	Data []GetOrderShipmentResponseData `json:"data"`
+	TotalLabelCostCents float32 `json:"totalLabelCostCents"`
+}
+
+// NewGetOrderShipmentResponse instantiates a new GetOrderShipmentResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderShipmentResponse(data []GetOrderShipmentResponseData, totalLabelCostCents float32) *GetOrderShipmentResponse {
+	this := GetOrderShipmentResponse{}
+	this.Data = data
+	this.TotalLabelCostCents = totalLabelCostCents
+	return &this
+}
+
+// NewGetOrderShipmentResponseWithDefaults instantiates a new GetOrderShipmentResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderShipmentResponseWithDefaults() *GetOrderShipmentResponse {
+	this := GetOrderShipmentResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetOrderShipmentResponse) GetData() []GetOrderShipmentResponseData {
+	if o == nil {
+		var ret []GetOrderShipmentResponseData
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponse) GetDataOk() ([]GetOrderShipmentResponseData, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -3196,12 +7123,1798 @@ func (o *ListOrdersResponse) GetDataOk() ([]ListOrdersItem, bool) {
 }
 
 // SetData sets field value
-func (o *ListOrdersResponse) SetData(v []ListOrdersItem) {
+func (o *GetOrderShipmentResponse) SetData(v []GetOrderShipmentResponseData) {
+	o.Data = v
+}
+
+// GetTotalLabelCostCents returns the TotalLabelCostCents field value
+func (o *GetOrderShipmentResponse) GetTotalLabelCostCents() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalLabelCostCents
+}
+
+// GetTotalLabelCostCentsOk returns a tuple with the TotalLabelCostCents field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponse) GetTotalLabelCostCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.TotalLabelCostCents, true
+}
+
+// SetTotalLabelCostCents sets field value
+func (o *GetOrderShipmentResponse) SetTotalLabelCostCents(v float32) {
+	o.TotalLabelCostCents = v
+}
+
+func (o GetOrderShipmentResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if true {
+		toSerialize["totalLabelCostCents"] = o.TotalLabelCostCents
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderShipmentResponse struct {
+	value *GetOrderShipmentResponse
+	isSet bool
+}
+
+func (v NullableGetOrderShipmentResponse) Get() *GetOrderShipmentResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderShipmentResponse) Set(val *GetOrderShipmentResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderShipmentResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderShipmentResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderShipmentResponse(val *GetOrderShipmentResponse) *NullableGetOrderShipmentResponse {
+	return &NullableGetOrderShipmentResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderShipmentResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderShipmentResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderShipmentResponseData struct for GetOrderShipmentResponseData
+type GetOrderShipmentResponseData struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Source string `json:"source"`
+	Carrier NullableString `json:"carrier,omitempty"`
+	Service NullableString `json:"service,omitempty"`
+	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+	OrderId string `json:"orderId"`
+	LabelCostCents NullableFloat32 `json:"labelCostCents,omitempty"`
+	LabelUrl NullableString `json:"labelUrl,omitempty"`
+	LabelQrUrl NullableString `json:"labelQrUrl,omitempty"`
+	ShippoShipmentId NullableString `json:"shippoShipmentId,omitempty"`
+	TrackingRegisteredAt NullableTime `json:"trackingRegisteredAt,omitempty"`
+	VoidedAt NullableTime `json:"voidedAt,omitempty"`
+}
+
+// NewGetOrderShipmentResponseData instantiates a new GetOrderShipmentResponseData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderShipmentResponseData(id string, createdAt time.Time, userId string, source string, orderId string) *GetOrderShipmentResponseData {
+	this := GetOrderShipmentResponseData{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Source = source
+	this.OrderId = orderId
+	return &this
+}
+
+// NewGetOrderShipmentResponseDataWithDefaults instantiates a new GetOrderShipmentResponseData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderShipmentResponseDataWithDefaults() *GetOrderShipmentResponseData {
+	this := GetOrderShipmentResponseData{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *GetOrderShipmentResponseData) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponseData) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *GetOrderShipmentResponseData) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *GetOrderShipmentResponseData) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponseData) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *GetOrderShipmentResponseData) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *GetOrderShipmentResponseData) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponseData) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *GetOrderShipmentResponseData) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetSource returns the Source field value
+func (o *GetOrderShipmentResponseData) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponseData) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *GetOrderShipmentResponseData) SetSource(v string) {
+	o.Source = v
+}
+
+// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetCarrier() string {
+	if o == nil || o.Carrier.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Carrier.Get()
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Carrier.Get(), o.Carrier.IsSet()
+}
+
+// HasCarrier returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasCarrier() bool {
+	if o != nil && o.Carrier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
+func (o *GetOrderShipmentResponseData) SetCarrier(v string) {
+	o.Carrier.Set(&v)
+}
+// SetCarrierNil sets the value for Carrier to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetCarrierNil() {
+	o.Carrier.Set(nil)
+}
+
+// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetCarrier() {
+	o.Carrier.Unset()
+}
+
+// GetService returns the Service field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetService() string {
+	if o == nil || o.Service.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Service.Get()
+}
+
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetServiceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Service.Get(), o.Service.IsSet()
+}
+
+// HasService returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasService() bool {
+	if o != nil && o.Service.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetService gets a reference to the given NullableString and assigns it to the Service field.
+func (o *GetOrderShipmentResponseData) SetService(v string) {
+	o.Service.Set(&v)
+}
+// SetServiceNil sets the value for Service to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetServiceNil() {
+	o.Service.Set(nil)
+}
+
+// UnsetService ensures that no value is present for Service, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetService() {
+	o.Service.Unset()
+}
+
+// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetTrackingNumber() string {
+	if o == nil || o.TrackingNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingNumber.Get()
+}
+
+// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetTrackingNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
+}
+
+// HasTrackingNumber returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasTrackingNumber() bool {
+	if o != nil && o.TrackingNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
+func (o *GetOrderShipmentResponseData) SetTrackingNumber(v string) {
+	o.TrackingNumber.Set(&v)
+}
+// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetTrackingNumberNil() {
+	o.TrackingNumber.Set(nil)
+}
+
+// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetTrackingNumber() {
+	o.TrackingNumber.Unset()
+}
+
+// GetOrderId returns the OrderId field value
+func (o *GetOrderShipmentResponseData) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderShipmentResponseData) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *GetOrderShipmentResponseData) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetLabelCostCents returns the LabelCostCents field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetLabelCostCents() float32 {
+	if o == nil || o.LabelCostCents.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.LabelCostCents.Get()
+}
+
+// GetLabelCostCentsOk returns a tuple with the LabelCostCents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetLabelCostCentsOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelCostCents.Get(), o.LabelCostCents.IsSet()
+}
+
+// HasLabelCostCents returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasLabelCostCents() bool {
+	if o != nil && o.LabelCostCents.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelCostCents gets a reference to the given NullableFloat32 and assigns it to the LabelCostCents field.
+func (o *GetOrderShipmentResponseData) SetLabelCostCents(v float32) {
+	o.LabelCostCents.Set(&v)
+}
+// SetLabelCostCentsNil sets the value for LabelCostCents to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetLabelCostCentsNil() {
+	o.LabelCostCents.Set(nil)
+}
+
+// UnsetLabelCostCents ensures that no value is present for LabelCostCents, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetLabelCostCents() {
+	o.LabelCostCents.Unset()
+}
+
+// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetLabelUrl() string {
+	if o == nil || o.LabelUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LabelUrl.Get()
+}
+
+// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetLabelUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
+}
+
+// HasLabelUrl returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasLabelUrl() bool {
+	if o != nil && o.LabelUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
+func (o *GetOrderShipmentResponseData) SetLabelUrl(v string) {
+	o.LabelUrl.Set(&v)
+}
+// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetLabelUrlNil() {
+	o.LabelUrl.Set(nil)
+}
+
+// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetLabelUrl() {
+	o.LabelUrl.Unset()
+}
+
+// GetLabelQrUrl returns the LabelQrUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetLabelQrUrl() string {
+	if o == nil || o.LabelQrUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LabelQrUrl.Get()
+}
+
+// GetLabelQrUrlOk returns a tuple with the LabelQrUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetLabelQrUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelQrUrl.Get(), o.LabelQrUrl.IsSet()
+}
+
+// HasLabelQrUrl returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasLabelQrUrl() bool {
+	if o != nil && o.LabelQrUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelQrUrl gets a reference to the given NullableString and assigns it to the LabelQrUrl field.
+func (o *GetOrderShipmentResponseData) SetLabelQrUrl(v string) {
+	o.LabelQrUrl.Set(&v)
+}
+// SetLabelQrUrlNil sets the value for LabelQrUrl to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetLabelQrUrlNil() {
+	o.LabelQrUrl.Set(nil)
+}
+
+// UnsetLabelQrUrl ensures that no value is present for LabelQrUrl, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetLabelQrUrl() {
+	o.LabelQrUrl.Unset()
+}
+
+// GetShippoShipmentId returns the ShippoShipmentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetShippoShipmentId() string {
+	if o == nil || o.ShippoShipmentId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ShippoShipmentId.Get()
+}
+
+// GetShippoShipmentIdOk returns a tuple with the ShippoShipmentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetShippoShipmentIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShippoShipmentId.Get(), o.ShippoShipmentId.IsSet()
+}
+
+// HasShippoShipmentId returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasShippoShipmentId() bool {
+	if o != nil && o.ShippoShipmentId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShippoShipmentId gets a reference to the given NullableString and assigns it to the ShippoShipmentId field.
+func (o *GetOrderShipmentResponseData) SetShippoShipmentId(v string) {
+	o.ShippoShipmentId.Set(&v)
+}
+// SetShippoShipmentIdNil sets the value for ShippoShipmentId to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetShippoShipmentIdNil() {
+	o.ShippoShipmentId.Set(nil)
+}
+
+// UnsetShippoShipmentId ensures that no value is present for ShippoShipmentId, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetShippoShipmentId() {
+	o.ShippoShipmentId.Unset()
+}
+
+// GetTrackingRegisteredAt returns the TrackingRegisteredAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetTrackingRegisteredAt() time.Time {
+	if o == nil || o.TrackingRegisteredAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TrackingRegisteredAt.Get()
+}
+
+// GetTrackingRegisteredAtOk returns a tuple with the TrackingRegisteredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetTrackingRegisteredAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingRegisteredAt.Get(), o.TrackingRegisteredAt.IsSet()
+}
+
+// HasTrackingRegisteredAt returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasTrackingRegisteredAt() bool {
+	if o != nil && o.TrackingRegisteredAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingRegisteredAt gets a reference to the given NullableTime and assigns it to the TrackingRegisteredAt field.
+func (o *GetOrderShipmentResponseData) SetTrackingRegisteredAt(v time.Time) {
+	o.TrackingRegisteredAt.Set(&v)
+}
+// SetTrackingRegisteredAtNil sets the value for TrackingRegisteredAt to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetTrackingRegisteredAtNil() {
+	o.TrackingRegisteredAt.Set(nil)
+}
+
+// UnsetTrackingRegisteredAt ensures that no value is present for TrackingRegisteredAt, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetTrackingRegisteredAt() {
+	o.TrackingRegisteredAt.Unset()
+}
+
+// GetVoidedAt returns the VoidedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderShipmentResponseData) GetVoidedAt() time.Time {
+	if o == nil || o.VoidedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.VoidedAt.Get()
+}
+
+// GetVoidedAtOk returns a tuple with the VoidedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderShipmentResponseData) GetVoidedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.VoidedAt.Get(), o.VoidedAt.IsSet()
+}
+
+// HasVoidedAt returns a boolean if a field has been set.
+func (o *GetOrderShipmentResponseData) HasVoidedAt() bool {
+	if o != nil && o.VoidedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVoidedAt gets a reference to the given NullableTime and assigns it to the VoidedAt field.
+func (o *GetOrderShipmentResponseData) SetVoidedAt(v time.Time) {
+	o.VoidedAt.Set(&v)
+}
+// SetVoidedAtNil sets the value for VoidedAt to be an explicit nil
+func (o *GetOrderShipmentResponseData) SetVoidedAtNil() {
+	o.VoidedAt.Set(nil)
+}
+
+// UnsetVoidedAt ensures that no value is present for VoidedAt, not even an explicit nil
+func (o *GetOrderShipmentResponseData) UnsetVoidedAt() {
+	o.VoidedAt.Unset()
+}
+
+func (o GetOrderShipmentResponseData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if o.Carrier.IsSet() {
+		toSerialize["carrier"] = o.Carrier.Get()
+	}
+	if o.Service.IsSet() {
+		toSerialize["service"] = o.Service.Get()
+	}
+	if o.TrackingNumber.IsSet() {
+		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if o.LabelCostCents.IsSet() {
+		toSerialize["labelCostCents"] = o.LabelCostCents.Get()
+	}
+	if o.LabelUrl.IsSet() {
+		toSerialize["labelUrl"] = o.LabelUrl.Get()
+	}
+	if o.LabelQrUrl.IsSet() {
+		toSerialize["labelQrUrl"] = o.LabelQrUrl.Get()
+	}
+	if o.ShippoShipmentId.IsSet() {
+		toSerialize["shippoShipmentId"] = o.ShippoShipmentId.Get()
+	}
+	if o.TrackingRegisteredAt.IsSet() {
+		toSerialize["trackingRegisteredAt"] = o.TrackingRegisteredAt.Get()
+	}
+	if o.VoidedAt.IsSet() {
+		toSerialize["voidedAt"] = o.VoidedAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderShipmentResponseData struct {
+	value *GetOrderShipmentResponseData
+	isSet bool
+}
+
+func (v NullableGetOrderShipmentResponseData) Get() *GetOrderShipmentResponseData {
+	return v.value
+}
+
+func (v *NullableGetOrderShipmentResponseData) Set(val *GetOrderShipmentResponseData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderShipmentResponseData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderShipmentResponseData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderShipmentResponseData(val *GetOrderShipmentResponseData) *NullableGetOrderShipmentResponseData {
+	return &NullableGetOrderShipmentResponseData{value: val, isSet: true}
+}
+
+func (v NullableGetOrderShipmentResponseData) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderShipmentResponseData) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderWhatnotShipmentResponse struct for GetOrderWhatnotShipmentResponse
+type GetOrderWhatnotShipmentResponse struct {
+	Shipment GetOrderWhatnotShipmentResponseShipment `json:"shipment"`
+	Recorded bool `json:"recorded"`
+}
+
+// NewGetOrderWhatnotShipmentResponse instantiates a new GetOrderWhatnotShipmentResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderWhatnotShipmentResponse(shipment GetOrderWhatnotShipmentResponseShipment, recorded bool) *GetOrderWhatnotShipmentResponse {
+	this := GetOrderWhatnotShipmentResponse{}
+	this.Shipment = shipment
+	this.Recorded = recorded
+	return &this
+}
+
+// NewGetOrderWhatnotShipmentResponseWithDefaults instantiates a new GetOrderWhatnotShipmentResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderWhatnotShipmentResponseWithDefaults() *GetOrderWhatnotShipmentResponse {
+	this := GetOrderWhatnotShipmentResponse{}
+	return &this
+}
+
+// GetShipment returns the Shipment field value
+func (o *GetOrderWhatnotShipmentResponse) GetShipment() GetOrderWhatnotShipmentResponseShipment {
+	if o == nil {
+		var ret GetOrderWhatnotShipmentResponseShipment
+		return ret
+	}
+
+	return o.Shipment
+}
+
+// GetShipmentOk returns a tuple with the Shipment field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponse) GetShipmentOk() (*GetOrderWhatnotShipmentResponseShipment, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Shipment, true
+}
+
+// SetShipment sets field value
+func (o *GetOrderWhatnotShipmentResponse) SetShipment(v GetOrderWhatnotShipmentResponseShipment) {
+	o.Shipment = v
+}
+
+// GetRecorded returns the Recorded field value
+func (o *GetOrderWhatnotShipmentResponse) GetRecorded() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Recorded
+}
+
+// GetRecordedOk returns a tuple with the Recorded field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponse) GetRecordedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Recorded, true
+}
+
+// SetRecorded sets field value
+func (o *GetOrderWhatnotShipmentResponse) SetRecorded(v bool) {
+	o.Recorded = v
+}
+
+func (o GetOrderWhatnotShipmentResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["shipment"] = o.Shipment
+	}
+	if true {
+		toSerialize["recorded"] = o.Recorded
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderWhatnotShipmentResponse struct {
+	value *GetOrderWhatnotShipmentResponse
+	isSet bool
+}
+
+func (v NullableGetOrderWhatnotShipmentResponse) Get() *GetOrderWhatnotShipmentResponse {
+	return v.value
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponse) Set(val *GetOrderWhatnotShipmentResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderWhatnotShipmentResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderWhatnotShipmentResponse(val *GetOrderWhatnotShipmentResponse) *NullableGetOrderWhatnotShipmentResponse {
+	return &NullableGetOrderWhatnotShipmentResponse{value: val, isSet: true}
+}
+
+func (v NullableGetOrderWhatnotShipmentResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderWhatnotShipmentResponseShipment struct for GetOrderWhatnotShipmentResponseShipment
+type GetOrderWhatnotShipmentResponseShipment struct {
+	ShipmentId string `json:"shipmentId"`
+	Status NullableString `json:"status,omitempty"`
+	LabelUrl NullableString `json:"labelUrl,omitempty"`
+	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+	TrackingUrl NullableString `json:"trackingUrl,omitempty"`
+	Carrier NullableString `json:"carrier,omitempty"`
+	Service NullableString `json:"service,omitempty"`
+	CanGenerateLabel bool `json:"canGenerateLabel"`
+	RequiresFlatRateBoxSelection bool `json:"requiresFlatRateBoxSelection"`
+	WeightOz NullableFloat32 `json:"weightOz,omitempty"`
+	DimensionsIn NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn `json:"dimensionsIn,omitempty"`
+}
+
+// NewGetOrderWhatnotShipmentResponseShipment instantiates a new GetOrderWhatnotShipmentResponseShipment object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderWhatnotShipmentResponseShipment(shipmentId string, canGenerateLabel bool, requiresFlatRateBoxSelection bool) *GetOrderWhatnotShipmentResponseShipment {
+	this := GetOrderWhatnotShipmentResponseShipment{}
+	this.ShipmentId = shipmentId
+	this.CanGenerateLabel = canGenerateLabel
+	this.RequiresFlatRateBoxSelection = requiresFlatRateBoxSelection
+	return &this
+}
+
+// NewGetOrderWhatnotShipmentResponseShipmentWithDefaults instantiates a new GetOrderWhatnotShipmentResponseShipment object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderWhatnotShipmentResponseShipmentWithDefaults() *GetOrderWhatnotShipmentResponseShipment {
+	this := GetOrderWhatnotShipmentResponseShipment{}
+	return &this
+}
+
+// GetShipmentId returns the ShipmentId field value
+func (o *GetOrderWhatnotShipmentResponseShipment) GetShipmentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ShipmentId
+}
+
+// GetShipmentIdOk returns a tuple with the ShipmentId field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) GetShipmentIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShipmentId, true
+}
+
+// SetShipmentId sets field value
+func (o *GetOrderWhatnotShipmentResponseShipment) SetShipmentId(v string) {
+	o.ShipmentId = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetStatus() string {
+	if o == nil || o.Status.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetStatus(v string) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetStatus() {
+	o.Status.Unset()
+}
+
+// GetLabelUrl returns the LabelUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetLabelUrl() string {
+	if o == nil || o.LabelUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LabelUrl.Get()
+}
+
+// GetLabelUrlOk returns a tuple with the LabelUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetLabelUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LabelUrl.Get(), o.LabelUrl.IsSet()
+}
+
+// HasLabelUrl returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasLabelUrl() bool {
+	if o != nil && o.LabelUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLabelUrl gets a reference to the given NullableString and assigns it to the LabelUrl field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetLabelUrl(v string) {
+	o.LabelUrl.Set(&v)
+}
+// SetLabelUrlNil sets the value for LabelUrl to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetLabelUrlNil() {
+	o.LabelUrl.Set(nil)
+}
+
+// UnsetLabelUrl ensures that no value is present for LabelUrl, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetLabelUrl() {
+	o.LabelUrl.Unset()
+}
+
+// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetTrackingNumber() string {
+	if o == nil || o.TrackingNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingNumber.Get()
+}
+
+// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetTrackingNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
+}
+
+// HasTrackingNumber returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasTrackingNumber() bool {
+	if o != nil && o.TrackingNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetTrackingNumber(v string) {
+	o.TrackingNumber.Set(&v)
+}
+// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetTrackingNumberNil() {
+	o.TrackingNumber.Set(nil)
+}
+
+// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetTrackingNumber() {
+	o.TrackingNumber.Unset()
+}
+
+// GetTrackingUrl returns the TrackingUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetTrackingUrl() string {
+	if o == nil || o.TrackingUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingUrl.Get()
+}
+
+// GetTrackingUrlOk returns a tuple with the TrackingUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetTrackingUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingUrl.Get(), o.TrackingUrl.IsSet()
+}
+
+// HasTrackingUrl returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasTrackingUrl() bool {
+	if o != nil && o.TrackingUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingUrl gets a reference to the given NullableString and assigns it to the TrackingUrl field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetTrackingUrl(v string) {
+	o.TrackingUrl.Set(&v)
+}
+// SetTrackingUrlNil sets the value for TrackingUrl to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetTrackingUrlNil() {
+	o.TrackingUrl.Set(nil)
+}
+
+// UnsetTrackingUrl ensures that no value is present for TrackingUrl, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetTrackingUrl() {
+	o.TrackingUrl.Unset()
+}
+
+// GetCarrier returns the Carrier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetCarrier() string {
+	if o == nil || o.Carrier.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Carrier.Get()
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Carrier.Get(), o.Carrier.IsSet()
+}
+
+// HasCarrier returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasCarrier() bool {
+	if o != nil && o.Carrier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCarrier gets a reference to the given NullableString and assigns it to the Carrier field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetCarrier(v string) {
+	o.Carrier.Set(&v)
+}
+// SetCarrierNil sets the value for Carrier to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetCarrierNil() {
+	o.Carrier.Set(nil)
+}
+
+// UnsetCarrier ensures that no value is present for Carrier, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetCarrier() {
+	o.Carrier.Unset()
+}
+
+// GetService returns the Service field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetService() string {
+	if o == nil || o.Service.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Service.Get()
+}
+
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetServiceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Service.Get(), o.Service.IsSet()
+}
+
+// HasService returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasService() bool {
+	if o != nil && o.Service.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetService gets a reference to the given NullableString and assigns it to the Service field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetService(v string) {
+	o.Service.Set(&v)
+}
+// SetServiceNil sets the value for Service to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetServiceNil() {
+	o.Service.Set(nil)
+}
+
+// UnsetService ensures that no value is present for Service, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetService() {
+	o.Service.Unset()
+}
+
+// GetCanGenerateLabel returns the CanGenerateLabel field value
+func (o *GetOrderWhatnotShipmentResponseShipment) GetCanGenerateLabel() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.CanGenerateLabel
+}
+
+// GetCanGenerateLabelOk returns a tuple with the CanGenerateLabel field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) GetCanGenerateLabelOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CanGenerateLabel, true
+}
+
+// SetCanGenerateLabel sets field value
+func (o *GetOrderWhatnotShipmentResponseShipment) SetCanGenerateLabel(v bool) {
+	o.CanGenerateLabel = v
+}
+
+// GetRequiresFlatRateBoxSelection returns the RequiresFlatRateBoxSelection field value
+func (o *GetOrderWhatnotShipmentResponseShipment) GetRequiresFlatRateBoxSelection() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.RequiresFlatRateBoxSelection
+}
+
+// GetRequiresFlatRateBoxSelectionOk returns a tuple with the RequiresFlatRateBoxSelection field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) GetRequiresFlatRateBoxSelectionOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RequiresFlatRateBoxSelection, true
+}
+
+// SetRequiresFlatRateBoxSelection sets field value
+func (o *GetOrderWhatnotShipmentResponseShipment) SetRequiresFlatRateBoxSelection(v bool) {
+	o.RequiresFlatRateBoxSelection = v
+}
+
+// GetWeightOz returns the WeightOz field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetWeightOz() float32 {
+	if o == nil || o.WeightOz.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.WeightOz.Get()
+}
+
+// GetWeightOzOk returns a tuple with the WeightOz field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetWeightOzOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.WeightOz.Get(), o.WeightOz.IsSet()
+}
+
+// HasWeightOz returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasWeightOz() bool {
+	if o != nil && o.WeightOz.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWeightOz gets a reference to the given NullableFloat32 and assigns it to the WeightOz field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetWeightOz(v float32) {
+	o.WeightOz.Set(&v)
+}
+// SetWeightOzNil sets the value for WeightOz to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetWeightOzNil() {
+	o.WeightOz.Set(nil)
+}
+
+// UnsetWeightOz ensures that no value is present for WeightOz, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetWeightOz() {
+	o.WeightOz.Unset()
+}
+
+// GetDimensionsIn returns the DimensionsIn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetOrderWhatnotShipmentResponseShipment) GetDimensionsIn() GetOrderWhatnotShipmentResponseShipmentDimensionsIn {
+	if o == nil || o.DimensionsIn.Get() == nil {
+		var ret GetOrderWhatnotShipmentResponseShipmentDimensionsIn
+		return ret
+	}
+	return *o.DimensionsIn.Get()
+}
+
+// GetDimensionsInOk returns a tuple with the DimensionsIn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetOrderWhatnotShipmentResponseShipment) GetDimensionsInOk() (*GetOrderWhatnotShipmentResponseShipmentDimensionsIn, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DimensionsIn.Get(), o.DimensionsIn.IsSet()
+}
+
+// HasDimensionsIn returns a boolean if a field has been set.
+func (o *GetOrderWhatnotShipmentResponseShipment) HasDimensionsIn() bool {
+	if o != nil && o.DimensionsIn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDimensionsIn gets a reference to the given NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn and assigns it to the DimensionsIn field.
+func (o *GetOrderWhatnotShipmentResponseShipment) SetDimensionsIn(v GetOrderWhatnotShipmentResponseShipmentDimensionsIn) {
+	o.DimensionsIn.Set(&v)
+}
+// SetDimensionsInNil sets the value for DimensionsIn to be an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) SetDimensionsInNil() {
+	o.DimensionsIn.Set(nil)
+}
+
+// UnsetDimensionsIn ensures that no value is present for DimensionsIn, not even an explicit nil
+func (o *GetOrderWhatnotShipmentResponseShipment) UnsetDimensionsIn() {
+	o.DimensionsIn.Unset()
+}
+
+func (o GetOrderWhatnotShipmentResponseShipment) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["shipmentId"] = o.ShipmentId
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
+	if o.LabelUrl.IsSet() {
+		toSerialize["labelUrl"] = o.LabelUrl.Get()
+	}
+	if o.TrackingNumber.IsSet() {
+		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	if o.TrackingUrl.IsSet() {
+		toSerialize["trackingUrl"] = o.TrackingUrl.Get()
+	}
+	if o.Carrier.IsSet() {
+		toSerialize["carrier"] = o.Carrier.Get()
+	}
+	if o.Service.IsSet() {
+		toSerialize["service"] = o.Service.Get()
+	}
+	if true {
+		toSerialize["canGenerateLabel"] = o.CanGenerateLabel
+	}
+	if true {
+		toSerialize["requiresFlatRateBoxSelection"] = o.RequiresFlatRateBoxSelection
+	}
+	if o.WeightOz.IsSet() {
+		toSerialize["weightOz"] = o.WeightOz.Get()
+	}
+	if o.DimensionsIn.IsSet() {
+		toSerialize["dimensionsIn"] = o.DimensionsIn.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderWhatnotShipmentResponseShipment struct {
+	value *GetOrderWhatnotShipmentResponseShipment
+	isSet bool
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipment) Get() *GetOrderWhatnotShipmentResponseShipment {
+	return v.value
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipment) Set(val *GetOrderWhatnotShipmentResponseShipment) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipment) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipment) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderWhatnotShipmentResponseShipment(val *GetOrderWhatnotShipmentResponseShipment) *NullableGetOrderWhatnotShipmentResponseShipment {
+	return &NullableGetOrderWhatnotShipmentResponseShipment{value: val, isSet: true}
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipment) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipment) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// GetOrderWhatnotShipmentResponseShipmentDimensionsIn struct for GetOrderWhatnotShipmentResponseShipmentDimensionsIn
+type GetOrderWhatnotShipmentResponseShipmentDimensionsIn struct {
+	Length float32 `json:"length"`
+	Width float32 `json:"width"`
+	Height float32 `json:"height"`
+}
+
+// NewGetOrderWhatnotShipmentResponseShipmentDimensionsIn instantiates a new GetOrderWhatnotShipmentResponseShipmentDimensionsIn object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetOrderWhatnotShipmentResponseShipmentDimensionsIn(length float32, width float32, height float32) *GetOrderWhatnotShipmentResponseShipmentDimensionsIn {
+	this := GetOrderWhatnotShipmentResponseShipmentDimensionsIn{}
+	this.Length = length
+	this.Width = width
+	this.Height = height
+	return &this
+}
+
+// NewGetOrderWhatnotShipmentResponseShipmentDimensionsInWithDefaults instantiates a new GetOrderWhatnotShipmentResponseShipmentDimensionsIn object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetOrderWhatnotShipmentResponseShipmentDimensionsInWithDefaults() *GetOrderWhatnotShipmentResponseShipmentDimensionsIn {
+	this := GetOrderWhatnotShipmentResponseShipmentDimensionsIn{}
+	return &this
+}
+
+// GetLength returns the Length field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetLength() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Length
+}
+
+// GetLengthOk returns a tuple with the Length field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetLengthOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Length, true
+}
+
+// SetLength sets field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) SetLength(v float32) {
+	o.Length = v
+}
+
+// GetWidth returns the Width field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetWidth() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Width
+}
+
+// GetWidthOk returns a tuple with the Width field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetWidthOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Width, true
+}
+
+// SetWidth sets field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) SetWidth(v float32) {
+	o.Width = v
+}
+
+// GetHeight returns the Height field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetHeight() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Height
+}
+
+// GetHeightOk returns a tuple with the Height field value
+// and a boolean to check if the value has been set.
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) GetHeightOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Height, true
+}
+
+// SetHeight sets field value
+func (o *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) SetHeight(v float32) {
+	o.Height = v
+}
+
+func (o GetOrderWhatnotShipmentResponseShipmentDimensionsIn) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["length"] = o.Length
+	}
+	if true {
+		toSerialize["width"] = o.Width
+	}
+	if true {
+		toSerialize["height"] = o.Height
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn struct {
+	value *GetOrderWhatnotShipmentResponseShipmentDimensionsIn
+	isSet bool
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) Get() *GetOrderWhatnotShipmentResponseShipmentDimensionsIn {
+	return v.value
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) Set(val *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn(val *GetOrderWhatnotShipmentResponseShipmentDimensionsIn) *NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn {
+	return &NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn{value: val, isSet: true}
+}
+
+func (v NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetOrderWhatnotShipmentResponseShipmentDimensionsIn) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderPickupReadyItem struct for ListOrderPickupReadyItem
+type ListOrderPickupReadyItem struct {
+	Carrier string `json:"carrier"`
+	Orders []ListOrderPickupReadyItemOrders `json:"orders"`
+}
+
+// NewListOrderPickupReadyItem instantiates a new ListOrderPickupReadyItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderPickupReadyItem(carrier string, orders []ListOrderPickupReadyItemOrders) *ListOrderPickupReadyItem {
+	this := ListOrderPickupReadyItem{}
+	this.Carrier = carrier
+	this.Orders = orders
+	return &this
+}
+
+// NewListOrderPickupReadyItemWithDefaults instantiates a new ListOrderPickupReadyItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderPickupReadyItemWithDefaults() *ListOrderPickupReadyItem {
+	this := ListOrderPickupReadyItem{}
+	return &this
+}
+
+// GetCarrier returns the Carrier field value
+func (o *ListOrderPickupReadyItem) GetCarrier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Carrier
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupReadyItem) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Carrier, true
+}
+
+// SetCarrier sets field value
+func (o *ListOrderPickupReadyItem) SetCarrier(v string) {
+	o.Carrier = v
+}
+
+// GetOrders returns the Orders field value
+func (o *ListOrderPickupReadyItem) GetOrders() []ListOrderPickupReadyItemOrders {
+	if o == nil {
+		var ret []ListOrderPickupReadyItemOrders
+		return ret
+	}
+
+	return o.Orders
+}
+
+// GetOrdersOk returns a tuple with the Orders field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupReadyItem) GetOrdersOk() ([]ListOrderPickupReadyItemOrders, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Orders, true
+}
+
+// SetOrders sets field value
+func (o *ListOrderPickupReadyItem) SetOrders(v []ListOrderPickupReadyItemOrders) {
+	o.Orders = v
+}
+
+func (o ListOrderPickupReadyItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["carrier"] = o.Carrier
+	}
+	if true {
+		toSerialize["orders"] = o.Orders
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderPickupReadyItem struct {
+	value *ListOrderPickupReadyItem
+	isSet bool
+}
+
+func (v NullableListOrderPickupReadyItem) Get() *ListOrderPickupReadyItem {
+	return v.value
+}
+
+func (v *NullableListOrderPickupReadyItem) Set(val *ListOrderPickupReadyItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderPickupReadyItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderPickupReadyItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderPickupReadyItem(val *ListOrderPickupReadyItem) *NullableListOrderPickupReadyItem {
+	return &NullableListOrderPickupReadyItem{value: val, isSet: true}
+}
+
+func (v NullableListOrderPickupReadyItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderPickupReadyItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderPickupReadyItemOrders struct for ListOrderPickupReadyItemOrders
+type ListOrderPickupReadyItemOrders struct {
+	OrderId string `json:"orderId"`
+	TrackingNumber NullableString `json:"trackingNumber,omitempty"`
+}
+
+// NewListOrderPickupReadyItemOrders instantiates a new ListOrderPickupReadyItemOrders object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderPickupReadyItemOrders(orderId string) *ListOrderPickupReadyItemOrders {
+	this := ListOrderPickupReadyItemOrders{}
+	this.OrderId = orderId
+	return &this
+}
+
+// NewListOrderPickupReadyItemOrdersWithDefaults instantiates a new ListOrderPickupReadyItemOrders object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderPickupReadyItemOrdersWithDefaults() *ListOrderPickupReadyItemOrders {
+	this := ListOrderPickupReadyItemOrders{}
+	return &this
+}
+
+// GetOrderId returns the OrderId field value
+func (o *ListOrderPickupReadyItemOrders) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupReadyItemOrders) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *ListOrderPickupReadyItemOrders) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetTrackingNumber returns the TrackingNumber field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderPickupReadyItemOrders) GetTrackingNumber() string {
+	if o == nil || o.TrackingNumber.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TrackingNumber.Get()
+}
+
+// GetTrackingNumberOk returns a tuple with the TrackingNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderPickupReadyItemOrders) GetTrackingNumberOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.TrackingNumber.Get(), o.TrackingNumber.IsSet()
+}
+
+// HasTrackingNumber returns a boolean if a field has been set.
+func (o *ListOrderPickupReadyItemOrders) HasTrackingNumber() bool {
+	if o != nil && o.TrackingNumber.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTrackingNumber gets a reference to the given NullableString and assigns it to the TrackingNumber field.
+func (o *ListOrderPickupReadyItemOrders) SetTrackingNumber(v string) {
+	o.TrackingNumber.Set(&v)
+}
+// SetTrackingNumberNil sets the value for TrackingNumber to be an explicit nil
+func (o *ListOrderPickupReadyItemOrders) SetTrackingNumberNil() {
+	o.TrackingNumber.Set(nil)
+}
+
+// UnsetTrackingNumber ensures that no value is present for TrackingNumber, not even an explicit nil
+func (o *ListOrderPickupReadyItemOrders) UnsetTrackingNumber() {
+	o.TrackingNumber.Unset()
+}
+
+func (o ListOrderPickupReadyItemOrders) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if o.TrackingNumber.IsSet() {
+		toSerialize["trackingNumber"] = o.TrackingNumber.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderPickupReadyItemOrders struct {
+	value *ListOrderPickupReadyItemOrders
+	isSet bool
+}
+
+func (v NullableListOrderPickupReadyItemOrders) Get() *ListOrderPickupReadyItemOrders {
+	return v.value
+}
+
+func (v *NullableListOrderPickupReadyItemOrders) Set(val *ListOrderPickupReadyItemOrders) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderPickupReadyItemOrders) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderPickupReadyItemOrders) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderPickupReadyItemOrders(val *ListOrderPickupReadyItemOrders) *NullableListOrderPickupReadyItemOrders {
+	return &NullableListOrderPickupReadyItemOrders{value: val, isSet: true}
+}
+
+func (v NullableListOrderPickupReadyItemOrders) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderPickupReadyItemOrders) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderPickupReadyResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListOrderPickupReadyResponse struct {
+	// The rows.
+	Data []ListOrderPickupReadyItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListOrderPickupReadyResponse instantiates a new ListOrderPickupReadyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderPickupReadyResponse(data []ListOrderPickupReadyItem) *ListOrderPickupReadyResponse {
+	this := ListOrderPickupReadyResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListOrderPickupReadyResponseWithDefaults instantiates a new ListOrderPickupReadyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderPickupReadyResponseWithDefaults() *ListOrderPickupReadyResponse {
+	this := ListOrderPickupReadyResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListOrderPickupReadyResponse) GetData() []ListOrderPickupReadyItem {
+	if o == nil {
+		var ret []ListOrderPickupReadyItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupReadyResponse) GetDataOk() ([]ListOrderPickupReadyItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListOrderPickupReadyResponse) SetData(v []ListOrderPickupReadyItem) {
 	o.Data = v
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListOrdersResponse) GetPagination() Pagination {
+func (o *ListOrderPickupReadyResponse) GetPagination() Pagination {
 	if o == nil || o.Pagination == nil {
 		var ret Pagination
 		return ret
@@ -3211,7 +8924,7 @@ func (o *ListOrdersResponse) GetPagination() Pagination {
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrdersResponse) GetPaginationOk() (*Pagination, bool) {
+func (o *ListOrderPickupReadyResponse) GetPaginationOk() (*Pagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -3219,7 +8932,7 @@ func (o *ListOrdersResponse) GetPaginationOk() (*Pagination, bool) {
 }
 
 // HasPagination returns a boolean if a field has been set.
-func (o *ListOrdersResponse) HasPagination() bool {
+func (o *ListOrderPickupReadyResponse) HasPagination() bool {
 	if o != nil && o.Pagination != nil {
 		return true
 	}
@@ -3228,12 +8941,12 @@ func (o *ListOrdersResponse) HasPagination() bool {
 }
 
 // SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *ListOrdersResponse) SetPagination(v Pagination) {
+func (o *ListOrderPickupReadyResponse) SetPagination(v Pagination) {
 	o.Pagination = &v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListOrdersResponse) GetMeta() map[string]map[string]interface{} {
+func (o *ListOrderPickupReadyResponse) GetMeta() map[string]map[string]interface{} {
 	if o == nil || o.Meta == nil {
 		var ret map[string]map[string]interface{}
 		return ret
@@ -3243,7 +8956,7 @@ func (o *ListOrdersResponse) GetMeta() map[string]map[string]interface{} {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrdersResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+func (o *ListOrderPickupReadyResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -3251,7 +8964,7 @@ func (o *ListOrdersResponse) GetMetaOk() (map[string]map[string]interface{}, boo
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *ListOrdersResponse) HasMeta() bool {
+func (o *ListOrderPickupReadyResponse) HasMeta() bool {
 	if o != nil && o.Meta != nil {
 		return true
 	}
@@ -3260,11 +8973,11 @@ func (o *ListOrdersResponse) HasMeta() bool {
 }
 
 // SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
-func (o *ListOrdersResponse) SetMeta(v map[string]map[string]interface{}) {
+func (o *ListOrderPickupReadyResponse) SetMeta(v map[string]map[string]interface{}) {
 	o.Meta = v
 }
 
-func (o ListOrdersResponse) MarshalJSON() ([]byte, error) {
+func (o ListOrderPickupReadyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["data"] = o.Data
@@ -3278,38 +8991,2423 @@ func (o ListOrdersResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableListOrdersResponse struct {
-	value *ListOrdersResponse
+type NullableListOrderPickupReadyResponse struct {
+	value *ListOrderPickupReadyResponse
 	isSet bool
 }
 
-func (v NullableListOrdersResponse) Get() *ListOrdersResponse {
+func (v NullableListOrderPickupReadyResponse) Get() *ListOrderPickupReadyResponse {
 	return v.value
 }
 
-func (v *NullableListOrdersResponse) Set(val *ListOrdersResponse) {
+func (v *NullableListOrderPickupReadyResponse) Set(val *ListOrderPickupReadyResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListOrdersResponse) IsSet() bool {
+func (v NullableListOrderPickupReadyResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListOrdersResponse) Unset() {
+func (v *NullableListOrderPickupReadyResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListOrdersResponse(val *ListOrdersResponse) *NullableListOrdersResponse {
-	return &NullableListOrdersResponse{value: val, isSet: true}
+func NewNullableListOrderPickupReadyResponse(val *ListOrderPickupReadyResponse) *NullableListOrderPickupReadyResponse {
+	return &NullableListOrderPickupReadyResponse{value: val, isSet: true}
 }
 
-func (v NullableListOrdersResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListOrderPickupReadyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListOrdersResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListOrderPickupReadyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderPickupsItem struct for ListOrderPickupsItem
+type ListOrderPickupsItem struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Status string `json:"status"`
+	Carrier string `json:"carrier"`
+	Confirmation NullableString `json:"confirmation,omitempty"`
+	OrderIds []string `json:"orderIds"`
+	MinTime string `json:"minTime"`
+	MaxTime string `json:"maxTime"`
+	Instructions NullableString `json:"instructions,omitempty"`
+	ShippoPickupId string `json:"shippoPickupId"`
+	PickupDate string `json:"pickupDate"`
+	ConfirmedStart NullableTime `json:"confirmedStart,omitempty"`
+	ConfirmedEnd NullableTime `json:"confirmedEnd,omitempty"`
+}
+
+// NewListOrderPickupsItem instantiates a new ListOrderPickupsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderPickupsItem(id string, createdAt time.Time, userId string, status string, carrier string, orderIds []string, minTime string, maxTime string, shippoPickupId string, pickupDate string) *ListOrderPickupsItem {
+	this := ListOrderPickupsItem{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Status = status
+	this.Carrier = carrier
+	this.OrderIds = orderIds
+	this.MinTime = minTime
+	this.MaxTime = maxTime
+	this.ShippoPickupId = shippoPickupId
+	this.PickupDate = pickupDate
+	return &this
+}
+
+// NewListOrderPickupsItemWithDefaults instantiates a new ListOrderPickupsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderPickupsItemWithDefaults() *ListOrderPickupsItem {
+	this := ListOrderPickupsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListOrderPickupsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListOrderPickupsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListOrderPickupsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListOrderPickupsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *ListOrderPickupsItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListOrderPickupsItem) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListOrderPickupsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListOrderPickupsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetCarrier returns the Carrier field value
+func (o *ListOrderPickupsItem) GetCarrier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Carrier
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Carrier, true
+}
+
+// SetCarrier sets field value
+func (o *ListOrderPickupsItem) SetCarrier(v string) {
+	o.Carrier = v
+}
+
+// GetConfirmation returns the Confirmation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderPickupsItem) GetConfirmation() string {
+	if o == nil || o.Confirmation.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Confirmation.Get()
+}
+
+// GetConfirmationOk returns a tuple with the Confirmation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderPickupsItem) GetConfirmationOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Confirmation.Get(), o.Confirmation.IsSet()
+}
+
+// HasConfirmation returns a boolean if a field has been set.
+func (o *ListOrderPickupsItem) HasConfirmation() bool {
+	if o != nil && o.Confirmation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConfirmation gets a reference to the given NullableString and assigns it to the Confirmation field.
+func (o *ListOrderPickupsItem) SetConfirmation(v string) {
+	o.Confirmation.Set(&v)
+}
+// SetConfirmationNil sets the value for Confirmation to be an explicit nil
+func (o *ListOrderPickupsItem) SetConfirmationNil() {
+	o.Confirmation.Set(nil)
+}
+
+// UnsetConfirmation ensures that no value is present for Confirmation, not even an explicit nil
+func (o *ListOrderPickupsItem) UnsetConfirmation() {
+	o.Confirmation.Unset()
+}
+
+// GetOrderIds returns the OrderIds field value
+func (o *ListOrderPickupsItem) GetOrderIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.OrderIds
+}
+
+// GetOrderIdsOk returns a tuple with the OrderIds field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetOrderIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OrderIds, true
+}
+
+// SetOrderIds sets field value
+func (o *ListOrderPickupsItem) SetOrderIds(v []string) {
+	o.OrderIds = v
+}
+
+// GetMinTime returns the MinTime field value
+func (o *ListOrderPickupsItem) GetMinTime() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MinTime
+}
+
+// GetMinTimeOk returns a tuple with the MinTime field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetMinTimeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MinTime, true
+}
+
+// SetMinTime sets field value
+func (o *ListOrderPickupsItem) SetMinTime(v string) {
+	o.MinTime = v
+}
+
+// GetMaxTime returns the MaxTime field value
+func (o *ListOrderPickupsItem) GetMaxTime() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MaxTime
+}
+
+// GetMaxTimeOk returns a tuple with the MaxTime field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetMaxTimeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxTime, true
+}
+
+// SetMaxTime sets field value
+func (o *ListOrderPickupsItem) SetMaxTime(v string) {
+	o.MaxTime = v
+}
+
+// GetInstructions returns the Instructions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderPickupsItem) GetInstructions() string {
+	if o == nil || o.Instructions.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Instructions.Get()
+}
+
+// GetInstructionsOk returns a tuple with the Instructions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderPickupsItem) GetInstructionsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Instructions.Get(), o.Instructions.IsSet()
+}
+
+// HasInstructions returns a boolean if a field has been set.
+func (o *ListOrderPickupsItem) HasInstructions() bool {
+	if o != nil && o.Instructions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInstructions gets a reference to the given NullableString and assigns it to the Instructions field.
+func (o *ListOrderPickupsItem) SetInstructions(v string) {
+	o.Instructions.Set(&v)
+}
+// SetInstructionsNil sets the value for Instructions to be an explicit nil
+func (o *ListOrderPickupsItem) SetInstructionsNil() {
+	o.Instructions.Set(nil)
+}
+
+// UnsetInstructions ensures that no value is present for Instructions, not even an explicit nil
+func (o *ListOrderPickupsItem) UnsetInstructions() {
+	o.Instructions.Unset()
+}
+
+// GetShippoPickupId returns the ShippoPickupId field value
+func (o *ListOrderPickupsItem) GetShippoPickupId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ShippoPickupId
+}
+
+// GetShippoPickupIdOk returns a tuple with the ShippoPickupId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetShippoPickupIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShippoPickupId, true
+}
+
+// SetShippoPickupId sets field value
+func (o *ListOrderPickupsItem) SetShippoPickupId(v string) {
+	o.ShippoPickupId = v
+}
+
+// GetPickupDate returns the PickupDate field value
+func (o *ListOrderPickupsItem) GetPickupDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PickupDate
+}
+
+// GetPickupDateOk returns a tuple with the PickupDate field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsItem) GetPickupDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PickupDate, true
+}
+
+// SetPickupDate sets field value
+func (o *ListOrderPickupsItem) SetPickupDate(v string) {
+	o.PickupDate = v
+}
+
+// GetConfirmedStart returns the ConfirmedStart field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderPickupsItem) GetConfirmedStart() time.Time {
+	if o == nil || o.ConfirmedStart.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ConfirmedStart.Get()
+}
+
+// GetConfirmedStartOk returns a tuple with the ConfirmedStart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderPickupsItem) GetConfirmedStartOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ConfirmedStart.Get(), o.ConfirmedStart.IsSet()
+}
+
+// HasConfirmedStart returns a boolean if a field has been set.
+func (o *ListOrderPickupsItem) HasConfirmedStart() bool {
+	if o != nil && o.ConfirmedStart.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConfirmedStart gets a reference to the given NullableTime and assigns it to the ConfirmedStart field.
+func (o *ListOrderPickupsItem) SetConfirmedStart(v time.Time) {
+	o.ConfirmedStart.Set(&v)
+}
+// SetConfirmedStartNil sets the value for ConfirmedStart to be an explicit nil
+func (o *ListOrderPickupsItem) SetConfirmedStartNil() {
+	o.ConfirmedStart.Set(nil)
+}
+
+// UnsetConfirmedStart ensures that no value is present for ConfirmedStart, not even an explicit nil
+func (o *ListOrderPickupsItem) UnsetConfirmedStart() {
+	o.ConfirmedStart.Unset()
+}
+
+// GetConfirmedEnd returns the ConfirmedEnd field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderPickupsItem) GetConfirmedEnd() time.Time {
+	if o == nil || o.ConfirmedEnd.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ConfirmedEnd.Get()
+}
+
+// GetConfirmedEndOk returns a tuple with the ConfirmedEnd field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderPickupsItem) GetConfirmedEndOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ConfirmedEnd.Get(), o.ConfirmedEnd.IsSet()
+}
+
+// HasConfirmedEnd returns a boolean if a field has been set.
+func (o *ListOrderPickupsItem) HasConfirmedEnd() bool {
+	if o != nil && o.ConfirmedEnd.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConfirmedEnd gets a reference to the given NullableTime and assigns it to the ConfirmedEnd field.
+func (o *ListOrderPickupsItem) SetConfirmedEnd(v time.Time) {
+	o.ConfirmedEnd.Set(&v)
+}
+// SetConfirmedEndNil sets the value for ConfirmedEnd to be an explicit nil
+func (o *ListOrderPickupsItem) SetConfirmedEndNil() {
+	o.ConfirmedEnd.Set(nil)
+}
+
+// UnsetConfirmedEnd ensures that no value is present for ConfirmedEnd, not even an explicit nil
+func (o *ListOrderPickupsItem) UnsetConfirmedEnd() {
+	o.ConfirmedEnd.Unset()
+}
+
+func (o ListOrderPickupsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["carrier"] = o.Carrier
+	}
+	if o.Confirmation.IsSet() {
+		toSerialize["confirmation"] = o.Confirmation.Get()
+	}
+	if true {
+		toSerialize["orderIds"] = o.OrderIds
+	}
+	if true {
+		toSerialize["minTime"] = o.MinTime
+	}
+	if true {
+		toSerialize["maxTime"] = o.MaxTime
+	}
+	if o.Instructions.IsSet() {
+		toSerialize["instructions"] = o.Instructions.Get()
+	}
+	if true {
+		toSerialize["shippoPickupId"] = o.ShippoPickupId
+	}
+	if true {
+		toSerialize["pickupDate"] = o.PickupDate
+	}
+	if o.ConfirmedStart.IsSet() {
+		toSerialize["confirmedStart"] = o.ConfirmedStart.Get()
+	}
+	if o.ConfirmedEnd.IsSet() {
+		toSerialize["confirmedEnd"] = o.ConfirmedEnd.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderPickupsItem struct {
+	value *ListOrderPickupsItem
+	isSet bool
+}
+
+func (v NullableListOrderPickupsItem) Get() *ListOrderPickupsItem {
+	return v.value
+}
+
+func (v *NullableListOrderPickupsItem) Set(val *ListOrderPickupsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderPickupsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderPickupsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderPickupsItem(val *ListOrderPickupsItem) *NullableListOrderPickupsItem {
+	return &NullableListOrderPickupsItem{value: val, isSet: true}
+}
+
+func (v NullableListOrderPickupsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderPickupsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderPickupsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListOrderPickupsResponse struct {
+	// The rows.
+	Data []ListOrderPickupsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListOrderPickupsResponse instantiates a new ListOrderPickupsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderPickupsResponse(data []ListOrderPickupsItem) *ListOrderPickupsResponse {
+	this := ListOrderPickupsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListOrderPickupsResponseWithDefaults instantiates a new ListOrderPickupsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderPickupsResponseWithDefaults() *ListOrderPickupsResponse {
+	this := ListOrderPickupsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListOrderPickupsResponse) GetData() []ListOrderPickupsItem {
+	if o == nil {
+		var ret []ListOrderPickupsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsResponse) GetDataOk() ([]ListOrderPickupsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListOrderPickupsResponse) SetData(v []ListOrderPickupsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListOrderPickupsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListOrderPickupsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListOrderPickupsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListOrderPickupsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderPickupsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListOrderPickupsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListOrderPickupsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListOrderPickupsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderPickupsResponse struct {
+	value *ListOrderPickupsResponse
+	isSet bool
+}
+
+func (v NullableListOrderPickupsResponse) Get() *ListOrderPickupsResponse {
+	return v.value
+}
+
+func (v *NullableListOrderPickupsResponse) Set(val *ListOrderPickupsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderPickupsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderPickupsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderPickupsResponse(val *ListOrderPickupsResponse) *NullableListOrderPickupsResponse {
+	return &NullableListOrderPickupsResponse{value: val, isSet: true}
+}
+
+func (v NullableListOrderPickupsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderPickupsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderRefundsItem struct for ListOrderRefundsItem
+type ListOrderRefundsItem struct {
+	Id string `json:"id"`
+	OrderId string `json:"orderId"`
+	Amount float32 `json:"amount"`
+	Full bool `json:"full"`
+	Reason NullableString `json:"reason,omitempty"`
+	LineItems []ListOrderRefundsItemLineItems `json:"lineItems,omitempty"`
+	Status string `json:"status"`
+	Platform string `json:"platform"`
+	PlatformRefundId NullableString `json:"platformRefundId,omitempty"`
+	Error NullableString `json:"error,omitempty"`
+	Source string `json:"source"`
+	CreatedAt time.Time `json:"createdAt"`
+	CompletedAt NullableTime `json:"completedAt,omitempty"`
+}
+
+// NewListOrderRefundsItem instantiates a new ListOrderRefundsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderRefundsItem(id string, orderId string, amount float32, full bool, status string, platform string, source string, createdAt time.Time) *ListOrderRefundsItem {
+	this := ListOrderRefundsItem{}
+	this.Id = id
+	this.OrderId = orderId
+	this.Amount = amount
+	this.Full = full
+	this.Status = status
+	this.Platform = platform
+	this.Source = source
+	this.CreatedAt = createdAt
+	return &this
+}
+
+// NewListOrderRefundsItemWithDefaults instantiates a new ListOrderRefundsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderRefundsItemWithDefaults() *ListOrderRefundsItem {
+	this := ListOrderRefundsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListOrderRefundsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListOrderRefundsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetOrderId returns the OrderId field value
+func (o *ListOrderRefundsItem) GetOrderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrderId
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.OrderId, true
+}
+
+// SetOrderId sets field value
+func (o *ListOrderRefundsItem) SetOrderId(v string) {
+	o.OrderId = v
+}
+
+// GetAmount returns the Amount field value
+func (o *ListOrderRefundsItem) GetAmount() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetAmountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
+// SetAmount sets field value
+func (o *ListOrderRefundsItem) SetAmount(v float32) {
+	o.Amount = v
+}
+
+// GetFull returns the Full field value
+func (o *ListOrderRefundsItem) GetFull() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Full
+}
+
+// GetFullOk returns a tuple with the Full field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetFullOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Full, true
+}
+
+// SetFull sets field value
+func (o *ListOrderRefundsItem) SetFull(v bool) {
+	o.Full = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItem) GetReason() string {
+	if o == nil || o.Reason.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason.Get()
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItem) GetReasonOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Reason.Get(), o.Reason.IsSet()
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *ListOrderRefundsItem) HasReason() bool {
+	if o != nil && o.Reason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given NullableString and assigns it to the Reason field.
+func (o *ListOrderRefundsItem) SetReason(v string) {
+	o.Reason.Set(&v)
+}
+// SetReasonNil sets the value for Reason to be an explicit nil
+func (o *ListOrderRefundsItem) SetReasonNil() {
+	o.Reason.Set(nil)
+}
+
+// UnsetReason ensures that no value is present for Reason, not even an explicit nil
+func (o *ListOrderRefundsItem) UnsetReason() {
+	o.Reason.Unset()
+}
+
+// GetLineItems returns the LineItems field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItem) GetLineItems() []ListOrderRefundsItemLineItems {
+	if o == nil  {
+		var ret []ListOrderRefundsItemLineItems
+		return ret
+	}
+	return o.LineItems
+}
+
+// GetLineItemsOk returns a tuple with the LineItems field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItem) GetLineItemsOk() ([]ListOrderRefundsItemLineItems, bool) {
+	if o == nil || o.LineItems == nil {
+		return nil, false
+	}
+	return o.LineItems, true
+}
+
+// HasLineItems returns a boolean if a field has been set.
+func (o *ListOrderRefundsItem) HasLineItems() bool {
+	if o != nil && o.LineItems != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItems gets a reference to the given []ListOrderRefundsItemLineItems and assigns it to the LineItems field.
+func (o *ListOrderRefundsItem) SetLineItems(v []ListOrderRefundsItemLineItems) {
+	o.LineItems = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListOrderRefundsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListOrderRefundsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetPlatform returns the Platform field value
+func (o *ListOrderRefundsItem) GetPlatform() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetPlatformOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Platform, true
+}
+
+// SetPlatform sets field value
+func (o *ListOrderRefundsItem) SetPlatform(v string) {
+	o.Platform = v
+}
+
+// GetPlatformRefundId returns the PlatformRefundId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItem) GetPlatformRefundId() string {
+	if o == nil || o.PlatformRefundId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlatformRefundId.Get()
+}
+
+// GetPlatformRefundIdOk returns a tuple with the PlatformRefundId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItem) GetPlatformRefundIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.PlatformRefundId.Get(), o.PlatformRefundId.IsSet()
+}
+
+// HasPlatformRefundId returns a boolean if a field has been set.
+func (o *ListOrderRefundsItem) HasPlatformRefundId() bool {
+	if o != nil && o.PlatformRefundId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatformRefundId gets a reference to the given NullableString and assigns it to the PlatformRefundId field.
+func (o *ListOrderRefundsItem) SetPlatformRefundId(v string) {
+	o.PlatformRefundId.Set(&v)
+}
+// SetPlatformRefundIdNil sets the value for PlatformRefundId to be an explicit nil
+func (o *ListOrderRefundsItem) SetPlatformRefundIdNil() {
+	o.PlatformRefundId.Set(nil)
+}
+
+// UnsetPlatformRefundId ensures that no value is present for PlatformRefundId, not even an explicit nil
+func (o *ListOrderRefundsItem) UnsetPlatformRefundId() {
+	o.PlatformRefundId.Unset()
+}
+
+// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItem) GetError() string {
+	if o == nil || o.Error.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Error.Get()
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItem) GetErrorOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Error.Get(), o.Error.IsSet()
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *ListOrderRefundsItem) HasError() bool {
+	if o != nil && o.Error.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given NullableString and assigns it to the Error field.
+func (o *ListOrderRefundsItem) SetError(v string) {
+	o.Error.Set(&v)
+}
+// SetErrorNil sets the value for Error to be an explicit nil
+func (o *ListOrderRefundsItem) SetErrorNil() {
+	o.Error.Set(nil)
+}
+
+// UnsetError ensures that no value is present for Error, not even an explicit nil
+func (o *ListOrderRefundsItem) UnsetError() {
+	o.Error.Unset()
+}
+
+// GetSource returns the Source field value
+func (o *ListOrderRefundsItem) GetSource() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetSourceOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *ListOrderRefundsItem) SetSource(v string) {
+	o.Source = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListOrderRefundsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListOrderRefundsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetCompletedAt returns the CompletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItem) GetCompletedAt() time.Time {
+	if o == nil || o.CompletedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CompletedAt.Get()
+}
+
+// GetCompletedAtOk returns a tuple with the CompletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItem) GetCompletedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CompletedAt.Get(), o.CompletedAt.IsSet()
+}
+
+// HasCompletedAt returns a boolean if a field has been set.
+func (o *ListOrderRefundsItem) HasCompletedAt() bool {
+	if o != nil && o.CompletedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompletedAt gets a reference to the given NullableTime and assigns it to the CompletedAt field.
+func (o *ListOrderRefundsItem) SetCompletedAt(v time.Time) {
+	o.CompletedAt.Set(&v)
+}
+// SetCompletedAtNil sets the value for CompletedAt to be an explicit nil
+func (o *ListOrderRefundsItem) SetCompletedAtNil() {
+	o.CompletedAt.Set(nil)
+}
+
+// UnsetCompletedAt ensures that no value is present for CompletedAt, not even an explicit nil
+func (o *ListOrderRefundsItem) UnsetCompletedAt() {
+	o.CompletedAt.Unset()
+}
+
+func (o ListOrderRefundsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["orderId"] = o.OrderId
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["full"] = o.Full
+	}
+	if o.Reason.IsSet() {
+		toSerialize["reason"] = o.Reason.Get()
+	}
+	if o.LineItems != nil {
+		toSerialize["lineItems"] = o.LineItems
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["platform"] = o.Platform
+	}
+	if o.PlatformRefundId.IsSet() {
+		toSerialize["platformRefundId"] = o.PlatformRefundId.Get()
+	}
+	if o.Error.IsSet() {
+		toSerialize["error"] = o.Error.Get()
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if o.CompletedAt.IsSet() {
+		toSerialize["completedAt"] = o.CompletedAt.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderRefundsItem struct {
+	value *ListOrderRefundsItem
+	isSet bool
+}
+
+func (v NullableListOrderRefundsItem) Get() *ListOrderRefundsItem {
+	return v.value
+}
+
+func (v *NullableListOrderRefundsItem) Set(val *ListOrderRefundsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderRefundsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderRefundsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderRefundsItem(val *ListOrderRefundsItem) *NullableListOrderRefundsItem {
+	return &NullableListOrderRefundsItem{value: val, isSet: true}
+}
+
+func (v NullableListOrderRefundsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderRefundsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderRefundsItemLineItems struct for ListOrderRefundsItemLineItems
+type ListOrderRefundsItemLineItems struct {
+	// This order's id. An order is one line, so a line item names how many of its units.
+	OrderId NullableString `json:"orderId,omitempty"`
+	Quantity float32 `json:"quantity"`
+	// Dollars for this line; defaults to the unit price × quantity.
+	Amount NullableFloat32 `json:"amount,omitempty"`
+}
+
+// NewListOrderRefundsItemLineItems instantiates a new ListOrderRefundsItemLineItems object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderRefundsItemLineItems(quantity float32) *ListOrderRefundsItemLineItems {
+	this := ListOrderRefundsItemLineItems{}
+	this.Quantity = quantity
+	return &this
+}
+
+// NewListOrderRefundsItemLineItemsWithDefaults instantiates a new ListOrderRefundsItemLineItems object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderRefundsItemLineItemsWithDefaults() *ListOrderRefundsItemLineItems {
+	this := ListOrderRefundsItemLineItems{}
+	return &this
+}
+
+// GetOrderId returns the OrderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItemLineItems) GetOrderId() string {
+	if o == nil || o.OrderId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrderId.Get()
+}
+
+// GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItemLineItems) GetOrderIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OrderId.Get(), o.OrderId.IsSet()
+}
+
+// HasOrderId returns a boolean if a field has been set.
+func (o *ListOrderRefundsItemLineItems) HasOrderId() bool {
+	if o != nil && o.OrderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderId gets a reference to the given NullableString and assigns it to the OrderId field.
+func (o *ListOrderRefundsItemLineItems) SetOrderId(v string) {
+	o.OrderId.Set(&v)
+}
+// SetOrderIdNil sets the value for OrderId to be an explicit nil
+func (o *ListOrderRefundsItemLineItems) SetOrderIdNil() {
+	o.OrderId.Set(nil)
+}
+
+// UnsetOrderId ensures that no value is present for OrderId, not even an explicit nil
+func (o *ListOrderRefundsItemLineItems) UnsetOrderId() {
+	o.OrderId.Unset()
+}
+
+// GetQuantity returns the Quantity field value
+func (o *ListOrderRefundsItemLineItems) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Quantity
+}
+
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsItemLineItems) GetQuantityOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
+// SetQuantity sets field value
+func (o *ListOrderRefundsItemLineItems) SetQuantity(v float32) {
+	o.Quantity = v
+}
+
+// GetAmount returns the Amount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderRefundsItemLineItems) GetAmount() float32 {
+	if o == nil || o.Amount.Get() == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Amount.Get()
+}
+
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderRefundsItemLineItems) GetAmountOk() (*float32, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Amount.Get(), o.Amount.IsSet()
+}
+
+// HasAmount returns a boolean if a field has been set.
+func (o *ListOrderRefundsItemLineItems) HasAmount() bool {
+	if o != nil && o.Amount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAmount gets a reference to the given NullableFloat32 and assigns it to the Amount field.
+func (o *ListOrderRefundsItemLineItems) SetAmount(v float32) {
+	o.Amount.Set(&v)
+}
+// SetAmountNil sets the value for Amount to be an explicit nil
+func (o *ListOrderRefundsItemLineItems) SetAmountNil() {
+	o.Amount.Set(nil)
+}
+
+// UnsetAmount ensures that no value is present for Amount, not even an explicit nil
+func (o *ListOrderRefundsItemLineItems) UnsetAmount() {
+	o.Amount.Unset()
+}
+
+func (o ListOrderRefundsItemLineItems) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.OrderId.IsSet() {
+		toSerialize["orderId"] = o.OrderId.Get()
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if o.Amount.IsSet() {
+		toSerialize["amount"] = o.Amount.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderRefundsItemLineItems struct {
+	value *ListOrderRefundsItemLineItems
+	isSet bool
+}
+
+func (v NullableListOrderRefundsItemLineItems) Get() *ListOrderRefundsItemLineItems {
+	return v.value
+}
+
+func (v *NullableListOrderRefundsItemLineItems) Set(val *ListOrderRefundsItemLineItems) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderRefundsItemLineItems) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderRefundsItemLineItems) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderRefundsItemLineItems(val *ListOrderRefundsItemLineItems) *NullableListOrderRefundsItemLineItems {
+	return &NullableListOrderRefundsItemLineItems{value: val, isSet: true}
+}
+
+func (v NullableListOrderRefundsItemLineItems) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderRefundsItemLineItems) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderRefundsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListOrderRefundsResponse struct {
+	// The rows.
+	Data []ListOrderRefundsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListOrderRefundsResponse instantiates a new ListOrderRefundsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderRefundsResponse(data []ListOrderRefundsItem) *ListOrderRefundsResponse {
+	this := ListOrderRefundsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListOrderRefundsResponseWithDefaults instantiates a new ListOrderRefundsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderRefundsResponseWithDefaults() *ListOrderRefundsResponse {
+	this := ListOrderRefundsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListOrderRefundsResponse) GetData() []ListOrderRefundsItem {
+	if o == nil {
+		var ret []ListOrderRefundsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsResponse) GetDataOk() ([]ListOrderRefundsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListOrderRefundsResponse) SetData(v []ListOrderRefundsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListOrderRefundsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListOrderRefundsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListOrderRefundsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListOrderRefundsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderRefundsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListOrderRefundsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListOrderRefundsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListOrderRefundsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderRefundsResponse struct {
+	value *ListOrderRefundsResponse
+	isSet bool
+}
+
+func (v NullableListOrderRefundsResponse) Get() *ListOrderRefundsResponse {
+	return v.value
+}
+
+func (v *NullableListOrderRefundsResponse) Set(val *ListOrderRefundsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderRefundsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderRefundsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderRefundsResponse(val *ListOrderRefundsResponse) *NullableListOrderRefundsResponse {
+	return &NullableListOrderRefundsResponse{value: val, isSet: true}
+}
+
+func (v NullableListOrderRefundsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderRefundsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderScanFormsItem struct for ListOrderScanFormsItem
+type ListOrderScanFormsItem struct {
+	Id string `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UserId string `json:"userId"`
+	Status string `json:"status"`
+	Carrier string `json:"carrier"`
+	OrderIds []string `json:"orderIds"`
+	Warnings []string `json:"warnings"`
+	ShipDate string `json:"shipDate"`
+	ShippoManifestId string `json:"shippoManifestId"`
+	DocumentUrl NullableString `json:"documentUrl,omitempty"`
+}
+
+// NewListOrderScanFormsItem instantiates a new ListOrderScanFormsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderScanFormsItem(id string, createdAt time.Time, userId string, status string, carrier string, orderIds []string, warnings []string, shipDate string, shippoManifestId string) *ListOrderScanFormsItem {
+	this := ListOrderScanFormsItem{}
+	this.Id = id
+	this.CreatedAt = createdAt
+	this.UserId = userId
+	this.Status = status
+	this.Carrier = carrier
+	this.OrderIds = orderIds
+	this.Warnings = warnings
+	this.ShipDate = shipDate
+	this.ShippoManifestId = shippoManifestId
+	return &this
+}
+
+// NewListOrderScanFormsItemWithDefaults instantiates a new ListOrderScanFormsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderScanFormsItemWithDefaults() *ListOrderScanFormsItem {
+	this := ListOrderScanFormsItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *ListOrderScanFormsItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ListOrderScanFormsItem) SetId(v string) {
+	o.Id = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *ListOrderScanFormsItem) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ListOrderScanFormsItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetUserId returns the UserId field value
+func (o *ListOrderScanFormsItem) GetUserId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserId
+}
+
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetUserIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
+// SetUserId sets field value
+func (o *ListOrderScanFormsItem) SetUserId(v string) {
+	o.UserId = v
+}
+
+// GetStatus returns the Status field value
+func (o *ListOrderScanFormsItem) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ListOrderScanFormsItem) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetCarrier returns the Carrier field value
+func (o *ListOrderScanFormsItem) GetCarrier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Carrier
+}
+
+// GetCarrierOk returns a tuple with the Carrier field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetCarrierOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Carrier, true
+}
+
+// SetCarrier sets field value
+func (o *ListOrderScanFormsItem) SetCarrier(v string) {
+	o.Carrier = v
+}
+
+// GetOrderIds returns the OrderIds field value
+func (o *ListOrderScanFormsItem) GetOrderIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.OrderIds
+}
+
+// GetOrderIdsOk returns a tuple with the OrderIds field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetOrderIdsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OrderIds, true
+}
+
+// SetOrderIds sets field value
+func (o *ListOrderScanFormsItem) SetOrderIds(v []string) {
+	o.OrderIds = v
+}
+
+// GetWarnings returns the Warnings field value
+func (o *ListOrderScanFormsItem) GetWarnings() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Warnings
+}
+
+// GetWarningsOk returns a tuple with the Warnings field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetWarningsOk() ([]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Warnings, true
+}
+
+// SetWarnings sets field value
+func (o *ListOrderScanFormsItem) SetWarnings(v []string) {
+	o.Warnings = v
+}
+
+// GetShipDate returns the ShipDate field value
+func (o *ListOrderScanFormsItem) GetShipDate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ShipDate
+}
+
+// GetShipDateOk returns a tuple with the ShipDate field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetShipDateOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShipDate, true
+}
+
+// SetShipDate sets field value
+func (o *ListOrderScanFormsItem) SetShipDate(v string) {
+	o.ShipDate = v
+}
+
+// GetShippoManifestId returns the ShippoManifestId field value
+func (o *ListOrderScanFormsItem) GetShippoManifestId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ShippoManifestId
+}
+
+// GetShippoManifestIdOk returns a tuple with the ShippoManifestId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsItem) GetShippoManifestIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ShippoManifestId, true
+}
+
+// SetShippoManifestId sets field value
+func (o *ListOrderScanFormsItem) SetShippoManifestId(v string) {
+	o.ShippoManifestId = v
+}
+
+// GetDocumentUrl returns the DocumentUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListOrderScanFormsItem) GetDocumentUrl() string {
+	if o == nil || o.DocumentUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.DocumentUrl.Get()
+}
+
+// GetDocumentUrlOk returns a tuple with the DocumentUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListOrderScanFormsItem) GetDocumentUrlOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DocumentUrl.Get(), o.DocumentUrl.IsSet()
+}
+
+// HasDocumentUrl returns a boolean if a field has been set.
+func (o *ListOrderScanFormsItem) HasDocumentUrl() bool {
+	if o != nil && o.DocumentUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDocumentUrl gets a reference to the given NullableString and assigns it to the DocumentUrl field.
+func (o *ListOrderScanFormsItem) SetDocumentUrl(v string) {
+	o.DocumentUrl.Set(&v)
+}
+// SetDocumentUrlNil sets the value for DocumentUrl to be an explicit nil
+func (o *ListOrderScanFormsItem) SetDocumentUrlNil() {
+	o.DocumentUrl.Set(nil)
+}
+
+// UnsetDocumentUrl ensures that no value is present for DocumentUrl, not even an explicit nil
+func (o *ListOrderScanFormsItem) UnsetDocumentUrl() {
+	o.DocumentUrl.Unset()
+}
+
+func (o ListOrderScanFormsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["carrier"] = o.Carrier
+	}
+	if true {
+		toSerialize["orderIds"] = o.OrderIds
+	}
+	if true {
+		toSerialize["warnings"] = o.Warnings
+	}
+	if true {
+		toSerialize["shipDate"] = o.ShipDate
+	}
+	if true {
+		toSerialize["shippoManifestId"] = o.ShippoManifestId
+	}
+	if o.DocumentUrl.IsSet() {
+		toSerialize["documentUrl"] = o.DocumentUrl.Get()
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderScanFormsItem struct {
+	value *ListOrderScanFormsItem
+	isSet bool
+}
+
+func (v NullableListOrderScanFormsItem) Get() *ListOrderScanFormsItem {
+	return v.value
+}
+
+func (v *NullableListOrderScanFormsItem) Set(val *ListOrderScanFormsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderScanFormsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderScanFormsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderScanFormsItem(val *ListOrderScanFormsItem) *NullableListOrderScanFormsItem {
+	return &NullableListOrderScanFormsItem{value: val, isSet: true}
+}
+
+func (v NullableListOrderScanFormsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderScanFormsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderScanFormsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListOrderScanFormsResponse struct {
+	// The rows.
+	Data []ListOrderScanFormsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListOrderScanFormsResponse instantiates a new ListOrderScanFormsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderScanFormsResponse(data []ListOrderScanFormsItem) *ListOrderScanFormsResponse {
+	this := ListOrderScanFormsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListOrderScanFormsResponseWithDefaults instantiates a new ListOrderScanFormsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderScanFormsResponseWithDefaults() *ListOrderScanFormsResponse {
+	this := ListOrderScanFormsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListOrderScanFormsResponse) GetData() []ListOrderScanFormsItem {
+	if o == nil {
+		var ret []ListOrderScanFormsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsResponse) GetDataOk() ([]ListOrderScanFormsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListOrderScanFormsResponse) SetData(v []ListOrderScanFormsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListOrderScanFormsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListOrderScanFormsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListOrderScanFormsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListOrderScanFormsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderScanFormsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListOrderScanFormsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListOrderScanFormsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListOrderScanFormsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderScanFormsResponse struct {
+	value *ListOrderScanFormsResponse
+	isSet bool
+}
+
+func (v NullableListOrderScanFormsResponse) Get() *ListOrderScanFormsResponse {
+	return v.value
+}
+
+func (v *NullableListOrderScanFormsResponse) Set(val *ListOrderScanFormsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderScanFormsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderScanFormsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderScanFormsResponse(val *ListOrderScanFormsResponse) *NullableListOrderScanFormsResponse {
+	return &NullableListOrderScanFormsResponse{value: val, isSet: true}
+}
+
+func (v NullableListOrderScanFormsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderScanFormsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderUnitsItem struct for ListOrderUnitsItem
+type ListOrderUnitsItem struct {
+	UnitId string `json:"unitId"`
+	Identifiers []ListInventoryUnitsItemIdentifiers `json:"identifiers"`
+}
+
+// NewListOrderUnitsItem instantiates a new ListOrderUnitsItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderUnitsItem(unitId string, identifiers []ListInventoryUnitsItemIdentifiers) *ListOrderUnitsItem {
+	this := ListOrderUnitsItem{}
+	this.UnitId = unitId
+	this.Identifiers = identifiers
+	return &this
+}
+
+// NewListOrderUnitsItemWithDefaults instantiates a new ListOrderUnitsItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderUnitsItemWithDefaults() *ListOrderUnitsItem {
+	this := ListOrderUnitsItem{}
+	return &this
+}
+
+// GetUnitId returns the UnitId field value
+func (o *ListOrderUnitsItem) GetUnitId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UnitId
+}
+
+// GetUnitIdOk returns a tuple with the UnitId field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderUnitsItem) GetUnitIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.UnitId, true
+}
+
+// SetUnitId sets field value
+func (o *ListOrderUnitsItem) SetUnitId(v string) {
+	o.UnitId = v
+}
+
+// GetIdentifiers returns the Identifiers field value
+func (o *ListOrderUnitsItem) GetIdentifiers() []ListInventoryUnitsItemIdentifiers {
+	if o == nil {
+		var ret []ListInventoryUnitsItemIdentifiers
+		return ret
+	}
+
+	return o.Identifiers
+}
+
+// GetIdentifiersOk returns a tuple with the Identifiers field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderUnitsItem) GetIdentifiersOk() ([]ListInventoryUnitsItemIdentifiers, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Identifiers, true
+}
+
+// SetIdentifiers sets field value
+func (o *ListOrderUnitsItem) SetIdentifiers(v []ListInventoryUnitsItemIdentifiers) {
+	o.Identifiers = v
+}
+
+func (o ListOrderUnitsItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["unitId"] = o.UnitId
+	}
+	if true {
+		toSerialize["identifiers"] = o.Identifiers
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderUnitsItem struct {
+	value *ListOrderUnitsItem
+	isSet bool
+}
+
+func (v NullableListOrderUnitsItem) Get() *ListOrderUnitsItem {
+	return v.value
+}
+
+func (v *NullableListOrderUnitsItem) Set(val *ListOrderUnitsItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderUnitsItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderUnitsItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderUnitsItem(val *ListOrderUnitsItem) *NullableListOrderUnitsItem {
+	return &NullableListOrderUnitsItem{value: val, isSet: true}
+}
+
+func (v NullableListOrderUnitsItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderUnitsItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// ListOrderUnitsResponse The canonical collection envelope. The array is ALWAYS under `data`, never under the noun — so one accessor works for every list endpoint.
+type ListOrderUnitsResponse struct {
+	// The rows.
+	Data []ListOrderUnitsItem `json:"data"`
+	Pagination *Pagination `json:"pagination,omitempty"`
+	// Endpoint-specific extras that are NOT pagination — e.g. `pendingCents`, `basis`. Omitted when empty.
+	Meta map[string]map[string]interface{} `json:"meta,omitempty"`
+}
+
+// NewListOrderUnitsResponse instantiates a new ListOrderUnitsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrderUnitsResponse(data []ListOrderUnitsItem) *ListOrderUnitsResponse {
+	this := ListOrderUnitsResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewListOrderUnitsResponseWithDefaults instantiates a new ListOrderUnitsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrderUnitsResponseWithDefaults() *ListOrderUnitsResponse {
+	this := ListOrderUnitsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *ListOrderUnitsResponse) GetData() []ListOrderUnitsItem {
+	if o == nil {
+		var ret []ListOrderUnitsItem
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *ListOrderUnitsResponse) GetDataOk() ([]ListOrderUnitsItem, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *ListOrderUnitsResponse) SetData(v []ListOrderUnitsItem) {
+	o.Data = v
+}
+
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListOrderUnitsResponse) GetPagination() Pagination {
+	if o == nil || o.Pagination == nil {
+		var ret Pagination
+		return ret
+	}
+	return *o.Pagination
+}
+
+// GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderUnitsResponse) GetPaginationOk() (*Pagination, bool) {
+	if o == nil || o.Pagination == nil {
+		return nil, false
+	}
+	return o.Pagination, true
+}
+
+// HasPagination returns a boolean if a field has been set.
+func (o *ListOrderUnitsResponse) HasPagination() bool {
+	if o != nil && o.Pagination != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
+func (o *ListOrderUnitsResponse) SetPagination(v Pagination) {
+	o.Pagination = &v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListOrderUnitsResponse) GetMeta() map[string]map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListOrderUnitsResponse) GetMetaOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListOrderUnitsResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]map[string]interface{} and assigns it to the Meta field.
+func (o *ListOrderUnitsResponse) SetMeta(v map[string]map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o ListOrderUnitsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if o.Pagination != nil {
+		toSerialize["pagination"] = o.Pagination
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableListOrderUnitsResponse struct {
+	value *ListOrderUnitsResponse
+	isSet bool
+}
+
+func (v NullableListOrderUnitsResponse) Get() *ListOrderUnitsResponse {
+	return v.value
+}
+
+func (v *NullableListOrderUnitsResponse) Set(val *ListOrderUnitsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrderUnitsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrderUnitsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrderUnitsResponse(val *ListOrderUnitsResponse) *NullableListOrderUnitsResponse {
+	return &NullableListOrderUnitsResponse{value: val, isSet: true}
+}
+
+func (v NullableListOrderUnitsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrderUnitsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
